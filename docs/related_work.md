@@ -17,13 +17,13 @@
 
 ### 关键发现
 
-**LinguaGraph 唯一同时具备**：
-1. 多语言概念图比较
-2. 人类实验验证
-3. 图结构级跨语言指标 (LDS)
+**To the best of our knowledge, LinguaGraph is the first system to simultaneously combine**:
+1. 多语言概念图比较 (ZH/DE/EN)
+2. 人类实验验证 (n=60 设计)
+3. 图结构级跨语言比较指标 (LDS)
 4. 个体级认知分析（非群体级）
 
-没有其他系统同时覆盖这 4 个维度。
+We are not aware of existing systems that combine these four dimensions in a single framework.
 
 ---
 
@@ -169,7 +169,13 @@ Phase 3 (论文扩展):
 
 在论文 Related Work 中可以写：
 
-> Unlike ConceptNet, which is a static crowdsourced knowledge base, LinguaGraph extracts **individual cognitive graphs** from human responses. Unlike CoCo-Ex, which maps concepts to a pre-existing KB, LinguaGraph builds **de novo graphs** from multilingual text and compares them across languages using graph-structure metrics. No existing system combines (1) LLM-based concept extraction, (2) individual-level cognitive graph construction, (3) cross-lingual graph comparison, and (4) 3D Cognitive City visualization.
+> To the best of our knowledge, no existing system combines:
+1. LLM-based concept extraction from individual responses
+2. Individual-level cognitive graph construction
+3. Cross-lingual graph comparison using structure metrics (LDS)
+4. 3D Cognitive City visualization
+
+Existing work typically covers only one or two of these dimensions.
 
 ### 未来对比方向
 
