@@ -1,0 +1,238 @@
+{
+  "topics": ["freedom", "responsibility", "success", "home"],
+  "languages": ["zh", "en", "de"],
+  "language_colors": {
+    "zh": "#ff6b6b",
+    "en": "#4a7dff",
+    "de": "#ffd93d"
+  },
+  "cities": {
+    "freedom": {
+      "zh": {
+        "buildings": [
+          {"id": "自由", "label": "自由", "centrality": 0.95, "community": "social", "frequency": 42},
+          {"id": "责任", "label": "责任", "centrality": 0.75, "community": "social", "frequency": 35},
+          {"id": "权利", "label": "权利", "centrality": 0.70, "community": "social", "frequency": 30},
+          {"id": "社会", "label": "社会", "centrality": 0.68, "community": "social", "frequency": 28},
+          {"id": "个人", "label": "个人", "centrality": 0.60, "community": "individual", "frequency": 22},
+          {"id": "法律", "label": "法律", "centrality": 0.55, "community": "institution", "frequency": 18}
+        ],
+        "roads": [
+          {"source": "自由", "target": "责任", "relation": "requires", "strength": 0.9},
+          {"source": "自由", "target": "权利", "relation": "is_a", "strength": 0.85},
+          {"source": "责任", "target": "社会", "relation": "part_of", "strength": 0.7},
+          {"source": "权利", "target": "法律", "relation": "protected_by", "strength": 0.6}
+        ]
+      },
+      "en": {
+        "buildings": [
+          {"id": "freedom", "label": "freedom", "centrality": 0.95, "community": "individual", "frequency": 36},
+          {"id": "rights", "label": "rights", "centrality": 0.80, "community": "institution", "frequency": 30},
+          {"id": "choice", "label": "choice", "centrality": 0.75, "community": "individual", "frequency": 28},
+          {"id": "liberty", "label": "liberty", "centrality": 0.70, "community": "individual", "frequency": 25},
+          {"id": "responsibility", "label": "responsibility", "centrality": 0.65, "community": "moral", "frequency": 22},
+          {"id": "democracy", "label": "democracy", "centrality": 0.60, "community": "institution", "frequency": 20}
+        ],
+        "roads": [
+          {"source": "freedom", "target": "rights", "relation": "is_a", "strength": 0.9},
+          {"source": "freedom", "target": "choice", "relation": "enables", "strength": 0.85},
+          {"source": "freedom", "target": "liberty", "relation": "equivalent", "strength": 0.8},
+          {"source": "freedom", "target": "responsibility", "relation": "requires", "strength": 0.7}
+        ]
+      },
+      "de": {
+        "buildings": [
+          {"id": "Freiheit", "label": "Freiheit", "centrality": 0.95, "community": "individual", "frequency": 41},
+          {"id": "Selbstbestimmung", "label": "Selbstbestimmung", "centrality": 0.80, "community": "individual", "frequency": 32},
+          {"id": "Recht", "label": "Recht", "centrality": 0.75, "community": "institution", "frequency": 28},
+          {"id": "Verantwortung", "label": "Verantwortung", "centrality": 0.70, "community": "moral", "frequency": 25},
+          {"id": "Demokratie", "label": "Demokratie", "centrality": 0.65, "community": "institution", "frequency": 22},
+          {"id": "Würde", "label": "Würde", "centrality": 0.60, "community": "moral", "frequency": 18}
+        ],
+        "roads": [
+          {"source": "Freiheit", "target": "Selbstbestimmung", "relation": "is_a", "strength": 0.9},
+          {"source": "Freiheit", "target": "Recht", "relation": "requires", "strength": 0.85},
+          {"source": "Freiheit", "target": "Verantwortung", "relation": "requires", "strength": 0.8},
+          {"source": "Recht", "target": "Demokratie", "relation": "part_of", "strength": 0.7}
+        ]
+      },
+      "bridges": [
+        {"source": "自由", "target": "freedom", "equivalent": true, "strength": 0.9},
+        {"source": "责任", "target": "Verantwortung", "equivalent": true, "strength": 0.85},
+        {"source": "权利", "target": "Recht", "equivalent": true, "strength": 0.8}
+      ],
+      "lds": {"zh_vs_en": 0.215, "zh_vs_de": 0.230, "en_vs_de": 0.233}
+    },
+    "success": {
+      "zh": {
+        "buildings": [
+          {"id": "成功", "label": "成功", "centrality": 0.95, "community": "achievement", "frequency": 47},
+          {"id": "努力", "label": "努力", "centrality": 0.85, "community": "effort", "frequency": 40},
+          {"id": "家庭", "label": "家庭", "centrality": 0.75, "community": "social", "frequency": 35},
+          {"id": "成就", "label": "成就", "centrality": 0.70, "community": "achievement", "frequency": 30},
+          {"id": "责任", "label": "责任", "centrality": 0.65, "community": "moral", "frequency": 25},
+          {"id": "学习", "label": "学习", "centrality": 0.60, "community": "process", "frequency": 22}
+        ],
+        "roads": [
+          {"source": "成功", "target": "努力", "relation": "requires", "strength": 0.95},
+          {"source": "成功", "target": "家庭", "relation": "for", "strength": 0.8},
+          {"source": "成功", "target": "成就", "relation": "is_a", "strength": 0.85},
+          {"source": "努力", "target": "学习", "relation": "through", "strength": 0.7}
+        ]
+      },
+      "en": {
+        "buildings": [
+          {"id": "success", "label": "success", "centrality": 0.95, "community": "achievement", "frequency": 48},
+          {"id": "achievement", "label": "achievement", "centrality": 0.85, "community": "achievement", "frequency": 38},
+          {"id": "opportunity", "label": "opportunity", "centrality": 0.80, "community": "individual", "frequency": 35},
+          {"id": "choice", "label": "choice", "centrality": 0.75, "community": "individual", "frequency": 30},
+          {"id": "competition", "label": "competition", "centrality": 0.70, "community": "social", "frequency": 25},
+          {"id": "career", "label": "career", "centrality": 0.65, "community": "professional", "frequency": 22}
+        ],
+        "roads": [
+          {"source": "success", "target": "achievement", "relation": "is_a", "strength": 0.9},
+          {"source": "success", "target": "opportunity", "relation": "requires", "strength": 0.85},
+          {"source": "success", "target": "choice", "relation": "enables", "strength": 0.8},
+          {"source": "achievement", "target": "competition", "relation": "through", "strength": 0.7}
+        ]
+      },
+      "de": {
+        "buildings": [
+          {"id": "Erfolg", "label": "Erfolg", "centrality": 0.95, "community": "achievement", "frequency": 46},
+          {"id": "Leistung", "label": "Leistung", "centrality": 0.85, "community": "performance", "frequency": 38},
+          {"id": "Karriere", "label": "Karriere", "centrality": 0.80, "community": "professional", "frequency": 32},
+          {"id": "Selbstständigkeit", "label": "Selbstständigkeit", "centrality": 0.75, "community": "individual", "frequency": 28},
+          {"id": "Kompetenz", "label": "Kompetenz", "centrality": 0.70, "community": "ability", "frequency": 25},
+          {"id": "Bildung", "label": "Bildung", "centrality": 0.65, "community": "education", "frequency": 22}
+        ],
+        "roads": [
+          {"source": "Erfolg", "target": "Leistung", "relation": "through", "strength": 0.9},
+          {"source": "Erfolg", "target": "Karriere", "relation": "manifested_in", "strength": 0.85},
+          {"source": "Erfolg", "target": "Selbstständigkeit", "relation": "requires", "strength": 0.8},
+          {"source": "Leistung", "target": "Kompetenz", "relation": "based_on", "strength": 0.75}
+        ]
+      },
+      "bridges": [
+        {"source": "成功", "target": "success", "equivalent": true, "strength": 0.9},
+        {"source": "努力", "target": "Leistung", "equivalent": false, "strength": 0.5},
+        {"source": "成就", "target": "achievement", "equivalent": true, "strength": 0.85},
+        {"source": "学习", "target": "Bildung", "equivalent": true, "strength": 0.8}
+      ],
+      "lds": {"zh_vs_en": 0.230, "zh_vs_de": 0.305, "en_vs_de": 0.272}
+    },
+    "responsibility": {
+      "zh": {
+        "buildings": [
+          {"id": "责任", "label": "责任", "centrality": 0.95, "community": "moral", "frequency": 54},
+          {"id": "社会", "label": "社会", "centrality": 0.80, "community": "social", "frequency": 42},
+          {"id": "义务", "label": "义务", "centrality": 0.75, "community": "moral", "frequency": 35},
+          {"id": "家庭", "label": "家庭", "centrality": 0.70, "community": "social", "frequency": 30},
+          {"id": "集体", "label": "集体", "centrality": 0.65, "community": "social", "frequency": 25},
+          {"id": "法律", "label": "法律", "centrality": 0.60, "community": "institution", "frequency": 20}
+        ],
+        "roads": [
+          {"source": "责任", "target": "社会", "relation": "for", "strength": 0.9},
+          {"source": "责任", "target": "义务", "relation": "is_a", "strength": 0.85},
+          {"source": "责任", "target": "家庭", "relation": "within", "strength": 0.8},
+          {"source": "社会", "target": "集体", "relation": "part_of", "strength": 0.7}
+        ]
+      },
+      "en": {
+        "buildings": [
+          {"id": "responsibility", "label": "responsibility", "centrality": 0.95, "community": "moral", "frequency": 46},
+          {"id": "duty", "label": "duty", "centrality": 0.80, "community": "moral", "frequency": 38},
+          {"id": "accountability", "label": "accountability", "centrality": 0.75, "community": "institution", "frequency": 32},
+          {"id": "freedom", "label": "freedom", "centrality": 0.70, "community": "individual", "frequency": 28},
+          {"id": "ethics", "label": "ethics", "centrality": 0.65, "community": "moral", "frequency": 22},
+          {"id": "obligation", "label": "obligation", "centrality": 0.60, "community": "moral", "frequency": 18}
+        ],
+        "roads": [
+          {"source": "responsibility", "target": "duty", "relation": "is_a", "strength": 0.9},
+          {"source": "responsibility", "target": "accountability", "relation": "requires", "strength": 0.85},
+          {"source": "responsibility", "target": "freedom", "relation": "paired_with", "strength": 0.8},
+          {"source": "duty", "target": "ethics", "relation": "based_on", "strength": 0.7}
+        ]
+      },
+      "de": {
+        "buildings": [
+          {"id": "Verantwortung", "label": "Verantwortung", "centrality": 0.95, "community": "moral", "frequency": 45},
+          {"id": "Pflicht", "label": "Pflicht", "centrality": 0.85, "community": "moral", "frequency": 38},
+          {"id": "Freiheit", "label": "Freiheit", "centrality": 0.80, "community": "individual", "frequency": 32},
+          {"id": "Ethik", "label": "Ethik", "centrality": 0.75, "community": "moral", "frequency": 28},
+          {"id": "Gesellschaft", "label": "Gesellschaft", "centrality": 0.70, "community": "social", "frequency": 25},
+          {"id": "Recht", "label": "Recht", "centrality": 0.65, "community": "institution", "frequency": 20}
+        ],
+        "roads": [
+          {"source": "Verantwortung", "target": "Pflicht", "relation": "is_a", "strength": 0.9},
+          {"source": "Verantwortung", "target": "Freiheit", "relation": "paired_with", "strength": 0.85},
+          {"source": "Verantwortung", "target": "Ethik", "relation": "based_on", "strength": 0.8},
+          {"source": "Pflicht", "target": "Gesellschaft", "relation": "for", "strength": 0.7}
+        ]
+      },
+      "bridges": [
+        {"source": "责任", "target": "responsibility", "equivalent": true, "strength": 0.9},
+        {"source": "义务", "target": "duty", "equivalent": true, "strength": 0.85},
+        {"source": "义务", "target": "Pflicht", "equivalent": true, "strength": 0.85},
+        {"source": "社会", "target": "Gesellschaft", "equivalent": true, "strength": 0.8}
+      ],
+      "lds": {"zh_vs_en": 0.167, "zh_vs_de": 0.331, "en_vs_de": 0.296}
+    },
+    "home": {
+      "zh": {
+        "buildings": [
+          {"id": "家", "label": "家", "centrality": 0.95, "community": "emotional", "frequency": 40},
+          {"id": "归属", "label": "归属", "centrality": 0.80, "community": "emotional", "frequency": 35},
+          {"id": "温暖", "label": "温暖", "centrality": 0.75, "community": "emotional", "frequency": 30},
+          {"id": "家人", "label": "家人", "centrality": 0.70, "community": "social", "frequency": 28},
+          {"id": "记忆", "label": "记忆", "centrality": 0.65, "community": "cognitive", "frequency": 22},
+          {"id": "安全感", "label": "安全感", "centrality": 0.60, "community": "emotional", "frequency": 18}
+        ],
+        "roads": [
+          {"source": "家", "target": "归属", "relation": "provides", "strength": 0.9},
+          {"source": "家", "target": "温暖", "relation": "associated_with", "strength": 0.85},
+          {"source": "家", "target": "家人", "relation": "contains", "strength": 0.8},
+          {"source": "归属", "target": "安全感", "relation": "creates", "strength": 0.7}
+        ]
+      },
+      "en": {
+        "buildings": [
+          {"id": "home", "label": "home", "centrality": 0.95, "community": "emotional", "frequency": 44},
+          {"id": "belonging", "label": "belonging", "centrality": 0.80, "community": "emotional", "frequency": 38},
+          {"id": "family", "label": "family", "centrality": 0.75, "community": "social", "frequency": 32},
+          {"id": "safety", "label": "safety", "centrality": 0.70, "community": "emotional", "frequency": 28},
+          {"id": "comfort", "label": "comfort", "centrality": 0.65, "community": "emotional", "frequency": 22},
+          {"id": "memories", "label": "memories", "centrality": 0.60, "community": "cognitive", "frequency": 18}
+        ],
+        "roads": [
+          {"source": "home", "target": "belonging", "relation": "provides", "strength": 0.9},
+          {"source": "home", "target": "family", "relation": "contains", "strength": 0.85},
+          {"source": "home", "target": "safety", "relation": "associated_with", "strength": 0.8},
+          {"source": "belonging", "target": "comfort", "relation": "creates", "strength": 0.7}
+        ]
+      },
+      "de": {
+        "buildings": [
+          {"id": "Zuhause", "label": "Zuhause", "centrality": 0.95, "community": "emotional", "frequency": 42},
+          {"id": "Heimat", "label": "Heimat", "centrality": 0.85, "community": "cultural", "frequency": 38},
+          {"id": "Familie", "label": "Familie", "centrality": 0.80, "community": "social", "frequency": 35},
+          {"id": "Zugehörigkeit", "label": "Zugehörigkeit", "centrality": 0.75, "community": "emotional", "frequency": 30},
+          {"id": "Sicherheit", "label": "Sicherheit", "centrality": 0.70, "community": "emotional", "frequency": 25},
+          {"id": "Erinnerung", "label": "Erinnerung", "centrality": 0.65, "community": "cognitive", "frequency": 20}
+        ],
+        "roads": [
+          {"source": "Zuhause", "target": "Heimat", "relation": "equivalent", "strength": 0.9},
+          {"source": "Zuhause", "target": "Familie", "relation": "contains", "strength": 0.85},
+          {"source": "Zuhause", "target": "Zugehörigkeit", "relation": "provides", "strength": 0.8},
+          {"source": "Heimat", "target": "Sicherheit", "relation": "associated_with", "strength": 0.7}
+        ]
+      },
+      "bridges": [
+        {"source": "家", "target": "home", "equivalent": true, "strength": 0.9},
+        {"source": "家", "target": "Zuhause", "equivalent": true, "strength": 0.85},
+        {"source": "归属", "target": "belonging", "equivalent": true, "strength": 0.85},
+        {"source": "家人", "target": "family", "equivalent": true, "strength": 0.85}
+      ],
+      "lds": {"zh_vs_en": 0.248, "zh_vs_de": 0.190, "en_vs_de": 0.278}
+    }
+  }
+}

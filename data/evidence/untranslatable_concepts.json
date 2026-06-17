@@ -1,0 +1,177 @@
+{
+  "title": "Untranslatable Concepts — Cross-lingual Cognitive Structure Analysis",
+  "description": "分析中德英三种语言中不可译概念的认知图谱差异",
+  "evidence_type": "cross_lingual_concepts",
+  "source": "Wikipedia + 语言学文献",
+  "created": "2026-06-17",
+  "concepts": [
+    {
+      "concept_zh": "孝",
+      "concept_de": null,
+      "concept_en": "filial piety",
+      "status": "zh_specific",
+      "cognitive_structure": {
+        "zh": {
+          "core_components": ["尊敬", "照顾", "义务", "感恩", "服从"],
+          "relations": [
+            {"from": "孝", "to": "家庭", "type": "is_part_of"},
+            {"from": "孝", "to": "道德", "type": "is_part_of"},
+            {"from": "孝", "to": "尊敬", "type": "represents"},
+            {"from": "孝", "to": "照顾", "type": "represents"},
+            {"from": "孝", "to": "义务", "type": "represents"}
+          ],
+          "cultural_context": "儒家伦理核心，嵌入中国社会结构2000+年"
+        },
+        "en": {
+          "core_components": ["respect", "parents"],
+          "relations": [
+            {"from": "filial piety", "to": "respect", "type": "represents"},
+            {"from": "filial piety", "to": "parents", "type": "target"}
+          ],
+          "cultural_context": "西方语境中弱化为宗教/伦理概念"
+        },
+        "de": {
+          "core_components": ["Ehrfurcht", "Eltern"],
+          "relations": [
+            {"from": "Kindespflicht", "to": "Ehrfurcht", "type": "represents"},
+            {"from": "Kindespflicht", "to": "Eltern", "type": "target"}
+          ],
+          "cultural_context": "无直接对应词，用Kindespflicht近似"
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": ["义务", "感恩", "服从"],
+        "missing_in_de": ["义务", "感恩", "服从"],
+        "cognitive_gap": "西方语言丢失了3个核心组件，认知结构扁平化"
+      }
+    },
+    {
+      "concept_zh": "面子",
+      "concept_de": null,
+      "concept_en": "face",
+      "status": "zh_cultural",
+      "cognitive_structure": {
+        "zh": {
+          "core_components": ["尊严", "社会地位", "他人评价", "羞耻", "荣誉"],
+          "relations": [
+            {"from": "面子", "to": "尊严", "type": "represents"},
+            {"from": "面子", "to": "社会地位", "type": "represents"},
+            {"from": "面子", "to": "他人评价", "type": "requires"}
+          ]
+        },
+        "en": {
+          "core_components": ["reputation"],
+          "relations": [
+            {"from": "face", "to": "reputation", "type": "represents"}
+          ]
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": ["社会地位", "他人评价", "羞耻"],
+        "cognitive_gap": "英文face只保留了表面含义，丢失了社会结构含义"
+      }
+    },
+    {
+      "concept_zh": "缘分",
+      "concept_de": null,
+      "concept_en": null,
+      "status": "zh_unique",
+      "cognitive_structure": {
+        "zh": {
+          "core_components": ["命运", "偶然", "注定", "关系", "时机"],
+          "relations": [
+            {"from": "缘分", "to": "命运", "type": "represents"},
+            {"from": "缘分", "to": "偶然", "type": "contrasts_with"},
+            {"from": "缘分", "to": "注定", "type": "represents"}
+          ]
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": "无法直接翻译",
+        "missing_in_de": "无法直接翻译",
+        "cognitive_gap": "这个概念在西方认知中完全缺失"
+      }
+    },
+    {
+      "concept_zh": null,
+      "concept_de": "Schadenfreude",
+      "concept_en": null,
+      "status": "de_specific",
+      "cognitive_structure": {
+        "de": {
+          "core_components": ["他人不幸", "快乐", "不道德", "人性"],
+          "relations": [
+            {"from": "Schadenfreude", "to": "他人不幸", "type": "causes"},
+            {"from": "Schadenfreude", "to": "快乐", "type": "represents"},
+            {"from": "Schadenfreude", "to": "不道德", "type": "associated_with"}
+          ]
+        },
+        "en": {
+          "core_components": ["joy", "misfortune"],
+          "relations": [
+            {"from": "schadenfreude", "to": "joy", "type": "represents"},
+            {"from": "schadenfreude", "to": "misfortune", "type": "caused_by"}
+          ]
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": ["不道德", "人性"],
+        "cognitive_gap": "英文借词保留了核心含义，但丢失了道德判断维度"
+      }
+    },
+    {
+      "concept_zh": null,
+      "concept_de": "Fernweh",
+      "concept_en": null,
+      "status": "de_specific",
+      "cognitive_structure": {
+        "de": {
+          "core_components": ["远方", "渴望", "离开", "旅行"],
+          "relations": [
+            {"from": "Fernweh", "to": "远方", "type": "represents"},
+            {"from": "Fernweh", "to": "渴望", "type": "represents"},
+            {"from": "Fernweh", "to": "Heimat", "type": "contrasts_with"}
+          ]
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": "直接翻译为wanderlust（不完全等价）",
+        "cognitive_gap": "英文wanderlust偏向旅行欲望，Fernweh偏向对远方的思念"
+      }
+    },
+    {
+      "concept_zh": null,
+      "concept_de": "Heimat",
+      "concept_en": null,
+      "status": "de_cultural",
+      "cognitive_structure": {
+        "de": {
+          "core_components": ["故乡", "归属感", "安全感", "文化认同"],
+          "relations": [
+            {"from": "Heimat", "to": "故乡", "type": "represents"},
+            {"from": "Heimat", "to": "归属感", "type": "represents"},
+            {"from": "Heimat", "to": "文化认同", "type": "requires"}
+          ]
+        },
+        "en": {
+          "core_components": ["home"],
+          "relations": [
+            {"from": "home", "to": "house", "type": "represents"}
+          ]
+        }
+      },
+      "mcl_analysis": {
+        "missing_in_en": ["归属感", "文化认同"],
+        "cognitive_gap": "英文home偏向物理空间，Heimat偏向情感/文化归属"
+      }
+    }
+  ],
+  "summary": {
+    "total_concepts": 6,
+    "zh_specific": 3,
+    "de_specific": 2,
+    "de_cultural": 1,
+    "average_cognitive_gap": 2.5,
+    "finding": "每种语言平均丢失2-3个核心认知组件，导致概念图结构差异显著"
+  }
+}

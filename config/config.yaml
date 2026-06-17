@@ -1,0 +1,94 @@
+# CognitiveSpace Configuration
+# BWKI 2026 Project
+
+# === LLM Configuration ===
+llm:
+  # Provider: ollama (local) or openai (cloud)
+  # 内部统一使用 OpenAI SDK，通过 base_url 切换
+  provider: ollama
+
+  # Ollama / LM Studio (本地首选)
+  # Ollama: http://127.0.0.1:11434/v1
+  # LM Studio: http://127.0.0.1:1234/v1
+  ollama:
+    base_url: http://127.0.0.1:1234/v1
+    model: qwen3-8b
+
+  # OpenAI (云端备选)
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-4.1-mini
+    base_url: null
+
+# === Domain Configuration ===
+domain:
+  # Primary domain for LinguaGraph research
+  primary: social_issues
+
+  # Supported languages
+  languages:
+    - zh    # Chinese
+    - en    # English
+    - de    # German
+
+  # Social issues domain configuration
+  social_issues:
+    topics:
+      - id: q1
+        zh: 自由
+        de: Freiheit
+        en: Freedom
+      - id: q2
+        zh: 公平
+        de: Gerechtigkeit
+        en: Justice
+      - id: q3
+        zh: 成功
+        de: Erfolg
+        en: Success
+      - id: q4
+        zh: 家庭
+        de: Familie
+        en: Family
+
+# === Graph Settings ===
+graph:
+  # Node deduplication threshold
+  similarity_threshold: 0.85
+
+  # Maximum graph size (for performance)
+  max_nodes: 100
+  max_edges: 200
+
+# === Missing Link Detection ===
+detection:
+  # Confidence threshold (0-1)
+  confidence_threshold: 0.5
+
+  # Severity weights
+  weights:
+    concept_missing: 1.0
+    relation_missing: 0.8
+    structural_issue: 0.6
+
+# === Caching ===
+cache:
+  enabled: true
+  directory: .cache
+  ttl_hours: 24
+
+# === Output ===
+output:
+  directory: output
+  format: json
+
+# === Logging ===
+logging:
+  level: INFO
+  file: logs/cognitivespace.log
+
+# === Visualization ===
+visualization:
+  engine: threejs  # threejs or godot
+  port: 8080
+  auto_open: true

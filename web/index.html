@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaGraph — See How Your Mind Understands Knowledge</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #e0e0e0; overflow-x: hidden; }
+        
+        /* Pages */
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: flex; flex-direction: column; }
+        
+        /* ===== PAGE 1: LANDING ===== */
+        #landing { justify-content: center; align-items: center; text-align: center; position: relative; }
+        #landing-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        #landing-content { position: relative; z-index: 1; }
+        #landing h1 { font-size: 3.5rem; font-weight: 300; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        #landing h1 span { color: #6c9bff; }
+        #landing .subtitle { font-size: 1.2rem; color: #888; margin-bottom: 2rem; }
+        #landing .tagline { font-size: 0.95rem; color: #666; max-width: 500px; margin: 0 auto 3rem; line-height: 1.6; }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4a7dff, #6c9bff);
+            color: white; border: none; padding: 16px 48px; font-size: 1.1rem;
+            border-radius: 50px; cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(74, 125, 255, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(74, 125, 255, 0.5); }
+        
+        /* ===== PAGE 2: INPUT ===== */
+        #input-page { padding: 40px; max-width: 800px; margin: 0 auto; }
+        #input-page h2 { font-size: 1.8rem; font-weight: 300; margin-bottom: 2rem; }
+        
+        .language-select { display: flex; gap: 12px; margin-bottom: 2rem; }
+        .lang-btn {
+            flex: 1; padding: 14px; background: #1a1a2e; border: 2px solid #333;
+            border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .lang-btn:hover { border-color: #4a7dff; }
+        .lang-btn.selected { border-color: #4a7dff; background: rgba(74, 125, 255, 0.1); }
+        .lang-btn .flag { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+        
+        .topic-select { margin-bottom: 1.5rem; }
+        .topic-select label { display: block; margin-bottom: 8px; color: #888; font-size: 0.9rem; }
+        .topic-select select {
+            width: 100%; padding: 12px; background: #1a1a2e; border: 1px solid #333;
+            border-radius: 8px; color: #e0e0e0; font-size: 1rem;
+        }
+        
+        .answer-input {
+            width: 100%; min-height: 180px; padding: 16px; background: #1a1a2e;
+            border: 1px solid #333; border-radius: 12px; color: #e0e0e0;
+            font-size: 1rem; line-height: 1.6; resize: vertical; margin-bottom: 1.5rem;
+        }
+        .answer-input:focus { outline: none; border-color: #4a7dff; }
+        .answer-input::placeholder { color: #555; }
+        
+        .char-count { text-align: right; color: #555; font-size: 0.85rem; margin-top: -1rem; margin-bottom: 1.5rem; }
+        
+        /* ===== PAGE 3: ANALYSIS ===== */
+        #analysis-page { justify-content: center; align-items: center; }
+        .analysis-container { text-align: center; }
+        .analysis-container h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; }
+        
+        .analysis-steps { text-align: left; max-width: 400px; margin: 0 auto; }
+        .step { padding: 12px 0; display: flex; align-items: center; gap: 12px; opacity: 0.3; transition: opacity 0.5s; }
+        .step.active { opacity: 1; }
+        .step.done { opacity: 0.6; }
+        .step-dot { width: 12px; height: 12px; border-radius: 50%; background: #333; transition: all 0.3s; }
+        .step.active .step-dot { background: #4a7dff; box-shadow: 0 0 10px #4a7dff; }
+        .step.done .step-dot { background: #4caf50; }
+        
+        /* ===== PAGE 4: RESULTS ===== */
+        #results-page { padding: 20px; }
+        .results-header { text-align: center; padding: 20px 0; }
+        .results-header h2 { font-size: 1.5rem; font-weight: 300; }
+        .results-header .lcd-score { font-size: 2rem; color: #6c9bff; margin-top: 8px; }
+        
+        .dual-city { display: flex; gap: 20px; height: calc(100vh - 160px); }
+        .city-panel { flex: 1; position: relative; background: #0d0d20; border-radius: 16px; overflow: hidden; border: 1px solid #222; }
+        .city-label {
+            position: absolute; top: 16px; left: 16px; z-index: 10;
+            background: rgba(10, 10, 26, 0.8); padding: 8px 16px; border-radius: 8px;
+            font-size: 0.9rem; color: #888; backdrop-filter: blur(10px);
+        }
+        .city-label .lang-name { color: #6c9bff; font-weight: 600; }
+        
+        .gap-panel {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 10; background: rgba(10, 10, 26, 0.9); padding: 12px 20px;
+            border-radius: 12px; border: 1px solid #ff4444; max-width: 400px;
+            backdrop-filter: blur(10px); display: none;
+        }
+        .gap-panel.show { display: block; }
+        .gap-panel h4 { color: #ff6666; font-size: 0.85rem; margin-bottom: 4px; }
+        .gap-panel p { color: #aaa; font-size: 0.8rem; line-height: 1.4; }
+        
+        .results-explanation {
+            max-width: 800px; margin: 20px auto; padding: 20px;
+            background: #1a1a2e; border-radius: 12px; border: 1px solid #333;
+        }
+        .results-explanation h3 { font-size: 1rem; color: #6c9bff; margin-bottom: 8px; }
+        .results-explanation p { color: #aaa; line-height: 1.6; font-size: 0.9rem; }
+        
+        .restart-btn {
+            display: block; margin: 20px auto; background: transparent;
+            border: 1px solid #444; color: #888; padding: 10px 24px;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s;
+        }
+        .restart-btn:hover { border-color: #4a7dff; color: #4a7dff; }
+        
+        /* Loading spinner */
+        .spinner { width: 40px; height: 40px; border: 3px solid #333; border-top-color: #4a7dff; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: LANDING -->
+<div id="landing" class="page active">
+    <canvas id="landing-bg"></canvas>
+    <div id="landing-content">
+        <h1>Lingua<span>Graph</span></h1>
+        <p class="subtitle">See how your mind understands knowledge.</p>
+        <p class="tagline">
+            用 AI 重建不同语言下学习者的认知地图，<br>
+            发现真正缺失的认知连接（Missing Cognitive Links）。
+        </p>
+        <button class="btn-primary" onclick="showPage('input-page')">Start Analysis →</button>
+    </div>
+</div>
+
+<!-- PAGE 2: INPUT -->
+<div id="input-page" class="page">
+    <h2>Tell us what you know</h2>
+    
+    <div class="language-select">
+        <div class="lang-btn selected" data-lang="zh" onclick="selectLang(this)">
+            <span class="flag">🇨🇳</span> 中文
+        </div>
+        <div class="lang-btn" data-lang="de" onclick="selectLang(this)">
+            <span class="flag">🇩🇪</span> Deutsch
+        </div>
+        <div class="lang-btn" data-lang="en" onclick="selectLang(this)">
+            <span class="flag">🇬🇧</span> English
+        </div>
+    </div>
+    
+    <div class="topic-select">
+        <label>Topic</label>
+        <select id="topic-select">
+            <option value="derivative">什么是导数？(What is a derivative?)</option>
+            <option value="integral">什么是积分？(What is an integral?)</option>
+            <option value="limit">什么是极限？(What is a limit?)</option>
+            <option value="freedom">什么是自由？(What is freedom?)</option>
+            <option value="justice">什么是公平？(What is justice?)</option>
+        </select>
+    </div>
+    
+    <textarea class="answer-input" id="answer-input" placeholder="请用你的语言解释这个概念...&#10;Explain this concept in your own words..."></textarea>
+    <div class="char-count"><span id="char-count">0</span> characters</div>
+    
+    <button class="btn-primary" onclick="startAnalysis()" style="width:100%">Analyze My Knowledge →</button>
+</div>
+
+<!-- PAGE 3: ANALYSIS -->
+<div id="analysis-page" class="page">
+    <div class="analysis-container">
+        <div class="spinner"></div>
+        <h2>Analyzing your cognitive structure...</h2>
+        <div class="analysis-steps">
+            <div class="step" id="step-1"><div class="step-dot"></div>Extracting concepts from your answer</div>
+            <div class="step" id="step-2"><div class="step-dot"></div>Building knowledge graph</div>
+            <div class="step" id="step-3"><div class="step-dot"></div>Comparing with expert knowledge</div>
+            <div class="step" id="step-4"><div class="step-dot"></div>Detecting missing cognitive links</div>
+            <div class="step" id="step-5"><div class="step-dot"></div>Generating explanation</div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: RESULTS -->
+<div id="results-page" class="page">
+    <div class="results-header">
+        <h2>Your Cognitive Map</h2>
+        <div class="lcd-score" id="lcd-score">LCD: 0.00</div>
+    </div>
+    
+    <div class="dual-city">
+        <div class="city-panel" id="city-student">
+            <div class="city-label"><span class="lang-name" id="student-lang-label">Chinese</span> Cognitive City</div>
+            <div id="graph-student" style="width:100%;height:100%"></div>
+        </div>
+        <div class="city-panel" id="city-expert">
+            <div class="city-label"><span class="lang-name">Expert</span> Knowledge City</div>
+            <div id="graph-expert" style="width:100%;height:100%"></div>
+        </div>
+    </div>
+    
+    <div class="gap-panel" id="gap-panel">
+        <h4>⚠️ Language Gap Detected</h4>
+        <p id="gap-detail"></p>
+    </div>
+    
+    <div class="results-explanation" id="explanation-box">
+        <h3>AI Analysis</h3>
+        <p id="explanation-text"></p>
+    </div>
+    
+    <button class="restart-btn" onclick="showPage('input-page')">← Try Another Language</button>
+</div>
+
+<script>
+// ===== State =====
+let selectedLang = 'zh';
+let studentGraphData = null;
+let expertGraphData = null;
+
+// ===== Page Navigation =====
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    
+    if (pageId === 'landing') initLandingBg();
+    if (pageId === 'results-page') renderGraphs();
+}
+
+// ===== Landing Background =====
+function initLandingBg() {
+    const canvas = document.getElementById('landing-bg');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    for (let i = 0; i < 80; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            r: Math.random() * 2 + 1
+        });
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(74, 125, 255, 0.3)';
+            ctx.fill();
+        });
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(74, 125, 255, ${0.1 * (1 - dist / 150)})`;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// ===== Language Selection =====
+function selectLang(el) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedLang = el.dataset.lang;
+    
+    const placeholders = {
+        zh: '请用中文解释这个概念...',
+        de: 'Erklären Sie dieses Konzept auf Deutsch...',
+        en: 'Explain this concept in English...'
+    };
+    document.getElementById('answer-input').placeholder = placeholders[selectedLang];
+}
+
+// ===== Character Count =====
+document.getElementById('answer-input').addEventListener('input', function() {
+    document.getElementById('char-count').textContent = this.value.length;
+});
+
+// ===== Analysis Pipeline =====
+async function startAnalysis() {
+    const answer = document.getElementById('answer-input').value.trim();
+    if (!answer) { alert('Please enter your answer.'); return; }
+    
+    showPage('analysis-page');
+    
+    // Simulate analysis steps
+    const steps = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5'];
+    for (let i = 0; i < steps.length; i++) {
+        document.getElementById(steps[i]).classList.add('active');
+        await sleep(800);
+        document.getElementById(steps[i]).classList.remove('active');
+        document.getElementById(steps[i]).classList.add('done');
+    }
+    
+    // Generate mock results (in real version, this calls the Python backend)
+    generateMockResults(answer);
+    
+    await sleep(500);
+    showPage('results-page');
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ===== Mock Results Generator =====
+function generateMockResults(answer) {
+    const topic = document.getElementById('topic-select').value;
+    
+    // Expert graph (always the same)
+    const expertConcepts = {
+        derivative: [
+            {id: 'limit', name: '极限 / Grenzwert / Limit', importance: 0.9},
+            {id: 'continuity', name: '连续性 / Stetigkeit / Continuity', importance: 0.7},
+            {id: 'derivative', name: '导数 / Ableitung / Derivative', importance: 0.95},
+            {id: 'rate_of_change', name: '变化率 / Änderungsrate / Rate of Change', importance: 0.8},
+            {id: 'tangent', name: '切线 / Tangente / Tangent', importance: 0.6},
+            {id: 'integral', name: '积分 / Integral / Integral', importance: 0.9},
+            {id: 'area', name: '面积 / Fläche / Area', importance: 0.6},
+            {id: 'differential', name: '微分 / Differential / Differential', importance: 0.7},
+        ],
+        integral: [
+            {id: 'area', name: '面积 / Fläche / Area', importance: 0.9},
+            {id: 'sum', name: '求和 / Summe / Sum', importance: 0.7},
+            {id: 'derivative', name: '导数 / Ableitung / Derivative', importance: 0.9},
+            {id: 'integral', name: '积分 / Integral / Integral', importance: 0.95},
+            {id: 'fundamental', name: '微积分基本定理 / Fundamentalsatz / Fundamental Theorem', importance: 0.85},
+        ],
+        limit: [
+            {id: 'limit', name: '极限 / Grenzwert / Limit', importance: 0.95},
+            {id: 'convergence', name: '收敛 / Konvergenz / Convergence', importance: 0.8},
+            {id: 'infinity', name: '无穷 / Unendigkeit / Infinity', importance: 0.7},
+            {id: 'continuity', name: '连续性 / Stetigkeit / Continuity', importance: 0.85},
+            {id: 'derivative', name: '导数 / Ableitung / Derivative', importance: 0.9},
+        ],
+        freedom: [
+            {id: 'individual', name: '个体 / Individuum / Individual', importance: 0.9},
+            {id: 'right', name: '权利 / Recht / Right', importance: 0.85},
+            {id: 'choice', name: '选择 / Entscheidung / Choice', importance: 0.8},
+            {id: 'responsibility', name: '责任 / Verantwortung / Responsibility', importance: 0.85},
+            {id: 'society', name: '社会 / Gesellschaft / Society', importance: 0.7},
+            {id: 'autonomy', name: '自主 / Selbstbestimmung / Autonomy', importance: 0.75},
+        ],
+        justice: [
+            {id: 'equality', name: '平等 / Gleichheit / Equality', importance: 0.9},
+            {id: 'fairness', name: '公平 / Gerechtigkeit / Fairness', importance: 0.95},
+            {id: 'distribution', name: '分配 / Verteilung / Distribution', importance: 0.8},
+            {id: 'rights', name: '权利 / Rechte / Rights', importance: 0.85},
+            {id: 'law', name: '法律 / Gesetz / Law', importance: 0.7},
+        ]
+    };
+    
+    const expertEdges = {
+        derivative: [
+            {source: 'limit', target: 'derivative', type: 'prerequisite'},
+            {source: 'continuity', target: 'derivative', type: 'prerequisite'},
+            {source: 'derivative', target: 'rate_of_change', type: 'represents'},
+            {source: 'derivative', target: 'tangent', type: 'represents'},
+            {source: 'derivative', target: 'differential', type: 'part_of'},
+            {source: 'derivative', target: 'integral', type: 'inverse_of'},
+            {source: 'integral', target: 'area', type: 'represents'},
+        ],
+        integral: [
+            {source: 'area', target: 'integral', type: 'represents'},
+            {source: 'sum', target: 'integral', type: 'prerequisite'},
+            {source: 'derivative', target: 'integral', type: 'inverse_of'},
+            {source: 'integral', target: 'fundamental', type: 'leads_to'},
+        ],
+        limit: [
+            {source: 'limit', target: 'convergence', type: 'represents'},
+            {source: 'limit', target: 'infinity', type: 'involves'},
+            {source: 'limit', target: 'continuity', type: 'prerequisite'},
+            {source: 'continuity', target: 'derivative', type: 'prerequisite'},
+        ],
+        freedom: [
+            {source: 'freedom', target: 'individual', type: 'belongs_to'},
+            {source: 'freedom', target: 'right', type: 'is_a'},
+            {source: 'freedom', target: 'choice', type: 'enables'},
+            {source: 'freedom', target: 'responsibility', type: 'implies'},
+            {source: 'freedom', target: 'society', type: 'exists_in'},
+            {source: 'freedom', target: 'autonomy', type: 'related_to'},
+        ],
+        justice: [
+            {source: 'fairness', target: 'equality', type: 'includes'},
+            {source: 'fairness', target: 'distribution', type: 'involves'},
+            {source: 'fairness', target: 'rights', type: 'protects'},
+            {source: 'fairness', target: 'law', type: 'enforced_by'},
+        ]
+    };
+    
+    // Student graph (simulated — missing some concepts/relations)
+    const studentConcepts = [];
+    const answerLower = answer.toLowerCase();
+    const allConcepts = expertConcepts[topic] || expertConcepts.derivative;
+    
+    allConcepts.forEach(c => {
+        const keywords = c.id.split('_');
+        const nameParts = c.name.toLowerCase();
+        const mentioned = keywords.some(k => answerLower.includes(k)) || 
+                          nameParts.split(' / ').some(n => answerLower.includes(n));
+        if (mentioned || Math.random() > 0.4) {
+            studentConcepts.push({...c, importance: c.importance * (0.6 + Math.random() * 0.4)});
+        }
+    });
+    
+    // Ensure at least 2 concepts
+    if (studentConcepts.length < 2) {
+        studentConcepts.push(allConcepts[0], allConcepts[1]);
+    }
+    
+    const studentEdges = [];
+    const expertEdgeList = expertEdges[topic] || expertEdges.derivative;
+    expertEdgeList.forEach(e => {
+        const srcExists = studentConcepts.some(c => c.id === e.source);
+        const tgtExists = studentConcepts.some(c => c.id === e.target);
+        if (srcExists && tgtExists && Math.random() > 0.3) {
+            studentEdges.push(e);
+        }
+    });
+    
+    studentGraphData = { nodes: studentConcepts, links: studentEdges };
+    expertGraphData = { nodes: allConcepts, links: expertEdgeList };
+    
+    // Calculate LCD
+    const studentEdgeSet = new Set(studentEdges.map(e => `${e.source}->${e.target}`));
+    const expertEdgeSet = new Set(expertEdgeList.map(e => `${e.source}->${e.target}`));
+    const intersection = [...studentEdgeSet].filter(e => expertEdgeSet.has(e)).length;
+    const union = new Set([...studentEdgeSet, ...expertEdgeSet]).size;
+    const similarity = union > 0 ? intersection / union : 0;
+    const lcd = (1 - similarity).toFixed(2);
+    
+    document.getElementById('lcd-score').textContent = `Language Cognitive Drift: ${lcd}`;
+    
+    // Explanation
+    const missingCount = expertEdgeList.length - studentEdges.length;
+    const missingConcepts = allConcepts.filter(c => !studentConcepts.some(sc => sc.id === c.id));
+    
+    let explanation = `Based on your answer, we extracted ${studentConcepts.length} concepts and ${studentEdges.length} relations. `;
+    if (missingConcepts.length > 0) {
+        explanation += `You're missing: ${missingConcepts.map(c => c.name.split(' / ')[0]).join(', ')}. `;
+    }
+    if (missingCount > 0) {
+        explanation += `${missingCount} expert connections are not present in your knowledge. `;
+    }
+    explanation += `Your Language Cognitive Drift score is ${lcd}, indicating ${lcd > 0.5 ? 'significant' : 'moderate'} structural differences from expert knowledge.`;
+    
+    document.getElementById('explanation-text').textContent = explanation;
+    document.getElementById('student-lang-label').textContent = 
+        {zh: 'Chinese', de: 'German', en: 'English'}[selectedLang];
+    
+    // Show gap panel if significant
+    if (missingConcepts.length > 0 || missingCount > 2) {
+        document.getElementById('gap-panel').classList.add('show');
+        document.getElementById('gap-detail').textContent = 
+            `Missing ${missingConcepts.length} concepts and ${missingCount} connections. Click on nodes to explore.`;
+    }
+}
+
+// ===== 3D Graph Rendering =====
+function renderGraphs() {
+    renderCity('graph-student', studentGraphData, '#4a7dff');
+    renderCity('graph-expert', expertGraphData, '#4caf50');
+}
+
+function renderCity(containerId, data, color) {
+    const container = document.getElementById(containerId);
+    if (!container || !data) return;
+    container.innerHTML = '';
+    
+    const Graph = ForceGraph3D()(container)
+        .graphData(data)
+        .nodeLabel('name')
+        .nodeVal('importance')
+        .nodeColor(n => {
+            if (n.importance > 0.8) return '#4caf50';
+            if (n.importance > 0.5) return '#ffc107';
+            return '#ff5722';
+        })
+        .nodeOpacity(0.9)
+        .nodeResolution(12)
+        .linkColor(() => 'rgba(100, 150, 255, 0.4)')
+        .linkWidth(1.5)
+        .linkDirectionalArrowLength(4)
+        .linkDirectionalArrowRelPos(1)
+        .linkCurvature(0.1)
+        .backgroundColor('#0a0a1a')
+        .showNavInfo(false)
+        .width(container.clientWidth)
+        .height(container.clientHeight);
+    
+    // Auto-rotate
+    Graph.cameraPosition({ x: 100, y: 50, z: 100 });
+    
+    // Click to focus
+    Graph.onNodeClick(node => {
+        const distance = 40;
+        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+        Graph.cameraPosition(
+            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+            node,
+            2000
+        );
+    });
+}
+
+// ===== Init =====
+window.addEventListener('load', () => {
+    initLandingBg();
+});
+
+window.addEventListener('resize', () => {
+    const canvas = document.getElementById('landing-bg');
+    if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+});
+</script>
+
+</body>
+</html>

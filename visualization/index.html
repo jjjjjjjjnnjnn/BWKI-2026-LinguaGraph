@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaGraph — Cognitive City</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0e1a; overflow: hidden; }
+        #canvas { width: 100vw; height: 100vh; display: block; }
+
+        #hud {
+            position: absolute; top: 20px; left: 20px; width: 300px;
+            background: rgba(15,20,35,0.92); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+            padding: 18px; z-index: 100; color: #e0e0e0;
+        }
+        #hud h1 { font-size: 16px; font-weight: 700; color: #fff; }
+        #hud .sub { font-size: 11px; color: #666; margin-bottom: 14px; }
+
+        .topic-select {
+            width: 100%; padding: 8px 10px; border-radius: 6px; font-size: 12px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; margin-bottom: 10px; outline: none;
+        }
+        .topic-select option { background: #1a1a2e; }
+
+        .lang-tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+        .lt {
+            flex: 1; padding: 6px; text-align: center; border-radius: 5px;
+            font-size: 11px; font-weight: 600; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);
+            color: #888; transition: all 0.2s;
+        }
+        .lt.active { background: rgba(74,125,255,0.2); border-color: #4a7dff; color: #4a7dff; }
+        .lt[data-lang="zh"].active { background: rgba(255,107,107,0.2); border-color: #ff6b6b; color: #ff6b6b; }
+        .lt[data-lang="de"].active { background: rgba(255,217,61,0.2); border-color: #ffd93d; color: #ffd93d; }
+
+        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+        .st { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; }
+        .st .l { font-size: 9px; color: #666; text-transform: uppercase; }
+        .st .v { font-size: 16px; font-weight: 700; color: #fff; }
+
+        #detail {
+            background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px;
+            border-left: 3px solid #4a7dff; display: none; margin-top: 8px;
+        }
+        #detail h3 { font-size: 13px; font-weight: 600; }
+        #detail p { font-size: 11px; color: #999; margin-top: 4px; }
+
+        #tooltip {
+            position: absolute; display: none; background: rgba(15,20,35,0.95);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+            padding: 10px 14px; pointer-events: none; font-size: 12px;
+            color: #e0e0e0; max-width: 220px; z-index: 200;
+        }
+        #tooltip .c { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+        #tooltip .d { color: #888; font-size: 11px; }
+
+        #lds-bar {
+            position: absolute; bottom: 20px; left: 20px; width: 300px;
+            background: rgba(15,20,35,0.92); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+            padding: 14px 18px; z-index: 100; color: #e0e0e0;
+        }
+        #lds-bar h3 { font-size: 12px; font-weight: 600; color: #4a7dff; margin-bottom: 10px; }
+        .bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; margin-bottom: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+        .bar-label { font-size: 10px; color: #666; display: flex; justify-content: space-between; margin-bottom: 6px; }
+
+        #top-label {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(15,20,35,0.85); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px; padding: 8px 20px; z-index: 100; text-align: center; color: #e0e0e0;
+        }
+        #top-label .t { font-size: 14px; font-weight: 600; }
+        #top-label .s { font-size: 10px; color: #666; margin-top: 2px; }
+
+        .legend {
+            position: absolute; bottom: 20px; right: 20px;
+            background: rgba(15,20,35,0.92); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+            padding: 14px 18px; z-index: 100; color: #e0e0e0;
+        }
+        .legend h3 { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+        .leg-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #888; margin-bottom: 4px; }
+        .leg-dot { width: 10px; height: 10px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div id="hud">
+        <h1>LinguaGraph</h1>
+        <div class="sub">Cognitive City — How Language Shapes Thinking</div>
+        <select class="topic-select" id="topicSelect">
+            <option value="freedom">Freedom / 自由 / Freiheit</option>
+            <option value="success">Success / 成功 / Erfolg</option>
+            <option value="responsibility">Responsibility / 责任 / Verantwortung</option>
+            <option value="home">Home / 家 / Heimat</option>
+        </select>
+        <div class="lang-tabs">
+            <div class="lt active" data-lang="all">All</div>
+            <div class="lt" data-lang="zh">ZH</div>
+            <div class="lt" data-lang="en">EN</div>
+            <div class="lt" data-lang="de">DE</div>
+        </div>
+        <div class="stats">
+            <div class="st"><div class="l">Concepts</div><div class="v" id="sC">0</div></div>
+            <div class="st"><div class="l">Relations</div><div class="v" id="sR">0</div></div>
+            <div class="st"><div class="l">LDS</div><div class="v" id="sL">0</div></div>
+            <div class="st"><div class="l">Jaccard</div><div class="v" id="sJ">0</div></div>
+        </div>
+        <div id="detail"><h3 id="dTitle"></h3><p id="dBody"></p></div>
+        <button id="btnCompare" style="width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);background:rgba(74,125,255,0.15);color:#4a7dff;font-size:11px;font-weight:600;cursor:pointer;margin-top:8px">Compare: Human vs Model</button>
+    </div>
+
+    <div id="top-label">
+        <div class="t" id="topTitle">Cognitive City</div>
+        <div class="s" id="topSub">Each city represents one language's conceptual structure</div>
+    </div>
+
+    <div id="lds-bar">
+        <h3>Language Drift Score</h3>
+        <div class="bar"><div class="bar-fill" id="b1" style="width:0%;background:#ff6b6b"></div></div>
+        <div class="bar-label"><span id="l1n">ZH ↔ EN</span><span id="l1v">—</span></div>
+        <div class="bar"><div class="bar-fill" id="b2" style="width:0%;background:#ffd93d"></div></div>
+        <div class="bar-label"><span id="l2n">ZH ↔ DE</span><span id="l2v">—</span></div>
+        <div class="bar"><div class="bar-fill" id="b3" style="width:0%;background:#4a7dff"></div></div>
+        <div class="bar-label"><span id="l3n">EN ↔ DE</span><span id="l3v">—</span></div>
+    </div>
+
+    <div class="legend">
+        <h3>Legend</h3>
+        <div class="leg-item"><div class="leg-dot" style="background:#ff6b6b"></div>Chinese (ZH)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#4a7dff"></div>English (EN)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ffd93d"></div>German (DE)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ff4444"></div>Cross-language bridge</div>
+        <div class="leg-item" style="margin-top:6px;color:#666">Building height = Centrality</div>
+        <div class="leg-item" style="color:#666">Road width = Relation strength</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

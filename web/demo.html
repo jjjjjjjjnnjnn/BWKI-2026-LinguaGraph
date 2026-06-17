@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognitiveSpace — 3D Knowledge Graph Demo</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #e0e0e0; }
+        
+        #graph-container { width: 100vw; height: 100vh; }
+        
+        #info-panel {
+            position: absolute; top: 20px; left: 20px; z-index: 10;
+            background: rgba(10, 10, 26, 0.9); padding: 20px; border-radius: 12px;
+            border: 1px solid #333; max-width: 320px; backdrop-filter: blur(10px);
+        }
+        #info-panel h2 { font-size: 1.2rem; font-weight: 400; margin-bottom: 12px; color: #6c9bff; }
+        #info-panel p { font-size: 0.85rem; color: #aaa; line-height: 1.5; margin-bottom: 8px; }
+        #info-panel .legend { display: flex; gap: 16px; margin-top: 12px; }
+        #info-panel .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #888; }
+        #info-panel .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        #info-panel .legend-line { width: 20px; height: 2px; }
+        
+        #node-detail {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 10; background: rgba(10, 10, 26, 0.95); padding: 16px 24px;
+            border-radius: 12px; border: 1px solid #4a7dff; display: none;
+            backdrop-filter: blur(10px); text-align: center; min-width: 200px;
+        }
+        #node-detail h3 { color: #6c9bff; font-size: 1rem; margin-bottom: 4px; }
+        #node-detail p { color: #888; font-size: 0.8rem; }
+        
+        #mcl-panel {
+            position: absolute; top: 20px; right: 20px; z-index: 10;
+            background: rgba(26, 10, 10, 0.9); padding: 16px 20px; border-radius: 12px;
+            border: 1px solid #ff4444; max-width: 280px; backdrop-filter: blur(10px);
+        }
+        #mcl-panel h3 { color: #ff6666; font-size: 0.95rem; margin-bottom: 8px; }
+        #mcl-panel p { color: #aaa; font-size: 0.8rem; line-height: 1.5; }
+        #mcl-panel .mcl-item { 
+            padding: 8px 0; border-bottom: 1px solid #333;
+            display: flex; align-items: center; gap: 8px;
+        }
+        #mcl-panel .mcl-item:last-child { border-bottom: none; }
+        #mcl-panel .mcl-arrow { color: #ff4444; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    
+    <div id="info-panel">
+        <h2>CognitiveSpace</h2>
+        <p>Expert knowledge graph for calculus. Blue nodes = concepts, gray edges = known relations, red dashed = Missing Cognitive Links (MCL).</p>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #4a7dff;"></div>
+                <span>Concept</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #666;"></div>
+                <span>Relation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #ff4444; border-top: 2px dashed #ff4444; height: 0;"></div>
+                <span>MCL</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="mcl-panel">
+        <h3>Missing Cognitive Links</h3>
+        <div id="mcl-list"></div>
+    </div>
+    
+    <div id="node-detail">
+        <h3 id="node-name"></h3>
+        <p id="node-info"></p>
+    </div>
+
+    <script>
+    // ===== Expert Graph Data (Calculus) =====
+    const graphData = {
+        nodes: [
+            { id: "导数", name: "导数 (Derivative)", importance: 10, type: "core" },
+            { id: "变化率", name: "变化率 (Rate of Change)", importance: 7, type: "concept" },
+            { id: "极限", name: "极限 (Limit)", importance: 9, type: "core" },
+            { id: "积分", name: "积分 (Integral)", importance: 8, type: "core" },
+            { id: "面积", name: "面积 (Area)", importance: 6, type: "concept" },
+            { id: "函数", name: "函数 (Function)", importance: 8, type: "concept" },
+            { id: "连续性", name: "连续性 (Continuity)", importance: 7, type: "concept" },
+            { id: "切线斜率", name: "切线斜率 (Tangent Slope)", importance: 6, type: "concept" },
+            { id: "微积分基本定理", name: "微积分基本定理 (FTC)", importance: 9, type: "core" },
+        ],
+        links: [
+            // Known relations (gray)
+            { source: "导数", target: "变化率", type: "represents", known: true },
+            { source: "导数", target: "切线斜率", type: "represents", known: true },
+            { source: "积分", target: "导数", type: "inverse_of", known: true },
+            { source: "积分", target: "面积", type: "represents", known: true },
+            { source: "微积分基本定理", target: "积分", type: "connects", known: true },
+            { source: "微积分基本定理", target: "导数", type: "connects", known: true },
+            // Missing Cognitive Links (red, dashed)
+            { source: "极限", target: "导数", type: "prerequisite", known: false, 
+              reason: "学生不知道极限是导数的基础" },
+            { source: "极限", target: "连续性", type: "requires", known: false,
+              reason: "学生未理解极限与连续性的关系" },
+            { source: "连续性", target: "导数", type: "prerequisite", known: false,
+              reason: "学生不知道连续性是可导的前提" },
+        ]
+    };
+
+    // Separate known and missing links
+    const knownLinks = graphData.links.filter(l => l.known);
+    const missingLinks = graphData.links.filter(l => !l.known);
+
+    // ===== Render MCL Panel =====
+    const mclList = document.getElementById('mcl-list');
+    missingLinks.forEach(link => {
+        const src = graphData.nodes.find(n => n.id === link.source);
+        const tgt = graphData.nodes.find(n => n.id === link.target);
+        const item = document.createElement('div');
+        item.className = 'mcl-item';
+        item.innerHTML = `
+            <span class="mcl-arrow">✕</span>
+            <span>${src.id} → ${tgt.id}</span>
+        `;
+        item.title = link.reason;
+        mclList.appendChild(item);
+    });
+
+    // ===== 3D Graph =====
+    const Graph = ForceGraph3D()(document.getElementById('graph-container'))
+        .graphData({ nodes: graphData.nodes, links: knownLinks })
+        .nodeLabel('name')
+        .nodeVal(n => n.importance * 0.8)
+        .nodeColor(n => {
+            if (n.type === 'core') return '#4a7dff';
+            return '#2a5aff';
+        })
+        .nodeOpacity(0.95)
+        .nodeResolution(16)
+        .linkColor(() => 'rgba(100, 150, 255, 0.5)')
+        .linkWidth(2)
+        .linkDirectionalArrowLength(5)
+        .linkDirectionalArrowRelPos(1)
+        .linkCurvature(0.1)
+        .backgroundColor('#0a0a1a')
+        .showNavInfo(false)
+        .width(window.innerWidth)
+        .height(window.innerHeight);
+
+    // Add missing links as red dashed lines (using custom objects)
+    const missingGroup = new THREE.Group();
+    const scene = Graph.scene();
+    
+    missingLinks.forEach(link => {
+        const srcNode = graphData.nodes.find(n => n.id === link.source);
+        const tgtNode = graphData.nodes.find(n => n.id === link.target);
+        
+        // We'll update positions in the animation loop
+        link._srcNode = srcNode;
+        link._tgtNode = tgtNode;
+    });
+
+    // Add missing link visualization via overlay
+    const overlayCanvas = document.createElement('canvas');
+    overlayCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;';
+    document.body.appendChild(overlayCanvas);
+    const ctx = overlayCanvas.getContext('2d');
+
+    function resizeOverlay() {
+        overlayCanvas.width = window.innerWidth;
+        overlayCanvas.height = window.innerHeight;
+    }
+    resizeOverlay();
+    window.addEventListener('resize', resizeOverlay);
+
+    // Animate
+    Graph.onEngineTick(() => {
+        ctx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+        ctx.strokeStyle = '#ff4444';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 4]);
+        
+        missingLinks.forEach(link => {
+            const src = link._srcNode;
+            const tgt = link._tgtNode;
+            if (!src || !tgt || src.x == null || tgt.x == null) return;
+            
+            // Project 3D to 2D
+            const srcProj = project3D(src.x, src.y, src.z);
+            const tgtProj = project3D(tgt.x, tgt.y, tgt.z);
+            
+            if (srcProj && tgtProj) {
+                ctx.beginPath();
+                ctx.moveTo(srcProj.x, srcProj.y);
+                ctx.lineTo(tgtProj.x, tgtProj.y);
+                ctx.stroke();
+                
+                // Draw X marker at midpoint
+                const mx = (srcProj.x + tgtProj.x) / 2;
+                const my = (srcProj.y + tgtProj.y) / 2;
+                ctx.setLineDash([]);
+                ctx.fillStyle = '#ff4444';
+                ctx.font = 'bold 16px monospace';
+                ctx.fillText('✕', mx - 6, my + 5);
+                ctx.setLineDash([8, 4]);
+            }
+        });
+    });
+
+    function project3D(x, y, z) {
+        const camera = Graph.camera();
+        const width = overlayCanvas.width;
+        const height = overlayCanvas.height;
+        
+        const vector = new THREE.Vector3(x, y, z);
+        vector.project(camera);
+        
+        return {
+            x: (vector.x * 0.5 + 0.5) * width,
+            y: (-vector.y * 0.5 + 0.5) * height
+        };
+    }
+
+    // Camera position
+    Graph.cameraPosition({ x: 150, y: 80, z: 150 });
+
+    // Node click
+    Graph.onNodeClick(node => {
+        const detail = document.getElementById('node-detail');
+        document.getElementById('node-name').textContent = node.name;
+        
+        const connections = graphData.links.filter(l => 
+            l.source === node.id || l.target === node.id
+        );
+        const known = connections.filter(l => l.known).length;
+        const missing = connections.filter(l => !l.known).length;
+        
+        document.getElementById('node-info').textContent = 
+            `Connections: ${known} known, ${missing} missing`;
+        detail.style.display = 'block';
+        
+        setTimeout(() => { detail.style.display = 'none'; }, 3000);
+    });
+
+    // Click background to hide detail
+    Graph.onBackgroundClick(() => {
+        document.getElementById('node-detail').style.display = 'none';
+    });
+    </script>
+</body>
+</html>

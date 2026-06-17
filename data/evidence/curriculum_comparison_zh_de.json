@@ -1,0 +1,125 @@
+{
+  "title": "Calculus Curriculum Knowledge Graphs — China vs Germany",
+  "description": "对比中国（人教版）和德国（Abitur）微积分课程的知识组织结构",
+  "evidence_type": "curriculum_comparison",
+  "source": "公开课程大纲",
+  "created": "2026-06-17",
+  "curricula": {
+    "zh": {
+      "name": "人教版高中数学（2019版）",
+      "system": "中国",
+      "level": "高中",
+      "concepts": [
+        {"id": "zh_01", "name": "函数的概念与性质", "unit": "必修第一册", "order": 1},
+        {"id": "zh_02", "name": "指数函数与对数函数", "unit": "必修第一册", "order": 2},
+        {"id": "zh_03", "name": "三角函数", "unit": "必修第一册", "order": 3},
+        {"id": "zh_04", "name": "数列", "unit": "选择性必修第二册", "order": 4},
+        {"id": "zh_05", "name": "一元函数的导数及其应用", "unit": "选择性必修第二册", "order": 5},
+        {"id": "zh_06", "name": "导数的计算", "unit": "选择性必修第二册", "order": 6},
+        {"id": "zh_07", "name": "导数在研究函数中的应用", "unit": "选择性必修第二册", "order": 7},
+        {"id": "zh_08", "name": "定积分的概念", "unit": "选择性必修第二册", "order": 8},
+        {"id": "zh_09", "name": "微积分基本定理", "unit": "选择性必修第二册", "order": 9},
+        {"id": "zh_10", "name": "定积分的简单应用", "unit": "选择性必修第二册", "order": 10}
+      ],
+      "relations": [
+        {"source": "zh_01", "target": "zh_02", "type": "prerequisite"},
+        {"source": "zh_02", "target": "zh_03", "type": "prerequisite"},
+        {"source": "zh_03", "target": "zh_04", "type": "prerequisite"},
+        {"source": "zh_04", "target": "zh_05", "type": "prerequisite"},
+        {"source": "zh_05", "target": "zh_06", "type": "is_part_of"},
+        {"source": "zh_05", "target": "zh_07", "type": "is_part_of"},
+        {"source": "zh_06", "target": "zh_07", "type": "prerequisite"},
+        {"source": "zh_07", "target": "zh_08", "type": "prerequisite"},
+        {"source": "zh_08", "target": "zh_09", "type": "prerequisite"},
+        {"source": "zh_09", "target": "zh_10", "type": "prerequisite"}
+      ],
+      "characteristics": {
+        "emphasis": ["计算技巧", "公式推导", "解题训练"],
+        "approach": "定义→定理→例题→练习",
+        "assessment": "高考导向，强调计算速度和准确性"
+      }
+    },
+    "de": {
+      "name": "Abitur Mathematics (Baden-Württemberg)",
+      "system": "德国",
+      "level": "高中",
+      "concepts": [
+        {"id": "de_01", "name": "Funktion", "name_en": "function", "unit": "Oberstufe", "order": 1},
+        {"id": "de_02", "name": "Grenzwert", "name_en": "limit", "unit": "Oberstufe", "order": 2},
+        {"id": "de_03", "name": "Stetigkeit", "name_en": "continuity", "unit": "Oberstufe", "order": 3},
+        {"id": "de_04", "name": "Ableitung", "name_en": "derivative", "unit": "Oberstufe", "order": 4},
+        {"id": "de_05", "name": "Differentiation", "name_en": "differentiation", "unit": "Oberstufe", "order": 5},
+        {"id": "de_06", "name": "Tangente", "name_en": "tangent", "unit": "Oberstufe", "order": 6},
+        {"id": "de_07", "name": "Änderungsrate", "name_en": "rate_of_change", "unit": "Oberstufe", "order": 7},
+        {"id": "de_08", "name": "Integral", "name_en": "integral", "unit": "Oberstufe", "order": 8},
+        {"id": "de_09", "name": "Fläche", "name_en": "area", "unit": "Oberstufe", "order": 9},
+        {"id": "de_10", "name": "Flächeninhalt", "name_en": "area_calculation", "unit": "Oberstufe", "order": 10}
+      ],
+      "relations": [
+        {"source": "de_01", "target": "de_02", "type": "prerequisite"},
+        {"source": "de_02", "target": "de_03", "type": "prerequisite"},
+        {"source": "de_03", "target": "de_04", "type": "prerequisite"},
+        {"source": "de_04", "target": "de_05", "type": "is_part_of"},
+        {"source": "de_04", "target": "de_06", "type": "represents"},
+        {"source": "de_04", "target": "de_07", "type": "represents"},
+        {"source": "de_07", "target": "de_04", "type": "is_part_of"},
+        {"source": "de_08", "target": "de_04", "type": "inverse_of"},
+        {"source": "de_08", "target": "de_09", "type": "represents"},
+        {"source": "de_09", "target": "de_10", "type": "is_part_of"}
+      ],
+      "characteristics": {
+        "emphasis": ["概念理解", "建模能力", "现实应用"],
+        "approach": "问题情境→探索→概念→证明→应用",
+        "assessment": "Abitur导向，强调理解和建模"
+      }
+    }
+  },
+  "comparison": {
+    "structural_differences": [
+      {
+        "dimension": "教学顺序",
+        "zh": "函数→指数→三角→数列→导数→积分",
+        "de": "函数→极限→连续→导数→积分",
+        "insight": "中国先教数列再教导数，德国直接从极限到导数"
+      },
+      {
+        "dimension": "导数引入方式",
+        "zh": "通过极限定义导数（先定义后直觉）",
+        "de": "通过变化率和切线引入导数（先直觉后定义）",
+        "insight": "中国偏形式化，德国偏几何直觉"
+      },
+      {
+        "dimension": "强调重点",
+        "zh": "计算技巧、公式推导、解题训练",
+        "de": "概念理解、建模能力、现实应用",
+        "insight": "中国重计算，德国重理解"
+      },
+      {
+        "dimension": "积分引入",
+        "zh": "定积分→微积分基本定理→应用",
+        "de": "面积问题→积分→与导数的关系",
+        "insight": "中国从定义出发，德国从问题出发"
+      }
+    ],
+    "concept_drift": [
+      {
+        "concept_zh": "数列",
+        "concept_de": null,
+        "status": "zh_emphasized",
+        "note": "中国高中必教，德国高中不作为微积分前置"
+      },
+      {
+        "concept_zh": "建模",
+        "concept_de": "Modellierung",
+        "status": "de_emphasized",
+        "note": "德国课程明确要求'数学建模'能力，中国较弱"
+      },
+      {
+        "concept_zh": "证明",
+        "concept_de": "Beweis",
+        "status": "de_emphasized",
+        "note": "德国强调严格证明，中国强调计算正确性"
+      }
+    ]
+  }
+}
