@@ -92,8 +92,8 @@ if __name__ == "__main__":
     print("LinguaGraph 社会议题专家图谱 v1.0")
     print("=" * 60)
 
-    # 保存图谱
-    output_dir = r"\expert_graph"
+    # 保存图谱到 config/expert_graphs/
+    output_dir = os.path.join(os.path.dirname(__file__), "..", "config", "expert_graphs")
     os.makedirs(output_dir, exist_ok=True)
 
     filepath = os.path.join(output_dir, "social_issues_graph.json")

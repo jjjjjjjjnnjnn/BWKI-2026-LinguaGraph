@@ -1,38 +1,37 @@
-import sys, io, json
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+"""
+Test: v3 Pipeline Evaluation (using inline demo data)
+
+Tests calculate_mcl_score with a simple calculus graph.
+This is a self-contained test that does not depend on external data files.
+"""
+import sys, json
 sys.path.insert(0, 'src')
 from scoring import calculate_mcl_score
 import networkx as nx
 
-with open('data/survey/v3/example_zh.json', encoding='utf-8') as f:
-    survey = json.load(f)
-
-all_nodes = set()
-all_edges = []
-all_mcl = []
-for r in survey['responses']:
-    g = r.get('graph_output', {})
-    all_nodes.update(g.get('nodes', []))
-    all_edges.extend(g.get('edges', []))
-    all_mcl.extend(g.get('mcl_candidates', []))
-
-G = nx.DiGraph()
-for n in all_nodes:
-    G.add_node(n)
-for e in all_edges:
-    if e.get('source') and e.get('target'):
-        G.add_edge(e['source'], e['target'], relation=e.get('type',''))
-
+# Self-contained test data (calculus domain expert graph)
 expert = nx.DiGraph()
-expert.add_edges_from([('极限','导数'),('导数','变化率'),('积分','导数'),('积分','面积'),('导数','切线斜率')])
+expert.add_edges_from([
+    ('极限', '导数'), ('导数', '变化率'), ('积分', '导数'),
+    ('积分', '面积'), ('导数', '切线斜率')
+])
 
-mcl = calculate_mcl_score(G, expert)
+# Student graph (simulates what a learner might have)
+student = nx.DiGraph()
+student.add_edges_from([
+    ('导数', '变化率'), ('积分', '面积')
+])
 
-print('=== v3 Survey Evaluation ===')
-print('Respondent:', survey['respondent_id'])
-print('Language:', survey['language'])
-print('Nodes:', len(all_nodes))
-print('Edges:', len(all_edges))
-print('MCL Score:', str(mcl['mcl_score']) + '%', '(' + str(mcl['missing_count']) + '/' + str(mcl['total_expert']) + ' missing)')
-print('Missing:', mcl['missing_edges'])
-print('MCL Candidates:', [m['concept'] for m in all_mcl])
+mcl = calculate_mcl_score(student, expert)
+
+print('=== v3 Pipeline Evaluation ===')
+print('Student nodes:', student.number_of_nodes())
+print('Student edges:', student.number_of_edges())
+print('Expert nodes:', expert.number_of_nodes())
+print('Expert edges:', expert.number_of_edges())
+print('MCL Score:', f"{mcl['mcl_score']}%", f"({mcl['missing_count']}/{mcl['total_expert']} missing)")
+
+# Assert expected results
+assert mcl['missing_count'] == 3, f"Expected 3 missing edges, got {mcl['missing_count']}"
+assert mcl['total_expert'] == 5, f"Expected 5 expert edges, got {mcl['total_expert']}"
+print("\nAll assertions passed!")

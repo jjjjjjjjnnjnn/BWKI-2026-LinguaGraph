@@ -17,7 +17,8 @@ from explain import generate_simple_explanation
 def run_pipeline(
     student_answer: str,
     language: str = "zh",
-    domain: str = "calculus"
+    domain: str = "calculus",
+    use_mock: bool = False
 ) -> dict:
     """
     Run the complete CognitiveSpace pipeline.
@@ -26,6 +27,7 @@ def run_pipeline(
         student_answer: Student's response text
         language: Language of the answer
         domain: Knowledge domain
+        use_mock: Use mock extraction (no API key needed)
 
     Returns:
         dict with all results
@@ -34,7 +36,7 @@ def run_pipeline(
 
     # Step 1: Extract concepts
     print("Step 1: Extracting concepts...")
-    extracted = extract_concepts(student_answer, language)
+    extracted = extract_concepts(student_answer, language, use_mock=use_mock)
     print(f"  Found {len(extracted['concepts'])} concepts, {len(extracted['relations'])} relations")
 
     # Step 2: Build student graph
@@ -115,7 +117,9 @@ if __name__ == "__main__":
 
         result = run_pipeline(
             student_answer=student["answer"],
-            language=student["language"]
+            language=student["language"],
+            domain="social_issues",
+            use_mock=True
         )
 
         print("\nExplanation:")

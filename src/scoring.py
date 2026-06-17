@@ -90,6 +90,101 @@ def calculate_weighted_mcl_score(
 
 # ===== LCD Scoring =====
 
+
+def bootstrap_lcd_ci(
+    graph_l1: "nx.DiGraph",
+    graph_l2: "nx.DiGraph",
+    concept_mapping: Dict[str, str] = None,
+    n_iterations: int = 1000,
+    ci_level: float = 0.95
+) -> Dict:
+    """
+    Bootstrap confidence interval for LCD score.
+
+    Resamples edges with replacement to estimate the sampling distribution
+    of the LCD score, then computes percentile-based confidence intervals.
+
+    Args:
+        graph_l1: First language graph
+        graph_l2: Second language graph
+        concept_mapping: Optional mapping for cross-language alignment
+        n_iterations: Number of bootstrap resamples (default 1000)
+        ci_level: Confidence level (default 0.95 for 95% CI)
+
+    Returns:
+        dict with lcd_score, ci_lower, ci_upper, std_error, n_iterations
+    """
+    if nx is None:
+        raise ImportError("networkx required")
+
+    import random
+
+    edges_l1 = list(graph_l1.edges())
+    edges_l2 = list(graph_l2.edges())
+
+    # Pre-compute mapped edges once if mapping provided
+    if concept_mapping:
+        def map_edges(edges):
+            mapped = set()
+            for s, t in edges:
+                ms = concept_mapping.get(s, s)
+                mt = concept_mapping.get(t, t)
+                mapped.add((ms, mt))
+            return mapped
+        base_set_l1 = map_edges(edges_l1)
+        base_set_l2 = set(edges_l2)
+    else:
+        base_set_l1 = set(edges_l1)
+        base_set_l2 = set(edges_l2)
+
+    # Point estimate
+    intersection = base_set_l1 & base_set_l2
+    union = base_set_l1 | base_set_l2
+    point_estimate = 1 - len(intersection) / max(len(union), 1)
+
+    # Bootstrap
+    lcd_samples = []
+    n_l1 = len(edges_l1)
+    n_l2 = len(edges_l2)
+
+    for _ in range(n_iterations):
+        # Resample edges with replacement
+        samp_l1 = edges_l1[:] if n_l1 == 0 else [edges_l1[i] for i in
+            [random.randint(0, n_l1 - 1) for _ in range(n_l1)]]
+        samp_l2 = edges_l2[:] if n_l2 == 0 else [edges_l2[i] for i in
+            [random.randint(0, n_l2 - 1) for _ in range(n_l2)]]
+
+        if concept_mapping:
+            s1 = map_edges(samp_l1)
+            s2 = set(samp_l2)
+        else:
+            s1 = set(samp_l1)
+            s2 = set(samp_l2)
+
+        inter = s1 & s2
+        uni = s1 | s2
+        sim = len(inter) / max(len(uni), 1)
+        lcd_samples.append(1 - sim)
+
+    lcd_samples.sort()
+    lower_idx = int((1 - ci_level) / 2 * n_iterations)
+    upper_idx = int((1 + ci_level) / 2 * n_iterations) - 1
+    lower_idx = max(0, lower_idx)
+    upper_idx = min(n_iterations - 1, upper_idx)
+
+    mean_lcd = sum(lcd_samples) / n_iterations
+    variance = sum((x - mean_lcd) ** 2 for x in lcd_samples) / n_iterations
+    std_error = variance ** 0.5
+
+    return {
+        "lcd_score": round(point_estimate, 4),
+        "ci_lower": round(lcd_samples[lower_idx], 4),
+        "ci_upper": round(lcd_samples[upper_idx], 4),
+        "ci_level": ci_level,
+        "std_error": round(std_error, 4),
+        "n_iterations": n_iterations
+    }
+
 def calculate_lcd_score(
     graph_l1: "nx.DiGraph",
     graph_l2: "nx.DiGraph",
@@ -250,7 +345,12 @@ if __name__ == "__main__":
         graph_l1.add_edges_from([("导数", "变化率"), ("积分", "面积")])
         graph_l2 = nx.DiGraph()
         graph_l2.add_edges_from([("Ableitung", "Änderungsrate"), ("Integral", "Fläche")])
-        
+
         lcd = calculate_lcd_score(graph_l1, graph_l2)
         print(f"\nLCD Score: {lcd['lcd_score']}")
         print(f"Similarity: {lcd['similarity']}")
+
+        # LCD with Bootstrap CI
+        lcd_boot = bootstrap_lcd_ci(graph_l1, graph_l2, n_iterations=500)
+        print(f"\nLCD Bootstrap CI (95%): [{lcd_boot['ci_lower']}, {lcd_boot['ci_upper']}]")
+        print(f"Std Error: {lcd_boot['std_error']}")

@@ -146,23 +146,44 @@ BWKI-2026-LinguaGraph/
 ## 🚀 快速开始 / Quick Start
 
 ```bash
-# 安装依赖 / Install dependencies
+# 1. 确认 Python 版本 (需要 3.10+)
+python --version
+
+# 2. 创建虚拟环境 (推荐)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate   # Windows
+
+# 3. 安装依赖
 pip install -r requirements.txt
 
-# 运行完整管道 / Run the full pipeline
+# 4. 初始化数据库
+python scripts/db_init.py
+
+# 5. 导入已有数据
+python scripts/ingest_all.py
+
+# 6. 运行完整管道 (mock 模式，无需 API Key)
 python src/main.py
 
-# 查看数据状态 / Check data status
-python scripts/db_init.py
+# 7. 查看数据状态
 python scripts/survey_entry.py status
 
-# 运行测试 / Run tests
+# 8. 运行测试
 python -m pytest tests/ -v
 
-# 启动 3D 可视化 / Start 3D visualization
+# 9. 启动 3D 可视化
 python web/server.py
-# Open http://localhost:8080
+# 浏览器打开 http://localhost:8080
 ```
+
+> **关于 API Key**: 默认使用 mock 模式，无需 OpenAI API Key。
+> 如需使用真实 LLM 提取，设置环境变量:
+> ```bash
+> export OPENAI_API_KEY="sk-..."    # Linux/Mac
+> set OPENAI_API_KEY="sk-..."       # Windows CMD
+> $env:OPENAI_API_KEY = "sk-..."    # PowerShell
+> ```
 
 ---
 
