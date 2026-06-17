@@ -74,8 +74,10 @@ NATIVE_LANG_MAP = {
 }
 
 # === Quality Thresholds ===
-MIN_WORD_COUNT = 10
-MIN_ANSWER_LENGTH = 20
+# Pilot phase: lenient (real answers from 3-5 sentence prompts should be 30-50+ words)
+# Adjust to MIN_WORD_COUNT = 15 for main study
+MIN_WORD_COUNT = 5
+MIN_ANSWER_LENGTH = 10
 
 # === Pipeline Settings ===
 USE_MOCK_EXTRACTION = False  # Set True to skip LLM calls (for testing)

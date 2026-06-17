@@ -92,29 +92,77 @@ def import_csv(csv_path: str, dry_run: bool = False) -> dict:
     print(f"  Headers: {len(headers)} columns")
     print(f"  Rows: {len(rows)} responses")
 
-    # Parse headers to find question columns
-    # Google Forms format: "Timestamp", "Question text" or numbered
+    # Parse headers to find question columns by content keywords
+    # IMPORTANT: Process demographics FIRST, then questions.
+    # Prevent question headers (which may contain keywords like "native language")
+    # from overwriting demographics column mapping.
     question_cols = {}
-    for i, h in enumerate(headers):
-        h_clean = h.strip()
-        # Try to match by question number pattern
-        match = re.match(r'(\d+)', h_clean)
-        if match:
-            q_num = int(match.group(1))
-            if q_num in QUESTION_TOPIC_MAP:
-                question_cols[q_num] = i
+    demographics_found = {}
 
-    if not question_cols:
-        # Try matching by content keywords
-        for i, h in enumerate(headers):
-            h_lower = h.lower()
-            if "muttersprache" in h_lower or "native language" in h_lower:
-                question_cols["native_lang"] = i
-            elif "alter" in h_lower or "age" in h_lower:
-                question_cols["age"] = i
-            elif "erfolg" in h_lower or "success" in h_lower:
-                if 4 not in question_cols:
-                    question_cols[4] = i
+    for i, h in enumerate(headers):
+        h_lower = h.lower().strip()
+        # Demographics (processed first — matches cannot be overwritten)
+        if h_lower in ("what is your native language?", "muttersprache", "native language"):
+            demographics_found["native_lang"] = i
+        elif h_lower in ("your age", "alter", "age"):
+            demographics_found["age"] = i
+        elif h_lower in ("your highest education level", "education", "bildung"):
+            demographics_found["education"] = i
+
+    # Copy demographics to question_cols (locked, won't be overwritten)
+    question_cols.update(demographics_found)
+
+    # Now process question headers
+    for i, h in enumerate(headers):
+        h_lower = h.lower().strip()
+        # Skip demographics columns (already mapped)
+        if i in demographics_found.values():
+            continue
+        # Success questions
+        elif "erfolg" in h_lower or "success" in h_lower:
+            if "worter" in h_lower or "words" in h_lower or "5 worter" in h_lower:
+                question_cols[5] = i  # word association
+            elif "schuler" in h_lower or "student" in h_lower or "perfekte" in h_lower:
+                question_cols[6] = i  # scenario
+            elif 4 not in question_cols:
+                question_cols[4] = i  # definition
+        # Responsibility questions
+        elif "verantwortung" in h_lower or "responsibility" in h_lower:
+            if "beziehung" in h_lower or "relationship" in h_lower:
+                question_cols[7] = i
+            elif "worter" in h_lower or "words" in h_lower:
+                question_cols[8] = i
+            elif "person" in h_lower and ("hilfe" in h_lower or "help" in h_lower):
+                question_cols[9] = i
+        # Freedom questions
+        elif "freiheit" in h_lower or "freedom" in h_lower:
+            if "grenzen" in h_lower or "boundaries" in h_lower or "boundary" in h_lower:
+                question_cols[10] = i
+            elif "worter" in h_lower or "words" in h_lower:
+                question_cols[11] = i
+            elif "schadet" in h_lower or "harms" in h_lower or "harm" in h_lower:
+                question_cols[12] = i
+        # Home questions
+        elif "zuhause" in h_lower or "home" in h_lower:
+            if "unterschied" in h_lower or "difference" in h_lower:
+                question_cols[13] = i
+            elif "worter" in h_lower or "words" in h_lower:
+                question_cols[14] = i
+            elif "villa" in h_lower or "mansion" in h_lower or "gefuhl" in h_lower or "warmth" in h_lower:
+                question_cols[15] = i
+        # Justice questions
+        elif "gerechtigkeit" in h_lower or "justice" in h_lower:
+            if "bedeutet" in h_lower or "means" in h_lower or "beschreiben" in h_lower or "describe" in h_lower:
+                question_cols[16] = i
+            elif "worter" in h_lower or "words" in h_lower:
+                question_cols[17] = i
+            elif "opfern" in h_lower or "sacrific" in h_lower:
+                question_cols[18] = i
+        # Meta questions
+        elif "muttersprache" in h_lower and "beeinflus" in h_lower:
+            question_cols[19] = i
+        elif "mehrsprach" in h_lower or "multiple language" in h_lower or "sprachwechsel" in h_lower:
+            question_cols[20] = i
 
     print(f"  Mapped columns: {question_cols}")
 
@@ -126,6 +174,7 @@ def import_csv(csv_path: str, dry_run: bool = False) -> dict:
 
     # Import into database
     conn = get_connection()
+    conn.execute("PRAGMA foreign_keys=OFF")  # Disable FK for bulk import
     stats = {
         "total_rows": len(rows),
         "imported_students": 0,
