@@ -3,9 +3,30 @@
 > **BWKI 2026 (Bundeswettbewerb Künstliche Intelligenz)**
 > *How does language shape the way we think? — Measured with AI and graph theory.*
 
----
+<p align="center">
+  <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/stargazers">
+    <img src="https://img.shields.io/github/stars/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=github&color=gold" alt="GitHub Stars">
+  </a>
+  <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-blue?style=flat-square" alt="License">
+  </a>
+  <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/commits/master">
+    <img src="https://img.shields.io/github/last-commit/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=git" alt="Last Commit">
+  </a>
+  <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">
+    <img src="https://img.shields.io/github/repo-size/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=github" alt="Repo Size">
+  </a>
+  <img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/BWKI-2026-8A2BE2?style=flat-square" alt="BWKI 2026">
+</p>
 
-## 📑 Inhaltsverzeichnis / Table of Contents / 目录
+<p align="center">
+  <img src="docs/images/cognitive_city_preview.png" alt="LinguaGraph Cognitive City — 3D Trilingual Cognitive Graph Visualization" width="90%">
+  <br>
+  <em>Cognitive City V3 — Three.js 3D visualization. Three cities (ZH/EN/DE) side by side. Each building = a concept, each road = a semantic relation.</em>
+</p>
+
+---
 
 | 🇨🇳 [中文](#-中文) | 🇬🇧 [English](#-english) | 🇩🇪 [Deutsch](#-deutsch) |
 |:---|:---|:---|
