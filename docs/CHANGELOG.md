@@ -83,6 +83,23 @@
 | `visualization_v3/main.js` | 修改 | +23 行（touch + keyboard + loading fade）|
 | `README.md` | 修改 | +Quick Start 区块 |
 
+### J. GitHub 专业化更新
+
+- **Badges**: 添加 shields.io 徽章（Stars/License/Last Commit/Repo Size/Python 3.10+/BWKI）
+- **Screenshot**: 通过 Playwright 截取 Cognitive City V3 预览图，添加到 README 顶部
+- **GitHub Pages**: 创建 `.github/workflows/deploy-pages.yml`，`visualization_v3/` 自动部署
+- **Release v0.1**: 创建首个正式 Release，含结构化的 Release Notes
+- **README 三语重写**: 完整 DE 版本 + 目录索引 + 补全英文翻译缺口
+
+### K. 变更明细
+
+| 文件 | 操作 | 说明 |
+|:-----|:-----|:------|
+| `README.md` | 重写 | 三语 + TOC + Badges + 截图 |
+| `docs/images/cognitive_city_preview.png` | 新增 | Cognitive City V3 截图 |
+| `.github/workflows/deploy-pages.yml` | 新增 | GitHub Actions Pages 部署 |
+| `visualization_v3/.nojekyll` | 新增 | Pages 兼容 |
+
 ---
 
 本会话完成四个关键里程碑：(1) 策略优先级修正，(2) LOGOS 方法学评估与集成规划，(3) Human Validation Tooling 生产级部署，(4) 第一批真实人类 Pilot 数据入库与分析。项目从纯工程开发正式进入实证研究阶段。
