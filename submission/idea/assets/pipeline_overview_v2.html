@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaGraph Pipeline — BWKI 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f7f8fa;color:#1a1a1a;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:40px 24px}
+
+/* header */
+.hdr{border-bottom:1px solid #e0e0e0;padding-bottom:24px;margin-bottom:32px}
+.hdr h1{font-size:32px;font-weight:700;letter-spacing:-0.02em}
+.hdr h1 b{color:#2563eb}
+.hdr p{color:#6b7280;font-size:15px;margin-top:4px}
+.badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;padding:3px 10px;border-radius:4px;background:#eef2ff;color:#2563eb}
+
+/* section */
+.sec{margin-bottom:36px}
+.sec-num{font-family:'DM Mono',monospace;font-size:12px;color:#2563eb;font-weight:500;margin-bottom:6px}
+.sec h2{font-size:20px;font-weight:600;margin-bottom:10px}
+.sec p{color:#4b5563;font-size:14px}
+
+/* pipeline steps */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:16px}
+.s{display:flex;gap:14px;padding:14px 0;position:relative;border-left:2px solid #e5e7eb;padding-left:20px}
+.s:last-child{border-left-color:transparent}
+.s::before{content:attr(data-n);position:absolute;left:-10px;top:14px;width:20px;height:20px;border-radius:50%;background:#2563eb;color:#fff;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.s h3{font-size:14px;font-weight:600;margin-bottom:2px}
+.s p{font-size:13px;color:#6b7280;line-height:1.5}
+.tag-sm{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;color:#2563eb;background:#eff6ff;padding:2px 8px;border-radius:3px;margin-top:4px}
+
+/* stats */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.stat{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px}
+.stat-l{font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;font-weight:500}
+.stat-v{font-family:'DM Mono',monospace;font-size:22px;font-weight:600;margin:2px 0}
+.stat-d{font-size:12px;color:#9ca3af}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th{text-align:left;font-weight:600;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px}
+.tbl td{padding:8px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .top{font-weight:600}
+.c-zh{color:#dc2626}.c-de{color:#2563eb}.c-en{color:#059669}
+.mono{font-family:'DM Mono',monospace;font-size:12px;color:#9ca3af}
+
+/* status */
+.pill{font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;display:inline-block}
+.pill-done{background:#dcfce7;color:#166534}
+.pill-wip{background:#fef9c3;color:#854d0e}
+
+/* citation */
+.cite{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px 18px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.8;color:#6b7280}
+.cite b{color:#1a1a1a;font-weight:500}
+
+.ftr{border-top:1px solid #e5e7eb;padding:16px 24px;text-align:center;font-size:12px;color:#9ca3af}
+@media print{body{background:#fff}.wrap{padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+<h1><b>Lingua</b>Graph</h1>
+<p>Mapping How Language Shapes Thinking — BWKI 2026</p>
+<div class="badges">
+<span class="badge">BWKI 2026</span>
+<span class="badge">v1.0</span>
+<span class="badge">LDS v3</span>
+</div>
+</div>
+
+<div class="sec">
+<div class="sec-num">01</div>
+<h2>Forschungsfrage</h2>
+<p>Beeinflussen verschiedene Sprachen, wie Menschen über abstrakte Konzepte denken? LinguaGraph misst den <em>Language Drift Score</em> (LDS) — einen graph-basierten Ähnlichkeitsindikator, der kognitive Strukturen über Sprachgrenzen hinweg vergleicht.</p>
+</div>
+
+<div class="sec">
+<div class="sec-num">02</div>
+<h2>Pipeline</h2>
+<div class="steps">
+<div class="s" data-n="1"><div><h3>Datenerhebung</h3><p>Probanden beantworten Fragen zu Freiheit, Gerechtigkeit, Verantwortung, Erfolg und Familie in ihrer Muttersprache.</p><span class="tag-sm">Google Forms → CSV → SQLite</span></div></div>
+<div class="s" data-n="2"><div><h3>KI-Extraktion</h3><p>LLM extrahiert kognitive Konzepte und Beziehungen (30 Konzepte × 7 Relationstypen).</p><span class="tag-sm">GPT-4.1-mini / Qwen3-8B</span></div></div>
+<div class="s" data-n="3"><div><h3>Graphkonstruktion</h3><p>Konzepte als Knoten, Beziehungen als Kanten → Wissensgraph.</p><span class="tag-sm">NetworkX DiGraph</span></div></div>
+<div class="s" data-n="4"><div><h3>Sprachvergleich (LDS)</h3><p>LDS = 1 − mean(GED, Jaccard_node, Jaccard_edge). Bootstrap-CI mit 1000 Iterationen.</p><span class="tag-sm">LDS = 1 − mean(GED, Jaccard_node, Jaccard_edge)</span></div></div>
+<div class="s" data-n="5"><div><h3>3D-Visualisierung</h3><p>Cognitive City: Konzepte als Gebäude, Beziehungen als Straßen. ZH/DE/EN zeigen strukturelle Unterschiede.</p><span class="tag-sm">Three.js</span></div></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sec-num">03</div>
+<h2>Architektur</h2>
+<div class="grid">
+<div class="stat"><div class="stat-l">Sprachen</div><div class="stat-v">3</div><div class="stat-d">ZH · DE · EN</div></div>
+<div class="stat"><div class="stat-l">Konzepte</div><div class="stat-v">30</div><div class="stat-d">Cross-Language IDs</div></div>
+<div class="stat"><div class="stat-l">Module</div><div class="stat-v">44</div><div class="stat-d">Python-Pipeline</div></div>
+<div class="stat"><div class="stat-l">DB-Tabellen</div><div class="stat-v">10</div><div class="stat-d">SQLite</div></div>
+<div class="stat"><div class="stat-l">Referenzen</div><div class="stat-v">43+</div><div class="stat-d">GitHub-Repos</div></div>
+<div class="stat"><div class="stat-l">LDS-Score</div><div class="stat-v">0.81</div><div class="stat-d">Freiheit (Pilot)</div></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sec-num">04</div>
+<h2>Pilot-Ergebnisse</h2>
+<p style="margin-bottom:10px">Erste Analysen mit Wikipedia-Korpora (4 Themen × 3 Sprachen):</p>
+<table class="tbl">
+<tr><th>Thema</th><th>Chinesisch</th><th>Deutsch</th><th>Englisch</th><th>Shared</th></tr>
+<tr><td class="top">Freiheit</td><td class="c-zh">Kollektiv · Verantwortung</td><td class="c-de">Vernunft · Sicherheit</td><td class="c-en">Free Will · Democracy</td><td class="mono">6</td></tr>
+<tr><td class="top">Gerechtigkeit</td><td class="c-zh">Soziale Harmonie · Bildung</td><td class="c-de">Fortschritt · Vernunft</td><td class="c-en">History · Power</td><td class="mono">5</td></tr>
+<tr><td class="top">Verantwortung</td><td class="c-zh">Pflicht · Familienpflicht</td><td class="c-de">Entscheidung · Bildung</td><td class="c-en">Free Will · Law</td><td class="mono">4</td></tr>
+<tr><td class="top">Erfolg</td><td class="c-zh">Gesellschaft · Bildung</td><td class="c-de">—</td><td class="c-en">Education · Individual</td><td class="mono">1</td></tr>
+</table>
+<p style="margin-top:8px;font-style:italic;color:#9ca3af">* Hypothesen — Humanstudie geplant</p>
+</div>
+
+<div class="sec">
+<div class="sec-num">05</div>
+<h2>Status</h2>
+<table class="tbl">
+<tr><td class="top">Pipeline</td><td><span class="pill pill-done">Fertig</span></td><td>LDS v3 + Bootstrap-CI + 44 Module</td></tr>
+<tr><td class="top">Daten</td><td><span class="pill pill-wip">Laufend</span></td><td>Corpus ✅ · Simulation ⏳ · Human ❌</td></tr>
+<tr><td class="top">Validierung</td><td><span class="pill pill-wip">Geplant</span></td><td>Pilot → 60+ Probanden</td></tr>
+<tr><td class="top">3D-Vis</td><td><span class="pill pill-wip">Laufend</span></td><td>Three.js Cognitive City</td></tr>
+<tr><td class="top">Dokumentation</td><td><span class="pill pill-done">Fertig</span></td><td>GDPR · Annotation · Methodology</td></tr>
+</table>
+</div>
+
+<div class="sec">
+<div class="sec-num">06</div>
+<h2>Zitierhinweis</h2>
+<div class="cite"><b>Rong, Jiajun</b> (2026). LinguaGraph: Mapping How Language Shapes Thinking. BWKI 2026.<br>Code: github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph<br>License: All Rights Reserved (Corpus: CC-BY-SA 4.0)</div>
+</div>
+
+</div>
+
+<div class="ftr">LinguaGraph · BWKI 2026 · Jiajun Rong · rongjiajun2025@outlook.com</div>
+
+</body>
+</html>
