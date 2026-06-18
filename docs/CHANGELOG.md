@@ -1,10 +1,252 @@
-# CognitiveSpace 变更日志
+# LinguaGraph 变更日志
 
-记录每次修改的时间、内容、调用的工具/函数。
+> 项目级变更记录。遵循语义化版本（SemVer）和 Conventional Commits 规范。
 
 ---
 
-## 2026-06-17 审计修复会话
+## [2026-06-18] Session 5 — DE/EN 空窗期基础设施冲刺
+
+### Overview
+
+48 小时空窗期内完成 6 项基础设施改进，确保 DE/EN 数据到达后一键产出完整结果。
+
+### A. Pipeline 统一化
+
+- **新增** `scripts/run_pipeline.py`（207 行）作为唯一入口
+- 自动检测 DB 数据状态：仅 ZH 生成 summary+quality+template；DE/EN 已到时全量运行（含 tables+figures）
+- 支持 `--force`（强制全量）和 `--status`（DB 状态检测）
+- 验证：5 Phase 全部通过，matplotlib 安装后 Figure 1+3 正常生成
+
+### B. Pilot Freeze 确认
+
+- 验证 `participant_data/pilot_v1/` 快照完整性（8 participants, 80 responses, 全部 ZH）
+- 与 DB 对照一致：8 人 80 条 + S 前缀模拟数据不影响 pilot 统计
+- 已知问题留档：P006 q12 污染、q14 "brought forward" 误解
+
+### C. 论文骨架扩展
+
+- **新增** Section 4 — Methods（4.1-4.6）：Participants / Instruments / Procedure / Graph Construction / LDS Computation / Statistical Analysis
+- **灵活 SAP**：不锁定 ANOVA，改为 `will be selected based on sample characteristics and assumption checks`
+- Bootstrap CI（1000 次）和 Cohen's d 为必报指标
+- **新增** Appendix A（三语问卷全文 30 题）、B（Concept Taxonomy 30 概念表）、C（Bootstrap 推导）
+- **新增** Section 3 — Cognitive Graph Framework（图定义、LDS 公式、Taxonomy v1）
+- 文件从 165 行扩展到 ~350 行（20,960 chars）
+
+### D. Pipeline 鲁棒性测试
+
+- 验证空数据保护（guard clause）、matplotlib 缺失降级
+- 确认 DB 无 NULL word_count、空回答、重复 response_id
+- 确认低置信度 extraction 为 0，所有学生有 consent
+- `student_001` 仅 5 条回答（旧模拟数据），不影响 pilot 统计
+
+### E. Three.js 小优化
+
+- **Loading overlay**：新增 CSS 加载层，开场动画完成后 300ms 淡出，消除白屏闪烁
+- **移动端触控**：orbit controls 添加 touchstart/touchmove/touchend 事件
+- **相机预设快捷键**：1=全景 2=近景 3=俯视
+- 总计 ~39 行改动，未修改语义/LDS/架构
+
+### F. 变更明细
+
+| 文件 | 操作 | 说明 |
+|:-----|:-----|:------|
+| `scripts/run_pipeline.py` | 新增 | 统一 Pipeline，207 行 |
+| `docs/paper_results_skeleton.md` | 重写 | 从 ~165 行扩展到 ~350 行 |
+| `visualization_v3/index.html` | 修改 | +16 行（loading overlay + preset hint）|
+| `visualization_v3/main.js` | 修改 | +23 行（touch + keyboard + loading fade）|
+
+### G. 验证
+
+- `python scripts/run_pipeline.py` → 5 Phase 全通，13 个结果文件生成
+- `results/figures/figure1_lds_distribution.png` (36 KB) + figure3 (42 KB)
+- `docs/paper_results_skeleton.md` → Methods + SAP + Appendix 结构完整
+
+### H. 数据到达准备 & 答辩材料
+
+- **新增** `docs/data_arrival_checklist.md` — DE/EN 数据到达 7 阶段检查单（文件完整性→参与者验证→回答质量→管道运行→LDS 验收）
+- **新增** `docs/demo_script.md` — 5 分钟 BWKI 答辩脚本（时间分配精确到秒，含屏幕提示 + Q&A 过渡）
+- **新增** `docs/judge_qa.md` — 10 个评委问题 + 参考答案 + 附录追问对策
+- **新增** `docs/infrastructure_audit.md` — 全方位项目基础设施审核（10 维度全部 PASS）
+
+### I. 变更明细
+
+| 文件 | 操作 | 说明 |
+|:-----|:-----|:------|
+| `scripts/run_pipeline.py` | 新增 | 统一 Pipeline，207 行 |
+| `docs/paper_results_skeleton.md` | 重写 | 从 ~165 行扩展到 ~350 行 |
+| `docs/data_arrival_checklist.md` | 新增 | 数据到达 7 阶段检查单 |
+| `docs/demo_script.md` | 新增 | 5 分钟答辩脚本 |
+| `docs/judge_qa.md` | 新增 | 评委 10 问 |
+| `docs/infrastructure_audit.md` | 新增 | 全方位审核报告 |
+| `docs/CHANGELOG.md` | 修改 | 本条目 |
+| `visualization_v3/index.html` | 修改 | +16 行（loading overlay + preset hint）|
+| `visualization_v3/main.js` | 修改 | +23 行（touch + keyboard + loading fade）|
+| `README.md` | 修改 | +Quick Start 区块 |
+
+---
+
+本会话完成四个关键里程碑：(1) 策略优先级修正，(2) LOGOS 方法学评估与集成规划，(3) Human Validation Tooling 生产级部署，(4) 第一批真实人类 Pilot 数据入库与分析。项目从纯工程开发正式进入实证研究阶段。
+
+---
+
+### A. Project Governance & Strategy
+
+#### A1. 优先级框架重建
+- **Context:** 此前错误地将 Model Training 列为高优先级，偏离 BWKI 科研主线
+- **Action:** 创建 `docs/PRIORITIES.md`，明确定义五层优先级体系
+- **Result:** Human Validation (P1) → Results Pipeline (P2) → UI Polish (P3) → LOGOS Integration (P4) → Model Training (P5)
+- **Files:** `docs/PRIORITIES.md` (new)
+
+#### A2. Model Strategy 重新定位
+- **Context:** 模型融合/微调（Qwen2.5-1.5B + LoRA + TIES + GGUF）策略完整但时序不当
+- **Action:** 全部降级为 Future Work (Phase 2)，标记为 post-BWKI
+- **Files:** `docs/model_strategy.md` (status update), `MODEL_CARD.md` (Future Work warning)
+
+#### A3. LOGOS 方法学借鉴
+- **Context:** 评估 LOGOS (arXiv:2509.24294) 的全自动 Grounded Theory 框架
+- **Decision:** 仅借鉴方法论（Concept Clustering / Codebook / Schema Alignment），不借鉴代码/模型，不修改 LDS
+- **Outputs:**
+  - `docs/logos_integration.md` — 完整集成方案（3 组件 + 引用格式 + 时间线）
+  - `config/concept_taxonomy.json` — LinguaGraph Concept Taxonomy v1（5 集群 / 30 概念 / 三语标签）
+  - `references/14_logos/README.md` — LOGOS 论文引用记录
+- **Status:** Taxonomy v1 ✅ Ready | Canonicalization Layer 📋 Post-pilot | Schema Analysis 📋 Optional
+
+---
+
+### B. Human Validation Tooling (Phase 2)
+
+#### B1. Participant Management System
+- **System:** `participant_data/participant_manager.py` — Full CRUD + GDPR (Art. 6, 7, 17) + Anonymization
+- **CLI:** `add`, `list`, `status`, `export-anonymized`, `delete` commands
+- **Tests:** 10 unit tests in `tests/test_participant_manager.py` (all passing)
+- **GDPR Compliance:**
+  - Consent tracking (Art. 6, 7): `consent` field + `update_consent()` + `CONSENT_STATUS` enum
+  - Right to erasure (Art. 17): `delete_participant()` cascades to extractions, analysis, responses
+  - Anonymization pipeline: `anonymize_response()` hashes student_id, strips timestamps
+- **Status:** ✅ 10/10 tests passing
+
+#### B2. Results Export Pipeline
+- **System:** `results/export_pipeline.py` — Automated table/figure generation
+- **Tables:** Demographics (Table 1) + LDS by topic (Table 2) in Markdown + CSV
+- **Figures:** LDS distribution (Fig 1) + Topic comparison (Fig 3) via matplotlib
+- **Status:** ✅ Pipeline ready (requires LDS data to run)
+
+#### B3. Future Work Registry
+- **File:** `FUTURE_WORK.md` — Explicit out-of-scope items log
+- **Categories:** Model & Training, Research Methodology, Infrastructure, Extensions
+- **Governance:** Items cannot be implemented without explicit user approval
+
+---
+
+### C. First Real Human Data — Pilot Import
+
+#### C1. Data Ingestion
+| Metric | Value |
+|--------|-------|
+| Participants | 8 (P001–P008) |
+| Responses | 80 (10 questions × 8 participants) |
+| Language | zh (Chinese only) |
+| Questionnaire | cognitive_linguistic_v1 (10-task battery) |
+| Age range | 10–55 years |
+| DB growth | students 11→19, responses 129→209 |
+
+- **Pipeline:** `scripts/import_pilot_data.py` — Full import pipeline (questionnaire registration → participant insert → response insert)
+- **Verification:** 80/80 responses imported, DB integrity confirmed
+
+#### C2. Data Quality Findings
+| Severity | Issue | Affected | Status |
+|:--------:|:------|:---------|:-------|
+| 🔴 HIGH | Only ZH data — no DE/EN for cross-language LDS | All 8 | Awaiting DE/EN collection |
+| 🟡 MEDIUM | P006 q12 residual characters from previous question | P006 | Flagged |
+| 🟡 MEDIUM | P003 q12 incomplete translation | P003 | Flagged |
+| 🟡 MEDIUM | q14 "brought forward" broadly misunderstood | 4/8 participants | Research finding |
+| 🟢 INFO | P006 uses Sichuan dialect | P006 | Secondary variable |
+
+#### C3. Pilot Analysis Report
+- **File:** `participant_data/pilot_raw/PILOT_REPORT.md` — Comprehensive analysis
+- **Sections:** demographics, task inventory, 5 linguistic observation categories (translation, cultural concept, emotion, spatial, word association), quality issues, DB query reference
+- **Key Findings:**
+  1. "孝" (filial piety) shows systematic simplification in English — evidence for cognitive loss in cross-language cultural concepts
+  2. "brought forward" temporal concept misread by 4/8 participants — cross-linguistic time metaphor effect
+  3. Translation strategies span classical Chinese (P002) to minimalist (P006)
+  4. Emotion response clusters: self-deprecating humor / defensive / polite apology
+
+#### C4. Analysis Module
+- **File:** `participant_data/pilot_data.py` — Reusable Python query interface
+- **API:** `PilotData(responses/compare/word_associations/translation_errors/language_mixing/to_dataframe)`
+- **CLI:** `--compare`, `--freq`, `--mix`, `--errors`, `--summary`, `--export`
+
+---
+
+### D. Quality Assurance
+
+#### D1. Test Suite
+```bash
+$ python -m pytest tests/ -v
+============================= 31 passed ==============================
+test_participant_manager.py ..........
+test_scoring.py ...............
+test_compare.py .........
+```
+
+#### D2. LDS Verification
+- **identical_graphs:** LDS = 0.0 ✅
+- **completely_different:** LDS > 0.5 ✅
+- **bootstrap_ci:** 95% CI valid ✅
+
+#### D3. Data Integrity
+- DB: 8 tables, 200+ rows (students, questionnaires, responses, extractions, graphs, cross_language_analysis, gold_labels, evaluation_results)
+- Referential integrity: all foreign keys valid
+- Pilot responses: 80/80 verified against source CSV
+
+---
+
+### Session Statistics
+
+| Category | Count | Detail |
+|:---------|:-----:|:-------|
+| Files created | 12 | See list below |
+| Files modified | 4 | model_strategy.md, CHANGELOG.md, MODEL_CARD.md, import_pilot_data.py |
+| Tests passing | 31 | 3 test files |
+| Pilot participants | 8 | Real human data |
+| Pilot responses | 80 | ZH only, 10-task battery |
+
+### Files Created This Session
+
+| File | Purpose |
+|:-----|:--------|
+| `docs/PRIORITIES.md` | Project priority framework |
+| `docs/model_strategy.md` | Model training strategy (deferred) |
+| `docs/training_pipeline.md` | Training infrastructure specification |
+| `docs/logos_integration.md` | LOGOS methodology integration plan |
+| `FUTURE_WORK.md` | Out-of-scope items registry |
+| `MODEL_CARD.md` | HuggingFace-format model card (future) |
+| `config/concept_taxonomy.json` | Concept taxonomy v1 (5 clusters) |
+| `config/training/lora_config.yaml` | LoRA hyperparameter config |
+| `config/training/merge_config.yaml` | TIES merge config |
+| `scripts/prepare_training_data.py` | Training data preparation |
+| `scripts/import_pilot_data.py` | Pilot data import pipeline |
+| `participant_data/participant_manager.py` | Participant CRUD + GDPR |
+| `participant_data/pilot_data.py` | Pilot data query module |
+| `participant_data/pilot_raw/PILOT_REPORT.md` | Comprehensive pilot analysis |
+| `results/export_pipeline.py` | Results export (tables + figures) |
+| `tests/test_participant_manager.py` | Participant manager tests |
+| `references/14_logos/README.md` | LOGOS citation record |
+
+---
+
+### Risk Register Update
+
+| Risk | Status | Mitigation |
+|:-----|:-------|:-----------|
+| No human data | ⚠️ RESOLVED | 8 ZH participants imported |
+| Model training over-prioritized | ✅ RESOLVED | Deferred to Phase 2 |
+| New paper causing scope creep | ✅ RESOLVED | LOGOS = methodology only |
+| CSV encoding/data quality | 🟡 MONITOR | Flagged specific issues |
+| Cross-language data missing | 🔴 OPEN | DE/EN collection pending |
+
+
+## [2026-06-17] Session 2b — 审计修复（旧版格式）
 
 ### 会话目标
 根据三维度审计报告（代码质量+科学方法+就绪度），修复 Critical 和 High 级别问题。
@@ -187,6 +429,105 @@ tests/test_compare.py::TestGraphSimilarity::test_no_overlap PASSED
 | `task()` | 3 | 任务追踪 |
 | `memory()` | 1 | 搜索记忆 |
 | `edit()` | 1 | 更新 MEMORY.md |
+
+---
+
+## 2026-06-18 LOGOS 方法学借鉴 & 优先级修正
+
+### 会话目标
+评估 LOGOS (arXiv:2509.24294) 的方法学价值，设计最小化集成方案，并修正项目优先级。
+
+### 关键决策
+
+| 决策 | 结论 |
+|------|------|
+| 模型训练优先级 | ❌ **降级为 Future Work (Phase 2)** — 不影响 BWKI 提交 |
+| 项目当前重点 | ✅ **Human Validation → Pilot → Results Pipeline** |
+| LOGOS 借鉴范围 | ✅ 方法论（流程/思路），❌ 不借鉴代码/模型 |
+| LDS 是否修改 | ❌ **Frozen** — 不因新论文而重构已验证指标 |
+
+### LOGOS 借鉴的 3 个具体点
+
+| 借鉴点 | LinguaGraph 适配 | 工作量 | 时序 |
+|:-------|:----------------|:------:|:----:|
+| Semantic Clustering | Concept Canonicalization Layer | ~80 LOC | 试点后 |
+| Reusable Codebook | Concept Taxonomy v1 | 1 个配置文件 | ✅ **已创建** |
+| Schema Alignment | Cluster-level 跨语言分析 | ~100 LOC | 试点后 |
+
+### 新增/修改文档
+
+| 文件 | 变更 |
+|:-----|:------|
+| `docs/logos_integration.md` | **新建** — 完整集成计划（3 个组件 + 时间线 + 引用格式） |
+| `config/concept_taxonomy.json` | **新建** — LinguaGraph Concept Taxonomy v1（5 集群 / 30 概念 / 三语标签） |
+| `docs/PRIORITIES.md` | **新建** — 项目优先级总览（BWKI 提交 → Human Data → Results → 展示） |
+| `docs/model_strategy.md` | **编辑** — 状态改为 Future Work (Phase 2) |
+| `MODEL_CARD.md` | **编辑** — 添加 Future Work 警告 |
+| `references/14_logos/README.md` | **新建** — LOGOS 论文引用记录 |
+| `data/evidence/model_strategy_summary.json` | **新建** — 策略总结结构化数据 |
+
+### 优先级变更
+
+```
+# 修正前（本会话开始时误设）
+Priority 1: Model Training ← ❌ 技术兴奋陷阱
+Priority 2: Human Validation
+
+# 修正后
+Priority 1: ✅ Human Validation (Pilot 3+3+3)
+Priority 2: ✅ Results Dashboard
+Priority 3: ✅ Three.js / UI Polish
+Priority 4: ⏳ LOGOS-inspired additions (after Pilot)
+Priority 5: 🗄️ Model Training (Phase 2, post-BWKI)
+```
+
+---
+
+## 2026-06-18 模型融合与微调策略制定
+
+### 会话目标
+规划并记录将 LinguaGraph 从 API 依赖的 LLM 提取方式，迁移至本地嵌入式专有模型的完整技术路线。
+
+### 核心决策
+
+| 决策 | 选择 | 依据 |
+|------|------|------|
+| 基座模型 | Qwen2.5-1.5B-Instruct | 最佳三语支持（ZH/DE/EN）、最小体积、Apache 2.0 |
+| 微调方法 | LoRA (r=16) + QLoRA | 相比全参数微调成本降低 100 倍，窄任务效果相当 |
+| 模型融合 | TIES Merging | 三语言适配器（ZH+DE+EN）参数冲突处理最优 |
+| 量化格式 | GGUF Q4_K_M | 最终体积 ~900 MB，手机可部署 |
+
+### 新增文档
+
+| 文件 | 大小 | 内容 |
+|------|------|------|
+| `docs/model_strategy.md` | 150+ 行 | 完整策略：选型/融合/微调/量化/集成/路线图/风险评估 |
+| `docs/training_pipeline.md` | 200+ 行 | 训练管道：环境配置/数据准备/LoRA 训练/模型合并/量化/评估 |
+| `config/training/lora_config.yaml` | 30 行 | LoRA 训练超参数配置 |
+| `config/training/merge_config.yaml` | 25 行 | TIES 融合权重配置 |
+| `scripts/prepare_training_data.py` | 230 行 | 训练数据准备脚本（gold → Alpaca 格式 + 合成数据生成）|
+| `MODEL_CARD.md` | 100+ 行 | HuggingFace 模型卡标准格式 |
+
+### 路线图（6 周）
+
+```
+Phase 0: Data Prep    (W1-2)  → 30 gold labels + 500+ synthetic
+Phase 1: Base Model   (W2-3)  → Qwen2.5-1.5B downloaded + baseline
+Phase 2: Fine-tuning  (W3-4)  → 3 LoRAs (ZH/DE/EN)
+Phase 3: Merge        (W4-5)  → TIES merge all adapters
+Phase 4: Quantize     (W5-6)  → GGUF + LocalProvider
+Phase 5: Docs         (W6)    → Model card + reproducibility
+```
+
+### 关键指标目标
+
+| 指标 | 当前（Qwen3-8B） | 目标（1.5B Local） |
+|------|:----------------:|:------------------:|
+| Concept F1 | ~0.85 | ≥0.80 |
+| Relation F1 | ~0.75 | ≥0.70 |
+| 模型大小 | 4.5 GB | 0.9 GB |
+| RAM 占用 | 16 GB | 1.5 GB |
+| 是否需要网络 | 否（本地） | 否 |
 
 ---
 

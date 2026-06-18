@@ -201,6 +201,33 @@ python web/server.py
 
 ---
 
+## 🚀 快速使用 / Quick Start
+
+### 一键分析 / One-Command Pipeline
+
+```bash
+# 全量运行（自动检测数据状态）
+python scripts/run_pipeline.py
+
+# 仅查看数据库状态
+python scripts/run_pipeline.py --status
+
+# 强制全量模式（含图表）
+python scripts/run_pipeline.py --force
+```
+
+输出：参与者摘要、质量报告、LDS 结果表、论文图表。
+
+### 可视化 / Visualization
+
+```bash
+# 用浏览器打开 Cognitive City 3D 可视化
+open visualization_v3/index.html
+# 或双击文件
+```
+
+---
+
 ## 📖 引用 / Citation
 
 如果你在研究中使用 LinguaGraph，请引用：

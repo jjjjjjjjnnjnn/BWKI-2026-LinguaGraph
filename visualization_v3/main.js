@@ -46,11 +46,15 @@ function init() {
 
     initControls();
     setupUI();
+    setupKeyboard();
 
     // Start with opening animation
     runOpeningAnimation(() => {
         loadTopic("freedom");
         openingAnimDone = true;
+        // Hide loading overlay
+        const overlay = document.getElementById("loading-overlay");
+        if (overlay) setTimeout(() => overlay.classList.add("hidden"), 300);
     });
 
     animate();
@@ -104,25 +108,41 @@ function initControls() {
         camera.lookAt(0, 15, 0);
     };
 
-    const c = renderer.domElement;
-    c.addEventListener("mousedown", (e) => {
-        drag = true;
-        prev = { x: e.clientX, y: e.clientY };
-    });
-    c.addEventListener("mousemove", (e) => {
+    const onDown = (x, y) => { drag = true; prev = { x, y }; };
+    const onMove = (x, y) => {
         if (!drag) return;
-        sph.theta -= (e.clientX - prev.x) * 0.005;
-        sph.phi = Math.max(0.3, Math.min(1.4, sph.phi + (e.clientY - prev.y) * 0.005));
-        prev = { x: e.clientX, y: e.clientY };
+        sph.theta -= (x - prev.x) * 0.005;
+        sph.phi = Math.max(0.3, Math.min(1.4, sph.phi + (y - prev.y) * 0.005));
+        prev = { x, y };
         upd();
-    });
-    c.addEventListener("mouseup", () => (drag = false));
-    c.addEventListener("mouseleave", () => (drag = false));
+    };
+    const onUp = () => (drag = false);
+
+    const c = renderer.domElement;
+    // Mouse
+    c.addEventListener("mousedown", (e) => onDown(e.clientX, e.clientY));
+    c.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY));
+    c.addEventListener("mouseup", onUp);
+    c.addEventListener("mouseleave", onUp);
+    // Touch
+    c.addEventListener("touchstart", (e) => { const t = e.touches[0]; onDown(t.clientX, t.clientY); });
+    c.addEventListener("touchmove", (e) => { const t = e.touches[0]; onMove(t.clientX, t.clientY); });
+    c.addEventListener("touchend", onUp);
     c.addEventListener("wheel", (e) => {
         sph.r = Math.max(150, Math.min(600, sph.r + e.deltaY * 0.5));
         upd();
     });
     upd();
+}
+
+// ===== KEYBOARD SHORTCUTS =====
+
+function setupKeyboard() {
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "1") animateCamera(0, 340, 480, 0, 15, 0);    // Panorama
+        if (e.key === "2") animateCamera(0, 150, 200, 0, 15, 0);    // Close-up
+        if (e.key === "3") animateCamera(0, 500, 10, 0, 15, 0);     // Top-down
+    });
 }
 
 // ===== TOPIC LOADING =====

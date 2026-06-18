@@ -1,81 +1,118 @@
-# LinguaGraph — 数据收集管道 (Human Data)
+# LinguaGraph — Human Validation Data Pipeline
 
-> **用途**: 人类实验数据的标准化处理流程
-> **设计原则**: 匿名化 → 标注 → 分析 → 报告，每一步可审计
+> **Purpose**: Standardized processing for human experiment data
+> **Design principle**: Anonymize → Extract → Graph → LDS → Report, every step auditable
 
 ---
 
-## 目录结构
+## Directory Structure
 
 ```
 participant_data/
-├── raw/              ← 原始数据 (来自问卷平台，含身份信息)
-│   └── (gitignored)
-├── anonymized/       ← 匿名化数据 (PII 已移除，用于分析)
-│   └── participants.jsonl
-├── annotations/      ← 人工标注
+├── raw/                  ← Raw data (from survey platform, contains PII)
+│   └── pilot_mock.csv    ← 9 mock responses (3 ZH, 3 DE, 3 EN)
+├── anonymized/           ← Anonymized data (PII removed, for analysis)
+│   └── {batch}.jsonl
+├── annotations/          ← Human annotation
 │   ├── annotator_A/
 │   ├── annotator_B/
 │   └── consensus/
-├── graphs/           ← 个体认知图谱 (JSON)
-├── reports/          ← 分析报告
-└── logs/             ← 处理日志
+├── graphs/               ← Individual cognitive graphs (JSON)
+├── reports/              ← Analysis reports
+├── participant_manager.py ← Participant lifecycle management
+└── README.md
 ```
 
 ---
 
-## 数据流
+## Data Flow
 
 ```
-Google Form / 问卷平台
-    ↓ CSV 导出
+Google Forms / Survey Platform
+    ↓ CSV export
 raw/{batch}_export.csv
-    ↓ anonymize.py (移除姓名、邮箱、IP)
+    ↓ participant_manager.py import (or survey_pipeline/import_csv.py)
+linguaGraph.db (students + responses tables)
+    ↓ participant_manager.py export-anonymized
 anonymized/{batch}.jsonl
-    ↓ annotate.py (两位标注员独立标注)
-annotations/annotator_A/{batch}.json
-annotations/annotator_B/{batch}.json
-    ↓ consensus.py (合并标注)
-annotations/consensus/{batch}.json
-    ↓ 
-graph.py (构建认知图)
-graphs/{participant}.json
-    ↓
-analyze.py (计算 LDS + Bootstrap CI)
-reports/{batch}_analysis.json
-    ↓
-结果表格 + 图表
-results/
+    ↓ survey_pipeline/annotate.py (LLM extraction)
+linguaGraph.db (extractions table)
+    ↓ survey_pipeline/run_lds.py
+linguaGraph.db (cross_language_analysis table)
+    ↓ survey_pipeline/generate_report.py
+docs/survey_reports/
 ```
 
 ---
 
-## 使用说明
+## Quick Start
 
 ```bash
-# 1. 导入原始 CSV
-python participant_data/import.py --input raw/survey_export.csv --batch pilot_001
+# 1. Check recruitment status
+python participant_data/participant_manager.py status
 
-# 2. 匿名化
-python participant_data/anonymize.py --batch pilot_001
+# 2. Add a participant
+python participant_data/participant_manager.py add --id S001 --lang zh --consent
 
-# 3. 生成标注任务
-python participant_data/prep_annotation.py --batch pilot_001
+# 3. List all participants
+python participant_data/participant_manager.py list
 
-# 4. 分析 (标注完成后)
-python scripts/analyze_student.py --all
+# 4. Import from CSV (Google Forms export)
+python survey_pipeline/run_all.py raw/survey_export.csv --mock
 
-# 5. 生成报告
-python participant_data/generate_report.py --batch pilot_001
+# 5. Export anonymized data
+python participant_data/participant_manager.py export-anonymized --batch pilot_001
+
+# 6. Run full pipeline (import → extract → LDS → report)
+python survey_pipeline/run_all.py participant_data/raw/pilot_mock.csv --mock
 ```
 
 ---
 
-## GDPR 合规
+## Participant Manager API
 
-| 阶段 | 数据内容 | 存储 | 期限 |
-|------|----------|------|------|
-| raw/ | 姓名, 邮箱, IP, 回答 | 加密, `.gitignore` | 分析完成后销毁 |
-| anonymized/ | 年龄, 语言, 回答 | 明文, `.gitignore` | 研究结束后归档 |
-| annotations/ | 标注结果 | 明文 | 永久 (研究记录) |
-| graphs/ | 匿名化认知图 | 明文 | 永久 (研究记录) |
+```python
+from participant_data.participant_manager import ParticipantManager
+
+pm = ParticipantManager()
+
+# CRUD
+pm.add_participant("S001", native_lang="zh", consent=True)
+pm.get_participant("S001")
+pm.list_participants(native_lang="zh")
+pm.update_consent("S001", consent=True)
+pm.delete_participant("S001")  # GDPR Art. 17
+
+# Status
+pm.get_recruitment_status()  # Progress toward 30 participants
+pm.get_response_status()     # Response completion per participant
+
+# Anonymization
+pm.export_anonymized(batch_id="pilot_001")
+
+pm.close()
+```
+
+---
+
+## GDPR Compliance
+
+| Stage | Data | Storage | Retention |
+|-------|------|---------|-----------|
+| raw/ | Name, email, IP, answers | Encrypted, `.gitignore` | Destroyed after analysis |
+| anonymized/ | Age, language, answers | Plain text, `.gitignore` | Archived after study |
+| annotations/ | Annotation results | Plain text | Permanent (research record) |
+| graphs/ | Anonymized cognitive graphs | Plain text | Permanent (research record) |
+
+---
+
+## Related Modules
+
+| Module | Purpose |
+|--------|---------|
+| `survey_pipeline/import_csv.py` | CSV → database import |
+| `survey_pipeline/annotate.py` | LLM concept extraction |
+| `survey_pipeline/run_lds.py` | LDS computation |
+| `survey_pipeline/generate_report.py` | Report generation |
+| `scripts/survey_entry.py` | CLI manual data entry |
+| `scripts/db_utils.py` | Database utilities |
