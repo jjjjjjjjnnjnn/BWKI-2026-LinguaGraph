@@ -51,7 +51,7 @@ Die Studie verwendet drei Datenquellen:
 1. KORPUS-DATEN (bereits vorhanden):
    - Wikipedia-Artikel zu Freiheit, Gerechtigkeit, Verantwortung, Erfolg
      und Familie in Chinesisch, Deutsch und Englisch (CC-BY-SA 4.0)
-   - 15 Lehrbuchtexte aus dem deutschen Bildungssystem
+   - 15 analysierte Bildungstexte aus dem deutschen Schulsystem (nur fuer Forschungszwecke verwendet)
 
 2. SIMULATIONSDATEN (bereits vorhanden):
    - Computational Baseline Dataset (300 simulierte Antworten) zur
@@ -98,4 +98,5 @@ Die Studie verwendet drei Datenquellen:
 - [ ] Finale Textpr眉fung (Rechtschreibung, Grammatik)
 - [ ] **Einreichung bis 28.06.2026**
 - [ ] Vollst盲ndige Projekt-Einreichung bis 20.09.2026
+
 

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>LinguaGraph — Pipeline Übersicht</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0b1120;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  .diagram {
+    width: 900px;
+    background: linear-gradient(180deg, #0f172a 0%, #1a2332 100%);
+    border-radius: 24px;
+    padding: 40px 48px 32px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+    border: 1px solid #1e293b;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle grid background */
+  .diagram::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 6px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  .header .team {
+    font-size: 12px;
+    color: #475569;
+    margin-top: 4px;
+  }
+
+  .pipeline {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Vertical connector line */
+  .pipeline::before {
+    content: '';
+    position: absolute;
+    left: 64px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+      #3b82f6 0%, #8b5cf6 16.6%, #10b981 33.3%,
+      #f59e0b 50%, #ef4444 66.6%, #10b981 83.3%, #06b6d4 100%);
+    opacity: 0.4;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0;
+    position: relative;
+    min-height: 100px;
+  }
+
+  /* Step number circle */
+  .step-marker {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .step:nth-child(1) .step-marker { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .step:nth-child(2) .step-marker { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+  .step:nth-child(3) .step-marker { background: linear-gradient(135deg, #10b981, #059669); }
+  .step:nth-child(4) .step-marker { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .step:nth-child(5) .step-marker { background: linear-gradient(135deg, #ef4444, #dc2626); }
+  .step:nth-child(6) .step-marker { background: linear-gradient(135deg, #10b981, #047857); }
+  .step:nth-child(7) .step-marker { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+  .step-content {
+    margin-left: 24px;
+    flex: 1;
+    padding-bottom: 28px;
+    padding-top: 4px;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .step-icon { font-size: 18px; }
+
+  .step-desc {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-top: 2px;
+  }
+
+  .step-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  .tag-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .tag-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.2); }
+  .tag-green { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .tag-amber { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .tag-red { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .tag-cyan { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.2); }
+  .tag-slate { background: rgba(100,116,139,0.15); color: #cbd5e1; border: 1px solid rgba(100,116,139,0.2); }
+
+  /* Detail box */
+  .detail-box {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .detail-box .label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .detail-box .value {
+    font-size: 12px;
+    color: #cbd5e1;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .detail-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .detail-item {
+    flex: 1;
+  }
+
+  /* Formula highlight */
+  .formula {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.15);
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-top: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    color: #fca5a5;
+    text-align: center;
+  }
+
+  .formula .highlight {
+    color: #fbbf24;
+  }
+
+  .formula .highlight2 {
+    color: #6ee7b7;
+  }
+
+  .formula .highlight3 {
+    color: #93c5fd;
+  }
+
+  /* Metrics row */
+  .metrics {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  .metric {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .metric-blue { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.15); }
+  .metric-amber { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.15); }
+  .metric-green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.15); }
+  .metric-red { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.15); }
+
+  .metric-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+  .metric-label {
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 2px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: #475569;
+  }
+
+  .footer-text strong {
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  /* Colorful accent bars */
+  .accent-bar {
+    height: 3px;
+    margin-top: 0;
+    border-radius: 0 0 24px 24px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981, #f59e0b, #ef4444, #10b981, #06b6d4);
+    margin: 32px -48px -32px;
+  }
+</style>
+</head>
+<body>
+<div class="diagram">
+  <div class="header">
+    <h1>LinguaGraph</h1>
+    <div class="subtitle">Wie Sprache das Denken formt — Forschungs- und Analyse-Pipeline</div>
+    <div class="team">Knusprige Oktopus-Seepocken · Robert (Jiajun Rong) &amp; Ludwig (Zhenxi Lan) · BWKI 2026</div>
+  </div>
+
+  <div class="pipeline">
+
+    <!-- Step 1: Data Sources -->
+    <div class="step">
+      <div class="step-marker">1</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">📡</span> Datenquellen &amp; Fragebogen</div>
+        <div class="step-desc">
+          Drei unabhaengige Datenquellen: mehrsprachige Wikipedia-Korpora (ZH/DE/EN, CC-BY-SA 4.0),
+          Bildungstexte aus dem deutschen Schulsystem und ein Computational Baseline Dataset (300 simulierte Antworten).
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-blue">ZH Deutsch Englisch</span>
+          <span class="tag tag-blue">15 Bildungstexte</span>
+          <span class="tag tag-blue">300 Simulationen</span>
+        </div>
+        <div class="detail-box">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="label">Korpus</div>
+              <div class="value">4 Themen × 3 Sprachen</div>
+            </div>
+            <div class="detail-item">
+              <div class="label">Human</div>
+              <div class="value">60+ Probanden (geplant)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Questions -->
+    <div class="step">
+      <div class="step-marker">2</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">📋</span> Offene Fragen zu sozialen Themen</div>
+        <div class="step-desc">
+          Jeder Proband beantwortet 15 offene Fragen (3 pro Thema) in seiner Muttersprache.
+          Die fuenf Themen decken grundlegende soziale Konzepte ab, die in allen drei Sprachkulturen
+          relevant sind.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-purple">Freiheit</span>
+          <span class="tag tag-purple">Gerechtigkeit</span>
+          <span class="tag tag-purple">Verantwortung</span>
+          <span class="tag tag-purple">Erfolg</span>
+          <span class="tag tag-purple">Familie / Zuhause</span>
+        </div>
+        <div class="detail-box">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="label">Format</div>
+              <div class="value">3-5 Saetze pro Antwort</div>
+            </div>
+            <div class="detail-item">
+              <div class="label">Sprache</div>
+              <div class="value">Muttersprache des Probanden</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: LLM Extraction -->
+    <div class="step">
+      <div class="step-marker">3</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">🤖</span> KI-gestuetzte Konzeptextraktion</div>
+        <div class="step-desc">
+          Ein Large Language Model (GPT-4.1-mini / Qwen3-8B) extrahiert aus jeder Antwort
+          die verwendeten Konzepte und die explizit genannten Beziehungen zwischen ihnen.
+          Der Extraktor ist als pluggable Provider implementiert und unterstuetzt Mock-Modus
+          fuer tests ohne API-Zugriff.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">GPT-4.1-mini</span>
+          <span class="tag tag-green">Qwen3-8B (Ollama)</span>
+          <span class="tag tag-slate">Mock-Modus verfuegbar</span>
+        </div>
+        <div class="detail-box">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="label">Output</div>
+              <div class="value">Konzepte + Relationen + Confidence</div>
+            </div>
+            <div class="detail-item">
+              <div class="label">Validierung</div>
+              <div class="value">Goldstandard-Dataset (n=20)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Cognitive Graph -->
+    <div class="step">
+      <div class="step-marker">4</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">🕸️</span> Kognitiver Graph (NetworkX DiGraph)</div>
+        <div class="step-desc">
+          Aus den extrahierten Konzepten und Beziehungen wird fuer jede Sprache ein
+          gerichteter Graph konstruiert. Knoten repraesentieren Konzepte, Kanten
+          repraesentieren Beziehungen (cause_effect, part_of, equivalent, opposes, ...).
+          Drei Graphen pro Proband: ZH, DE, EN.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-amber">NetworkX</span>
+          <span class="tag tag-amber">Directed Graph</span>
+          <span class="tag tag-amber">3 Graphen / Proband</span>
+        </div>
+        <div class="detail-box">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="label">Knoten</div>
+              <div class="value">Konzepte (normalisiert via Mapping)</div>
+            </div>
+            <div class="detail-item">
+              <div class="label">Kanten</div>
+              <div class="value">7 Relationstypen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: LDS -->
+    <div class="step">
+      <div class="step-marker">5</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">📐</span> Language Drift Score (LDS)</div>
+        <div class="step-desc">
+          Der LDS quantifiziert die strukturelle Differenz zwischen zwei Sprachgraphen
+          als Kombination aus drei komplementaeren Metriken. Anschliessend wird die
+          Unsicherheit mittels Bootstrap (1000 Iterationen) geschaetzt.
+        </div>
+        <div class="formula">
+          LDS(L1, L2) = 1 − mean(
+          <span class="highlight3">GED_sim</span>,
+          <span class="highlight2">Jaccard_node</span>,
+          <span class="highlight">Jaccard_edge</span>)
+        </div>
+        <div class="metrics">
+          <div class="metric metric-blue">
+            <div class="metric-value">GED</div>
+            <div class="metric-label" style="color: #93c5fd;">Graph Edit Distance</div>
+          </div>
+          <div class="metric metric-green">
+            <div class="metric-value">Node Jac.</div>
+            <div class="metric-label" style="color: #6ee7b7;">Konzeptueberschneidung</div>
+          </div>
+          <div class="metric metric-amber">
+            <div class="metric-value">Edge Jac.</div>
+            <div class="metric-label" style="color: #fcd34d;">Beziehungsueberschneidung</div>
+          </div>
+          <div class="metric metric-red">
+            <div class="metric-value">Bootstr.</div>
+            <div class="metric-label" style="color: #fca5a5;">95% Konfidenzintervall</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6: Human Validation -->
+    <div class="step">
+      <div class="step-marker">6</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">🔬</span> Humanvalidierung &amp; statistische Analyse</div>
+        <div class="step-desc">
+          Geplante Studie mit 60+ Probanden (20 pro Sprachgruppe). Mixed ANOVA mit
+          Faktoren Sprachgruppe (ZH/DE/EN) und Thema (5). Post-hoc Tukey HSD,
+          Benjamini-Hochberg FDR-Korrektur. Zweitannotator fuer Cohen's Kappa &ge; 0.70.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">n = 60+</span>
+          <span class="tag tag-green">Mixed ANOVA</span>
+          <span class="tag tag-green">Cohen's &kappa;</span>
+          <span class="tag tag-green">DSGVO</span>
+        </div>
+        <div class="detail-box">
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="label">Design</div>
+              <div class="value">3 Gruppen × 5 Themen × 3 Fragen</div>
+            </div>
+            <div class="detail-item">
+              <div class="label">Ethik</div>
+              <div class="value">Informierte Einwilligung, anonymisiert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7: Visualization -->
+    <div class="step">
+      <div class="step-marker">7</div>
+      <div class="step-content">
+        <div class="step-title"><span class="step-icon">🌆</span> Cognitive City 3D (Three.js)</div>
+        <div class="step-desc">
+          Die ergebnisse werden als interaktive 3D-Stadtlandschaft visualisiert.
+          Konzepte werden als Gebaeude dargestellt (Hoehe = Zentralitaet),
+          Beziehungen als Strassen zwischen ihnen. Unterschiedliche Sprachgraphen
+          koennen nebeneinander verglichen werden.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-cyan">Three.js</span>
+          <span class="tag tag-cyan">Interaktiv</span>
+          <span class="tag tag-cyan">Sprachvergleich</span>
+        </div>
+        <div class="detail-box">
+          <div class="label">Metapher</div>
+          <div class="value">Konzepte = Gebaeude · Beziehungen = Strassen · Sprachkultur = Stadtbild</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status bar -->
+  <div class="accent-bar"></div>
+
+  <div class="footer">
+    <div class="footer-text">
+      <strong>Status:</strong> Pipeline implementiert &amp; getestet (21/21 Tests bestanden) &nbsp;·&nbsp;
+      <strong>Humanvalidierung:</strong> Geplant (60+ Probanden) &nbsp;·&nbsp;
+      <strong>Code:</strong> github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph
+    </div>
+  </div>
+</div>
+</body>
+</html>
