@@ -1,14 +1,31 @@
-# 🧠 LinguaGraph — 语言如何塑造思维？ / Mapping How Language Shapes Thinking
+# 🧠 LinguaGraph — Mapping How Language Shapes Thinking
 
-> **BWKI 2026 (Bundeswettbewerb Künstliche Intelligenz) — 参赛项目**
->
-> *Bundeswettbewerb Künstliche Intelligenz 2026 Entry*
+> **BWKI 2026 (Bundeswettbewerb Künstliche Intelligenz)**
+> *How does language shape the way we think? — Measured with AI and graph theory.*
 
 ---
 
-<div align="center">
+## 📑 Inhaltsverzeichnis / Table of Contents / 目录
 
-## 中文简介
+| 🇨🇳 [中文](#-中文) | 🇬🇧 [English](#-english) | 🇩🇪 [Deutsch](#-deutsch) |
+|:---|:---|:---|
+| [简介](#简介) | [Introduction](#introduction) | [Einleitung](#einleitung) |
+| [核心创新](#核心创新) | [Key Innovation](#key-innovation) | [Kerninnovation](#kerninnovation) |
+| [研究框架](#研究框架) | [Pipeline](#pipeline) | [Pipeline](#pipeline-1) |
+| [技术栈](#技术栈) | [Tech Stack](#tech-stack) | [Technologie-Stack](#technologie-stack) |
+| [实验设计](#实验设计) | [Experiment Design](#experiment-design) | [Versuchsdesign](#versuchsdesign) |
+| [合规与伦理](#合规与伦理) | [Ethics & Compliance](#ethics--compliance) | [Ethik & Datenschutz](#ethik--datenschutz) |
+| [项目结构](#项目结构) | [Project Structure](#project-structure) | [Projektstruktur](#projektstruktur) |
+| [快速开始](#快速开始) | [Quick Start](#quick-start) | [Schnellstart](#schnellstart) |
+| [项目状态](#项目状态) | [Project Status](#project-status-1) | [Projektstatus](#projektstatus) |
+
+**Common sections:** [Citation](#-引用--citation--zitation) · [Copyright](#-版权声明--copyright--urheberrecht)
+
+---
+
+## 🇨🇳 中文
+
+### 简介
 
 **LinguaGraph** 是一个跨学科研究项目，旨在通过人工智能与图论方法，量化回答**"语言是否改变人的思维方式？"**这一经典语言学问题。
 
@@ -22,14 +39,14 @@
 
 ### 研究框架
 
-```
+```text
 学生回答 (ZH/DE/EN)
     ↓
 LLM 提取概念与关系
     ↓
 构建认知图谱 (NetworkX DiGraph)
     ↓
-跨语言概念对其 (30个共享概念ID)
+跨语言概念对齐 (30个共享概念ID)
     ↓
 计算 LDS / LCD / 概念Shift
     ↓
@@ -40,7 +57,7 @@ LLM 提取概念与关系
 
 - **AI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (插件式 Provider)
 - **图论**: NetworkX, Graph Edit Distance, Jaccard 相似度
-- **数据库**: SQLite (linguaGraph.db, 10 张表)
+- **数据库**: SQLite (10 张表)
 - **可视化**: Three.js (3D Cognitive City)
 - **数据**: 300 条计算基线 + Wikipedia 多语语料
 
@@ -60,7 +77,9 @@ LLM 提取概念与关系
 
 ---
 
-## English Introduction
+## 🇬🇧 English
+
+### Introduction
 
 **LinguaGraph** is an interdisciplinary research project that uses AI and graph theory to quantify whether **language shapes the structure of human thought** — the classic Sapir-Whorf hypothesis of linguistic relativity.
 
@@ -72,11 +91,27 @@ LLM 提取概念与关系
 | **Cognitive City** | 3D visualization: concepts as buildings, relations as roads |
 | **Trilingual Comparison** | Chinese, German, and English cognitive graph analysis |
 
+### Pipeline
+
+```text
+Participant responses (ZH/DE/EN)
+    ↓
+LLM concept & relation extraction
+    ↓
+Cognitive graph construction (NetworkX DiGraph)
+    ↓
+Cross-language concept alignment (30 shared concept IDs)
+    ↓
+LDS / LCD / Concept Shift computation
+    ↓
+3D Cognitive City visualization
+```
+
 ### Tech Stack
 
 - **AI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (pluggable Provider system)
 - **Graph**: NetworkX, Graph Edit Distance, Jaccard similarity
-- **Database**: SQLite (10 tables, 75+ records)
+- **Database**: SQLite (10 tables)
 - **Visualization**: Three.js (3D Cognitive City)
 - **Data**: 300 computational baselines + multilingual Wikipedia corpus
 
@@ -92,145 +127,189 @@ LLM 提取概念与关系
 - ✅ GDPR compliant (Art. 6, 7, 8, 13, 15, 16, 17, 33, 34, 77)
 - ✅ Trilingual consent forms (ZH/DE/EN)
 - ✅ Minor participant protection
-- ✅ Data anonymization
+- ✅ Full data anonymization
 
 ---
 
-## 📁 项目结构 / Project Structure
+## 🇩🇪 Deutsch
 
+### Einleitung
+
+**LinguaGraph** ist ein interdisziplinäres Forschungsprojekt, das mithilfe von KI und Graphentheorie quantifiziert, ob **Sprache die Struktur des menschlichen Denkens prägt** — die klassische Sapir-Whorf-Hypothese der linguistischen Relativität.
+
+### Kerninnovation
+
+| Innovation | Beschreibung |
+|-----------|-------------|
+| **LDS (Language Drift Score)** | Erster Metrik zur Quantifizierung cross-lingualer kognitiver Unterschiede auf Graphenebene |
+| **Cognitive City** | 3D-Visualisierungsmetapher: Konzepte als Gebäude, Beziehungen als Straßen |
+| **Dreisprachiger Vergleich** | Kognitive Graphenanalyse für Chinesisch, Deutsch und Englisch |
+
+### Pipeline
+
+```text
+Teilnehmerantworten (ZH/DE/EN)
+    ↓
+LLM-Konzept- und Relationsextraktion
+    ↓
+Aufbau kognitiver Graphen (NetworkX DiGraph)
+    ↓
+Sprachübergreifende Konzeptzuordnung (30 geteilte Konzept-IDs)
+    ↓
+LDS / LCD / Concept-Shift-Berechnung
+    ↓
+3D Cognitive City Visualisierung
 ```
+
+### Technologie-Stack
+
+- **KI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (Plugin-basiertes Provider-System)
+- **Graphentheorie**: NetworkX, Graph Edit Distance, Jaccard-Ähnlichkeit
+- **Datenbank**: SQLite (10 Tabellen)
+- **Visualisierung**: Three.js (3D Cognitive City)
+- **Daten**: 300 Rechen-Baselines + mehrsprachiges Wikipedia-Korpus
+
+### Versuchsdesign
+
+- **30 Teilnehmer** (10 ZH, 10 DE, 10 EN)
+- **5 Themen × 3 Sprachen** = 15 offene Fragen
+- **Gemischtes Within-Subject + Between-Subject Design**
+- **Power-Analyse**: Effektstärke d=0.6-0.8, α=0.05, Power>0.80
+
+### Ethik & Datenschutz
+
+- ✅ DSGVO-konform (Art. 6, 7, 8, 13, 15, 16, 17, 33, 34, 77)
+- ✅ Dreisprachige Einwilligungserklärungen (ZH/DE/EN)
+- ✅ Minderjährigenschutz
+- ✅ Vollständige Datenanonymisierung
+
+---
+
+## 📂 项目结构 / Project Structure / Projektstruktur
+
+```text
 BWKI-2026-LinguaGraph/
-├── src/                  # 核心库
-│   ├── extract.py        # 概念提取 (LLM + mock)
-│   ├── graph.py          # 认知图谱构建 (NetworkX)
-│   ├── scoring.py        # LDS / LCD 计算
-│   ├── compare.py        # 缺失链接检测
-│   ├── cross_language.py # 跨语言概念对齐
-│   ├── explain.py        # 结果解释生成
-│   ├── providers/        # LLM Provider 插件系统
-│   └── main.py           # 端到端管道入口
-├── scripts/              # 工具脚本
-│   ├── db_init.py        # 数据库初始化
-│   ├── ingest_all.py     # 批量数据导入
-│   ├── analyze_student.py # 单学生完整分析
-│   ├── analyze_pilot.py  # Pilot 数据分析
-│   ├── simulate_baseline.py # 计算基线生成
-│   ├── survey_entry.py   # 数据录入 CLI (伙伴用)
-│   └── evaluate_pipeline.py # LLM 提取质量评估
-├── experiments/          # 数据采集脚本
-├── config/               # 配置文件
-│   ├── cross_language_mapping.json  # 跨语言概念映射
-│   ├── normalization_map.json       # 同义词规范化
-│   └── prompts/          # LLM Prompt 模板
-├── data/                 # 数据
-│   ├── corpus/           # Wikipedia 语料 (ZH/DE/EN)
-│   ├── gold/             # 人工标注数据集
-│   ├── baseline/         # 计算基线数据
-│   └── questionnaires/   # 问卷定义
-├── docs/                 # 文档
-│   ├── ethics/           # 伦理文件包 (GDPR, 同意书)
-│   ├── methodology.md    # LDS 数学定义
-│   └── experiment-design.md # 实验方案
-├── research/             # 研究发现
-│   └── findings/         # 分析结果
-├── visualization/        # 2D 可视化
-├── web/                  # Web 前端
-│   └── threejs/          # Three.js Cognitive City 3D
-├── tests/                # 测试套件
-├── references/           # 参考文献 (140+ 论文笔记)
-└── linguaGraph.db        # SQLite 数据库
+├── src/                  # Core library / 核心库 / Kernbibliothek
+│   ├── extract.py        #   Concept extraction (LLM + mock) / 概念提取
+│   ├── graph.py          #   Cognitive graph construction (NetworkX)
+│   ├── scoring.py        #   LDS / LCD computation
+│   ├── compare.py        #   Missing link detection / 缺失链接检测
+│   ├── cross_language.py #   Cross-language concept alignment
+│   ├── explain.py        #   Result explanation generation
+│   ├── providers/        #   LLM Provider plugin system
+│   └── main.py           #   End-to-end pipeline entry
+├── scripts/              # Utility scripts / 工具脚本 / Skripte
+│   ├── run_pipeline.py   #   Unified pipeline (single command) / 统一管道
+│   ├── pilot_pipeline.py #   Pilot data analysis / Pilot-Datenanalyse
+│   ├── db_init.py        #   Database initialization / 数据库初始化
+│   ├── import_pilot_data.py # Pilot data import / Pilot-Datenimport
+│   ├── analyze_pilot.py  #   Pilot analysis / Pilot-Analyse
+│   ├── survey_entry.py   #   Data entry CLI / 数据录入
+│   └── simulate_baseline.py # Baseline simulation / 基线模拟
+├── participant_data/     # Human participant data / 人类数据 / Teilnehmerdaten
+│   ├── participant_manager.py # GDPR-compliant CRUD
+│   ├── pilot_data.py     #   Pilot data query module
+│   └── pilot_v1/         #   Frozen snapshot / 冻结快照 / eingefrorener Snapshot
+├── config/               # Configuration / 配置 / Konfiguration
+│   ├── concept_taxonomy.json  # 30-concept taxonomy (ZH/DE/EN)
+│   ├── concept_mapping.json   # Cross-language mapping / 跨语言映射
+│   └── prompts/          #   LLM prompt templates
+├── data/                 # Data / 数据 / Daten
+│   ├── corpus/           #   Wikipedia corpus (ZH/DE/EN)
+│   ├── gold/             #   Gold-standard annotations / 人工标注
+│   └── questionnaires/   #   Questionnaire definitions
+├── docs/                 # Documentation / 文档 / Dokumentation
+│   ├── ethics/           #   GDPR package, consent forms
+│   ├── paper_results_skeleton.md # Full paper skeleton
+│   ├── methodology.md    #   LDS mathematical definition
+│   └── experiment-design.md # Experiment design / 实验设计
+├── results/              # Generated outputs / 生成结果 / Ergebnisse
+│   ├── export_pipeline.py #  Publication-ready tables & figures
+│   ├── tables/           #   Demographic & LDS tables
+│   └── figures/          #   Publication figures (PNG)
+├── visualization_v3/     # 3D Cognitive City (Three.js)
+├── tests/                # Test suite / 测试套件 / Tests
+├── references/           # Academic references / 参考文献 (88+ papers)
+├── evaluation/           # Extraction benchmark / 提取基准测试
+├── survey_pipeline/      # Survey processing pipeline
+├── CITATION.cff          # Citation metadata
+└── LICENSE               # All Rights Reserved
 ```
 
 ---
 
-## 🚀 快速开始 / Quick Start
+## 🚀 快速开始 / Quick Start / Schnellstart
+
+### One-Command Pipeline / 一键分析 / Ein-Befehl-Pipeline
 
 ```bash
-# 1. 确认 Python 版本 (需要 3.10+)
+# Full pipeline (auto-detect data state) / 全量运行（自动检测数据状态）
+python scripts/run_pipeline.py
+
+# View database status only / 仅查看数据库状态
+python scripts/run_pipeline.py --status
+
+# Force full mode (tables + figures) / 强制全量模式
+python scripts/run_pipeline.py --force
+```
+
+**Outputs / 输出 / Ausgabe:** participant summary, quality report, LDS tables, publication figures.
+
+### Manual Setup / 手动安装 / Manuelle Einrichtung
+
+```bash
+# 1. Check Python version (requires 3.10+) / 确认 Python 版本
 python --version
 
-# 2. 创建虚拟环境 (推荐)
+# 2. Create virtual environment (recommended) / 创建虚拟环境
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate   # Windows
 
-# 3. 安装依赖
+# 3. Install dependencies / 安装依赖 / Abhängigkeiten installieren
 pip install -r requirements.txt
 
-# 4. 初始化数据库
+# 4. Initialize database / 初始化数据库 / Datenbank initialisieren
 python scripts/db_init.py
 
-# 5. 导入已有数据
+# 5. Import existing data / 导入已有数据 / Daten importieren
 python scripts/ingest_all.py
 
-# 6. 运行完整管道 (mock 模式，无需 API Key)
-python src/main.py
-
-# 7. 查看数据状态
-python scripts/survey_entry.py status
-
-# 8. 运行测试
+# 6. Run tests / 运行测试 / Tests ausführen
 python -m pytest tests/ -v
-
-# 9. 启动 3D 可视化
-python web/server.py
-# 浏览器打开 http://localhost:8080
 ```
 
-> **关于 API Key**: 默认使用 mock 模式，无需 OpenAI API Key。
-> 如需使用真实 LLM 提取，设置环境变量:
+> **API Key:** Default mode uses `mock` — no API key required. For real LLM extraction:
 > ```bash
 > export OPENAI_API_KEY="sk-..."    # Linux/Mac
 > set OPENAI_API_KEY="sk-..."       # Windows CMD
-> $env:OPENAI_API_KEY = "sk-..."    # PowerShell
 > ```
 
----
-
-## 📊 项目状态 / Project Status
-
-| 模块 / Module | 完成度 | 状态 |
-|--------------|--------|------|
-| 核心管道 / Core Pipeline | 90% | ✅ |
-| LDS 指标 / LDS Metric | 90% | ✅ |
-| 可视化 / Visualization | 75% | 🟡 |
-| 问卷 / Questionnaire | 95% | ✅ |
-| 伦理合规 / Ethics | 100% | ✅ |
-| GitHub / Version Control | 100% | ✅ |
-| 人类数据 / Human Data | 5% | 🔴 |
-
----
-
-## 🚀 快速使用 / Quick Start
-
-### 一键分析 / One-Command Pipeline
+### Visualization / 可视化 / Visualisierung
 
 ```bash
-# 全量运行（自动检测数据状态）
-python scripts/run_pipeline.py
-
-# 仅查看数据库状态
-python scripts/run_pipeline.py --status
-
-# 强制全量模式（含图表）
-python scripts/run_pipeline.py --force
-```
-
-输出：参与者摘要、质量报告、LDS 结果表、论文图表。
-
-### 可视化 / Visualization
-
-```bash
-# 用浏览器打开 Cognitive City 3D 可视化
-open visualization_v3/index.html
-# 或双击文件
+# Open Cognitive City 3D in browser
+open visualization_v3/index.html    # Mac
+# Or double-click the file / 或双击文件 / oder Datei doppelklicken
 ```
 
 ---
 
-## 📖 引用 / Citation
+## 📊 项目状态 / Project Status / Projektstatus
 
-如果你在研究中使用 LinguaGraph，请引用：
+| Module / 模块 / Modul | Completion / 完成度 | Status |
+|:---------------------|:-------------------:|:------:|
+| Core Pipeline / 核心管道 | 90% | ✅ |
+| LDS Metric / LDS 指标 | 90% | ✅ |
+| Visualization / 可视化 | 75% | 🟡 |
+| Questionnaire / 问卷 | 95% | ✅ |
+| Ethics / 伦理合规 / Ethik | 100% | ✅ |
+| Version Control / 版本控制 | 100% | ✅ |
+| Human Data / 人类数据 / Menschliche Daten | 5% | 🔴 |
+
+---
+
+## 📖 引用 / Citation / Zitation
 
 ```bibtex
 @software{linguagraph2026,
@@ -241,19 +320,19 @@ open visualization_v3/index.html
 }
 ```
 
-或查看 [`CITATION.cff`](CITATION.cff)。
+Siehe auch [`CITATION.cff`](CITATION.cff) · 或查看 CITATION.cff
 
 ---
 
-## © 版权声明 / Copyright
+## © 版权声明 / Copyright / Urheberrecht
 
-© 2026 Jiajun Rong. 保留所有权利。
+© 2026 Jiajun Rong. Alle Rechte vorbehalten. All rights reserved.
 
-本项目代码及相关文档仅供 **BWKI 2026 竞赛评审** 及 **学术研究** 目的公开查看。
-
-**未经作者书面许可，禁止任何商业用途的复制、分发或修改。**
-
-*This repository is publicly accessible for BWKI 2026 competition review and academic research purposes. All rights reserved. No commercial use, reproduction, or modification without written permission from the author.*
+| 语言 | 声明 |
+|:----|:------|
+| 🇨🇳 | 本项目代码及相关文档仅供 **BWKI 2026 竞赛评审** 及 **学术研究** 目的公开查看。**未经作者书面许可，禁止任何商业用途的复制、分发或修改。** |
+| 🇬🇧 | This repository is publicly accessible for **BWKI 2026 competition review** and **academic research** purposes only. No commercial use, reproduction, or modification without written permission. |
+| 🇩🇪 | Dieses Repository ist ausschließlich für die **BWKI 2026 Wettbewerbsbewertung** und **akademische Forschung** öffentlich zugänglich. Keine kommerzielle Nutzung, Vervielfältigung oder Änderung ohne schriftliche Genehmigung. |
 
 ---
 
