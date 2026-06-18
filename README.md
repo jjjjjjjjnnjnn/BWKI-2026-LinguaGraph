@@ -308,10 +308,13 @@ python -m pytest tests/ -v
 
 ### Visualization / 可视化 / Visualisierung
 
+**🌐 Live Demo:** [cognitive-city.jjjjjjjjnnjnn.github.io](https://jjjjjjjjnjnnn.github.io/BWKI-2026-LinguaGraph/)
+*(Auto-deploys from `visualization_v3/` via GitHub Actions)*
+
 ```bash
-# Open Cognitive City 3D in browser
+# Or run locally / 本地打开 / lokal öffnen
 open visualization_v3/index.html    # Mac
-# Or double-click the file / 或双击文件 / oder Datei doppelklicken
+start visualization_v3/index.html   # Windows
 ```
 
 ---
