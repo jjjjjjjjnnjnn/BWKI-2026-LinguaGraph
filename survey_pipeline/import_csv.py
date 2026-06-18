@@ -118,16 +118,17 @@ def import_csv(csv_path: str, dry_run: bool = False) -> dict:
         # Skip demographics columns (already mapped)
         if i in demographics_found.values():
             continue
+
         # Success questions
-        elif "erfolg" in h_lower or "success" in h_lower:
+        if "erfolg" in h_lower or "success" in h_lower:
             if "worter" in h_lower or "words" in h_lower or "5 worter" in h_lower:
                 question_cols[5] = i  # word association
             elif "schuler" in h_lower or "student" in h_lower or "perfekte" in h_lower:
                 question_cols[6] = i  # scenario
             elif 4 not in question_cols:
                 question_cols[4] = i  # definition
-        # Responsibility questions
-        elif "verantwortung" in h_lower or "responsibility" in h_lower:
+        # Responsibility questions (including "responsible" variant for Q9)
+        elif "verantwortung" in h_lower or "responsibility" in h_lower or "responsible" in h_lower:
             if "beziehung" in h_lower or "relationship" in h_lower:
                 question_cols[7] = i
             elif "worter" in h_lower or "words" in h_lower:
@@ -150,16 +151,16 @@ def import_csv(csv_path: str, dry_run: bool = False) -> dict:
                 question_cols[14] = i
             elif "villa" in h_lower or "mansion" in h_lower or "gefuhl" in h_lower or "warmth" in h_lower:
                 question_cols[15] = i
-        # Justice questions
-        elif "gerechtigkeit" in h_lower or "justice" in h_lower:
+        # Justice questions (including "just" variant for Q18)
+        elif "gerechtigkeit" in h_lower or "justice" in h_lower or h_lower.startswith("sacrificing"):
             if "bedeutet" in h_lower or "means" in h_lower or "beschreiben" in h_lower or "describe" in h_lower:
                 question_cols[16] = i
             elif "worter" in h_lower or "words" in h_lower:
                 question_cols[17] = i
             elif "opfern" in h_lower or "sacrific" in h_lower:
                 question_cols[18] = i
-        # Meta questions
-        elif "muttersprache" in h_lower and "beeinflus" in h_lower:
+        # Meta questions (use more specific matching to avoid conflict with demographics)
+        elif ("beeinflus" in h_lower or "influence" in h_lower) and "sprache" in h_lower:
             question_cols[19] = i
         elif "mehrsprach" in h_lower or "multiple language" in h_lower or "sprachwechsel" in h_lower:
             question_cols[20] = i

@@ -27,12 +27,35 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from extract import extract_concepts
 from graph import build_graph, graph_to_dict, graph_stats
 from cross_language import detect_cross_language_gaps, GapType
-from scoring import calculate_lcd_score, calculate_concept_f1, calculate_relation_f1
+from scoring import calculate_lds_score, bootstrap_lds_ci, calculate_concept_f1, calculate_relation_f1
 
 try:
     import networkx as nx
 except ImportError:
     nx = None
+
+
+def load_concept_mapping() -> Dict[str, str]:
+    """
+    Load cross-language concept mapping from config.
+    Returns a dict mapping each language-specific keyword to its shared concept ID.
+    Used to align concepts across languages before LDS comparison.
+    """
+    mapping_file = Path(__file__).parent.parent / "config" / "cross_language_mapping.json"
+    if not mapping_file.exists():
+        print("  [WARN] Concept mapping file not found — LDS will use raw string matching")
+        return {}
+
+    with open(mapping_file, encoding="utf-8") as f:
+        data = json.load(f)
+
+    mapping = {}
+    for entry in data.get("mappings", []):
+        cid = entry["id"]
+        for lang_key in ("zh", "de", "en"):
+            for kw in entry.get(lang_key, []):
+                mapping[kw] = cid
+    return mapping
 
 
 def get_student_responses(conn, student_id: str) -> Dict[str, List]:
@@ -188,7 +211,11 @@ def analyze_student_responses(
             print(f"  Relations: {len(extracted.get('relations', []))}")
             print(f"  Graph: {stats['nodes']} nodes, {stats['edges']} edges")
 
-    # Step 3: Cross-language comparison
+    # Step 3: Cross-language comparison with concept mapping
+    mapping = load_concept_mapping()
+    if verbose and mapping:
+        print(f"  Loaded concept mapping: {len(mapping)} entries")
+
     langs = list(lang_results.keys())
     comparisons = []
 
@@ -207,12 +234,20 @@ def analyze_student_responses(
             g1 = lang_results[l1]["graph"]
             g2 = lang_results[l2]["graph"]
 
-            # Calculate LCD score
-            lcd = calculate_lcd_score(g1, g2)
+            # Calculate LDS score (3-component: GED + node Jaccard + edge Jaccard)
+            lds_result = calculate_lds_score(g1, g2, concept_mapping=mapping if mapping else None)
+            # Bootstrap CI (node-based resampling)
+            lds_boot = bootstrap_lds_ci(g1, g2, concept_mapping=mapping if mapping else None, n_iterations=500)
+
             if verbose:
-                print(f"  LCD Score: {lcd.get('lcd_score', 'N/A')}")
-                print(f"  Shared edges: {lcd.get('shared_edges', 0)}")
-                print(f"  L1 only: {lcd.get('l1_only', 0)}, L2 only: {lcd.get('l2_only', 0)}")
+                print(f"  LDS: {lds_result['lds_score']:.4f}")
+                print(f"    GED sim:   {lds_result['ged_similarity']:.4f}")
+                print(f"    Node Jac:  {lds_result['jaccard_node']:.4f}")
+                print(f"    Edge Jac:  {lds_result['jaccard_edge']:.4f}")
+                print(f"    95% CI:    [{lds_boot['ci_lower']}, {lds_boot['ci_upper']}]")
+                print(f"    Std Err:   {lds_boot['std_error']}")
+                print(f"  Shared edges: {lds_result.get('shared_edges', 0)}")
+                print(f"  L1 only: {lds_result.get('l1_only', 0)}, L2 only: {lds_result.get('l2_only', 0)}")
 
             # Detect cross-language gaps
             gaps = detect_cross_language_gaps(g1, g2, {})
@@ -230,15 +265,20 @@ def analyze_student_responses(
                     "student_id": student_id,
                     "lang_pair": lang_pair,
                     "topic": "all",
-                    "lcd_score": lcd.get("lcd_score"),
-                    "graph_similarity": lcd.get("similarity"),
+                    "lcd_score": lds_result.get("lds_score"),
+                    "graph_similarity": lds_result.get("combined_similarity"),
                     "concept_shift_count": len(concept_gaps),
                     "relation_shift_count": len(relation_gaps),
-                    "shared_concepts": lcd.get("shared_edges"),
-                    "unique_l1_concepts": lcd.get("l1_only"),
-                    "unique_l2_concepts": lcd.get("l2_only"),
+                    "shared_concepts": lds_result.get("shared_nodes"),
+                    "unique_l1_concepts": lds_result.get("l1_only"),
+                    "unique_l2_concepts": lds_result.get("l2_only"),
                     "details_json": json.dumps({
-                        "lcd": lcd,
+                        "lds": lds_result,
+                        "bootstrap_ci": {
+                            "ci_lower": lds_boot.get("ci_lower"),
+                            "ci_upper": lds_boot.get("ci_upper"),
+                            "std_error": lds_boot.get("std_error"),
+                        },
                         "gaps": [g.to_dict() for g in gaps],
                     }, ensure_ascii=False),
                 })
@@ -248,7 +288,8 @@ def analyze_student_responses(
 
             comparisons.append({
                 "lang_pair": lang_pair,
-                "lcd": lcd,
+                "lds": lds_result,
+                "bootstrap_ci": lds_boot,
                 "gaps": gaps,
             })
 

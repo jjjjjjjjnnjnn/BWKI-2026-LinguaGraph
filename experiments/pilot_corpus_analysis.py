@@ -23,8 +23,9 @@ from collections import Counter, defaultdict
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from src.compare import build_graph, compare_graphs, compare_three_languages
-from src.cross_language import build_concept_translations, compute_conceptual_stability
+from src.graph import build_graph
+from src.scoring import calculate_lds_score
+from src.cross_language import detect_cross_language_gaps
 
 BWKI_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "本地知识库", "知识库内容", "BWKI")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "output")

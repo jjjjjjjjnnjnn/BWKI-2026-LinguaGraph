@@ -19,8 +19,8 @@ from collections import Counter
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.dirname(__file__))
 
-from src.compare import build_graph, compare_graphs, compare_three_languages
-from src.extract_v2 import fallback_extract
+from src.graph import build_graph
+from src.scoring import calculate_lds_score
 from concept_mapping import map_concepts, CONCEPT_MAP
 
 DATASET_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "pilot_dataset", "education")

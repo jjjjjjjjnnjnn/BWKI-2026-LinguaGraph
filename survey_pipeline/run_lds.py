@@ -89,10 +89,10 @@ def merge_student_graphs(conn, student_id: str) -> dict:
     Returns {language: nx.DiGraph}
     """
     extractions = query(conn, """
-        SELECT e.concepts, e.relations, r.language, r.question_id
+        SELECT r.language, e.concepts, e.relations, r.question_id
         FROM extractions e
         JOIN responses r ON e.response_id = r.response_id
-        WHERE e.student_id = ?
+        WHERE r.student_id = ?
         ORDER BY r.language, r.question_id
     """, (student_id,))
 
@@ -152,15 +152,18 @@ def compute_student_lds(conn, student_id: str) -> dict:
 
             # Store in database
             try:
+                from datetime import datetime
+                analysis_id = f"A_{student_id}_{pair_key}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
                 insert(conn, "cross_language_analysis", {
+                    "analysis_id": analysis_id,
                     "student_id": student_id,
                     "topic": "overall",
                     "lang_pair": pair_key,
                     "lcd_score": lcd["lcd_score"],
-                    "similarity": lcd["similarity"],
-                    "shared_edges": lcd["shared_edges"],
-                    "total_unique_edges": lcd["total_unique_edges"],
-                    "analysis_date": datetime.now().isoformat(),
+                    "graph_similarity": lcd["similarity"],
+                    "shared_concepts": lcd["shared_edges"],
+                    "unique_l1_concepts": lcd["l1_only"],
+                    "unique_l2_concepts": lcd["l2_only"],
                 })
             except Exception:
                 pass  # May already exist
@@ -176,7 +179,7 @@ def compute_group_lds(conn) -> dict:
     """
     # Get all extractions
     extractions = query(conn, """
-        SELECT e.student_id, e.concepts, e.relations,
+        SELECT r.student_id, e.concepts, e.relations,
                r.language, r.question_id, r.source
         FROM extractions e
         JOIN responses r ON e.response_id = r.response_id

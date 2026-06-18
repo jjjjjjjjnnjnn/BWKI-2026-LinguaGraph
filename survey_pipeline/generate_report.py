@@ -60,7 +60,7 @@ def get_data_summary(conn) -> dict:
 
     # Extractions
     ext_count = query_one(conn, """
-        SELECT COUNT(*) as c FROM extractions WHERE extraction_type='survey'
+        SELECT COUNT(*) as c FROM extractions
     """)
     summary["extractions"] = ext_count["c"] if ext_count else 0
 
@@ -79,7 +79,7 @@ def get_concept_frequency(conn) -> dict:
         SELECT e.concepts, r.language
         FROM extractions e
         JOIN responses r ON e.response_id = r.response_id
-        WHERE r.source = 'survey' AND e.extraction_type = 'survey'
+        WHERE r.source = 'survey'
     """)
 
     by_lang = defaultdict(Counter)
@@ -96,7 +96,7 @@ def get_concept_frequency(conn) -> dict:
 def get_lds_results(conn) -> dict:
     """Get LDS results from database."""
     results = query(conn, """
-        SELECT student_id, topic, lang_pair, lcd_score, similarity
+        SELECT student_id, topic, lang_pair, lcd_score, graph_similarity
         FROM cross_language_analysis
         ORDER BY student_id, topic, lang_pair
     """)
@@ -164,7 +164,7 @@ def generate_report():
         md.append("|---------|-------|------|-----|------------|\n")
         for r in lds[:30]:
             lcd = f"{r['lcd_score']:.4f}" if r['lcd_score'] else "N/A"
-            sim = f"{r['similarity']:.4f}" if r['similarity'] else "N/A"
+            sim = f"{r['graph_similarity']:.4f}" if r['graph_similarity'] else "N/A"
             md.append(f"| {r['student_id']} | {r['topic']} | {r['lang_pair']} | {lcd} | {sim} |\n")
         if len(lds) > 30:
             md.append(f"\n*... and {len(lds) - 30} more results*\n")

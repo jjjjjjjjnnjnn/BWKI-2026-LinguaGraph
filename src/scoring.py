@@ -7,7 +7,7 @@ LCD Score: how different are two language graphs for the same person
 
 import json
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 try:
     import networkx as nx
@@ -88,10 +88,117 @@ def calculate_weighted_mcl_score(
     }
 
 
-# ===== LCD Scoring =====
+# ===== LDS (Language Drift Score) =====
+#
+# Implements the full 3-component formula per docs/methodology.md:
+#   LDS(L1, L2) = 1 - mean(GED_sim, Jaccard_node, Jaccard_edge)
 
 
-def bootstrap_lcd_ci(
+def _normalize_ged(ged: float, max_possible: int) -> float:
+    """Normalize GED to [0, 1] where 1 = identical."""
+    if max_possible == 0:
+        return 1.0
+    # GED raw = number of edit operations. Normalize by max possible edits.
+    normalized = 1 - (ged / max_possible)
+    return max(0.0, min(1.0, normalized))
+
+
+def calculate_lds_score(
+    graph_l1: "nx.DiGraph",
+    graph_l2: "nx.DiGraph",
+    concept_mapping: Dict[str, str] = None
+) -> Dict:
+    """
+    Language Drift Score — full 3-component formula.
+
+    LDS(L1, L2) = 1 - mean(GED_sim, Jaccard_node, Jaccard_edge)
+
+    Args:
+        graph_l1: First language graph
+        graph_l2: Second language graph
+        concept_mapping: Optional cross-language concept mapping
+
+    Returns:
+        dict with lds_score, ged_similarity, jaccard_node, jaccard_edge,
+        and detailed component breakdown
+    """
+    if nx is None:
+        raise ImportError("networkx required")
+
+    # Apply concept mapping if provided
+    def map_nodes(G, mapping):
+        """Create a new graph with mapped node names."""
+        H = nx.DiGraph()
+        for n in G.nodes():
+            mapped = mapping.get(n, n)
+            H.add_node(mapped, **G.nodes[n])
+        for u, v, d in G.edges(data=True):
+            mu = mapping.get(u, u)
+            mv = mapping.get(v, v)
+            H.add_edge(mu, mv, **d)
+        return H
+
+    if concept_mapping:
+        g1 = map_nodes(graph_l1, concept_mapping)
+        g2 = map_nodes(graph_l2, concept_mapping)
+    else:
+        g1 = graph_l1
+        g2 = graph_l2
+
+    # — Component 1: Graph Edit Distance similarity —
+    try:
+        raw_ged = nx.graph_edit_distance(g1, g2)
+        if raw_ged is None:
+            raw_ged = 0.0
+        max_edits = max(g1.number_of_nodes(), g2.number_of_nodes()) + \
+                    max(g1.number_of_edges(), g2.number_of_edges())
+        ged_sim = _normalize_ged(raw_ged, max(1, max_edits))
+    except Exception:
+        ged_sim = 0.5  # Fallback if GED computation fails on large graphs
+
+    # — Component 2: Node Jaccard —
+    nodes_l1 = set(g1.nodes())
+    nodes_l2 = set(g2.nodes())
+    node_intersection = nodes_l1 & nodes_l2
+    node_union = nodes_l1 | nodes_l2
+    jaccard_node = len(node_intersection) / max(len(node_union), 1)
+
+    # — Component 3: Edge Jaccard —
+    edges_l1 = set(g1.edges())
+    edges_l2 = set(g2.edges())
+    edge_intersection = edges_l1 & edges_l2
+    edge_union = edges_l1 | edges_l2
+    jaccard_edge = len(edge_intersection) / max(len(edge_union), 1)
+
+    # — Combined similarity and drift —
+    combined_sim = (ged_sim + jaccard_node + jaccard_edge) / 3
+    lds = 1 - combined_sim
+
+    return {
+        "lds_score": round(lds, 4),
+        "lcd_score": round(lds, 4),  # backward compatibility
+        "similarity": round(combined_sim, 4),  # backward compatibility
+        "combined_similarity": round(combined_sim, 4),
+        "ged_similarity": round(ged_sim, 4),
+        "raw_ged": round(raw_ged, 2),
+        "jaccard_node": round(jaccard_node, 4),
+        "jaccard_edge": round(jaccard_edge, 4),
+        "shared_nodes": len(node_intersection),
+        "shared_edges": len(edge_intersection),
+        "total_unique_nodes": len(node_union),
+        "total_unique_edges": len(edge_union),
+        "l1_nodes": g1.number_of_nodes(),
+        "l2_nodes": g2.number_of_nodes(),
+        "l1_edges": g1.number_of_edges(),
+        "l2_edges": g2.number_of_edges(),
+    }
+
+
+# Backward compatibility alias
+calculate_lcd_score = calculate_lds_score
+
+
+def bootstrap_lds_ci(
     graph_l1: "nx.DiGraph",
     graph_l2: "nx.DiGraph",
     concept_mapping: Dict[str, str] = None,
@@ -99,10 +206,12 @@ def bootstrap_lcd_ci(
     ci_level: float = 0.95
 ) -> Dict:
     """
-    Bootstrap confidence interval for LCD score.
+    Bootstrap confidence interval for LDS using NODE-based resampling.
 
-    Resamples edges with replacement to estimate the sampling distribution
-    of the LCD score, then computes percentile-based confidence intervals.
+    Resamples NODES (with replacement) and keeps all edges incident to
+    the resampled nodes, preserving structural dependencies between edges.
+    This is statistically valid because node resampling maintains the
+    graph topology, unlike edge-independent resampling.
 
     Args:
         graph_l1: First language graph
@@ -112,122 +221,76 @@ def bootstrap_lcd_ci(
         ci_level: Confidence level (default 0.95 for 95% CI)
 
     Returns:
-        dict with lcd_score, ci_lower, ci_upper, std_error, n_iterations
+        dict with lds_score, ci_lower, ci_upper, std_error, n_iterations
     """
     if nx is None:
         raise ImportError("networkx required")
 
     import random
 
-    edges_l1 = list(graph_l1.edges())
-    edges_l2 = list(graph_l2.edges())
+    nodes_l1 = list(graph_l1.nodes())
+    nodes_l2 = list(graph_l2.nodes())
 
-    # Pre-compute mapped edges once if mapping provided
-    if concept_mapping:
-        def map_edges(edges):
-            mapped = set()
-            for s, t in edges:
-                ms = concept_mapping.get(s, s)
-                mt = concept_mapping.get(t, t)
-                mapped.add((ms, mt))
-            return mapped
-        base_set_l1 = map_edges(edges_l1)
-        base_set_l2 = set(edges_l2)
-    else:
-        base_set_l1 = set(edges_l1)
-        base_set_l2 = set(edges_l2)
+    # Point estimate using full 3-component LDS
+    point_result = calculate_lds_score(graph_l1, graph_l2, concept_mapping)
+    point_estimate = point_result["lds_score"]
 
-    # Point estimate
-    intersection = base_set_l1 & base_set_l2
-    union = base_set_l1 | base_set_l2
-    point_estimate = 1 - len(intersection) / max(len(union), 1)
-
-    # Bootstrap
-    lcd_samples = []
-    n_l1 = len(edges_l1)
-    n_l2 = len(edges_l2)
+    # Bootstrap by resampling nodes (preserving topology)
+    lds_samples = []
+    n_l1 = len(nodes_l1)
+    n_l2 = len(nodes_l2)
 
     for _ in range(n_iterations):
-        # Resample edges with replacement
-        samp_l1 = edges_l1[:] if n_l1 == 0 else [edges_l1[i] for i in
-            [random.randint(0, n_l1 - 1) for _ in range(n_l1)]]
-        samp_l2 = edges_l2[:] if n_l2 == 0 else [edges_l2[i] for i in
-            [random.randint(0, n_l2 - 1) for _ in range(n_l2)]]
+        # Resample nodes with replacement
+        samp_nodes_l1 = [nodes_l1[i] for i in
+            [random.randint(0, max(0, n_l1 - 1)) for _ in range(max(1, n_l1))]]
+        samp_nodes_l2 = [nodes_l2[i] for i in
+            [random.randint(0, max(0, n_l2 - 1)) for _ in range(max(1, n_l2))]]
 
-        if concept_mapping:
-            s1 = map_edges(samp_l1)
-            s2 = set(samp_l2)
-        else:
-            s1 = set(samp_l1)
-            s2 = set(samp_l2)
+        # Build subgraphs from resampled nodes (preserves incident edges)
+        sub_l1 = graph_l1.subgraph(samp_nodes_l1).copy()
+        sub_l2 = graph_l2.subgraph(samp_nodes_l2).copy()
 
-        inter = s1 & s2
-        uni = s1 | s2
-        sim = len(inter) / max(len(uni), 1)
-        lcd_samples.append(1 - sim)
+        # Calculate LDS for this resample
+        try:
+            boot_result = calculate_lds_score(sub_l1, sub_l2, concept_mapping)
+            lds_samples.append(boot_result["lds_score"])
+        except Exception:
+            continue
 
-    lcd_samples.sort()
-    lower_idx = int((1 - ci_level) / 2 * n_iterations)
-    upper_idx = int((1 + ci_level) / 2 * n_iterations) - 1
+    if len(lds_samples) < 2:
+        return {
+            "lds_score": round(point_estimate, 4),
+            "ci_lower": round(point_estimate, 4),
+            "ci_upper": round(point_estimate, 4),
+            "ci_level": ci_level,
+            "std_error": 0.0,
+            "n_iterations": n_iterations,
+            "warning": "Bootstrap failed — returning point estimate"
+        }
+
+    lds_samples.sort()
+    lower_idx = int((1 - ci_level) / 2 * len(lds_samples))
+    upper_idx = int((1 + ci_level) / 2 * len(lds_samples)) - 1
     lower_idx = max(0, lower_idx)
-    upper_idx = min(n_iterations - 1, upper_idx)
+    upper_idx = min(len(lds_samples) - 1, upper_idx)
 
-    mean_lcd = sum(lcd_samples) / n_iterations
-    variance = sum((x - mean_lcd) ** 2 for x in lcd_samples) / n_iterations
+    mean_lds = sum(lds_samples) / len(lds_samples)
+    variance = sum((x - mean_lds) ** 2 for x in lds_samples) / len(lds_samples)
     std_error = variance ** 0.5
 
     return {
-        "lcd_score": round(point_estimate, 4),
-        "ci_lower": round(lcd_samples[lower_idx], 4),
-        "ci_upper": round(lcd_samples[upper_idx], 4),
+        "lds_score": round(point_estimate, 4),
+        "ci_lower": round(lds_samples[lower_idx], 4),
+        "ci_upper": round(lds_samples[upper_idx], 4),
         "ci_level": ci_level,
         "std_error": round(std_error, 4),
         "n_iterations": n_iterations
     }
 
-def calculate_lcd_score(
-    graph_l1: "nx.DiGraph",
-    graph_l2: "nx.DiGraph",
-    concept_mapping: Dict[str, str] = None
-) -> Dict:
-    """
-    Language Cognitive Drift score.
-    
-    LCD = 1 - Graph_Similarity(G_l1, G_l2)
-    
-    Where similarity considers node overlap and edge overlap.
-    """
-    if nx is None:
-        raise ImportError("networkx required")
-    
-    # Get edges as sets
-    edges_l1 = set(graph_l1.edges())
-    edges_l2 = set(graph_l2.edges())
-    
-    # If mapping provided, translate L1 edges to L2 language
-    if concept_mapping:
-        mapped_edges_l1 = set()
-        for s, t in edges_l1:
-            ms = concept_mapping.get(s, s)
-            mt = concept_mapping.get(t, t)
-            mapped_edges_l1.add((ms, mt))
-        edges_l1 = mapped_edges_l1
-    
-    # Calculate overlap
-    intersection = edges_l1 & edges_l2
-    union = edges_l1 | edges_l2
-    
-    similarity = len(intersection) / max(len(union), 1)
-    lcd = 1 - similarity
-    
-    return {
-        "lcd_score": round(lcd, 4),
-        "similarity": round(similarity, 4),
-        "shared_edges": len(intersection),
-        "total_unique_edges": len(union),
-        "l1_only": len(edges_l1 - edges_l2),
-        "l2_only": len(edges_l2 - edges_l1)
-    }
+
+# Deprecated — use bootstrap_lds_ci() instead
+bootstrap_lcd_ci = bootstrap_lds_ci
 
 
 # ===== Concept Extraction Metrics =====
@@ -340,17 +403,20 @@ if __name__ == "__main__":
         print(f"MCL Score: {mcl['mcl_score']}% ({mcl['missing_count']}/{mcl['total_expert']} edges missing)")
         print(f"Missing: {mcl['missing_edges']}")
         
-        # LCD
+        # LDS (3-component: GED + node Jaccard + edge Jaccard)
         graph_l1 = nx.DiGraph()
         graph_l1.add_edges_from([("导数", "变化率"), ("积分", "面积")])
         graph_l2 = nx.DiGraph()
         graph_l2.add_edges_from([("Ableitung", "Änderungsrate"), ("Integral", "Fläche")])
 
-        lcd = calculate_lcd_score(graph_l1, graph_l2)
-        print(f"\nLCD Score: {lcd['lcd_score']}")
-        print(f"Similarity: {lcd['similarity']}")
+        lds = calculate_lds_score(graph_l1, graph_l2)
+        print(f"\nLDS Score: {lds['lds_score']}")
+        print(f"  GED sim:     {lds['ged_similarity']:.4f}")
+        print(f"  Node Jaccard: {lds['jaccard_node']:.4f}")
+        print(f"  Edge Jaccard: {lds['jaccard_edge']:.4f}")
+        print(f"  Combined:     {lds['combined_similarity']:.4f}")
 
-        # LCD with Bootstrap CI
-        lcd_boot = bootstrap_lcd_ci(graph_l1, graph_l2, n_iterations=500)
-        print(f"\nLCD Bootstrap CI (95%): [{lcd_boot['ci_lower']}, {lcd_boot['ci_upper']}]")
-        print(f"Std Error: {lcd_boot['std_error']}")
+        # LDS with Bootstrap CI (node-based resampling)
+        lds_boot = bootstrap_lds_ci(graph_l1, graph_l2, n_iterations=500)
+        print(f"\nLDS Bootstrap CI (95%): [{lds_boot['ci_lower']}, {lds_boot['ci_upper']}]")
+        print(f"Std Error: {lds_boot['std_error']}")

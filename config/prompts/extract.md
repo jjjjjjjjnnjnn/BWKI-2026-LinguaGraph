@@ -33,6 +33,6 @@ Output format:
   ]
 }
 
-Language: {language}
-Student Answer:
-{text}
+---
+
+Language and answer will be provided in the user message.

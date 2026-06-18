@@ -237,12 +237,10 @@ def annotate_student(conn, student_id: str, use_mock: bool = False) -> dict:
             insert(conn, "extractions", {
                 "extraction_id": extraction_id,
                 "response_id": r["response_id"],
-                "student_id": student_id,
+                "model_used": "mock" if use_mock else LLM_MODEL,
                 "concepts": json.dumps(extraction["concepts"], ensure_ascii=False),
                 "relations": json.dumps(extraction["relations"], ensure_ascii=False),
                 "raw_response": extraction.get("raw_response", ""),
-                "model": "mock" if use_mock else LLM_MODEL,
-                "extraction_type": "survey",
             })
 
             results["annotated"] += 1

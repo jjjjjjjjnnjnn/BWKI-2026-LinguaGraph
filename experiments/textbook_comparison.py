@@ -21,8 +21,9 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from src.compare import build_graph, compare_three_languages
-from src.extract_v2 import fallback_extract
+from src.graph import build_graph
+from src.extract import extract_concepts as fallback_extract
+from src.scoring import calculate_lds_score
 
 TEXTBOOK_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "textbook")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "output")

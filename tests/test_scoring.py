@@ -59,15 +59,23 @@ class TestLCDScore:
         result = calculate_lcd_score(g1, g2)
         assert result["lcd_score"] == 0.0
         assert result["similarity"] == 1.0
+        # Verify 3-component metric
+        assert result["ged_similarity"] == 1.0
+        assert result["jaccard_node"] == 1.0
+        assert result["jaccard_edge"] == 1.0
 
     def test_completely_different(self):
+        """Completely different graphs: LDS < 1.0 because GED has some similarity."""
         g1 = nx.DiGraph()
         g1.add_edges_from([("A", "B")])
         g2 = nx.DiGraph()
         g2.add_edges_from([("C", "D")])
         result = calculate_lcd_score(g1, g2)
-        assert result["lcd_score"] == 1.0
-        assert result["similarity"] == 0.0
+        # 3-component metric: GED can match by renaming, so LDS ≠ 1.0
+        assert result["lcd_score"] > 0.5  # High drift
+        assert result["similarity"] < 0.5
+        assert result["jaccard_node"] == 0.0  # No node overlap
+        assert result["jaccard_edge"] == 0.0  # No edge overlap
 
     def test_with_mapping(self):
         g1 = nx.DiGraph()
