@@ -308,7 +308,7 @@ python -m pytest tests/ -v
 
 ### Visualization / 可视化 / Visualisierung
 
-**🌐 Live Demo:** [jjjjjjjjnjnnn.github.io/BWKI-2026-LinguaGraph](https://jjjjjjjjnjnnn.github.io/BWKI-2026-LinguaGraph/)
+**🌐 Live Demo:** [jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/)
 *(Auto-deploys from `visualization_v3/` via GitHub Actions · Cognitive City V3)*
 
 ```bash
