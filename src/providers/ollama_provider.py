@@ -1,33 +1,30 @@
 """
-OpenAI Provider — calls OpenAI API (or any OpenAI-compatible endpoint).
+Ollama Provider
 
-Supports:
-- OpenAI API (GPT-4.1-mini, etc.)
-- Any OpenAI-compatible local server (via base_url)
+Calls Ollama via its OpenAI-compatible API endpoint.
+Default: http://127.0.0.1:11434/v1
 """
 
-import os
 import time
-from openai import OpenAI
+import importlib
+
+_openai = importlib.import_module("openai")
 
 from src.models import TaskRequest, TaskResponse
 from .base import LLMProvider
 
 
-class OpenAIProvider(LLMProvider):
-    """OpenAI / OpenAI-compatible provider."""
+class OllamaProvider(LLMProvider):
+    """Ollama local LLM provider (via OpenAI-compatible endpoint)."""
 
     def __init__(self, config: dict = None):
         config = config or {}
-        self.model = config.get("model", "gpt-4.1-mini")
-        self.api_key = config.get("api_key") or os.environ.get("OPENAI_API_KEY")
-        self.base_url = config.get("base_url")
-
-        client_kwargs = {"api_key": self.api_key or "no-key"}
-        if self.base_url:
-            client_kwargs["base_url"] = self.base_url
-
-        self.client = OpenAI(**client_kwargs)
+        self.base_url = config.get("base_url", "http://127.0.0.1:11434/v1")
+        self.model = config.get("model", "qwen3:8b")
+        self.client = _openai.OpenAI(
+            base_url=self.base_url,
+            api_key="ollama"
+        )
 
     def generate(self, request: TaskRequest) -> TaskResponse:
         start = time.time()
@@ -35,7 +32,8 @@ class OpenAIProvider(LLMProvider):
         messages = []
         if request.system_prompt:
             messages.append({"role": "system", "content": request.system_prompt})
-        messages.append({"role": "user", "content": request.text})
+        # /no_think disables Qwen3 thinking mode
+        messages.append({"role": "user", "content": f"/no_think\n{request.text}"})
 
         try:
             response = self.client.chat.completions.create(
@@ -45,8 +43,14 @@ class OpenAIProvider(LLMProvider):
                 max_tokens=request.max_tokens,
             )
 
-            choice = response.choices[0]
-            content = choice.message.content or ""
+            content = response.choices[0].message.content
+            # Strip thinking tags (Qwen3 models)
+            if "<think>" in content and "</think>" in content:
+                content = content.split("</think>")[-1].strip()
+            elif content.startswith("<think>"):
+                parts = content.split("</think>", 1)
+                content = parts[-1].strip() if len(parts) > 1 else ""
+
             elapsed = (time.time() - start) * 1000
 
             return TaskResponse(
@@ -73,4 +77,4 @@ class OpenAIProvider(LLMProvider):
             return False
 
     def __repr__(self):
-        return f"OpenAIProvider(model={self.model})"
+        return f"OllamaProvider(model={self.model}, url={self.base_url})"

@@ -41,10 +41,10 @@ def load_config(path: Optional[str] = None) -> dict:
 def create_provider(name: str, provider_config: dict) -> LLMProvider:
     """Create a single provider by name."""
     if name == "openai":
-        from .openai import OpenAIProvider
+        from .openai_provider import OpenAIProvider
         return OpenAIProvider(provider_config)
     elif name == "ollama":
-        from .ollama import OllamaProvider
+        from .ollama_provider import OllamaProvider
         return OllamaProvider(provider_config)
     elif name == "local":
         from .local import LocalProvider

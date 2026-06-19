@@ -139,23 +139,24 @@ Output as JSON array:
 def call_llm(system: str, user: str, temperature: float = 0.9) -> Optional[str]:
     """Call the LLM (via project provider or direct API)."""
     try:
-        # Try project provider first
-        sys.path.insert(0, str(PROJECT_DIR / 'src' / 'providers'))
-        # Fallback to direct OpenAI client
-        from openai import OpenAI
-        import yaml
+        # Use project's router/provider layer
+        sys.path.insert(0, str(PROJECT_DIR / 'src'))
+        from providers import create_router
+        from src.models import TaskRequest, TaskType
 
-        config_path = PROJECT_DIR / 'config' / 'config.yaml'
-        if config_path.exists():
-            with open(config_path, 'r') as f:
-                config = yaml.safe_load(f)
-            llm_config = config.get('llm', {})
-            ollama_config = llm_config.get('ollama', {})
-            base_url = ollama_config.get('base_url', 'http://127.0.0.1:1234/v1')
-            model = llm_config.get('model', 'qwen3-8b')
+        router = create_router()
+        request = TaskRequest(
+            task=TaskType.ANNOTATION_ASSIST,
+            text=user_prompt,
+            system_prompt=system_prompt,
+            max_tokens=256,
+            temperature=0.7,
+        )
+        response = router.route(request)
+        if response.success:
+            return response.raw_text
         else:
-            base_url = 'http://127.0.0.1:1234/v1'
-            model = 'qwen3-8b'
+            raise RuntimeError(response.error)
 
         client = OpenAI(base_url=base_url, api_key='not-needed')
         response = client.chat.completions.create(
