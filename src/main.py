@@ -1,17 +1,25 @@
 """
-CognitiveSpace - Missing Cognitive Links Detection System
-Main Entry Point
+LinguaGraph — Main Entry Point
 
-This is the simplest working version - just the pipeline.
+Zero-config pipeline runner. Auto-detects available LLM (local GGUF
+preferred, mock fallback). No API keys required.
+
+Usage:
+    python -m src.main                         # Demo with mock
+    python -m src.main --answer "..." --lang zh  # Real analysis
 """
 
 import json
+import logging
 from pathlib import Path
 
 from extract import extract_concepts
 from graph import build_graph, load_expert_graph, graph_to_dict, graph_stats
 from compare import detect_missing_links
 from explain import generate_simple_explanation
+from logging_config import setup_logging
+
+logger = logging.getLogger(__name__)
 
 
 def run_pipeline(
@@ -21,52 +29,60 @@ def run_pipeline(
     use_mock: bool = False
 ) -> dict:
     """
-    Run the complete CognitiveSpace pipeline.
+    Run the complete LinguaGraph pipeline.
 
     Args:
         student_answer: Student's response text
         language: Language of the answer
         domain: Knowledge domain
-        use_mock: Use mock extraction (no API key needed)
+        use_mock: Use mock extraction (no model needed)
 
     Returns:
         dict with all results
     """
-    print("[Brain] CognitiveSpace Pipeline Starting...\n")
+    logger.info("=" * 50)
+    logger.info("LinguaGraph Pipeline Starting...")
+    logger.info(f"Language: {language} | Domain: {domain} | Mock: {use_mock}")
 
     # Step 1: Extract concepts
-    print("Step 1: Extracting concepts...")
+    logger.info("Step 1: Extracting concepts...")
     extracted = extract_concepts(student_answer, language, use_mock=use_mock)
-    print(f"  Found {len(extracted['concepts'])} concepts, {len(extracted['relations'])} relations")
+    logger.info(f"  Found %d concepts, %d relations",
+                len(extracted["concepts"]), len(extracted["relations"]))
 
     # Step 2: Build student graph
-    print("\nStep 2: Building knowledge graph...")
+    logger.info("Step 2: Building knowledge graph...")
     student_graph = build_graph(extracted)
     stats = graph_stats(student_graph)
-    print(f"  Graph: {stats['nodes']} nodes, {stats['edges']} edges")
+    logger.info(f"  Graph: %d nodes, %d edges", stats["nodes"], stats["edges"])
 
     # Step 3: Load expert graph
-    print(f"\nStep 3: Loading expert graph ({domain})...")
+    logger.info("Step 3: Loading expert graph (%s)...", domain)
     try:
         expert_graph = load_expert_graph(domain)
-        print(f"  Expert: {graph_stats(expert_graph)['nodes']} nodes, {graph_stats(expert_graph)['edges']} edges")
+        logger.info("  Expert: %d nodes, %d edges",
+                     graph_stats(expert_graph)["nodes"],
+                     graph_stats(expert_graph)["edges"])
     except FileNotFoundError:
-        print(f"  [!] Expert graph not found for '{domain}'")
-        print("  Using empty expert graph for demo")
+        logger.warning("Expert graph not found for '%s' — using empty graph", domain)
         import networkx as nx
         expert_graph = nx.DiGraph()
 
     # Step 4: Detect missing links
-    print("\nStep 4: Detecting missing cognitive links...")
+    logger.info("Step 4: Detecting missing cognitive links...")
     missing = detect_missing_links(student_graph, expert_graph)
     high_severity = [m for m in missing if m["severity"] == "high"]
-    print(f"  Found {len(missing)} missing links ({len(high_severity)} high severity)")
+    logger.info("  Found %d missing links (%d high severity)",
+                len(missing), len(high_severity))
 
     # Step 5: Generate explanation
-    print("\nStep 5: Generating explanation...")
+    logger.info("Step 5: Generating explanation...")
     explanation = generate_simple_explanation(missing, language)
 
-    print("\n[OK] Pipeline complete!\n")
+    logger.info("Pipeline complete!")
+    if not use_mock:
+        logger.info("  Model: %s", extracted.get("model", "unknown"))
+    logger.info("=" * 50)
 
     return {
         "extracted": extracted,

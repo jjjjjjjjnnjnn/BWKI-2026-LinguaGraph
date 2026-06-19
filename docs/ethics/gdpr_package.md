@@ -10,10 +10,8 @@
 ### Datenschutzerklärung (DE)
 
 **Verantwortliche Stelle**:
-[Name]
-[Adresse]
-[E-Mail]
-[Telefon]
+Projektleitung LinguaGraph
+Erreichbar über den Schulbetreuer des Projekts
 
 **Zweck der Datenverarbeitung**:
 Wissenschaftliche Untersuchung zum Einfluss von Sprache auf kognitive Strukturen im Rahmen des Bundeswettbewerbs Künstliche Intelligenz 2026.
@@ -43,10 +41,8 @@ Der Landesbeauftragte für den Datenschutz (LfDI) des jeweiligen Bundeslandes.
 ### Data Protection Notice (EN)
 
 **Data Controller**:
-[Name]
-[Address]
-[Email]
-[Phone]
+LinguaGraph Project Lead
+Reachable via the school project supervisor
 
 **Purpose of Processing**:
 Scientific investigation of language effects on cognitive structures, conducted as part of the Bundeswettbewerb Künstliche Intelligenz 2026.

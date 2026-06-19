@@ -1,0 +1,29 @@
+LinguaGraph Pilot v1 Import Log
+=================================
+Date: 2026-06-18
+Import script: scripts/import_pilot_data.py
+DB: linguaGraph.db (SQLite)
+Pipeline: CSV → Questionnaire Registration → Participant Insert → Response Insert
+
+Import Steps:
+1. Registered questionnaire 'cognitive_linguistic_v1' (zh/de/en)
+2. Inserted 8 participants (P001-P008) into students table
+3. Inserted 80 responses (10 x 8) into responses table
+4. Verified 80/80 rows match source CSV
+
+Data Source:
+- Raw files from participant_data/pilot_raw/
+- Original formats: survey_raw.xlsx, questionnaire_zh.pdf, questionnaire_de.pdf
+- Archived in: participant_data/pilot_raw/sources/
+
+Known Issues at Import Time:
+- P006 q12: Contains residual characters "杯子zai" from preceding question
+- P003 q12: Incomplete translation — missing "through living room" detail
+- P003 q16: Metaphorical interpretation (deviates from source text)
+- q14: "brought forward" misunderstood by 4/8 participants
+- Age formats inconsistent (e.g., "10～15" vs "46-50")
+
+Snapshot Policy:
+- This directory (pilot_v1/) is a permanent frozen snapshot.
+- Do NOT modify files here.
+- Cleaned/processed copies go in other directories.

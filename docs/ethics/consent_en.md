@@ -5,12 +5,13 @@
 **Project Name**: LinguaGraph — How Language Shapes Thinking
 **Research Purpose**: To investigate whether Chinese, German, and English affect how people understand concepts such as freedom, justice, success, responsibility, and home
 **Competition**: Bundeswettbewerb Künstliche Intelligenz 2026 (German Federal AI Competition)
-**Researcher**: [Name]
+**Researcher**: (Anonymous research project — no researcher PII collected)
 
 ## Participation
 
 As a participant in this study, you will:
-1. Answer 5 open-ended questions in Chinese, German, and English (approximately 15 minutes per language, 45 minutes total)
+1. Answer 10 open-ended tasks in Chinese, German, and English (approximately 15 minutes per language, 45 minutes total)
+2. Tasks include: word associations, explaining concepts, describing pictures, and translations
 2. Your answers will be stored anonymously and analyzed using AI methods
 
 ## Data Protection (GDPR Compliant)
@@ -36,8 +37,7 @@ In accordance with the General Data Protection Regulation (GDPR):
 
 ## Contact
 
-For questions or to exercise your data protection rights:
-[Name], [Email], [Phone]
+For questions or to exercise your data protection rights, please contact the research team through your school's project supervisor.
 
 ## Consent Statement
 

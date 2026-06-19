@@ -1,0 +1,48 @@
+# LoRA Fine-Tuning Configuration
+# LinguaGraph Concept Extraction Model
+
+model:
+  base: Qwen/Qwen2.5-1.5B-Instruct
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  trust_remote_code: true
+  device_map: auto
+
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+    - gate_proj
+  lora_dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+
+training:
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  num_train_epochs: 5
+  max_seq_length: 1024
+  logging_steps: 10
+  save_steps: 50
+  eval_strategy: steps
+  eval_steps: 50
+  save_total_limit: 2
+  bf16: true
+  remove_unused_columns: false
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  optim: paged_adamw_8bit
+
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  seed: 42

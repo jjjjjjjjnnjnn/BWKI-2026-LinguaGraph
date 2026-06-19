@@ -81,6 +81,7 @@ LLM 提取概念与关系
 - **数据库**: SQLite (10 张表)
 - **可视化**: Three.js (3D Cognitive City)
 - **数据**: 300 条计算基线 + Wikipedia 多语语料
+- **技术复用**: 核心组件（Provider 抽象、GGUF 量化、LoRA 适配）已抽离为独立运行时 [MML Runtime](#)，同时服务认知提取与游戏叙事等不同场景
 
 ### 实验设计
 
@@ -135,6 +136,7 @@ LDS / LCD / Concept Shift computation
 - **Database**: SQLite (10 tables)
 - **Visualization**: Three.js (3D Cognitive City)
 - **Data**: 300 computational baselines + multilingual Wikipedia corpus
+- **Tech reusability**: Core components (Provider abstraction, GGUF quantization, LoRA adapters) extracted as a standalone [MML Runtime](#), serving both cognitive extraction and game narrative scenarios
 
 ### Experiment Design
 
@@ -189,6 +191,7 @@ LDS / LCD / Concept-Shift-Berechnung
 - **Datenbank**: SQLite (10 Tabellen)
 - **Visualisierung**: Three.js (3D Cognitive City)
 - **Daten**: 300 Rechen-Baselines + mehrsprachiges Wikipedia-Korpus
+- **Wiederverwendbarkeit**: Kernkomponenten (Provider-Abstraktion, GGUF-Quantisierung, LoRA-Adapter) als eigenständige [MML Runtime](#) extrahiert, die sowohl kognitive Extraktion als auch Spielerzählung bedient
 
 ### Versuchsdesign
 
@@ -243,7 +246,8 @@ BWKI-2026-LinguaGraph/
 │   ├── ethics/           #   GDPR package, consent forms
 │   ├── paper_results_skeleton.md # Full paper skeleton
 │   ├── methodology.md    #   LDS mathematical definition
-│   └── experiment-design.md # Experiment design / 实验设计
+│   ├── experiment-design.md # Experiment design / 实验设计
+│   └── technology_transfer.md # MML Runtime & cross-project reuse / 技术资产复用
 ├── results/              # Generated outputs / 生成结果 / Ergebnisse
 │   ├── export_pipeline.py #  Publication-ready tables & figures
 │   ├── tables/           #   Demographic & LDS tables

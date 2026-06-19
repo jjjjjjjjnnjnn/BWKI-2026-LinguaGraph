@@ -19,7 +19,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from extract import extract_concepts
 from graph import build_graph, load_expert_graph, graph_to_dict
-from compare import detect_missing_links, calculate_graph_similarity
+from compare import detect_missing_links
+from scoring import calculate_lds_score
 from explain import generate_simple_explanation
 from providers import get_provider
 
@@ -92,9 +93,9 @@ class LinguaGraphHandler(SimpleHTTPRequestHandler):
             # Step 4: Detect missing links
             missing = detect_missing_links(student_graph, expert_graph)
 
-            # Step 5: Calculate similarity
-            similarity = calculate_graph_similarity(student_graph, expert_graph)
-            lds = round(1 - similarity, 3)
+            # Step 5: Calculate LDS (full 3-component formula: GED + node Jaccard + edge Jaccard)
+            lds_result = calculate_lds_score(student_graph, expert_graph)
+            lds = lds_result["lds_score"]
 
             # Step 6: Generate explanation
             explanation = generate_simple_explanation(missing, language)

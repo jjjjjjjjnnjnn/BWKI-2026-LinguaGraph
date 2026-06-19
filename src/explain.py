@@ -35,9 +35,10 @@ def generate_explanation(
     Returns:
         Human-readable explanation string
     """
-    import sys
-    sys.path.insert(0, str(Path(__file__).parent))
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).parent))
     from providers import get_provider
+    from src.models import TaskRequest, TaskType, Language
 
     # Build context for LLM
     context = format_missing_links(missing_links)
@@ -66,8 +67,24 @@ Please explain:
 
 Be concise and encouraging."""
 
-    # Use provider system instead of direct OpenAI import
+    # Use provider system
+    task_lang = Language.CHINESE
+    if language == "de":
+        task_lang = Language.GERMAN
+    elif language == "en":
+        task_lang = Language.ENGLISH
+
     provider = get_provider()
+    request = TaskRequest(
+        task=TaskType.ANNOTATION_ASSIST,
+        text=user_prompt,
+        system_prompt=system_prompt,
+        language=task_lang,
+    )
+    response = provider.generate(request)
+
+    if response.success:
+        return response.raw_text
     return provider.extract(prompt=user_prompt, system=system_prompt)
 
 

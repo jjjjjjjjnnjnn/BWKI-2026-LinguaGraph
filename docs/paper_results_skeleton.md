@@ -19,6 +19,7 @@
 - From text responses → cognitive graphs → Language Drift Score (LDS)
 - Three languages: Chinese, German, English
 - Five conceptual domains: governance, individual, society, culture, economy
+- **Technology reusability:** Core components (provider abstraction, quantization pipeline, LoRA adaptation) are framework-agnostic and have been extracted into a standalone runtime, demonstrating the project's value beyond a single experiment (see `docs/technology_transfer.md`)
 
 ### 1.3 Research Questions
 - **RQ1:** Do speakers of different languages produce measurably different cognitive graphs when describing the same concepts?
@@ -328,6 +329,8 @@ Auto-generated: results/tables/table2_lds_by_topic.md
 
 6. **Translation tasks may measure language proficiency, not cognitive structure.** The "brought forward" misinterpretation by 4/8 participants could reflect English proficiency rather than cognitive organization. Future iterations should control for L2 proficiency.
 
+7. **Cross-project technology transfer is early-stage.** The MML Runtime concept (see `docs/technology_transfer.md`) represents an architecture vision validated in prototype; production-grade extraction of shared components is planned post-BWKI. Preliminary tests confirm that the base GGUF model and quantization pipeline transfer without modification.
+
 ---
 
 ## 7. Discussion (Outline)
@@ -339,6 +342,14 @@ Auto-generated: results/tables/table2_lds_by_topic.md
 ### 7.3 Implications for the Sapir-Whorf Hypothesis
 
 ### 7.4 Methodological Contributions
+
+### 7.5 Technology Reusability
+
+LinguaGraph's core infrastructure — provider abstraction, GGUF quantization, LoRA adaptation, structured extraction — was designed to be framework-agnostic. These components have been extracted into a conceptual **MML Runtime** (Minimal Model Loader) that can serve different task adapters.
+
+An independent game project (reincarnation simulator, Godot 4) reuses the same runtime with a different LoRA adapter for NPC dialogue and narrative generation, confirming the architecture's generality.
+
+See [`docs/technology_transfer.md`](technology_transfer.md) for the full architecture diagram, component mapping, and future WebGPU deployment roadmap.
 
 ---
 

@@ -1,37 +1,44 @@
 """
-Abstract base class for LLM providers.
+Provider Abstraction Layer — Abstract Base Class
 
-All providers must implement the `extract` method.
+All providers (OpenAI, Ollama, Local GGUF, WebLLM, Mock) implement
+this interface. The entire pipeline only depends on `generate()`.
+
+Key design principle:
+    Input  → TaskRequest (统一)
+    Output → TaskResponse (统一)
+    Provider is just a swappable backend.
 """
 
 from abc import ABC, abstractmethod
+from src.models import TaskRequest, TaskResponse
 
 
 class LLMProvider(ABC):
-    """Abstract LLM provider interface."""
+    """Abstract LLM provider — all providers implement this."""
 
     @abstractmethod
-    def extract(self, prompt: str, system: str = "") -> str:
+    def generate(self, request: TaskRequest) -> TaskResponse:
         """
-        Call LLM and return raw text response.
+        Core method: take a TaskRequest, return a TaskResponse.
 
-        Args:
-            prompt: User prompt (the student answer + instructions)
-            system: System prompt (role definition)
-
-        Returns:
-            Raw LLM response text (expected to be JSON)
-
-        Raises:
-            ConnectionError: If LLM is unreachable
-            ValueError: If response is invalid
+        Every provider implements this one method.
+        The caller never needs to know which backend is running.
         """
-        raise NotImplementedError
+        ...
 
+    def batch_generate(self, requests: list[TaskRequest]) -> list[TaskResponse]:
+        """Batch processing — override if provider supports true batching."""
+        return [self.generate(req) for req in requests]
+
+    @abstractmethod
     def is_available(self) -> bool:
-        """Check if the provider is reachable."""
-        try:
-            self.extract("test", "Reply with OK")
-            return True
-        except Exception:
-            return False
+        """Check if this provider is reachable / configured."""
+        ...
+
+    def name(self) -> str:
+        """Human-readable provider name."""
+        return self.__class__.__name__
+
+    def __repr__(self) -> str:
+        return f"<{self.name()}>"

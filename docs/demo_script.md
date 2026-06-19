@@ -114,6 +114,8 @@
 >
 > **Third**, the Concept Taxonomy v1 — 30 shared concept IDs across 5 clusters, a structured ontology for cross-language cognitive research.
 >
+> **Beyond the paper:** The core infrastructure we built — provider abstraction, GGUF quantization, LoRA adaptation — is task-agnostic. We extracted it into a standalone runtime, and an independent game project is now reusing it with a different LoRA adapter. This confirms our architecture is generalizable beyond this single experiment.
+>
 > Our full study targets 30 participants across all three languages. With that, we'll have the first AI-powered, graph-based quantification of linguistic relativity.
 >
 > Thank you."
@@ -122,6 +124,7 @@
 - 可复现 pipeline
 - Cognitive City 可视化
 - Concept Taxonomy
+- **技术资产：运行时已被独立项目复用（架构通用性证明）**
 - 未来：30 人 × 3 语言
 
 **屏幕:**

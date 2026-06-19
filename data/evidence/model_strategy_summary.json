@@ -1,0 +1,58 @@
+{
+  "title": "Model Merging & Fine-Tuning Strategy for LinguaGraph",
+  "date": "2026-06-18",
+  "version": "1.0",
+
+  "decision": {
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "rationale": [
+      "Best trilingual support at smallest size (ZH, DE, EN)",
+      "Apache 2.0 license, compatible with BWKI",
+      "Full ecosystem: HuggingFace, llama.cpp, MLX",
+      "GGUF Q4_K_M ~900 MB, fits on phones"
+    ]
+  },
+
+  "approach": {
+    "fine_tuning": "LoRA (r=16) with QLoRA 4-bit",
+    "fine_tuning_rationale": "100x cheaper than full FT, equally good for narrow task",
+    "merging": "TIES (3 adapters: ZH + DE + EN)",
+    "merging_rationale": "Handles parameter conflicts, preserves multilingual quality",
+    "quantization": "GGUF Q4_K_M",
+    "quantization_rationale": "Best quality/size tradeoff, ~900 MB final size"
+  },
+
+  "phases": [
+    {"phase": 0, "name": "Data Preparation", "duration": "Week 1-2", "key_task": "Annotate 30 social issues gold labels"},
+    {"phase": 1, "name": "Base Model Setup", "duration": "Week 2-3", "key_task": "Download Qwen2.5-1.5B, verify baseline"},
+    {"phase": 2, "name": "Fine-tuning", "duration": "Week 3-4", "key_task": "Train 3 language-specific LoRAs"},
+    {"phase": 3, "name": "Model Merging", "duration": "Week 4-5", "key_task": "TIES merge all adapters"},
+    {"phase": 4, "name": "Quantization & Deployment", "duration": "Week 5-6", "key_task": "GGUF, LocalProvider, pipeline test"},
+    {"phase": 5, "name": "Documentation", "duration": "Week 6", "key_task": "Model card, reproducibility docs"}
+  ],
+
+  "target_metrics": {
+    "concept_f1": 0.80,
+    "relation_f1": 0.70,
+    "json_valid_rate": 0.95,
+    "model_size_mb": 900,
+    "ram_gb": 1.5,
+    "speed_tok_per_sec": 30
+  },
+
+  "key_risks": [
+    {"risk": "1.5B too small for extraction task", "probability": "Medium", "impact": "High", "mitigation": "Fallback to 3B or 7B"},
+    {"risk": "Training data too small", "probability": "High", "impact": "High", "mitigation": "Synthetic data generation"},
+    {"risk": "GPU not available", "probability": "Medium", "impact": "High", "mitigation": "Google Colab (free T4)"},
+    {"risk": "Multilingual degradation after merge", "probability": "Medium", "impact": "Medium", "mitigation": "Per-language eval after each step"}
+  ],
+
+  "documents_created": [
+    "docs/model_strategy.md",
+    "docs/training_pipeline.md",
+    "config/training/lora_config.yaml",
+    "config/training/merge_config.yaml",
+    "scripts/prepare_training_data.py",
+    "MODEL_CARD.md"
+  ]
+}

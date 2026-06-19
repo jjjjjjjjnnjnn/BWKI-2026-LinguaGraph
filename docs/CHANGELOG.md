@@ -4,6 +4,14 @@
 
 ---
 
+## [2026-06-19] v0.9.1-pre-human-validation — RC Stabilization
+
+### Overview
+
+RC-level stabilization pass: 2 CRITICAL + 5 HIGH bugs fixed. LLM pipeline fully
+connected through the unified TaskRequest/TaskResponse protocol. The project
+exits "active development" and enters "results generation" phase.
+
 ## [2026-06-18] Session 5 — DE/EN 空窗期基础设施冲刺
 
 ### Overview
@@ -118,6 +126,44 @@
 - **Context:** 模型融合/微调（Qwen2.5-1.5B + LoRA + TIES + GGUF）策略完整但时序不当
 - **Action:** 全部降级为 Future Work (Phase 2)，标记为 post-BWKI
 - **Files:** `docs/model_strategy.md` (status update), `MODEL_CARD.md` (Future Work warning)
+
+---
+
+## [2026-06-18] Session 6 — 技术资产复用叙事 & MML Runtime 架构
+
+### Overview
+
+跨项目技术转移策略定稿。不是"研究做了个游戏"，而是"研究产出的基础设施被游戏复用"。
+
+### L. 叙事重构
+
+- **论文骨架 §1.2**: 改为"Technology reusability"而非"Practical deployment"，指向 `technology_transfer.md`
+- **论文骨架 §6.5 (#7)**: 改为"Cross-project technology transfer is early-stage"，诚实说明状态
+- **论文骨架 §7.5**: 删去详细游戏描述，改为1段概述 + 指向 `technology_transfer.md`
+- **Demo 脚本**: Impact § 叙事从"The same model infrastructure is being deployed in a commercial game"改为"extracted into a standalone runtime, and an independent game project is now reusing it"
+- **Judge Q&A Q11**: 重写，核心叙事从"我做了个游戏"改为"研究产出了可复用的技术资产"
+- **README.md**: 三语技术栈从"实际应用"改为"技术复用"
+
+### M. MML Runtime 架构
+
+- **新增** `docs/technology_transfer.md` — 完整架构文档，含：
+  - MML Runtime 目录结构（loaders / adapters / quantization / inference / cache / config）
+  - 架构总览 ASCII 图（Qwen2.5-1.5B → Runtime → Adapter Manager → 3 条分叉）
+  - 共享组件清单：8 项组件复用率 50%-100%
+  - LinguaGraph Adapter 详细配置 + Game Adapter 详细配置
+  - WebGPU 浏览器推理路线图
+  - BWKI 战略价值分析 + 答辩话术 30 秒版
+
+### N. 变更明细
+
+| 文件 | 操作 | 说明 |
+|:-----|:-----|:------|
+| `docs/technology_transfer.md` | **新增** | MML Runtime 架构 + 跨项目复用文档 |
+| `docs/paper_results_skeleton.md` | 修改 | §1.2 / §6.5 / §7.5 叙事重构 |
+| `docs/demo_script.md` | 修改 | Impact § 叙事从"game"改为"standalone runtime" |
+| `docs/judge_qa.md` | 修改 | Q11 叙事重写 |
+| `docs/CHANGELOG.md` | 修改 | 本条目 |
+| `README.md` | 修改 | 三语技术栈 + 项目结构（ZH/EN/DE）|
 
 #### A3. LOGOS 方法学借鉴
 - **Context:** 评估 LOGOS (arXiv:2509.24294) 的全自动 Grounded Theory 框架

@@ -48,17 +48,35 @@ def extract_concepts(
         return _mock_extract(student_answer, language)
 
     # Get provider from config
-    import sys
-    sys.path.insert(0, str(Path(__file__).parent))
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).parent))
     from providers import get_provider
+    from src.models import TaskRequest, TaskType, Language
     provider = get_provider()
 
     # Load and format prompt
     system_prompt = load_prompt("extract")
     user_prompt = f"Language: {language}\n\nStudent Answer:\n{student_answer}"
 
-    # Call LLM
-    raw_response = provider.extract(prompt=user_prompt, system=system_prompt)
+    # Build and route TaskRequest
+    task_lang = Language.CHINESE
+    if language == "de":
+        task_lang = Language.GERMAN
+    elif language == "en":
+        task_lang = Language.ENGLISH
+
+    request = TaskRequest(
+        task=TaskType.CONCEPT_EXTRACTION,
+        text=user_prompt,
+        system_prompt=system_prompt,
+        language=task_lang,
+    )
+    response = provider.generate(request)
+
+    if not response.success:
+        raise RuntimeError(f"LLM extraction failed: {response.error}")
+
+    raw_response = response.raw_text
 
     # Parse JSON
     try:

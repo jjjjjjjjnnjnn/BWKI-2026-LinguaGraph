@@ -5,12 +5,13 @@
 **Projektname**: LinguaGraph — Wie Sprache das Denken formt
 **Forschungszweck**: Untersuchung, ob Chinesisch, Deutsch und Englisch das Verständnis von Konzepten wie Freiheit, Gerechtigkeit, Erfolg, Verantwortung und Heimat beeinflussen
 **Wettbewerb**: Bundeswettbewerb Künstliche Intelligenz 2026
-**Forschende/r**: [Name]
+**Forschende/r**: (Anonymes Forschungsprojekt — keine persönlichen Daten der Forschenden)
 
 ## Teilnahme
 
 Als Teilnehmer/in dieser Studie:
-1. Beantworten Sie 5 offene Fragen in Chinesisch, Deutsch und Englisch (ca. 15 Minuten pro Sprache, insgesamt ca. 45 Minuten)
+1. Beantworten Sie 10 Aufgaben in Chinesisch, Deutsch und Englisch (ca. 15 Minuten pro Sprache, insgesamt ca. 45 Minuten)
+2. Die Aufgaben umfassen: Wortassoziationen, Erklärung von Begriffen, Beschreibung von Bildern und Übersetzungen
 2. Ihre Antworten werden anonym gespeichert und mit KI-Methoden analysiert
 
 ## Datenschutz (DSGVO-konform)
@@ -36,8 +37,7 @@ Gemäß der Datenschutz-Grundverordnung (DSGVO):
 
 ## Kontakt
 
-Bei Fragen oder zur Ausübung Ihrer Datenschutzrechte:
-[Name], [E-Mail], [Telefon]
+Bei Fragen oder zur Ausübung Ihrer Datenschutzrechte wenden Sie sich bitte an die Studienleitung (Kontakt über den Projektbetreuer an Ihrer Schule).
 
 ## Einwilligung
 

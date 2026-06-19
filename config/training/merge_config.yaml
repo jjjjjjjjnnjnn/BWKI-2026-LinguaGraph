@@ -1,0 +1,29 @@
+# TIES Merge Configuration
+# LinguaGraph Multilingual Concept Extraction
+
+merge_method: ties
+base_model: Qwen/Qwen2.5-1.5B-Instruct
+
+models:
+  # Primary: ZH extraction adapter (40% weight)
+  - model: models/lora/zh_extraction
+    parameters:
+      weight: 0.4
+  # Secondary: DE extraction adapter (30% weight)
+  - model: models/lora/de_extraction
+    parameters:
+      weight: 0.3
+  # Secondary: EN extraction adapter (30% weight)
+  - model: models/lora/en_extraction
+    parameters:
+      weight: 0.3
+
+parameters:
+  normalize: true
+  int8_mask: true
+  resize_token_embeddings: false
+
+tokenizer:
+  trust_remote_code: true
+
+dtype: bfloat16

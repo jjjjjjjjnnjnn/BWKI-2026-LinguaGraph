@@ -1,52 +1,76 @@
 """
-OpenAI Provider
+OpenAI Provider — calls OpenAI API (or any OpenAI-compatible endpoint).
 
-Calls OpenAI API (or any OpenAI-compatible endpoint like Gemini, DeepSeek, etc.).
-
-Requires:
-  - OPENAI_API_KEY environment variable, or
-  - api_key in config.yaml
+Supports:
+- OpenAI API (GPT-4.1-mini, etc.)
+- Any OpenAI-compatible local server (via base_url)
 """
 
 import os
+import time
 from openai import OpenAI
+
+from src.models import TaskRequest, TaskResponse
 from .base import LLMProvider
 
 
 class OpenAIProvider(LLMProvider):
-    """OpenAI / compatible API provider."""
+    """OpenAI / OpenAI-compatible provider."""
 
     def __init__(self, config: dict = None):
         config = config or {}
         self.model = config.get("model", "gpt-4.1-mini")
         self.api_key = config.get("api_key") or os.environ.get("OPENAI_API_KEY")
-        self.base_url = config.get("base_url")  # None for OpenAI, or custom URL
+        self.base_url = config.get("base_url")
 
-        if not self.api_key:
-            raise ValueError(
-                "OpenAI API key required. Set OPENAI_API_KEY env var "
-                "or llm.openai.api_key in config.yaml"
-            )
-
-        client_kwargs = {"api_key": self.api_key}
+        client_kwargs = {"api_key": self.api_key or "no-key"}
         if self.base_url:
             client_kwargs["base_url"] = self.base_url
 
         self.client = OpenAI(**client_kwargs)
 
-    def extract(self, prompt: str, system: str = "") -> str:
+    def generate(self, request: TaskRequest) -> TaskResponse:
+        start = time.time()
+
         messages = []
-        if system:
-            messages.append({"role": "system", "content": system})
-        messages.append({"role": "user", "content": prompt})
+        if request.system_prompt:
+            messages.append({"role": "system", "content": request.system_prompt})
+        messages.append({"role": "user", "content": request.text})
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=0.1
-        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=request.temperature,
+                max_tokens=request.max_tokens,
+            )
 
-        return response.choices[0].message.content
+            choice = response.choices[0]
+            content = choice.message.content or ""
+            elapsed = (time.time() - start) * 1000
+
+            return TaskResponse(
+                task=request.task,
+                raw_text=content,
+                tokens_in=response.usage.prompt_tokens if response.usage else 0,
+                tokens_out=response.usage.completion_tokens if response.usage else 0,
+                latency_ms=elapsed,
+            )
+
+        except Exception as e:
+            elapsed = (time.time() - start) * 1000
+            return TaskResponse(
+                task=request.task,
+                error=str(e),
+                latency_ms=elapsed,
+            )
+
+    def is_available(self) -> bool:
+        try:
+            self.client.models.list()
+            return True
+        except Exception:
+            return False
 
     def __repr__(self):
         return f"OpenAIProvider(model={self.model})"

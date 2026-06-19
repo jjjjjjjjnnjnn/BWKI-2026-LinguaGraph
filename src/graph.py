@@ -12,7 +12,8 @@ from typing import Optional
 try:
     import networkx as nx
 except ImportError:
-    print("Warning: networkx not installed. Run: pip install networkx")
+    import logging
+    logging.getLogger(__name__).warning("networkx not installed. Run: pip install networkx")
     nx = None
 
 

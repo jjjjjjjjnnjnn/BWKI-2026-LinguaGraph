@@ -1,37 +1,56 @@
-# CognitiveSpace Configuration
+# LinguaGraph Configuration
 # BWKI 2026 Project
 
-# === LLM Configuration ===
+# === LLM Provider Layer ===
+# Architecture: TaskRequest → Router → Provider → TaskResponse
+# Provider is a swappable backend — code never knows which one runs.
 llm:
-  # Provider: ollama (local) or openai (cloud)
-  # 内部统一使用 OpenAI SDK，通过 base_url 切换
-  provider: ollama
+  # Provider registry — define all available backends
+  providers:
+    # Research provider (OpenAI API)
+    research:
+      type: openai
+      model: gpt-4.1-mini
+      api_key: ${OPENAI_API_KEY}
 
-  # Ollama / LM Studio (本地首选)
-  # Ollama: http://127.0.0.1:11434/v1
-  # LM Studio: http://127.0.0.1:1234/v1
-  ollama:
-    base_url: http://127.0.0.1:1234/v1
-    model: qwen3-8b
+    # Local provider via Ollama (development)
+    local_ollama:
+      type: ollama
+      base_url: http://127.0.0.1:11434/v1
+      model: qwen3:8b
 
-  # OpenAI (云端备选)
-  openai:
-    api_key: ${OPENAI_API_KEY}
-    model: gpt-4.1-mini
-    base_url: null
+    # Local GGUF provider (self-contained, project-local paths)
+    runtime:
+      type: local
+      # model_path and llama_cli auto-discovered from models/ and llama/ directories
+      # No external paths needed — project is fully self-contained
+      n_threads: 4
+      n_ctx: 2048
+
+    # Mock provider (testing, no model needed)
+    mock:
+      type: mock
+
+  # Task routing — map task types to providers
+  routing:
+    concept_extraction: runtime
+    relation_extraction: runtime
+    translation: runtime
+    annotation_assist: runtime
+
+  # Fallback chain (primary → secondary → mock)
+  defaults:
+    - runtime    # Self-contained local GGUF (zero-config, no API keys)
+    - mock       # Deterministic fallback for testing, always works
 
 # === Domain Configuration ===
 domain:
-  # Primary domain for LinguaGraph research
   primary: social_issues
-
-  # Supported languages
   languages:
-    - zh    # Chinese
-    - en    # English
-    - de    # German
+    - zh
+    - en
+    - de
 
-  # Social issues domain configuration
   social_issues:
     topics:
       - id: q1
@@ -53,19 +72,13 @@ domain:
 
 # === Graph Settings ===
 graph:
-  # Node deduplication threshold
   similarity_threshold: 0.85
-
-  # Maximum graph size (for performance)
   max_nodes: 100
   max_edges: 200
 
 # === Missing Link Detection ===
 detection:
-  # Confidence threshold (0-1)
   confidence_threshold: 0.5
-
-  # Severity weights
   weights:
     concept_missing: 1.0
     relation_missing: 0.8
@@ -85,10 +98,10 @@ output:
 # === Logging ===
 logging:
   level: INFO
-  file: logs/cognitivespace.log
+  file: logs/linguagraph.log
 
 # === Visualization ===
 visualization:
-  engine: threejs  # threejs or godot
+  engine: threejs
   port: 8080
   auto_open: true

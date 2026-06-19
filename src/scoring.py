@@ -1,17 +1,22 @@
 """
-CognitiveSpace Scoring Functions
+LinguaGraph Scoring Functions
 
 MCL Score: how many expert connections are missing in student graph
-LCD Score: how different are two language graphs for the same person
+LDS Score: how different are two language graphs for the same person
 """
 
 import json
+import logging
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
+
+logger = logging.getLogger(__name__)
 
 try:
     import networkx as nx
 except ImportError:
+    import logging
+    logging.getLogger(__name__).warning("networkx not installed. Run: pip install networkx")
     nx = None
 
 
@@ -153,7 +158,10 @@ def calculate_lds_score(
         max_edits = max(g1.number_of_nodes(), g2.number_of_nodes()) + \
                     max(g1.number_of_edges(), g2.number_of_edges())
         ged_sim = _normalize_ged(raw_ged, max(1, max_edits))
-    except Exception:
+    except Exception as exc:
+        logger.warning("GED computation failed (nodes: %d/%d, edges: %d/%d): %s",
+                       g1.number_of_nodes(), g2.number_of_nodes(),
+                       g1.number_of_edges(), g2.number_of_edges(), exc)
         ged_sim = 0.5  # Fallback if GED computation fails on large graphs
 
     # — Component 2: Node Jaccard —
@@ -255,7 +263,8 @@ def bootstrap_lds_ci(
         try:
             boot_result = calculate_lds_score(sub_l1, sub_l2, concept_mapping)
             lds_samples.append(boot_result["lds_score"])
-        except Exception:
+        except Exception as exc:
+            logger.debug("Bootstrap iteration failed: %s", exc)
             continue
 
     if len(lds_samples) < 2:
@@ -310,13 +319,13 @@ def calculate_concept_f1(gold_concepts: Set, extracted_concepts: Set) -> Dict:
 
 def calculate_relation_f1(gold_relations: List, extracted_relations: List) -> Dict:
     """Calculate relation-level Precision, Recall, F1.
-    
+
     Compares (source, target, type) triples — relation type IS included.
-    Empty inputs return perfect scores (nothing to miss, nothing to错).
+    Empty inputs return perfect scores (nothing to miss, nothing wrong).
     """
     def norm(r):
-        src = r.get("from") or r.get("source", "")
-        tgt = r.get("to") or r.get("target", "")
+        src = r.get("from") if r.get("from") else r.get("source", "")
+        tgt = r.get("to") if r.get("to") else r.get("target", "")
         rel_type = r.get("type", "relates_to")
         return (src, tgt, rel_type)
     
