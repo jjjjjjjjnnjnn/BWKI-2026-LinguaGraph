@@ -21,13 +21,12 @@ from .base import LLMProvider
 # Project-local paths (auto-discovered, no external dependencies)
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent  # src/../.. = project root
 _FALLBACK_PATHS = [
-    # 1. Project-local model (self-contained)
+    # 1. Project-local model (self-contained — both instruct and base variants)
     _PROJECT_ROOT / "models" / "qwen2.5-0.5b-q4_k_m.gguf",
+    _PROJECT_ROOT / "models" / "qwen2.5-0.5b-instruct-q4_k_m.gguf",
     # 2. Project-local llama-cli
     _PROJECT_ROOT / "llama" / "llama-cli.exe",
-    # 3. Platform-generic: model in current dir / models/
-    _PROJECT_ROOT / "models" / "tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
-    _PROJECT_ROOT / "models" / "model.gguf",
+    # 3. Any .gguf in models/ (wildcard fallback)
 ]
 
 
@@ -57,8 +56,13 @@ class LocalProvider(LLMProvider):
         self.model_path = config.get("model_path", "")
         if not self.model_path or not Path(self.model_path).exists():
             found = _find_first_existing(
-                _FALLBACK_PATHS[0], _FALLBACK_PATHS[2], _FALLBACK_PATHS[3]
+                _FALLBACK_PATHS[0], _FALLBACK_PATHS[1]
             )
+            # Last resort: any .gguf file in models/
+            if not found:
+                gguf_files = list((_PROJECT_ROOT / "models").glob("*.gguf"))
+                if gguf_files:
+                    found = gguf_files[0]
             self.model_path = str(found) if found else ""
 
         # Resolve llama-cli path

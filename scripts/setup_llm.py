@@ -24,12 +24,13 @@ MODELS_DIR = PROJECT_ROOT / "models"
 LLAMA_DIR = PROJECT_ROOT / "llama"
 
 # --- Model configuration ---
-# Qwen2.5-0.5B-Instruct Q4_K_M — 463 MB, runs on phone
+# Qwen2.5-0.5B Q4_K_M — 463 MB, runs on phone
+# Non-instruct version (matches existing project-local model file)
 MODEL_URL = (
-    "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/"
-    "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    "https://huggingface.co/Qwen/Qwen2.5-0.5B-GGUF/resolve/main/"
+    "qwen2.5-0.5b-q4_k_m.gguf"
 )
-MODEL_FILENAME = "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+MODEL_FILENAME = "qwen2.5-0.5b-q4_k_m.gguf"
 MODEL_EXPECTED_MB = 463
 
 # llama.cpp pre-built binary (lightweight, no GPU needed)
