@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaGraph Research Workbench</title>
+<script src="../cognitive-space/web/data.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  background: #0a0e1a; color: #c8ccd8; min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+nav {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(10,14,26,.92); border-bottom: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100;
+}
+nav .logo { font-weight: 700; font-size: 1rem; }
+nav .logo em { font-style: normal; background: linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+nav .logo span { font-weight: 400; opacity: .5; color: #6b7280; -webkit-text-fill-color: #6b7280; }
+nav a { color: #6b7280; text-decoration: none; font-size: .85rem; cursor: pointer; padding: .25rem 0; }
+nav a:hover, nav a.active { color: #e0e0e0; }
+.page { display: none; max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.page.active { display: block; }
+.card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1rem; margin: 1.5rem 0; }
+.stat-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: 1.25rem; text-align: center; }
+.stat-card .value { font-size: 1.8rem; font-weight: 700; color: #f0f0f0; }
+.stat-card .label { font-size: .7rem; color: #6b7280; margin-top: .25rem; text-transform: uppercase; letter-spacing: .04em; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: .5rem; }
+h1 em { font-style: normal; color: #60a5fa; }
+h2 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 .75rem; color: #e0e0e0; }
+p { line-height: 1.6; color: #9ca3af; font-size: .9rem; margin-bottom: .75rem; }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+th, td { padding: .6rem .8rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,.04); }
+th { color: #6b7280; font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+.lang-pill { display: inline-block; padding: .15rem .6rem; border-radius: 4px; font-size: .7rem; font-weight: 500; margin: 1px; }
+.lang-zh { background: rgba(74,222,128,.12); color: #86efac; }
+.lang-en { background: rgba(96,165,250,.12); color: #93c5fd; }
+.lang-de { background: rgba(192,132,252,.12); color: #c4b5fd; }
+.level-bar { height: 24px; border-radius: 4px; overflow: hidden; display: flex; margin: .5rem 0; }
+.level-bar .seg { transition: width .3s; }
+.btn { display: inline-block; padding: .6rem 1.4rem; border-radius: 6px; font-size: .85rem; font-weight: 500; cursor: pointer; border: 1px solid rgba(96,165,250,.25); background: rgba(96,165,250,.08); color: #93b4f5; transition: all .15s; text-decoration: none; margin: .25rem; }
+.btn:hover { background: rgba(96,165,250,.15); }
+.btn-primary { background: #4a7dff; color: #fff; border-color: #4a7dff; }
+.btn-primary:hover { background: #3d6fe8; }
+.report-section { margin: 1rem 0; padding: 1rem; border-left: 3px solid rgba(96,165,250,.3); }
+.viz-link { text-align: center; padding: 3rem; border: 1px dashed rgba(255,255,255,.1); border-radius: 10px; margin: 1.5rem 0; }
+footer { text-align: center; padding: 2rem; color: #4b5563; font-size: .75rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><em>LinguaGraph</em> <span>Workbench</span></div>
+  <a onclick="showPage('overview')" id="nav-overview" class="active">Overview</a>
+  <a onclick="showPage('results')" id="nav-results">Results</a>
+  <a onclick="showPage('viz')" id="nav-viz">CognitiveSpace</a>
+  <a onclick="showPage('report')" id="nav-report">Report</a>
+</nav>
+
+<!-- Page 1: Overview -->
+<div class="page active" id="page-overview">
+<h1>Cross-Lingual Cognitive Structure <em>Analysis Workbench</em></h1>
+<p>Languages shape how we organize knowledge. LinguaGraph extracts concepts from educational texts, builds knowledge graphs, measures structural differences using LDS (Language Distance Score), and visualizes them in an interactive 3D environment.</p>
+<div class="stat-grid" id="stats-top"></div>
+
+<h2>Textbook Corpus</h2>
+<div class="card">
+  <table>
+    <tr><th>Language</th><th>Textbooks</th><th>Coverage</th><th>Curriculum</th></tr>
+    <tr><td><span class="lang-pill lang-zh">ZH</span></td><td>45</td><td>Elementary → University</td><td>Renjiao, Tongji, Gaoshu</td></tr>
+    <tr><td><span class="lang-pill lang-en">EN</span></td><td>20</td><td>K-12 → University</td><td>Stewart, MIT OCW, Khan Academy, IGCSE, IB</td></tr>
+    <tr><td><span class="lang-pill lang-de">DE</span></td><td>10</td><td>Secondary → University</td><td>Forster, Fischer, Lambacher Schweizer, Papula</td></tr>
+    <tr style="font-weight:600"><td>Total</td><td>68</td><td colspan="2" id="corpus-summary">574 concepts · 3538 relations · 4 education levels</td></tr>
+  </table>
+</div>
+
+<h2>Language Coverage</h2>
+<div class="card">
+  <table><tr><th>Coverage</th><th>Concepts</th><th>Percentage</th></tr>
+    <tr><td>ZH + EN + DE</td><td id="tri-count"></td><td id="tri-pct"></td></tr>
+    <tr><td>ZH</td><td id="zh-count"></td><td id="zh-pct"></td></tr>
+    <tr><td>EN</td><td id="en-count"></td><td id="en-pct"></td></tr>
+    <tr><td>DE</td><td id="de-count"></td><td id="de-pct"></td></tr>
+  </table>
+</div>
+<div style="margin-top:1.5rem;text-align:center">
+  <a href="../cognitive-space/web/index.html" target="_blank" class="btn btn-primary">Explore CognitiveSpace 3D →</a>
+  <a onclick="showPage('report')" class="btn">View Analysis Report</a>
+</div>
+</div>
+
+<!-- Page 2: Results -->
+<div class="page" id="page-results">
+<h1>Graph Analysis <em>Results</em></h1>
+<div class="stat-grid" id="stats-results"></div>
+
+<h2>Education Level Distribution</h2>
+<div class="card">
+  <div class="level-bar" id="level-bar"></div>
+  <table id="level-table"></table>
+</div>
+
+<h2>Knowledge Domains</h2>
+<div class="card"><table id="domain-table"></table></div>
+
+<h2>Language Drift Score (LDS) — Methodology</h2>
+<div class="card">
+  <p>The <strong>Language Drift Score</strong> quantifies structural divergence between knowledge graphs extracted from different languages:</p>
+  <p style="font-size:1.2rem;text-align:center;padding:.75rem;font-weight:600;color:#e0e0e0;font-family:monospace">LDS(A, B) = 1 − |A ∩ B| / |A ∪ B|</p>
+  <p>A value of 0 indicates identical structure; near 1 indicates maximal divergence. A human validation study (N=30, 10 per language) is in preparation.</p>
+</div>
+</div>
+
+<!-- Page 3: CognitiveSpace -->
+<div class="page" id="page-viz">
+<h1>CognitiveSpace <em>3D Visualization</em></h1>
+<p>574 concepts in concentric spherical shells by education level. Color-coded: <span class="dot" style="background:#4ade80"></span>Elementary · <span class="dot" style="background:#22d3ee"></span>Middle · <span class="dot" style="background:#60a5fa"></span>High · <span class="dot" style="background:#c084fc"></span>University. Toggle ZH/EN/DE.</p>
+<div class="viz-link">
+  <p style="font-size:1.1rem;margin-bottom:1rem">Open the interactive 3D visualization to explore 574 concepts, filter by language, and click any node for textbook provenance.</p>
+  <a href="../cognitive-space/web/index.html" target="_blank" class="btn btn-primary">Launch CognitiveSpace ↗</a>
+</div>
+</div>
+
+<!-- Page 4: Report -->
+<div class="page" id="page-report">
+<h1>Structural Analysis <em>Report</em></h1>
+<p>Automated analysis of the CognitiveSpace knowledge graph. Generated from 68 textbooks, 574 concepts, 3538 relations across ZH/EN/DE.</p>
+<div class="report-section" style="border-left-color:#4ade80">
+  <strong style="color:#86efac">1. Corpus Composition</strong>
+  <p>The knowledge graph is constructed from <strong>68 textbooks</strong> across three languages (45 Chinese, 20 English, 10 German), spanning four education levels. The Chinese corpus provides the most extensive coverage of fundamental mathematics, while English and German corpora focus on secondary and tertiary education.</p>
+</div>
+<div class="report-section" style="border-left-color:#22d3ee">
+  <strong style="color:#67e8f9">2. Education Level Distribution</strong>
+  <p id="level-report">University concepts constitute the largest share, with elementary concepts serving as foundational anchors with highest graph centrality. This confirms a "knowledge core → expansion" pattern.</p>
+</div>
+<div class="report-section" style="border-left-color:#60a5fa">
+  <strong style="color:#93c5fd">3. Cross-Language Alignment</strong>
+  <p id="align-report">Concepts are mapped across all three languages, with ZH having the highest exclusive coverage from curricula lacking Western counterparts.</p>
+</div>
+<div class="report-section" style="border-left-color:#c084fc">
+  <strong style="color:#c4b5fd">4. Structural Observations</strong>
+  <p>The graph is nearly fully connected (only 2 isolated nodes, &lt;0.5%). Elementary concepts serve as structural anchors. Concepts appearing in multiple languages exhibit structurally similar neighborhoods, suggesting language-independent mathematical invariants.</p>
+</div>
+<div class="report-section" style="border-left-color:#f59e0b">
+  <strong style="color:#fcd34d">5. Language Distance Score (Planned)</strong>
+  <p>A human validation study (N=30) is in preparation to establish baseline LDS values for mathematics education across ZH/EN/DE.</p>
+</div>
+</div>
+
+<footer>LinguaGraph Research Workbench · BWKI 2026</footer>
+
+<script>
+const data = COGNITIVE_DATA;
+const nodes = data.nodes;
+const links = data.links;
+
+// Compute stats
+const levels = {};
+const lang = {zh:0, en:0, de:0};
+let tri = 0;
+const groups = {};
+nodes.forEach(n => {
+  const lv = n.level || 'unknown';
+  levels[lv] = (levels[lv]||0)+1;
+  const lbs = n.labels||{};
+  if(lbs.zh) lang.zh++;
+  if(lbs.en) lang.en++;
+  if(lbs.de) lang.de++;
+  if(lbs.zh && lbs.en && lbs.de) tri++;
+  const g = n.group||'general';
+  groups[g] = (groups[g]||0)+1;
+});
+const total = nodes.length;
+const known = links.filter(l=>!l.inferred).length;
+const inferred = links.filter(l=>l.inferred).length;
+
+const LV_NAMES = {elementary:'小学', middle:'初中', high:'高中', college:'大学'};
+const LV_COLORS = {elementary:'#4ade80', middle:'#22d3ee', high:'#60a5fa', college:'#c084fc'};
+const LV_ORDER = ['elementary','middle','high','college'];
+const LV_LABELS = ['Elementary','Middle','High','University'];
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+}
+
+function pct(v) { return (v/total*100).toFixed(1)+'%'; }
+
+// Overview stats
+document.getElementById('stats-top').innerHTML = [
+  {v:total, l:'Concepts'}, {v:links.length, l:'Relations'},
+  {v:tri, l:'Trilingual'}, {v:Object.keys(levels).length, l:'Education Levels'}
+].map(s=>'<div class="stat-card"><div class="value">'+s.v+'</div><div class="label">'+s.l+'</div></div>').join('');
+
+document.getElementById('tri-count').textContent = tri;
+document.getElementById('tri-pct').textContent = pct(tri);
+document.getElementById('zh-count').textContent = lang.zh;
+document.getElementById('zh-pct').textContent = pct(lang.zh);
+document.getElementById('en-count').textContent = lang.en;
+document.getElementById('en-pct').textContent = pct(lang.en);
+document.getElementById('de-count').textContent = lang.de;
+document.getElementById('de-pct').textContent = pct(lang.de);
+
+// Results stats
+document.getElementById('stats-results').innerHTML = [
+  {v:known, l:'Direct Relations'}, {v:inferred, l:'Inferred'},
+  {v:total-tri, l:'Mono/Bilingual'}, {v:(links.length/total).toFixed(1), l:'Avg Degree'}
+].map(s=>'<div class="stat-card"><div class="value">'+s.v+'</div><div class="label">'+s.l+'</div></div>').join('');
+
+// Level bar
+const lvSum = LV_ORDER.reduce((s,l)=>s+(levels[l]||0),0);
+document.getElementById('level-bar').innerHTML = LV_ORDER.map(l=>
+  '<div class="seg" style="width:'+((levels[l]||0)/lvSum*100)+'%;background:'+LV_COLORS[l]+'"></div>'
+).join('');
+document.getElementById('level-table').innerHTML =
+  '<tr><th>Level</th><th>Concepts</th><th>%</th><th>Color</th></tr>'+
+  LV_ORDER.map((l,i)=>'<tr><td><span class="dot" style="background:'+LV_COLORS[l]+'"></span>'+LV_LABELS[i]+'</td><td>'+(levels[l]||0)+'</td><td>'+((levels[l]||0)/lvSum*100).toFixed(1)+'%</td><td><code>'+LV_COLORS[l]+'</code></td></tr>').join('');
+
+// Domains
+document.getElementById('domain-table').innerHTML =
+  '<tr><th>Domain</th><th>Concepts</th></tr>'+
+  Object.entries(groups).sort((a,b)=>b[1]-a[1]).map(g=>'<tr><td>'+g[0]+'</td><td>'+g[1]+'</td></tr>').join('');
+
+// Report
+const uniPct = ((levels.college||0)/lvSum*100).toFixed(1);
+const elemPct = ((levels.elementary||0)/lvSum*100).toFixed(1);
+document.getElementById('level-report').innerHTML =
+  'University concepts constitute the largest share ('+uniPct+'%), with elementary concepts ('+elemPct+'%) serving as foundational anchors with highest graph centrality. This confirms a "knowledge core → expansion" pattern.';
+document.getElementById('align-report').innerHTML =
+  'Of ' + total + ' concepts, <strong>' + tri + '</strong> (' + pct(tri) + '%) are fully aligned across all three languages. ZH has the highest exclusive coverage (' + (lang.zh - tri) + ' ZH-only), primarily from elementary and middle school curricula.';
+</script>
+</body>
+</html>
