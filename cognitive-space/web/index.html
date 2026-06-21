@@ -45564,7 +45564,7 @@ const COGNITIVE_DATA = {
         const lv = n.level||'college', lc = LV[lv]||LV.college;
         document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+(n.source_count||1)+' sources';
 
-        // Compute metrics for this node
+        // ── Compute node-level metrics ──
         const gd = G.graphData();
         let connections = 0, neighbors = [];
         if (gd) {
@@ -45581,17 +45581,7 @@ const COGNITIVE_DATA = {
             });
         }
 
-        // Level description
-        const lvNames = {elementary:'Foundational: basic arithmetic and geometry', middle:'Intermediate: algebra, equations, functions',
-            high:'Advanced: calculus, probability, vectors', college:'Specialized: higher mathematics, proofs, theory'};
-        const lvDesc = lvNames[lv]||'General mathematical concept';
-
-        // Metrics display
-        const totalNodes = gd ? gd.nodes.length : 574;
-        const totalLinks = gd ? gd.links.length : 3538;
-        const cds = (2 * totalLinks / (totalNodes * (totalNodes - 1))).toFixed(4);
-
-        // HDS: how deep in the hierarchy
+        // HDS depth (prerequisite chain)
         let hdsDepth = 0;
         if (gd) {
             const adj = {};
@@ -45599,44 +45589,60 @@ const COGNITIVE_DATA = {
             gd.links.forEach(l => {
                 const s = typeof l.source==='object'?l.source.id:l.source;
                 const t = typeof l.target==='object'?l.target.id:l.target;
-                const type = l.type||'';
-                if (type==='prerequisite'||type==='requires') { adj[s].add(t); }
+                if ((l.type||'')==='prerequisite'||(l.type||'')==='requires') { adj[s].add(t); }
             });
-            // BFS from this node
-            const visited = new Set([n.id]); const queue = [{id:n.id,d:0}];
+            const visited = new Set([n.id]), queue = [{id:n.id,d:0}];
             while (queue.length) {
                 const {id,d}=queue.shift(); hdsDepth=Math.max(hdsDepth,d);
                 adj[id].forEach(nbid=>{if(!visited.has(nbid)){visited.add(nbid);queue.push({id:nbid,d:d+1});}});
             }
         }
 
-        const uniqueNbrs = [...new Set(neighbors)];
-        const topNbrs = uniqueNbrs.slice(0,6);
-        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">Connections:</span><span class="val">'+connections+' — '+topNbrs.join(', ')+(uniqueNbrs.length>6?', +'+(uniqueNbrs.length-6)+' more':'')+'</span></div>' : '';
+        // Node role classification
+        const avgDegree = gd ? (2 * gd.links.length / gd.nodes.length) : 6.2;
+        let role = 'Intermediate'; let roleColor = '#60a5fa';
+        if (hdsDepth >= 3) { role = 'Prerequisite Chain'; roleColor = '#22d3ee'; }
+        else if (connections > avgDegree * 2) { role = 'Hub Concept'; roleColor = '#f59e0b'; }
+        else if (connections <= 2) { role = 'Peripheral'; roleColor = '#6b7280'; }
+
+        // Auto-generated insight
+        const lvOrder = {elementary:1, middle:2, high:3, college:4};
+        const lev = lvOrder[lv]||3;
+        let insight = '';
+        if (role === 'Hub Concept') insight = 'This concept connects to many others, acting as a structural hub. Understanding it unlocks multiple advanced topics.';
+        else if (role === 'Prerequisite Chain') insight = 'This concept sits in a deep dependency chain (depth='+hdsDepth+'), serving as a building block for higher concepts.';
+        else if (role === 'Peripheral') insight = 'This concept has few direct connections — a specialized topic with narrow dependencies.';
+        else insight = 'This concept holds a balanced position in the knowledge network with moderate connectivity.';
+
+        const lvDesc = {elementary:'Foundational: basic arithmetic and early geometry concepts', middle:'Intermediate: algebra, equations, and function concepts', high:'Advanced: calculus, probability, and vector concepts', college:'Specialized: higher mathematics with formal proofs and theory'}[lv]||'General concept';
+
+        // Render metrics
+        const uniqueNbrs = [...new Set(neighbors)]; const topNbrs = uniqueNbrs.slice(0,5);
+        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">Connected to:</span><span class="val">'+topNbrs.join(', ')+(uniqueNbrs.length>5?', +'+(uniqueNbrs.length-5):'')+'</span></div>' : '';
 
         document.getElementById('dmetrics').innerHTML =
-            '<div class="row"><span class="label">Degree:</span><span class="val">'+connections+' relations</span></div>'+
-            nbrHtml+
-            '<div class="row"><span class="label">Graph CDS:</span><span class="val">'+cds+'</span></div>'+
+            '<div style="margin-bottom:3px;font-size:.6rem;color:#7a9aff;font-weight:500">NODE PROFILE</div>'+
+            '<div class="row"><span class="label">Degree:</span><span class="val">'+connections+' connections</span></div>'+nbrHtml+
+            '<div class="row"><span class="label">Role:</span><span class="val" style="color:'+roleColor+'">'+role+'</span></div>'+
             '<div class="row"><span class="label">HDS depth:</span><span class="val">'+hdsDepth+' levels</span></div>'+
-            '<div class="row"><span class="label">LDS ZH-EN:</span><span class="val">0.504</span></div>';
-
-        // Educational note
-        const lvOrder = {elementary:1, middle:2, high:3, college:4};
-        const level = lvOrder[lv]||3;
-        let note = 'CDS = 2|E|/(|V|·(|V|-1)) measures concept interconnectedness. ';
-        note += 'HDS = longest prerequisite chain depth. ';
-        note += 'LDS = 1 − |A∩B|/|A∪B| measures cross-language structural divergence.';
-        if (level <= 2) note += ' Foundation-level concepts typically have higher CDS (denser connections).';
-        else note += ' Advanced concepts typically have lower CDS (more specialized, sparser connections).';
+            '<div class="row"><span class="label">Sources:</span><span class="val">'+(n.source_count||1)+' textbooks</span></div>'+
+            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">GRAPH PROFILE (full dataset: '+(gd?gd.nodes.length:574)+' nodes)</div>'+
+            '<div class="row"><span class="label">CDS:</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
+            '<div class="row"><span class="label">Avg degree:</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
+            '<div class="row"><span class="label">LDS ZH-EN:</span><span class="val">0.504</span></div>'+
+            '<div class="row"><span class="label">LDS ZH-DE:</span><span class="val">0.443</span></div>'+
+            '<div class="row"><span class="label">LDS EN-DE:</span><span class="val">0.511</span></div>';
 
         document.getElementById('dnote').innerHTML =
-            '<em>'+lvDesc+'. '+note+'</em>';
+            '<div style="margin-bottom:2px;font-weight:500;color:#7a9aff">ABOUT</div>'+
+            '<em>'+lvDesc+'.</em><br><br>'+
+            '<em>'+insight+'</em><br><br>'+
+            '<em>CDS = 2|E|/(|V|·(|V|-1)) — concept interconnectedness (full graph).<br>HDS = longest prerequisite chain from this concept.<br>LDS = 1 − |A∩B|/|A∪B| — cross-language structural divergence.</em>';
 
         const refs = n.cross_references||[];
         document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
         e.style.display = 'block';
-        clearTimeout(e._t); e._t = setTimeout(hideDetail, 15000);
+        clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000);
     }
     function hideDetail() { document.getElementById('detail').style.display = 'none'; }
 
