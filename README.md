@@ -21,13 +21,65 @@
   </a>
   <img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/BWKI-2026-8A2BE2?style=flat-square" alt="BWKI 2026">
+  <img src="https://img.shields.io/badge/dataset-10k_samples-green?style=flat-square" alt="Dataset">
+  <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/discussions">
+    <img src="https://img.shields.io/badge/ask-anything-ff69b4?style=flat-square" alt="Ask Anything">
+  </a>
 </p>
 
 <p align="center">
-  <img src="cognitive-space/web/screenshot.png" alt="CognitiveSpace — 3D Math Knowledge Graph, ZH/EN/DE across 4 education levels" width="90%" onerror="this.style.display='none'">
+  <img src="cognitive-space/web/screenshot.png" alt="CognitiveSpace — 3D Math Knowledge Graph, ZH/EN/DE across 4 education levels" width="90%">
   <br>
   <em>CognitiveSpace — 3D knowledge graph of mathematics across 4 education levels (elementary → university) in ZH/EN/DE. 574 concepts, 3538 relations, 68 textbooks.</em>
 </p>
+
+---
+
+## Research Pipeline
+
+```mermaid
+flowchart LR
+    subgraph Corpus["📚 Textbook Corpus"]
+        ZH["45 Chinese<br/>(Renjiao, Tongji)"]
+        EN["20 English<br/>(Stewart, MIT, Khan)"]
+        DE["10 German<br/>(Forster, Fischer, Klett)"]
+    end
+
+    subgraph Extraction["🔬 LLM Extraction"]
+        MIMO["MIMO Prompt<br/>Concept & Relation Extraction"]
+        RAW["Raw Concept/Relation<br/>JSON (63 files)"]
+    end
+
+    subgraph Graph["🕸️ Knowledge Graph"]
+        MERGE["Merge & Deduplicate"]
+        ALIGN["Cross-Language Alignment<br/>(30 shared concept IDs)"]
+        KG["CognitiveSpace Graph<br/>574 nodes · 3538 edges"]
+    end
+
+    subgraph Analysis["📊 Cognitive Analysis"]
+        LDS["LDS Calculation<br/>(Language Drift Score)"]
+        COMPARE["Cross-Language<br/>Comparison"]
+        GOLD["Gold Dataset<br/>(10k samples)"]
+    end
+
+    subgraph Viz["🎯 Visualization"]
+        CS["CognitiveSpace 3D<br/>Concentric Shell Layout"]
+        FILTER["ZH / EN / DE<br/>Interactive Filtering"]
+    end
+
+    ZH --> MIMO
+    EN --> MIMO
+    DE --> MIMO
+    MIMO --> RAW
+    RAW --> MERGE
+    MERGE --> ALIGN
+    ALIGN --> KG
+    KG --> LDS
+    KG --> CS
+    KG --> GOLD
+    LDS --> COMPARE
+    CS --> FILTER
+```
 
 ---
 
