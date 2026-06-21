@@ -1,7 +1,7 @@
-// CognitiveSpace — Embedded visualization data
+// CognitiveSpace — Embedded visualization data (external, with translations)
 // 574 concepts, 3538 links
 // 68 textbooks: 45 ZH + 20 EN + 10 DE
-const COGNITIVE_DATA = {
+const COGNITIVE_DATA_EXT = {
   "version": "2.0",
   "generated_at": "2026-06-20T23:54:33.701877",
   "nodes": [
@@ -10,8 +10,8 @@ const COGNITIVE_DATA = {
       "name": "导数",
       "labels": {
         "zh": "导数",
-        "en": "导数",
-        "de": "导数"
+        "en": "Derivative",
+        "de": "Ableitung"
       },
       "group": "calculus",
       "level": "high",
@@ -50,8 +50,8 @@ const COGNITIVE_DATA = {
       "name": "极限",
       "labels": {
         "zh": "极限",
-        "en": "极限",
-        "de": "极限"
+        "en": "Limit",
+        "de": "Grenzwert"
       },
       "group": "calculus",
       "level": "high",
@@ -90,8 +90,8 @@ const COGNITIVE_DATA = {
       "name": "积分",
       "labels": {
         "zh": "积分",
-        "en": "积分",
-        "de": "积分"
+        "en": "Integral",
+        "de": "Integral"
       },
       "group": "calculus",
       "level": "high",
@@ -112,8 +112,8 @@ const COGNITIVE_DATA = {
       "name": "微分",
       "labels": {
         "zh": "微分",
-        "en": "微分",
-        "de": "微分"
+        "en": "Differential",
+        "de": "Differential"
       },
       "group": "calculus",
       "level": "high",
@@ -218,8 +218,8 @@ const COGNITIVE_DATA = {
       "name": "切线",
       "labels": {
         "zh": "切线",
-        "en": "切线",
-        "de": "切线"
+        "en": "Tangent Line",
+        "de": "Tangente"
       },
       "group": "calculus",
       "level": "middle",
@@ -302,8 +302,8 @@ const COGNITIVE_DATA = {
       "name": "函数",
       "labels": {
         "zh": "函数",
-        "en": "函数",
-        "de": "函数"
+        "en": "Function",
+        "de": "Funktion"
       },
       "group": "calculus",
       "level": "middle",
@@ -570,8 +570,8 @@ const COGNITIVE_DATA = {
       "name": "梯度",
       "labels": {
         "zh": "梯度",
-        "en": "梯度",
-        "de": "梯度"
+        "en": "Gradient",
+        "de": "Gradient"
       },
       "group": "calculus",
       "level": "high",
@@ -792,8 +792,8 @@ const COGNITIVE_DATA = {
       "name": "和差法则",
       "labels": {
         "zh": "和差法则",
-        "en": "和差法则",
-        "de": "和差法则"
+        "en": "Sum and Difference Rule",
+        "de": "Summen- und Differenzregel"
       },
       "group": "calculus",
       "level": "high",
@@ -826,8 +826,8 @@ const COGNITIVE_DATA = {
       "name": "积法则",
       "labels": {
         "zh": "积法则",
-        "en": "积法则",
-        "de": "积法则"
+        "en": "Product Rule",
+        "de": "Produktregel"
       },
       "group": "calculus",
       "level": "high",
@@ -866,8 +866,8 @@ const COGNITIVE_DATA = {
       "name": "商法则",
       "labels": {
         "zh": "商法则",
-        "en": "商法则",
-        "de": "商法则"
+        "en": "Quotient Rule",
+        "de": "Quotientenregel"
       },
       "group": "calculus",
       "level": "high",
@@ -956,8 +956,8 @@ const COGNITIVE_DATA = {
       "name": "微积分基本定理",
       "labels": {
         "zh": "微积分基本定理",
-        "en": "微积分基本定理",
-        "de": "微积分基本定理"
+        "en": "Fundamental Theorem of Calculus",
+        "de": "Fundamentalsatz der Analysis"
       },
       "group": "calculus",
       "level": "high",
@@ -1084,8 +1084,8 @@ const COGNITIVE_DATA = {
       "name": "洛必达法则",
       "labels": {
         "zh": "洛必达法则",
-        "en": "洛必达法则",
-        "de": "洛必达法则"
+        "en": "L'Hôpital's Rule",
+        "de": "Regel von L'Hôpital"
       },
       "group": "calculus",
       "level": "high",
@@ -1140,8 +1140,8 @@ const COGNITIVE_DATA = {
       "name": "柯西中值定理",
       "labels": {
         "zh": "柯西中值定理",
-        "en": "柯西中值定理",
-        "de": "柯西中值定理"
+        "en": "Cauchy's Mean Value Theorem",
+        "de": "Cauchyscher Mittelwertsatz"
       },
       "group": "calculus",
       "level": "high",
@@ -1412,8 +1412,8 @@ const COGNITIVE_DATA = {
       "name": "积分",
       "labels": {
         "zh": "积分",
-        "en": "积分",
-        "de": "积分"
+        "en": "Integral",
+        "de": "Integral"
       },
       "group": "calculus",
       "level": "high",
@@ -1434,8 +1434,8 @@ const COGNITIVE_DATA = {
       "name": "微分",
       "labels": {
         "zh": "微分",
-        "en": "微分",
-        "de": "微分"
+        "en": "Differential",
+        "de": "Differential"
       },
       "group": "calculus",
       "level": "high",
@@ -1594,8 +1594,8 @@ const COGNITIVE_DATA = {
       "name": "梯度",
       "labels": {
         "zh": "梯度",
-        "en": "梯度",
-        "de": "梯度"
+        "en": "Gradient",
+        "de": "Gradient"
       },
       "group": "calculus",
       "level": "high",
@@ -1704,8 +1704,8 @@ const COGNITIVE_DATA = {
       "name": "矩阵",
       "labels": {
         "zh": "矩阵",
-        "en": "矩阵",
-        "de": "矩阵"
+        "en": "Matrix",
+        "de": "Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2024,8 +2024,8 @@ const COGNITIVE_DATA = {
       "name": "逆矩阵",
       "labels": {
         "zh": "逆矩阵",
-        "en": "逆矩阵",
-        "de": "逆矩阵"
+        "en": "Inverse Matrix",
+        "de": "Inverse Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2118,8 +2118,8 @@ const COGNITIVE_DATA = {
       "name": "克莱姆法则",
       "labels": {
         "zh": "克莱姆法则",
-        "en": "克莱姆法则",
-        "de": "克莱姆法则"
+        "en": "Cramer's Rule",
+        "de": "Cramersche Regel"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2528,8 +2528,8 @@ const COGNITIVE_DATA = {
       "name": "基",
       "labels": {
         "zh": "基",
-        "en": "基",
-        "de": "基"
+        "en": "Basis",
+        "de": "Basis"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2550,8 +2550,8 @@ const COGNITIVE_DATA = {
       "name": "维数",
       "labels": {
         "zh": "维数",
-        "en": "维数",
-        "de": "维数"
+        "en": "Dimension",
+        "de": "Dimension"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -3208,8 +3208,8 @@ const COGNITIVE_DATA = {
       "name": "大数定律",
       "labels": {
         "zh": "大数定律",
-        "en": "大数定律",
-        "de": "大数定律"
+        "en": "Law of Large Numbers",
+        "de": "Gesetz der großen Zahlen"
       },
       "group": "statistics",
       "level": "college",
@@ -3242,8 +3242,8 @@ const COGNITIVE_DATA = {
       "name": "中心极限定理",
       "labels": {
         "zh": "中心极限定理",
-        "en": "中心极限定理",
-        "de": "中心极限定理"
+        "en": "Central Limit Theorem",
+        "de": "Zentraler Grenzwertsatz"
       },
       "group": "statistics",
       "level": "college",
@@ -3338,8 +3338,8 @@ const COGNITIVE_DATA = {
       "name": "t分布",
       "labels": {
         "zh": "t分布",
-        "en": "t分布",
-        "de": "t分布"
+        "en": "t-Distribution",
+        "de": "t-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -3372,8 +3372,8 @@ const COGNITIVE_DATA = {
       "name": "F分布",
       "labels": {
         "zh": "F分布",
-        "en": "F分布",
-        "de": "F分布"
+        "en": "F-Distribution",
+        "de": "F-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -3620,8 +3620,8 @@ const COGNITIVE_DATA = {
       "name": "t检验",
       "labels": {
         "zh": "t检验",
-        "en": "t检验",
-        "de": "t检验"
+        "en": "t-Test",
+        "de": "t-Test"
       },
       "group": "statistics",
       "level": "college",
@@ -3654,8 +3654,8 @@ const COGNITIVE_DATA = {
       "name": "F检验",
       "labels": {
         "zh": "F检验",
-        "en": "F检验",
-        "de": "F检验"
+        "en": "F-Test",
+        "de": "F-Test"
       },
       "group": "statistics",
       "level": "college",
@@ -4218,8 +4218,8 @@ const COGNITIVE_DATA = {
       "name": "加法",
       "labels": {
         "zh": "加法",
-        "en": "加法",
-        "de": "加法"
+        "en": "Addition",
+        "de": "Addition"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4302,8 +4302,8 @@ const COGNITIVE_DATA = {
       "name": "除法",
       "labels": {
         "zh": "除法",
-        "en": "除法",
-        "de": "除法"
+        "en": "Division",
+        "de": "Division"
       },
       "group": "elementary",
       "level": "elementary",
@@ -5390,8 +5390,8 @@ const COGNITIVE_DATA = {
       "name": "范数",
       "labels": {
         "zh": "范数",
-        "en": "范数",
-        "de": "范数"
+        "en": "Norm",
+        "de": "Norm"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5536,8 +5536,8 @@ const COGNITIVE_DATA = {
       "name": "最小二乘法",
       "labels": {
         "zh": "最小二乘法",
-        "en": "最小二乘法",
-        "de": "最小二乘法"
+        "en": "Least Squares Method",
+        "de": "Methode der kleinsten Quadrate"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5859,7 +5859,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Monotonie",
       "name": "Monotonie",
       "labels": {
-        "de": "Monotonie"
+        "de": "Monotonie",
+        "zh": "单调性",
+        "en": "Monotonicity"
       },
       "group": "general",
       "level": "college",
@@ -6111,7 +6113,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Polarkoordinaten",
       "name": "Polarkoordinaten",
       "labels": {
-        "de": "Polarkoordinaten"
+        "de": "Polarkoordinaten",
+        "zh": "极坐标",
+        "en": "Polar Coordinates"
       },
       "group": "general",
       "level": "college",
@@ -6641,7 +6645,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Gradient",
       "name": "Gradient",
       "labels": {
-        "de": "Gradient"
+        "de": "Gradient",
+        "zh": "梯度",
+        "en": "Gradient"
       },
       "group": "general",
       "level": "college",
@@ -6701,7 +6707,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Divergenz",
       "name": "Divergenz",
       "labels": {
-        "de": "Divergenz"
+        "de": "Divergenz",
+        "zh": "散度",
+        "en": "Divergence"
       },
       "group": "general",
       "level": "college",
@@ -6721,7 +6729,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Rotation",
       "name": "Rotation",
       "labels": {
-        "de": "Rotation"
+        "de": "Rotation",
+        "zh": "旋度",
+        "en": "Curl"
       },
       "group": "general",
       "level": "college",
@@ -6821,7 +6831,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Viereck",
       "name": "Viereck",
       "labels": {
-        "de": "Viereck"
+        "de": "Viereck",
+        "zh": "四边形",
+        "en": "Quadrilateral"
       },
       "group": "general",
       "level": "high",
@@ -6841,7 +6853,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Gleichung",
       "name": "Gleichung",
       "labels": {
-        "de": "Gleichung"
+        "de": "Gleichung",
+        "zh": "方程",
+        "en": "Equation"
       },
       "group": "general",
       "level": "high",
@@ -6881,7 +6895,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Durchschnitt",
       "name": "Durchschnitt",
       "labels": {
-        "de": "Durchschnitt"
+        "de": "Durchschnitt",
+        "zh": "平均数",
+        "en": "Average"
       },
       "group": "general",
       "level": "high",
@@ -7061,7 +7077,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Achsensymmetrie",
       "name": "Achsensymmetrie",
       "labels": {
-        "de": "Achsensymmetrie"
+        "de": "Achsensymmetrie",
+        "zh": "轴对称",
+        "en": "Axial Symmetry"
       },
       "group": "general",
       "level": "high",
@@ -7367,7 +7385,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Fehler 1. Art",
       "name": "Fehler 1. Art",
       "labels": {
-        "de": "Fehler 1. Art"
+        "de": "Fehler 1. Art",
+        "zh": "第一类错误",
+        "en": "Type I Error"
       },
       "group": "general",
       "level": "college",
@@ -7387,7 +7407,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Fehler 2. Art",
       "name": "Fehler 2. Art",
       "labels": {
-        "de": "Fehler 2. Art"
+        "de": "Fehler 2. Art",
+        "zh": "第二类错误",
+        "en": "Type II Error"
       },
       "group": "general",
       "level": "college",
@@ -7527,7 +7549,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Umkehrfunktion",
       "name": "Umkehrfunktion",
       "labels": {
-        "de": "Umkehrfunktion"
+        "de": "Umkehrfunktion",
+        "zh": "反比例函数",
+        "en": "Inverse Function"
       },
       "group": "general",
       "level": "college",
@@ -7727,7 +7751,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Kombinatorik",
       "name": "Kombinatorik",
       "labels": {
-        "de": "Kombinatorik"
+        "de": "Kombinatorik",
+        "zh": "组合数学",
+        "en": "Combinatorics"
       },
       "group": "general",
       "level": "college",
@@ -7913,7 +7939,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Mean Value Theorem",
       "name": "Mean Value Theorem",
       "labels": {
-        "en": "Mean Value Theorem"
+        "en": "Mean Value Theorem",
+        "zh": "中值定理",
+        "de": "Mittelwertsatz"
       },
       "group": "general",
       "level": "college",
@@ -10819,7 +10847,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_数轴",
       "name": "数轴",
       "labels": {
-        "zh": "数轴"
+        "zh": "数轴",
+        "en": "Number Line",
+        "de": "Zahlenstrahl"
       },
       "group": "general",
       "level": "middle",
@@ -10839,7 +10869,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_相反数",
       "name": "相反数",
       "labels": {
-        "zh": "相反数"
+        "zh": "相反数",
+        "en": "Opposite Number",
+        "de": "Gegenzahl"
       },
       "group": "general",
       "level": "middle",
@@ -10859,7 +10891,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_绝对值",
       "name": "绝对值",
       "labels": {
-        "zh": "绝对值"
+        "zh": "绝对值",
+        "en": "Absolute Value",
+        "de": "Absolutbetrag"
       },
       "group": "general",
       "level": "middle",
@@ -10967,7 +11001,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_平方根",
       "name": "平方根",
       "labels": {
-        "zh": "平方根"
+        "zh": "平方根",
+        "en": "Square Root",
+        "de": "Quadratwurzel"
       },
       "group": "general",
       "level": "middle",
@@ -10987,7 +11023,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_立方根",
       "name": "立方根",
       "labels": {
-        "zh": "立方根"
+        "zh": "立方根",
+        "en": "Cube Root",
+        "de": "Kubikwurzel"
       },
       "group": "general",
       "level": "middle",
@@ -11007,7 +11045,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_消元法",
       "name": "消元法",
       "labels": {
-        "zh": "消元法"
+        "zh": "消元法",
+        "en": "Elimination Method",
+        "de": "Eliminationsverfahren"
       },
       "group": "general",
       "level": "middle",
@@ -11027,7 +11067,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_求根公式",
       "name": "求根公式",
       "labels": {
-        "zh": "求根公式"
+        "zh": "求根公式",
+        "en": "Quadratic Formula",
+        "de": "Quadratische Lösungsformel"
       },
       "group": "general",
       "level": "middle",
@@ -11047,7 +11089,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_判别式",
       "name": "判别式",
       "labels": {
-        "zh": "判别式"
+        "zh": "判别式",
+        "en": "Discriminant",
+        "de": "Diskriminante"
       },
       "group": "general",
       "level": "middle",
@@ -11067,7 +11111,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_顶点",
       "name": "顶点",
       "labels": {
-        "zh": "顶点"
+        "zh": "顶点",
+        "en": "Vertex",
+        "de": "Scheitelpunkt"
       },
       "group": "general",
       "level": "middle",
@@ -11087,7 +11133,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_旋转",
       "name": "旋转",
       "labels": {
-        "zh": "旋转"
+        "zh": "旋转",
+        "en": "Rotation",
+        "de": "Rotation"
       },
       "group": "general",
       "level": "middle",
@@ -11113,7 +11161,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_中心对称",
       "name": "中心对称",
       "labels": {
-        "zh": "中心对称"
+        "zh": "中心对称",
+        "en": "Central Symmetry",
+        "de": "Zentralsymmetrie"
       },
       "group": "general",
       "level": "middle",
@@ -11177,7 +11227,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_圆周角",
       "name": "圆周角",
       "labels": {
-        "zh": "圆周角"
+        "zh": "圆周角",
+        "en": "Inscribed Angle",
+        "de": "Umfangswinkel"
       },
       "group": "general",
       "level": "middle",
@@ -11197,7 +11249,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_直角三角形",
       "name": "直角三角形",
       "labels": {
-        "zh": "直角三角形"
+        "zh": "直角三角形",
+        "en": "Right Triangle",
+        "de": "Rechtwinkliges Dreieck"
       },
       "group": "general",
       "level": "middle",
@@ -11239,7 +11293,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_三角形内角和",
       "name": "三角形内角和",
       "labels": {
-        "zh": "三角形内角和"
+        "zh": "三角形内角和",
+        "en": "Triangle Angle Sum",
+        "de": "Dreieckswinkelsumme"
       },
       "group": "general",
       "level": "middle",
@@ -11259,7 +11315,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_全等判定",
       "name": "全等判定",
       "labels": {
-        "zh": "全等判定"
+        "zh": "全等判定",
+        "en": "Congruence Criterion",
+        "de": "Kongruenzkriterium"
       },
       "group": "general",
       "level": "middle",
@@ -11279,7 +11337,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_轴对称",
       "name": "轴对称",
       "labels": {
-        "zh": "轴对称"
+        "zh": "轴对称",
+        "en": "Axial Symmetry",
+        "de": "Achsensymmetrie"
       },
       "group": "general",
       "level": "middle",
@@ -11305,7 +11365,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_等腰三角形",
       "name": "等腰三角形",
       "labels": {
-        "zh": "等腰三角形"
+        "zh": "等腰三角形",
+        "en": "Isosceles Triangle",
+        "de": "Gleichschenkliges Dreieck"
       },
       "group": "general",
       "level": "middle",
@@ -11325,7 +11387,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_因式分解",
       "name": "因式分解",
       "labels": {
-        "zh": "因式分解"
+        "zh": "因式分解",
+        "en": "Factorization",
+        "de": "Faktorisierung"
       },
       "group": "general",
       "level": "middle",
@@ -11345,7 +11409,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_分式",
       "name": "分式",
       "labels": {
-        "zh": "分式"
+        "zh": "分式",
+        "en": "Rational Expression",
+        "de": "Bruchterm"
       },
       "group": "general",
       "level": "middle",
@@ -11365,7 +11431,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_勾股定理逆定理",
       "name": "勾股定理逆定理",
       "labels": {
-        "zh": "勾股定理逆定理"
+        "zh": "勾股定理逆定理",
+        "en": "Converse of Pythagoras",
+        "de": "Umkehrung des Satzes des Pythagoras"
       },
       "group": "general",
       "level": "middle",
@@ -11429,7 +11497,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_比大小",
       "name": "比大小",
       "labels": {
-        "zh": "比大小"
+        "zh": "比大小",
+        "en": "Comparison",
+        "de": "Vergleich"
       },
       "group": "general",
       "level": "elementary",
@@ -11449,7 +11519,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_数位",
       "name": "数位",
       "labels": {
-        "zh": "数位"
+        "zh": "数位",
+        "en": "Digit Place",
+        "de": "Ziffernstelle"
       },
       "group": "general",
       "level": "elementary",
@@ -11469,7 +11541,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_凑十法",
       "name": "凑十法",
       "labels": {
-        "zh": "凑十法"
+        "zh": "凑十法",
+        "en": "Make-Ten Method",
+        "de": "Zehnerergänzung"
       },
       "group": "general",
       "level": "elementary",
@@ -11531,7 +11605,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_分类",
       "name": "分类",
       "labels": {
-        "zh": "分类"
+        "zh": "分类",
+        "en": "Classification",
+        "de": "Klassifikation"
       },
       "group": "general",
       "level": "elementary",
@@ -11571,7 +11647,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_锐角",
       "name": "锐角",
       "labels": {
-        "zh": "锐角"
+        "zh": "锐角",
+        "en": "Acute Angle",
+        "de": "Spitzer Winkel"
       },
       "group": "general",
       "level": "elementary",
@@ -11591,7 +11669,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_钝角",
       "name": "钝角",
       "labels": {
-        "zh": "钝角"
+        "zh": "钝角",
+        "en": "Obtuse Angle",
+        "de": "Stumpfer Winkel"
       },
       "group": "general",
       "level": "elementary",
@@ -11611,7 +11691,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_平均分",
       "name": "平均分",
       "labels": {
-        "zh": "平均分"
+        "zh": "平均分",
+        "en": "Equal Division",
+        "de": "Gleichmäßige Teilung"
       },
       "group": "general",
       "level": "elementary",
@@ -11653,7 +11735,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_平移",
       "name": "平移",
       "labels": {
-        "zh": "平移"
+        "zh": "平移",
+        "en": "Translation",
+        "de": "Translation"
       },
       "group": "general",
       "level": "elementary",
@@ -11673,7 +11757,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_混合运算",
       "name": "混合运算",
       "labels": {
-        "zh": "混合运算"
+        "zh": "混合运算",
+        "en": "Mixed Operations",
+        "de": "Gemischte Rechenoperationen"
       },
       "group": "general",
       "level": "elementary",
@@ -11733,7 +11819,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_随机试验",
       "name": "随机试验",
       "labels": {
-        "zh": "随机试验"
+        "zh": "随机试验",
+        "en": "Random Experiment",
+        "de": "Zufallsexperiment"
       },
       "group": "general",
       "level": "college",
@@ -11753,7 +11841,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_样本空间",
       "name": "样本空间",
       "labels": {
-        "zh": "样本空间"
+        "zh": "样本空间",
+        "en": "Sample Space",
+        "de": "Stichprobenraum"
       },
       "group": "general",
       "level": "college",
@@ -11773,7 +11863,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_随机事件",
       "name": "随机事件",
       "labels": {
-        "zh": "随机事件"
+        "zh": "随机事件",
+        "en": "Random Event",
+        "de": "Zufallsereignis"
       },
       "group": "general",
       "level": "college",
@@ -11793,7 +11885,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_古典概型",
       "name": "古典概型",
       "labels": {
-        "zh": "古典概型"
+        "zh": "古典概型",
+        "en": "Classical Probability",
+        "de": "Klassische Wahrscheinlichkeit"
       },
       "group": "general",
       "level": "college",
@@ -11835,7 +11929,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_事件的独立性",
       "name": "事件的独立性",
       "labels": {
-        "zh": "事件的独立性"
+        "zh": "事件的独立性",
+        "en": "Independence of Events",
+        "de": "Unabhängigkeit von Ereignissen"
       },
       "group": "general",
       "level": "college",
@@ -11899,7 +11995,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_条件分布",
       "name": "条件分布",
       "labels": {
-        "zh": "条件分布"
+        "zh": "条件分布",
+        "en": "Conditional Distribution",
+        "de": "Bedingte Verteilung"
       },
       "group": "general",
       "level": "college",
@@ -11963,7 +12061,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_卷积公式",
       "name": "卷积公式",
       "labels": {
-        "zh": "卷积公式"
+        "zh": "卷积公式",
+        "en": "Convolution Formula",
+        "de": "Faltungsformel"
       },
       "group": "general",
       "level": "college",
@@ -11983,7 +12083,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_标准差",
       "name": "标准差",
       "labels": {
-        "zh": "标准差"
+        "zh": "标准差",
+        "en": "Standard Deviation",
+        "de": "Standardabweichung"
       },
       "group": "general",
       "level": "college",
@@ -12003,7 +12105,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_矩",
       "name": "矩",
       "labels": {
-        "zh": "矩"
+        "zh": "矩",
+        "en": "Moment",
+        "de": "Moment"
       },
       "group": "general",
       "level": "college",
@@ -12045,7 +12149,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_频率的稳定性",
       "name": "频率的稳定性",
       "labels": {
-        "zh": "频率的稳定性"
+        "zh": "频率的稳定性",
+        "en": "Stability of Frequency",
+        "de": "Stabilität der Häufigkeit"
       },
       "group": "general",
       "level": "college",
@@ -12065,7 +12171,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_总体",
       "name": "总体",
       "labels": {
-        "zh": "总体"
+        "zh": "总体",
+        "en": "Population",
+        "de": "Grundgesamtheit"
       },
       "group": "general",
       "level": "college",
@@ -12085,7 +12193,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_样本",
       "name": "样本",
       "labels": {
-        "zh": "样本"
+        "zh": "样本",
+        "en": "Sample",
+        "de": "Stichprobe"
       },
       "group": "general",
       "level": "college",
@@ -12105,7 +12215,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_样本均值",
       "name": "样本均值",
       "labels": {
-        "zh": "样本均值"
+        "zh": "样本均值",
+        "en": "Sample Mean",
+        "de": "Stichprobenmittel"
       },
       "group": "general",
       "level": "college",
@@ -12125,7 +12237,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_样本方差",
       "name": "样本方差",
       "labels": {
-        "zh": "样本方差"
+        "zh": "样本方差",
+        "en": "Sample Variance",
+        "de": "Stichprobenvarianz"
       },
       "group": "general",
       "level": "college",
@@ -12145,7 +12259,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_点估计",
       "name": "点估计",
       "labels": {
-        "zh": "点估计"
+        "zh": "点估计",
+        "en": "Point Estimation",
+        "de": "Punktschätzung"
       },
       "group": "general",
       "level": "college",
@@ -12165,7 +12281,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_矩估计",
       "name": "矩估计",
       "labels": {
-        "zh": "矩估计"
+        "zh": "矩估计",
+        "en": "Method of Moments",
+        "de": "Momentenmethode"
       },
       "group": "general",
       "level": "college",
@@ -12185,7 +12303,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_似然函数",
       "name": "似然函数",
       "labels": {
-        "zh": "似然函数"
+        "zh": "似然函数",
+        "en": "Likelihood Function",
+        "de": "Likelihood-Funktion"
       },
       "group": "general",
       "level": "college",
@@ -12205,7 +12325,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_无偏性",
       "name": "无偏性",
       "labels": {
-        "zh": "无偏性"
+        "zh": "无偏性",
+        "en": "Unbiasedness",
+        "de": "Erwartungstreue"
       },
       "group": "general",
       "level": "college",
@@ -12225,7 +12347,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_有效性",
       "name": "有效性",
       "labels": {
-        "zh": "有效性"
+        "zh": "有效性",
+        "en": "Efficiency",
+        "de": "Effizienz"
       },
       "group": "general",
       "level": "college",
@@ -12287,7 +12411,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_拒绝域",
       "name": "拒绝域",
       "labels": {
-        "zh": "拒绝域"
+        "zh": "拒绝域",
+        "en": "Rejection Region",
+        "de": "Ablehnungsbereich"
       },
       "group": "general",
       "level": "college",
@@ -12307,7 +12433,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_第一类错误",
       "name": "第一类错误",
       "labels": {
-        "zh": "第一类错误"
+        "zh": "第一类错误",
+        "en": "Type I Error",
+        "de": "Fehler 1. Art"
       },
       "group": "general",
       "level": "college",
@@ -12327,7 +12455,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_第二类错误",
       "name": "第二类错误",
       "labels": {
-        "zh": "第二类错误"
+        "zh": "第二类错误",
+        "en": "Type II Error",
+        "de": "Fehler 2. Art"
       },
       "group": "general",
       "level": "college",
@@ -12347,7 +12477,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_Z检验",
       "name": "Z检验",
       "labels": {
-        "zh": "Z检验"
+        "zh": "Z检验",
+        "en": "Z-Test",
+        "de": "Z-Test"
       },
       "group": "general",
       "level": "college",
@@ -12367,7 +12499,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_χ²检验",
       "name": "χ²检验",
       "labels": {
-        "zh": "χ²检验"
+        "zh": "χ²检验",
+        "en": "Chi-Square Test",
+        "de": "Chi-Quadrat-Test"
       },
       "group": "general",
       "level": "college",
@@ -12387,7 +12521,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_二阶行列式",
       "name": "二阶行列式",
       "labels": {
-        "zh": "二阶行列式"
+        "zh": "二阶行列式",
+        "en": "Second-Order Determinant",
+        "de": "Determinante 2. Ordnung"
       },
       "group": "general",
       "level": "college",
@@ -12407,7 +12543,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_三阶行列式",
       "name": "三阶行列式",
       "labels": {
-        "zh": "三阶行列式"
+        "zh": "三阶行列式",
+        "en": "Third-Order Determinant",
+        "de": "Determinante 3. Ordnung"
       },
       "group": "general",
       "level": "college",
@@ -12427,7 +12565,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_逆序数",
       "name": "逆序数",
       "labels": {
-        "zh": "逆序数"
+        "zh": "逆序数",
+        "en": "Inversion Number",
+        "de": "Inversionszahl"
       },
       "group": "general",
       "level": "college",
@@ -12447,7 +12587,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_对换",
       "name": "对换",
       "labels": {
-        "zh": "对换"
+        "zh": "对换",
+        "en": "Transposition",
+        "de": "Transposition"
       },
       "group": "general",
       "level": "college",
@@ -12467,7 +12609,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_矩阵的幂",
       "name": "矩阵的幂",
       "labels": {
-        "zh": "矩阵的幂"
+        "zh": "矩阵的幂",
+        "en": "Matrix Power",
+        "de": "Matrixpotenz"
       },
       "group": "general",
       "level": "college",
@@ -12509,7 +12653,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_数乘向量",
       "name": "数乘向量",
       "labels": {
-        "zh": "数乘向量"
+        "zh": "数乘向量",
+        "en": "Scalar Multiplication",
+        "de": "Skalarmultiplikation"
       },
       "group": "general",
       "level": "college",
@@ -12529,7 +12675,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_向量的模",
       "name": "向量的模",
       "labels": {
-        "zh": "向量的模"
+        "zh": "向量的模",
+        "en": "Vector Magnitude",
+        "de": "Vektorbetrag"
       },
       "group": "general",
       "level": "college",
@@ -12549,7 +12697,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_向量积",
       "name": "向量积",
       "labels": {
-        "zh": "向量积"
+        "zh": "向量积",
+        "en": "Cross Product",
+        "de": "Kreuzprodukt"
       },
       "group": "general",
       "level": "college",
@@ -12569,7 +12719,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_混合积",
       "name": "混合积",
       "labels": {
-        "zh": "混合积"
+        "zh": "混合积",
+        "en": "Scalar Triple Product",
+        "de": "Spatprodukt"
       },
       "group": "general",
       "level": "college",
@@ -12611,7 +12763,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_标准形",
       "name": "标准形",
       "labels": {
-        "zh": "标准形"
+        "zh": "标准形",
+        "en": "Canonical Form",
+        "de": "Kanonische Form"
       },
       "group": "general",
       "level": "college",
@@ -12631,7 +12785,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_正定二次型",
       "name": "正定二次型",
       "labels": {
-        "zh": "正定二次型"
+        "zh": "正定二次型",
+        "en": "Positive Definite Quadratic Form",
+        "de": "Positiv definite quadratische Form"
       },
       "group": "general",
       "level": "college",
@@ -12651,7 +12807,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_合同变换",
       "name": "合同变换",
       "labels": {
-        "zh": "合同变换"
+        "zh": "合同变换",
+        "en": "Congruent Transformation",
+        "de": "Kongruenztransformation"
       },
       "group": "general",
       "level": "college",
@@ -12693,7 +12851,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_线性变换的复合",
       "name": "线性变换的复合",
       "labels": {
-        "zh": "线性变换的复合"
+        "zh": "线性变换的复合",
+        "en": "Composition of Linear Maps",
+        "de": "Komposition linearer Abbildungen"
       },
       "group": "general",
       "level": "college",
@@ -12713,7 +12873,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_常数函数的导数",
       "name": "常数函数的导数",
       "labels": {
-        "zh": "常数函数的导数"
+        "zh": "常数函数的导数",
+        "en": "Derivative of Constant",
+        "de": "Ableitung einer Konstanten"
       },
       "group": "general",
       "level": "high",
@@ -12733,7 +12895,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_幂函数的导数",
       "name": "幂函数的导数",
       "labels": {
-        "zh": "幂函数的导数"
+        "zh": "幂函数的导数",
+        "en": "Derivative of Power Function",
+        "de": "Ableitung der Potenzfunktion"
       },
       "group": "general",
       "level": "high",
@@ -12841,7 +13005,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_可微",
       "name": "可微",
       "labels": {
-        "zh": "可微"
+        "zh": "可微",
+        "en": "Differentiable",
+        "de": "Differenzierbar"
       },
       "group": "general",
       "level": "high",
@@ -12861,7 +13027,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_微分的几何意义",
       "name": "微分的几何意义",
       "labels": {
-        "zh": "微分的几何意义"
+        "zh": "微分的几何意义",
+        "en": "Geometric Meaning of Differential",
+        "de": "Geometrische Bedeutung des Differentials"
       },
       "group": "general",
       "level": "high",
@@ -12881,7 +13049,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_积分下限",
       "name": "积分下限",
       "labels": {
-        "zh": "积分下限"
+        "zh": "积分下限",
+        "en": "Lower Limit of Integration",
+        "de": "Untere Integrationsgrenze"
       },
       "group": "general",
       "level": "high",
@@ -12901,7 +13071,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_积分上限",
       "name": "积分上限",
       "labels": {
-        "zh": "积分上限"
+        "zh": "积分上限",
+        "en": "Upper Limit of Integration",
+        "de": "Obere Integrationsgrenze"
       },
       "group": "general",
       "level": "high",
@@ -12921,7 +13093,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_被积函数",
       "name": "被积函数",
       "labels": {
-        "zh": "被积函数"
+        "zh": "被积函数",
+        "en": "Integrand",
+        "de": "Integrand"
       },
       "group": "general",
       "level": "high",
@@ -12941,7 +13115,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_曲边梯形",
       "name": "曲边梯形",
       "labels": {
-        "zh": "曲边梯形"
+        "zh": "曲边梯形",
+        "en": "Curvilinear Trapezoid",
+        "de": "Krummliniges Trapez"
       },
       "group": "general",
       "level": "high",
@@ -12961,7 +13137,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_线性性质",
       "name": "线性性质",
       "labels": {
-        "zh": "线性性质"
+        "zh": "线性性质",
+        "en": "Linearity",
+        "de": "Linearität"
       },
       "group": "general",
       "level": "high",
@@ -12981,7 +13159,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_区间可加性",
       "name": "区间可加性",
       "labels": {
-        "zh": "区间可加性"
+        "zh": "区间可加性",
+        "en": "Interval Additivity",
+        "de": "Intervalladditivität"
       },
       "group": "general",
       "level": "high",
@@ -13001,7 +13181,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_估值定理",
       "name": "估值定理",
       "labels": {
-        "zh": "估值定理"
+        "zh": "估值定理",
+        "en": "Estimation Theorem",
+        "de": "Abschätzungssatz"
       },
       "group": "general",
       "level": "high",
@@ -13065,7 +13247,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_无穷级数",
       "name": "无穷级数",
       "labels": {
-        "zh": "无穷级数"
+        "zh": "无穷级数",
+        "en": "Infinite Series",
+        "de": "Unendliche Reihe"
       },
       "group": "general",
       "level": "high",
@@ -13085,7 +13269,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_收敛半径",
       "name": "收敛半径",
       "labels": {
-        "zh": "收敛半径"
+        "zh": "收敛半径",
+        "en": "Radius of Convergence",
+        "de": "Konvergenzradius"
       },
       "group": "general",
       "level": "high",
@@ -13105,7 +13291,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_高阶偏导数",
       "name": "高阶偏导数",
       "labels": {
-        "zh": "高阶偏导数"
+        "zh": "高阶偏导数",
+        "en": "Higher-Order Partial Derivative",
+        "de": "Partielle Ableitung höherer Ordnung"
       },
       "group": "general",
       "level": "high",
@@ -13125,7 +13313,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_向量场",
       "name": "向量场",
       "labels": {
-        "zh": "向量场"
+        "zh": "向量场",
+        "en": "Vector Field",
+        "de": "Vektorfeld"
       },
       "group": "general",
       "level": "high",
@@ -13145,7 +13335,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_保守场",
       "name": "保守场",
       "labels": {
-        "zh": "保守场"
+        "zh": "保守场",
+        "en": "Conservative Field",
+        "de": "Konservatives Feld"
       },
       "group": "general",
       "level": "high",
@@ -13187,7 +13379,9 @@ const COGNITIVE_DATA = {
       "id": "math_unmatched_边界条件",
       "name": "边界条件",
       "labels": {
-        "zh": "边界条件"
+        "zh": "边界条件",
+        "en": "Boundary Condition",
+        "de": "Randbedingung"
       },
       "group": "general",
       "level": "high",
