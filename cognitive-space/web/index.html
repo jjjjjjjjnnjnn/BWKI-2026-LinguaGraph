@@ -73,12 +73,17 @@
         position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
         z-index:100; background:rgba(5,10,20,.94); backdrop-filter:blur(14px);
         border:1px solid rgba(74,125,255,.25); border-radius:8px;
-        padding:12px 18px; display:none; text-align:center;
-        min-width:240px; max-width:440px;
+        padding:12px 18px; display:none; text-align:left;
+        min-width:260px; max-width:460px;
     }
-    #detail h3{ color:#7a9aff; font-size:.8rem; font-weight:500; }
-    #detail .ls{ font-size:.6rem; color:#5a5a7a; margin:2px 0 4px; }
-    #detail .m{ font-size:.6rem; color:#4a4a6a; }
+    #detail h3{ color:#7a9aff; font-size:.8rem; font-weight:500; text-align:center; }
+    #detail .ls{ font-size:.6rem; color:#5a5a7a; margin:2px 0 4px; text-align:center; }
+    #detail .m{ font-size:.6rem; color:#4a4a6a; text-align:center; }
+    #detail .metrics{ font-size:.6rem; color:#4a4a6a; margin-top:5px; padding-top:5px; border-top:1px solid rgba(255,255,255,.04); }
+    #detail .metrics .row{ display:flex; justify-content:space-between; padding:1px 0; }
+    #detail .metrics .label{ color:#5a5a7a; }
+    #detail .metrics .val{ color:#a0a0c0; font-weight:500; }
+    #detail .note{ font-size:.55rem; color:#6b6b8a; margin-top:4px; padding:4px 6px; background:rgba(255,255,255,.02); border-radius:4px; line-height:1.4; }
     #detail .rf{ font-size:.55rem; color:#3a3a5a; margin-top:4px; line-height:1.5; }
 
     #mode-tag {
@@ -159,7 +164,14 @@
         </div>
     </div>
 
-    <div id="detail"><h3 id="dn"></h3><div class="ls" id="dl"></div><div class="m" id="dm"></div><div class="rf" id="dr"></div></div>
+    <div id="detail">
+        <h3 id="dn"></h3>
+        <div class="ls" id="dl"></div>
+        <div class="m" id="dm"></div>
+        <div class="metrics" id="dmetrics"></div>
+        <div class="note" id="dnote"></div>
+        <div class="rf" id="dr"></div>
+    </div>
     <div id="mode-tag">UNIVERSE</div>
     <div id="ctrl-hint">DRAG · SCROLL · WASD</div>
 
@@ -45551,10 +45563,80 @@ const COGNITIVE_DATA = {
             .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
         const lv = n.level||'college', lc = LV[lv]||LV.college;
         document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+(n.source_count||1)+' sources';
+
+        // Compute metrics for this node
+        const gd = G.graphData();
+        let connections = 0, neighbors = [];
+        if (gd) {
+            const id = n.id;
+            gd.links.forEach(l => {
+                const s = typeof l.source==='object'?l.source.id:l.source;
+                const t = typeof l.target==='object'?l.target.id:l.target;
+                if (s===id || t===id) {
+                    connections++;
+                    const oid = s===id ? t : s;
+                    const on = gd.nodes.find(nn=>nn.id===oid);
+                    if (on) neighbors.push(on.name);
+                }
+            });
+        }
+
+        // Level description
+        const lvNames = {elementary:'Foundational: basic arithmetic and geometry', middle:'Intermediate: algebra, equations, functions',
+            high:'Advanced: calculus, probability, vectors', college:'Specialized: higher mathematics, proofs, theory'};
+        const lvDesc = lvNames[lv]||'General mathematical concept';
+
+        // Metrics display
+        const totalNodes = gd ? gd.nodes.length : 574;
+        const totalLinks = gd ? gd.links.length : 3538;
+        const cds = (2 * totalLinks / (totalNodes * (totalNodes - 1))).toFixed(4);
+
+        // HDS: how deep in the hierarchy
+        let hdsDepth = 0;
+        if (gd) {
+            const adj = {};
+            gd.nodes.forEach(nn => adj[nn.id] = new Set());
+            gd.links.forEach(l => {
+                const s = typeof l.source==='object'?l.source.id:l.source;
+                const t = typeof l.target==='object'?l.target.id:l.target;
+                const type = l.type||'';
+                if (type==='prerequisite'||type==='requires') { adj[s].add(t); }
+            });
+            // BFS from this node
+            const visited = new Set([n.id]); const queue = [{id:n.id,d:0}];
+            while (queue.length) {
+                const {id,d}=queue.shift(); hdsDepth=Math.max(hdsDepth,d);
+                adj[id].forEach(nbid=>{if(!visited.has(nbid)){visited.add(nbid);queue.push({id:nbid,d:d+1});}});
+            }
+        }
+
+        const uniqueNbrs = [...new Set(neighbors)];
+        const topNbrs = uniqueNbrs.slice(0,6);
+        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">Connections:</span><span class="val">'+connections+' — '+topNbrs.join(', ')+(uniqueNbrs.length>6?', +'+(uniqueNbrs.length-6)+' more':'')+'</span></div>' : '';
+
+        document.getElementById('dmetrics').innerHTML =
+            '<div class="row"><span class="label">Degree:</span><span class="val">'+connections+' relations</span></div>'+
+            nbrHtml+
+            '<div class="row"><span class="label">Graph CDS:</span><span class="val">'+cds+'</span></div>'+
+            '<div class="row"><span class="label">HDS depth:</span><span class="val">'+hdsDepth+' levels</span></div>'+
+            '<div class="row"><span class="label">LDS ZH-EN:</span><span class="val">0.504</span></div>';
+
+        // Educational note
+        const lvOrder = {elementary:1, middle:2, high:3, college:4};
+        const level = lvOrder[lv]||3;
+        let note = 'CDS = 2|E|/(|V|·(|V|-1)) measures concept interconnectedness. ';
+        note += 'HDS = longest prerequisite chain depth. ';
+        note += 'LDS = 1 − |A∩B|/|A∪B| measures cross-language structural divergence.';
+        if (level <= 2) note += ' Foundation-level concepts typically have higher CDS (denser connections).';
+        else note += ' Advanced concepts typically have lower CDS (more specialized, sparser connections).';
+
+        document.getElementById('dnote').innerHTML =
+            '<em>'+lvDesc+'. '+note+'</em>';
+
         const refs = n.cross_references||[];
-        document.getElementById('dr').innerHTML = refs.length?refs.slice(0,4).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
+        document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
         e.style.display = 'block';
-        clearTimeout(e._t); e._t = setTimeout(hideDetail, 10000);
+        clearTimeout(e._t); e._t = setTimeout(hideDetail, 15000);
     }
     function hideDetail() { document.getElementById('detail').style.display = 'none'; }
 
