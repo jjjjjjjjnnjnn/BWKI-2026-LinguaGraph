@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaGraph Workbench</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #c8ccd8;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex; align-items: center; gap: 2rem;
+            padding: 1rem 2rem;
+            background: rgba(10,14,26,.92);
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav .logo {
+            font-weight: 700; font-size: 1rem; letter-spacing: -.02em;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        nav .logo span { font-weight: 400; opacity: .5; -webkit-text-fill-color: #6b7280; }
+        nav a {
+            color: #6b7280; text-decoration: none; font-size: .85rem;
+            transition: color .15s; padding: .25rem 0;
+        }
+        nav a:hover, nav a.active { color: #e0e0e0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 10px; padding: 1.5rem;
+            transition: border-color .2s;
+        }
+        .card:hover { border-color: rgba(96,165,250,.15); }
+
+        /* Stats grid */
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem; margin: 1.5rem 0;
+        }
+        .stat-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 8px; padding: 1.25rem; text-align: center;
+        }
+        .stat-card .value { font-size: 1.8rem; font-weight: 700; color: #f0f0f0; }
+        .stat-card .label { font-size: .7rem; color: #6b7280; margin-top: .25rem; text-transform: uppercase; letter-spacing: .04em; }
+
+        /* Color indicators */
+        .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+        .dot-elementary { background: #4ade80; }
+        .dot-middle { background: #22d3ee; }
+        .dot-high { background: #60a5fa; }
+        .dot-college { background: #c084fc; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block; padding: .6rem 1.4rem; border-radius: 6px;
+            font-size: .85rem; font-weight: 500; cursor: pointer;
+            border: 1px solid rgba(96,165,250,.25);
+            background: rgba(96,165,250,.08); color: #93b4f5;
+            transition: all .15s; text-decoration: none;
+        }
+        .btn:hover { background: rgba(96,165,250,.15); border-color: rgba(96,165,250,.4); }
+        .btn-primary {
+            background: #4a7dff; color: #fff; border-color: #4a7dff;
+        }
+        .btn-primary:hover { background: #3d6fe8; }
+
+        /* Upload area */
+        .upload-zone {
+            border: 2px dashed rgba(255,255,255,.1); border-radius: 10px;
+            padding: 3rem 2rem; text-align: center; transition: border-color .2s;
+            cursor: pointer; margin: 1.5rem 0;
+        }
+        .upload-zone:hover { border-color: rgba(96,165,250,.3); }
+        .upload-zone.dragover { border-color: #4a7dff; background: rgba(74,125,255,.05); }
+
+        /* Level bar */
+        .level-bar {
+            height: 24px; border-radius: 4px; overflow: hidden;
+            display: flex; margin: .5rem 0;
+        }
+        .level-bar .seg { transition: width .3s; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+        th, td { padding: .6rem .8rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,.04); }
+        th { color: #6b7280; font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+
+        /* Language pills */
+        .lang-pill {
+            display: inline-block; padding: .15rem .6rem; border-radius: 4px;
+            font-size: .7rem; font-weight: 500; margin: 1px;
+        }
+        .lang-zh { background: rgba(74,222,128,.12); color: #86efac; }
+        .lang-en { background: rgba(96,165,250,.12); color: #93c5fd; }
+        .lang-de { background: rgba(192,132,252,.12); color: #c4b5fd; }
+
+        h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: .5rem; }
+        h1 em { font-style: normal; color: #60a5fa; }
+        h2 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 .75rem; color: #e0e0e0; }
+        p { line-height: 1.6; color: #9ca3af; font-size: .9rem; }
+
+        /* embedded CognitiveSpace */
+        .viz-frame { width: 100%; height: 600px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; overflow: hidden; }
+        .viz-frame iframe { width: 100%; height: 100%; border: none; }
+
+        /* Report */
+        .report-section { margin: 1rem 0; padding: 1rem; border-left: 3px solid rgba(96,165,250,.3); }
+
+        footer { text-align: center; padding: 2rem; color: #4b5563; font-size: .75rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">LinguaGraph <span>Workbench</span></div>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">Overview</a>
+        <a href="/results" class="{% if request.path == '/results' %}active{% endif %}">Results</a>
+        <a href="/cognitivespace" class="{% if request.path == '/cognitivespace' %}active{% endif %}">CognitiveSpace</a>
+        <a href="/report" class="{% if request.path == '/report' %}active{% endif %}">Report</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>LinguaGraph Research Workbench · BWKI 2026 · Cross-Lingual Cognitive Structure Analysis</footer>
+</body>
+</html>

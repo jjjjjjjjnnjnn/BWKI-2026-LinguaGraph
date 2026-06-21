@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Graph Analysis <em>Results</em></h1>
+
+<div class="stat-grid">
+    <div class="stat-card">
+        <div class="value">{{ stats.known_links }}</div>
+        <div class="label">Direct Relations</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ stats.inferred_links }}</div>
+        <div class="label">Inferred Relations</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ stats.total_nodes - stats.trilingual }}</div>
+        <div class="label">Mono/Bilingual</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ "%.1f"|format(stats.total_links / stats.total_nodes) }}</div>
+        <div class="label">Avg Degree</div>
+    </div>
+</div>
+
+<h2>Education Level Distribution</h2>
+<div class="card">
+    <div class="level-bar">
+        {% set total = stats.levels.elementary + stats.levels.middle + stats.levels.high + stats.levels.college %}
+        <div class="seg" style="width:{{ stats.levels.elementary/total*100 }}%;background:#4ade80"></div>
+        <div class="seg" style="width:{{ stats.levels.middle/total*100 }}%;background:#22d3ee"></div>
+        <div class="seg" style="width:{{ stats.levels.high/total*100 }}%;background:#60a5fa"></div>
+        <div class="seg" style="width:{{ stats.levels.college/total*100 }}%;background:#c084fc"></div>
+    </div>
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Concepts</th>
+            <th>Percentage</th>
+            <th>Color</th>
+        </tr>
+        {% for lv in ['elementary', 'middle', 'high', 'college'] %}
+        <tr>
+            <td><span class="dot dot-{{ lv }}"></span>{{ stats.level_names[lv] }}</td>
+            <td>{{ stats.levels[lv] }}</td>
+            <td>{{ "%.1f"|format(stats.levels[lv]/total*100) }}%</td>
+            <td><code>{{ {'elementary':'#4ade80','middle':'#22d3ee','high':'#60a5fa','college':'#c084fc'}[lv] }}</code></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<h2>Knowledge Domains</h2>
+<div class="card">
+    <table>
+        <tr><th>Domain</th><th>Concepts</th></tr>
+        {% for group, count in stats.groups.items()|sort(attribute='1', reverse=True) %}
+        <tr><td>{{ group }}</td><td>{{ count }}</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<h2>Language Drift Score (LDS) — Methodology</h2>
+<div class="card">
+    <p>
+        The <strong>Language Drift Score</strong> quantifies structural divergence between
+        knowledge graphs extracted from different languages:
+    </p>
+    <p style="font-size:1.1rem;text-align:center;padding:.75rem;font-weight:600;color:#e0e0e0;font-family:monospace">
+        LDS(A, B) = 1 − |A ∩ B| / |A ∪ B|
+    </p>
+    <p>
+        A value of 0 indicates identical concept structure; a value near 1 indicates
+        maximal divergence. LDS is computed for each language pair (ZH-EN, ZH-DE, DE-EN).
+        A human validation study is in preparation to confirm the metric.
+    </p>
+</div>
+
+<div style="margin-top:2rem;text-align:center">
+    <a href="/cognitivespace" class="btn btn-primary">Explore in 3D →</a>
+    <a href="/report" class="btn" style="margin-left:.5rem">View Analysis Report</a>
+</div>
+{% endblock %}
