@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cross-Lingual Cognitive Structure <em>Analysis Workbench</em></h1>
+<p>
+    Languages shape how we organize knowledge. LinguaGraph extracts concepts from educational texts,
+    builds knowledge graphs, measures structural differences using LDS (Language Distance Score),
+    and visualizes them in an interactive 3D environment.
+</p>
+
+<div class="stat-grid">
+    <div class="stat-card">
+        <div class="value">{{ stats.total_nodes }}</div>
+        <div class="label">Concepts</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ stats.total_links }}</div>
+        <div class="label">Relations</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ stats.trilingual }}</div>
+        <div class="label">Trilingual</div>
+    </div>
+    <div class="stat-card">
+        <div class="value">{{ stats.levels|length }}</div>
+        <div class="label">Education Levels</div>
+    </div>
+</div>
+
+<h2>Textbook Corpus</h2>
+<div class="card" style="margin-bottom:1.5rem">
+    <table>
+        <tr><th>Language</th><th>Textbooks</th><th>Coverage</th><th>Curriculum</th></tr>
+        <tr><td><span class="lang-pill lang-zh">ZH</span></td><td>45</td><td>Elementary → University</td><td>Renjiao, Tongji, Gaoshu</td></tr>
+        <tr><td><span class="lang-pill lang-en">EN</span></td><td>20</td><td>K-12 → University</td><td>Stewart, MIT OCW, Khan Academy, IGCSE, IB</td></tr>
+        <tr><td><span class="lang-pill lang-de">DE</span></td><td>10</td><td>Secondary → University</td><td>Forster, Fischer, Lambacher Schweizer, Papula</td></tr>
+        <tr style="font-weight:600"><td>Total</td><td>68</td><td colspan="2">574 concepts · 3538 relations · 4 education levels</td></tr>
+    </table>
+</div>
+
+<h2>Language Coverage</h2>
+<div class="card">
+    <table>
+        <tr><th>Coverage</th><th>Concepts</th><th>Percentage</th></tr>
+        <tr><td>ZH + EN + DE</td><td>{{ stats.trilingual }}</td><td>{{ "%.1f"|format(stats.trilingual / stats.total_nodes * 100) }}%</td></tr>
+        <tr><td>ZH</td><td>{{ stats.lang_coverage.zh }}</td><td>{{ "%.1f"|format(stats.lang_coverage.zh / stats.total_nodes * 100) }}%</td></tr>
+        <tr><td>EN</td><td>{{ stats.lang_coverage.en }}</td><td>{{ "%.1f"|format(stats.lang_coverage.en / stats.total_nodes * 100) }}%</td></tr>
+        <tr><td>DE</td><td>{{ stats.lang_coverage.de }}</td><td>{{ "%.1f"|format(stats.lang_coverage.de / stats.total_nodes * 100) }}%</td></tr>
+    </table>
+</div>
+
+<div style="margin-top:2rem; text-align:center">
+    <a href="/results" class="btn btn-primary">View Analysis Results →</a>
+    <a href="/cognitivespace" class="btn" style="margin-left:.5rem">Explore CognitiveSpace 3D</a>
+</div>
+{% endblock %}

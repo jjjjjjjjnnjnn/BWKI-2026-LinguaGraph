@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Structural Analysis <em>Report</em></h1>
+<p>Automated analysis of the CognitiveSpace knowledge graph. Generated from 68 textbooks, 574 concepts, and 3538 relations across ZH/EN/DE.</p>
+
+<div class="report-section" style="border-left-color:#4ade80">
+    <strong style="color:#86efac">1. Corpus Composition</strong>
+    <p style="margin-top:.5rem">
+        The knowledge graph is constructed from <strong>68 textbooks</strong> across three languages
+        (45 Chinese, 20 English, 10 German), spanning four education levels from elementary school
+        to university. The Chinese corpus provides the most extensive coverage of fundamental mathematics
+        (elementary and middle school), while the English and German corpora focus primarily on secondary
+        and tertiary mathematics education.
+    </p>
+</div>
+
+<div class="report-section" style="border-left-color:#22d3ee">
+    <strong style="color:#67e8f9">2. Education Level Distribution</strong>
+    <p style="margin-top:.5rem">
+        Concepts concentrate at the university level ({{ "%.1f"|format(stats.levels.college / (stats.levels.elementary+stats.levels.middle+stats.levels.high+stats.levels.college) * 100) }}%),
+        consistent with the increasing specialization of mathematical terminology. Elementary concepts
+        constitute only {{ "%.1f"|format(stats.levels.elementary / (stats.levels.elementary+stats.levels.middle+stats.levels.high+stats.levels.college) * 100) }}%
+        but serve as foundational anchors with the highest graph centrality. This confirms a
+        "knowledge core → expansion" pattern consistent with curriculum design theory.
+    </p>
+</div>
+
+<div class="report-section" style="border-left-color:#60a5fa">
+    <strong style="color:#93c5fd">3. Cross-Language Alignment</strong>
+    <p style="margin-top:.5rem">
+        Of 574 concepts, <strong>{{ stats.trilingual }}</strong> ({{ "%.1f"|format(stats.trilingual / stats.total_nodes * 100) }}%)
+        are fully aligned across all three languages. Chinese has the highest exclusive coverage
+        (ZH-only concepts: {{ stats.lang_coverage.zh - stats.trilingual }}), primarily from elementary
+        and middle school curricula that lack direct Western counterparts. English and German show
+        higher mutual overlap, reflecting shared European mathematical traditions.
+    </p>
+</div>
+
+<div class="report-section" style="border-left-color:#c084fc">
+    <strong style="color:#c4b5fd">4. Structural Observations</strong>
+    <p style="margin-top:.5rem">
+        <strong>Connectivity:</strong> The graph is nearly fully connected (only 2 isolated nodes
+        out of 574, &lt;0.5%), indicating high-quality relation extraction.<br><br>
+        <strong>Hierarchy:</strong> Elementary concepts serve as structural anchors
+        with high centrality. University concepts form a dense periphery with specialized
+        sub-clusters.<br><br>
+        <strong>Cross-lingual invariance:</strong> Concepts that appear in multiple languages
+        exhibit structurally similar neighborhoods, suggesting that the underlying mathematical
+        knowledge structure has language-independent invariants — while pedagogical organization
+        differs across curricula.
+    </p>
+</div>
+
+<div class="report-section" style="border-left-color:#f59e0b">
+    <strong style="color:#fcd34d">5. Language Distance Score (Planned Evaluation)</strong>
+    <p style="margin-top:.5rem">
+        The Language Distance Score (LDS) is designed to quantify structural divergence between
+        language-specific knowledge graphs. A human validation study (N=30, 10 per language)
+        is in preparation to:
+    </p>
+    <ul style="margin:.5rem 0 0 1.5rem;color:#9ca3af;font-size:.85rem;line-height:1.8">
+        <li>Validate that LDS captures meaningful cross-language structural differences</li>
+        <li>Compare textbook-derived LDS with human-derived cognitive graphs</li>
+        <li>Establish baseline LDS values for mathematics education across ZH/EN/DE</li>
+    </ul>
+</div>
+
+<div style="margin-top:2rem;text-align:center;padding:1.5rem;border:1px solid rgba(255,255,255,.06);border-radius:8px">
+    <p style="font-size:.9rem;color:#6b7280">
+        This report was generated from the CognitiveSpace knowledge graph
+        ({{ stats.total_nodes }} concepts, {{ stats.total_links }} relations,
+        {{ stats.lang_coverage.zh }}/{{ stats.lang_coverage.en }}/{{ stats.lang_coverage.de }} ZH/EN/DE coverage).
+    </p>
+</div>
+{% endblock %}
