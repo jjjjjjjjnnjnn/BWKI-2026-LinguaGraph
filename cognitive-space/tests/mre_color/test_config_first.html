@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MRE — Config BEFORE graphData</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <style>body{margin:0;overflow:hidden;background:#000}</style>
+</head>
+<body>
+    <div id="graph" style="width:100vw;height:100vh"></div>
+    <script>
+        // Test: configure nodeColor BEFORE graphData
+        const Graph = ForceGraph3D()(document.getElementById('graph'))
+            .nodeColor(node => {
+                console.log('nodeColor called for:', node.id);
+                return node.id === 'A' ? '#ff0000' : '#00ff00';
+            })
+            .nodeVal(10)
+            .backgroundColor('#111')
+            .graphData({
+                nodes: [
+                    { id: 'A', name: 'Node A' },
+                    { id: 'B', name: 'Node B' }
+                ],
+                links: [{ source: 'A', target: 'B' }]
+            });
+
+        setTimeout(() => {
+            const scene = Graph.scene();
+            console.log('=== MRE Config-First Diagnostic ===');
+            scene.traverse(obj => {
+                if (obj.isMesh) {
+                    console.log('Mesh:', obj.material.type, 'color=#' + obj.material.color.getHexString());
+                }
+            });
+            console.log('=== End ===');
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+{
+  "version": "2.0",
+  "domain": "geometry",
+  "description": "几何专家知识图谱",
+  "languages": [
+    "zh",
+    "de",
+    "en"
+  ],
+  "created": "2026-06-20T23:54:33.668830",
+  "pipeline": "scripts/math_graph_pipeline/export_graph.py",
+  "concepts": [
+    {
+      "name": "math_geometry_三角形",
+      "display_name": "三角形",
+      "category": "concept",
+      "labels": {
+        "zh": "三角形",
+        "en": "Triangle",
+        "de": "三角形"
+      },
+      "source_references": [
+        {
+          "textbook": "Lambacher Schweizer 5-8 Klasse",
+          "language": "de",
+          "chapter": "Klasse 5-8",
+          "section": "Zahlen, Geometrie, Funktionen, Stochastik"
+        },
+        {
+          "textbook": "人教版小学数学一年级下册",
+          "language": "zh",
+          "chapter": "全册",
+          "section": "第1-7单元"
+        }
+      ]
+    },
+    {
+      "name": "math_geometry_圆",
+      "display_name": "圆",
+      "category": "concept",
+      "labels": {
+        "zh": "圆",
+        "en": "Circle",
+        "de": "圆"
+      },
+      "source_references": [
+        {
+          "textbook": "Lambacher Schweizer 5-8 Klasse",
+          "language": "de",
+          "chapter": "Klasse 5-8",
+          "section": "Zahlen, Geometrie, Funktionen, Stochastik"
+        },
+        {
+          "textbook": "人教版初中数学九年级",
+          "language": "zh",
+          "chapter": "上册+下册",
+          "section": "一元二次方程→二次函数→旋转→圆→相似→三角函数→投影"
+        },
+        {
+          "textbook": "人教版小学数学一年级下册",
+          "language": "zh",
+          "chapter": "全册",
+          "section": "第1-7单元"
+        }
+      ]
+    },
+    {
+      "name": "math_geometry_抛物线",
+      "display_name": "抛物线",
+      "category": "concept",
+      "labels": {
+        "zh": "抛物线",
+        "en": "Parabola",
+        "de": "抛物线"
+      },
+      "source_references": [
+        {
+          "textbook": "人教版初中数学九年级",
+          "language": "zh",
+          "chapter": "上册+下册",
+          "section": "一元二次方程→二次函数→旋转→圆→相似→三角函数→投影"
+        }
+      ]
+    },
+    {
+      "name": "math_geometry_面积",
+      "display_name": "面积",
+      "category": "concept",
+      "labels": {
+        "zh": "面积",
+        "en": "Area",
+        "de": "面积"
+      },
+      "source_references": [
+        {
+          "textbook": "Khan Academy Mathematics K-2",
+          "language": "en",
+          "chapter": "Kindergarten through 2nd Grade",
+          "section": "Counting, Operations, Place Value, Geometry"
+        }
+      ]
+    },
+    {
+      "name": "math_geometry_体积",
+      "display_name": "体积",
+      "category": "concept",
+      "labels": {
+        "zh": "体积",
+        "en": "Volume",
+        "de": "体积"
+      },
+      "source_references": [
+        {
+          "textbook": "Khan Academy Mathematics 3rd-5th Grade",
+          "language": "en",
+          "chapter": "3rd through 5th Grade",
+          "section": "Fractions, Decimals, Measurement, Geometry, Place Value"
+        },
+        {
+          "textbook": "Khan Academy Mathematics 5-6",
+          "language": "en",
+          "chapter": "5th and 6th Grade",
+          "section": "Decimals, Fractions, Ratios, Expressions, Statistics"
+        }
+      ]
+    },
+    {
+      "name": "math_geometry_坐标系",
+      "display_name": "coordinate plane",
+      "category": "concept",
+      "labels": {
+        "zh": "coordinate plane",
+        "en": "Coordinate System",
+        "de": "平面直角坐标系"
+      },
+      "source_references": [
+        {
+          "textbook": "Khan Academy Mathematics 5-6",
+          "language": "en",
+          "chapter": "5th and 6th Grade",
+          "section": "Decimals, Fractions, Ratios, Expressions, Statistics"
+        },
+        {
+          "textbook": "人教版初中数学七年级",
+          "language": "zh",
+          "chapter": "上册+下册",
+          "section": "有理数→整式→一元一次方程→实数→坐标系→二元一次方程组"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "math_geometry_圆",
+      "target": "math_geometry_面积",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "Kreisfläche = πr²"
+    },
+    {
+      "source": "math_geometry_体积",
+      "target": "math_geometry_面积",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "Volume extends area to three dimensions"
+    },
+    {
+      "source": "math_geometry_圆",
+      "target": "math_geometry_圆",
+      "type": "part_of",
+      "importance": 0.8,
+      "evidence": "弧、弦、切线都是圆的组成部分"
+    }
+  ],
+  "metadata": {
+    "total_concepts": 6,
+    "total_relations": 3,
+    "data_sources": 11
+  }
+}

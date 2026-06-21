@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>CognitiveSpace - Nodes Only Test</title>
+<script src="https://unpkg.com/3d-force-graph"></script>
+<style>body{margin:0;background:#050a14;overflow:hidden}</style>
+</head>
+<body>
+<div id="g" style="width:100vw;height:100vh"></div>
+<script>
+// Load COGNITIVE_DATA from parent HTML via copy-paste technique
+// For now, minimal data
+const ND = [
+  {id:'A',col:'#00ff00'},
+  {id:'B',col:'#ff0000'},
+  {id:'C',col:'#ffff00'},
+  {id:'D',col:'#ff00ff'},
+  {id:'E',col:'#00ffff'},
+  {id:'F',col:'#ff8800'},
+];
+const LK = [{source:'A',target:'B'},{source:'C',target:'D'},{source:'E',target:'F'}];
+
+const G = ForceGraph3D()(document.getElementById('g'))
+  .nodeColor(n => n.col)
+  .nodeVal(30)
+  .nodeRelSize(20)
+  .linkWidth(0)
+  .linkOpacity(0)
+  .backgroundColor('#050a14')
+  .graphData({nodes: ND, links: LK});
+
+setTimeout(() => {
+  console.log('=== MINIMAL TEST ===');
+  G.scene().traverse(o => {
+    if(o.isMesh) console.log(o.material.type, '#'+o.material.color.getHexString(), 'opacity:', o.material.opacity);
+  });
+  console.log('=== END ===');
+}, 3000);
+</script>
+</body>
+</html>
