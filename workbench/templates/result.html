@@ -42,6 +42,8 @@ a { color:#60a5fa; }
 .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px; }
 
 /* Viz embed */
+.viz-frame { width:100%; height:500px; border:1px solid rgba(255,255,255,.06); border-radius:8px; overflow:hidden; margin:1rem 0; }
+.viz-frame iframe { width:100%; height:100%; border:none; }
 .viz-link { text-align:center; padding:1.5rem; border:1px dashed rgba(255,255,255,.1); border-radius:8px; margin:1rem 0; }
 .btn { display:inline-block; padding:.5rem 1.2rem; border-radius:6px; font-size:.85rem; font-weight:500; cursor:pointer; text-decoration:none; border:1px solid rgba(96,165,250,.25); background:#4a7dff; color:#fff; transition:all .15s; margin:.25rem; }
 .btn:hover { background:#3d6fe8; }
@@ -127,9 +129,11 @@ footer { text-align:center; padding:2rem; color:#4b5563; font-size:.75rem; }
 
 <!-- 3D Graph -->
 <h2>Knowledge Graph</h2>
-<div class="viz-link">
-  <p style="margin-bottom:.75rem">Explore the knowledge graph in 3D — concepts as nodes, relations as connections</p>
-  <a href="{{ viz_url }}" target="_blank" class="btn">Open 3D Visualization ↗</a>
+<div class="viz-frame">
+  <iframe src="{{ viz_url }}" title="3D Knowledge Graph Visualization"></iframe>
+</div>
+<div style="display:flex;gap:.5rem;flex-wrap:wrap">
+  <a href="{{ viz_url }}" target="_blank" class="btn">Open Fullscreen ↗</a>
   <a href="/" class="btn btn-secondary">← New Analysis</a>
 </div>
 
