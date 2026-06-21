@@ -227,7 +227,9 @@ The following are **ACTIVE**:
 - [✅] Pilot data collection (9 people)
 - [✅] Second annotator recruitment
 - [✅] Creative submission (due 06-28)
-- [✅] Three.js Cognitive City demo
+- [✅] CognitiveSpace 3D visualization (deployed)
+- [✅] Gold Dataset V1 schema (designed)
+- [✅] Repository structure consolidation
 
 ---
 
@@ -281,8 +283,12 @@ Wikipedia Articles (12 files, 4 topics × 3 languages)
 | 06-17 | Claude Code | Code review | 8 issues identified and fixed |
 | 06-17 | Claude Code | Experiment design | Full protocol + ethics package |
 | 06-17 | Claude Code | Submission materials | Abstracts, scripts, outlines |
-| — | opencode | Frontend (pending) | Cognitive City Three.js |
-| — | mimo code | Backend/vis (pending) | Simulation + visualization |
+| 06-20 | Claude Code | Math knowledge graph pipeline | 68 textbooks → 574 concepts + 3538 relations |
+| 06-20 | Claude Code | CognitiveSpace visualization | 3D concentric shell graph, deterministic layout, ZH/EN/DE filtering |
+| 06-21 | Claude Code | Gold Dataset V1 schema | Two task families (concept extraction + graph completion), provenance tracking |
+| 06-21 | Claude Code | Repository consolidation | Archive legacy modules, standardize outputs/ structure |
+| — | MIMO (LLM) | Math extraction pipeline | Concept-relation extraction from 68 textbooks across 3 languages |
+| — | opencode | Frontend prototyping | Early Cognitive City concept (archived) |
 
 ---
 
@@ -311,3 +317,92 @@ python scripts/simulate_baseline.py --batch 3   # 60 responses
 python scripts/simulate_baseline.py --pipeline  # Run analysis
 python scripts/compare_human_vs_model.py --report  # Compare with human data (when available)
 ```
+
+---
+
+## 11. Phase 7: CognitiveSpace Math Knowledge Graph (2026-06-17 to 06-21)
+
+### 11.1 Overview
+
+A comprehensive mathematics knowledge graph was constructed from 68 textbooks across three languages and four education levels, forming the **CognitiveSpace** research artifact.
+
+### 11.2 Data Pipeline
+
+| Stage | Tool/Method | Input | Output |
+|-------|------------|-------|--------|
+| Extraction | MIMO LLM (prompt `docs/mimo_prompt.md`) | Textbook sections (ZH/EN/DE) | Raw concept-relation JSON files (63 files) |
+| Merge | `scripts/math_graph_pipeline/merge_extractions.py` | Raw extractions | Deduplicated concepts + relations |
+| Alignment | `scripts/math_graph_pipeline/align_languages.py` | ZH/EN/DE concept sets | Cross-language mapping (30 shared concept IDs) |
+| Export | `scripts/math_graph_pipeline/export_graph.py` | Aligned data | Visualization data (574 nodes, 3538 links) |
+
+### 11.3 Corpus
+
+| Language | Textbooks | Extractions |
+|----------|-----------|-------------|
+| Chinese (ZH) | 45 (Renjiao + Tongji + probability + algebra) | 45 JSON files |
+| English (EN) | 20 (Stewart, MIT OCW, Khan Academy, IGCSE, IB) | 20 JSON files |
+| German (DE) | 10 (Forster, Fischer, Lambacher Schweizer, Papula, Abitur) | 10 JSON files |
+| **Total** | **68** | **75 JSON** (some chapters split) |
+
+### 11.4 Graph Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total concepts | 574 (557 unique + 17 aligned groups) |
+| Total relations | 3538 (525 known + ~3000 inferred for connectivity) |
+| Trilingual coverage | 247 concepts (43%) |
+| Education levels | 4 (elementary → middle → high → university) |
+| Level distribution | elementary: 37, middle: 46, high: 193, university: 298 |
+| Structural conflicts | 0 |
+| Isolated nodes | 2 (<0.5%) |
+
+### 11.5 CognitiveSpace Visualization
+
+A 3D interactive knowledge graph was developed using `3d-force-graph` (v1.80.0), featuring:
+
+- **Concentric shell layout**: Concepts arranged deterministically in spherical shells by education level (elementary core → university periphery), encoded via hash-based deterministic positioning
+- **Cross-language filtering**: Interactive ZH/EN/DE filter toggles, preserving 3538 visible relations
+- **Color-coded levels**: Elementary (green `#4ade80`), middle (cyan `#22d3ee`), high (blue `#60a5fa`), university (purple `#c084fc`)
+- **Three view modes**: Universe (balanced), Space-Fill (amplified), Compare (language-scaled)
+- **Interaction**: BFS ripple on click, WASD navigation, node detail panel with textbook provenance
+- **Performance**: 574 nodes with deterministic layout, 3538 edges at 0.15 opacity, breathing animation
+
+The visualization is independently deployable at `cognitive-space/web/index.html`.
+
+### 11.6 Gold Dataset Schema
+
+A formal Gold Dataset V1 specification was designed (`docs/gold_dataset_schema_v1.md`), defining two task families:
+
+- **Dataset A — Concept Extraction**: Textbook text → concept list (input/output schema with provenance tracking)
+- **Dataset C — Graph Completion**: Forward/reverse/multiple-choice variants derived from graph edges
+- **Provenance system**: Every sample tracks textbook → chapter → section → confidence score
+- **Format**: JSONL, language-partitioned, 6 files covering ZH/EN/DE for both tasks
+
+### 11.7 Repository Structure Consolidation (2026-06-21)
+
+| Action | Detail |
+|--------|--------|
+| Legacy archiving | `visualization/`, `visualization_v3/`, `web/` → `_archive/` (git mv, history preserved) |
+| Output standardization | `results/` → `outputs/` (unified naming) |
+| Path fix | `src/main.py` output destination updated to `outputs/` |
+| README refresh | Banner updated to CognitiveSpace; stale Three.js/Cognitive City references replaced across ZH/EN/DE |
+| `.gitignore` | Added `outputs/`, `results/`, `_archive/`, `.vscode/` patterns |
+
+The repository now presents a research-ready structure: `src/` · `scripts/` · `data/` · `config/` · `docs/` · `outputs/` · `tests/` · `references/` · `cognitive-space/`.
+
+### 11.8 Status Summary
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Math extraction pipeline | ✅ Complete | 68 textbooks, 3 languages |
+| Cross-language alignment | ✅ Complete | 247 trilingual concepts |
+| CognitiveSpace visualization | ✅ Complete | Deployable, frozen |
+| Gold Dataset V1 schema | ✅ Complete | A + C task families defined |
+| Repository structure | ✅ Complete | Research-ready layout |
+| Gold Dataset generation | ⏳ Pending | Scripts not yet written |
+| DE/EN data collection | ❌ Blocked | Required for LDS completion |
+
+---
+
+*This log is maintained as a compliance record for BWKI 2026 submission requirements.*
+*Last updated: 2026-06-21 18:30 UTC+8*
