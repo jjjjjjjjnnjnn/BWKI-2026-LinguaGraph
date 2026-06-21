@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognitiveSpace V1 — Working Baseline</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:#050a14; color:#d0d0d0; overflow:hidden; }
+    #graph-container { width:100vw; height:100vh; }
+    #loading { position:fixed; inset:0; z-index:9999; background:#050a14; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .8s; }
+    #loading.hidden { opacity:0; pointer-events:none; }
+    #loading .spinner { width:28px; height:28px; border:2px solid rgba(255,255,255,.1); border-top-color:#ff0000; border-radius:50%; animation:spin .9s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    #loading p { color:#888; font-size:.8rem; margin-top:14px; }
+    #hud { position:absolute; top:16px; left:16px; z-index:100; background:rgba(5,10,20,.9); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:12px 14px; min-width:190px; }
+    #hud h1 { font-size:.8rem; font-weight:600; letter-spacing:.4px; }
+    #hud h1 span { color:#ff0000; }
+    #hud .sub { font-size:.55rem; color:#4a4a6a; margin-bottom:8px; }
+    .s { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:10px; }
+    .si { display:flex; flex-direction:column; }
+    .sv { font-size:.95rem; font-weight:600; color:#e0e0e0; }
+    .sl { font-size:.5rem; color:#4a4a6a; text-transform:uppercase; letter-spacing:.6px; }
+    .br { display:flex; gap:2px; margin-bottom:5px; flex-wrap:wrap; }
+    .b { padding:3px 9px; border-radius:4px; font-size:.55rem; font-weight:500; cursor:pointer; border:1px solid rgba(255,255,255,.06); background:rgba(255,255,255,.02); color:#5a5a7a; transition:all .2s; font-family:inherit; }
+    .b:hover { background:rgba(255,255,255,.04); color:#a0a0c0; }
+    .b.a { border-color:rgba(255,100,100,.25); color:#ff6b6b; }
+    .leg { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
+    .li { display:flex; align-items:center; gap:3px; font-size:.5rem; color:#4a4a6a; }
+    .ld { width:5px; height:5px; border-radius:50%; }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    <div id="loading"><div class="spinner"></div><p>CognitiveSpace V1</p></div>
+    <div id="hud">
+        <h1>Cognitive<span>Space</span></h1>
+        <div class="sub" id="sub">574 concepts · 3538 relations</div>
+        <div class="s">
+            <div class="si"><span class="sv" id="sC">0</span><span class="sl">Concepts</span></div>
+            <div class="si"><span class="sv" id="sR">0</span><span class="sl">Relations</span></div>
+            <div class="si"><span class="sv" id="sL">0</span><span class="sl">Levels</span></div>
+        </div>
+        <div class="br" id="vb">
+            <button class="b a" data-m="universe">Universe</button>
+            <button class="b" data-m="spacefill">Space-Fill</button>
+            <button class="b" data-m="compare">Compare</button>
+        </div>
+        <div class="br" id="lb">
+            <button class="b a" data-g="all">All</button>
+            <button class="b" data-g="zh">ZH</button>
+            <button class="b" data-g="en">EN</button>
+            <button class="b" data-g="de">DE</button>
+        </div>
+        <div class="leg">
+            <span class="li"><span class="ld" style="background:#ff0000"></span>高中</span>
+            <span class="li"><span class="ld" style="background:#ff00ff"></span>大学</span>
+            <span class="li"><span class="ld" style="background:#ffff00"></span>初中</span>
+            <span class="li"><span class="ld" style="background:#00ff00"></span>小学</span>
+        </div>
+    </div>
+
+<script>
+// CognitiveSpace V1 — Working Baseline (2026-06-21)
+const LV = {
+    elementary: { c:'#00ff00', l:'小学' },
+    middle:     { c:'#ffff00', l:'初中' },
+    high:       { c:'#ff0000', l:'高中' },
+    college:    { c:'#ff00ff', l:'大学' },
+};
+const MT = { universe:'UNIVERSE', spacefill:'SPACE-FILL', compare:'COMPARE' };
+let G, ND=[], LK=[], ADJ=new Map();
+let mode='universe', lang='all';
+
+function colorCB(n) {
+    if (n._r != null) {
+        const d = n._r;
+        return d===0?'#ffffff':d===1?'#00ffff':d===2?'#ff8800':'#440044';
+    }
+    if (n._h) return '#222222';
+    return (LV[n.level]||LV.college).c;
+}
+
+function opacityCB(n) {
+    if (n._r != null) return n._r===0?1:n._r===1?.85:n._r===2?.5:.25;
+    if (n._h) return .02;
+    return 1;
+}
+
+function init() {
+    if (typeof ForceGraph3D==='undefined') return;
+    const data = typeof COGNITIVE_DATA!=='undefined'?COGNITIVE_DATA:null;
+    if (!data||!data.nodes||!data.nodes.length) return;
+    ND=data.nodes; LK=data.links;
+    document.getElementById('sC').textContent=ND.length;
+    document.getElementById('sR').textContent=LK.length;
+    document.getElementById('sL').textContent=new Set(ND.map(n=>n.level||'')).size;
+    document.getElementById('sub').textContent=ND.length+' concepts · '+LK.length+' relations';
+    buildAdj();
+    mkGraph();
+    setTimeout(()=>{document.getElementById('loading').classList.add('hidden');setTimeout(()=>{const e=document.getElementById('loading');if(e)e.style.display='none';},800);},600);
+}
+
+function buildAdj() {
+    ADJ.clear();
+    ND.forEach(n=>ADJ.set(n.id,new Set()));
+    LK.forEach(l=>{
+        const s=typeof l.source==='object'?l.source.id:l.source;
+        const t=typeof l.target==='object'?l.target.id:l.target;
+        if(ADJ.has(s)&&ADJ.has(t)){ADJ.get(s).add(t);ADJ.get(t).add(s);}
+    });
+}
+
+function mkGraph() {
+    // Bake colors into data property
+    ND.forEach(n=>{ n.color=colorCB(n); });
+
+    G=ForceGraph3D()(document.getElementById('graph-container'))
+        .nodeColor('color')
+        .nodeVal('val')
+        .nodeResolution(20)
+        .nodeRelSize(15)
+        .linkColor(l=>l.inferred?'#2a3d5e':'#4a7ab5')
+        .linkWidth(0.4)
+        .linkOpacity(0.35)
+        .linkDirectionalParticles(0)
+        .backgroundColor('#050a14')
+        .showNavInfo(false)
+        .width(innerWidth).height(innerHeight)
+        .graphData({nodes:ND,links:LK});
+    window.G=G;
+
+    G.onNodeClick(n=>{showDetail(n);ripple(n);});
+    G.onBackgroundClick(()=>{hideDetail();clearRipple();});
+    G.cameraPosition({x:0,y:0,z:800},{x:0,y:0,z:0},0);
+    window.addEventListener('resize',()=>{G.width(innerWidth);G.height(innerHeight);});
+
+    const keys={};
+    document.addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;});
+    document.addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=false;});
+
+    G.onEngineTick(()=>{
+        const cam=G.camera(); if(!cam) return;
+        cam.updateMatrixWorld();
+        const e=cam.matrixWorld.elements;
+        const fx=-e[8],fy=-e[9],fz=-e[10];
+        const rx=e[0],ry=e[1],rz=e[2];
+        const spd=3.0;
+        let dx=0,dy=0,dz=0;
+        if(keys['w']||keys['arrowup']){dx+=fx;dy+=fy;dz+=fz;}
+        if(keys['s']||keys['arrowdown']){dx-=fx;dy-=fy;dz-=fz;}
+        if(keys['a']||keys['arrowleft']){dx-=rx;dy-=ry;dz-=rz;}
+        if(keys['d']||keys['arrowright']){dx+=rx;dy+=ry;dz+=rz;}
+        if(keys['q'])dy-=1;
+        if(keys['e'])dy+=1;
+        const len=Math.sqrt(dx*dx+dy*dy+dz*dz);
+        if(len>0.001){cam.position.x+=(dx/len)*spd;cam.position.y+=(dy/len)*spd;cam.position.z+=(dz/len)*spd;}
+    });
+}
+
+function ripple(node) {
+    clearRipple();
+    const id=node.id,gd=G.graphData();
+    if(!gd) return;
+    const dist=new Map(),q=[{i:id,d:0}],vs=new Set([id]);
+    while(q.length){const{i,d}=q.shift();dist.set(i,d);if(d<5)(ADJ.get(i)||[]).forEach(nid=>{if(!vs.has(nid)){vs.add(nid);q.push({i:nid,d:d+1});}});}
+    gd.nodes.forEach(n=>{n._r=dist.has(n.id)?dist.get(n.id):99;n._h=false;});
+    if(rT) clearTimeout(rT);
+    rT=setTimeout(clearRipple,5000);
+}
+let rT=null;
+function clearRipple() {
+    const gd=G&&G.graphData();
+    if(gd&&gd.nodes)gd.nodes.forEach(n=>{n._r=null;});
+}
+
+function showDetail(n) {
+    const e=document.getElementById('detail');
+    document.getElementById('dn').textContent=n.name||n.id;
+    const lbs=n.labels||{};
+    document.getElementById('dl').innerHTML=['zh','en','de'].filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
+    const lv=n.level||'college',lc=LV[lv]||LV.college;
+    document.getElementById('dm').innerHTML='<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+(n.source_count||1)+' sources';
+    const refs=n.cross_references||[];
+    document.getElementById('dr').innerHTML=refs.length?refs.slice(0,4).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
+    e.style.display='block';
+    clearTimeout(e._t); e._t=setTimeout(hideDetail,10000);
+}
+function hideDetail(){document.getElementById('detail').style.display='none';}
+
+function setMode(m) {
+    mode=m;
+    document.getElementById('mode-tag').textContent=MT[m]||m.toUpperCase();
+    if(!G) return;
+    const gd=G.graphData();
+    let fn,fl;
+    if(lang==='all'){fn=ND;fl=LK;}
+    else{
+        const ids=new Set();
+        ND.forEach(n=>{const lbs=n.labels||{};if(lbs[lang])ids.add(n.id);});
+        fn=ND.filter(n=>ids.has(n.id));
+        fl=LK.filter(link=>{const s=typeof link.source==='object'?link.source.id:link.source;const t=typeof link.target==='object'?link.target.id:link.target;return ids.has(s)&&ids.has(t);});
+    }
+    fn.forEach(n=>{
+        n.color=colorCB(n);
+        const base=(n.source_count||1)+2;
+        const lv=n.level||'college';
+        const m2=lv==='college'?8:lv==='high'?6:lv==='middle'?4:2;
+        n.val=base*m2;
+    });
+    G.nodeColor('color').nodeVal('val').nodeRelSize(15).nodeOpacity(1).linkWidth(0.4).linkOpacity(0.35).linkDirectionalParticles(0).graphData({nodes:fn,links:fl});
+    document.getElementById('sub').textContent=fn.length+' concepts · '+fl.length+' relations';
+}
+
+function setLang(l) {
+    lang=l; if(!G) return;
+    const cam=G.camera();
+    const savedPos=cam?{x:cam.position.x,y:cam.position.y,z:cam.position.z}:null;
+    let fn,fl;
+    if(l==='all'){fn=ND;fl=LK;}
+    else{
+        const ids=new Set();
+        ND.forEach(n=>{const lbs=n.labels||{};if(lbs[l])ids.add(n.id);});
+        fn=ND.filter(n=>ids.has(n.id));
+        fl=LK.filter(link=>{const s=typeof link.source==='object'?link.source.id:link.source;const t=typeof link.target==='object'?link.target.id:link.target;return ids.has(s)&&ids.has(t);});
+    }
+    fn.forEach(n=>{ n.color=colorCB(n); });
+    G.graphData({nodes:fn,links:fl});
+    if(savedPos)setTimeout(()=>{G.cameraPosition(savedPos,{x:0,y:0,z:0},0);},50);
+    document.getElementById('sub').textContent=l==='all'?ND.length+' concepts · '+LK.length+' relations':fn.length+' / '+ND.length+' concepts';
+}
+
+function mkUI() {
+    document.querySelectorAll('[data-m]').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('[data-m]').forEach(x=>x.classList.remove('a'));b.classList.add('a');setMode(b.dataset.m);});});
+    document.querySelectorAll('[data-g]').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));b.classList.add('a');setLang(b.dataset.g);});});
+}
+
+if(document.readyState==='complete')init();
+else window.addEventListener('load',init);
+</script>
+</body>
+</html>
