@@ -1,10 +1,11 @@
-name: Deploy Cognitive City to GitHub Pages
+name: Deploy CognitiveSpace to GitHub Pages
 
 on:
   push:
     branches: [master]
     paths:
-      - 'visualization_v3/**'
+      - 'cognitive-space/web/**'
+      - 'cognitive-space/web/data.js'
   workflow_dispatch:  # Manual trigger
 
 permissions:
@@ -32,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: visualization_v3
+          path: cognitive-space/web
 
       - name: Deploy to GitHub Pages
         id: deployment
