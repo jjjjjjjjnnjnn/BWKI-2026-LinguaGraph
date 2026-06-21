@@ -3,79 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinguaGraph — Analysis Result</title>
+<title>LinguaGraph — Analysis Dashboard</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
-  background: #0a0e1a; color: #c8ccd8;
-  min-height: 100vh;
-}
-.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
-h1 em { font-style: normal; color: #60a5fa; }
-h2 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 .75rem; color: #e0e0e0; }
-p { color: #9ca3af; font-size: .9rem; line-height: 1.5; margin-bottom: .5rem; }
-a { color: #60a5fa; }
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 1rem; margin: 1.5rem 0; }
-.stat-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: 1.25rem; text-align: center; }
-.stat-card .value { font-size: 1.8rem; font-weight: 700; color: #f0f0f0; }
-.stat-card .label { font-size: .7rem; color: #6b7280; margin-top: .25rem; text-transform: uppercase; }
-.text-preview { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: 1rem; font-size: .85rem; color: #9ca3af; line-height: 1.6; max-height: 120px; overflow-y: auto; }
-.viz-frame { width: 100%; height: 500px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; overflow: hidden; margin: 1rem 0; }
-.viz-frame iframe { width: 100%; height: 100%; border: none; }
-.btn { display: inline-block; padding: .6rem 1.4rem; border-radius: 6px; font-size: .85rem; font-weight: 500; cursor: pointer; text-decoration: none; border: 1px solid rgba(96,165,250,.25); background: #4a7dff; color: #fff; transition: all .15s; margin: .25rem; }
-.btn:hover { background: #3d6fe8; }
-.btn-secondary { background: rgba(96,165,250,.08); color: #93b4f5; }
-.level-bar { height: 20px; border-radius: 4px; overflow: hidden; display: flex; margin: .5rem 0; }
-.level-bar .seg { transition: width .3s; }
-.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
-footer { text-align: center; padding: 2rem; color: #4b5563; font-size: .75rem; }
+body { font-family:'Inter',-apple-system,'Segoe UI',sans-serif; background:#0a0e1a; color:#c8ccd8; min-height:100vh; }
+.container { max-width:1000px; margin:0 auto; padding:2rem; }
+h1 { font-size:1.3rem; font-weight:600; margin-bottom:.25rem; }
+h1 em { font-style:normal; color:#60a5fa; }
+h2 { font-size:1.05rem; font-weight:600; margin:1.5rem 0 .75rem; color:#e0e0e0; }
+p { color:#9ca3af; font-size:.9rem; line-height:1.6; margin-bottom:.5rem; }
+a { color:#60a5fa; }
+
+/* Stat grid */
+.stat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:.75rem; margin:1rem 0; }
+.stat-card { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:1rem; text-align:center; }
+.stat-card .val { font-size:1.4rem; font-weight:700; }
+.stat-card .lbl { font-size:.65rem; color:#6b7280; text-transform:uppercase; margin-top:.15rem; letter-spacing:.04em; }
+
+/* Metric bar */
+.metric-row { display:flex; gap:.75rem; flex-wrap:wrap; margin:.75rem 0; }
+.metric-box { flex:1; min-width:200px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:1rem; }
+.metric-box .mname { font-size:.7rem; color:#6b7280; text-transform:uppercase; letter-spacing:.04em; }
+.metric-box .mval { font-size:1rem; font-weight:600; margin-top:.2rem; }
+.meter { height:4px; background:rgba(255,255,255,.06); border-radius:2px; margin-top:.4rem; overflow:hidden; }
+.meter .fill { height:100%; border-radius:2px; transition:width .5s; }
+
+/* Text preview */
+.text-preview { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:.8rem; font-size:.8rem; color:#9ca3af; max-height:100px; overflow-y:auto; line-height:1.5; margin-bottom:1rem; }
+
+/* Report */
+.report-box { background:rgba(252,211,77,.04); border:1px solid rgba(252,211,77,.15); border-radius:8px; padding:1.2rem; margin:1rem 0; }
+.report-box .report-label { font-size:.65rem; color:#fcd34d; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.4rem; }
+.report-box p { color:#e0e0e0; line-height:1.7; }
+
+/* Level bar */
+.level-bar { height:20px; border-radius:4px; overflow:hidden; display:flex; margin:.5rem 0; }
+.level-bar .seg { transition:width .3s; }
+.dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px; }
+
+/* Viz embed */
+.viz-link { text-align:center; padding:1.5rem; border:1px dashed rgba(255,255,255,.1); border-radius:8px; margin:1rem 0; }
+.btn { display:inline-block; padding:.5rem 1.2rem; border-radius:6px; font-size:.85rem; font-weight:500; cursor:pointer; text-decoration:none; border:1px solid rgba(96,165,250,.25); background:#4a7dff; color:#fff; transition:all .15s; margin:.25rem; }
+.btn:hover { background:#3d6fe8; }
+.btn-secondary { background:rgba(96,165,250,.08); color:#93b4f5; }
+
+/* Concept list */
+.concept-tag { display:inline-block; padding:.25rem .6rem; margin:.15rem; border-radius:4px; font-size:.8rem; border:1px solid rgba(255,255,255,.08); }
+footer { text-align:center; padding:2rem; color:#4b5563; font-size:.75rem; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Analysis <em>Complete</em></h1>
 
-  <div class="stat-grid">
-    <div class="stat-card"><div class="value">{{ stats.concepts }}</div><div class="label">Concepts</div></div>
-    <div class="stat-card"><div class="value">{{ stats.relations }}</div><div class="label">Relations</div></div>
-    <div class="stat-card"><div class="value">{{ stats.text_length }}</div><div class="label">Chars</div></div>
-    <div class="stat-card"><div class="value">{{ stats.language.upper() }}</div><div class="label">Language</div></div>
+<h1>Analysis <em>Dashboard</em></h1>
+<p>Multi-dimensional structural analysis of your text</p>
+
+<!-- Quick stats -->
+<div class="stat-grid">
+  <div class="stat-card"><div class="val" style="color:#60a5fa">{{ stats.concepts }}</div><div class="lbl">Concepts</div></div>
+  <div class="stat-card"><div class="val" style="color:#c084fc">{{ stats.relations }}</div><div class="lbl">Relations</div></div>
+  <div class="stat-card"><div class="val" style="color:#4ade80">{{ stats.metrics.complexity }}</div><div class="lbl">Complexity</div></div>
+  <div class="stat-card"><div class="val" style="color:#22d3ee">{{ stats.metrics.graph_density }}</div><div class="lbl">Density</div></div>
+  <div class="stat-card"><div class="val" style="color:#fcd34d">{{ stats.metrics.hierarchy_depth }}</div><div class="lbl">Depth</div></div>
+  <div class="stat-card"><div class="val" style="color:#f87171">{{ stats.text_length }}</div><div class="lbl">Chars</div></div>
+</div>
+
+<!-- Input text -->
+<h2>Input</h2>
+<div class="text-preview">{{ text_preview }}</div>
+
+<!-- Narrative report -->
+<h2>Analysis Report</h2>
+<div class="report-box">
+  <div class="report-label">📋 Automated Assessment</div>
+  <p>{{ stats.report }}</p>
+</div>
+
+<!-- Structural metrics -->
+<h2>Structural Metrics</h2>
+<div class="metric-row">
+  <div class="metric-box">
+    <div class="mname">Graph Density</div>
+    <div class="mval" style="color:#60a5fa">{{ stats.metrics.graph_density }}</div>
+    <div class="meter"><div class="fill" style="width:{{ stats.metrics.graph_density*100 }}%;background:#60a5fa"></div></div>
   </div>
-
-  <h2>Input Text</h2>
-  <div class="text-preview">{{ text_preview }}</div>
-
-  <h2>Level Distribution</h2>
-  <div class="level-bar">
-    {% set lv_colors = {'elementary':'#4ade80','middle':'#22d3ee','high':'#60a5fa','college':'#c084fc'} %}
-    {% set lv_names = {'elementary':'Elem','middle':'Middle','high':'High','college':'College'} %}
-    {% set lv_sum = stats.levels.values()|sum %}
-    {% for lv in ['elementary','middle','high','college'] %}
-      {% if stats.levels.get(lv, 0) > 0 %}
-        <div class="seg" style="width:{{ stats.levels[lv]/lv_sum*100 }}%;background:{{ lv_colors[lv] }}"></div>
-      {% endif %}
-    {% endfor %}
+  <div class="metric-box">
+    <div class="mname">Avg Connections/Node</div>
+    <div class="mval" style="color:#c084fc">{{ stats.metrics.avg_degree }}</div>
+    <div class="meter"><div class="fill" style="width:{{ stats.metrics.avg_degree*15 }}%;background:#c084fc"></div></div>
   </div>
-  <table style="width:100%;border-collapse:collapse;font-size:.85rem">
-    <tr><th>Level</th><th>Concepts</th><th>%</th></tr>
-    {% for lv in ['elementary','middle','high','college'] %}
-      {% if stats.levels.get(lv, 0) > 0 %}
-      <tr><td><span class="dot" style="background:{{ lv_colors[lv] }}"></span>{{ lv_names[lv] }}</td><td>{{ stats.levels[lv] }}</td><td>{{ "%.0f"|format(stats.levels[lv]/lv_sum*100) }}%</td></tr>
-      {% endif %}
-    {% endfor %}
-  </table>
-
-  <h2>3D Knowledge Graph</h2>
-  <div class="viz-frame">
-    <iframe src="{{ viz_url }}" title="Generated Knowledge Graph Visualization"></iframe>
+  <div class="metric-box">
+    <div class="mname">Hierarchy Depth</div>
+    <div class="mval" style="color:#22d3ee">{{ stats.metrics.hierarchy_depth }}</div>
+    <div class="meter"><div class="fill" style="width:{{ stats.metrics.hierarchy_depth*15 }}%;background:#22d3ee"></div></div>
   </div>
-  <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-    <a href="{{ viz_url }}" target="_blank" class="btn">Open Fullscreen ↗</a>
-    <a href="/" class="btn btn-secondary">← New Analysis</a>
+  <div class="metric-box">
+    <div class="mname">Centralization</div>
+    <div class="mval" style="color:#fcd34d">{{ stats.metrics.centralization }}</div>
+    <div class="meter"><div class="fill" style="width:{{ stats.metrics.centralization*100 }}%;background:#fcd34d"></div></div>
   </div>
 </div>
-<footer>LinguaGraph Research Workbench · BWKI 2026</footer>
+
+<!-- Level distribution -->
+<h2>Level Distribution</h2>
+{% set lv_colors = {'elementary':'#4ade80','middle':'#22d3ee','high':'#60a5fa','college':'#c084fc'} %}
+{% set lv_names = {'elementary':'Elementary','middle':'Middle','high':'High','college':'College'} %}
+{% set lv_sum = stats.levels.values()|sum %}
+{% if lv_sum > 0 %}
+<div class="level-bar">
+  {% for lv in ['elementary','middle','high','college'] %}
+    {% if stats.levels.get(lv,0) > 0 %}<div class="seg" style="width:{{ stats.levels[lv]/lv_sum*100 }}%;background:{{ lv_colors[lv] }}"></div>{% endif %}
+  {% endfor %}
+</div>
+<table style="width:100%;border-collapse:collapse;font-size:.8rem;margin:.5rem 0">
+  <tr><th>Level</th><th>Concepts</th><th>%</th></tr>
+  {% for lv in ['elementary','middle','high','college'] %}
+    {% if stats.levels.get(lv,0) > 0 %}
+    <tr><td><span class="dot" style="background:{{ lv_colors[lv] }}"></span>{{ lv_names[lv] }}</td><td>{{ stats.levels[lv] }}</td><td>{{ "%.0f"|format(stats.levels[lv]/lv_sum*100) }}%</td></tr>
+    {% endif %}
+  {% endfor %}
+</table>
+{% endif %}
+
+<!-- 3D Graph -->
+<h2>Knowledge Graph</h2>
+<div class="viz-link">
+  <p style="margin-bottom:.75rem">Explore the knowledge graph in 3D — concepts as nodes, relations as connections</p>
+  <a href="{{ viz_url }}" target="_blank" class="btn">Open 3D Visualization ↗</a>
+  <a href="/" class="btn btn-secondary">← New Analysis</a>
+</div>
+
+</div>
+<footer>LinguaGraph · BWKI 2026</footer>
 </body>
 </html>

@@ -238,6 +238,122 @@ def build_graph(extracted, language="zh"):
     return {"nodes": nodes, "links": links}
 
 
+def compute_metrics(graph_data):
+    """Compute structural metrics from the knowledge graph."""
+    nodes = graph_data.get("nodes", [])
+    links = graph_data.get("links", [])
+    n = len(nodes)
+    m = len(links)
+    if n == 0:
+        return {"error": "No nodes"}
+
+    # Build adjacency
+    adj = {nd["id"]: set() for nd in nodes}
+    for l in links:
+        s, t = l["source"], l["target"]
+        if s in adj and t in adj:
+            adj[s].add(t)
+            adj[t].add(s)
+
+    # 1. Graph Density
+    max_edges = n * (n - 1) / 2
+    density = m / max_edges if max_edges > 0 else 0
+
+    # 2. Average degree
+    avg_degree = (2 * m) / n if n > 0 else 0
+
+    # 3. Hierarchy depth (longest dependency chain via BFS from each node)
+    def bfs_depth(start):
+        visited = {start}
+        queue = [(start, 0)]
+        max_d = 0
+        for node, d in queue:
+            max_d = max(max_d, d)
+            for nb in adj.get(node, set()):
+                if nb not in visited:
+                    visited.add(nb)
+                    queue.append((nb, d + 1))
+        return max_d
+    max_depth = max((bfs_depth(nd["id"]) for nd in nodes[:min(50, len(nodes))]), default=0)
+
+    # 4. Centralization (degree-based)
+    degrees = [len(adj.get(nd["id"], set())) for nd in nodes]
+    max_deg = max(degrees) if degrees else 0
+    n_deg = len(degrees)
+    centralization = sum(max_deg - d for d in degrees) / ((n_deg - 1) * n_deg) if n_deg > 1 else 0
+
+    # 5. Level distribution
+    level_dist = {}
+    for nd in nodes:
+        lv = nd.get("level", "unknown")
+        level_dist[lv] = level_dist.get(lv, 0) + 1
+
+    # 6. Cognitive complexity score
+    complexity_score = 0
+    if density > 0.3: complexity_score += 2
+    elif density > 0.1: complexity_score += 1
+    if max_depth > 4: complexity_score += 2
+    elif max_depth > 2: complexity_score += 1
+    if avg_degree > 4: complexity_score += 2
+    elif avg_degree > 2: complexity_score += 1
+    complexity = ["Low", "Medium", "High"][min(complexity_score, 2)]
+
+    return {
+        "node_count": n,
+        "edge_count": m,
+        "graph_density": round(density, 3),
+        "avg_degree": round(avg_degree, 2),
+        "hierarchy_depth": max_depth,
+        "centralization": round(centralization, 3),
+        "level_distribution": level_dist,
+        "complexity": complexity
+    }
+
+
+def generate_report(text, metrics, concepts, language="zh"):
+    """Generate a narrative analysis report from metrics."""
+    d = metrics.get("graph_density", 0)
+    depth = metrics.get("hierarchy_depth", 0)
+    deg = metrics.get("avg_degree", 0)
+    cx = metrics.get("complexity", "Medium")
+    n = metrics.get("node_count", 0)
+    m = metrics.get("edge_count", 0)
+
+    # Density description
+    if d > 0.4:
+        density_desc = "highly interconnected"
+    elif d > 0.15:
+        density_desc = "moderately interconnected"
+    else:
+        density_desc = "sparsely connected"
+
+    # Hierarchy description
+    if depth > 5:
+        hierarchy_desc = f"deep hierarchical organization ({depth} levels of dependency)"
+    elif depth > 2:
+        hierarchy_desc = f"moderate hierarchical structure ({depth} dependency levels)"
+    else:
+        hierarchy_desc = "relatively flat knowledge structure"
+
+    # Centrality
+    top_concepts = sorted(concepts, key=lambda c: c.get("connections", 0), reverse=True)[:3]
+    top_names = [c["name"] for c in top_concepts] if top_concepts else []
+
+    # Build report
+    report = (
+        f"This text contains {n} key concepts forming {m} relationships in a {density_desc} "
+        f"knowledge graph ({density_desc}, graph density: {d:.3f}). "
+        f"The knowledge structure exhibits {hierarchy_desc}, "
+        f"with an average concept connectivity of {deg:.1f} connections per concept. "
+        f"Cognitive complexity is assessed as **{cx}**."
+    )
+
+    if top_names:
+        report += f" The analysis is centered around {', '.join(top_names[:-1])} and {top_names[-1]}."
+
+    return report
+
+
 def export_visualization(graph_data, output_dir):
     """Generate a standalone CognitiveSpace HTML from graph data."""
     output_dir = Path(output_dir)
@@ -295,13 +411,28 @@ def process_text(text, language="zh", output_dir=None):
     if viz_path:
         print(f"  Visualization: {viz_path}")
 
-    # Step 4: Compute basic statistics
+    # Step 4: Compute structural metrics
+    metrics = compute_metrics(graph)
+
+    # Step 5: Count connections per concept for report
+    conn_count = {}
+    for l in graph["links"]:
+        conn_count[l["source"]] = conn_count.get(l["source"], 0) + 1
+        conn_count[l["target"]] = conn_count.get(l["target"], 0) + 1
+    for nd in graph["nodes"]:
+        nd["connections"] = conn_count.get(nd["id"], 0)
+
+    # Step 6: Generate narrative report
+    report = generate_report(text, metrics, graph["nodes"], language)
+
     stats = {
         "concepts": len(graph["nodes"]),
         "relations": len(graph["links"]),
         "levels": {},
         "text_length": len(text),
-        "language": language
+        "language": language,
+        "metrics": metrics,
+        "report": report
     }
     for n in graph["nodes"]:
         lv = n.get("level", "unknown")
