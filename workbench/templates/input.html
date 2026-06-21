@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaGraph Workbench — Analyze</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  background: #0a0e1a; color: #c8ccd8;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+}
+.container { max-width: 800px; width: 100%; padding: 2rem; }
+h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: .25rem; }
+h1 em { font-style: normal; color: #60a5fa; }
+p { color: #9ca3af; font-size: .9rem; margin-bottom: 1.5rem; line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 250px; padding: 1rem;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px; color: #e0e0e0; font-size: .9rem; font-family: inherit;
+  resize: vertical; line-height: 1.6;
+}
+textarea:focus { outline: none; border-color: rgba(96,165,250,.4); }
+select, .btn {
+  padding: .6rem 1.2rem; border-radius: 6px; font-size: .85rem; font-family: inherit;
+}
+select {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  color: #e0e0e0; cursor: pointer;
+}
+.btn {
+  display: inline-block; font-weight: 500; cursor: pointer; text-decoration: none;
+  border: 1px solid rgba(96,165,250,.25);
+  background: #4a7dff; color: #fff; border-color: #4a7dff; transition: all .15s;
+}
+.btn:hover { background: #3d6fe8; }
+.btn-secondary {
+  background: rgba(96,165,250,.08); color: #93b4f5; border-color: rgba(96,165,250,.25);
+}
+.controls { display: flex; gap: .75rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
+.samples { margin: 1rem 0; padding: 1rem; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; }
+.samples strong { font-size: .8rem; color: #6b7280; }
+.sample-btn {
+  display: inline-block; padding: .3rem .8rem; margin: .3rem;
+  border: 1px solid rgba(255,255,255,.06); border-radius: 4px;
+  background: rgba(255,255,255,.02); color: #9ca3af; cursor: pointer;
+  font-size: .8rem; transition: all .15s;
+}
+.sample-btn:hover { border-color: rgba(96,165,250,.2); color: #e0e0e0; }
+footer { padding: 2rem; color: #4b5563; font-size: .75rem; }
+</style>
+<script>
+function loadSample(text) {
+  document.getElementById('text-input').value = text;
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <h1><em>LinguaGraph</em> Processing Workbench</h1>
+  <p>Paste a textbook excerpt in ZH/EN/DE. The system extracts concepts, builds a knowledge graph, computes LDS, and generates an interactive 3D visualization.</p>
+
+  <form action="/analyze" method="post">
+    <textarea id="text-input" name="text" placeholder="Paste your textbook text here...&#10;&#10;Example (ZH):&#10;导数建立在极限概念之上，用于描述函数的变化率。积分是导数的逆运算，用于计算曲线下的面积。函数是数学中描述变量之间关系的基本工具。极限是微积分学的基础概念之一。" required></textarea>
+
+    <div class="controls">
+      <select name="language">
+        <option value="zh">Chinese (ZH)</option>
+        <option value="en">English (EN)</option>
+        <option value="de">German (DE)</option>
+      </select>
+      <button type="submit" class="btn">Analyze</button>
+      <a href="/demo" class="btn btn-secondary" target="_blank">Full Demo (574 concepts)</a>
+    </div>
+  </form>
+
+  <div class="samples">
+    <strong>Sample texts:</strong><br>
+    <button class="sample-btn" onclick="loadSample('导数建立在极限概念之上，用于描述函数的变化率。积分是导数的逆运算。微积分是高等数学的核心。')">ZH: Calculus</button>
+    <button class="sample-btn" onclick="loadSample('A function describes the relationship between variables. The derivative measures the rate of change. The limit is the foundation of calculus.')">EN: Calculus</button>
+    <button class="sample-btn" onclick="loadSample('Eine Funktion beschreibt die Beziehung zwischen Variablen. Die Ableitung misst die Änderungsrate.')">DE: Analysis</button>
+    <button class="sample-btn" onclick="loadSample('矩阵是线性代数中的核心概念。向量空间由一组向量组成。特征值和特征向量描述了线性变换的性质。')">ZH: Linear Algebra</button>
+  </div>
+</div>
+<footer>LinguaGraph Research Workbench · BWKI 2026</footer>
+</body>
+</html>
