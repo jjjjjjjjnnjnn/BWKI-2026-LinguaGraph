@@ -2,6 +2,7 @@
 
 > **BWKI 2026 (Bundeswettbewerb Künstliche Intelligenz)**
 > *How does language shape the way we think? — Measured with AI and graph theory.*
+> *Wie beeinflusst Sprache unser Denken? — Gemessen mit KI und Graphentheorie.*
 >
 > A cognitive graph + multilingual reasoning dataset system.  
 > **Focus**: structured concept extraction, cross-language knowledge graph alignment, and LDS-based cognitive analysis across ZH/EN/DE.
