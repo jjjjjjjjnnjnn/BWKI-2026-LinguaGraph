@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognitiveSpace — 3D Knowledge Graph</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #e0e0e0; overflow: hidden; }
+        #graph-container { width: 100vw; height: 100vh; }
+
+        /* ── Info Panel ── */
+        #info-panel {
+            position: absolute; top: 20px; left: 20px; z-index: 10;
+            background: rgba(10, 10, 26, 0.92); padding: 20px; border-radius: 12px;
+            border: 1px solid #333; max-width: 340px; backdrop-filter: blur(10px);
+        }
+        #info-panel h2 { font-size: 1.2rem; font-weight: 400; margin-bottom: 4px; color: #6c9bff; }
+        #info-panel .subtitle { font-size: 0.75rem; color: #555; margin-bottom: 14px; }
+        #info-panel .stat-row { display: flex; gap: 16px; margin-bottom: 12px; }
+        #info-panel .stat { display: flex; flex-direction: column; }
+        #info-panel .stat-val { font-size: 1.1rem; font-weight: 600; color: #eee; }
+        #info-panel .stat-label { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .domain-select {
+            width: 100%; padding: 7px 10px; border-radius: 6px; font-size: 0.8rem;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            color: #ccc; margin-bottom: 10px; outline: none;
+        }
+        .domain-select option { background: #1a1a2e; }
+
+        #info-panel .legend { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+        #info-panel .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: #888; }
+        #info-panel .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+        #info-panel .legend-line { width: 18px; height: 2px; }
+        .lang-tag { font-size: 0.65rem; padding: 1px 5px; border-radius: 3px; margin-left: 2px; }
+        .lang-zh { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+        .lang-en { background: rgba(74,125,255,0.2); color: #4a7dff; }
+        .lang-de { background: rgba(255,217,61,0.2); color: #ffd93d; }
+
+        /* ── Node Detail (bottom) ── */
+        #node-detail {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 10; background: rgba(10, 10, 26, 0.96); padding: 16px 24px;
+            border-radius: 12px; border: 1px solid #4a7dff; display: none;
+            backdrop-filter: blur(10px); text-align: center; max-width: 520px; width: 90%;
+        }
+        #node-detail h3 { color: #6c9bff; font-size: 1rem; margin-bottom: 2px; }
+        #node-detail .node-labels { font-size: 0.8rem; color: #888; margin-bottom: 6px; }
+        #node-detail .node-source { font-size: 0.7rem; color: #555; line-height: 1.6; text-align: left; }
+        #node-detail .node-source a { color: #6c9bff; text-decoration: none; }
+        #node-detail .node-stat { font-size: 0.8rem; color: #aaa; }
+        .mcl-badge { display: inline-block; background: rgba(255,68,68,0.15); color: #ff6666; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
+
+        /* ── MCL Panel ── */
+        #mcl-panel {
+            position: absolute; top: 20px; right: 20px; z-index: 10;
+            background: rgba(26, 10, 10, 0.9); padding: 16px 20px; border-radius: 12px;
+            border: 1px solid #ff4444; max-width: 280px; backdrop-filter: blur(10px);
+            max-height: 70vh; overflow-y: auto;
+        }
+        #mcl-panel h3 { color: #ff6666; font-size: 0.95rem; margin-bottom: 8px; }
+        #mcl-panel .mcl-count { font-size: 0.7rem; color: #ff4444; margin-bottom: 8px; }
+        #mcl-panel .mcl-item {
+            padding: 6px 0; border-bottom: 1px solid #333;
+            display: flex; align-items: center; gap: 6px; font-size: 0.8rem;
+        }
+        #mcl-panel .mcl-item:last-child { border-bottom: none; }
+        #mcl-panel .mcl-arrow { color: #ff4444; font-weight: bold; font-size: 0.7rem; }
+        #mcl-panel .mcl-reason { color: #666; font-size: 0.65rem; margin-left: auto; cursor: help; }
+        .mcl-empty { color: #4ecdc4; font-size: 0.8rem; text-align: center; padding: 12px 0; }
+
+        /* ── Loading ── */
+        #loading { position: fixed; inset: 0; z-index: 9999; background: #0a0a1a; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s; }
+        #loading.hidden { opacity: 0; pointer-events: none; }
+        #loading .spinner { width: 30px; height: 30px; border: 3px solid rgba(74,125,255,0.1); border-top-color: #4a7dff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading p { color: #4a7dff; font-size: 0.9rem; margin-top: 12px; }
+        #loading .hint { color: #555; font-size: 0.7rem; margin-top: 6px; }
+
+        /* ── Status Bar ── */
+        #status-bar {
+            position: absolute; bottom: 20px; right: 20px; z-index: 10;
+            font-size: 0.65rem; color: #444; text-align: right;
+        }
+        #status-bar .data-source { color: #555; }
+        #status-bar .data-source .ok { color: #4ecdc4; }
+        #status-bar .data-source .fallback { color: #ffd93d; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            #info-panel { max-width: 240px; padding: 14px; }
+            #info-panel h2 { font-size: 1rem; }
+            #mcl-panel { max-width: 200px; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+
+    <!-- Loading -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Loading CognitiveSpace...</p>
+        <div class="hint">Building knowledge graph from textbook data</div>
+    </div>
+
+    <!-- Info Panel -->
+    <div id="info-panel">
+        <h2>CognitiveSpace</h2>
+        <div class="subtitle" id="panelSubtitle">Loading...</div>
+
+        <select class="domain-select" id="domainSelect">
+            <option value="all">All Domains</option>
+        </select>
+
+        <div class="stat-row">
+            <div class="stat"><span class="stat-val" id="statNodes">0</span><span class="stat-label">Concepts</span></div>
+            <div class="stat"><span class="stat-val" id="statLinks">0</span><span class="stat-label">Relations</span></div>
+            <div class="stat"><span class="stat-val" id="statLangs">0</span><span class="stat-label">Languages</span></div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#4a7dff;"></div><span>Concept</span></div>
+            <div class="legend-item"><div class="legend-line" style="background:#666;"></div><span>Known Relation</span></div>
+            <div class="legend-item"><div class="legend-line" style="background:#ff4444;border-top:2px dashed #ff4444;height:0;"></div><span>MCL</span></div>
+        </div>
+    </div>
+
+    <!-- MCL Panel -->
+    <div id="mcl-panel">
+        <h3>Missing Cognitive Links</h3>
+        <div class="mcl-count" id="mclCount">0 total</div>
+        <div id="mcl-list"></div>
+    </div>
+
+    <!-- Node Detail -->
+    <div id="node-detail">
+        <h3 id="node-name"></h3>
+        <div class="node-labels" id="nodeLabels"></div>
+        <div class="node-stat" id="nodeStat"></div>
+        <div class="node-source" id="nodeSource"></div>
+    </div>
+
+    <!-- Status Bar -->
+    <div id="status-bar">
+        <div class="data-source" id="dataSource">Source: <span class="fallback">standalone (no API)</span></div>
+    </div>
+
+    <script>
+    // ===== STATE =====
+    let graphData = null;
+    let fullNodes = [];
+    let fullLinks = [];
+    let MCL_THRESHOLD = 0.5; // confidence below this → MCL
+    let Graph = null;
+    let allMissingLinks = [];
+    let domainsList = [];
+
+    // ===== LOAD DATA =====
+
+    async function loadGraphData() {
+        // Try API first, fall back to hardcoded data
+        try {
+            const resp = await fetch('/api/visualization');
+            if (resp.ok) {
+                const data = await resp.json();
+                document.getElementById('dataSource').innerHTML =
+                    'Source: <span class="ok">pipeline data</span>';
+                return data;
+            }
+        } catch (e) {
+            // Server not running — fall back
+        }
+
+        document.getElementById('dataSource').innerHTML =
+            'Source: <span class="fallback">standalone (limited data)</span>';
+        return null;
+    }
+
+    async function loadDomains() {
+        try {
+            const resp = await fetch('/api/domains');
+            if (resp.ok) {
+                const data = await resp.json();
+                return data.domains || [];
+            }
+        } catch (e) {}
+        return [];
+    }
+
+    // ===== FALLBACK DATA =====
+
+    const FALLBACK_DATA = {
+        nodes: [
+            { id: "derivative", name: "导数", labels: { zh: "导数", en: "Derivative", de: "Ableitung" }, group: "calculus", importance: 10, source_count: 1 },
+            { id: "rate_of_change", name: "变化率", labels: { zh: "变化率", en: "Rate of Change", de: "Änderungsrate" }, group: "calculus", importance: 7, source_count: 1 },
+            { id: "limit", name: "极限", labels: { zh: "极限", en: "Limit", de: "Grenzwert" }, group: "calculus", importance: 9, source_count: 1 },
+            { id: "integral", name: "积分", labels: { zh: "积分", en: "Integral", de: "Integral" }, group: "calculus", importance: 8, source_count: 1 },
+            { id: "area", name: "面积", labels: { zh: "面积", en: "Area", de: "Fläche" }, group: "calculus", importance: 6, source_count: 1 },
+            { id: "function", name: "函数", labels: { zh: "函数", en: "Function", de: "Funktion" }, group: "calculus", importance: 8, source_count: 1 },
+            { id: "continuity", name: "连续性", labels: { zh: "连续性", en: "Continuity", de: "Stetigkeit" }, group: "calculus", importance: 7, source_count: 1 },
+            { id: "tangent_slope", name: "切线斜率", labels: { zh: "切线斜率", en: "Tangent Slope", de: "Tangentensteigung" }, group: "calculus", importance: 6, source_count: 1 },
+            { id: "ftc", name: "微积分基本定理", labels: { zh: "微积分基本定理", en: "Fundamental Theorem of Calculus", de: "Hauptsatz der Differential- und Integralrechnung" }, group: "calculus", importance: 9, source_count: 1 },
+        ],
+        links: [
+            { source: "derivative", target: "rate_of_change", type: "represents", importance: 0.9, known: true },
+            { source: "derivative", target: "tangent_slope", type: "represents", importance: 0.9, known: true },
+            { source: "integral", target: "derivative", type: "inverse_of", importance: 0.95, known: true },
+            { source: "integral", target: "area", type: "represents", importance: 0.85, known: true },
+            { source: "ftc", target: "integral", type: "connects", importance: 0.95, known: true },
+            { source: "ftc", target: "derivative", type: "connects", importance: 0.9, known: true },
+            // MCL
+            { source: "limit", target: "derivative", type: "prerequisite", importance: 0.95, known: false,
+              evidence: "学生不知道极限是导数的基础" },
+            { source: "limit", target: "continuity", type: "requires", importance: 0.9, known: false,
+              evidence: "学生未理解极限与连续性的关系" },
+            { source: "continuity", target: "derivative", type: "prerequisite", importance: 0.85, known: false,
+              evidence: "学生不知道连续性是可导的前提" },
+        ]
+    };
+
+    // ===== PROCESS DATA =====
+
+    function processData(data) {
+        if (!data || !data.nodes || data.nodes.length === 0) {
+            // Use fallback
+            console.log('Using fallback data');
+            data = FALLBACK_DATA;
+        }
+
+        fullNodes = [...data.nodes];
+        fullLinks = [...data.links];
+
+        // Detect languages present
+        const langs = new Set();
+        data.nodes.forEach(n => {
+            if (n.labels) {
+                Object.keys(n.labels).forEach(l => langs.add(l));
+            }
+        });
+
+        // Extract missing links
+        allMissingLinks = fullLinks.filter(l => l.known === false);
+
+        // Detect available domains
+        const domains = new Set();
+        data.nodes.forEach(n => {
+            if (n.group) domains.add(n.group);
+        });
+        domainsList = [...domains];
+
+        return {
+            nodes: fullNodes,
+            links: fullLinks,
+            missingLinks: allMissingLinks,
+            domains: domainsList,
+            languages: [...langs],
+        };
+    }
+
+    // ===== RENDER GRAPH =====
+
+    function renderGraph(data) {
+        const knownLinks = data.links.filter(l => l.known !== false);
+        const knownData = { nodes: data.nodes, links: knownLinks };
+
+        Graph = ForceGraph3D()(document.getElementById('graph-container'))
+            .graphData(knownData)
+            .nodeLabel(n => {
+                const labels = n.labels || {};
+                const parts = [];
+                if (labels.zh) parts.push(labels.zh);
+                if (labels.en) parts.push(labels.en);
+                if (labels.de) parts.push(labels.de);
+                return parts.join(' · ') || n.name || n.id;
+            })
+            .nodeVal(n => (n.importance || 5) * 0.8)
+            .nodeColor(n => {
+                if (n.group === 'calculus') return '#4a7dff';
+                if (n.group === 'linear_algebra') return '#10b981';
+                if (n.group === 'geometry') return '#f59e0b';
+                if (n.group === 'statistics') return '#8b5cf6';
+                return '#2a5aff';
+            })
+            .nodeOpacity(0.92)
+            .nodeResolution(12)
+            .linkColor(() => 'rgba(100, 150, 255, 0.4)')
+            .linkWidth(l => l.importance ? l.importance * 1.5 : 1.5)
+            .linkDirectionalArrowLength(4)
+            .linkDirectionalArrowRelPos(1)
+            .linkCurvature(0.05)
+            .backgroundColor('#0a0a1a')
+            .showNavInfo(false)
+            .width(window.innerWidth)
+            .height(window.innerHeight);
+
+        // Render missing links via overlay
+        renderMissingLinks(data.missingLinks);
+
+        // Node click
+        Graph.onNodeClick(node => showNodeDetail(node));
+
+        // Click background to hide
+        Graph.onBackgroundClick(() => { document.getElementById('node-detail').style.display = 'none'; });
+
+        // Camera
+        Graph.cameraPosition({ x: 150, y: 80, z: 150 });
+    }
+
+    // ===== MISSING LINKS OVERLAY =====
+
+    function renderMissingLinks(missingLinks) {
+        const overlayCanvas = document.createElement('canvas');
+        overlayCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;';
+        document.body.appendChild(overlayCanvas);
+        const ctx = overlayCanvas.getContext('2d');
+
+        function resize() {
+            overlayCanvas.width = window.innerWidth;
+            overlayCanvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        Graph.onEngineTick(() => {
+            ctx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+            ctx.strokeStyle = '#ff4444';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+
+            missingLinks.forEach(ml => {
+                const src = findNodeById(ml.source);
+                const tgt = findNodeById(ml.target);
+                if (!src || !tgt || src.x == null || tgt.x == null) return;
+
+                const sp = project3D(src.x, src.y, src.z);
+                const tp = project3D(tgt.x, tgt.y, tgt.z);
+
+                if (sp && tp) {
+                    ctx.beginPath();
+                    ctx.moveTo(sp.x, sp.y);
+                    ctx.lineTo(tp.x, tp.y);
+                    ctx.stroke();
+
+                    // X marker at midpoint
+                    const mx = (sp.x + tp.x) / 2;
+                    const my = (sp.y + tp.y) / 2;
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = '#ff4444';
+                    ctx.font = 'bold 14px monospace';
+                    ctx.fillText('✕', mx - 5, my + 4);
+                    ctx.setLineDash([6, 4]);
+                }
+            });
+        });
+    }
+
+    function project3D(x, y, z) {
+        if (!Graph) return null;
+        const camera = Graph.camera();
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const vector = new THREE.Vector3(x, y, z);
+        vector.project(camera);
+        return {
+            x: (vector.x * 0.5 + 0.5) * width,
+            y: (-vector.y * 0.5 + 0.5) * height,
+        };
+    }
+
+    function findNodeById(id) {
+        if (typeof id === 'object') return id;
+        return fullNodes.find(n => n.id === id);
+    }
+
+    // ===== NODE DETAIL =====
+
+    function showNodeDetail(node) {
+        const detail = document.getElementById('node-detail');
+        document.getElementById('node-name').textContent = node.name || node.id;
+
+        // Cross-language labels
+        const labels = node.labels || {};
+        const labelHtml = Object.entries(labels)
+            .map(([lang, label]) => {
+                const langClass = lang === 'zh' ? 'lang-zh' : lang === 'en' ? 'lang-en' : 'lang-de';
+                return `<span class="lang-tag ${langClass}">${lang.toUpperCase()}: ${label}</span>`;
+            })
+            .join(' ');
+        document.getElementById('nodeLabels').innerHTML = labelHtml ||
+            '<span style="color:#666;font-size:0.75rem">No cross-language data</span>';
+
+        // Source references
+        const refs = node.cross_references || [];
+        const refHtml = refs.length > 0
+            ? refs.map(r => {
+                const name = typeof r === 'object' ? (r.textbook || r.name || '') : r;
+                const section = typeof r === 'object' ? (r.section ? ` §${r.section}` : r.chapter ? ` ${r.chapter}` : '') : '';
+                return `📖 ${name}${section}`;
+              }).join('<br>')
+            : '<em>Source: expert curriculum</em>';
+        document.getElementById('nodeSource').innerHTML = refHtml
+            ? `<strong>References:</strong><br>${refHtml}`
+            : '';
+
+        // Connection stats
+        const connections = fullLinks.filter(l =>
+            (typeof l.source === 'object' && l.source.id === node.id) ||
+            (typeof l.source === 'string' && l.source === node.id) ||
+            (typeof l.target === 'object' && l.target.id === node.id) ||
+            (typeof l.target === 'string' && l.target === node.id)
+        );
+        const known = connections.filter(l => l.known !== false).length;
+        const missing = connections.filter(l => l.known === false).length;
+        document.getElementById('nodeStat').textContent =
+            `Connections: ${known} known, ${missing} missing` +
+            (node.source_count ? ` · ${node.source_count} textbook sources` : '');
+
+        detail.style.display = 'block';
+
+        // Auto-hide after 8 seconds
+        if (window._nodeDetailTimer) clearTimeout(window._nodeDetailTimer);
+        window._nodeDetailTimer = setTimeout(() => {
+            detail.style.display = 'none';
+        }, 8000);
+    }
+
+    // ===== MCL PANEL =====
+
+    function renderMCLPanel(links) {
+        const mclList = document.getElementById('mcl-list');
+        const mclCount = document.getElementById('mclCount');
+
+        if (!links || links.length === 0) {
+            mclList.innerHTML = '<div class="mcl-empty">✓ No missing links detected</div>';
+            mclCount.textContent = '0 total';
+            return;
+        }
+
+        mclCount.textContent = `${links.length} total`;
+
+        links.forEach(link => {
+            const srcName = typeof link.source === 'object' ? (link.source.name || link.source.id) : link.source;
+            const tgtName = typeof link.target === 'object' ? (link.target.name || link.target.id) : link.target;
+
+            const item = document.createElement('div');
+            item.className = 'mcl-item';
+            item.innerHTML = `
+                <span class="mcl-arrow">✕</span>
+                <span>${getShortName(srcName)} → ${getShortName(tgtName)}</span>
+                <span class="mcl-reason" title="${(link.evidence || 'Unknown gap').replace(/"/g, '&quot;')}">ⓘ</span>
+            `;
+            mclList.appendChild(item);
+        });
+    }
+
+    function getShortName(id) {
+        const node = fullNodes.find(n => n.id === id || n.name === id);
+        if (node) return node.name || node.id;
+        // Truncate long IDs
+        return id.length > 18 ? id.substring(0, 16) + '…' : id;
+    }
+
+    // ===== DOMAIN FILTER =====
+
+    function populateDomainSelect(domains) {
+        const sel = document.getElementById('domainSelect');
+        // Keep "all" option
+        sel.innerHTML = '<option value="all">All Domains</option>';
+
+        const domainLabels = {
+            calculus: 'Calculus',
+            linear_algebra: 'Linear Algebra',
+            geometry: 'Geometry',
+            statistics: 'Statistics & Probability',
+            general: 'General Math',
+        };
+
+        domains.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.textContent = domainLabels[d] || d;
+            sel.appendChild(opt);
+        });
+
+        sel.addEventListener('change', (e) => {
+            filterByDomain(e.target.value);
+        });
+    }
+
+    function filterByDomain(domain) {
+        if (!Graph) return;
+
+        let filteredNodes = fullNodes;
+        let filteredLinks = fullLinks;
+
+        if (domain !== 'all') {
+            const domainIds = new Set(
+                fullNodes.filter(n => n.group === domain).map(n => n.id)
+            );
+            filteredNodes = fullNodes.filter(n => domainIds.has(n.id));
+            filteredLinks = fullLinks.filter(l => {
+                const srcId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tgtId = typeof l.target === 'object' ? l.target.id : l.target;
+                return domainIds.has(srcId) && domainIds.has(tgtId);
+            });
+        }
+
+        const knownLinks = filteredLinks.filter(l => l.known !== false);
+        const missingLinks = filteredLinks.filter(l => l.known === false);
+
+        Graph.graphData({ nodes: filteredNodes, links: knownLinks });
+        renderMCLPanel(missingLinks);
+
+        document.getElementById('statNodes').textContent = filteredNodes.length;
+        document.getElementById('statLinks').textContent = filteredLinks.length;
+    }
+
+    // ===== INIT =====
+
+    async function init() {
+        // Load data
+        const apiData = await loadGraphData();
+        domainsList = await loadDomains();
+
+        const processed = processData(apiData);
+
+        // Update title
+        document.getElementById('panelSubtitle').textContent =
+            `${processed.nodes.length} concepts across ${processed.languages.length} languages`;
+
+        // Populate domain selector
+        populateDomainSelect(processed.domains);
+
+        // Render
+        renderGraph(processed);
+
+        // MCL Panel
+        renderMCLPanel(processed.missingLinks);
+
+        // Stats
+        document.getElementById('statNodes').textContent = processed.nodes.length;
+        document.getElementById('statLinks').textContent = processed.links.length;
+        document.getElementById('statLangs').textContent = processed.languages.length;
+
+        // Hide loading
+        setTimeout(() => {
+            document.getElementById('loading').classList.add('hidden');
+            setTimeout(() => {
+                const el = document.getElementById('loading');
+                if (el) el.style.display = 'none';
+            }, 600);
+        }, 500);
+
+        // Resize
+        window.addEventListener('resize', () => {
+            if (Graph) {
+                Graph.width(window.innerWidth);
+                Graph.height(window.innerHeight);
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

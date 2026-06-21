@@ -14,15 +14,15 @@ import sys
 from pathlib import Path
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add project root to path (src.models needs project root, not just src/)
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from extract import extract_concepts
-from graph import build_graph, load_expert_graph, graph_to_dict
-from compare import detect_missing_links
-from scoring import calculate_lds_score
-from explain import generate_simple_explanation
-from providers import get_provider
+from src.extract import extract_concepts
+from src.graph import build_graph, load_expert_graph, graph_to_dict
+from src.compare import detect_missing_links
+from src.scoring import calculate_lds_score
+from src.explain import generate_simple_explanation
+from src.providers import get_provider
 
 
 class LinguaGraphHandler(SimpleHTTPRequestHandler):
@@ -60,6 +60,44 @@ class LinguaGraphHandler(SimpleHTTPRequestHandler):
                     "status": "degraded",
                     "error": str(e)
                 }, 503)
+
+        elif self.path.startswith('/api/graph/'):
+            # Serve expert graph data by domain
+            domain = self.path.replace('/api/graph/', '').split('/')[0]
+            graph_dir = Path(__file__).parent.parent / 'config' / 'expert_graphs'
+            graph_file = graph_dir / f'{domain}.json'
+
+            if graph_file.exists():
+                data = json.loads(graph_file.read_text(encoding='utf-8'))
+                self.send_json(data)
+            else:
+                self.send_json({"error": f"Graph not found for domain: {domain}"}, 404)
+
+        elif self.path == '/api/visualization':
+            # Serve combined visualization data for demo.html
+            vis_file = (Path(__file__).parent.parent /
+                        'data' / 'math_extractions' / 'merged' / 'visualization_data.json')
+            if vis_file.exists():
+                data = json.loads(vis_file.read_text(encoding='utf-8'))
+                self.send_json(data)
+            else:
+                self.send_json({
+                    "error": "Visualization data not found. Run the pipeline first.",
+                    "hint": "Place extraction JSONs in data/math_extractions/, then run:\n"
+                            "  python scripts/math_graph_pipeline/merge_extractions.py\n"
+                            "  python scripts/math_graph_pipeline/align_languages.py\n"
+                            "  python scripts/math_graph_pipeline/export_graph.py"
+                }, 404)
+
+        elif self.path == '/api/domains':
+            # List available graph domains
+            graph_dir = Path(__file__).parent.parent / 'config' / 'expert_graphs'
+            if graph_dir.exists():
+                domains = [f.stem for f in sorted(graph_dir.glob('*.json'))]
+                self.send_json({"domains": domains})
+            else:
+                self.send_json({"domains": []})
+
         else:
             self.send_error(404)
 

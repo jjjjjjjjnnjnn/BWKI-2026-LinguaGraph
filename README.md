@@ -2,6 +2,9 @@
 
 > **BWKI 2026 (Bundeswettbewerb Künstliche Intelligenz)**
 > *How does language shape the way we think? — Measured with AI and graph theory.*
+>
+> A cognitive graph + multilingual reasoning dataset system.  
+> **Focus**: structured concept extraction, cross-language knowledge graph alignment, and LDS-based cognitive analysis across ZH/EN/DE.
 
 <p align="center">
   <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/stargazers">
@@ -21,9 +24,9 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/cognitive_city_preview.png" alt="LinguaGraph Cognitive City — 3D Trilingual Cognitive Graph Visualization" width="90%">
+  <img src="cognitive-space/web/screenshot.png" alt="CognitiveSpace — 3D Math Knowledge Graph, ZH/EN/DE across 4 education levels" width="90%" onerror="this.style.display='none'">
   <br>
-  <em>Cognitive City V3 — Three.js 3D visualization. Three cities (ZH/EN/DE) side by side. Each building = a concept, each road = a semantic relation.</em>
+  <em>CognitiveSpace — 3D knowledge graph of mathematics across 4 education levels (elementary → university) in ZH/EN/DE. 574 concepts, 3538 relations, 68 textbooks.</em>
 </p>
 
 ---
@@ -55,7 +58,7 @@
 | 创新点 | 说明 |
 |--------|------|
 | **LDS (Language Drift Score)** | 首个在图结构层面量化跨语言认知差异的指标 |
-| **Cognitive City** | 3D 可视化隐喻：概念=建筑，关系=道路 |
+| **CognitiveSpace** | 3D 知识图谱可视化：574 概念 × 4 学段 × 3 语言 |
 | **三语比较** | 中文、德语、英语三种语言系统的认知图谱分析 |
 
 ### 研究框架
@@ -71,7 +74,7 @@ LLM 提取概念与关系
     ↓
 计算 LDS / LCD / 概念Shift
     ↓
-3D Cognitive City 可视化
+3D CognitiveSpace 可视化
 ```
 
 ### 技术栈
@@ -79,7 +82,7 @@ LLM 提取概念与关系
 - **AI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (插件式 Provider)
 - **图论**: NetworkX, Graph Edit Distance, Jaccard 相似度
 - **数据库**: SQLite (10 张表)
-- **可视化**: Three.js (3D Cognitive City)
+- **可视化**: 3d-force-graph (CognitiveSpace)
 - **数据**: 300 条计算基线 + Wikipedia 多语语料
 - **技术复用**: 核心组件（Provider 抽象、GGUF 量化、LoRA 适配）已抽离为独立运行时 [MML Runtime](#)，同时服务认知提取与游戏叙事等不同场景
 
@@ -110,7 +113,7 @@ LLM 提取概念与关系
 | Innovation | Description |
 |-----------|-------------|
 | **LDS (Language Drift Score)** | First metric quantifying cross-lingual cognitive differences at the graph-structure level |
-| **Cognitive City** | 3D visualization: concepts as buildings, relations as roads |
+| **CognitiveSpace** | 3D knowledge graph: 574 concepts × 4 levels × 3 languages |
 | **Trilingual Comparison** | Chinese, German, and English cognitive graph analysis |
 
 ### Pipeline
@@ -126,7 +129,7 @@ Cross-language concept alignment (30 shared concept IDs)
     ↓
 LDS / LCD / Concept Shift computation
     ↓
-3D Cognitive City visualization
+3D CognitiveSpace visualization
 ```
 
 ### Tech Stack
@@ -134,7 +137,7 @@ LDS / LCD / Concept Shift computation
 - **AI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (pluggable Provider system)
 - **Graph**: NetworkX, Graph Edit Distance, Jaccard similarity
 - **Database**: SQLite (10 tables)
-- **Visualization**: Three.js (3D Cognitive City)
+- **Visualization**: 3d-force-graph (CognitiveSpace)
 - **Data**: 300 computational baselines + multilingual Wikipedia corpus
 - **Tech reusability**: Core components (Provider abstraction, GGUF quantization, LoRA adapters) extracted as a standalone [MML Runtime](#), serving both cognitive extraction and game narrative scenarios
 
@@ -165,7 +168,7 @@ LDS / LCD / Concept Shift computation
 | Innovation | Beschreibung |
 |-----------|-------------|
 | **LDS (Language Drift Score)** | Erster Metrik zur Quantifizierung cross-lingualer kognitiver Unterschiede auf Graphenebene |
-| **Cognitive City** | 3D-Visualisierungsmetapher: Konzepte als Gebäude, Beziehungen als Straßen |
+| **CognitiveSpace** | 3D-Visualisierung: 574 Konzepte × 4 Stufen × 3 Sprachen |
 | **Dreisprachiger Vergleich** | Kognitive Graphenanalyse für Chinesisch, Deutsch und Englisch |
 
 ### Pipeline
@@ -181,7 +184,7 @@ Sprachübergreifende Konzeptzuordnung (30 geteilte Konzept-IDs)
     ↓
 LDS / LCD / Concept-Shift-Berechnung
     ↓
-3D Cognitive City Visualisierung
+3D CognitiveSpace Visualisierung
 ```
 
 ### Technologie-Stack
@@ -189,7 +192,7 @@ LDS / LCD / Concept-Shift-Berechnung
 - **KI**: OpenAI GPT-4.1-mini / Qwen3-8B / Ollama (Plugin-basiertes Provider-System)
 - **Graphentheorie**: NetworkX, Graph Edit Distance, Jaccard-Ähnlichkeit
 - **Datenbank**: SQLite (10 Tabellen)
-- **Visualisierung**: Three.js (3D Cognitive City)
+- **Visualisierung**: 3d-force-graph (CognitiveSpace)
 - **Daten**: 300 Rechen-Baselines + mehrsprachiges Wikipedia-Korpus
 - **Wiederverwendbarkeit**: Kernkomponenten (Provider-Abstraktion, GGUF-Quantisierung, LoRA-Adapter) als eigenständige [MML Runtime](#) extrahiert, die sowohl kognitive Extraktion als auch Spielerzählung bedient
 
@@ -248,11 +251,13 @@ BWKI-2026-LinguaGraph/
 │   ├── methodology.md    #   LDS mathematical definition
 │   ├── experiment-design.md # Experiment design / 实验设计
 │   └── technology_transfer.md # MML Runtime & cross-project reuse / 技术资产复用
-├── results/              # Generated outputs / 生成结果 / Ergebnisse
-│   ├── export_pipeline.py #  Publication-ready tables & figures
+├── outputs/              # Generated outputs / 生成结果 / Ergebnisse
+│   ├── figures/          #   Publication figures (PNG)
 │   ├── tables/           #   Demographic & LDS tables
-│   └── figures/          #   Publication figures (PNG)
-├── visualization_v3/     # 3D Cognitive City (Three.js)
+│   ├── export_pipeline.py #  Publication-ready tables & figures
+│   └── paper_results_template.md
+├── cognitive-space/     # CognitiveSpace 3D知识图谱可视化
+├── _archive/             # Deprecated visualization versions (kept for history)
 ├── tests/                # Test suite / 测试套件 / Tests
 ├── references/           # Academic references / 参考文献 (88+ papers)
 ├── evaluation/           # Extraction benchmark / 提取基准测试
@@ -313,12 +318,12 @@ python -m pytest tests/ -v
 ### Visualization / 可视化 / Visualisierung
 
 **🌐 Live Demo:** [jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/)
-*(Auto-deploys from `visualization_v3/` via GitHub Actions · Cognitive City V3)*
+*(Open `cognitive-space/web/index.html` in browser · CognitiveSpace)*
 
 ```bash
 # Or run locally / 本地打开 / lokal öffnen
-open visualization_v3/index.html    # Mac
-start visualization_v3/index.html   # Windows
+open cognitive-space/web/index.html    # Mac
+start cognitive-space/web/index.html   # Windows
 ```
 
 ---
@@ -349,6 +354,17 @@ start visualization_v3/index.html   # Windows
 ```
 
 Siehe auch [`CITATION.cff`](CITATION.cff) · 或查看 CITATION.cff
+
+---
+
+## 🧩 系统工程验证 / System Engineering / Systemtechnik
+
+**CognitiveSpace** — 全流程数学知识图谱（从小学到高数）
+
+- **405 concepts, 324 relations, 0 conflicts**
+- 60 textbooks across Chinese, English, German
+- 3D interactive visualization: [`cognitive-space/`](cognitive-space/)
+- 见论文 / See paper Appendix A
 
 ---
 

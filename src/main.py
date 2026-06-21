@@ -142,7 +142,7 @@ if __name__ == "__main__":
         print(result["explanation"])
 
         # Save result
-        save_result(result, f"output/{student['id']}.json")
+        save_result(result, f"outputs/{student['id']}.json")
 
     print("\n" + "=" * 50)
     print("Demo complete!")
