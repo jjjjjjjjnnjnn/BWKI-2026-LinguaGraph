@@ -193,21 +193,64 @@ Full results: [`research/findings/bailian_benchmark_complete.json`](research/fin
 
 ---
 
-## 📚 Key References
+## 📚 References
 
-| Area | Reference | Link |
-|------|-----------|------|
-| Concept Maps | Novak & Cañas (2008) — *The theory underlying concept maps* | [ResearchGate](https://www.researchgate.net/publication/228633562) |
-| Assimilation Theory | Ausubel (1963) — *The psychology of meaningful verbal learning* | — |
-| Curriculum Coherence | Schmidt et al. (2001) — *Why schools matter* (TIMSS) | [TIMSS](https://timssandpirls.bc.edu/) |
-| Cross-National Textbooks | Liang & Heckmann (2013) — Comparing German & Chinese math textbooks | [ZDM](https://link.springer.com/article/10.1007/s11858-013-0492-1) |
-| Linguistic Relativity | Boroditsky (2001) — *Does language shape thought?* | [DOI](https://doi.org/10.1006/cogp.2000.0740) |
-| Network Science in Education | Siew (2019) — Applications of network science to education research | [Springer](https://link.springer.com/chapter/10.1007/978-3-030-14474-6_12) |
-| Educational Policy | OECD (2023) — *Education at a Glance* | [OECD](https://www.oecd.org/education/education-at-a-glance/) |
+### Academic Papers
 
----
+| # | Reference | Relevance |
+|---|-----------|-----------|
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Foundational — concept mapping theory underpinning CDS/HDS |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilation theory — knowledge is structured, not listed |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS curriculum coherence — Coverage Score inspiration |
+| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Cross-national textbook comparison methodology |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Linguistic relativity — research question context |
+| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Network analysis of cognitive/educational structures |
+| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Most directly relevant EKG pipeline methodology |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
+| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
+| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
+| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematics and Science.* | Curriculum coverage analysis methodology |
+| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
 
-## 📜 Citation
+### Open Source Libraries
+
+| Library | Usage | License |
+|---------|-------|---------|
+| [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
+| [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Figure generation (Fig 3-7) | PSF |
+| [numpy/numpy](https://github.com/numpy/numpy) | Numerical computation, similarity metrics | BSD-3 |
+| [scipy/scipy](https://github.com/scipy/scipy) | Statistical analysis, correlation tests | BSD-3 |
+| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Baseline models and evaluation | BSD-3 |
+| [Three.js](https://github.com/mrdoob/three.js) | 3D knowledge graph visualization (CognitiveSpace) | MIT |
+| [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
+| [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
+
+### Curriculum Standards (Primary Sources)
+
+| Standard | Publisher |
+|----------|-----------|
+| Kernlehrplan Mathematik/Physik/Chemie NRW (Sek I 2019, Sek II 2023) | MSB NRW |
+| UK National Curriculum (Mathematics, Science) | DfE England |
+| US Next Generation Science Standards (NGSS) | NGSS Lead States |
+| Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
+
+### Textbook Corpora
+
+Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
+
+**ZH** (33+ publishers): 人教版, 沪科版, 北师大版, 苏科版, 粤教版, 鲁科版, 马文蔚, 程守洙, 漆安慎, 赵凯华, 汪志诚, 杨福家, 梁昆淼, 郭硕鸿, 曾谨言
+
+**EN** (34+ publishers): Khan Academy, CK-12, AP Physics, IB, IGCSE, GCSE, Halliday Resnick Walker, Serway Jewett, Young Freedman, Griffiths, Kittel, Feynman Lectures, Stewart Calculus, Strang Linear Algebra
+
+**DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
+
+### Acknowledgments
+
+- **BWKI 2026** — Competition platform
+- **Alibaba Cloud Bailian** — Free API quota (1M tokens per model)
+- **OpenRouter** — Model routing (tested)
+- **LM Studio** — Local inference (initial development)## 📜 Citation
 
 ```bibtex
 @misc{linguaGraph2026,
