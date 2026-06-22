@@ -21,11 +21,11 @@ We computed the longest prerequisite chain for each concept using BFS on prerequ
 
 | Metric | Value |
 |--------|-------|
-| Maximum chain depth | **7** |
+| Maximum chain depth | **8** |
 | Mean depth | **0.40** |
 | Concepts with no prerequisites (roots) | ~66% |
 
-**Finding F3**: The maximum prerequisite depth is only 7, with a mean of 0.40. This means that **mathematical knowledge is predominantly a shallow web, not a deep tree**. Over 66% of concepts have no prerequisite chains at all. This has direct pedagogical implications: it suggests that mathematics curricula can be reorganized more flexibly without violating prerequisite ordering.
+**Finding F3**: The maximum prerequisite depth is only 8, with a mean of 0.40. This means that **mathematical knowledge is predominantly a shallow web, not a deep tree**. Over 66% of concepts have no prerequisite chains at all.
 
 ### 3.3 Cross-Language Structural Divergence (LDS)
 

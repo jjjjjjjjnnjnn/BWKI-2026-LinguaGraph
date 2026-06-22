@@ -287,7 +287,7 @@ Sprache ist, wie wir denken.
 │                              │         │          │
 ├──────────┴──────────────────────────────────────────┤
 │ KONTAKT / INFO                                      │
-│ [Name] | [Email] | BWKI 2026                        │
+│ GitHub: LinguaGraph | BWKI 2026                        │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -302,7 +302,7 @@ Sprache ist, wie wir denken.
 **Visual**: Du sitzt an einem Tisch, vor dir drei Flaggen (China, Deutschland, UK/USA). Du sprichst in die Kamera.
 
 **Audio**:
-"Hallo, ich bin [Name]. Ich bin in China geboren und lebe jetzt in Deutschland. Jeden Tag erlebe ich etwas Faszinierendes: Wenn ich auf Chinesisch über ein Thema nachdenke, kommen mir andere Ideen als auf Deutsch. 'Freiheit' auf Chinesisch bedeutet für mich Verantwortung. 'Freiheit' auf Deutsch bedeutet Selbstbestimmung. Ist das nur mein Gefühl — oder steckt Wissenschaft dahinter?"
+"Hallo, ich bin Rongjing. Ich bin in China geboren und lebe jetzt in Deutschland. Jeden Tag erlebe ich etwas Faszinierendes: Wenn ich auf Chinesisch über ein Thema nachdenke, kommen mir andere Ideen als auf Deutsch. 'Freiheit' auf Chinesisch bedeutet für mich Verantwortung. 'Freiheit' auf Deutsch bedeutet Selbstbestimmung. Ist das nur mein Gefühl — oder steckt Wissenschaft dahinter?"
 
 ### Szene 2: Das Problem (0:30-1:00)
 

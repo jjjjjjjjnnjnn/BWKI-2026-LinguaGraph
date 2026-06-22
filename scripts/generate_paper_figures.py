@@ -449,13 +449,53 @@ def fig6_cds_comparison(physics_cds, math_cds):
     return path
 
 
-# ════════════════════════════════════════════════════════════════════════
+def fig7_three_subject_cds(math_cds, physics_cds, chemistry_cds):
+    """Fig 7: CDS Comparison — Math vs Physics vs Chemistry."""
+    levels = LV_ORDER
+    labels = [LV_LABELS[l] for l in levels]
+    math_vals = [math_cds[l]["cds"] for l in levels]
+    phys_vals = [physics_cds[l]["cds"] for l in levels]
+    chem_vals = [chemistry_cds[l]["cds"] for l in levels]
+
+    x = np.arange(len(levels))
+    width = 0.25
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    bars1 = ax.bar(x - width, math_vals, width, label="Math", color="#60a5fa", edgecolor="white", linewidth=0.5)
+    bars2 = ax.bar(x, phys_vals, width, label="Physics", color="#f97316", edgecolor="white", linewidth=0.5)
+    bars3 = ax.bar(x + width, chem_vals, width, label="Chemistry", color="#22c55e", edgecolor="white", linewidth=0.5)
+
+    ax.set_ylabel("CDS (Concept Density Score)")
+    ax.set_title("CDS by Education Level: Three-Subject Comparison", fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    for bars in [bars1, bars2, bars3]:
+        for bar in bars:
+            v = bar.get_height()
+            if v > 0:
+                ax.text(bar.get_x() + bar.get_width()/2, v + 0.003,
+                        f"{v:.3f}", ha="center", va="bottom", fontsize=8)
+
+    plt.tight_layout()
+    path = FIGURES_DIR / "fig7_three_subject_cds.png"
+    plt.savefig(path)
+    plt.close()
+    print(f"  [OK] Fig 7 saved: {path.name} ({path.stat().st_size // 1024} KB)")
+    return path
+
+
+# ══════════════════════════════════════════════════════════════════════
 #  Main
 # ════════════════════════════════════════════════════════════════════════
 
 def main():
     parser = argparse.ArgumentParser(description="Generate paper figures for LinguaGraph")
-    parser.add_argument("--fig", type=int, choices=[1, 2, 3, 4, 5, 6], help="Single figure to generate")
+    parser.add_argument("--fig", type=int, choices=[1, 2, 3, 4, 5, 6, 7], help="Single figure to generate")
     args = parser.parse_args()
 
     print("=" * 55)
@@ -501,23 +541,37 @@ def main():
         fig5_hds(hds_depths, nodes)
 
     # Fig 6: Physics vs Math CDS comparison
+    physics_json = PROJECT_DIR / "config" / "expert_graphs" / "physics_full.json"
+    physics_cds = None
+    if physics_json.exists():
+        with open(physics_json, "r", encoding="utf-8") as f:
+            physics_g = json.load(f)
+        p_nodes = [{"id": c["name"], "level": c.get("level", "college")} for c in physics_g["concepts"]]
+        p_links = [{"source": r["source"], "target": r["target"],
+                    "type": r.get("type", "relates_to"), "relation": r.get("relation", r.get("type", "relates_to"))}
+                   for r in physics_g["relations"]]
+        physics_cds = compute_cds(p_nodes, p_links)
+
     if args.fig is None or args.fig == 6:
-        physics_json = PROJECT_DIR / "config" / "expert_graphs" / "physics_full.json"
-        if physics_json.exists():
-            with open(physics_json, "r", encoding="utf-8") as f:
-                physics_g = json.load(f)
-            # Convert physics graph to nodes/links format
-            p_nodes = []
-            for c in physics_g["concepts"]:
-                lv = c.get("level", "college")
-                p_nodes.append({"id": c["name"], "level": lv})
-            p_links = [{"source": r["source"], "target": r["target"],
-                        "type": r.get("type", "relates_to"), "relation": r.get("relation", r.get("type", "relates_to"))}
-                       for r in physics_g["relations"]]
-            physics_cds = compute_cds(p_nodes, p_links)
+        if physics_cds is not None:
             fig6_cds_comparison(physics_cds, cds_data)
         else:
             print("  [SKIP] Fig 6: physics_full.json not found")
+
+    # Fig 7: Three-subject CDS comparison
+    if args.fig is None or args.fig == 7:
+        chem_json = PROJECT_DIR / "config" / "expert_graphs" / "chemistry_full.json"
+        if chem_json.exists() and physics_cds is not None:
+            with open(chem_json, "r", encoding="utf-8") as f:
+                chem_g = json.load(f)
+            c_nodes = [{"id": c["name"], "level": c.get("level", "college")} for c in chem_g["concepts"]]
+            c_links = [{"source": r["source"], "target": r["target"],
+                        "type": r.get("type", "relates_to"), "relation": r.get("relation", r.get("type", "relates_to"))}
+                       for r in chem_g["relations"]]
+            chemistry_cds = compute_cds(c_nodes, c_links)
+            fig7_three_subject_cds(cds_data, physics_cds, chemistry_cds)
+        else:
+            print("  [SKIP] Fig 7: chemistry or physics data not found")
 
     # Fig 1 and 2 are informational/stub
     if args.fig is None or args.fig == 1:

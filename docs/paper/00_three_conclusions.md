@@ -8,16 +8,16 @@
 ## Conclusion 1: Knowledge Density Is Non-Monotonic and Discipline-Dependent
 
 **What we found**:
-> Mathematics reaches its maximum interconnection density at **Middle school** (CDS=0.271), while Physics reaches it at **College** (CDS=0.065).
+> Knowledge density peaks early for both disciplines — Mathematics at **Middle school** (CDS=0.271), Physics at **Elementary school** (CDS=0.222) — and declines monotonically thereafter.
 
 **Why it matters**:
-> The assumption that "more advanced knowledge is more densely connected" is false. Both disciplines show a **peak-and-diverge** pattern — but at different educational stages. This means curriculum design should account for discipline-specific knowledge structure trajectories.
+> The assumption that "more advanced knowledge is more densely connected" is false **for both disciplines**. Both follow a **peak-and-decline** pattern, with maximum structural integration occurring at the introductory level. This convergence suggests a universal property of educational knowledge organization: curricula are designed to maximize connection density during foundational stages, then diverge into specialization.
 
 **Evidence**:
 | Discipline | Peak Level | Peak CDS | Shape |
 |-----------|-----------|---------|-------|
 | Mathematics | Middle school | 0.271 | ↑ peak ↓ steady decline |
-| Physics | College | 0.065 | gradual ↑ peak at top |
+| Physics | Elementary school | 0.222 | ↑ peak ↓ rapid decline |
 
 **Robustness**: ✅ Confirmed in ZH, EN, DE independently
 
@@ -26,17 +26,17 @@
 ## Conclusion 2: Knowledge Depth Has a Universal Upper Limit
 
 **What we found**:
-> Maximum prerequisite chain depth is bounded at **HDS ≤ 7–9**, regardless of discipline. Mean depth differs by discipline (Math: 0.40, Physics: 1.17).
+> Maximum prerequisite chain depth is bounded at **HDS ≤ 6–9**, regardless of discipline. Mean depth differs by discipline (Math: 0.40, Physics: 0.85).
 
 **Why it matters**:
-> Educational knowledge appears to respect a natural depth limit on prerequisite structures. Concepts do not stack deeper than approximately 7 layers — suggesting that curriculum designers intuitively avoid deep prerequisite chains. Physics, however, requires **2.8× more sequential learning** than mathematics (49% roots vs 83%).
+> Educational knowledge appears to respect a natural depth limit on prerequisite structures. Both disciplines share the same bound. Physics has **2.1× more sequential depth** than mathematics (64% roots in physics vs 83% in math), but not the 2.8× previously estimated with a smaller sample.
 
 **Evidence**:
 | Metric | Math | Physics |
 |--------|:----:|:-------:|
-| Max HDS | 9 | 7 |
-| Mean HDS | 0.40 | 1.17 |
-| Root concepts | 83% | 49% |
+| Max HDS | 8 | 6 |
+| Mean HDS | 0.40 | 0.85 |
+| Root concepts | 83% | 64% |
 | Structure type | Shallow web | Deeper chain |
 
 ---
@@ -60,16 +60,15 @@
 
 ## Unified Narrative (30-Second Pitch)
 
-> **Mathematics and physics knowledge follow different density trajectories, respect a universal depth bound, and are organized differently across languages — even when the content is the same.**
-> 
-> LinguaGraph makes these invisible structural patterns visible and measurable.
+> **Mathematics, physics, and chemistry knowledge follow different density trajectories, respect a universal depth bound, are organized differently across languages, and align with official curricula at rates ranging from 34% (Germany) to 82% (UK) — revealing how educational systems structure the same knowledge in systematically different ways.**
 
----
+> LinguaGraph makes these invisible structural patterns visible, measurable, and comparable across 3 disciplines, 3 languages, and 4 educational systems.
 
 ## Theory → Evidence Chain
 
 | Conclusion | Theory | Evidence Source | Supports |
 |-----------|--------|----------------|----------|
-| C1 | Ausubel (1963) — knowledge integration before specialization | CDS by level (Math + Physics) | Curriculum design |
+| C1 | Ausubel (1963) — knowledge integration before specialization | CDS by level (Math + Physics + Chemistry) | Curriculum design |
 | C2 | Novak & Cañas (2008) — concept maps as propositional networks | HDS distribution (Math + Physics) | Learning progression |
 | C3 | Liang & Heckmann (2013) — cross-national textbook variation | LDS across ZH/EN/DE | Education policy |
+| C4 | Schmidt et al. (2001) — curriculum coherence | Coverage Score (DE 34%, UK 82%, US 76%) | Textbook alignment |
