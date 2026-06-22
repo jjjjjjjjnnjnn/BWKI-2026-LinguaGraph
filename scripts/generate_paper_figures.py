@@ -366,11 +366,11 @@ def fig5_hds(depths, nodes):
     ax_stats.axis("off")
     insight = (
         "HDS Findings:\n\n"
-        f"• HDS ≤ 5          (max depth limited)\n"
+        f"• HDS <= 5          (max depth limited)\n"
         f"• Mean = {mean_depth:.2f}      (shallow on average)\n"
         f"• Zero chain: {zero_depth} concepts\n"
-        f"  ({zero_depth/len(all_depths)*100:.0f}% — roots)\n\n"
-        f"Interpretation:\n"
+        f"  ({zero_depth/len(all_depths)*100:.0f}% -- roots)\n\n"
+        "Interpretation:\n"
         "Mathematics is a web,\n"
         "not a deep tree.\n"
         "Knowledge expands\n"
@@ -384,7 +384,68 @@ def fig5_hds(depths, nodes):
     path = FIGURES_DIR / "fig5_hds_distribution.png"
     plt.savefig(path)
     plt.close()
-    print(f"  ✅ Fig 5 saved: {path.name} ({path.stat().st_size // 1024} KB)")
+    print(f"  [OK] Fig 5 saved: {path.name} ({path.stat().st_size // 1024} KB)")
+    return path
+
+
+def fig6_cds_comparison(physics_cds, math_cds):
+    """Fig 6: CDS Comparison — Math vs Physics by Education Level."""
+    levels = LV_ORDER
+    labels = [LV_LABELS[l] for l in levels]
+    math_vals = [math_cds[l]["cds"] for l in levels]
+    phys_vals = [physics_cds[l]["cds"] for l in levels]
+
+    x = np.arange(len(levels))
+    width = 0.35
+
+    fig, (ax_bar, ax_info) = plt.subplots(1, 2, figsize=(10, 4.5),
+                                            gridspec_kw={"width_ratios": [1.5, 1]})
+
+    bars1 = ax_bar.bar(x - width/2, math_vals, width, label="Math", color="#60a5fa", edgecolor="white", linewidth=0.5)
+    bars2 = ax_bar.bar(x + width/2, phys_vals, width, label="Physics", color="#f97316", edgecolor="white", linewidth=0.5)
+
+    ax_bar.set_ylabel("CDS (Concept Density Score)")
+    ax_bar.set_title("CDS by Education Level: Math vs Physics", fontweight="bold")
+    ax_bar.set_xticks(x)
+    ax_bar.set_xticklabels(labels)
+    ax_bar.legend()
+    ax_bar.spines["top"].set_visible(False)
+    ax_bar.spines["right"].set_visible(False)
+
+    # Value labels
+    for bar, v in zip(bars1, math_vals):
+        if v > 0:
+            ax_bar.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.003,
+                        f"{v:.3f}", ha="center", va="bottom", fontsize=8)
+    for bar, v in zip(bars2, phys_vals):
+        if v > 0:
+            ax_bar.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.003,
+                        f"{v:.3f}", ha="center", va="bottom", fontsize=8)
+
+    # Right panel: findings
+    math_peak = max(levels, key=lambda l: math_cds[l]["cds"])
+    phys_peak = max(levels, key=lambda l: physics_cds[l]["cds"])
+    ax_info.axis("off")
+    finding = (
+        "Cross-Disciplinary Finding:\n\n"
+        f"Math CDS peak:    {math_peak}\n"
+        f"  (CDS = {math_cds[math_peak]['cds']:.3f})\n\n"
+        f"Physics CDS peak: {phys_peak}\n"
+        f"  (CDS = {physics_cds[phys_peak]['cds']:.3f})\n\n"
+        "Different disciplines show\n"
+        "different density patterns:\n"
+        "  Math densest at foundation,\n"
+        "  Physics densest at advanced\n"
+        "  specialization."
+    )
+    ax_info.text(0.05, 0.5, finding, fontsize=10, va="center",
+                 bbox=dict(boxstyle="round,pad=0.6", facecolor="#fff7ed", edgecolor="#fed7aa"))
+
+    plt.tight_layout()
+    path = FIGURES_DIR / "fig6_cds_comparison.png"
+    plt.savefig(path)
+    plt.close()
+    print(f"  [OK] Fig 6 saved: {path.name} ({path.stat().st_size // 1024} KB)")
     return path
 
 
@@ -394,7 +455,7 @@ def fig5_hds(depths, nodes):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate paper figures for LinguaGraph")
-    parser.add_argument("--fig", type=int, choices=[1, 2, 3, 4, 5], help="Single figure to generate")
+    parser.add_argument("--fig", type=int, choices=[1, 2, 3, 4, 5, 6], help="Single figure to generate")
     args = parser.parse_args()
 
     print("=" * 55)
@@ -438,6 +499,25 @@ def main():
 
     if args.fig is None or args.fig == 5:
         fig5_hds(hds_depths, nodes)
+
+    # Fig 6: Physics vs Math CDS comparison
+    if args.fig is None or args.fig == 6:
+        physics_json = PROJECT_DIR / "config" / "expert_graphs" / "physics_full.json"
+        if physics_json.exists():
+            with open(physics_json, "r", encoding="utf-8") as f:
+                physics_g = json.load(f)
+            # Convert physics graph to nodes/links format
+            p_nodes = []
+            for c in physics_g["concepts"]:
+                lv = c.get("level", "college")
+                p_nodes.append({"id": c["name"], "level": lv})
+            p_links = [{"source": r["source"], "target": r["target"],
+                        "type": r.get("type", "relates_to"), "relation": r.get("relation", r.get("type", "relates_to"))}
+                       for r in physics_g["relations"]]
+            physics_cds = compute_cds(p_nodes, p_links)
+            fig6_cds_comparison(physics_cds, cds_data)
+        else:
+            print("  [SKIP] Fig 6: physics_full.json not found")
 
     # Fig 1 and 2 are informational/stub
     if args.fig is None or args.fig == 1:
