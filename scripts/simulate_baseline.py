@@ -26,12 +26,15 @@ Data Isolation:
 
 import json
 import os
+import random
 import sys
 import time
 import hashlib
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional
+
+import numpy as np
 
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_DIR / 'src'))
@@ -532,6 +535,8 @@ def generate_template():
 
 
 def main():
+    random.seed(42)
+    np.random.seed(42)
     import argparse
     parser = argparse.ArgumentParser(description="LinguaGraph Structured Simulation Generator")
     parser.add_argument("--generate", action="store_true", help="Generate all 300 responses")
@@ -555,4 +560,6 @@ def main():
 
 
 if __name__ == "__main__":
+    random.seed(42)
+    np.random.seed(42)
     main()

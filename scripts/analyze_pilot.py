@@ -13,10 +13,13 @@ Output:
 """
 
 import json
+import random
 import sys
 import os
 from datetime import datetime
 from pathlib import Path
+
+import numpy as np
 
 # Add project paths
 PROJECT_DIR = Path(__file__).parent.parent
@@ -181,6 +184,8 @@ def generate_pilot_report(responses, quality_issues, stats, misunderstandings):
 
 
 def main():
+    random.seed(42)
+    np.random.seed(42)
     import argparse
     parser = argparse.ArgumentParser(description="LinguaGraph Pilot Analysis")
     parser.add_argument("--data", type=str, required=True, help="Path to pilot responses JSON")
@@ -234,4 +239,6 @@ def main():
 
 
 if __name__ == "__main__":
+    random.seed(42)
+    np.random.seed(42)
     main()

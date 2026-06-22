@@ -47,6 +47,7 @@ Where:
 2. Node matching is string-exact (no semantic similarity)
 3. Edge matching considers only relation type, not strength
 4. Assumes concepts are independently extracted per language
+5. **GED fallback**: Graph Edit Distance is NP-hard; when computation fails on large graphs, the fallback value is `GED_sim = 0.5` (see `src/scoring.py:166`)
 
 ## Conceptual Stability
 

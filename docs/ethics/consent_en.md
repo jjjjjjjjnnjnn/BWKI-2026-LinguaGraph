@@ -18,7 +18,7 @@ As a participant in this study, you will:
 
 In accordance with the General Data Protection Regulation (GDPR):
 
-- **Data Controller**: [Name], Email: [Email]
+- **Data Controller**: Research team (anonymous project, reachable via school project supervisor)
 - **Data Collected**: Written responses (no names, addresses, IP addresses, or other personally identifiable information)
 - **Legal Basis**: GDPR Art. 6(1)(a) — Consent
 - **Storage**: Locally encrypted, no cloud upload

@@ -18,7 +18,7 @@ Als Teilnehmer/in dieser Studie:
 
 Gemäß der Datenschutz-Grundverordnung (DSGVO):
 
-- **Verantwortliche/r**: [Name], E-Mail: [E-Mail]
+- **Verantwortliche/r**: Forschungsteam (anonymes Projekt, erreichbar über den Schulbetreuer)
 - **Erhobene Daten**: Schriftliche Antworten (keine Namen, Adressen, IP-Adressen oder andere personenbezogene Daten)
 - **Rechtsgrundlage**: Art. 6 Abs. 1 lit. a DSGVO — Einwilligung
 - **Speicherung**: Lokal verschlüsselt, kein Cloud-Upload

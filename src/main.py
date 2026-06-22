@@ -11,7 +11,10 @@ Usage:
 
 import json
 import logging
+import random
 from pathlib import Path
+
+import numpy as np
 
 from extract import extract_concepts
 from graph import build_graph, load_expert_graph, graph_to_dict, graph_stats
@@ -40,6 +43,8 @@ def run_pipeline(
     Returns:
         dict with all results
     """
+    random.seed(42)
+    np.random.seed(42)
     logger.info("=" * 50)
     logger.info("LinguaGraph Pipeline Starting...")
     logger.info(f"Language: {language} | Domain: {domain} | Mock: {use_mock}")
@@ -114,6 +119,9 @@ if __name__ == "__main__":
     import sys
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+    random.seed(42)
+    np.random.seed(42)
 
     print("=" * 50)
     print("CognitiveSpace v0.1.0 - Demo")

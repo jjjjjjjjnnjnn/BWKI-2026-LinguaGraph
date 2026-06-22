@@ -8,7 +8,7 @@ Usage:
     Open http://localhost:5000
 """
 
-import sys, os, json
+import sys, os, json, logging
 from pathlib import Path
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 
@@ -23,6 +23,10 @@ app.config["UPLOAD_FOLDER"] = PROJECT_DIR / "workbench" / "output"
 
 # Ensure output directory exists
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+
+# Logging setup
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger(__name__)
 
 
 @app.route("/")
@@ -58,8 +62,9 @@ def analyze():
             text_preview=text[:200] + ("..." if len(text) > 200 else ""),
             job_id=job_id
         )
-    except Exception as e:
-        return f"Processing error: {e}", 500
+    except Exception:
+        logger.exception("Text processing failed")
+        return "Processing error. Please try again.", 500
 
 
 @app.route("/viz/<job_id>/<path:filename>")

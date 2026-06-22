@@ -74,10 +74,9 @@ Data is retained for a maximum of 12 months after project completion, then perma
 Betreff: Antrag auf Datenlöschung — LinguaGraph Studie
 
 An:
-[Name des Verantwortlichen]
-[E-Mail]
+Projektleitung LinguaGraph (über den Schulbetreuer)
 
-Sehr geehrte/r [Name],
+Sehr geehrte Damen und Herren,
 
 hiermit beantrage ich die Löschung meiner im Rahmen der LinguaGraph-Studie
 erhobenen Daten gemäß Art. 17 DSGVO.
@@ -97,10 +96,9 @@ Unterschrift: ________________
 Subject: Data Deletion Request — LinguaGraph Study
 
 To:
-[Data Controller Name]
-[Email]
+LinguaGraph Project Lead (via school project supervisor)
 
-Dear [Name],
+Dear Sir or Madam,
 
 I hereby request the deletion of my data collected as part of the
 LinguaGraph study, in accordance with GDPR Art. 17.
@@ -165,7 +163,7 @@ Mir ist bekannt, dass:
 - Die Teilnahme freiwillig ist und jederzeit beendet werden kann
 - Die Daten meines Kindes anonymisiert werden
 - Ich die Löschung der Daten jederzeit verlangen kann
-- Bei Fragen der Studienleiter [Name]/[E-Mail] zur Verfügung steht
+- Bei Fragen steht die Projektleitung (über den Schulbetreuer) zur Verfügung
 
 Datum: ________________
 Unterschrift des/der Erziehungsberechtigten: ________________
@@ -189,7 +187,7 @@ I understand that:
 - Participation is voluntary and can be terminated at any time
 - My child's data will be anonymized
 - I can request deletion of data at any time
-- The researcher [Name]/[Email] is available for questions
+- The research team (via school project supervisor) is available for questions
 
 Date: ________________
 Signature of Parent/Guardian: ________________

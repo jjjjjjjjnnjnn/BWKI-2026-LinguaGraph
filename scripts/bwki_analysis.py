@@ -21,10 +21,13 @@ Data Sources:
 """
 
 import json
+import random
 import sys
 import math
 from pathlib import Path
 from datetime import datetime
+
+import numpy as np
 
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_DIR / 'src'))
@@ -296,6 +299,8 @@ def generate_bwki_report(table: dict, data: dict):
 
 
 def main():
+    random.seed(42)
+    np.random.seed(42)
     import argparse
     parser = argparse.ArgumentParser(description="LinguaGraph BWKI Analysis Framework")
     parser.add_argument("--predict", action="store_true", help="Show predicted Human LDS from internet regression")
@@ -330,4 +335,6 @@ def main():
 
 
 if __name__ == "__main__":
+    random.seed(42)
+    np.random.seed(42)
     main()

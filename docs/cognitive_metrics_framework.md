@@ -13,16 +13,16 @@
 
 LDS quantifies the structural divergence between two language-specific knowledge graphs extracted from the same or comparable content.
 
-Given two graphs G_A = (V_A, E_A) and G_B = (V_B, E_B) representing the same conceptual domain in languages A and B, the Language Distance Score is defined as:
+Given two graphs G_A = (V_A, E_A) and G_B = (V_B, E_B) representing the same conceptual domain in languages A and B, LDS is a 3-component average:
 
 ```
-LDS(A, B) = 1 − |V_A ∩ V_B| / |V_A ∪ V_B|
+LDS(A, B) = 1 − mean(GED_sim(A, B), Jaccard_node(A, B), Jaccard_edge(A, B))
 ```
 
 where:
-- V_A, V_B are the concept sets for languages A and B
-- |V_A ∩ V_B| is the number of concepts shared between both languages
-- |V_A ∪ V_B| is the total number of unique concepts across both languages
+- `GED_sim(A, B)` = normalized Graph Edit Distance similarity ∈ [0, 1], measuring the structural edit cost to transform G_A into G_B
+- `Jaccard_node(A, B)` = |V_A ∩ V_B| / |V_A ∪ V_B|, the node set Jaccard coefficient
+- `Jaccard_edge(A, B)` = |E_A ∩ E_B| / |E_A ∪ E_B|, the edge set Jaccard coefficient
 
 ### 1.2 Properties
 
@@ -35,7 +35,12 @@ where:
 
 ### 1.3 Variants
 
-**LDS-Jaccard** (standard): Uses Jaccard coefficient as above.
+**LDS-Standard** (3-component): Uses GED similarity + node Jaccard + edge Jaccard as above.
+
+**LDS-Jaccard** (node-only): Uses Jaccard coefficient for quick estimation when GED is too expensive:
+```
+LDS_jaccard(A, B) = 1 − |V_A ∩ V_B| / |V_A ∪ V_B|
+```
 
 **LDS-Cosine** (weighted): Uses cosine similarity with concept importance weighting:
 ```
@@ -45,7 +50,7 @@ where w_Xi is the importance weight of concept i in language X.
 
 ### 1.4 Validation Results
 
-Computed on CognitiveSpace dataset (574 concepts, 317 ZH + 374 EN + 323 DE with labels):
+Computed on CognitiveSpace dataset using the 3-component LDS formula (574 concepts, 317 ZH + 374 EN + 323 DE with labels):
 
 | Language Pair | Shared Concepts | LDS | Interpretation |
 |--------------|----------------|-----|----------------|
@@ -209,7 +214,7 @@ All three metrics can be computed from the existing CognitiveSpace graph data (5
 
 | Metric | Data Required | Algorithm | Status |
 |--------|--------------|-----------|--------|
-| LDS | Multi-language concept sets | Jaccard/Cosine similarity | ✅ Formula defined |
+| LDS | Multi-language graph pairs | 3-component mean(GED_sim, Jaccard_node, Jaccard_edge) | ✅ Formula defined |
 | CDS | Node/edge counts | Graph density formula | ✅ Formula defined |
 | HDS | Directed edge structure | Longest path via BFS | ✅ Formula defined |
 

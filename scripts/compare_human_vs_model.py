@@ -15,11 +15,14 @@ Output:
 """
 
 import json
+import random
 import sys
 import math
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
+
+import numpy as np
 
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_DIR))
@@ -275,6 +278,8 @@ def generate_report(comparison, human_data, sim_data):
 
 
 def main():
+    random.seed(42)
+    np.random.seed(42)
     import argparse
     parser = argparse.ArgumentParser(description="Compare Human vs Model LDS")
     parser.add_argument("--report", action="store_true", help="Generate markdown report")
@@ -332,4 +337,6 @@ def main():
 
 
 if __name__ == "__main__":
+    random.seed(42)
+    np.random.seed(42)
     main()

@@ -235,6 +235,9 @@ def bootstrap_lds_ci(
         raise ImportError("networkx required")
 
     import random
+    import numpy as np
+    random.seed(42)
+    np.random.seed(42)
 
     nodes_l1 = list(graph_l1.nodes())
     nodes_l2 = list(graph_l2.nodes())
