@@ -39,6 +39,28 @@
 
 ---
 
+## 📑 Table of Contents
+
+<details>
+<summary><b>Click to expand / collapse</b></summary>
+
+- [🔥 Why LinguaGraph?](#-why-linguagraph)
+- [📐 Metrics at a Glance](#-metrics-at-a-glance)
+- [🏆 10 Findings (F1–F10)](#-10-findings-f1f10)
+- [📊 Dataset](#-dataset)
+- [✅ Extraction Validation](#-extraction-validation)
+- [🚀 Quick Start](#-quick-start)
+- [🧪 Model Benchmark](#-model-benchmark)
+- [📁 Project Structure](#-project-structure)
+- [📚 Key References](#-key-references)
+- [📜 Citation](#-citation)
+- [📜 License & Compliance](#-license--compliance)
+- [🤝 Contact](#-contact)
+
+</details>
+
+---
+
 ## 🔥 Why LinguaGraph?
 
 Mathematical truth is universal, but the way it is organized in textbooks varies dramatically across languages and educational systems. Existing curriculum analysis tools are qualitative, manual, and cannot scale across multiple languages or disciplines.
