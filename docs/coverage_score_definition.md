@@ -1,8 +1,10 @@
 # Coverage Score (CS) — Definition v1.0
 
-> **Date**: 2026-06-22
-> **Purpose**: Quantify how well a textbook knowledge graph covers an official curriculum standard
-> **Relationship to LinguaGraph**: Third metric family, alongside LDS (cross-language) and CDS/HDS (structural)
+> **🇬🇧 EN**: Quantify how well a textbook knowledge graph covers an official curriculum standard
+> **🇩🇪 DE**: Quantifizieren, wie gut ein Lehrbuch-Wissensgraph einen offiziellen Lehrplan abdeckt
+> **🇨🇳 ZH**: 量化教材知识图谱对官方课程标准的覆盖程度
+>
+> **Relationship to LinguaGraph / Beziehung / 关系**: Fourth metric family, alongside LDS (cross-language), CDS/HDS (structural), and Coverage Score (curriculum alignment)
 
 ---
 

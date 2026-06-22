@@ -1,9 +1,8 @@
 # LinguaGraph System Architecture
 
-> **Model-Agnostic Provider Layer**
->
-> LinguaGraph's LLM infrastructure is designed as a **pluggable, task-routed provider system**.
-> The research pipeline never knows which model is running — it only speaks `TaskRequest` / `TaskResponse`.
+> **🇬🇧 EN**: Pluggable, task-routed LLM provider layer — the research pipeline speaks `TaskRequest` / `TaskResponse`, never raw model APIs
+> **🇩🇪 DE**: Steckbare, aufgabenorientierte LLM-Provider-Schicht
+> **🇨🇳 ZH**: 可插拔的、任务路由的 LLM 提供层
 
 ---
 
