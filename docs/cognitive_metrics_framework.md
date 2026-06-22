@@ -1,9 +1,10 @@
 # Cognitive Metrics Framework v1.0
 
-> **Date**: 2026-06-22
+> **🇬🇧 EN**: Formal definitions for quantifying knowledge structure characteristics — LDS · CDS · HDS
+> **🇩🇪 DE**: Formale Definitionen zur Quantifizierung von Wissensstrukturmerkmalen
+> **🇨🇳 ZH**: 用于量化知识结构特征的正式定义
+>
 > **Status**: ✅ FROZEN — No further modifications
-> **Scope**: LDS · CDS · HDS
-> **Purpose**: Formal definitions for quantifying knowledge structure characteristics
 > **Validation**: Confirmed across ZH/EN/DE independently
 
 ---
