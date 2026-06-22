@@ -114,7 +114,7 @@ class LocalProvider(LLMProvider):
 
             # Cleanup temp file
             try: os.unlink(prompt_file)
-            except: pass
+            except OSError: pass
 
             if result.returncode != 0:
                 return TaskResponse(

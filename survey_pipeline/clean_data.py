@@ -60,10 +60,10 @@ def check_quality(conn) -> dict:
 
     # By quality flag
     for flag in ["ok", "short", "empty"]:
-        count = query_one(conn, f"""
+        count = query_one(conn, """
             SELECT COUNT(*) as c FROM responses
-            WHERE source='survey' AND quality_flag='{flag}'
-        """)
+            WHERE source='survey' AND quality_flag=?
+        """, (flag,))
         stats[f"flag_{flag}"] = count["c"] if count else 0
 
     # Word count distribution

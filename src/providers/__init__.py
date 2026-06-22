@@ -80,7 +80,7 @@ def create_router(config: Optional[dict] = None) -> TaskRouter:
         try:
             providers[name] = create_provider(cfg["type"], cfg)
         except Exception as e:
-            print(f"  [WARN] Failed to create provider '{name}': {e}")
+            logger.warning("Failed to create provider '%s': %s", name, e)
 
     # Always add mock as fallback
     if "mock" not in providers:

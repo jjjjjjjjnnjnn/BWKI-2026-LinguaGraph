@@ -12,10 +12,13 @@ Usage:
 """
 
 import importlib.util
+import random
 import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
+
+import numpy as np
 
 # Ensure we can import from scripts/
 SCRIPTS_DIR = Path(__file__).parent
@@ -130,6 +133,8 @@ def run_script(module_name: str, func_name: str, label: str):
 
 
 def main():
+    random.seed(42)
+    np.random.seed(42)
     import argparse
     parser = argparse.ArgumentParser(description="LinguaGraph Unified Pipeline")
     parser.add_argument("--force", action="store_true",
@@ -204,4 +209,6 @@ def main():
 
 
 if __name__ == "__main__":
+    random.seed(42)
+    np.random.seed(42)
     main()

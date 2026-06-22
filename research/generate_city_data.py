@@ -113,7 +113,7 @@ def build_city_v2(concept_ids, lang):
             cent = nx.degree_centrality(G)
             betweenness = nx.betweenness_centrality(G)
             closeness = nx.closeness_centrality(G)
-        except:
+        except Exception:
             cent = {n: 0.5 for n in G.nodes()}
             betweenness = {n: 0 for n in G.nodes()}
             closeness = {n: 0 for n in G.nodes()}

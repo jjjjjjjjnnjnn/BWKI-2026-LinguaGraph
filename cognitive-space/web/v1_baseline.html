@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CognitiveSpace V1 — Working Baseline</title>
     <script src="https://unpkg.com/3d-force-graph"></script>
+    <script src="data.js"></script>
     <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Segoe UI',system-ui,sans-serif; background:#050a14; color:#d0d0d0; overflow:hidden; }
@@ -90,7 +91,8 @@ function opacityCB(n) {
 
 function init() {
     if (typeof ForceGraph3D==='undefined') return;
-    const data = typeof COGNITIVE_DATA!=='undefined'?COGNITIVE_DATA:null;
+    const data = typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT :
+                 typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null;
     if (!data||!data.nodes||!data.nodes.length) return;
     ND=data.nodes; LK=data.links;
     document.getElementById('sC').textContent=ND.length;
