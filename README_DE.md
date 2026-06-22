@@ -27,6 +27,24 @@
 
 ---
 
+## 📑 Inhaltsverzeichnis
+
+<details>
+<summary><b>Zum Öffnen klicken</b></summary>
+
+- [🔥 Warum LinguaGraph?](#-warum-linguagraph)
+- [📐 Metriken](#-metriken)
+- [🏆 10 Erkenntnisse (F1–F10)](#-10-erkenntnisse-f1f10)
+- [📊 Datensatz](#-datensatz)
+- [✅ Extraktionsqualität](#-extraktionsqualität)
+- [🚀 Schnellstart](#-schnellstart)
+- [📜 Literatur](#-literatur)
+- [📜 Lizenz & Compliance](#-lizenz--compliance)
+
+</details>
+
+---
+
 ## 🔥 Warum LinguaGraph?
 
 Mathematische Wahrheit ist universell, aber ihre Organisation in Lehrbüchern variiert stark zwischen Sprachen und Bildungssystemen. Bestehende Analysetools sind qualitativ, manuell und nicht skalierbar.
