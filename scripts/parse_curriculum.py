@@ -111,28 +111,35 @@ def parse_sekii(text: str) -> dict:
     """
     Parse Sek II Kernlehrplan text.
     Returns: {stage_key: {inhaltsfeld_key: [topics]}}
+    
+    The ToC matches first, so actual content sections start at index 2:
+    - parts[0]: front matter
+    - parts[1]: ToC area (between 2.3 marker and actual content)
+    - parts[2]: Einführungsphase (11)
+    - parts[3]: Grundkurs (12-13)
+    - parts[4]: Leistungskurs (12-13)
     """
     result = {}
     
-    # Find section boundaries by content markers
-    # Einführungsphase: after "2.3 Kompetenzerwartungen" and "Einführungsphase"
-    # Grundkurs: after "2.4.1 Grundkurs"
-    # Leistungskurs: after "2.4.2 Leistungskurs"
+    # Use specific full-heading patterns to avoid ToC matches
+    pattern = (
+        r'(?:2\.3\s+Kompetenzerwartungen und inhaltliche Schwerpunkte'
+        r'|2\.4\.1\s+Grundkurs\n'
+        r'|2\.4\.2\s+Leistungskurs\n)'
+    )
+    parts = re.split(pattern, text)
     
-    # Split on section markers
-    parts = re.split(r'(?:2\.3\s+Kompetenzerwartungen|2\.4\.1\s+Grundkurs|2\.4\.2\s+Leistungskurs)', text)
-    
-    # ── Einführungsphase (11) ──
-    if len(parts) > 1:
-        result["sekii_einfuehrung"] = _parse_sekii_inhaltsfelder(parts[1])
-    
-    # ── Grundkurs (12-13) ──
+    # ── Einführungsphase (11) → parts[2] ──
     if len(parts) > 2:
-        result["sekii_grundkurs"] = _parse_sekii_inhaltsfelder(parts[2])
+        result["sekii_einfuehrung"] = _parse_sekii_inhaltsfelder(parts[2])
     
-    # ── Leistungskurs (12-13) ──
+    # ── Grundkurs (12-13) → parts[3] ──
     if len(parts) > 3:
-        result["sekii_leistungskurs"] = _parse_sekii_inhaltsfelder(parts[3])
+        result["sekii_grundkurs"] = _parse_sekii_inhaltsfelder(parts[3])
+    
+    # ── Leistungskurs (12-13) → parts[4] ──
+    if len(parts) > 4:
+        result["sekii_leistungskurs"] = _parse_sekii_inhaltsfelder(parts[4])
     
     return result
 
@@ -182,9 +189,17 @@ def _parse_sekii_inhaltsfelder(section_text: str) -> dict:
         
         if topics:
             if field_key in result:
-                result[field_key].extend(topics)
+                result[field_key]["topics"].extend(topics)
             else:
-                result[field_key] = topics
+                result[field_key] = {"topics": topics, "competencies": []}
+        
+        # Also extract competencies
+        competencies = _extract_kompetenzerwartungen(chunk)
+        if competencies:
+            if field_key in result:
+                result[field_key]["competencies"].extend(competencies)
+            else:
+                result[field_key] = {"topics": [], "competencies": competencies}
     
     return result
 
@@ -192,13 +207,9 @@ def _parse_sekii_inhaltsfelder(section_text: str) -> dict:
 def _parse_inhaltsfelder(section_text: str) -> dict:
     """
     Parse Inhaltsfelder from a curriculum section.
-    Returns: {inhaltsfeld_key: [topic_strings]}
+    Returns: {inhaltsfeld_key: {"topics": [...], "competencies": [...]}}
     """
     result = {}
-    
-    # Find Inhaltsfeld sections by their German names
-    # Pattern: "Arithmetik/Algebra" or "Funktionen" or "Geometrie" or "Stochastik"
-    # followed by "Inhaltliche Schwerpunkte:" and bullet points
     
     # Split by Inhaltsfeld headers
     parts = re.split(
@@ -206,17 +217,17 @@ def _parse_inhaltsfelder(section_text: str) -> dict:
         section_text
     )
     
-    # Map parts to keys based on order
     field_keys = ["Ari", "Fkt", "Geo", "Sto"]
     
-    for i, part in enumerate(parts[1:], 0):  # Skip first part (before any field)
+    for i, part in enumerate(parts[1:], 0):
         if i >= len(field_keys):
             break
         
         key = field_keys[i]
         topics = _extract_schwerpunkte(part)
-        if topics:
-            result[key] = topics
+        competencies = _extract_kompetenzerwartungen(part)
+        if topics or competencies:
+            result[key] = {"topics": topics, "competencies": competencies}
     
     return result
 
@@ -224,6 +235,7 @@ def _parse_inhaltsfelder(section_text: str) -> dict:
 def _extract_schwerpunkte(text: str) -> list:
     """
     Extract Inhaltliche Schwerpunkte (topic bullet points) from a section.
+    Handles multi-line topics (continuation lines without bullet markers).
     Returns list of topic strings.
     """
     topics = []
@@ -235,56 +247,123 @@ def _extract_schwerpunkte(text: str) -> list:
     
     after_marker = text[match.end():]
     
-    # Extract bullet points (lines starting with – or -)
+    current_topic = None
     for line in after_marker.split('\n'):
         line = line.strip()
-        if line.startswith('–') or line.startswith('-'):
-            topic = line.lstrip('–-').strip()
-            if topic and len(topic) > 3:
-                topics.append(topic)
+        
+        # New bullet point
+        if line.startswith('–') or line.startswith('•') or line.startswith('-'):
+            if current_topic:
+                topics.append(current_topic)
+            current_topic = line.lstrip('–•-').strip()
+        # Continuation line (no bullet, not a section marker)
+        elif current_topic and line and not line.startswith('Die Schülerinnen') and not line.startswith('Die Schüler'):
+            # Check if it looks like a continuation (not a new section header)
+            if not re.match(r'^[A-Z][a-z]+\s+[A-Z]', line) and len(line) > 5:
+                current_topic += ' ' + line
+        # End marker
         elif line.startswith('Die Schülerinnen') or line.startswith('Die Schüler'):
-            break  # End of Schwerpunkte, start of Competency expectations
+            if current_topic:
+                topics.append(current_topic)
+            break
+    
+    if current_topic:
+        topics.append(current_topic)
     
     return topics
+
+
+def _extract_kompetenzerwartungen(text: str) -> list:
+    """
+    Extract numbered Kompetenzerwartungen (competency expectations) from a section.
+    These are items like "(1) erläutern Eigenschaften von Primzahlen..."
+    Returns list of competency strings.
+    """
+    competencies = []
+    
+    # Find "Die Schülerinnen und Schüler" marker (starts the competency list)
+    match = re.search(r'Die Schüler(?:innen und Schüler)?\s*\n', text)
+    if not match:
+        return competencies
+    
+    after_marker = text[match.end():]
+    
+    current = None
+    for line in after_marker.split('\n'):
+        line = line.strip()
+        
+        # New numbered item: (1) ... or (12) ...
+        num_match = re.match(r'\((\d+)\)\s+(.+)', line)
+        if num_match:
+            if current:
+                competencies.append(current)
+            current = num_match.group(2)
+        # Continuation line
+        elif current and line and not re.match(r'\(\d+\)', line):
+            # Stop at next section (Inhaltsfeld header or "Die Schülerinnen")
+            if re.match(r'^(?:Arithmetik|Funktionen|Geometrie|Stochastik|Lineare Algebra|Numerik)', line):
+                competencies.append(current)
+                break
+            if line.startswith('Die Schülerinnen') or line.startswith('Die Schüler'):
+                competencies.append(current)
+                break
+            current += ' ' + line
+    
+    if current:
+        competencies.append(current)
+    
+    return competencies
 
 
 def build_concepts(seki_data: dict, sekii_data: dict) -> list:
     """
     Build concept list from parsed curriculum data.
-    Each concept = one Schwerpunkt topic within an Inhaltsfeld at a specific stage.
+    Each concept = one Schwerpunkt topic OR one Kompetenzerwartung within an Inhaltsfeld.
     """
     concepts = []
     
     for stage_key, stage_info in STAGES.items():
-        # Get data for this stage
-        stage_data = seki_data.get(stage_key) or sekii_data.get(stage_key)
+        stage_data = seki_data.get(stage_key) or sekii_data.get(stage_key, {})
         if not stage_data:
             continue
         
-        for field_key, topics in stage_data.items():
+        for field_key, field_data in stage_data.items():
             field_info = INHALTSFELDER[field_key]
             
+            # --- Topics (Schwerpunkte) ---
+            topics = field_data.get("topics", []) if isinstance(field_data, dict) else field_data
             for topic in topics:
-                # Create concept name from topic
-                # Clean up the topic string
-                clean_topic = topic.strip()
-                if not clean_topic:
+                clean = topic.strip()
+                if not clean:
                     continue
-                
-                # Generate a stable concept name
-                concept_name = _topic_to_name(field_key, stage_key, clean_topic)
-                
                 concepts.append({
-                    "name": concept_name,
-                    "display_name": clean_topic,
+                    "name": _topic_to_name(field_key, stage_key, clean),
+                    "display_name": clean,
                     "category": "concept",
+                    "concept_type": "schwerpunkt",
                     "level": stage_info["level"],
-                    "labels": {
-                        "de": clean_topic,
-                        "en": field_info["en"],
-                        "zh": field_info["zh"],
-                    },
-                    "source": f"Kernlehrplan Mathematik NRW {'2019' if 'seki' in stage_key else '2023'}",
+                    "labels": {"de": clean, "en": field_info["en"], "zh": field_info["zh"]},
+                    "source": f"Kernlehrplan Mathematik NRW {'2023' if 'sekii' in stage_key else '2019'}",
+                    "stage": stage_key,
+                    "stage_label": stage_info["label_de"],
+                    "inhaltsfeld": field_key,
+                    "inhaltsfeld_de": field_info["de"],
+                })
+            
+            # --- Competency expectations (Kompetenzerwartungen) ---
+            competencies = field_data.get("competencies", []) if isinstance(field_data, dict) else []
+            for comp in competencies:
+                clean = comp.strip()
+                if not clean:
+                    continue
+                concepts.append({
+                    "name": _topic_to_name(field_key, stage_key, clean),
+                    "display_name": clean,
+                    "category": "competency",
+                    "concept_type": "kompetenzerwartung",
+                    "level": stage_info["level"],
+                    "labels": {"de": clean, "en": field_info["en"], "zh": field_info["zh"]},
+                    "source": f"Kernlehrplan Mathematik NRW {'2023' if 'sekii' in stage_key else '2019'}",
                     "stage": stage_key,
                     "stage_label": stage_info["label_de"],
                     "inhaltsfeld": field_key,
