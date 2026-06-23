@@ -138,14 +138,81 @@ python scripts/compute_lds_from_db.py
 
 ---
 
-## 📜 许可与合规
+## 📚 参考文献
 
-- **许可**：保留所有权利 — BWKI 2026 竞赛项目
-- **隐私**：所有参与者数据已匿名化处理。详见 [`docs/ethics/`](docs/ethics/) 的 GDPR 合规文档。
-- **AI 伦理**：LLM 使用仅限于从教材文本中提取概念。
+### 学术论文
+
+| # | 文献 | 关联性 |
+|---|------|--------|
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). 概念图理论. | CDS/HDS 指标的理论基础 |
+| 2 | **Ausubel, D. P.** (1963). 有意义言语学习心理学. | 同化理论 — 知识是结构化的 |
+| 3 | **Schmidt, W. H. 等** (2001). *Why schools matter* (TIMSS). | 课程一致性 — Coverage Score 的灵感来源 |
+| 4 | **Liang, L. L. & Heckmann, K.** (2013). 中德数学教材比较. ZDM, 45(6). | 跨国教材比较方法论 |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?* Cognitive Psychology, 43(1). | 语言相对论 — 研究问题背景 |
+| 6 | **Siew, C. S. Q.** (2019). *Network science in education.* Springer. | 认知/教育结构的网络分析 |
+| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *Automated educational KG construction.* arXiv. | 教育知识图谱管线方法论 |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Prerequisite inference in EKGs.* arXiv. | 前置知识推理 — 支持 HDS 指标 |
+| 9 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | 跨国课程结构数据 |
+| 10 | **IEA.** (2019). *TIMSS 2019 International Results.* | 课程覆盖率分析方法论 |
+
+### 开源库
+
+| 库 | 用途 | 协议 |
+|-----|------|------|
+| [openai/openai-python](https://github.com/openai/openai-python) | LLM API 调用的概念提取客户端 | MIT |
+| [networkx/networkx](https://github.com/networkx/networkx) | 图构建与分析（CDS, HDS） | BSD-3 |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | 图表生成（Fig 3-7） | PSF |
+| [numpy/numpy](https://github.com/numpy/numpy) | 数值计算、相似度度量 | BSD-3 |
+| [Three.js](https://github.com/mrdoob/three.js) | 3D 知识图谱可视化（CognitiveSpace） | MIT |
+| [Flask](https://github.com/pallets/flask) | Workbench Web 应用 | BSD-3 |
+
+### 课程标准（原始来源）
+
+| 标准 | 发布机构 |
+|------|----------|
+| Kernlehrplan Mathematik/Physik/Chemie NRW | MSB NRW |
+| UK National Curriculum (数学/科学) | DfE England |
+| US Next Generation Science Standards (NGSS) | NGSS Lead States |
+| 中国国家课程标准（数学/物理/化学） | 教育部 |
+
+### 教材语料
+
+用于知识图谱构建的教材内容（学术研究，合理使用）。
+
+**中文教材**（33+ 出版社）：人教版、沪科版、北师大版、苏科版、粤教版、鲁科版、马文蔚、程守洙、漆安慎、赵凯华、汪志诚、杨福家、梁昆淼、郭硕鸿、曾谨言
+
+**英文教材**（34+ 出版社）：Khan Academy、CK-12、AP Physics、IB、IGCSE、GCSE、Halliday Resnick Walker、Serway Jewett、Young Freedman、Griffiths、Kittel、Feynman Lectures
+
+**德文教材**（27+ 出版社）：Duden、Lambacher Schwere、Westermann、Cornelsen、Klett、Auer、Dorn-Bader、Kern、Thieme、Tipler、Demtröder、Jackson、Papula、Fischer
+
+### 致谢
+
+- **BWKI 2026** — 竞赛平台
+- **阿里云百炼** — 免费 API 额度（每个模型 100 万 Token）
+- **LM Studio** — 本地模型推理（初期开发）
 
 ---
 
-<p align="center">
-  <a href="README.md">🇬🇧 English</a> · <a href="README_DE.md">🇩🇪 Deutsch</a>
-</p>
+## 📜 引用
+
+```bibtex
+@misc{linguaGraph2026,
+  author = {Rongjing, J.},
+  title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {BWKI 2026},
+  url = {https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph}
+}
+```
+
+---
+
+## 📜 许可与合规
+
+- **许可**：保留所有权利 — BWKI 2026 竞赛项目
+- **第三方代码**：所有开源库均基于 MIT、BSD-3 或 Apache-2.0 协议。详见各仓库的完整许可条款。
+- **教材内容**：摘录用于学术研究的合理使用。完整来源记录在图元数据文件中。
+- **隐私**：所有参与者数据已匿名化处理。仓库中不包含个人身份信息。
+- **AI 伦理**：LLM 使用仅限于从教材文本中提取概念。提取质量已通过 92 条黄金标准标注验证。
+- **课程标准**：官方文件用于学术比较。版权归各相关机构所有。
