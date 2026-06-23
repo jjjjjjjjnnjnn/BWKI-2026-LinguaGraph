@@ -173,6 +173,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <a href="#finding-a">Findings</a>
   <a href="#cognitivespace">CognitiveSpace</a>
   <a href="#curriculum">Curriculum</a>
+  <a href="#limitations">Limitations</a>
   <a href="#validation">Validation</a>
   <a href="#paper">Paper</a>
   <a href="#open-science">Open Science</a>
@@ -379,15 +380,25 @@ graph LR
     <div class="lead">Textbook–curriculum coverage varies dramatically — not because of quality differences, but because of fundamentally different educational philosophies.</div>
     <p>Coverage scores range from <strong>8% (China) to 82% (UK)</strong>. The UK curriculum shows an ascending trajectory (53% at early stages → 90% at later stages), reflecting an exam-driven, comprehensive model. Germany's NRW curriculum descends (50% → 31%), reflecting increasing teacher specialization and curricular choice. The US (76%) and China (8%) maintain stable but contrasting coverage levels.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label">UK (highest)</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">76%</div><div class="ev-label">US</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">34%</div><div class="ev-label">NRW Germany</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--orange)">8%</div><div class="ev-label">China</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label">🇬🇧 UK (highest)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">76%</div><div class="ev-label">🇺🇸 US</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">34%</div><div class="ev-label">🇩🇪 NRW Germany</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--orange)">8%</div><div class="ev-label">🇨🇳 China</div></div>
     </div>
-    <div class="chart-box" style="margin:20px auto">
-      <canvas id="coverageChart" height="250"></canvas>
-      <p style="text-align:center;color:var(--text2);font-size:.82rem;margin-top:12px"><strong>Fig 8</strong> — Coverage Score comparison across 4 education systems</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0">
+      <div class="chart-box" style="max-width:100%">
+        <canvas id="coverageChart" height="220"></canvas>
+        <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px"><strong>Fig 8</strong> — Overall Coverage Score</p>
+      </div>
+      <div class="chart-box" style="max-width:100%">
+        <canvas id="trajectoryChart" height="220"></canvas>
+        <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px"><strong>Fig 9</strong> — Stage-by-stage trajectory (UK ↗, NRW ↘)</p>
+      </div>
     </div>
+    <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
+      <strong><span class="tag tag-yellow">F9</span></strong> Coverage scores vary dramatically across education systems (8%–82%). Curriculum design philosophy, not alignment quality, drives differences.<br>
+      <strong><span class="tag tag-yellow">F10</span></strong> Trajectories reveal system design philosophy: UK ↗ exam-driven breadth, NRW ↘ specialization, US → stable broad, CN → selective depth.
+    </p>
     <div class="meta"><span class="tag tag-yellow">Metric: CS</span> <span class="tag tag-blue">F9, F10</span> <span class="tag tag-green">Systems: DE, UK, US, CN</span></div>
   </div>
 </section>
@@ -406,6 +417,45 @@ graph LR
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="../index.html" target="_blank" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none"><i class="bi bi-boxes"></i> Open Full Screen</a>
     <span style="padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text2)"><i class="bi bi-database"></i> 574 nodes · 3,538 links · 3 languages</span>
+  </div>
+</section>
+
+<!-- ==================== LIMITATIONS ==================== -->
+<section id="limitations" class="fade-in">
+  <h2 class="section-title">Limitations</h2>
+  <p class="section-sub">Transparent assessment of methodological boundaries and potential biases</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3><i class="bi bi-database" style="color:var(--yellow)"></i> Textbook Selection Bias</h3>
+      <p>The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
+      <div class="meta">Mitigation: Multi-source triangulation across 68+ textbooks</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> Limited Discipline Coverage</h3>
+      <p>Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims (e.g., "knowledge density peaks early") are therefore limited to STEM education.</p>
+      <div class="meta">Mitigation: Framework is design-agnostic and extendable</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-rulers" style="color:var(--red)"></i> Curriculum Granularity Mismatch</h3>
+      <p>Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
+      <div class="meta">Mitigation: Analysis focuses on within-system trajectories, not absolute values</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> LLM Extraction Reliability</h3>
+      <p>Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <div class="meta">Mitigation: 92 gold labels ensure measurable quality bounds</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-translate" style="color:var(--pink)"></i> Language Coverage Gap</h3>
+      <p>Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia). The framework's applicability to Romance, Slavic, Arabic, or other language families remains untested.</p>
+      <div class="meta">Mitigation: Existing three-language comparison already reveals systematic patterns</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-patch-exclamation" style="color:var(--yellow)"></i> Gold Label Sample Size</h3>
+      <p>92 gold labels, while sufficient for overall F1 estimation (especially for social concepts, n=72), are limited for fine-grained per-language, per-domain analysis. The mathematical domain has only 20 labels across 3 languages, and the German math F1 estimate (0.506) has high variance.</p>
+      <div class="meta">Mitigation: Social concept results (n=72) are statistically robust</div>
+    </div>
   </div>
 </section>
 
@@ -630,6 +680,7 @@ new Chart(document.getElementById('coverageChart'), {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
       tooltip: { callbacks: { label: ctx => ctx.parsed.y + '%' } }
@@ -637,6 +688,65 @@ new Chart(document.getElementById('coverageChart'), {
     scales: {
       y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%', color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,.05)' } },
       x: { ticks: { color: '#94a3b8' } }
+    }
+  }
+});
+
+// Chart.js — Coverage Trajectory
+new Chart(document.getElementById('trajectoryChart'), {
+  type: 'line',
+  data: {
+    labels: ['Early', 'Mid', 'Late'],
+    datasets: [{
+      label: 'UK ↗ exam-driven',
+      data: [53, 82, 90],
+      borderColor: '#34d399',
+      backgroundColor: 'rgba(52,211,153,.1)',
+      fill: true,
+      tension: .3,
+      pointRadius: 5,
+      pointBackgroundColor: '#34d399'
+    }, {
+      label: 'NRW ↘ specialization',
+      data: [50, 42, 31],
+      borderColor: '#f87171',
+      backgroundColor: 'rgba(248,113,113,.1)',
+      fill: true,
+      tension: .3,
+      pointRadius: 5,
+      pointBackgroundColor: '#f87171'
+    }, {
+      label: 'US → stable',
+      data: [76, 76, 76],
+      borderColor: '#22d3ee',
+      backgroundColor: 'rgba(34,211,238,.1)',
+      borderDash: [5,5],
+      fill: false,
+      tension: 0,
+      pointRadius: 4,
+      pointBackgroundColor: '#22d3ee'
+    }, {
+      label: 'CN → selective',
+      data: [8, 8, 8],
+      borderColor: '#fbbf24',
+      backgroundColor: 'rgba(251,191,36,.1)',
+      borderDash: [5,5],
+      fill: false,
+      tension: 0,
+      pointRadius: 4,
+      pointBackgroundColor: '#fbbf24'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 12, padding: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+    },
+    scales: {
+      y: { min: 0, max: 100, ticks: { callback: v => v + '%', color: '#94a3b8', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,.05)' } },
+      x: { ticks: { color: '#94a3b8', font: { size: 9 } } }
     }
   }
 });
