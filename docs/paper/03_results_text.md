@@ -8,7 +8,7 @@ We computed the Concept Density Score (CDS = 2|E|/(|V|·(|V|-1))) for each educa
 |-------|:----------:|:-------:|:---:|
 | Elementary | 37 | 144 | **0.216** |
 | Middle | 46 | 280 | **0.271** |
-| High | 175 | 1113 | **0.073** |
+| High | 193 | 1113 | **0.073** |
 | College | 298 | 1838 | **0.042** |
 
 **Finding F1**: Knowledge density **peaks at Middle school**, then declines sharply. The transition from Middle (0.271) to High (0.073) represents a **3.7× drop** in concept density. This contradicts a simple "density decreases monotonically" narrative — instead, the middle school curriculum acts as a **density hub** where foundational concepts are tightly interconnected before branching into specialized domains.
@@ -23,9 +23,9 @@ We computed the longest prerequisite chain for each concept using BFS on prerequ
 |--------|-------|
 | Maximum chain depth | **8** |
 | Mean depth | **0.40** |
-| Concepts with no prerequisites (roots) | ~66% |
+| Concepts with no prerequisites (roots) | ~83% |
 
-**Finding F3**: The maximum prerequisite depth is only 8, with a mean of 0.40. This means that **mathematical knowledge is predominantly a shallow web, not a deep tree**. Over 66% of concepts have no prerequisite chains at all.
+**Finding F3**: The maximum prerequisite depth is only 8, with a mean of 0.40. This means that **mathematical knowledge is predominantly a shallow web, not a deep tree**. Over 83% of concepts have no prerequisite chains at all.
 
 ### 3.3 Cross-Language Structural Divergence (LDS)
 
