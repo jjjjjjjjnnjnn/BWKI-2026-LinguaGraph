@@ -40,7 +40,7 @@
 </p>
 
 <p align="center">
-  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/story/" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#60a5fa,#a78bfa);color:#fff;border-radius:8px;font-weight:700;font-size:1.1rem;text-decoration:none;margin-top:8px">
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#60a5fa,#a78bfa);color:#fff;border-radius:8px;font-weight:700;font-size:1.1rem;text-decoration:none;margin-top:8px">
     馃摉 Interactive Story Dashboard 鈫?
   </a>
   <br>
@@ -298,5 +298,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 <p align="center">
   <a href="README_DE.md">馃嚛馃嚜 Deutsch</a> 路 <a href="README_ZH.md">馃嚚馃嚦 涓枃</a>
 </p>
+
+
 
 
