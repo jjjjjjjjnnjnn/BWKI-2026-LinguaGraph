@@ -26,7 +26,7 @@
 ## Conclusion 2: Knowledge Depth Has a Universal Upper Limit
 
 **What we found**:
-> Maximum prerequisite chain depth is bounded at **HDS ≤ 6–9**, regardless of discipline. Mean depth differs by discipline (Math: 0.40, Physics: 0.85).
+> Maximum prerequisite chain depth is bounded at **HDS ≤ 8**, regardless of discipline. Mean depth differs by discipline (Math: 0.40, Physics: 0.85).
 
 **Why it matters**:
 > Educational knowledge appears to respect a natural depth limit on prerequisite structures. Both disciplines share the same bound. Physics has **2.1× more sequential depth** than mathematics (64% roots in physics vs 83% in math), but not the 2.8× previously estimated with a smaller sample.

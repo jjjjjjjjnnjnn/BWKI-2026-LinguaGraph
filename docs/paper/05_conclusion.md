@@ -2,7 +2,7 @@
 
 ### 5.1 Unified Finding
 
-This study investigated how different languages and educational systems organize the same knowledge. Using a cross-lingual knowledge graph framework applied to **574 mathematics and 343 physics concepts** across Chinese, German, and English, we found a consistent structural pattern:
+This study investigated how different languages and educational systems organize the same knowledge. Using a cross-lingual knowledge graph framework applied to **574 mathematics and 366 physics concepts** across Chinese, German, and English, we found a consistent structural pattern:
 
 > **Educational knowledge organization follows a universal "integrate-early, diverge-late" pattern: maximum connection density occurs at foundational stages (Elementary/Middle school) across both disciplines and all three languages, then monotonically declines as knowledge specializes.**
 
@@ -13,9 +13,9 @@ Mathematics peaks at Middle school (CDS=0.271), Physics at Elementary school (CD
 | Dimension | Finding | Bound |
 |-----------|---------|-------|
 | **Density (CDS)** | ALL disciplines peak in early stages, then decline | Math: 0.271 @ Middle; Physics: 0.222 @ Elementary; Chemistry: 0.042 @ Middle |
-| **Depth (HDS)** | Prerequisite chains are universally bounded | Max 6–8 (Math deepest at 8, Physics at 6) |
+| **Depth (HDS)** | Prerequisite chains are universally bounded | Max 8 (Math deepest at 8, Physics at 6) |
 | **Divergence (LDS)** | Cross-language structure differs substantially | ZH–DE: 0.907; DE–EN: 0.901; ZH–EN: 0.802 |
-| **Coverage (CS)** | Textbook-curriculum alignment varies by system | NRW 34%, UK 86%, US NGSS 56% |
+| **Coverage (CS)** | Textbook-curriculum alignment varies by system | NRW 34%, UK 82%, US 76%, CN 8% |
 
 ### 5.3 Contributions
 

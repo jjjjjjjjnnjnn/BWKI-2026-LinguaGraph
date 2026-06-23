@@ -168,7 +168,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in German textbooks. Social concept extraction is uniformly strong.
 
 ### Model Benchmark (20 models)
-- **Production model:** qwen-plus (F1=0.882 overall)
+- **Production model:** qwen-plus (F1=0.939 overall on 92 gold labels)
 - **Best free alternative:** qwen3-30b-a3b (F1=0.858)
 - **Best non-Qwen:** glm-4.6 (F1=0.819)
 
