@@ -139,14 +139,81 @@ python scripts/compute_lds_from_db.py
 
 ---
 
-## 📜 Lizenz & Compliance
+## 📚 Literatur
 
-- **Lizenz**: Alle Rechte vorbehalten — BWKI 2026 Wettbewerbsprojekt
-- **Datenschutz**: Alle Teilnehmerdaten anonymisiert. Siehe [`docs/ethics/`](docs/ethics/) für DSGVO-Konformität.
-- **KI-Ethik**: LLM-Nutzung auf Konzeptextraktion aus Lehrbuchtexten beschränkt.
+### Wissenschaftliche Publikationen
+
+| # | Quelle | Relevanz |
+|---|--------|----------|
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps.* | Grundlegend für die Konzeptkarten-Theorie von CDS/HDS |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* | Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter* (TIMSS). | Lehrplankohärenz — Inspiration für Coverage Score |
+| 4 | **Liang, L. L. & Heckmann, K.** (2013). Vergleich deutscher und chinesischer Mathematiklehrbücher. ZDM, 45(6). | Methodik zum länderübergreifenden Lehrbuchvergleich |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?* Cognitive Psychology, 43(1). | Sprachliche Relativität — Kontext der Forschungsfrage |
+| 6 | **Siew, C. S. Q.** (2019). *Network science in education.* Springer. | Netzwerkanalyse kognitiver/edu kativer Strukturen |
+| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *Automated educational KG construction.* arXiv. | EKG-Pipeline-Methodik |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Prerequisite inference in EKGs.* arXiv. | Voraussetzungsinferenz — unterstützt HDS-Metrik |
+| 9 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Ländervergleich der Curricula |
+| 10 | **IEA.** (2019). *TIMSS 2019 International Results.* | Curriculum-Coverage-Methodik |
+
+### Open-Source-Bibliotheken
+
+| Bibliothek | Verwendung | Lizenz |
+|------------|------------|--------|
+| [openai/openai-python](https://github.com/openai/openai-python) | LLM-API-Client für Konzeptextraktion | MIT |
+| [networkx/networkx](https://github.com/networkx/networkx) | Graphenkonstruktion und -analyse (CDS, HDS) | BSD-3 |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Abbildungen (Fig 3-7) | PSF |
+| [numpy/numpy](https://github.com/numpy/numpy) | Numerische Berechnungen, Ähnlichkeitsmetriken | BSD-3 |
+| [Three.js](https://github.com/mrdoob/three.js) | 3D-Visualisierung (CognitiveSpace) | MIT |
+| [Flask](https://github.com/pallets/flask) | Workbench-Webanwendung | BSD-3 |
+
+### Lehrpläne (Primärquellen)
+
+| Standard | Herausgeber |
+|----------|-------------|
+| Kernlehrplan Mathematik/Physik/Chemie NRW (Sek I 2019, Sek II 2023) | MSB NRW |
+| UK National Curriculum (Mathematik, Naturwissenschaften) | DfE England |
+| US Next Generation Science Standards (NGSS) | NGSS Lead States |
+| Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
+
+### Lehrbuchkorpora
+
+Lehrbuchinhalte für die Wissensgraphenkonstruktion (akademische Forschung, Fair Use).
+
+**ZH** (33+ Verlage): 人教版, 沪科版, 北师大版, 苏科版, 粤教版, 鲁科版, Ma Wenwei, Cheng Shouzhu, Qi Anshen, Zhao Kaihua, Wang Zhicheng, Yang Fujia, Liang Kunmiao, Guo Shuohong, Zeng Jinyan
+
+**EN** (34+ Verlage): Khan Academy, CK-12, AP Physics, IB, IGCSE, GCSE, Halliday Resnick Walker, Serway Jewett, Young Freedman, Griffiths, Kittel, Feynman Lectures
+
+**DE** (27+ Verlage): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
+
+### Danksagungen
+
+- **BWKI 2026** — Wettbewerbsplattform
+- **Alibaba Cloud Bailian** — Kostenloses API-Kontingent (1M Tokens pro Modell)
+- **LM Studio** — Lokale Inferenz (erste Entwicklung)
 
 ---
 
-<p align="center">
-  <a href="README.md">🇬🇧 English</a> · <a href="README_ZH.md">🇨🇳 中文</a>
-</p>
+## 📜 Zitierung
+
+```bibtex
+@misc{linguaGraph2026,
+  author = {Rongjing, J.},
+  title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {BWKI 2026},
+  url = {https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph}
+}
+```
+
+---
+
+## 📜 Lizenz & Compliance
+
+- **Lizenz**: Alle Rechte vorbehalten — BWKI 2026 Wettbewerbsprojekt
+- **Fremdcode**: Alle Open-Source-Bibliotheken unter MIT-, BSD-3- oder Apache-2.0-Lizenz.
+- **Lehrbuchinhalte**: Ausschnitte als Fair Use für akademische Forschung. Vollständige Quellen in den Graph-Metadaten.
+- **Datenschutz**: Alle Teilnehmerdaten anonymisiert. Keine personenbezogenen Daten im Repository. Siehe [](docs/ethics/) für DSGVO-Konformität.
+- **KI-Ethik**: LLM-Nutzung auf Konzeptextraktion beschränkt. Extraktionsqualität an 92 Goldstandards validiert.
+- **Lehrpläne**: Amtliche Dokumente für akademischen Vergleich. Urheberrecht bei den jeweiligen Behörden.
