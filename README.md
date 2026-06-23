@@ -20,7 +20,7 @@
     🌌 CognitiveSpace 3D
   </a>
   &nbsp;&nbsp;
-  <a href="../../docs/paper/" style="display:inline-block;padding:14px 28px;background:#1e293b;border:1px solid #2d3a50;color:#e2e8f0;border-radius:10px;font-weight:600;font-size:1.05rem;text-decoration:none">
+  <a href="docs/paper/" style="display:inline-block;padding:14px 28px;background:#1e293b;border:1px solid #2d3a50;color:#e2e8f0;border-radius:10px;font-weight:600;font-size:1.05rem;text-decoration:none">
     📄 Paper
   </a>
 </p>
