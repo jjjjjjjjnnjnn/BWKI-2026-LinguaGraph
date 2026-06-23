@@ -10,6 +10,22 @@
 
 <h1 align="center">🧠 LinguaGraph</h1>
 
+
+<p align="center">
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#60a5fa,#a78bfa);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem;text-decoration:none;box-shadow:0 4px 16px rgba(96,165,250,.3)">
+    🧠 Research Portal →
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/" style="display:inline-block;padding:14px 28px;background:#1e293b;border:1px solid #2d3a50;color:#e2e8f0;border-radius:10px;font-weight:600;font-size:1.05rem;text-decoration:none">
+    🌌 CognitiveSpace 3D
+  </a>
+  &nbsp;&nbsp;
+  <a href="../../docs/paper/" style="display:inline-block;padding:14px 28px;background:#1e293b;border:1px solid #2d3a50;color:#e2e8f0;border-radius:10px;font-weight:600;font-size:1.05rem;text-decoration:none">
+    📄 Paper
+  </a>
+</p>
+
+
 <p align="center">
   <b>How do different languages and educational systems organize the same knowledge?</b>
 </p>
