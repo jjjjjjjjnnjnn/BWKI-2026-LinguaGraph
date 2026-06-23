@@ -10,13 +10,12 @@
 <meta property="og:description" content="How do different languages and education systems organize the same knowledge?">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.rel='stylesheet'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
-tailwind.config = { theme: { extend: { colors: { surface: '#111827', surface2: '#1a2332', card: '#1e293b', border: '#2d3a50', muted: '#94a3b8', accent: '#60a5fa', accent2: '#a78bfa' } } } }
-mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:true, securityLevel:'loose' })
+mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:true, securityLevel:'sandbox' })
 </script>
 <style>
 :root {
@@ -58,7 +57,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .section-sub { color: var(--text2); font-size: 1.05rem; margin-bottom: 48px; }
 
 /* Cards */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
 .card {
   background: var(--card); border: 1px solid var(--border); border-radius: 12px;
   padding: 28px; transition: all .3s;
@@ -109,7 +108,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .finding-card {
   background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 28px;
 }
-.finding-card h3 { font-size: 1.3rem; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+.finding-card h3 { font-size: 1.3rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
+.finding-card h3 i, .finding-card h3 .bi { flex-shrink: 0; font-size: 1.4rem; margin-top: 2px; }
 .finding-card .lead { font-size: 1.05rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
 .finding-card .evidence { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin: 16px 0; }
 .finding-card .ev-item { background: var(--surface); border-radius: 8px; padding: 14px; text-align: center; }
@@ -686,10 +686,11 @@ new Chart(document.getElementById('coverageChart'), {
     datasets: [{
       label: 'Coverage Score (%)',
       data: [34, 8, 76, 82],
-      backgroundColor: ['rgba(96,165,250,.7)', 'rgba(251,191,36,.7)', 'rgba(34,211,238,.7)', 'rgba(52,211,153,.7)'],
+      backgroundColor: ['rgba(96,165,250,.85)', 'rgba(251,191,36,.85)', 'rgba(34,211,238,.85)', 'rgba(52,211,153,.85)'],
       borderColor: ['#60a5fa', '#fbbf24', '#22d3ee', '#34d399'],
       borderWidth: 2,
-      borderRadius: 6
+      borderRadius: 8,
+      borderSkipped: false
     }]
   },
   options: {
@@ -715,40 +716,48 @@ new Chart(document.getElementById('trajectoryChart'), {
       label: 'UK ↗ exam-driven',
       data: [53, 82, 90],
       borderColor: '#34d399',
-      backgroundColor: 'rgba(52,211,153,.1)',
+      backgroundColor: 'rgba(52,211,153,.12)',
       fill: true,
       tension: .3,
       pointRadius: 5,
-      pointBackgroundColor: '#34d399'
+      pointBackgroundColor: '#34d399',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1
     }, {
       label: 'NRW ↘ specialization',
       data: [50, 42, 31],
       borderColor: '#f87171',
-      backgroundColor: 'rgba(248,113,113,.1)',
+      backgroundColor: 'rgba(248,113,113,.12)',
       fill: true,
       tension: .3,
       pointRadius: 5,
-      pointBackgroundColor: '#f87171'
+      pointBackgroundColor: '#f87171',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1
     }, {
       label: 'US → stable',
       data: [76, 76, 76],
       borderColor: '#22d3ee',
-      backgroundColor: 'rgba(34,211,238,.1)',
+      backgroundColor: 'rgba(34,211,238,.08)',
       borderDash: [5,5],
       fill: false,
       tension: 0,
       pointRadius: 4,
-      pointBackgroundColor: '#22d3ee'
+      pointBackgroundColor: '#22d3ee',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1
     }, {
       label: 'CN → selective',
       data: [8, 8, 8],
       borderColor: '#fbbf24',
-      backgroundColor: 'rgba(251,191,36,.1)',
+      backgroundColor: 'rgba(251,191,36,.08)',
       borderDash: [5,5],
       fill: false,
       tension: 0,
       pointRadius: 4,
-      pointBackgroundColor: '#fbbf24'
+      pointBackgroundColor: '#fbbf24',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1
     }]
   },
   options: {
@@ -775,10 +784,13 @@ new Chart(document.getElementById('benchmarkChart'), {
       data: [0.882, 0.858, 0.819, 0.780, 0.767, 0.748, 0.735, 0.722, 0.719, 0.715, 0.708, 0.692, 0.671, 0.655, 0.648, 0.624, 0.609, 0.603, 0.598, 0.583],
       backgroundColor: ctx => {
         const v = ctx.parsed.y;
-        return v >= 0.85 ? 'rgba(52,211,153,.7)' : v >= 0.75 ? 'rgba(96,165,250,.7)' : v >= 0.65 ? 'rgba(251,191,36,.7)' : 'rgba(248,113,113,.7)';
+        if (v >= 0.85) return 'rgba(52,211,153,.85)';
+        if (v >= 0.75) return 'rgba(96,165,250,.85)';
+        if (v >= 0.65) return 'rgba(251,191,36,.85)';
+        return 'rgba(248,113,113,.85)';
       },
       borderWidth: 0,
-      borderRadius: 4
+      borderRadius: 6
     }]
   },
   options: {
