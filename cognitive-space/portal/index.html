@@ -172,8 +172,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <a href="#methodology">Methodology</a>
   <a href="#finding-a">Findings</a>
   <a href="#cognitivespace">CognitiveSpace</a>
-  <a href="#curriculum">Curriculum</a>
   <a href="#limitations">Limitations</a>
+  <a href="#curriculum">Curriculum</a>
   <a href="#validation">Validation</a>
   <a href="#paper">Paper</a>
   <a href="#open-science">Open Science</a>
@@ -231,7 +231,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 </section>
 
 <!-- ==================== CONTRIBUTIONS ==================== -->
-<section id="contributions" class="fade-in" style="background:var(--surface);border-radius:24px;margin:0 24px;padding:80px 48px;max-width:1120px">
+<section id="contributions" class="fade-in" style="background:var(--surface);border-radius:24px;padding:80px 24px">
   <h2 class="section-title">Research Contributions</h2>
   <p class="section-sub">What this project delivers to the field</p>
   <div class="contrib-grid">
@@ -310,15 +310,20 @@ graph LR
 <!-- ==================== FINDING A: CDS ==================== -->
 <section id="finding-a" class="fade-in">
   <h2 class="section-title">Findings</h2>
-  <p class="section-sub">Four structural discoveries about how knowledge is organized across disciplines, languages and education systems</p>
+  <p class="section-sub">Four structural discoveries about how knowledge is organized across disciplines, languages and education systems</p></section>
 
-  <div class="finding-card" style="border-left:4px solid var(--accent)">
+
+
+  <section id="finding-a-content" class="fade-in">
+<div class="finding-card" style="border-left:4px solid var(--accent)">
     <h3><i class="bi bi-bar-chart-line" style="color:var(--accent)"></i> Finding A: Knowledge density peaks early</h3>
     <div class="lead">All three STEM disciplines concentrate their densest knowledge connections at introductory stages, not advanced ones.</div>
     <p>Mathematics peaks at <strong>middle school</strong> (CDS = 0.271). Physics peaks at <strong>elementary school</strong> (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics.</p>
     <p style="margin-top:8px;color:var(--text2)">This contradicts the natural assumption that "more advanced knowledge is more densely connected." Instead, curricula are designed to maximize connection density during foundational stages (early integration) before branching into specialization (later differentiation).</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label">Math CDS (Middle)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label">Math CDS (Middle)</div>
+</section>
+</div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.222</div><div class="ev-label">Physics CDS (Elementary)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">3.7×</div><div class="ev-label">Middle → High drop</div></div>
       <div class="ev-item"><div class="ev-num">✅</div><div class="ev-label">ZH/EN/DE independent verification</div></div>
@@ -337,13 +342,16 @@ graph LR
   </div>
 
 <!-- ==================== FINDING B: HDS ==================== -->
-  <div class="finding-card" style="border-left:4px solid var(--green)">
+  <section id="finding-b" class="fade-in">
+<div class="finding-card" style="border-left:4px solid var(--green)">
     <h3><i class="bi bi-diagram-3" style="color:var(--green)"></i> Finding B: Knowledge structures stay shallow</h3>
     <div class="lead">Educational knowledge has a universal upper bound on prerequisite depth, regardless of discipline.</div>
     <p>Maximum prerequisite chain depth is <strong>HDS ≤ 8</strong> for mathematics and <strong>HDS ≤ 6</strong> for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts).</p>
     <p style="margin-top:8px;color:var(--text2)">Physics has 2.1× more sequential depth than mathematics (64% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">8</div><div class="ev-label">Math HDS (max)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">8</div><div class="ev-label">Math HDS (max)</div>
+</section>
+</div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.40</div><div class="ev-label">Math HDS (mean)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">83%</div><div class="ev-label">Root concepts (Math)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">2.1×</div><div class="ev-label">Physics depth vs Math</div></div>
@@ -356,13 +364,16 @@ graph LR
   </div>
 
 <!-- ==================== FINDING C: LDS ==================== -->
-  <div class="finding-card" style="border-left:4px solid #22d3ee">
+  <section id="finding-c" class="fade-in">
+<div class="finding-card" style="border-left:4px solid #22d3ee">
     <h3><i class="bi bi-translate" style="color:#22d3ee"></i> Finding C: Languages organize knowledge differently</h3>
     <div class="lead">Cross-language structural divergence is high and asymmetric — driven by curriculum tradition, not language family.</div>
     <p>The ZH–DE pair shows the <strong>highest</strong> structural divergence (LDS = 0.907), while ZH–EN shows the <strong>lowest</strong> (0.802). DE–EN is nearly as high (0.901). This is counterintuitive: despite Chinese and English belonging to different language families, their textbook structures are more similar than those of two European languages.</p>
     <p style="margin-top:8px;color:var(--text2)">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.907</div><div class="ev-label">ZH–DE (highest)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.907</div><div class="ev-label">ZH–DE (highest)</div>
+</section>
+</div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.901</div><div class="ev-label">DE–EN</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.802</div><div class="ev-label">ZH–EN (lowest)</div></div>
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label">Topic variance</div></div>
@@ -375,12 +386,15 @@ graph LR
   </div>
 
 <!-- ==================== FINDING D: COVERAGE ==================== -->
-  <div class="finding-card" style="border-left:4px solid var(--yellow)">
+  <section id="finding-d" class="fade-in">
+<div class="finding-card" style="border-left:4px solid var(--yellow)">
     <h3><i class="bi bi-building" style="color:var(--yellow)"></i> Finding D: Education systems emphasize different curriculum designs</h3>
     <div class="lead">Textbook–curriculum coverage varies dramatically — not because of quality differences, but because of fundamentally different educational philosophies.</div>
     <p>Coverage scores range from <strong>8% (China) to 82% (UK)</strong>. The UK curriculum shows an ascending trajectory (53% at early stages → 90% at later stages), reflecting an exam-driven, comprehensive model. Germany's NRW curriculum descends (50% → 31%), reflecting increasing teacher specialization and curricular choice. The US (76%) and China (8%) maintain stable but contrasting coverage levels.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label">🇬🇧 UK (highest)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label">🇬🇧 UK (highest)</div>
+</section>
+</div>
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">76%</div><div class="ev-label">🇺🇸 US</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">34%</div><div class="ev-label">🇩🇪 NRW Germany</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">8%</div><div class="ev-label">🇨🇳 China</div></div>
@@ -553,13 +567,13 @@ graph LR
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Abstract</h3>
       <p>LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
-      <div class="meta">📄 <a href="../../docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
+      <div class="meta">📄 <a href="docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Sections</h3>
       <p>Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
-      <div class="meta">📚 9 sections · ~56 KB · <a href="../../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta">📚 9 sections · ~56 KB · <a href="docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -595,7 +609,7 @@ graph LR
       <p>All knowledge graphs, curriculum alignments, gold annotations and benchmark results.</p>
       <div class="meta">1160+ concepts · 4100+ relations · 92 gold labels</div>
     </a>
-    <a href="../../docs/paper/" target="_blank" class="card" style="text-decoration:none;text-align:center">
+    <a href="docs/paper/" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
       <p>Full manuscript with 3 research questions, 4 metrics, 10 findings and error analysis.</p>
@@ -613,11 +627,11 @@ graph LR
       <p>20-model comparison across Bailian API. Full evaluation results with F1 scores per language and domain.</p>
       <div class="meta">20 models · 92 gold labels · Full ranking</div>
     </a>
-    <a href="mailto:your-email@example.com" class="card" style="text-decoration:none;text-align:center">
+    <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/issues" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-envelope" style="font-size:2.2rem;color:var(--orange);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Contact</h3>
-      <p>Questions, collaboration, or feedback? Reach out via GitHub or email.</p>
-      <div class="meta">🐦 BWKI 2026</div>
+      <p>Questions, collaboration, or feedback? Open an issue on GitHub.</p>
+      <div class="meta">GitHub Issues</div>
     </a>
   </div>
 </section>
@@ -627,7 +641,7 @@ graph LR
   <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px">🧠 LinguaGraph</p>
   <p>Cross-Lingual Knowledge Structure Analysis Framework</p>
   <p style="margin-top:12px">BWKI 2026 · All Rights Reserved · Built with qwen-plus</p>
-  <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph"><i class="bi bi-github"></i> GitHub</a> · <a href="../../README.md">🇬🇧 English</a> · <a href="../../README_DE.md">🇩🇪 Deutsch</a> · <a href="../../README_ZH.md">🇨🇳 中文</a></p>
+  <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph"><i class="bi bi-github"></i> GitHub</a> · <a href="README.md">🇬🇧 English</a> · <a href="README_DE.md">🇩🇪 Deutsch</a> · <a href="README_ZH.md">🇨🇳 中文</a></p>
 </footer>
 
 <!-- ==================== JAVASCRIPT ==================== -->
