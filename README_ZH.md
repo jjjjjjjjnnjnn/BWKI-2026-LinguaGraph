@@ -69,7 +69,7 @@
 - [🧪 模型基准测试](#-model-benchmark)
 - [📁 项目结构](#-project-structure)
 - [📚 Key 参考文献](#-key-references)
-- [📜 Citation](#-citation)
+- [📜 引用说明](#-citation)
 - [📜 许可 & 合规](#-license--compliance)
 - [🤝 联系方式](#-contact)
 
@@ -319,7 +319,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **BWKI 2026** — Competition platform
 - **Alibaba Cloud Bailian** — Free API quota (1M tokens per model)
 - **OpenRouter** — 模型 routing (tested)
-- **LM Studio** — Local inference (initial development)## 📜 Citation
+- **LM Studio** — Local inference (initial development)## 📜 引用说明
 
 ```bibtex
 @misc{linguaGraph2026,
