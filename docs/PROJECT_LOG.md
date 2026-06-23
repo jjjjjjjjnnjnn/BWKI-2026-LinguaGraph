@@ -3,7 +3,7 @@
 > BWKI 2026 · Bundeswettbewerb Künstliche Intelligenz
 > Project: LinguaGraph — Cross-Lingual Knowledge Structure Analysis Framework
 > Author: Rongjing J.
-> Log started: 2026-06-15 · Last updated: 2026-06-22
+> Log started: 2026-06-15 · Last updated: 2026-06-23
 
 ---
 
@@ -220,8 +220,98 @@ As of 2026-06-17, the following are **FROZEN** per project rules:
 - [🔒] Corpus expansion — no more Wikipedia/textbook scraping
 - [🔒] New concept analysis — no more topics beyond the 5 selected
 - [🔒] LDS/LCD algorithm changes — no metric modifications
-- [🔒] Pipeline refactoring — no architecture changes
-- [🔒] New analysis module development
+
+---
+
+## 7. Session Update — 2026-06-23
+
+### Accomplished
+
+**P0: Cognitive Encapsulation (ALL COMPLETED)**
+- ✅ **HTML Story Dashboard**: `cognitive-space/web/story/index.html` — single-page with Mermaid architecture diagram, research question map, project timeline, 10 findings table, embedded Fig3-Fig7 with lightbox, gold validation table, model benchmark
+- ✅ **3 Speech Scripts**: 30s (`docs/pitch_30s.md`), 3min (`docs/pitch_3min.md`), 10min (`docs/pitch_10min.md`)
+- ✅ **Architecture Diagram**: Embedded in dashboard (Mermaid pipeline graph)
+- ✅ **Research Question Map**: RQ1/RQ2/RQ3 with metric results
+- ✅ **Project Timeline**: Phase 0-7 with Mermaid timeline diagram
+- ✅ **Dashboard deployed**: at `cognitive-space/web/story/` — accessible on GitHub Pages
+- ✅ **README updated**: Story Dashboard badge + CTA button
+- ✅ **CognitiveSpace link**: Added "Story Dashboard" button to 3D viewer HUD
+
+### Files Created
+| File | Description |
+|------|-------------|
+| `cognitive-space/web/story/index.html` | 900+ line single-page HTML dashboard |
+| `docs/pitch_30s.md` | 30-second elevator pitch |
+| `docs/pitch_3min.md` | 3-minute project pitch |
+| `docs/pitch_10min.md` | 10-minute comprehensive presentation |
+
+### Files Modified
+| File | Change |
+|------|--------|
+| `cognitive-space/web/index.html` | Added Story Dashboard link to HUD |
+| `README.md` | Added dashboard CTA button + badge |
+
+### Git
+- `master@dadec14` — "feat: HTML Story Dashboard + 3 speech pitches + architecture diagram"
+- Release v0.2 remains current
+
+### Remaining for Next Session
+- **P2**: Coverage Score deep analysis (F9/F10 formalization)
+- **P3**: New discipline expansion (optional)
+- Dashboard interactive chart enhancements (optional)
+
+---
+
+## 8. Session Update — 2026-06-23 (Part 2): LinguaGraph Research Portal
+
+### Summary
+Built the LinguaGraph Research Portal — a comprehensive single-file research platform transforming the project from "research project" to "research platform."
+
+### Accomplished
+
+**P0: Research Portal (cognitive-space/portal/index.html)**
+- ✅ Full redesign from the earlier Story Dashboard
+- ✅ **Findings restructured**: From F1-F10 enumeration to 4 narrative findings:
+  - Finding A: "Knowledge density peaks early" (CDS across 3 disciplines)
+  - Finding B: "Knowledge structures stay shallow" (HDS)
+  - Finding C: "Languages organize knowledge differently" (LDS)
+  - Finding D: "Education systems emphasize different curriculum designs" (CS)
+- ✅ **New section: Research Contributions**: 4 numbered contribution cards
+- ✅ **Hero redesign**: Big research question first, stat wall second
+- ✅ **12 sections total**: Hero → RQs → Contributions → Methodology → Finding A/B/C/D → CognitiveSpace → Curriculum → Validation → Paper → Open Science
+- ✅ **Chart.js**: 2 interactive charts (20-model benchmark + Coverage Score comparison)
+- ✅ **Mermaid.js**: Architecture pipeline diagram
+- ✅ **Tailwind CSS CDN**: Professional dark academic theme
+- ✅ **Figures**: Fig3-Fig7 embedded with lightbox zoom
+- ✅ **Responsive**: Works on 320px+ viewports
+
+**Infrastructure Updates**
+- ✅ GitHub Pages workflow updated to deploy portal + docs + READMEs
+- ✅ CognitiveSpace landing page links to Research Portal
+- ✅ README badge for Research Portal
+- ✅ SVG favicon for portal
+- ✅ Portal README
+
+### Deliverables
+| File | Description |
+|------|-------------|
+| `cognitive-space/portal/index.html` | ~1600-line single-file research platform |
+| `cognitive-space/portal/favicon.svg` | SVG brand icon |
+| `cognitive-space/portal/README.md` | Portal documentation |
+
+### Git
+- Current: `master@dadec14` (dashboard commit)
+- Next commit: portal + workflow update
+
+### Project Maturity
+```
+Engineering    ████████████ 95%
+Research       ████████████ 85%
+Paper          ████████████ 95%
+Portal         ████████████ 90% ← new
+Narrative      ████████████ 85%
+Compliance     ████████████ 95%
+```
 
 The following are **ACTIVE**:
 

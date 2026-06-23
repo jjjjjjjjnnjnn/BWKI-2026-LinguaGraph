@@ -32,6 +32,7 @@
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
 	  <img src="https://img.shields.io/badge/story_dashboard-online-8A2BE2?style=flat-square" alt="Story Dashboard">
+	  <img src="https://img.shields.io/badge/research_portal-v2-8A2BE2?style=flat-square&logo=githubpages" alt="Research Portal">
 </p>
 
 <p align="center">
@@ -297,4 +298,5 @@ Textbook content used for knowledge graph construction (academic research, fair 
 <p align="center">
   <a href="README_DE.md">馃嚛馃嚜 Deutsch</a> 路 <a href="README_ZH.md">馃嚚馃嚦 涓枃</a>
 </p>
+
 
