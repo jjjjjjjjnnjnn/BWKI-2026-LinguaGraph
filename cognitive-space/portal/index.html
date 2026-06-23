@@ -154,8 +154,10 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .fade-in { opacity: 0; transform: translateY(24px); transition: all .6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* Chart containers */
+<!-- Chart containers -->
 .chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; max-width: 700px; margin: 0 auto; }
+.chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+@media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
 
 /* Tooltip for BibTeX copy */
 .tooltip { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 8px 20px; border-radius: 8px; font-size: .85rem; font-weight: 600; z-index: 300; opacity: 0; transition: opacity .3s; pointer-events: none; }
@@ -399,13 +401,13 @@ graph LR
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">34%</div><div class="ev-label">🇩🇪 NRW Germany</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">8%</div><div class="ev-label">🇨🇳 China</div></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0">
+    <div class="chart-grid">
       <div class="chart-box" style="max-width:100%">
-        <canvas id="coverageChart" height="220"></canvas>
+        <canvas id="coverageChart"></canvas>
         <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px"><strong>Fig 8</strong> — Overall Coverage Score</p>
       </div>
       <div class="chart-box" style="max-width:100%">
-        <canvas id="trajectoryChart" height="220"></canvas>
+        <canvas id="trajectoryChart"></canvas>
         <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px"><strong>Fig 9</strong> — Stage-by-stage trajectory (UK ↗, NRW ↘)</p>
       </div>
     </div>
@@ -609,13 +611,13 @@ graph LR
       <p>All knowledge graphs, curriculum alignments, gold annotations and benchmark results.</p>
       <div class="meta">1160+ concepts · 4100+ relations · 92 gold labels</div>
     </a>
-    <a href="docs/paper/" target="_blank" class="card" style="text-decoration:none;text-align:center">
+    <a href="docs/paper/01_abstract_introduction.md" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
       <p>Full manuscript with 3 research questions, 4 metrics, 10 findings and error analysis.</p>
       <div class="meta">9 sections · 19+ references</div>
     </a>
-    <a href="../figures/" target="_blank" class="card" style="text-decoration:none;text-align:center">
+    <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/tree/master/cognitive-space/web/figures" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-image" style="font-size:2.2rem;color:var(--yellow);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Figures</h3>
       <p>7 publication-ready figures: CDS, HDS, LDS distributions and cross-discipline comparisons.</p>
@@ -695,7 +697,8 @@ new Chart(document.getElementById('coverageChart'), {
   },
   options: {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+    aspectRatio: 1.6,
     plugins: {
       legend: { display: false },
       tooltip: { callbacks: { label: ctx => ctx.parsed.y + '%' } }
@@ -762,7 +765,8 @@ new Chart(document.getElementById('trajectoryChart'), {
   },
   options: {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+    aspectRatio: 1.6,
     plugins: {
       legend: { labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 12, padding: 8 } },
       tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
