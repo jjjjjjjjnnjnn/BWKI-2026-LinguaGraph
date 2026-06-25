@@ -48,11 +48,11 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,.05); }
 nav a.active { color: var(--accent); background: rgba(96,165,250,.12); }
 
 /* Language Switcher */
-.lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 8px; }
+.lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 8px; flex-shrink: 0; }
 .lang-btn {
   background: transparent; border: 1px solid var(--border); color: var(--text2);
   padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600;
-  transition: all .2s;
+  transition: all .2s; flex-shrink: 0;
 }
 .lang-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
 .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -190,9 +190,9 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <a href="#paper">Paper</a>
   <a href="#open-science">Open Science</a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLanguage('en')" title="English">EN</button>
-    <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">DE</button>
-    <button class="lang-btn" onclick="setLanguage('zh')" title="中文">ZH</button>
+    <button class="lang-btn active" title="English">EN</button>
+    <button class="lang-btn" title="Deutsch">DE</button>
+    <button class="lang-btn" title="中文">ZH</button>
   </div>
 </nav>
 
@@ -924,6 +924,7 @@ const TRANSLATIONS = {
 
 function setLanguage(lang) {
   const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.title = t.page_title;
   const navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
   document.querySelectorAll('nav a').forEach(a => {
     const id = a.getAttribute('href')?.replace('#', '');
@@ -943,7 +944,15 @@ function setLanguage(lang) {
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
 }
-document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('portal_lang') || 'en'));
+
+function initLang() {
+  const saved = localStorage.getItem('portal_lang') || 'en';
+  setLanguage(saved);
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.textContent.toLowerCase()));
+  });
+}
+document.addEventListener('DOMContentLoaded', initLang);
 window.addEventListener('pageshow', () => {
   const s = localStorage.getItem('portal_lang') || 'en';
   if (!document.querySelector('.lang-btn.active')?.textContent.toLowerCase().includes(s)) setLanguage(s);
