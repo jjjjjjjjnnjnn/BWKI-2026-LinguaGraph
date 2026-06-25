@@ -749,6 +749,7 @@ function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
   document.getElementById('lightbox').classList.add('active');
 }
+window.openLightbox = openLightbox;
 document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
 
 // Copy BibTeX
@@ -760,6 +761,7 @@ function copyBibtex() {
     setTimeout(() => tip.classList.remove('show'), 1500);
   });
 }
+window.copyBibtex = copyBibtex;
 
 // Chart.js — Coverage Score
 new Chart(document.getElementById('coverageChart'), {
