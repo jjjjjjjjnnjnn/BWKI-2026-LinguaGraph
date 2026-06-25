@@ -638,6 +638,11 @@
 
     /* ─── Language Filter ─────────────────────────────────────────── */
     function setLang(l) {
+        // Also switch UI language when a language is selected
+        if (['zh','en','de'].indexOf(l) >= 0) {
+            i18n.setLanguage(l);
+            i18n.apply();
+        }
         lang = l;
         if (!G) return;
 
