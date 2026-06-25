@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognitiveSpace v2 — Mathematics Knowledge Graph · ZH/EN/DE</title>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <script src="data.js"></script>
+    <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+        background:#050a14; color:#d0d0d0; overflow:hidden;
+        -webkit-font-smoothing:antialiased;
+    }
+    #graph-container {
+        width:100vw; height:100vh;
+        /* CSS glow on the canvas for a more advanced look */
+        filter: brightness(1.6) saturate(1.8) drop-shadow(0 0 3px rgba(120,160,255,.12));
+    }
+    #graph-container canvas { display:block; }
+
+    #loading {
+        position:fixed; inset:0; z-index:9999; background:#050a14;
+        display:flex; flex-direction:column; align-items:center;
+        justify-content:center; transition:opacity .8s;
+    }
+    #loading.hidden{ opacity:0; pointer-events:none; }
+    #loading .spinner{
+        width:28px; height:28px;
+        border:2px solid rgba(74,125,255,.08); border-top-color:#4a7dff;
+        border-radius:50%;
+        animation:spin .9s cubic-bezier(.4,0,.2,1) infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg); } }
+    #loading p{ color:#4a7dff; font-size:.8rem; margin-top:14px; font-weight:500; }
+    #loading .err{ color:#ff6b6b; font-size:.7rem; margin-top:8px; display:none; }
+
+    #hud {
+        position:absolute; top:16px; left:16px; z-index:100;
+        background:rgba(5,10,20,.88); backdrop-filter:blur(14px) saturate(1.4);
+        border:1px solid rgba(255,255,255,.06); border-radius:10px;
+        padding:12px 14px; min-width:190px; user-select:none;
+        transition:opacity .3s;
+    }
+    #hud h1{ font-size:.8rem; font-weight:600; letter-spacing:.4px; }
+    #hud h1 span{ color:#4a7dff; }
+    #hud .sub{ font-size:.55rem; color:#4a4a6a; margin-bottom:8px; }
+
+    .s{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:10px; }
+    .si{ display:flex; flex-direction:column; }
+    .sv{ font-size:.95rem; font-weight:600; color:#e0e0e0; }
+    .sl{ font-size:.5rem; color:#4a4a6a; text-transform:uppercase; letter-spacing:.6px; }
+
+    .br{ display:flex; gap:2px; margin-bottom:5px; flex-wrap:wrap; }
+    .b{
+        padding:3px 9px; border-radius:4px; font-size:.55rem; font-weight:500;
+        cursor:pointer; border:1px solid rgba(255,255,255,.06);
+        background:rgba(255,255,255,.02); color:#5a5a7a;
+        transition:all .2s; font-family:inherit;
+    }
+    .b:hover{ background:rgba(255,255,255,.04); color:#a0a0c0; }
+    .b.a{ border-color:rgba(74,125,255,.25); color:#7a9aff; }
+    .b.v.a{ background:rgba(74,125,255,.1); }
+    .b.l.a{ background:rgba(78,205,196,.1); color:#4ecdc4; border-color:rgba(78,205,196,.25); }
+
+    .leg{ display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
+    .li{ display:flex; align-items:center; gap:3px; font-size:.5rem; color:#4a4a6a; }
+    .ld{ width:5px; height:5px; border-radius:50%; }
+
+    #detail {
+        position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+        z-index:100; background:rgba(5,10,20,.94); backdrop-filter:blur(14px);
+        border:1px solid rgba(74,125,255,.25); border-radius:8px;
+        padding:12px 18px; display:none; text-align:left;
+        min-width:260px; max-width:460px;
+    }
+    #detail h3{ color:#7a9aff; font-size:.8rem; font-weight:500; text-align:center; }
+    #detail .ls{ font-size:.6rem; color:#5a5a7a; margin:2px 0 4px; text-align:center; }
+    #detail .m{ font-size:.6rem; color:#4a4a6a; text-align:center; }
+    #detail .metrics{ font-size:.6rem; color:#4a4a6a; margin-top:5px; padding-top:5px; border-top:1px solid rgba(255,255,255,.04); }
+    #detail .metrics .row{ display:flex; justify-content:space-between; padding:1px 0; }
+    #detail .metrics .label{ color:#5a5a7a; }
+    #detail .metrics .val{ color:#a0a0c0; font-weight:500; }
+    #detail .note{ font-size:.55rem; color:#6b6b8a; margin-top:4px; padding:4px 6px; background:rgba(255,255,255,.02); border-radius:4px; line-height:1.4; }
+    #detail .rf{ font-size:.55rem; color:#3a3a5a; margin-top:4px; line-height:1.5; }
+
+    #mode-tag {
+        position:absolute; bottom:20px; right:20px; z-index:100;
+        font-size:.5rem; color:#2a2a4a; letter-spacing:1.2px; text-transform:uppercase;
+        opacity:.6;
+    }
+    #ctrl-hint {
+        position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+        font-size:.5rem; color:#2a2a4a; z-index:99;
+        letter-spacing:1px; opacity:.4; pointer-events:none;
+    }
+    @media(max-width:640px){
+        #hud{ min-width:150px; padding:10px; }
+        #ctrl-hint{ display:none; }
+    }
+
+    /* Diffusion ring animation */
+    .ripple-ring {
+        position: fixed;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        pointer-events: none;
+        z-index: 200;
+        animation: ripple-expand 1.2s cubic-bezier(0, 0.5, 0.3, 1) forwards;
+    }
+    @keyframes ripple-expand {
+        0% {
+            width: 10px; height: 10px;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+            width: 200px; height: 200px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(3);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>CognitiveSpace</p>
+        <div class="err" id="loadErr"></div>
+    </div>
+
+    <div id="hud">
+        <h1>Cognitive<span>Space</span></h1>
+        <div class="sub" id="sub">574 concepts · 3538 relations</div>
+        <div class="s">
+            <div class="si"><span class="sv" id="sC">0</span><span class="sl">Concepts</span></div>
+            <div class="si"><span class="sv" id="sR">0</span><span class="sl">Relations</span></div>
+            <div class="si"><span class="sv" id="sL">0</span><span class="sl">Levels</span></div>
+        </div>
+        <div class="br" id="vb">
+            <button class="b v a" data-m="universe">Universe</button>
+            <button class="b v" data-m="spacefill">Space-Fill</button>
+            <button class="b v" data-m="compare">Compare</button>
+        </div>
+        <div class="br" id="lb">
+            <button class="b l a" data-g="all">All</button>
+            <button class="b l" data-g="zh">ZH</button>
+            <button class="b l" data-g="en">EN</button>
+            <button class="b l" data-g="de">DE</button>
+        </div>
+        <div class="br" style="margin-bottom:0">
+            <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem">⟳ Auto Rotate</button>
+        </div>
+        <button id="rbtn" class="b" style="display:none;width:100%;margin-top:4px;border-color:rgba(255,107,107,.15);color:#ff6b6b">← Clear</button>
+        <div class="leg">
+            <span class="li"><span class="ld" style="background:#4ade80"></span>Elementary</span>
+            <span class="li"><span class="ld" style="background:#22d3ee"></span>Middle</span>
+            <span class="li"><span class="ld" style="background:#60a5fa"></span>High</span>
+            <span class="li"><span class="ld" style="background:#c084fc"></span>College</span>
+        </div>
+    </div>
+
+    <div id="detail">
+        <h3 id="dn"></h3>
+        <div class="ls" id="dl"></div>
+        <div class="m" id="dm"></div>
+        <div class="metrics" id="dmetrics"></div>
+        <div class="note" id="dnote"></div>
+        <div class="rf" id="dr"></div>
+    </div>
+    <div id="mode-tag">UNIVERSE</div>
+    <a href="story/index.html" target="_blank" style="position:absolute;top:20px;right:20px;z-index:100;font-size:.55rem;color:#4a7dff;background:rgba(74,125,255,.1);border:1px solid rgba(74,125,255,.2);border-radius:6px;padding:6px 12px;text-decoration:none;letter-spacing:.4px">📖 Research Portal</a>
+    <div id="ctrl-hint">DRAG · SCROLL · WASD</div>
+
+    <script>
+// CognitiveSpace — Embedded visualization data
+// 574 concepts, 3538 links
+// 68 textbooks: 45 ZH + 20 EN + 10 DE
+
+</script>
+    <script>
+    (() => {
+    'use strict';
+
+    /* ═══════════════════════════════════════════════════════════════
+       CognitiveSpace — 3D Math Knowledge Graph
+       Architecture: Pure 3d-force-graph API, no direct THREE refs.
+       View modes, BFS ripple, language filtering.
+       ═══════════════════════════════════════════════════════════════ */
+
+    const LV = {
+        elementary: { c:'#4ade80', l:'Elementary' },
+        middle:     { c:'#22d3ee', l:'Middle' },
+        high:       { c:'#60a5fa', l:'High' },
+        college:    { c:'#c084fc', l:'College' },
+    };
+    const MT = { universe:'UNIVERSE', spacefill:'SPACE-FILL', compare:'COMPARE' };
+
+    let G, ND=[], LK=[], ADJ=new Map();
+    let mode='universe', lang='all', rT=null, _autoRotate=false;
+
+    /* ─── Init ────────────────────────────────────────────────────── */
+    function init() {
+        // Check dependencies
+        if (typeof ForceGraph3D === 'undefined') {
+            document.getElementById('loadErr').textContent = '3d-force-graph failed to load. Check network.';
+            document.getElementById('loadErr').style.display = 'block';
+            return;
+        }
+
+        const data = typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT :
+                     typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null;
+        if (!data || !data.nodes || !data.nodes.length) {
+            document.getElementById('loadErr').textContent = 'Knowledge graph data not found.';
+            document.getElementById('loadErr').style.display = 'block';
+            return;
+        }
+
+        ND = data.nodes; LK = data.links;
+        document.getElementById('sC').textContent = ND.length;
+        document.getElementById('sR').textContent = LK.length;
+        document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
+        document.getElementById('sub').textContent = ND.length+' concepts · '+LK.length+' relations';
+
+        buildAdj();
+        mkGraph();
+        mkUI();
+
+        // Hide loading
+        setTimeout(() => {
+            document.getElementById('loading').classList.add('hidden');
+            setTimeout(() => {
+                const e = document.getElementById('loading');
+                if (e) e.style.display = 'none';
+            }, 800);
+        }, 600);
+    }
+
+    /* ─── Adjacency ───────────────────────────────────────────────── */
+    function buildAdj() {
+        ADJ.clear();
+        ND.forEach(n => ADJ.set(n.id, new Set()));
+        LK.forEach(l => {
+            const s = typeof l.source==='object' ? l.source.id : l.source;
+            const t = typeof l.target==='object' ? l.target.id : l.target;
+            if (ADJ.has(s) && ADJ.has(t)) { ADJ.get(s).add(t); ADJ.get(t).add(s); }
+        });
+    }
+
+    /* ─── Graph ───────────────────────────────────────────────────── */
+    // Callback functions shared between mkGraph() and setLang()/setMode()
+    // Defined here so both can access them (JavaScript scope)
+    function colorCB(n) {
+        if (n._r != null) {
+            const d = n._r;
+            return d === 0 ? '#ffffff' : d === 1 ? '#00ffff' : d === 2 ? '#ff8800' : '#440044';
+        }
+        if (n._h) return '#222222';
+        return (LV[n.level] || LV.college).c;
+    }
+    function opacityCB(n) {
+        if (n._r != null) return n._r === 0 ? 1 : n._r === 1 ? .85 : n._r === 2 ? .5 : .25;
+        if (n._h) return .02;
+        return 1;
+    }
+    function valCB(n) {
+        if (n._val != null) return n._val;
+        const base = (n.source_count || 1) + 2;
+        const lv = n.level || 'college';
+        const m = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
+        return base * m;
+    }
+
+    /* ─── Deterministic hash ──────────────────────────────────────────── */
+    function hashStr(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash = hash & hash;
+        }
+        return Math.abs(hash);
+    }
+
+    /* ─── Shell radii by education level ──────────────────────────────── */
+    // Node counts: elementary=37, middle=46, high=193, college=298
+    // Shell thickness scales with node count
+    const SHELL = {
+        elementary: { minR: 0,   maxR: 50  },
+        middle:     { minR: 60,  maxR: 120 },
+        high:       { minR: 140, maxR: 230 },
+        college:    { minR: 250, maxR: 320 },
+    };
+
+    function mkGraph() {
+        ND.forEach(n => {
+            n.color = colorCB(n);
+            const base = (n.source_count || 1) + 2;
+            const lv = n.level || 'college';
+            const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
+            n.val = base * m2;
+
+            // Deterministic position within spherical shell (hash-based, no Math.random)
+            const shell = SHELL[lv] || SHELL.college;
+            const h = hashStr(n.id);
+            const r = shell.minR + (h % 1001) / 1000 * (shell.maxR - shell.minR);
+            const theta = (h % 997) / 997 * Math.PI * 2;
+            const phi = Math.acos(2 * (((h * 13 + 7) % 1000) / 1000) - 1);
+            n.x = r * Math.sin(phi) * Math.cos(theta);
+            n.y = r * Math.sin(phi) * Math.sin(theta);
+            n.z = r * Math.cos(phi);
+        });
+
+        G = ForceGraph3D()(document.getElementById('graph-container'))
+            .nodeColor('color')
+            .nodeVal('val')
+            .nodeResolution(20)
+            .nodeRelSize(20)
+            .linkColor(l => l.inferred ? '#2a3d5e' : '#3f7ec0')
+            .linkWidth(0.25)
+            .linkOpacity(0.15)
+            .linkDirectionalParticles(0)
+            .backgroundColor('#050a14')
+            .showNavInfo(false)
+            .width(innerWidth)
+            .height(innerHeight)
+            .graphData({ nodes: ND, links: LK });
+        window.G = G;
+
+        G.onNodeClick(n => { showDetail(n); ripple(n); });
+        G.onBackgroundClick(() => { hideDetail(); clearRipple(); });
+        // V2: Isometric view to show spherical shell structure
+        G.cameraPosition({ x: 450, y: 200, z: 300 }, { x: 0, y: 0, z: 0 }, 0);
+        window.addEventListener('resize', () => { G.width(innerWidth); G.height(innerHeight); });
+
+        // ── WASD keyboard controls ──
+        const keys = {};
+        document.addEventListener('keydown', e => { keys[e.key.toLowerCase()] = true; });
+        document.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
+
+        // ── onEngineTick: lighting + WASD + breathing ──
+        let _lightsBoosted = false;
+        G.onEngineTick(() => {
+            const cam = G.camera();
+            if (!cam) return;
+
+            // Boost scene lighting (once)
+            if (!_lightsBoosted) {
+                const scene = G.scene();
+                if (scene) {
+                    scene.children.forEach(c => {
+                        if (c.type === 'AmbientLight' || (c.constructor && c.constructor.name === 'AmbientLight')) {
+                            c.intensity = 2.5;
+                            c.color.setHex(0xffffff);
+                        }
+                        if (c.type === 'DirectionalLight' || (c.constructor && c.constructor.name === 'DirectionalLight')) {
+                            c.intensity = 1.8;
+                            c.color.setHex(0xffffff);
+                        }
+                        if (c.type === 'HemisphereLight' || (c.constructor && c.constructor.name === 'HemisphereLight')) {
+                            c.intensity = 1.5;
+                        }
+                    });
+                    _lightsBoosted = true;
+                }
+            }
+
+            // WASD movement
+            cam.updateMatrixWorld();
+            const e = cam.matrixWorld.elements;
+            const fx = -e[8], fy = -e[9], fz = -e[10];
+            const rx = e[0], ry = e[1], rz = e[2];
+            const spd = 3.0;
+
+            let dx = 0, dy = 0, dz = 0;
+            if (keys['w'] || keys['arrowup'])    { dx += fx; dy += fy; dz += fz; }
+            if (keys['s'] || keys['arrowdown'])   { dx -= fx; dy -= fy; dz -= fz; }
+            if (keys['a'] || keys['arrowleft'])   { dx -= rx; dy -= ry; dz -= rz; }
+            if (keys['d'] || keys['arrowright'])  { dx += rx; dy += ry; dz += rz; }
+            if (keys['q']) dy -= 1;
+            if (keys['e']) dy += 1;
+
+            const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (len > 0.001) {
+                cam.position.x += (dx / len) * spd;
+                cam.position.y += (dy / len) * spd;
+                cam.position.z += (dz / len) * spd;
+            }
+
+            // Auto-rotate around Y axis (toggle with [Auto Rotate] button)
+            if (_autoRotate) {
+                const cx = cam.position.x, cz = cam.position.z;
+                const angle = 0.003;
+                cam.position.x = cx * Math.cos(angle) - cz * Math.sin(angle);
+                cam.position.z = cx * Math.sin(angle) + cz * Math.cos(angle);
+                cam.lookAt(0, 0, 0);
+            }
+
+            // Breathing animation: pulse node sizes by 10%
+            const t = Date.now() * 0.001;
+            const pulse = 1.0 + 0.1 * Math.sin(t * Math.PI);
+            const gd = G.graphData();
+            if (gd && gd.nodes) {
+                gd.nodes.forEach(n => {
+                    if (n._breathBase == null) {
+                        const base = (n.source_count || 1) + 2;
+                        if (mode === 'spacefill') {
+                            const lv = n.level || 'college';
+                            const m2 = lv === 'college' ? 12 : lv === 'high' ? 9 : lv === 'middle' ? 6 : 4;
+                            n._breathBase = base * m2;
+                        } else if (mode === 'compare') {
+                            const langs = Object.keys(n.labels || {}).length;
+                            n._breathBase = base * (langs >= 3 ? 8 : langs === 2 ? 6 : 3);
+                        } else {
+                            const lv = n.level || 'college';
+                            const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
+                            n._breathBase = base * m2;
+                        }
+                    }
+                    // Set n.val directly (library reads this via nodeVal('val'))
+                    n.val = n._breathBase * pulse;
+                });
+            }
+
+        });
+    }
+
+    /* ─── Ripple ──────────────────────────────────────────────────── */
+    function ripple(node) {
+        clearRipple();
+        const id = node.id, gd = G.graphData();
+        if (!gd) return;
+        const dist = new Map(), q = [{i:id,d:0}], vs = new Set([id]);
+        while (q.length) {
+            const {i,d} = q.shift(); dist.set(i,d);
+            if (d<5) (ADJ.get(i)||[]).forEach(nid => { if (!vs.has(nid)) { vs.add(nid); q.push({i:nid,d:d+1}); } });
+        }
+        gd.nodes.forEach(n => { n._r = dist.has(n.id)?dist.get(n.id):99; n._h = false; });
+        document.getElementById('rbtn').style.display = 'block';
+        if (rT) clearTimeout(rT);
+        rT = setTimeout(clearRipple, 5000);
+
+        // Create diffusion ring animation at click position
+        createRippleRing(node);
+    }
+
+    function createRippleRing(node) {
+        // Project 3D position to 2D screen coordinates
+        const canvas = document.querySelector('#graph-container canvas');
+        if (!canvas) return;
+
+        const camera = G.camera();
+        const pos = node;
+        if (!camera || pos.x == null) return;
+
+        // Simple 3D to 2D projection
+        const width = canvas.width;
+        const height = canvas.height;
+        const aspect = width / height;
+
+        // Project to normalized device coordinates
+        const z = pos.z || 0;
+        const x = pos.x || 0;
+        const y = pos.y || 0;
+
+        // Scale based on camera distance
+        const scale = 200 / (200 + z);
+        const screenX = (x * scale * aspect + 1) * width / 2;
+        const screenY = (-y * scale + 1) * height / 2;
+
+        // Create ring element
+        const ring = document.createElement('div');
+        ring.className = 'ripple-ring';
+        ring.style.left = screenX + 'px';
+        ring.style.top = screenY + 'px';
+        document.body.appendChild(ring);
+
+        // Remove after animation
+        setTimeout(() => ring.remove(), 1200);
+    }
+    function clearRipple() {
+        // Reset ripple state on both current and full datasets
+        const gd = G && G.graphData();
+        if (gd && gd.nodes) gd.nodes.forEach(n => { n._r = null; });
+        ND.forEach(n => { n._r = null; });
+        document.getElementById('rbtn').style.display = 'none';
+    }
+
+    /* ─── Detail ──────────────────────────────────────────────────── */
+    function showDetail(n) {
+        const e = document.getElementById('detail');
+        document.getElementById('dn').textContent = n.name||n.id;
+        const lbs = n.labels||{};
+        document.getElementById('dl').innerHTML = ['zh','en','de']
+            .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
+        const lv = n.level||'college', lc = LV[lv]||LV.college;
+        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+(n.source_count||1)+' sources';
+
+        // ── Compute node-level metrics ──
+        const gd = G.graphData();
+        let connections = 0, neighbors = [];
+        if (gd) {
+            const id = n.id;
+            gd.links.forEach(l => {
+                const s = typeof l.source==='object'?l.source.id:l.source;
+                const t = typeof l.target==='object'?l.target.id:l.target;
+                if (s===id || t===id) {
+                    connections++;
+                    const oid = s===id ? t : s;
+                    const on = gd.nodes.find(nn=>nn.id===oid);
+                    if (on) neighbors.push(on.name);
+                }
+            });
+        }
+
+        // HDS depth (prerequisite chain)
+        let hdsDepth = 0;
+        if (gd) {
+            const adj = {};
+            gd.nodes.forEach(nn => adj[nn.id] = new Set());
+            gd.links.forEach(l => {
+                const s = typeof l.source==='object'?l.source.id:l.source;
+                const t = typeof l.target==='object'?l.target.id:l.target;
+                if ((l.type||'')==='prerequisite'||(l.type||'')==='requires') { adj[s].add(t); }
+            });
+            const visited = new Set([n.id]), queue = [{id:n.id,d:0}];
+            while (queue.length) {
+                const {id,d}=queue.shift(); hdsDepth=Math.max(hdsDepth,d);
+                adj[id].forEach(nbid=>{if(!visited.has(nbid)){visited.add(nbid);queue.push({id:nbid,d:d+1});}});
+            }
+        }
+
+        // Node role classification
+        const avgDegree = gd ? (2 * gd.links.length / gd.nodes.length) : 6.2;
+        let role = 'Intermediate'; let roleColor = '#60a5fa';
+        if (hdsDepth >= 3) { role = 'Prerequisite Chain'; roleColor = '#22d3ee'; }
+        else if (connections > avgDegree * 2) { role = 'Hub Concept'; roleColor = '#f59e0b'; }
+        else if (connections <= 2) { role = 'Peripheral'; roleColor = '#6b7280'; }
+
+        // Auto-generated insight
+        const lvOrder = {elementary:1, middle:2, high:3, college:4};
+        const lev = lvOrder[lv]||3;
+        let insight = '';
+        if (role === 'Hub Concept') insight = 'This concept connects to many others, acting as a structural hub. Understanding it unlocks multiple advanced topics.';
+        else if (role === 'Prerequisite Chain') insight = 'This concept sits in a deep dependency chain (depth='+hdsDepth+'), serving as a building block for higher concepts.';
+        else if (role === 'Peripheral') insight = 'This concept has few direct connections — a specialized topic with narrow dependencies.';
+        else insight = 'This concept holds a balanced position in the knowledge network with moderate connectivity.';
+
+        const lvDesc = {elementary:'Foundational: basic arithmetic and early geometry concepts', middle:'Intermediate: algebra, equations, and function concepts', high:'Advanced: calculus, probability, and vector concepts', college:'Specialized: higher mathematics with formal proofs and theory'}[lv]||'General concept';
+
+        // Render metrics
+        const uniqueNbrs = [...new Set(neighbors)]; const topNbrs = uniqueNbrs.slice(0,5);
+        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">Connected to:</span><span class="val">'+topNbrs.join(', ')+(uniqueNbrs.length>5?', +'+(uniqueNbrs.length-5):'')+'</span></div>' : '';
+
+        document.getElementById('dmetrics').innerHTML =
+            '<div style="margin-bottom:3px;font-size:.6rem;color:#7a9aff;font-weight:500">NODE PROFILE</div>'+
+            '<div class="row"><span class="label">Degree:</span><span class="val">'+connections+' connections</span></div>'+nbrHtml+
+            '<div class="row"><span class="label">Role:</span><span class="val" style="color:'+roleColor+'">'+role+'</span></div>'+
+            '<div class="row"><span class="label">HDS depth:</span><span class="val">'+hdsDepth+' levels</span></div>'+
+            '<div class="row"><span class="label">Sources:</span><span class="val">'+(n.source_count||1)+' textbooks</span></div>'+
+            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">GRAPH PROFILE (full dataset: '+(gd?gd.nodes.length:574)+' nodes)</div>'+
+            '<div class="row"><span class="label">CDS:</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
+            '<div class="row"><span class="label">Avg degree:</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
+            '<div class="row"><span class="label">LDS ZH-EN:</span><span class="val">0.504</span></div>'+
+            '<div class="row"><span class="label">LDS ZH-DE:</span><span class="val">0.443</span></div>'+
+            '<div class="row"><span class="label">LDS EN-DE:</span><span class="val">0.511</span></div>';
+
+        document.getElementById('dnote').innerHTML =
+            '<div style="margin-bottom:2px;font-weight:500;color:#7a9aff">ABOUT</div>'+
+            '<em>'+lvDesc+'.</em><br><br>'+
+            '<em>'+insight+'</em><br><br>'+
+            '<em>CDS = 2|E|/(|V|·(|V|-1)) — concept interconnectedness (full graph).<br>HDS = longest prerequisite chain from this concept.<br>LDS = 1 − |A∩B|/|A∪B| — cross-language structural divergence.</em>';
+
+        const refs = n.cross_references||[];
+        document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
+        e.style.display = 'block';
+        clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000);
+    }
+    function hideDetail() { document.getElementById('detail').style.display = 'none'; }
+
+    /* ─── View Mode ───────────────────────────────────────────────── */
+    function setMode(m) {
+        mode = m;
+        document.getElementById('mode-tag').textContent = MT[m]||m.toUpperCase();
+        if (!G) return;
+
+        // Dynamic view update: re-create graph data with mode-specific values
+        let fn, fl;
+        if (lang === 'all') {
+            fn = ND; fl = LK;
+        } else {
+            const ids = new Set();
+            ND.forEach(n => { const lbs = n.labels || {}; if (lbs[lang]) ids.add(n.id); });
+            fn = ND.filter(n => ids.has(n.id));
+            fl = LK.filter(link => {
+                const s = typeof link.source === 'object' ? link.source.id : link.source;
+                const t = typeof link.target === 'object' ? link.target.id : link.target;
+                return ids.has(s) && ids.has(t);
+            });
+        }
+
+        // Set color and size per mode
+        fn.forEach(n => {
+            n.color = colorCB(n);
+            const base = (n.source_count || 1) + 2;
+            if (m === 'spacefill') {
+                const lv = n.level || 'college';
+                const m2 = lv === 'college' ? 12 : lv === 'high' ? 9 : lv === 'middle' ? 6 : 4;
+                n.val = base * m2;
+            } else if (m === 'compare') {
+                const langs = Object.keys(n.labels || {}).length;
+                n.val = base * (langs >= 3 ? 8 : langs === 2 ? 6 : 3);
+            } else {
+                const lv = n.level || 'college';
+                const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
+                n.val = base * m2;
+            }
+        });
+
+        // Re-load graph data with colors and sizes baked in
+        G.nodeColor('color')
+         .nodeVal('val')
+         .nodeRelSize(20)
+         .nodeOpacity(1)
+         .linkWidth(0.25)
+         .linkOpacity(0.15)
+         .linkDirectionalParticles(0)
+         .graphData({ nodes: fn, links: fl });
+
+        // Update HUD
+        document.getElementById('sub').textContent = fn.length + ' concepts · ' + fl.length + ' relations';
+    }
+
+    /* ─── Language Filter ─────────────────────────────────────────── */
+    function setLang(l) {
+        lang = l;
+        if (!G) return;
+
+        // Save camera position before filter
+        const cam = G.camera();
+        const savedPos = cam ? { x: cam.position.x, y: cam.position.y, z: cam.position.z } : null;
+
+        let fn, fl;
+        if (l === 'all') {
+            // Restore full dataset from originals
+            fn = ND;
+            fl = LK;
+        } else {
+            // Filter: only nodes with the selected language label
+            const ids = new Set();
+            ND.forEach(n => {
+                const lbs = n.labels || {};
+                if (lbs[l]) ids.add(n.id);
+            });
+            fn = ND.filter(n => ids.has(n.id));
+            // Keep only links where BOTH ends are in the filter
+            fl = LK.filter(link => {
+                const s = typeof link.source === 'object' ? link.source.id : link.source;
+                const t = typeof link.target === 'object' ? link.target.id : link.target;
+                return ids.has(s) && ids.has(t);
+            });
+        }
+        G.graphData({ nodes: fn, links: fl });
+
+        // Restore camera position after filter
+        if (savedPos) {
+            setTimeout(() => {
+                G.cameraPosition(savedPos, { x: 0, y: 0, z: 0 }, 0);
+            }, 50);
+        }
+
+        // Update HUD with filter count
+        const sub = document.getElementById('sub');
+        if (l === 'all') {
+            sub.textContent = ND.length + ' concepts · ' + fl.length + ' relations';
+        } else {
+            sub.textContent = fn.length + ' / ' + ND.length + ' concepts · ' + fl.length + ' relations';
+        }
+    }
+
+    /* ─── UI ──────────────────────────────────────────────────────── */
+    function mkUI() {
+        document.querySelectorAll('[data-m]').forEach(b => {
+            b.addEventListener('click', ()=>{
+                document.querySelectorAll('[data-m]').forEach(x=>x.classList.remove('a'));
+                b.classList.add('a'); setMode(b.dataset.m);
+            });
+        });
+        document.querySelectorAll('[data-g]').forEach(b => {
+            b.addEventListener('click', ()=>{
+                document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));
+                b.classList.add('a'); setLang(b.dataset.g);
+            });
+        });
+        document.getElementById('rbtn').addEventListener('click', ()=>{
+            hideDetail(); clearRipple(); setLang('all');
+            document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));
+            document.querySelector('[data-g="all"]').classList.add('a');
+        });
+        // Auto Rotate toggle
+        document.getElementById('arBtn').addEventListener('click', function() {
+            _autoRotate = !_autoRotate;
+            this.dataset.ar = _autoRotate ? 'on' : 'off';
+            this.classList.toggle('a', _autoRotate);
+        });
+    }
+
+    /* ─── Start ───────────────────────────────────────────────────── */
+    if (document.readyState === 'complete') init();
+    else window.addEventListener('load', init);
+    })();
+    </script>
+</body>
+</html>

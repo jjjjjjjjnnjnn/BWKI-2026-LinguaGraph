@@ -1,0 +1,27 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第六章 样本与抽样分布",
+    "section": "6.1-6.4 统计量与三大抽样分布",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "总体", "aliases": ["population", "Grundgesamtheit"], "definition_snippet": "研究对象的全体", "category": "concept"},
+    {"name": "样本", "aliases": ["sample", "Stichprobe"], "definition_snippet": "从总体中抽取的部分个体", "category": "concept"},
+    {"name": "统计量", "aliases": ["statistic", "Statistik"], "definition_snippet": "样本的函数（不含未知参数）", "category": "concept"},
+    {"name": "样本均值", "aliases": ["sample mean", "Stichprobenmittelwert"], "definition_snippet": "X̄ = (1/n)ΣXᵢ", "category": "concept"},
+    {"name": "样本方差", "aliases": ["sample variance", "Stichprobenvarianz"], "definition_snippet": "S² = (1/(n-1))Σ(Xᵢ-X̄)²", "category": "concept"},
+    {"name": "χ²分布", "aliases": ["chi-squared distribution", "Chi-Quadrat-Verteilung"], "definition_snippet": "χ² = ΣXᵢ²，Xᵢ ~ N(0,1)", "category": "concept"},
+    {"name": "t分布", "aliases": ["t-distribution", "t-Verteilung"], "definition_snippet": "T = X/√(Y/n)，X~N(0,1), Y~χ²(n)", "category": "concept"},
+    {"name": "F分布", "aliases": ["F-distribution", "F-Verteilung"], "definition_snippet": "F = (X/n₁)/(Y/n₂)，X~χ²(n₁), Y~χ²(n₂)", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "样本均值", "target": "统计量", "type": "specialization", "importance": 0.9, "evidence": "样本均值是最基本的统计量"},
+    {"source": "样本方差", "target": "统计量", "type": "specialization", "importance": 0.9, "evidence": "样本方差是重要的统计量"},
+    {"source": "χ²分布", "target": "正态分布", "type": "requires", "importance": 0.85, "evidence": "χ²分布由标准正态随机变量的平方和构成"},
+    {"source": "t分布", "target": "正态分布", "type": "requires", "importance": 0.85, "evidence": "t分布由标准正态和χ²分布构成"},
+    {"source": "F分布", "target": "χ²分布", "type": "requires", "importance": 0.85, "evidence": "F分布由两个χ²分布之比构成"},
+    {"source": "统计量", "target": "样本", "type": "requires", "importance": 0.9, "evidence": "统计量是样本的函数"}
+  ]
+}

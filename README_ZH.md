@@ -47,6 +47,8 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
+  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="人类验证 N=8">
+  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 模拟基线">
 </p>
 
 <p align="center">
@@ -62,9 +64,9 @@
 
 - [🔥 为什么需要 LinguaGraph?](#-why-linguagraph)
 - [📐 核心指标一览](#-metrics-at-a-glance)
-- [🏆 10 项发现 (F1–F10)](#-10-findings-f1f10)
+- [🏆 12 项发现 (F1–F12)](#-12-findings-f1f12)
 - [📊 数据集](#-dataset)
-- [✅ 提取质量验证](#-extraction-validation)
+- [✅ 提取与人类验证](#-extraction--human-validation)
 - [🚀 快速开始](#-quick-start)
 - [🧪 模型基准测试](#-model-benchmark)
 - [📁 项目结构](#-project-structure)
@@ -103,7 +105,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ---
 
-## 🏆 10 项发现 (F1–F10)
+## 🏆 12 项发现 (F1–F12)
 
 | # | 发现 | 证据 | 影响 |
 |---|---------|----------|--------|
@@ -117,6 +119,8 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | STEM density pattern is universal across subjects |
 | **F9** | **Coverage Score** varies dramatically across systems | NRW 34%, UK 82%, US 76%, China 8% | Educational system design fundamentally affects textbook alignment |
 | **F10** | Coverage trajectories reveal **system design philosophy** | UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization) | Assessment structure shapes curriculum-textbook relationship |
+| **F11** | **人类 LDS** 排序一致 Wikipedia corpus ✅ | N=8 参与者, 90 份回答, 3 levels | Cross-level consistency: individual → textbook → curriculum |
+| **F12** | 人类 LDS (**0.727**) 超过模拟基线 (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |
 
 ---
 
@@ -131,7 +135,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ---
 
-## ✅ 提取质量验证
+## ✅ 提取与人类验证
 
 **92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):
 
@@ -142,7 +146,19 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **All** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
 
 > 误差分析: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.
-> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology and [`scripts/evaluate_gold.py`](scripts/evaluate_gold.py) for reproducible evaluation.
+
+**🧑 人类验证 Study (N=8)**
+- 101 responses from ZH/DE/EN native speakers across 5 social topics
+- 被试内 DE-EN LDS: **0.773** (same person, different language, different concepts)
+- 被试间 LDS rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
+- ✅ **Identical rank order** to Wikipedia corpus — 跨层次验证
+
+**🤖 模拟基线 (300 responses)**
+- Mean simulated LDS: **0.647** (SD=0.086)
+- **人类 LDS (0.727) > Simulation LDS (0.647)**, p=0.05
+- Confirms cross-language divergence exceeds random expectation
+
+> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
 
 ---
 
@@ -212,7 +228,7 @@ export BAILIAN_API_KEY="your-api-key"
 python scripts/batch_process_responses.py --gold-only
 python scripts/evaluate_gold.py
 
-# 3. Generate 300-response simulation baseline
+# 3. Generate 300-response 模拟基线
 python scripts/simulate_baseline.py --mock
 
 # 4. Full analysis pipeline

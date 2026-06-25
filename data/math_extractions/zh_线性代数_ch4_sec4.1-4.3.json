@@ -1,0 +1,110 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第四章 线性方程组",
+    "section": "4.1-4.3 线性相关性、秩与解的结构",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "线性组合",
+      "aliases": ["linear combination", "lineare Kombination"],
+      "definition_snippet": "k₁α₁ + k₂α₂ + ... + kₘαₘ 称为向量组的线性组合",
+      "category": "concept"
+    },
+    {
+      "name": "线性相关",
+      "aliases": ["linearly dependent", "linear abhängig"],
+      "definition_snippet": "存在不全为零的数使得 k₁α₁ + ... + kₘαₘ = 0",
+      "category": "property"
+    },
+    {
+      "name": "线性无关",
+      "aliases": ["linearly independent", "linear unabhängig"],
+      "definition_snippet": "k₁α₁ + ... + kₘαₘ = 0 必有 k₁ = ... = kₘ = 0",
+      "category": "property"
+    },
+    {
+      "name": "极大线性无关组",
+      "aliases": ["maximal linearly independent set", "maximale linear unabhängige Teilmenge"],
+      "definition_snippet": "向量组中线性无关的部分组，且其他向量可由它线性表示",
+      "category": "concept"
+    },
+    {
+      "name": "向量组的秩",
+      "aliases": ["rank of vector system", "Rang des Vektorsystems"],
+      "definition_snippet": "极大线性无关组中向量的个数",
+      "category": "concept"
+    },
+    {
+      "name": "矩阵的秩",
+      "aliases": ["rank of matrix", "Matrixrang"],
+      "definition_snippet": "矩阵行秩 = 列秩 = 非零子式的最高阶数",
+      "category": "concept"
+    },
+    {
+      "name": "基础解系",
+      "aliases": ["fundamental system of solutions", "fundamentales Lösungssystem"],
+      "definition_snippet": "齐次方程组解空间的基，含有 n-r(A) 个向量",
+      "category": "concept"
+    },
+    {
+      "name": "解空间",
+      "aliases": ["solution space", "Lösungsraum"],
+      "definition_snippet": "齐次方程组所有解构成的向量空间",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "线性相关",
+      "target": "线性组合",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "线性相关的定义基于线性组合为零"
+    },
+    {
+      "source": "线性无关",
+      "target": "线性相关",
+      "type": "inverse_of",
+      "importance": 0.85,
+      "evidence": "线性无关是线性相关的否定"
+    },
+    {
+      "source": "极大线性无关组",
+      "target": "线性无关",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "极大线性无关组本身必须线性无关"
+    },
+    {
+      "source": "向量组的秩",
+      "target": "极大线性无关组",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "秩定义为极大线性无关组的向量个数"
+    },
+    {
+      "source": "矩阵的秩",
+      "target": "向量组的秩",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "矩阵的行秩等于列秩等于向量组的秩"
+    },
+    {
+      "source": "基础解系",
+      "target": "解空间",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "基础解系是解空间的基"
+    },
+    {
+      "source": "解空间",
+      "target": "向量空间",
+      "type": "specialization",
+      "importance": 0.8,
+      "evidence": "解空间是向量空间的一种"
+    }
+  ]
+}

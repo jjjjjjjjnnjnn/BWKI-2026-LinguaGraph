@@ -1,0 +1,129 @@
+{
+  "source_textbook": {
+    "name": "Gilbert Strang: Introduction to Linear Algebra (18.06)",
+    "language": "en",
+    "chapter": "5-7 Linear Transformations, Inner Product, Least Squares",
+    "section": "5.1-7.4 Linear Maps, Inner Products, Gram-Schmidt, Least Squares",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "linear transformation",
+      "aliases": ["lineare Abbildung", "线性变换"],
+      "definition_snippet": "A map T: V → W preserving addition and scalar multiplication",
+      "category": "concept"
+    },
+    {
+      "name": "kernel",
+      "aliases": ["Kern", "核", "null space"],
+      "definition_snippet": "Ker(T) = {v : T(v) = 0}",
+      "category": "concept"
+    },
+    {
+      "name": "image",
+      "aliases": ["Bild", "像", "column space"],
+      "definition_snippet": "Im(T) = {T(v) : v ∈ V}",
+      "category": "concept"
+    },
+    {
+      "name": "inner product",
+      "aliases": ["Skalarprodukt", "内积"],
+      "definition_snippet": "A bilinear, symmetric, positive-definite form ⟨u, v⟩",
+      "category": "concept"
+    },
+    {
+      "name": "inner product space",
+      "aliases": ["Skalarprodukttraum", "内积空间"],
+      "definition_snippet": "Vector space with an inner product defined",
+      "category": "concept"
+    },
+    {
+      "name": "orthonormal basis",
+      "aliases": ["orthonormale Basis", "标准正交基"],
+      "definition_snippet": "Basis where all vectors are orthogonal and unit length",
+      "category": "concept"
+    },
+    {
+      "name": "Gram-Schmidt",
+      "aliases": ["Gram-Schmidt-Verfahren", "Gram-Schmidt 正交化"],
+      "definition_snippet": "Process to convert any basis to orthonormal basis",
+      "category": "operation"
+    },
+    {
+      "name": "least squares",
+      "aliases": ["Methode der kleinsten Quadrate", "最小二乘法"],
+      "definition_snippet": "Best approximate solution: x̂ = (A^T A)⁻¹ A^T b",
+      "category": "concept"
+    },
+    {
+      "name": "orthogonal projection",
+      "aliases": ["orthogonale Projektion", "正交投影"],
+      "definition_snippet": "Nearest point in a subspace to a given vector",
+      "category": "concept"
+    },
+    {
+      "name": "norm",
+      "aliases": ["Norm", "范数"],
+      "definition_snippet": "‖v‖ = √⟨v, v⟩ — length of a vector",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "linear transformation",
+      "target": "vector space",
+      "type": "requires",
+      "importance": 0.95,
+      "evidence": "Linear transformations act between vector spaces"
+    },
+    {
+      "source": "kernel",
+      "target": "linear transformation",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Kernel captures the null space of a transformation"
+    },
+    {
+      "source": "image",
+      "target": "linear transformation",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Image captures the range of a transformation"
+    },
+    {
+      "source": "inner product space",
+      "target": "vector space",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "Inner product space extends vector space with inner product"
+    },
+    {
+      "source": "orthonormal basis",
+      "target": "inner product",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "Orthonormality is defined via inner product"
+    },
+    {
+      "source": "Gram-Schmidt",
+      "target": "orthonormal basis",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "Gram-Schmidt produces orthonormal bases"
+    },
+    {
+      "source": "least squares",
+      "target": "orthogonal projection",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Least squares solution is an orthogonal projection"
+    },
+    {
+      "source": "norm",
+      "target": "inner product",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "Norm is derived from inner product"
+    }
+  ]
+}

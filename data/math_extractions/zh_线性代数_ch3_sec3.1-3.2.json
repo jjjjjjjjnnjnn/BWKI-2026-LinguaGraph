@@ -1,0 +1,103 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第三章 向量与空间解析几何",
+    "section": "3.1-3.2 向量运算与数量积向量积",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "向量",
+      "aliases": ["vector", "Vektor"],
+      "definition_snippet": "既有大小又有方向的量，用有向线段表示",
+      "category": "concept"
+    },
+    {
+      "name": "向量加法",
+      "aliases": ["vector addition", "Vektoraddition"],
+      "definition_snippet": "平行四边形法则或三角形法则求和",
+      "category": "operation"
+    },
+    {
+      "name": "数乘向量",
+      "aliases": ["scalar multiplication", "Skalarmultiplikation"],
+      "definition_snippet": "λa⃗ = (λa₁, λa₂, λa₃)",
+      "category": "operation"
+    },
+    {
+      "name": "向量的模",
+      "aliases": ["magnitude", "Betrag", "length"],
+      "definition_snippet": "|a⃗| = √(a₁² + a₂² + a₃²)",
+      "category": "concept"
+    },
+    {
+      "name": "数量积",
+      "aliases": ["dot product", "Skalarprodukt", "点积"],
+      "definition_snippet": "a⃗ · b⃗ = |a⃗||b⃗|cos θ = a₁b₁ + a₂b₂ + a₃b₃",
+      "category": "operation"
+    },
+    {
+      "name": "向量积",
+      "aliases": ["cross product", "Kreuzprodukt", "叉积"],
+      "definition_snippet": "a⃗ × b⃗ = |a⃗||b⃗|sin θ · n⃗，结果是垂直于两向量的向量",
+      "category": "operation"
+    },
+    {
+      "name": "混合积",
+      "aliases": ["scalar triple product", "Dreifachprodukt"],
+      "definition_snippet": "[a⃗ b⃗ c⃗] = (a⃗ × b⃗) · c⃗，几何意义是平行六面体体积",
+      "category": "operation"
+    },
+    {
+      "name": "方向余弦",
+      "aliases": ["direction cosines", "Richtungskosinus"],
+      "definition_snippet": "cos α = a₁/|a⃗|, cos β = a₂/|a⃗|, cos γ = a₃/|a⃗|",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "向量加法",
+      "target": "向量",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "向量加法是向量的基本运算"
+    },
+    {
+      "source": "数量积",
+      "target": "向量",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "数量积是向量之间的基本运算"
+    },
+    {
+      "source": "向量积",
+      "target": "向量",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "向量积的结果仍然是向量"
+    },
+    {
+      "source": "混合积",
+      "target": "数量积",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "混合积是向量积与数量积的组合"
+    },
+    {
+      "source": "混合积",
+      "target": "向量积",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "混合积的计算需要先做向量积"
+    },
+    {
+      "source": "向量的模",
+      "target": "数量积",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "|a⃗| = √(a⃗ · a⃗)"
+    }
+  ]
+}

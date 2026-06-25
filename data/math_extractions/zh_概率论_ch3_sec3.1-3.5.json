@@ -1,0 +1,24 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第三章 多维随机变量及其分布",
+    "section": "3.1-3.5 联合分布、边缘分布与独立性",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "联合分布", "aliases": ["joint distribution", "gemeinsame Verteilung"], "definition_snippet": "F(x,y) = P(X ≤ x, Y ≤ y)", "category": "concept"},
+    {"name": "边缘分布", "aliases": ["marginal distribution", "Randverteilung"], "definition_snippet": "由联合分布对一个变量积分/求和得到", "category": "concept"},
+    {"name": "条件分布", "aliases": ["conditional distribution", "bedingte Verteilung"], "definition_snippet": "已知一个变量取值条件下另一个变量的分布", "category": "concept"},
+    {"name": "二维随机变量", "aliases": ["bivariate random variable", "zweidimensionale Zufallsgröße"], "definition_snippet": "同一概率空间上的两个随机变量 (X, Y)", "category": "concept"},
+    {"name": "随机变量的独立性", "aliases": ["independence of random variables", "Unabhängigkeit von Zufallsgrößen"], "definition_snippet": "F(x,y) = F_X(x)F_Y(y)", "category": "property"},
+    {"name": "卷积公式", "aliases": ["convolution formula", "Faltungsformel"], "definition_snippet": "Z = X + Y 的密度：f_Z(z) = ∫f(x,z-x)dx", "category": "theorem"}
+  ],
+  "extracted_relations": [
+    {"source": "联合分布", "target": "随机变量", "type": "representation", "importance": 0.9, "evidence": "联合分布描述多个随机变量的统计规律"},
+    {"source": "边缘分布", "target": "联合分布", "type": "requires", "importance": 0.9, "evidence": "边缘分布由联合分布导出"},
+    {"source": "条件分布", "target": "联合分布", "type": "requires", "importance": 0.85, "evidence": "条件分布由联合分布和边缘分布计算"},
+    {"source": "随机变量的独立性", "target": "联合分布", "type": "requires", "importance": 0.9, "evidence": "独立性通过联合分布与边缘分布的关系定义"},
+    {"source": "卷积公式", "target": "联合分布", "type": "requires", "importance": 0.85, "evidence": "卷积公式用于求两个随机变量之和的分布"}
+  ]
+}

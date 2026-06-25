@@ -1,0 +1,118 @@
+Chapter 1 Probability Foundations
+
+1.1 Sample Space and Events
+A random experiment E has sample space Ω (all possible outcomes). Events are subsets of Ω.
+
+1.2 Axioms of Probability
+1. P(A) ≥ 0
+2. P(Ω) = 1
+3. Countable additivity: P(A₁ ∪ A₂ ∪ ...) = Σ P(Aᵢ) for disjoint events
+
+Classical model: P(A) = |A|/|Ω| when all outcomes equally likely.
+
+1.3 Conditional Probability and Independence
+P(B|A) = P(AB)/P(A)
+Multiplication: P(AB) = P(A)P(B|A)
+Bayes' Theorem: P(Aⱼ|B) = P(Aⱼ)P(B|Aⱼ) / Σ P(Aᵢ)P(B|Aᵢ)
+Independence: P(AB) = P(A)P(B)
+
+Chapter 2 Random Variables and Distributions
+
+2.1 Random Variables
+A function X: Ω → ℝ assigning a real number to each outcome.
+
+2.2 Discrete Distributions
+PMF: P(X = xₖ) = pₖ
+Key distributions: Bernoulli, Binomial B(n,p), Poisson P(λ)
+
+2.3 Continuous Distributions
+PDF: f(x) ≥ 0, ∫f(x)dx = 1
+CDF: F(x) = P(X ≤ x) = ∫₋∞ˣ f(t)dt
+Key distributions: Uniform U(a,b), Exponential E(λ), Normal N(μ,σ²)
+
+2.4 Functions of Random Variables
+For Y = g(X): use CDF method or transformation formula.
+
+Chapter 3 Joint Distributions
+
+3.1 Joint Distribution
+F(x,y) = P(X ≤ x, Y ≤ y)
+Joint PDF: f(x,y) with ∫∫f(x,y)dxdy = 1
+
+3.2 Marginal Distributions
+f_X(x) = ∫f(x,y)dy
+f_Y(y) = ∫f(x,y)dx
+
+3.3 Independence
+X ⊥ Y ⟺ f(x,y) = f_X(x)f_Y(y)
+
+3.4 Functions of Two Random Variables
+Z = X + Y: convolution f_Z(z) = ∫f(x,z-x)dx
+Z = max(X,Y): F_max(z) = F_X(z)F_Y(z) when independent
+
+Chapter 4 Expectation and Variance
+
+4.1 Expectation
+E(X) = ∫xf(x)dx (continuous) or Σxₖpₖ (discrete)
+Properties: E(aX+b) = aE(X)+b, E(X+Y) = E(X)+E(Y)
+
+4.2 Variance
+Var(X) = E[(X-μ)²] = E(X²) - [E(X)]²
+Properties: Var(aX+b) = a²Var(X), Var(X+Y) = Var(X)+Var(Y) when independent
+
+4.3 Covariance and Correlation
+Cov(X,Y) = E(XY) - E(X)E(Y)
+ρ = Cov(X,Y)/√(Var(X)Var(Y))
+|ρ| ≤ 1; ρ = 0 means uncorrelated
+
+Chapter 5 Limit Theorems
+
+5.1 Law of Large Numbers
+Chebyshev: P(|X̄ - μ| ≥ ε) ≤ σ²/(nε²)
+Strong LLN: X̄ → μ almost surely
+
+5.2 Central Limit Theorem
+(ΣXᵢ - nμ)/(√nσ) →^d N(0,1)
+De Moivre-Laplace: Binomial ≈ Normal for large n
+
+Chapter 6 Sampling Distributions
+
+6.1 Statistics
+X̄ = sample mean, S² = sample variance
+Key: X̄ ~ N(μ,σ²/n), (n-1)S²/σ² ~ χ²(n-1)
+
+6.2 Sampling Distributions
+χ², t, and F distributions for inference on normal populations.
+X̄ ⊥ S² for normal populations.
+
+Chapter 7 Parameter Estimation
+
+7.1 Point Estimation
+Method of Moments: equate sample and population moments
+MLE: maximize L(θ) = Πf(xᵢ;θ)
+
+7.2 Properties
+Unbiasedness: E(θ̂) = θ
+Efficiency: minimum variance
+Consistency: θ̂ →^P θ
+
+7.3 Confidence Intervals
+X̄ ± z_{α/2}·σ/√n (σ known)
+X̄ ± t_{α/2}(n-1)·S/√n (σ unknown)
+
+Chapter 8 Hypothesis Testing
+
+8.1 Framework
+H₀ (null) vs H₁ (alternative)
+Test statistic, rejection region, significance level α
+
+8.2 Tests for Normal Means
+Z-test (σ known): Z = (X̄ - μ₀)/(σ/√n)
+t-test (σ unknown): T = (X̄ - μ₀)/(S/√n)
+
+8.3 Tests for Normal Variances
+χ² test: χ² = (n-1)S²/σ₀²
+
+8.4 Two-Sample Tests
+F-test for variances: F = S₁²/S₂²
+Two-sample t-test for means

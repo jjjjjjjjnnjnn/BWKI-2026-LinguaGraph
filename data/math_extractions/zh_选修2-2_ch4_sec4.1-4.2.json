@@ -1,0 +1,91 @@
+{
+  "source_textbook": {
+    "name": "人教版高中数学选修2-2",
+    "language": "zh",
+    "chapter": "第四章 无穷级数",
+    "section": "4.1-4.2 常数项级数与幂级数",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "无穷级数",
+      "aliases": ["infinite series", "unendliche Reihe"],
+      "definition_snippet": "数列各项之和：Σ(n=1→∞) uₙ",
+      "category": "concept"
+    },
+    {
+      "name": "收敛",
+      "aliases": ["convergence", "Konvergenz"],
+      "definition_snippet": "级数部分和数列有极限",
+      "category": "property"
+    },
+    {
+      "name": "发散",
+      "aliases": ["divergence", "Divergenz"],
+      "definition_snippet": "级数部分和数列没有极限",
+      "category": "property"
+    },
+    {
+      "name": "幂级数",
+      "aliases": ["power series", "Potenzreihe"],
+      "definition_snippet": "形如 Σaₙ(x-a)ⁿ 的级数",
+      "category": "concept"
+    },
+    {
+      "name": "收敛半径",
+      "aliases": ["radius of convergence", "Konvergenzradius"],
+      "definition_snippet": "幂级数收敛区间的半径 R = 1/lim |aₙ₊₁/aₙ|",
+      "category": "concept"
+    },
+    {
+      "name": "极限定理",
+      "aliases": ["limit theorem", "Grenzwertsatz"],
+      "definition_snippet": "关于极限运算的基本定理集合",
+      "category": "theorem"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "收敛",
+      "target": "极限",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "级数收敛的定义依赖于极限概念"
+    },
+    {
+      "source": "发散",
+      "target": "收敛",
+      "type": "inverse_of",
+      "importance": 0.85,
+      "evidence": "发散是收敛的否定"
+    },
+    {
+      "source": "幂级数",
+      "target": "收敛",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "幂级数的收敛性由收敛半径决定"
+    },
+    {
+      "source": "收敛半径",
+      "target": "幂级数",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "收敛半径刻画了幂级数的收敛区间"
+    },
+    {
+      "source": "幂级数",
+      "target": "泰勒展开",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "泰勒级数就是幂级数"
+    },
+    {
+      "source": "极限定理",
+      "target": "极限",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "极限定理给出了极限运算的基本法则"
+    }
+  ]
+}

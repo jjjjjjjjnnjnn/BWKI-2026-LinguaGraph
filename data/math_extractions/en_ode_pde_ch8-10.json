@@ -1,0 +1,39 @@
+{
+  "source_textbook": {
+    "name": "Differential Equations and Linear Algebra (Edwards & Penney)",
+    "language": "en",
+    "chapter": "8-10 ODEs, Systems, and PDEs",
+    "section": "Complete ODE/PDE coverage",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {"name": "second-order linear ODE", "aliases": ["线性二阶ODE", "lineare DGL 2. Ordnung"], "definition_snippet": "ay'' + by' + cy = f(x)", "category": "concept"},
+    {"name": "characteristic equation", "aliases": ["特征方程", "charakteristische Gleichung"], "definition_snippet": "ar² + br + c = 0 determines solution form", "category": "concept"},
+    {"name": "method of undetermined coefficients", "aliases": ["待定系数法", "Methode der unbestimmten Koeffizienten"], "definition_snippet": "Guess y* based on f(x), solve for coefficients", "category": "concept"},
+    {"name": "variation of parameters", "aliases": ["参数变易法", "Variation der Konstanten"], "definition_snippet": "y* = u₁y₁ + u₂y₂ with variable coefficients", "category": "concept"},
+    {"name": "system of ODEs", "aliases": ["微分方程组", "Differentialgleichungssystem"], "definition_snippet": "x' = Ax — system of first-order equations", "category": "concept"},
+    {"name": "eigenvalue method for systems", "aliases": ["特征值方法", "Eigenwertmethode"], "definition_snippet": "Solution via eigenvalues and eigenvectors of A", "category": "concept"},
+    {"name": "matrix exponential", "aliases": ["矩阵指数", "Matrixexponential"], "definition_snippet": "x = e^(At)x₀ — solution using matrix exponential", "category": "concept"},
+    {"name": "wave equation", "aliases": ["波动方程", "Wellengleichung"], "definition_snippet": "u_tt = c²u_xx — vibration, sound, light", "category": "concept"},
+    {"name": "heat equation", "aliases": ["热传导方程", "Wärmegleichung"], "definition_snippet": "u_t = k u_xx — diffusion, temperature", "category": "concept"},
+    {"name": "Laplace equation", "aliases": ["拉普拉斯方程", "Laplace-Gleichung"], "definition_snippet": "u_xx + u_yy = 0 — steady-state, potentials", "category": "concept"},
+    {"name": "Fourier series", "aliases": ["傅里叶级数", "Fourierreihe"], "definition_snippet": "Decompose functions into sinusoidal components", "category": "concept"},
+    {"name": "resonance", "aliases": ["共振", "Resonanz"], "definition_snippet": "Amplitude grows when driving freq ≈ natural freq", "category": "concept"},
+    {"name": "logistic model", "aliases": ["逻辑斯蒂模型", "logistisches Modell"], "definition_snippet": "dP/dt = rP(1-P/K) — bounded population growth", "category": "concept"},
+    {"name": "phase plane", "aliases": ["相平面", "Phasenebene"], "definition_snippet": "Visualize 2D system trajectories (nodes, spirals, saddles)", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "characteristic equation", "target": "second-order linear ODE", "type": "requires", "importance": 0.9, "evidence": "Characteristic equation determines solution form"},
+    {"source": "method of undetermined coefficients", "target": "second-order linear ODE", "type": "applies_to", "importance": 0.85, "evidence": "Used to find particular solutions"},
+    {"source": "variation of parameters", "target": "second-order linear ODE", "type": "applies_to", "importance": 0.85, "evidence": "More general method for particular solutions"},
+    {"source": "eigenvalue method for systems", "target": "system of ODEs", "type": "applies_to", "importance": 0.9, "evidence": "Eigenvalues determine system behavior"},
+    {"source": "matrix exponential", "target": "system of ODEs", "type": "representation", "importance": 0.85, "evidence": "e^(At) gives the fundamental matrix solution"},
+    {"source": "Fourier series", "target": "separation of variables", "type": "requires", "importance": 0.9, "evidence": "PDE solutions expand as Fourier series"},
+    {"source": "wave equation", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Wave equation is the prototypical hyperbolic PDE"},
+    {"source": "heat equation", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Heat equation is the prototypical parabolic PDE"},
+    {"source": "Laplace equation", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Laplace equation is the prototypical elliptic PDE"},
+    {"source": "resonance", "target": "second-order linear ODE", "type": "applies_to", "importance": 0.8, "evidence": "Resonance occurs in forced oscillation"},
+    {"source": "phase plane", "target": "system of ODEs", "type": "representation", "importance": 0.85, "evidence": "Phase plane visualizes 2D system behavior"},
+    {"source": "logistic model", "target": "ODE", "type": "representation", "importance": 0.85, "evidence": "Logistic equation is a nonlinear ODE"}
+  ]
+}

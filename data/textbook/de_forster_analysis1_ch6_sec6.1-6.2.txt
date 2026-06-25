@@ -1,0 +1,37 @@
+Kapitel 6 Taylor-Entwicklung und Grenzwertsätze
+
+6.1 Der Taylorsatz
+
+Aussage: Wenn f in einem Intervall um a die Ableitungen bis zur Ordnung n+1 besitzt, dann gilt für jedes x in diesem Intervall:
+
+f(x) = f(a) + f'(a)(x-a) + f''(a)(x-a)²/2! + ... + f⁽ⁿ⁾(a)(x-a)ⁿ/n! + R_n(x)
+
+mit dem Restglied (Lagrange-Form):
+R_n(x) = f⁽ⁿ⁺¹⁾(ξ)(x-a)ⁿ⁺¹/(n+1)! für ein ξ zwischen a und x
+
+Maclaurin-Reihen (Spezialfall a = 0):
+- e^x = Σ xⁿ/n! für alle x
+- sin x = Σ (-1)ⁿx²ⁿ⁺¹/(2n+1)! für alle x
+- cos x = Σ (-1)ⁿx²ⁿ/(2n)! für alle x
+- 1/(1-x) = Σ xⁿ für |x| < 1
+- ln(1+x) = Σ (-1)ⁿ⁻¹xⁿ/n für -1 < x ≤ 1
+
+6.2 L'Hospitalsche Regel
+
+Fall 0/0: Wenn lim f(x) = lim g(x) = 0 und lim f'(x)/g'(x) existiert, dann
+lim f(x)/g(x) = lim f'(x)/g'(x)
+
+Fall ∞/∞: Wenn lim f(x) = lim g(x) = ∞ und lim f'(x)/g'(x) existiert, dann
+lim f(x)/g(x) = lim f'(x)/g'(x)
+
+Andere unbestimmte Formen:
+- 0·∞: Umformen in 0/0 oder ∞/∞
+- ∞-∞: Zusammenfassen
+- 1^∞, 0^0, ∞^0: Logarithmus anwenden
+
+Beispiele:
+1. lim_{x→0} sin x / x = 1 [L'Hospital]
+2. lim_{x→∞} (ln x) / x = 0 [L'Hospital]
+3. lim_{x→0} (e^x - 1) / x = 1 [L'Hospital]
+
+Zusammenhang: Der Taylorsatz verallgemeinert die Tangentenapproximation unter Einbeziehung aller höheren Ableitungen. Die l'Hospitalsche Regel verbindet Differentiation mit Grenzwertberechnung.

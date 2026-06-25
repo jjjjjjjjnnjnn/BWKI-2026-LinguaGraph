@@ -1,0 +1,97 @@
+Kapitel 1 Grundlagen der Wahrscheinlichkeit
+
+1.1 Zufallsexperiment und Ereignisraum
+Zufallsexperiment E mit Ergebnisraum Ω. Ereignisse sind Teilmengen von Ω.
+
+1.2 Wahrscheinlichkeitsaxiome
+1. P(A) ≥ 0
+2. P(Ω) = 1
+3. Additivität: P(A₁ ∪ A₂ ∪ ...) = Σ P(Aᵢ)
+
+Klassisches Modell: P(A) = |A|/|Ω|
+
+1.3 Bedingte Wahrscheinlichkeit und Unabhängigkeit
+P(B|A) = P(AB)/P(A)
+Satz von Bayes: P(Aⱼ|B) = P(Aⱼ)P(B|Aⱼ) / Σ P(Aᵢ)P(B|Aᵢ)
+Unabhängigkeit: P(AB) = P(A)P(B)
+
+Kapitel 2 Zufallsgrößen und Verteilungen
+
+2.1 Zufallsgrößen
+Funktion X: Ω → ℝ
+
+2.2 Diskrete Verteilungen
+Wahrscheinlichkeitsfunktion: P(X = xₖ) = pₖ
+Wichtige Verteilungen: Bernoulli, Binomial B(n,p), Poisson P(λ)
+
+2.3 Stetige Verteilungen
+Dichte: f(x) ≥ 0, ∫f(x)dx = 1
+Verteilungsfunktion: F(x) = P(X ≤ x)
+Wichtige Verteilungen: Uniform U(a,b), Exponential E(λ), Normal N(μ,σ²)
+
+Kapitel 3 Mehrdimensionale Verteilungen
+
+3.1 Gemeinsame Verteilung
+F(x,y) = P(X ≤ x, Y ≤ y)
+
+3.2 Randverteilungen
+f_X(x) = ∫f(x,y)dy
+
+3.3 Unabhängigkeit
+X ⊥ Y ⟺ f(x,y) = f_X(x)f_Y(y)
+
+Kapitel 4 Erwartungswert und Varianz
+
+4.1 Erwartungswert
+E(X) = ∫xf(x)dx
+E(aX+b) = aE(X)+b
+
+4.2 Varianz
+Var(X) = E(X²) - [E(X)]²
+Var(aX+b) = a²Var(X)
+
+4.3 Kovarianz und Korrelation
+Kov(X,Y) = E(XY) - E(X)E(Y)
+ρ = Kov(X,Y)/√(Var(X)Var(Y))
+
+Kapitel 5 Grenzwertsätze
+
+5.1 Gesetz der großen Zahlen
+X̄ → μ (konvergiert gegen den Erwartungswert)
+
+5.2 Zentraler Grenzwertsatz
+(ΣXᵢ - nμ)/(√nσ) →^d N(0,1)
+
+Kapitel 6 Stichproben und Verteilungen
+
+6.1 Statistiken
+X̄ = Stichprobenmittelwert, S² = Stichprobenvarianz
+χ²-, t- und F-Verteilung
+
+Kapitel 7 Parameterschätzung
+
+7.1 Punktsschätzung
+Methode der Momente, Maximum-Likelihood-Schätzung
+
+7.2 Eigenschaften
+Unverzerrtheit, Effizienz, Konsistenz
+
+7.3 Intervallschätzung
+Konfidenzintervalle für μ und σ²
+
+Kapitel 8 Hypothesentests
+
+8.1 Grundgerüst
+H₀ (Nullhypothese) vs H₁ (Alternativhypothese)
+Teststatistik, Ablehnungsbereich, Signifikanzniveau α
+
+8.2 Tests für den Mittelwert
+Z-Test (σ bekannt): Z = (X̄ - μ₀)/(σ/√n)
+t-Test (σ unbekannt): T = (X̄ - μ₀)/(S/√n)
+
+8.3 Tests für die Varianz
+χ²-Test: χ² = (n-1)S²/σ₀²
+
+8.4 Zwei-Stichproben-Tests
+F-Test für Varianzen
+Zwei-Stichproben-t-Test für Mittelwerte

@@ -1,0 +1,31 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第二章 随机变量及其分布",
+    "section": "2.1-2.4 随机变量、分布律与常见分布",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "随机变量", "aliases": ["random variable", "Zufallsgröße"], "definition_snippet": "样本空间到实数的函数 X: Ω → ℝ", "category": "concept"},
+    {"name": "分布函数", "aliases": ["distribution function", "Verteilungsfunktion"], "definition_snippet": "F(x) = P(X ≤ x)", "category": "concept"},
+    {"name": "概率密度函数", "aliases": ["probability density function", "Dichte"], "definition_snippet": "P(a < X ≤ b) = ∫f(x)dx", "category": "concept"},
+    {"name": "离散型随机变量", "aliases": ["discrete random variable", "diskrete Zufallsgröße"], "definition_snippet": "取值有限或可列无限个的随机变量", "category": "concept"},
+    {"name": "连续型随机变量", "aliases": ["continuous random variable", "stetige Zufallsgröße"], "definition_snippet": "取值充满一个区间的随机变量", "category": "concept"},
+    {"name": "二项分布", "aliases": ["binomial distribution", "Binomialverteilung"], "definition_snippet": "X ~ B(n, p)：n 次独立试验中成功的次数", "category": "concept"},
+    {"name": "泊松分布", "aliases": ["Poisson distribution", "Poissonverteilung"], "definition_snippet": "X ~ P(λ)：单位时间/空间内事件发生的次数", "category": "concept"},
+    {"name": "正态分布", "aliases": ["normal distribution", "Normalverteilung"], "definition_snippet": "X ~ N(μ, σ²)：最重要的连续分布", "category": "concept"},
+    {"name": "均匀分布", "aliases": ["uniform distribution", "Gleichverteilung"], "definition_snippet": "X ~ U(a, b)：区间上等可能取值", "category": "concept"},
+    {"name": "指数分布", "aliases": ["exponential distribution", "Exponentialverteilung"], "definition_snippet": "X ~ E(λ)：无记忆性的连续分布", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "分布函数", "target": "随机变量", "type": "representation", "importance": 0.9, "evidence": "分布函数完全刻画随机变量的统计规律"},
+    {"source": "概率密度函数", "target": "分布函数", "type": "representation", "importance": 0.9, "evidence": "F(x) = ∫f(t)dt"},
+    {"source": "二项分布", "target": "离散型随机变量", "type": "specialization", "importance": 0.85, "evidence": "二项分布是离散型分布"},
+    {"source": "泊松分布", "target": "离散型随机变量", "type": "specialization", "importance": 0.85, "evidence": "泊松分布是离散型分布"},
+    {"source": "正态分布", "target": "连续型随机变量", "type": "specialization", "importance": 0.9, "evidence": "正态分布是最重要的连续分布"},
+    {"source": "均匀分布", "target": "连续型随机变量", "type": "specialization", "importance": 0.8, "evidence": "均匀分布是最简单的连续分布"},
+    {"source": "指数分布", "target": "连续型随机变量", "type": "specialization", "importance": 0.8, "evidence": "指数分布具有无记忆性"},
+    {"source": "泊松分布", "target": "二项分布", "type": "analogy", "importance": 0.8, "evidence": "n 大 p 小时泊松分布是二项分布的近似"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第五章 大数定律与中心极限定理",
+    "section": "5.1-5.2 切比雪夫不等式、大数定律与中心极限定理",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "切比雪夫不等式", "aliases": ["Chebyshev's inequality", "Ungleichung von Tschebyscheff"], "definition_snippet": "P(|X-μ| ≥ ε) ≤ σ²/ε²", "category": "theorem"},
+    {"name": "大数定律", "aliases": ["law of large numbers", "Gesetz der großen Zahlen"], "definition_snippet": "样本均值依概率收敛于期望", "category": "theorem"},
+    {"name": "中心极限定理", "aliases": ["central limit theorem", "Zentraler Grenzwertsatz"], "definition_snippet": "独立随机变量之和标准化后近似服从标准正态分布", "category": "theorem"},
+    {"name": "依概率收敛", "aliases": ["convergence in probability", "Konvergenz in Wahrscheinlichkeit"], "definition_snippet": "X_n →^P X: 对任意 ε > 0, P(|X_n-X| ≥ ε) → 0", "category": "concept"},
+    {"name": "频率的稳定性", "aliases": ["stability of frequency", "Stabilität der Häufigkeit"], "definition_snippet": "频率 n_A/n 依概率收敛于概率 P(A)", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "大数定律", "target": "依概率收敛", "type": "requires", "importance": 0.9, "evidence": "大数定律描述均值的依概率收敛"},
+    {"source": "中心极限定理", "target": "正态分布", "type": "representation", "importance": 0.95, "evidence": "中心极限定理说明大量独立随机变量之和趋近正态分布"},
+    {"source": "切比雪夫不等式", "target": "方差", "type": "requires", "importance": 0.85, "evidence": "切比雪夫不等式利用方差给出概率上界"},
+    {"source": "频率的稳定性", "target": "大数定律", "type": "representation", "importance": 0.8, "evidence": "伯努利大数定律是频率稳定性的理论基础"}
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "source_textbook": {
+    "name": "Erwin Fischer: Lineare Algebra",
+    "language": "de",
+    "chapter": "7-8 Lineare Abbildungen und Euklidische Räume",
+    "section": "7.1-8.3 Lineare Abbildungen, Skalarprodukt, Gram-Schmidt",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "lineare Abbildung",
+      "aliases": ["linear transformation", "线性变换"],
+      "definition_snippet": "Eine Abbildung T: V → W die Addition und Skalarmultiplikation erhält",
+      "category": "concept"
+    },
+    {
+      "name": "Kern",
+      "aliases": ["kernel", "核", "null space"],
+      "definition_snippet": "Ker(T) = {v ∈ V : T(v) = 0}",
+      "category": "concept"
+    },
+    {
+      "name": "Bild",
+      "aliases": ["image", "像", "column space"],
+      "definition_snippet": "Im(T) = {T(v) : v ∈ V}",
+      "category": "concept"
+    },
+    {
+      "name": "Skalarprodukt",
+      "aliases": ["inner product", "内积"],
+      "definition_snippet": "Bilineare, symmetrische, positiv definite Form ⟨u, v⟩",
+      "category": "concept"
+    },
+    {
+      "name": "Euklidischer Raum",
+      "aliases": ["Euclidean space", "内积空间", "欧几里得空间"],
+      "definition_snippet": "Vektorraum mit Skalarprodukt",
+      "category": "concept"
+    },
+    {
+      "name": "orthonormale Basis",
+      "aliases": ["orthonormal basis", "标准正交基"],
+      "definition_snippet": "Basis orthogonaler Einheitsvektoren",
+      "category": "concept"
+    },
+    {
+      "name": "Gram-Schmidt-Verfahren",
+      "aliases": ["Gram-Schmidt process", "Gram-Schmidt 正交化"],
+      "definition_snippet": "Algorithmus zur Umwandlung jeder Basis in eine orthonormale Basis",
+      "category": "operation"
+    },
+    {
+      "name": "Least Squares",
+      "aliases": ["最小二乘法", "Methode der kleinsten Quadrate"],
+      "definition_snippet": "Beste Näherungslösung: x̂ = (A^T A)⁻¹ A^T b",
+      "category": "concept"
+    },
+    {
+      "name": "orthogonale Projektion",
+      "aliases": ["orthogonal projection", "正交投影"],
+      "definition_snippet": "Nächster Punkt in einem Unterraum",
+      "category": "concept"
+    },
+    {
+      "name": "Norm",
+      "aliases": ["norm", "范数"],
+      "definition_snippet": "‖v‖ = √⟨v, v⟩ — Länge eines Vektors",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "lineare Abbildung",
+      "target": "Vektorraum",
+      "type": "requires",
+      "importance": 0.95,
+      "evidence": "Lineare Abbildungen wirken zwischen Vektorräumen"
+    },
+    {
+      "source": "Kern",
+      "target": "lineare Abbildung",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Kern beschreibt den Nullraum einer Abbildung"
+    },
+    {
+      "source": "Bild",
+      "target": "lineare Abbildung",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Bild beschreibt den Wertebereich einer Abbildung"
+    },
+    {
+      "source": "Euklidischer Raum",
+      "target": "Vektorraum",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "Euklidischer Raum erweitert Vektorraum um Skalarprodukt"
+    },
+    {
+      "source": "orthonormale Basis",
+      "target": "Skalarprodukt",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "Orthogonalität wird über Skalarprodukt definiert"
+    },
+    {
+      "source": "Gram-Schmidt-Verfahren",
+      "target": "orthonormale Basis",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "Gram-Schmidt erzeugt orthonormale Basen"
+    },
+    {
+      "source": "Least Squares",
+      "target": "orthogonale Projektion",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Least-Squares-Lösung ist eine orthogonale Projektion"
+    },
+    {
+      "source": "Norm",
+      "target": "Skalarprodukt",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "Norm wird aus Skalarprodukt abgeleitet"
+    }
+  ]
+}

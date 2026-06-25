@@ -1,0 +1,110 @@
+{
+  "source_textbook": {
+    "name": "Stewart Calculus (8th ed.)",
+    "language": "en",
+    "chapter": "12-14 Vectors and Multivariable Calculus",
+    "section": "12.1, 14.1-14.8 Vectors, Partial Derivatives, Optimization",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "vector",
+      "aliases": ["Vektor", "向量"],
+      "definition_snippet": "An object with magnitude and direction: v = ⟨a, b, c⟩",
+      "category": "concept"
+    },
+    {
+      "name": "dot product",
+      "aliases": ["Skalarprodukt", "点积"],
+      "definition_snippet": "u · v = |u||v|cos θ = u₁v₁ + u₂v₂ + u₃v₃",
+      "category": "operation"
+    },
+    {
+      "name": "cross product",
+      "aliases": ["Kreuzprodukt", "叉积"],
+      "definition_snippet": "u × v gives a vector perpendicular to both u and v",
+      "category": "operation"
+    },
+    {
+      "name": "partial derivative",
+      "aliases": ["partielle Ableitung", "偏导数"],
+      "definition_snippet": "Derivative with respect to one variable, holding others constant",
+      "category": "concept"
+    },
+    {
+      "name": "gradient",
+      "aliases": ["Gradient", "梯度"],
+      "definition_snippet": "∇f = (∂f/∂x, ∂f/∂y), direction of steepest ascent",
+      "category": "concept"
+    },
+    {
+      "name": "directional derivative",
+      "aliases": ["Richtungsableitung", "方向导数"],
+      "definition_snippet": "Rate of change in direction u: D_u f = ∇f · u",
+      "category": "concept"
+    },
+    {
+      "name": "Lagrange multipliers",
+      "aliases": ["Lagrange-Multiplikatoren", "拉格朗日乘数"],
+      "definition_snippet": "Method for constrained optimization: ∇f = λ∇g",
+      "category": "concept"
+    },
+    {
+      "name": "multivariable chain rule",
+      "aliases": ["mehrdimensionale Kettenregel", "多元链式法则"],
+      "definition_snippet": "dz/dt = ∂f/∂x · dx/dt + ∂f/∂y · dy/dt",
+      "category": "theorem"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "partial derivative",
+      "target": "Derivative",
+      "type": "generalization",
+      "importance": 0.95,
+      "evidence": "Partial derivatives extend single-variable differentiation"
+    },
+    {
+      "source": "gradient",
+      "target": "partial derivative",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Gradient is composed of partial derivatives"
+    },
+    {
+      "source": "directional derivative",
+      "target": "gradient",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "Directional derivative equals gradient dot direction"
+    },
+    {
+      "source": "Lagrange multipliers",
+      "target": "gradient",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Lagrange method uses equality of gradients"
+    },
+    {
+      "source": "multivariable chain rule",
+      "target": "链式法则",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "Multivariable chain rule extends the single-variable version"
+    },
+    {
+      "source": "dot product",
+      "target": "vector",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "Dot product is a fundamental vector operation"
+    },
+    {
+      "source": "cross product",
+      "target": "vector",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "Cross product produces a vector from two vectors"
+    }
+  ]
+}

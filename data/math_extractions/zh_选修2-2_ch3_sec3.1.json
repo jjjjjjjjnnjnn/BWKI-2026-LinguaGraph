@@ -1,0 +1,103 @@
+{
+  "source_textbook": {
+    "name": "人教版高中数学选修2-2",
+    "language": "zh",
+    "chapter": "第三章 微分方程简介",
+    "section": "3.1 微分方程的基本概念",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "微分方程",
+      "aliases": ["differential equation", "Differentialgleichung"],
+      "definition_snippet": "含有未知函数及其导数的方程",
+      "category": "concept"
+    },
+    {
+      "name": "常微分方程",
+      "aliases": ["ODE", "ordinary differential equation", "gewöhnliche DGL"],
+      "definition_snippet": "未知函数为一元函数的微分方程",
+      "category": "concept"
+    },
+    {
+      "name": "微分方程的阶",
+      "aliases": ["order of DE", "Ordnung einer DGL"],
+      "definition_snippet": "微分方程中出现的最高阶导数的阶数",
+      "category": "concept"
+    },
+    {
+      "name": "通解",
+      "aliases": ["general solution", "allgemeine Lösung"],
+      "definition_snippet": "含有与方程阶数相同个数的任意常数的解",
+      "category": "concept"
+    },
+    {
+      "name": "特解",
+      "aliases": ["particular solution", "partikuläre Lösung"],
+      "definition_snippet": "给任意常数以确定值后得到的解",
+      "category": "concept"
+    },
+    {
+      "name": "初始条件",
+      "aliases": ["initial condition", "Anfangsbedingung"],
+      "definition_snippet": "确定特解所需的条件，如 y(x₀) = y₀",
+      "category": "concept"
+    },
+    {
+      "name": "可分离变量方程",
+      "aliases": ["separable equation", "separierbare Gleichung"],
+      "definition_snippet": "可写成 dy/dx = f(x)g(y) 形式的一阶方程",
+      "category": "concept"
+    },
+    {
+      "name": "一阶线性方程",
+      "aliases": ["first-order linear ODE", "lineare DGL erster Ordnung"],
+      "definition_snippet": "dy/dx + P(x)y = Q(x) 形式的方程",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "常微分方程",
+      "target": "微分方程",
+      "type": "specialization",
+      "importance": 0.9,
+      "evidence": "常微分方程是微分方程的一种，未知函数为一元函数"
+    },
+    {
+      "source": "通解",
+      "target": "微分方程",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "通解包含所有可能的特解"
+    },
+    {
+      "source": "特解",
+      "target": "通解",
+      "type": "specialization",
+      "importance": 0.8,
+      "evidence": "特解是通解中给定初始条件后的具体解"
+    },
+    {
+      "source": "初始条件",
+      "target": "特解",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "初始条件用于从通解中确定特解"
+    },
+    {
+      "source": "微分方程",
+      "target": "导数",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "微分方程包含未知函数的导数"
+    },
+    {
+      "source": "可分离变量方程",
+      "target": "微分方程",
+      "type": "specialization",
+      "importance": 0.8,
+      "evidence": "可分离变量方程是一类可直接求解的微分方程"
+    }
+  ]
+}

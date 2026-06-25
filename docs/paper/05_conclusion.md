@@ -14,7 +14,7 @@ Mathematics peaks at Middle school (CDS=0.271), Physics at Elementary school (CD
 |-----------|---------|-------|
 | **Density (CDS)** | ALL disciplines peak in early stages, then decline | Math: 0.271 @ Middle; Physics: 0.222 @ Elementary; Chemistry: 0.042 @ Middle |
 | **Depth (HDS)** | Prerequisite chains are universally bounded | Max 8 (Math deepest at 8, Physics at 6) |
-| **Divergence (LDS)** | Cross-language structure differs substantially | ZH–DE: 0.907; DE–EN: 0.901; ZH–EN: 0.802 |
+| **Divergence (LDS)** | Cross-language structure differs substantially (Wikipedia & human validated) | ZH–DE: 0.907 (Wiki) / 0.751 (Human); DE–EN: 0.901 / 0.727; ZH–EN: 0.802 / 0.704 |
 | **Coverage (CS)** | Textbook-curriculum alignment varies by system | NRW 34%, UK 82%, US 76%, CN 8% |
 
 ### 5.3 Contributions
@@ -26,14 +26,16 @@ We introduce LinguaGraph, the first framework that:
 3. **Cross-validates across three STEM disciplines** (Mathematics, Physics, Chemistry)
 4. **Integrates curriculum alignment** across four educational systems (NRW, UK, US)
 5. **Benchmarks multilingual LLM extraction** across domains (social: F1≥0.88; mathematical: F1≥0.71)
+6. **Validates metric consistency across three levels** — individual cognition (N=8), aggregated textbooks (68 books), and curriculum standards (4 systems) — demonstrating that language-pair divergence rank order is preserved from cognitive to policy level
 
 ### 5.4 Limitations
 
-The study has three principal limitations:
+The study has four principal limitations:
 
 1. **Extraction quality varies by domain**: Social concept extraction achieves ZH F1=0.974, DE F1=0.949, EN F1=0.882 (72 gold labels in social domain; 92 total including math). Mathematical domain extraction is lower (DE F1=0.506, 20 gold labels), confirming domain-specific variation.
-2. **Curriculum comparison**: The Coverage Score v1 uses keyword-based matching; future versions should incorporate semantic alignment.
-3. **Gold dataset size**: Current 92 total gold labels provide reliable estimates across domains. Expanding to 200+ would further strengthen statistical power for subgroup analyses.
+2. **Human validation sample size**: The human validation study (N=8) demonstrates cross-level consistency but requires larger samples for population-level conclusions. Within-subject ZH–DE and ZH–EN comparisons were not feasible due to monolingual response patterns.
+3. **Curriculum comparison**: The Coverage Score v1 uses keyword-based matching; future versions should incorporate semantic alignment.
+4. **Gold dataset size**: Current 92 total gold labels provide reliable estimates across domains. Expanding to 200+ would further strengthen statistical power for subgroup analyses.
 
 ### 5.5 Future Work
 

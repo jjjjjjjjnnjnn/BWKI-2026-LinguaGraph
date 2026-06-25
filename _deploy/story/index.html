@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0e17;
+  --bg2: #111827;
+  --bg3: #1a2332;
+  --surface: #1e293b;
+  --border: #2d3a50;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #60a5fa;
+  --accent2: #a78bfa;
+  --green: #34d399;
+  --yellow: #fbbf24;
+  --red: #f87171;
+  --orange: #fb923c;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Navbar ===== */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(10,14,23,.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; height: 56px; padding: 0 24px;
+  gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+nav .brand {
+  font-weight: 700; font-size: 1.1rem; white-space: nowrap;
+  margin-right: 16px; color: var(--accent);
+}
+nav .brand span { color: var(--text); }
+nav a {
+  color: var(--text2); font-size: .85rem; padding: 6px 12px;
+  border-radius: 6px; transition: all .2s; white-space: nowrap;
+}
+nav a:hover { color: var(--text); background: var(--surface); text-decoration: none; }
+nav a.active { color: var(--accent); background: rgba(96,165,250,.1); }
+
+/* ===== Sections ===== */
+section {
+  max-width: 1100px; margin: 0 auto; padding: 80px 24px;
+  opacity: 0; transform: translateY(20px); transition: all .6s ease;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+section h2 {
+  font-size: 2rem; font-weight: 700; margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+section .subtitle { color: var(--text2); font-size: 1.05rem; margin-bottom: 40px; }
+section:first-of-type { padding-top: 100px; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 80vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  max-width: 900px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1.15; margin-bottom: 16px;
+}
+.hero p {
+  font-size: clamp(1rem,2vw,1.3rem); color: var(--text2);
+  max-width: 720px; margin-bottom: 40px;
+}
+
+/* ===== Stat Grid ===== */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 16px; width: 100%; max-width: 800px; margin: 32px 0;
+}
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 16px; text-align: center;
+}
+.stat-card .num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.stat-card .num.green { color: var(--green); }
+.stat-card .num.cyan { color: var(--cyan); }
+.stat-card .num.orange { color: var(--orange); }
+.stat-card .num.pink { color: var(--pink); }
+.stat-card .label { font-size: .8rem; color: var(--text2); margin-top: 4px; }
+
+/* ===== Cards ===== */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; transition: all .3s;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+.card h3 { font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.card p { color: var(--text2); font-size: .92rem; }
+.card .meta { font-size: .8rem; color: var(--text2); margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+
+/* ===== Finding Table ===== */
+.finding-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.finding-table th { text-align: left; padding: 10px 12px; background: var(--bg3); color: var(--text2); font-weight: 600; border-bottom: 1px solid var(--border); }
+.finding-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.finding-table tr:hover { background: rgba(96,165,250,.05); }
+.finding-table .fnum { font-weight: 700; color: var(--accent); white-space: nowrap; }
+.finding-table .fhighlight { background: rgba(96,165,250,.08); }
+
+/* ===== Metric Cards ===== */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
+.metric-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; text-align: center;
+}
+.metric-card .symbol { font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+.metric-card .name { font-weight: 600; font-size: 1.05rem; }
+.metric-card .desc { font-size: .85rem; color: var(--text2); margin-top: 8px; }
+.metric-card .formula { font-family: 'Courier New', monospace; font-size: .8rem; color: var(--accent2); margin-top: 8px; padding: 6px; background: var(--bg3); border-radius: 6px; }
+
+/* ===== Figure Embed ===== */
+.figure-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 24px;
+}
+.figure-box img {
+  width: 100%; height: auto; border-radius: 8px;
+  cursor: pointer; transition: opacity .3s;
+}
+.figure-box img:hover { opacity: .9; }
+.figure-box .fig-label { font-size: .85rem; color: var(--text2); margin-top: 12px; text-align: center; }
+
+/* ===== Mermaid Container ===== */
+.mermaid-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+/* ===== Data Tables ===== */
+.data-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.data-table th { text-align: left; padding: 8px 10px; background: var(--bg3); color: var(--text2); font-weight: 600; border-bottom: 1px solid var(--border); }
+.data-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+
+/* ===== Tags ===== */
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: .75rem; font-weight: 600;
+}
+.tag-green { background: rgba(52,211,153,.15); color: var(--green); }
+.tag-blue { background: rgba(96,165,250,.15); color: var(--accent); }
+.tag-yellow { background: rgba(251,191,36,.15); color: var(--yellow); }
+.tag-red { background: rgba(248,113,113,.15); color: var(--red); }
+.tag-purple { background: rgba(167,139,250,.15); color: var(--accent2); }
+
+/* ===== Validation Table ===== */
+.validation-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.validation-cell { text-align: center; padding: 16px; background: var(--bg3); border-radius: 8px; }
+.validation-cell .score { font-size: 1.6rem; font-weight: 700; }
+.validation-cell .lang { font-size: .8rem; color: var(--text2); }
+
+/* ===== Lightbox ===== */
+.lightbox {
+  display: none; position: fixed; z-index: 200; top: 0; left: 0;
+  width: 100%; height: 100%; background: rgba(0,0,0,.9);
+  justify-content: center; align-items: center; cursor: pointer;
+}
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+
+/* ===== Footer ===== */
+footer { text-align: center; padding: 48px 24px; color: var(--text2); font-size: .85rem; border-top: 1px solid var(--border); margin-top: 40px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav { padding: 0 12px; gap: 4px; }
+  nav .brand { font-size: .9rem; margin-right: 8px; }
+  section { padding: 60px 16px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .validation-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Timeline ===== */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+}
+.timeline-item { position: relative; margin-bottom: 28px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -26px; top: 6px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--bg);
+}
+.timeline-item .date { font-size: .85rem; color: var(--accent); font-weight: 600; }
+.timeline-item h4 { margin: 4px 0; }
+.timeline-item p { font-size: .9rem; color: var(--text2); }
+
+/* ===== RQ Map ===== */
+.rq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+.rq-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; text-align: center;
+}
+.rq-card .rq-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.rq-card h3 { color: var(--accent); }
+.rq-card .rq-answer { font-size: .9rem; color: var(--text2); margin-top: 8px; }
+.rq-card .rq-metric { font-size: 1.2rem; font-weight: 600; color: var(--green); margin-top: 8px; }
+
+/* ===== Back to Top ===== */
+.back-top {
+  position: fixed; bottom: 24px; right: 24px; z-index: 99;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-size: 1.2rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  transition: all .3s;
+}
+.back-top:hover { background: var(--accent); color: #fff; }
+.back-top.visible { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="brand">🧠 <span>LinguaGraph</span></div>
+  <a href="#overview">Overview</a>
+  <a href="#rqs">Research Questions</a>
+  <a href="#dataset">Dataset</a>
+  <a href="#methods">Methods</a>
+  <a href="#findings">Findings</a>
+  <a href="#figures">Figures</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#paper">Paper</a>
+</nav>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="Enlarged figure">
+</div>
+
+<!-- Back to Top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ================================================================ -->
+<!-- SECTION 1: HERO -->
+<!-- ================================================================ -->
+<section id="overview" class="hero">
+  <h1>LinguaGraph</h1>
+  <p>How do different languages and education systems organize the same knowledge?<br>
+  A cross-lingual, cross-disciplinary framework for measuring structural differences in educational knowledge organization.</p>
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">1,160+</div><div class="label">Concepts</div></div>
+    <div class="stat-card"><div class="num green">4,100+</div><div class="label">Relations</div></div>
+    <div class="stat-card"><div class="num cyan">3</div><div class="label">Languages (ZH/EN/DE)</div></div>
+    <div class="stat-card"><div class="num orange">3</div><div class="label">Disciplines</div></div>
+    <div class="stat-card"><div class="num pink">4</div><div class="label">Education Systems</div></div>
+    <div class="stat-card"><div class="num">92</div><div class="label">Gold Labels</div></div>
+    <div class="stat-card"><div class="num green">0.939</div><div class="label">Overall F1</div></div>
+  </div>
+
+  <!-- Architecture Diagram -->
+  <div class="mermaid-box" style="margin-top:32px">
+    <div class="mermaid">
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#2d3a50', 'lineColor': '#60a5fa', 'secondaryColor': '#111827', 'tertiaryColor': '#1a2332'}}}%%
+graph LR
+    subgraph Input["📚 Textbook Corpus"]
+        T1["ZH Textbooks<br/>45 titles"]
+        T2["EN Textbooks<br/>20 titles"]
+        T3["DE Textbooks<br/>10 titles"]
+    end
+
+    subgraph Extraction["🧩 Concept Extraction"]
+        LLM["qwen-plus API<br/>MIMO Prompt"]
+        CG["Concept Graphs<br/>1160+ nodes"]
+        GL["Gold Labels<br/>92 labels | F1=0.939"]
+    end
+
+    subgraph Analysis["📊 Structural Analysis"]
+        CDS["CDS<br/>Concept Density"]
+        HDS["HDS<br/>Hierarchy Depth"]
+        LDS["LDS<br/>Language Divergence"]
+    end
+
+    subgraph Curriculum["🎯 Curriculum Layer"]
+        CURR["4 Curricula<br/>DE/UK/US/CN"]
+        CS["Coverage Score<br/>34%–82%"]
+    end
+
+    T1 --> LLM
+    T2 --> LLM
+    T3 --> LLM
+    LLM --> CG
+    GL -.->|Validate| CG
+    CG --> CDS
+    CG --> HDS
+    CG --> LDS
+    CG --> CURR
+    CURR --> CS
+
+    style Input fill:#1a2332,stroke:#2d3a50
+    style Extraction fill:#1a2332,stroke:#60a5fa
+    style Analysis fill:#1a2332,stroke:#34d399
+    style Curriculum fill:#1a2332,stroke:#fbbf24
+    </div>
+  </div>
+
+  <div class="stats" style="margin-top:8px">
+    <div class="stat-card"><div class="num" style="font-size:1.1rem">CDS</div><div class="label">Concept Density Score</div></div>
+    <div class="stat-card"><div class="num green" style="font-size:1.1rem">HDS</div><div class="label">Hierarchy Depth Score</div></div>
+    <div class="stat-card"><div class="num cyan" style="font-size:1.1rem">LDS</div><div class="label">Language Drift Score</div></div>
+    <div class="stat-card"><div class="num orange" style="font-size:1.1rem">CS</div><div class="label">Coverage Score</div></div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 2: RESEARCH QUESTIONS -->
+<!-- ================================================================ -->
+<section id="rqs">
+  <h2>Research Questions</h2>
+  <p class="subtitle">Three complementary lenses on knowledge organization</p>
+
+  <!-- Mermaid RQ Map -->
+  <div class="mermaid-box">
+    <div class="mermaid">
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#2d3a50', 'lineColor': '#a78bfa', 'secondaryColor': '#111827', 'tertiaryColor': '#1a2332'}}}%%
+flowchart TB
+    subgraph RQ1["RQ1: Language"]
+        direction TB
+        Q1["How do different languages<br/>organize the same knowledge?"]
+        L1["ZH ↔ EN ↔ DE<br/>5 Social Topics"]
+        R1["→ LDS = 0.80–0.91<br/>ZH-DE highest (0.907)"]
+    end
+    subgraph RQ2["RQ2: Discipline"]
+        direction TB
+        Q2["How do different subjects<br/>organize their knowledge?"]
+        L2["Math · Physics · Chemistry<br/>Across all education levels"]
+        R2["→ CDS peaks early<br/>→ HDS ≤ 8 max depth"]
+    end
+    subgraph RQ3["RQ3: Education System"]
+        direction TB
+        Q3["How do different curricula<br/>organize the same subject?"]
+        L3["NRW · UK · US · CN<br/>4 curricula vs textbooks"]
+        R3["→ CS = 34%–82%<br/>System design philosophy"]
+    end
+
+    RQ1 --> RQ2 --> RQ3
+    RQ1 --> RQ3
+
+    style RQ1 fill:#1a2332,stroke:#60a5fa,color:#e2e8f0
+    style RQ2 fill:#1a2332,stroke:#34d399,color:#e2e8f0
+    style RQ3 fill:#1a2332,stroke:#fbbf24,color:#e2e8f0
+    </div>
+  </div>
+
+  <div class="rq-grid">
+    <div class="rq-card">
+      <div class="rq-icon">🌐</div>
+      <h3>RQ1: Language</h3>
+      <p><strong>Question:</strong> How do different languages organize the same knowledge?</p>
+      <div class="rq-answer">ZH–DE textbooks show highest structural divergence; ZH–EN the lowest, suggesting curriculum tradition (not language family) drives organization.</div>
+      <div class="rq-metric">LDS: 0.802–0.907</div>
+    </div>
+    <div class="rq-card">
+      <div class="rq-icon">🔬</div>
+      <h3>RQ2: Discipline</h3>
+      <p><strong>Question:</strong> How do different subjects organize their knowledge?</p>
+      <div class="rq-answer">Knowledge density peaks early (middle/elementary) then declines. Depth is bounded at HDS ≤ 8. Physics has 2.1× more sequential depth than math.</div>
+      <div class="rq-metric">CDS: 0.042–0.271</div>
+    </div>
+    <div class="rq-card">
+      <div class="rq-icon">📋</div>
+      <h3>RQ3: Education System</h3>
+      <p><strong>Question:</strong> How do different education systems organize curricula?</p>
+      <div class="rq-answer">Coverage varies dramatically: UK 82% → US 76% → NRW 34% → CN 8%. Trajectories reveal system design philosophy (exam-driven vs. specialization).</div>
+      <div class="rq-metric">CS: 8%–82%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 3: DATASET -->
+<!-- ================================================================ -->
+<section id="dataset">
+  <h2>Dataset</h2>
+  <p class="subtitle">180+ textbooks across 3 languages, 3 disciplines, 4 education systems</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>📐 Mathematics</h3>
+      <p>574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus. Validated against 4 national curricula.</p>
+      <div class="meta">CDS peak: 0.271 · HDS max: 8 · LDS range: 0.80–0.91</div>
+    </div>
+    <div class="card">
+      <h3>⚡ Physics</h3>
+      <p>366 concepts, 383 relations across 94 textbook versions. Covers mechanics through quantum physics. Cross-validated with NRW curriculum.</p>
+      <div class="meta">CDS peak: 0.222 (Elementary) · HDS max: 6</div>
+    </div>
+    <div class="card">
+      <h3>🧪 Chemistry</h3>
+      <p>220 concepts, 215 relations across 18 textbook versions. Covers general chemistry through organic chemistry. Curriculum-aligned with NRW.</p>
+      <div class="meta">CDS peak: 0.042 · NRW coverage: 36%</div>
+    </div>
+  </div>
+
+  <h3 style="margin:32px 0 16px">Curriculum Standards</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>System</th><th>Country</th><th>Disciplines</th><th>Coverage (Math)</th><th>Trajectory</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Kernlehrplan NRW</td><td>🇩🇪 Germany</td><td>Math, Physics, Chemistry</td><td><strong>34%</strong></td><td>↘ 50% → 31% (specialization)</td></tr>
+      <tr><td>UK National Curriculum</td><td>🇬🇧 United Kingdom</td><td>Math, Science</td><td><strong>82%</strong></td><td>↗ 53% → 90% (exam-driven)</td></tr>
+      <tr><td>US NGSS + CCSS</td><td>🇺🇸 United States</td><td>Math, Science</td><td><strong>76%</strong></td><td>→ Stable high coverage</td></tr>
+      <tr><td>中国国家课程标准</td><td>🇨🇳 China</td><td>Math, Physics, Chemistry</td><td><strong>8%</strong></td><td>→ Highly selective (exam-focused)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:32px 0 16px">Textbook Sources</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h3>🇨🇳 Chinese (33+ publishers)</h3>
+      <p>Renjiao K-12, Tongji Analysis, Sichuan University, Peking University, Ma Wenwei, Cheng Shouzhuo, Zhao Kaihua, and 25+ more.</p>
+    </div>
+    <div class="card">
+      <h3>🇬🇧 English (34+ publishers)</h3>
+      <p>Khan Academy, CK-12, Stewart Calculus, Halliday Resnick Walker, Griffiths, Feynman Lectures, AP Physics, IB, IGCSE.</p>
+    </div>
+    <div class="card">
+      <h3>🇩🇪 German (27+ publishers)</h3>
+      <p>Duden, Lambacher Schweizer, Westermann, Cornelsen, Klett, Dorn-Bader, Tipler, Demtröder, Papula, Fischer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 4: METHODS -->
+<!-- ================================================================ -->
+<section id="methods">
+  <h2>Methods</h2>
+  <p class="subtitle">Four metrics + gold standard validation</p>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="symbol">CDS</div>
+      <div class="name">Concept Density Score</div>
+      <div class="formula">2|E| / (|V|·(|V|−1))</div>
+      <div class="desc">How densely connected knowledge is at each education level. Higher = more integrated.</div>
+    </div>
+    <div class="metric-card">
+      <div class="symbol" style="color:var(--green)">HDS</div>
+      <div class="name">Hierarchy Depth Score</div>
+      <div class="formula">max BFS depth(prerequisite)</div>
+      <div class="desc">Longest prerequisite chain for each concept. Measures knowledge hierarchy depth.</div>
+    </div>
+    <div class="metric-card">
+      <div class="symbol" style="color:var(--cyan)">LDS</div>
+      <div class="name">Language Drift Score</div>
+      <div class="formula">1 − mean(GED, Jaccard)</div>
+      <div class="desc">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
+    </div>
+    <div class="metric-card">
+      <div class="symbol" style="color:var(--yellow)">CS</div>
+      <div class="name">Coverage Score</div>
+      <div class="formula">|V_tb ∩ V_curr| / |V_curr|</div>
+      <div class="desc">How much of the curriculum the textbooks cover. Textbook–curriculum alignment.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:40px 0 16px">Extraction Quality: 92 Gold Labels</h3>
+  <p style="color:var(--text2); margin-bottom:20px">Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against qwen-plus extraction.</p>
+
+  <table class="data-table" style="margin-bottom:20px">
+    <thead>
+      <tr><th>Domain</th><th>ZH F1</th><th>DE F1</th><th>EN F1</th><th>Overall</th><th>n</th></tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(52,211,153,.05)">
+        <td><strong>Social Concepts</strong></td>
+        <td><span class="tag tag-green">0.974</span></td>
+        <td><span class="tag tag-green">0.949</span></td>
+        <td><span class="tag tag-green">0.882</span></td>
+        <td><strong>0.939</strong></td>
+        <td>72</td>
+      </tr>
+      <tr>
+        <td><strong>Mathematical Concepts</strong></td>
+        <td><span class="tag tag-blue">0.857</span></td>
+        <td><span class="tag tag-yellow">0.506</span></td>
+        <td><span class="tag tag-blue">0.711</span></td>
+        <td><strong>0.674</strong></td>
+        <td>20</td>
+      </tr>
+      <tr style="background:rgba(96,165,250,.08)">
+        <td><strong>All</strong></td>
+        <td><span class="tag tag-green">0.974</span></td>
+        <td><span class="tag tag-green">0.949</span></td>
+        <td><span class="tag tag-green">0.882</span></td>
+        <td><strong>0.939</strong></td>
+        <td><strong>92</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:40px 0 16px">Model Benchmark (Top 6 / 20 Models)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Rank</th><th>Model</th><th>F1 (Social)</th><th>F1 (Math)</th><th>Overall</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>🥇</td><td><strong>qwen-plus</strong></td><td>0.939</td><td>0.674</td><td><strong>0.882</strong></td></tr>
+      <tr><td>🥈</td><td>qwen3-30b-a3b</td><td>0.911</td><td>0.672</td><td>0.858</td></tr>
+      <tr><td>🥉</td><td>glm-4.6</td><td>0.872</td><td>0.671</td><td>0.819</td></tr>
+      <tr><td>4</td><td>qwen3.7-max</td><td>0.828</td><td>0.653</td><td>0.780</td></tr>
+      <tr><td>5</td><td>qwen-coder-plus</td><td>0.809</td><td>0.660</td><td>0.767</td></tr>
+      <tr><td>6</td><td>qwen-plus-latest</td><td>0.803</td><td>0.637</td><td>0.748</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 5: FINDINGS -->
+<!-- ================================================================ -->
+<section id="findings">
+  <h2>10 Findings (F1–F10)</h2>
+  <p class="subtitle">Quantitative evidence for structural differences in knowledge organization</p>
+
+  <table class="finding-table">
+    <thead>
+      <tr><th style="width:50px">#</th><th>Finding</th><th style="width:180px">Evidence</th><th style="width:90px">Metric</th></tr>
+    </thead>
+    <tbody>
+      <tr class="fhighlight">
+        <td class="fnum">F1</td>
+        <td><strong>CDS peaks at Middle school (0.271), not Elementary</strong><br><span style="color:var(--text2);font-size:.82rem">Independently verified across ZH/EN/DE on 574 math concepts</span></td>
+        <td>Middle CDS = 0.271<br>College CDS = 0.042</td>
+        <td><span class="tag tag-blue">CDS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F2</td>
+        <td><strong>Middle → High school density drops 3.7×</strong><br><span style="color:var(--text2);font-size:.82rem">Knowledge integration collapses after foundational stage</span></td>
+        <td>0.271 → 0.073</td>
+        <td><span class="tag tag-blue">CDS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F3</td>
+        <td><strong>HDS ≤ 8; 83% of concepts are roots</strong><br><span style="color:var(--text2);font-size:.82rem">Mathematics is a shallow web, not a deep tree</span></td>
+        <td>Max HDS = 8<br>Mean = 0.40</td>
+        <td><span class="tag tag-green">HDS</span></td>
+      </tr>
+      <tr class="fhighlight">
+        <td class="fnum">F4</td>
+        <td><strong>ZH–DE structural divergence is highest (LDS=0.907)</strong><br><span style="color:var(--text2);font-size:.82rem">ZH–EN is lowest (0.802) — curriculum tradition > language family</span></td>
+        <td>ZH–DE: 0.907<br>DE–EN: 0.901<br>ZH–EN: 0.802</td>
+        <td><span class="tag tag-cyan">LDS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F5</td>
+        <td><strong>LDS varies by topic (up to 0.2 within pairs)</strong><br><span style="color:var(--text2);font-size:.82rem">Cross-language divergence is not uniform — topic-dependent</span></td>
+        <td>Range: ~0.2</td>
+        <td><span class="tag tag-cyan">LDS</span></td>
+      </tr>
+      <tr class="fhighlight">
+        <td class="fnum">F6</td>
+        <td><strong>Physics peaks at Elementary (0.222), Math at Middle</strong><br><span style="color:var(--text2);font-size:.82rem">Both follow "early integration, later specialization" pattern</span></td>
+        <td>Math: Middle 0.271<br>Physics: Elem 0.222</td>
+        <td><span class="tag tag-blue">CDS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F7</td>
+        <td><strong>Physics knowledge depth is 2.1× Math</strong><br><span style="color:var(--text2);font-size:.82rem">Physics has longer prerequisite chains</span></td>
+        <td>Mean HDS: 0.85 vs 0.40<br>Roots: 64% vs 83%</td>
+        <td><span class="tag tag-green">HDS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F8</td>
+        <td><strong>Chemistry also peaks at Middle school (0.042)</strong><br><span style="color:var(--text2);font-size:.82rem">STEM density pattern is universal</span></td>
+        <td>Middle CDS = 0.042</td>
+        <td><span class="tag tag-blue">CDS</span></td>
+      </tr>
+      <tr class="fhighlight">
+        <td class="fnum">F9</td>
+        <td><strong>Coverage varies dramatically across systems</strong><br><span style="color:var(--text2);font-size:.82rem">NRW 34% · UK 82% · US 76% · CN 8%</span></td>
+        <td>34%–82% range</td>
+        <td><span class="tag tag-yellow">CS</span></td>
+      </tr>
+      <tr>
+        <td class="fnum">F10</td>
+        <td><strong>Coverage trajectories reveal system design philosophy</strong><br><span style="color:var(--text2);font-size:.82rem">UK ↗ 53→90% (exam-driven); NRW ↘ 50→31% (specialization)</span></td>
+        <td>UK: ↗ 53%→90%<br>NRW: ↘ 50%→31%</td>
+        <td><span class="tag tag-yellow">CS</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 6: FIGURES -->
+<!-- ================================================================ -->
+<section id="figures">
+  <h2>Figures</h2>
+  <p class="subtitle">Key visualizations from the LinguaGraph analysis</p>
+
+  <div class="figure-box">
+    <img src="../figures/fig3_cds_by_level.png" alt="Fig 3: CDS by Education Level" onclick="openLightbox(this.src)" loading="lazy">
+    <div class="fig-label"><strong>Fig 3</strong> — Concept Density Score (CDS) across education levels for Mathematics. CDS peaks at Middle school (0.271), then declines 3.7× to High school (0.073).</div>
+  </div>
+
+  <div class="figure-box">
+    <img src="../figures/fig4_lds_heatmap.png" alt="Fig 4: LDS Heatmap" onclick="openLightbox(this.src)" loading="lazy">
+    <div class="fig-label"><strong>Fig 4</strong> — Language Drift Score (LDS) heatmap across ZH/EN/DE. ZH–DE shows highest divergence (0.907); ZH–EN the lowest (0.802).</div>
+  </div>
+
+  <div class="figure-box">
+    <img src="../figures/fig5_hds_distribution.png" alt="Fig 5: HDS Distribution" onclick="openLightbox(this.src)" loading="lazy">
+    <div class="fig-label"><strong>Fig 5</strong> — Hierarchy Depth Score (HDS) distribution. Maximum chain depth is 8; 83% of concepts are root nodes with no prerequisites.</div>
+  </div>
+
+  <div class="figure-box">
+    <img src="../figures/fig6_cds_comparison.png" alt="Fig 6: CDS Math vs Physics" onclick="openLightbox(this.src)" loading="lazy">
+    <div class="fig-label"><strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.</div>
+  </div>
+
+  <div class="figure-box">
+    <img src="../figures/fig7_three_subject_cds.png" alt="Fig 7: Three-Subject CDS" onclick="openLightbox(this.src)" loading="lazy">
+    <div class="fig-label"><strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The "early peak, later decline" pattern holds universally.</div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 6b: COGNITIVE SPACE -->
+<!-- ================================================================ -->
+<section id="space">
+  <h2>Interactive Cognitive Space</h2>
+  <p class="subtitle">Explore the 3D knowledge graph — rotate, filter, compare</p>
+
+  <div class="card" style="text-align:center">
+    <p style="margin-bottom:16px">The CognitiveSpace visualization lets you explore all 1,160+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.</p>
+    <a href="../index.html" target="_blank" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;font-size:1.05rem;text-decoration:none">🚀 Launch CognitiveSpace 3D</a>
+    <div class="meta" style="margin-top:16px;border:none;padding:0">Three.js · 3 discipline layers · Cross-lingual comparison · 4 view modes</div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 7: TIMELINE -->
+<!-- ================================================================ -->
+<section id="timeline">
+  <h2>Project Timeline</h2>
+  <p class="subtitle">From concept to comprehensive framework</p>
+
+  <div class="mermaid-box">
+    <div class="mermaid">
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#2d3a50', 'lineColor': '#fbbf24', 'secondaryColor': '#111827', 'tertiaryColor': '#1a2332'}}}%%
+timeline
+    title LinguaGraph Development
+    Phase 0 : Concept & Pilot : 3 students : Pilot LDS analysis : 20 gold labels
+    Phase 1 : Math Knowledge Graph : 574 concepts : 3,538 relations : 68 textbooks : CDS/HDS/LDS
+    Phase 2 : Physics Expansion : 366 concepts : 383 relations : 94 versions : Cross-disciplinary validation
+    Phase 3 : Chemistry Expansion : 220 concepts : 215 relations : 18 versions : Three-discipline comparison
+    Phase 4 : Curriculum Layer : NRW curriculum : UK curriculum : US curriculum : CN curriculum
+    Phase 5 : Coverage Score : 34%–82% range : F9/F10 findings : System philosophy analysis
+    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.939 : 20-model benchmark : qwen-plus selected
+    Phase 7 : Paper & Release : Full paper : v0.2 release : GitHub Pages : Trilingual README
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="date">Phase 0 — Pilot</div>
+      <h4>Concept & Feasibility Study</h4>
+      <p>3-student pilot study, 20 gold labels, initial LDS analysis across ZH/EN/DE. Validated the core hypothesis that cross-language knowledge structures measurably differ.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 1 — Mathematics</div>
+      <h4>Mathematics Knowledge Graph (574 concepts, 3,538 relations)</h4>
+      <p>68 textbooks across ZH/EN/DE. MIMO extraction pipeline. First CDS/HDS/LDS measurements. Discovered peak-and-decline density pattern (F1–F5).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 2 — Physics</div>
+      <h4>Physics Knowledge Graph (366 concepts, 383 relations)</h4>
+      <p>94 textbook versions across 3 languages. Cross-validated the CDS peak pattern. Found physics peaks at Elementary vs Math at Middle (F6). Depth is 2.1× Math (F7).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 3 — Chemistry</div>
+      <h4>Chemistry Knowledge Graph (220 concepts, 215 relations)</h4>
+      <p>18 textbook versions. Confirmed universal STEM density pattern (F8). Three-discipline comparison complete.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 4 — Curriculum</div>
+      <h4>Curriculum Integration (4 education systems)</h4>
+      <p>Aligned all three knowledge graphs against NRW, UK, US, and CN curricula. Built the Coverage Score metric. Discovered dramatic coverage differences (F9/F10).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 5 — Coverage Score</div>
+      <h4>Cross-System Coverage Analysis</h4>
+      <p>Deep analysis of coverage trajectories. Found system design philosophy drives coverage patterns (exam-driven vs specialization). Three competing explanations evaluated.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 6 — Validation</div>
+      <h4>Gold Standard Validation & Model Benchmark</h4>
+      <p>Expanded from 20 to 92 gold labels. Benchmarked 20 models across Bailian API. qwen-plus selected as production model (F1=0.939 social, F1=0.882 overall).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">Phase 7 — Publication</div>
+      <h4>Paper, Release & GitHub Professionalization</h4>
+      <p>Full paper with 3 conclusions, methodology, results, discussion, error analysis. Release v0.2. GitHub Pages deployment. Trilingual READMEs. Comprehensive references.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 8: PAPER -->
+<!-- ================================================================ -->
+<section id="paper">
+  <h2>Paper & References</h2>
+  <p class="subtitle">Preprint manuscript, citations, and related work</p>
+
+  <div class="card-grid" style="margin-bottom:32px">
+    <div class="card" style="text-align:center">
+      <h3 style="justify-content:center">📄 Preprint</h3>
+      <p>Full manuscript covering all 3 research questions, 4 metrics, 10 findings, model benchmarks, and error analysis.</p>
+      <div class="meta" style="border:none;padding:0">
+        <span class="tag tag-blue">docs/paper/</span>
+        <span class="tag tag-green">7 chapters</span>
+        <span class="tag tag-yellow">19+ references</span>
+      </div>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 style="justify-content:center">📊 Data</h3>
+      <p>All knowledge graphs, curriculum alignments, and evaluation results available in the repository.</p>
+      <div class="meta" style="border:none;padding:0">
+        <span class="tag tag-blue">config/expert_graphs/</span>
+        <span class="tag tag-green">Open data</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:16px">Key References</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>Reference</th><th>Role in LinguaGraph</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Novak & Cañas (2008). Concept map theory.</td><td>CDS/HDS theoretical foundation</td></tr>
+      <tr><td>2</td><td>Ausubel (1963). Meaningful verbal learning.</td><td>Assimilation theory — knowledge is structured</td></tr>
+      <tr><td>3</td><td>Schmidt et al. (2001). Why schools matter (TIMSS).</td><td>Curriculum coherence — Coverage Score inspiration</td></tr>
+      <tr><td>4</td><td>Liang & Heckmann (2013). ZDM 45(6).</td><td>Cross-national textbook comparison methodology</td></tr>
+      <tr><td>5</td><td>Boroditsky (2001). Does language shape thought?</td><td>Linguistic relativity — RQ1 background</td></tr>
+      <tr><td>6</td><td>Siew (2019). Network science in education.</td><td>Network analysis of educational structures</td></tr>
+      <tr><td>7</td><td>OECD (2023). Education at a Glance.</td><td>Cross-national curriculum structure data</td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:32px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+    <h4 style="margin-bottom:8px">Cite this work</h4>
+    <pre style="background:var(--bg3);padding:16px;border-radius:8px;font-size:.82rem;overflow-x:auto;color:var(--text2)">
+@misc{linguaGraph2026,
+  author = {Rongjing, J.},
+  title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {BWKI 2026},
+  url = {https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph}
+}</pre>
+  </div>
+
+  <div style="margin-top:24px;text-align:center">
+    <a href="../../README.md" style="display:inline-block;padding:10px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;margin:4px">🇬🇧 English</a>
+    <a href="../../README_DE.md" style="display:inline-block;padding:10px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;margin:4px">🇩🇪 Deutsch</a>
+    <a href="../../README_ZH.md" style="display:inline-block;padding:10px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;margin:4px">🇨🇳 中文</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>🧠 <strong>LinguaGraph</strong> — Cross-Lingual Knowledge Structure Analysis Framework</p>
+  <p style="margin-top:8px">BWKI 2026 · All Rights Reserved · Built with qwen-plus · 1,160+ concepts · 92 gold labels · F1 = 0.939</p>
+  <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">GitHub</a></p>
+</footer>
+
+<script>
+// Mermaid init
+mermaid.initialize({
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#1e293b',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#2d3a50',
+    lineColor: '#60a5fa',
+    secondaryColor: '#111827',
+    tertiaryColor: '#1a2332'
+  },
+  startOnLoad: true,
+  securityLevel: 'loose'
+});
+
+// IntersectionObserver for section animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+// Active nav link
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  // Back to top
+  document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+});
+
+// Immediately show hero without animation delay
+document.getElementById('overview').classList.add('visible');
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+Chapter 5 Linear Transformations
+
+5.1 Definition and Examples
+
+A linear transformation T: V → W satisfies:
+- T(u + v) = T(u) + T(v)
+- T(cu) = cT(u)
+
+Examples:
+- Rotation, reflection, projection in R²/R³
+- Differentiation: D(p) = p' (from Pₙ to Pₙ₋₁)
+- Integration: ∫₀ˣ p(t)dt
+
+5.2 Kernel and Image
+
+Ker(T) = {v ∈ V : T(v) = 0} (null space)
+Im(T) = {T(v) : v ∈ V} (column space)
+
+Rank-Nullity: dim(Ker T) + dim(Im T) = dim(V)
+
+5.3 Matrix Representation
+
+Fix bases for V and W. T corresponds to matrix A where [T(v)]_B = A[v]_B.
+
+Composition of transformations = matrix multiplication.
+
+5.4 Change of Basis
+
+If B and B' are two bases, the transition matrix P satisfies:
+[x]_B = P[x]_B'
+
+Matrix of T in new basis: A' = P⁻¹AP
+
+Key relationship: Linear transformations are the abstract version of matrices. The matrix depends on the choice of basis; the transformation itself is basis-independent.
+
+Chapter 7 Inner Product Spaces
+
+7.1 Inner Products
+
+⟨u, v⟩ = u₁v₁ + u₂v₂ + ... + uₙvₙ (in Rⁿ)
+
+Properties: symmetry, linearity, positive definiteness
+
+7.2 Orthogonality and Gram-Schmidt
+
+Vectors are orthogonal if ⟨u, v⟩ = 0.
+Gram-Schmidt process converts any basis to an orthonormal basis.
+
+7.3 Least Squares
+
+Best approximate solution to Ax = b: x̂ = (A^T A)⁻¹ A^T b
+Geometric interpretation: orthogonal projection onto column space.
+
+7.4 Orthogonal Projections
+
+Proj_W v = Σᵢ ⟨v, qᵢ⟩qᵢ where {qᵢ} is an orthonormal basis for W.
+
+Key relationship: Inner products generalize the dot product to abstract vector spaces, enabling concepts of angle, distance, and orthogonality.

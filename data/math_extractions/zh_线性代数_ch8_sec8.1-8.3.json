@@ -1,0 +1,117 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第八章 内积空间",
+    "section": "8.1-8.3 内积、标准正交基与最小二乘法",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "内积",
+      "aliases": ["inner product", "Skalarprodukt"],
+      "definition_snippet": "满足对称性、线性性、正定性的二元运算 ⟨α, β⟩",
+      "category": "concept"
+    },
+    {
+      "name": "内积空间",
+      "aliases": ["inner product space", "Skalarprodukttraum", "欧几里得空间"],
+      "definition_snippet": "定义了内积的向量空间",
+      "category": "concept"
+    },
+    {
+      "name": "范数",
+      "aliases": ["norm", "Norm"],
+      "definition_snippet": "‖α‖ = √⟨α, α⟩，表示向量的长度",
+      "category": "concept"
+    },
+    {
+      "name": "正交",
+      "aliases": ["orthogonal", "orthogonal"],
+      "definition_snippet": "⟨α, β⟩ = 0 称 α 与 β 正交",
+      "category": "property"
+    },
+    {
+      "name": "标准正交基",
+      "aliases": ["orthonormal basis", "orthonormale Basis"],
+      "definition_snippet": "两两正且每个向量都是单位向量的基",
+      "category": "concept"
+    },
+    {
+      "name": "Gram-Schmidt 正交化",
+      "aliases": ["Gram-Schmidt process", "Gram-Schmidt-Verfahren"],
+      "definition_snippet": "将任意基转化为标准正交基的算法",
+      "category": "operation"
+    },
+    {
+      "name": "正交投影",
+      "aliases": ["orthogonal projection", "orthogonale Projektion"],
+      "definition_snippet": "向量在子空间上的最近近似",
+      "category": "concept"
+    },
+    {
+      "name": "最小二乘法",
+      "aliases": ["least squares", "Methode der kleinsten Quadrate"],
+      "definition_snippet": "求 ‖Ax - b‖ 最小的 x：x̂ = (A^T A)⁻¹ A^T b",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "内积空间",
+      "target": "向量空间",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "内积空间是定义了内积的向量空间"
+    },
+    {
+      "source": "范数",
+      "target": "内积",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "范数由内积导出"
+    },
+    {
+      "source": "正交",
+      "target": "内积",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "正交的定义基于内积为零"
+    },
+    {
+      "source": "标准正交基",
+      "target": "正交",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "标准正交基的向量两两正交"
+    },
+    {
+      "source": "Gram-Schmidt 正交化",
+      "target": "标准正交基",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "Gram-Schmidt 过程生成标准正交基"
+    },
+    {
+      "source": "正交投影",
+      "target": "内积",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "正交投影依赖于内积定义"
+    },
+    {
+      "source": "最小二乘法",
+      "target": "正交投影",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "最小二乘解是列空间上的正交投影"
+    },
+    {
+      "source": "最小二乘法",
+      "target": "矩阵",
+      "type": "applies_to",
+      "importance": 0.85,
+      "evidence": "最小二乘法用于求解超定方程组"
+    }
+  ]
+}
