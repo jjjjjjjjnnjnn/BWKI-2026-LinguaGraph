@@ -27,7 +27,7 @@
 
 
 <p align="center">
-  <b>不同语言和教育体系是如何组织同一种知识的？</b>
+  <b>How do different languages and educational systems organize the same knowledge?</b>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
     <img src="https://img.shields.io/github/stars/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=github&color=gold" alt="Stars">
   </a>
   <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-blue?style=flat-square" alt="许可">
+    <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-blue?style=flat-square" alt="License">
   </a>
   <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/commits/master">
     <img src="https://img.shields.io/github/last-commit/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=git" alt="Last Commit">
@@ -47,8 +47,8 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="人类验证 N=8">
-  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 模拟基线">
+  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
+  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
 <p align="center">
@@ -62,18 +62,18 @@
 <details>
 <summary><b>Click to expand / collapse</b></summary>
 
-- [🔥 为什么需要 LinguaGraph?](#-why-linguagraph)
-- [📐 核心指标一览](#-metrics-at-a-glance)
-- [🏆 12 项发现 (F1–F12)](#-12-findings-f1f12)
-- [📊 数据集](#-dataset)
-- [✅ 提取与人类验证](#-extraction--human-validation)
-- [🚀 快速开始](#-quick-start)
-- [🧪 模型基准测试](#-model-benchmark)
-- [📁 项目结构](#-project-structure)
-- [📚 Key 参考文献](#-key-references)
-- [📜 引用说明](#-citation)
-- [📜 许可 & 合规](#-license--compliance)
-- [🤝 联系方式](#-contact)
+- [🔥 为什么需要 LinguaGraph?](#-为什么需要-linguagraph)
+- [📐 核心指标一览](#-核心指标一览)
+- [🏆 12 项发现 (F1–F12)](#-12-项发现-f1f12)
+- [📊 数据集](#-数据集)
+- [✅ 提取与人类验证](#-提取与人类验证)
+- [🚀 快速开始](#-快速开始)
+- [🧪 模型基准测试](#-模型基准测试)
+- [📁 项目结构](#-项目结构)
+- [📚 参考文献](#-参考文献)
+- [📜 引用说明](#-引用说明)
+- [📜 许可与合规](#-许可与合规)
+- [🤝 联系方式](#-联系方式)
 
 </details>
 
@@ -81,16 +81,16 @@
 
 ## 🔥 为什么需要 LinguaGraph?
 
-Mathematical truth is universal, but the way it is organized in textbooks varies dramatically across languages and educational systems. Existing curriculum analysis tools are qualitative, manual, and cannot scale across multiple languages or disciplines.
+数学真理是普遍的，但它在教材中的组织方式在不同语言和教育体系之间差异巨大。现有的课程分析工具是定性的、手动的，无法跨多种语言或学科扩展。
 
-**LinguaGraph is the first automated framework that:**
+**LinguaGraph 是首个实现以下功能的自动化框架：**
 
-- 🧩 Constructs **multilingual knowledge graphs** from textbooks at scale (1,160+ concepts, 3 languages)
-- 📏 Quantifies **structural differences** between languages, education systems, and disciplines
-- 🎯 Measures **textbook-curriculum alignment** across 4 educational systems (Germany, UK, US, China)
-- ✅ Validates extraction quality with **92 gold-standard annotations** (F1 = 0.939)
+- 🧩 从教材中大规模构建**多语言知识图谱**（1,160+ 概念，3 种语言）
+- 📏 量化语言、教育体系和学科之间的**结构差异**
+- 🎯 衡量跨4个教育体系（德国、英国、美国、中国）的**教材-课程对齐度**
+- ✅ 使用 **92 个黄金标准标注**验证提取质量（F1 = 0.939）
 
-> **It turns the invisible structure of knowledge into visible, measurable metrics.**
+> **它将知识的无形结构转化为可见、可衡量的指标。**
 
 ---
 
@@ -98,10 +98,10 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 | 指标 | 全称 | 公式 | 含义 |
 |--------|-----------|---------|-----------------|
-| **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | Knowledge interconnection density per education level |
-| **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | Maximum prerequisite chain length |
-| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | Cross-language structural divergence |
-| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Textbook-curriculum alignment |
+| **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | 每教育阶段的知识互联密度 |
+| **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | 最大前提知识链长度 |
+| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | 跨语言结构差异度 |
+| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | 教材与课程对齐度 |
 
 ---
 
@@ -109,18 +109,18 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 | # | 发现 | 证据 | 影响 |
 |---|---------|----------|--------|
-| **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
-| **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
-| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 3,538 prerequisite relations | 数学 is a shallow web, not a deep tree |
-| **F4** | **ZH–DE** divergence highest (LDS=0.907), ZH–EN lowest (0.802) | Wikipedia corpus, 5 social topics | Counterintuitive: European languages not structurally closer |
-| **F5** | LDS is **topic-dependent** | ~0.2 variation within pairs | Cross-language divergence varies by knowledge domain |
-| **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 366 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
-| **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
-| **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | STEM density pattern is universal across subjects |
-| **F9** | **Coverage Score** varies dramatically across systems | NRW 34%, UK 82%, US 76%, China 8% | Educational system design fundamentally affects textbook alignment |
-| **F10** | Coverage trajectories reveal **system design philosophy** | UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization) | Assessment structure shapes curriculum-textbook relationship |
-| **F11** | **人类 LDS** 排序一致 Wikipedia corpus ✅ | N=8 参与者, 90 份回答, 3 levels | Cross-level consistency: individual → textbook → curriculum |
-| **F12** | 人类 LDS (**0.727**) 超过模拟基线 (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |
+| **F1** | CDS 在**初中**达到峰值（0.271），而非小学 | 在中文、英文、德文中独立确认 | 挑战"知识随阶段增长而变密"的假设 |
+| **F2** | **密度下降 3.7 倍**从初中到高中 | 0.271 → 0.073；概念数量 4.2 倍 | 整合枢纽后的课程多样化 |
+| **F3** | HDS ≤ **8**（均值 0.40）；83% 的概念是根节点 | 对 3,538 条前提关系进行 BFS | 数学是一个浅层网络，而非深层树状结构 |
+| **F4** | **中文-德语**差异最大（LDS=0.907），中文-英语最小（0.802） | 维基百科语料，5 个社会话题 | 反直觉：欧洲语言在结构上并不更接近 |
+| **F5** | LDS **依赖于话题** | 语对内部差异约 0.2 | 跨语言差异因知识领域而异 |
+| **F6** | **物理**在**小学**达到峰值（0.222），数学在初中（0.271） | 366 个物理概念，3 种语言 | 两者都遵循"早期整合，后期分化"的模式 |
+| **F7** | 物理的前提知识链**深 2.1 倍** | HDS 均值 0.85 对比 0.40 | 物理知识更具累积性和顺序性 |
+| **F8** | **化学**在初中达到峰值（0.042），比数学低 6.5 倍 | 220 个化学概念 | STEM 密度模式跨学科具有普遍性 |
+| **F9** | **覆盖率**在不同教育体系中差异巨大 | 北威州 34%，英国 82%，美国 76%，中国 8% | 教育体系设计从根本上影响教材对齐度 |
+| **F10** | 覆盖率轨迹揭示了**体系设计理念** | 英国 ↑ 53→90%（考试驱动）；北威州 ↘ 50→31%（专业化） | 考试结构塑造了课程与教材的关系 |
+| **F11** | **人类 LDS** 排序与维基百科语料一致 ✅ | N=8 参与者，90 份回答，3 个层次 | 跨层次一致性：个体 → 教材 → 课程 |
+| **F12** | 人类 LDS (**0.727**) 超过模拟基线 (**0.647**, p=0.05) | 300 条模拟回答，模拟提取 | 差异是真实存在的，而非随机波动 |
 
 ---
 
@@ -129,47 +129,47 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | 学科 | 概念 | 关系 | 教材 | 语言 | 课程覆盖率 |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **数学** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
-| **Physics** | 366 | 383 | 94 editions | ZH/EN/DE | NRW 38% |
-| **Chemistry** | 220 | 215 | 18 editions | ZH/EN/DE | NRW 36% |
-| **总计** | **1,160+** | **4,100+** | **180+** | **3 languages** | **4 educational systems** |
+| **物理** | 366 | 383 | 94 个版本 | ZH/EN/DE | NRW 38% |
+| **化学** | 220 | 215 | 18 个版本 | ZH/EN/DE | NRW 36% |
+| **总计** | **1,160+** | **4,100+** | **180+** | **3 种语言** | **4 个教育体系** |
 
 ---
 
 ## ✅ 提取与人类验证
 
-**92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):
+**92 个黄金标准标注**覆盖 2 个领域和 3 种语言（qwen-plus，百联 API）：
 
 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 总体 | n |
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
 | **社会概念** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |
 | **数学** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |
-| **All** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
+| **全部** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
 
-> 误差分析: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.
+> 误差分析：29% 的错误来自极短的回答（1-2 个词）；40% 来自部分遗漏。没有系统性的误导。
 
-**🧑 人类验证 Study (N=8)**
-- 101 responses from ZH/DE/EN native speakers across 5 social topics
-- 被试内 DE-EN LDS: **0.773** (same person, different language, different concepts)
-- 被试间 LDS rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
-- ✅ **Identical rank order** to Wikipedia corpus — 跨层次验证
+**🧑 人类验证研究（N=8）**
+- 来自中文/德文/英文母语者的 101 份回答，覆盖 5 个社会话题
+- 被试内 DE-EN LDS：**0.773**（同一人，不同语言，不同概念）
+- 被试间 LDS 排序：**DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
+- ✅ **与维基百科语料排序一致**——跨层次验证
 
-**🤖 模拟基线 (300 responses)**
-- Mean simulated LDS: **0.647** (SD=0.086)
-- **人类 LDS (0.727) > Simulation LDS (0.647)**, p=0.05
-- Confirms cross-language divergence exceeds random expectation
+**🤖 模拟基线（300 条回答）**
+- 模拟 LDS 均值：**0.647**（标准差=0.086）
+- **人类 LDS (0.727) > 模拟 LDS (0.647)**，p=0.05
+- 确认跨语言差异超出了随机预期
 
-> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
+> 完整方法论参见 [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md)，人类分析脚本参见 [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py)，模拟基线脚本参见 [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py)。
 
 ---
 
 
 ## 🚀 自行部署
 
-The 研究门户 is a **zero-build static site**. Deploy anywhere:
+研究门户是一个**零构建静态网站**。可部署到任何地方：
 
-| Platform | Publish Directory |
+| 平台 | 发布目录 |
 |----------|------------------|
-| **GitHub Pages** | Deployment bundle contents:
+| **GitHub Pages** | 部署包内容：
 _deploy/data.js
 _deploy/docs/annotation_guideline_v1.md
 _deploy/docs/annotation_guideline_v2.md
@@ -218,25 +218,26 @@ _deploy/docs/pitch_10min.md (auto) |
 ## 🚀 快速开始
 
 ```bash
-# 1. Install & configure
+# 1. 安装与配置
 git clone https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph.git
 cd BWKI-2026-LinguaGraph
 pip install openai numpy
 export BAILIAN_API_KEY="your-api-key"
 
-# 2. Validate extraction quality (5 min)
+# 2. 验证提取质量（5 分钟）
 python scripts/batch_process_responses.py --gold-only
 python scripts/evaluate_gold.py
 
-# 3. Generate 300-response 模拟基线
+# 3. 生成 300 条回答的模拟基线
 python scripts/simulate_baseline.py --mock
 
-# 4. Full analysis pipeline
+# 4. 完整分析流程
 python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
-### 测试任意模型
+#
+## Test any model
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
 python scripts/batch_process_responses.py --model glm-4.6 --gold-only
@@ -246,7 +247,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 模型基准测试
 
-20 models tested on identical 20 gold labels (20 social + 20 math) via [Alibaba Cloud Bailian](https://bailian.console.aliyun.com/):
+在相同的 20 个黄金标签（20 个社会 + 20 个数学）上测试了 20 个模型，通过[阿里云百联平台](https://bailian.console.aliyun.com/)：
 
 | 模型 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 速度 |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
@@ -255,32 +256,33 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | qwen3.7-max | Math | 0.980 | 0.551 | 0.778 | 2-3s |
 | glm-4.6 | Math | 0.951 | 0.595 | 0.689 | 10-20s |
 
-完整结果: [`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
+完整结果：[`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
 
 ---
 
 ## 📁 项目结构
 
 ```
-├── scripts/              # Analysis pipelines (batch extraction, evaluation, benchmark)
+├── scripts/              # 分析流程（批量提取、评估、基准测试）
 ├── docs/
-│   ├── paper/            # Full research paper (abstract → conclusion)
-│   ├── review/           # Quality audits & critical assessments
-│   ├── ethics/           # GDPR compliance & consent forms
-│   └── creative_submission.md  # BWKI competition submission
+│   ├── paper/            # 完整研究论文（摘要 → 结论）
+│   ├── review/           # 质量审计与批判性评估
+│   ├── ethics/           # GDPR 合规与知情同意书
+│   └── creative_submission.md  # BWKI 竞赛提交材料
 ├── config/
-│   ├── expert_graphs/    # Knowledge graphs (JSON) — Math, Physics, Chemistry, Curricula
-│   └── concept_mapping.json    # 174 cross-lingual concept alignments
-├── cognitive-space/      # 3D knowledge graph visualization (Three.js)
-├── research/findings/    # Benchmark outputs, evaluation reports
-└── .gitignore            # API keys, DB, PII excluded
+│   ├── expert_graphs/    # 知识图谱（JSON）——数学、物理、化学、课程
+│   └── concept_mapping.json    # 174 个跨语言概念对齐
+├── cognitive-space/      # 3D 知识图谱可视化（Three.js）
+├── research/findings/    # 基准测试输出、评估报告
+└── .gitignore            # 排除 API 密钥、数据库、个人隐私信息
 ```
 
 ---
 
 ## 📚 参考文献
 
-### Academic Papers
+#
+## 学术论文
 
 | # | Reference | Relevance |
 |---|-----------|-----------|
@@ -294,12 +296,13 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
 | 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
 | 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学 and Science.* | Curriculum coverage analysis methodology |
+| 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学和 Science.* | Curriculum coverage analysis methodology |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
 
-### Open Source Libraries
+#
+## 开源库
 
-| Library | Usage | 许可 |
+| 库 | 用途 | 许可 |
 |---------|-------|---------|
 | [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
 | [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
@@ -311,16 +314,18 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
 | [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
 
-### Curriculum Standards (Primary Sources)
+#
+## 课程标准（原始来源）
 
-| Standard | Publisher |
+| 标准 | 发布者 |
 |----------|-----------|
 | Kernlehrplan Mathematik/Physik/Chemie NRW (Sek I 2019, Sek II 2023) | MSB NRW |
-| UK National Curriculum (数学, Science) | DfE England |
+| UK National Curriculum (Mathematics, Science) | DfE England |
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
-### Textbook Corpora
+#
+## 教材语料库
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
 
@@ -330,12 +335,14 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
-### Acknowledgments
+#
+## 致谢
 
-- **BWKI 2026** — Competition platform
-- **Alibaba Cloud Bailian** — Free API quota (1M tokens per model)
-- **OpenRouter** — 模型 routing (tested)
-- **LM Studio** — Local inference (initial development)## 📜 引用说明
+- **BWKI 2026** — 竞赛平台
+- **阿里云百联** — 免费 API 额度（每个模型 100 万 token）
+- **OpenRouter** — 模型路由（已测试）
+- **LM Studio** — 本地推理（初期开发）
+## 📜 引用说明
 
 ```bibtex
 @misc{linguaGraph2026,
@@ -350,31 +357,31 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ---
 
-## 📜 许可 & 合规
+## 📜 许可与合规
 
-- **许可**: 保留所有权利 — BWKI 2026 competition project
-- **Privacy**: Participant data fully anonymized. No PII in repository. See [`docs/ethics/`](docs/ethics/) for GDPR compliance.
-- **AI Ethics**: LLM usage limited to concept extraction from textbook text. No synthetic data presented as human data.
-- **Data Sources**: Textbook excerpts used for academic research under fair use principles.
+- **许可**：保留所有权利 — BWKI 2026 竞赛项目
+- **隐私**：参与者数据完全匿名化。仓库中不包含个人身份信息。GDPR 合规详情参见 [`docs/ethics/`](docs/ethics/)。
+- **AI 伦理**：LLM 使用仅限于从教材文本中提取概念。没有将合成数据呈现为人类数据。
+- **数据来源**：教材摘录在合理使用原则下用于学术研究。
 
 ---
 
 ## 🤝 联系方式
 
-- **Competition**: [BWKI 2026](https://www.bw-ki.de/)
+- **竞赛**：[BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
-- **Author**: Rongjing J. — bilingual researcher (ZH/DE), passionate about AI & education
+- **作者**：Rongjing J. — 双语研究者（中/德），对 AI 与教育充满热情
 
 <p align="center">
-  <sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>
+  <sub>用 ❤️ 为 BWKI 2026 打造——因为知识应该被理解，而不仅仅是被告知。</sub>
 </p>
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#60a5fa,#a78bfa);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem;text-decoration:none">
     🧠 LinguaGraph 研究门户 →
   </a>
   <br>
-  <span style="color:#94a3b8;font-size:0.85rem">研究问题 · 发现s · 交互式 3D · Validation · Paper</span>
+  <span style="color:#94a3b8;font-size:0.85rem">研究问题 · 发现 · 交互式 3D · 验证 · 论文</span>
 </p>
 
 

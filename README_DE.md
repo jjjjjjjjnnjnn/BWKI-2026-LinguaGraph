@@ -27,7 +27,7 @@
 
 
 <p align="center">
-  <b>Wie organisieren verschiedene Sprachen und Bildungssysteme das gleiche Wissen?</b>
+  <b>How do different languages and educational systems organize the same knowledge?</b>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
     <img src="https://img.shields.io/github/stars/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=github&color=gold" alt="Stars">
   </a>
   <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-blue?style=flat-square" alt="Lizenz">
+    <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-blue?style=flat-square" alt="License">
   </a>
   <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/commits/master">
     <img src="https://img.shields.io/github/last-commit/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph?style=flat-square&logo=git" alt="Last Commit">
@@ -47,8 +47,8 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Humanvalidierung N=8">
-  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulationsbasislinie">
+  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
+  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
 <p align="center">
@@ -62,18 +62,18 @@
 <details>
 <summary><b>Click to expand / collapse</b></summary>
 
-- [🔥 Warum LinguaGraph?](#-why-linguagraph)
-- [📐 Metriken im Uberblick](#-metrics-at-a-glance)
-- [🏆 12 Erkenntnisse (F1–F12)](#-12-findings-f1f12)
-- [📊 Datensatz](#-dataset)
-- [✅ Extraktion und Humanvalidierung](#-extraction--human-validation)
-- [🚀 Schnellstart](#-quick-start)
-- [🧪 Modelllvergleich](#-model-benchmark)
-- [📁 Projektstruktur](#-project-structure)
-- [📚 Key Literaturverzeichnis](#-key-references)
-- [📜 Zitationshinweis](#-citation)
-- [📜 Lizenz & Compliance](#-license--compliance)
-- [🤝 Kontakt](#-contact)
+- [🔥 Warum LinguaGraph?](#-warum-linguagraph)
+- [📐 Metriken im Uberblick](#-metriken-im-uberblick)
+- [🏆 12 Erkenntnisse (F1–F12)](#-12-erkenntnisse-f1f12)
+- [📊 Datensatz](#-datensatz)
+- [✅ Extraktion und Humanvalidierung](#-extraktion-und-humanvalidierung)
+- [🚀 Schnellstart](#-schnellstart)
+- [🧪 Modellvergleich](#-modellvergleich)
+- [📁 Projektstruktur](#-projektstruktur)
+- [📚 Literaturverzeichnis](#-literaturverzeichnis)
+- [📜 Zitationshinweis](#-zitationshinweis)
+- [📜 Lizenz & Compliance](#-lizenz--compliance)
+- [🤝 Kontakt](#-kontakt)
 
 </details>
 
@@ -81,27 +81,27 @@
 
 ## 🔥 Warum LinguaGraph?
 
-Mathematical truth is universal, but the way it is organized in textbooks varies dramatically across languages and educational systems. Existing curriculum analysis tools are qualitative, manual, and cannot scale across multiple languages or disciplines.
+Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrbüchern organisiert ist, variiert erheblich zwischen Sprachen und Bildungssystemen. Bestehende Lehrplananalysewerkzeuge sind qualitativ, manuell und können nicht über mehrere Sprachen oder Disziplinen hinweg skaliert werden.
 
-**LinguaGraph is the first automated framework that:**
+**LinguaGraph ist das erste automatisierte Framework, das:**
 
-- 🧩 Constructs **multilingual knowledge graphs** from textbooks at scale (1,160+ concepts, 3 languages)
-- 📏 Quantifies **structural differences** between languages, education systems, and disciplines
-- 🎯 Measures **textbook-curriculum alignment** across 4 educational systems (Germany, UK, US, China)
-- ✅ Validates extraction quality with **92 gold-standard annotations** (F1 = 0.939)
+- 🧩 **Mehrsprachige Wissensgraphen** aus Lehrbüchern in großem Maßstab erstellt (1.160+ Konzepte, 3 Sprachen)
+- 📏 **Strukturelle Unterschiede** zwischen Sprachen, Bildungssystemen und Disziplinen quantifiziert
+- 🎯 **Lehrbuch-Lehrplan-Abgleich** über 4 Bildungssysteme hinweg misst (Deutschland, Großbritannien, USA, China)
+- ✅ Extraktionsqualität mit **92 Goldstandard-Annotationen** validiert (F1 = 0,939)
 
-> **It turns the invisible structure of knowledge into visible, measurable metrics.**
+> **Es verwandelt die unsichtbare Struktur von Wissen in sichtbare, messbare Metriken.**
 
 ---
 
-## 📐 Metriken im Uberblick
+## 📐 Metriken im Überblick
 
 | Metrik | Bezeichnung | Formel | Bedeutung |
 |--------|-----------|---------|-----------------|
-| **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | Knowledge interconnection density per education level |
-| **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | Maximum prerequisite chain length |
-| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | Cross-language structural divergence |
-| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Textbook-curriculum alignment |
+| **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | Vernetzungsdichte des Wissens pro Bildungsstufe |
+| **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | Maximale Länge der Voraussetzungskette |
+| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | Sprachübergreifende strukturelle Divergenz |
+| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Lehrbuch-Lehrplan-Abgleich |
 
 ---
 
@@ -109,18 +109,18 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 | # | Erkenntnis | Beleg | Auswirkung |
 |---|---------|----------|--------|
-| **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
-| **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
-| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 3,538 prerequisite relations | Mathematik is a shallow web, not a deep tree |
-| **F4** | **ZH–DE** divergence highest (LDS=0.907), ZH–EN lowest (0.802) | Wikipedia corpus, 5 social topics | Counterintuitive: European languages not structurally closer |
-| **F5** | LDS is **topic-dependent** | ~0.2 variation within pairs | Cross-language divergence varies by knowledge domain |
-| **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 366 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
-| **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
-| **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | STEM density pattern is universal across subjects |
-| **F9** | **Coverage Score** varies dramatically across systems | NRW 34%, UK 82%, US 76%, China 8% | Educational system design fundamentally affects textbook alignment |
-| **F10** | Coverage trajectories reveal **system design philosophy** | UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization) | Assessment structure shapes curriculum-textbook relationship |
-| **F11** | **Human LDS** Rangfolge ubereinstimmend mit Wikipedia corpus ✅ | N=8 Probanden, 90 Antworten, 3 levels | Cross-level consistency: individual → textbook → curriculum |
-| **F12** | Human LDS (**0.727**) ubertrifft Simulationsbasislinie (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |
+| **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
+| **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
+| **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 3.538 Voraussetzungsrelationen | Mathematik ist ein flaches Netz, kein tiefer Baum |
+| **F4** | **ZH–DE** Divergenz am höchsten (LDS=0,907), ZH–EN am niedrigsten (0,802) | Wikipedia-Korpus, 5 soziale Themen | Gegenintuitiv: Europäische Sprachen sind strukturell nicht näher |
+| **F5** | LDS ist **themenabhängig** | ~0,2 Variation innerhalb der Paare | Sprachübergreifende Divergenz variiert nach Wissensdomäne |
+| **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 366 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
+| **F7** | Physik hat **2,1× tiefere** Voraussetzungsketten | HDS-Mittelwert 0,85 vs. 0,40 | Physikwissen ist kumulativer und sequenzieller |
+| **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | STEM-Dichtemuster ist fächerübergreifend universell |
+| **F9** | **Coverage Score** variiert dramatisch zwischen Systemen | NRW 34%, Großbritannien 82%, USA 76%, China 8% | Die Gestaltung des Bildungssystems beeinflusst grundlegend den Lehrbuchabgleich |
+| **F10** | Coverage-Verläufe offenbaren **Systemdesignphilosophie** | Großbritannien ↑ 53→90% (prüfungsgetrieben); NRW ↘ 50→31% (Spezialisierung) | Prüfungsstruktur prägt die Lehrplan-Lehrbuch-Beziehung |
+| **F11** | **Humanes LDS** Rangfolge stimmt mit Wikipedia-Korpus überein ✅ | N=8 Probanden, 90 Antworten, 3 Ebenen | Ebenenübergreifende Konsistenz: Individuum → Lehrbuch → Lehrplan |
+| **F12** | Humanes LDS (**0,727**) übertrifft Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |
 
 ---
 
@@ -128,48 +128,48 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 | Fach | Konzepte | Beziehungen | Lehrbucher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematik** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
-| **Physics** | 366 | 383 | 94 editions | ZH/EN/DE | NRW 38% |
-| **Chemistry** | 220 | 215 | 18 editions | ZH/EN/DE | NRW 36% |
-| **Gesamt** | **1,160+** | **4,100+** | **180+** | **3 languages** | **4 educational systems** |
+| **Mathematik** | 574 | 3.538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
+| **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW 38% |
+| **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE | NRW 36% |
+| **Gesamt** | **1.160+** | **4.100+** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |
 
 ---
 
 ## ✅ Extraktion und Humanvalidierung
 
-**92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):
+**92 Goldstandard-Annotationen** über 2 Domänen und 3 Sprachen (qwen-plus, Bailian API):
 
 | Bereich | ZH F1 | DE F1 | EN F1 | Gesamt | n |
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
-| **Soziale Konzepte** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |
-| **Mathematik** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |
-| **All** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
+| **Soziale Konzepte** | **0,974** | **0,949** | **0,882** | **0,939** | 72 |
+| **Mathematik** | 0,857 | 0,506 | 0,711 | 0,674 | 20 |
+| **Alle** | **0,974** | **0,949** | **0,882** | **0,939** | **92** |
 
-> Fehleranalyse: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.
+> Fehleranalyse: 29% der Fehler stammen von sehr kurzen Antworten (1-2 Wörter); 40% von teilweisen Auslassungen. Keine systematische Fehlleitung.
 
-**🧑 Humanvalidierung Study (N=8)**
-- 101 responses from ZH/DE/EN native speakers across 5 social topics
-- Innerhalb der Versuchspersonen DE-EN LDS: **0.773** (same person, different language, different concepts)
-- Zwischen den Gruppen LDS rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
-- ✅ **Identical rank order** to Wikipedia corpus — Ebenenubergreifende Validierung
+**🧑 Humanvalidierungsstudie (N=8)**
+- 101 Antworten von ZH/DE/EN-Muttersprachlern zu 5 sozialen Themen
+- Innerhalb der Versuchspersonen DE-EN LDS: **0,773** (gleiche Person, andere Sprache, andere Konzepte)
+- Zwischen den Gruppen LDS-Rangfolge: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
+- ✅ **Identische Rangfolge** mit Wikipedia-Korpus — ebenenübergreifende Validierung
 
-**🤖 Simulationsbasislinie (300 responses)**
-- Mean simulated LDS: **0.647** (SD=0.086)
-- **Human LDS (0.727) > Simulation LDS (0.647)**, p=0.05
-- Confirms cross-language divergence exceeds random expectation
+**🤖 Simulationsbasislinie (300 Antworten)**
+- Mittleres simuliertes LDS: **0,647** (SD=0,086)
+- **Humanes LDS (0,727) > Simulations-LDS (0,647)**, p=0,05
+- Bestätigt, dass sprachübergreifende Divergenz über zufällige Erwartung hinausgeht
 
-> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
+> Siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) für die vollständige Methodik, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) für die Humananalyse und [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) für die Simulation.
 
 ---
 
 
 ## 🚀 Selbst hosten
 
-The Forschungsportal is a **zero-build static site**. Deploy anywhere:
+Das Forschungsportal ist eine **Zero-Build-Statikseite**. Überall bereitstellen:
 
-| Platform | Publish Directory |
+| Plattform | Verzeichnis |
 |----------|------------------|
-| **GitHub Pages** | Deployment bundle contents:
+| **GitHub Pages** | Bereitstellungsbundle-Inhalt:
 _deploy/data.js
 _deploy/docs/annotation_guideline_v1.md
 _deploy/docs/annotation_guideline_v2.md
@@ -218,25 +218,26 @@ _deploy/docs/pitch_10min.md (auto) |
 ## 🚀 Schnellstart
 
 ```bash
-# 1. Install & configure
+# 1. Installieren & konfigurieren
 git clone https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph.git
 cd BWKI-2026-LinguaGraph
 pip install openai numpy
 export BAILIAN_API_KEY="your-api-key"
 
-# 2. Validate extraction quality (5 min)
+# 2. Extraktionsqualität validieren (5 Min.)
 python scripts/batch_process_responses.py --gold-only
 python scripts/evaluate_gold.py
 
-# 3. Generate 300-response Simulationsbasislinie
+# 3. 300-Antworten-Simulationsbasislinie generieren
 python scripts/simulate_baseline.py --mock
 
-# 4. Full analysis pipeline
+# 4. Vollständige Analyse-Pipeline
 python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
-### Beliebiges Modelll testen
+#
+## Test any model
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
 python scripts/batch_process_responses.py --model glm-4.6 --gold-only
@@ -244,43 +245,44 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ---
 
-## 🧪 Modelllvergleich
+## 🧪 Modellvergleich
 
-20 models tested on identical 20 gold labels (20 social + 20 math) via [Alibaba Cloud Bailian](https://bailian.console.aliyun.com/):
+20 Modelle getestet auf identischen 20 Goldlabels (20 sozial + 20 Mathe) über [Alibaba Cloud Bailian](https://bailian.console.aliyun.com/):
 
 | Modell | Bereich | ZH F1 | DE F1 | EN F1 | Geschwindigkeit |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
-| **qwen-plus** | **Social** | **0.974** | **0.949** | **0.882** | 2-3s |
+| **qwen-plus** | **Social** | **0,974** | **0,949** | **0,882** | 2-3s |
 | qwen-turbo | Math | 0.714 | 0.448 | 0.810 | 1s |
 | qwen3.7-max | Math | 0.980 | 0.551 | 0.778 | 2-3s |
 | glm-4.6 | Math | 0.951 | 0.595 | 0.689 | 10-20s |
 
-Vollstandige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
+Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
 
 ---
 
 ## 📁 Projektstruktur
 
 ```
-├── scripts/              # Analysis pipelines (batch extraction, evaluation, benchmark)
+├── scripts/              # Analyse-Pipelines (Batch-Extraktion, Evaluation, Benchmark)
 ├── docs/
-│   ├── paper/            # Full research paper (abstract → conclusion)
-│   ├── review/           # Quality audits & critical assessments
-│   ├── ethics/           # GDPR compliance & consent forms
-│   └── creative_submission.md  # BWKI competition submission
+│   ├── paper/            # Vollständiges Forschungspapier (Abstract → Fazit)
+│   ├── review/           # Qualitätsaudits & kritische Bewertungen
+│   ├── ethics/           # DSGVO-Compliance & Einwilligungsformulare
+│   └── creative_submission.md  # BWKI-Wettbewerbseinreichung
 ├── config/
-│   ├── expert_graphs/    # Knowledge graphs (JSON) — Math, Physics, Chemistry, Curricula
-│   └── concept_mapping.json    # 174 cross-lingual concept alignments
-├── cognitive-space/      # 3D knowledge graph visualization (Three.js)
-├── research/findings/    # Benchmark outputs, evaluation reports
-└── .gitignore            # API keys, DB, PII excluded
+│   ├── expert_graphs/    # Wissensgraphen (JSON) — Mathematik, Physik, Chemie, Lehrpläne
+│   └── concept_mapping.json    # 174 sprachübergreifende Konzeptzuordnungen
+├── cognitive-space/      # 3D-Wissensgraph-Visualisierung (Three.js)
+├── research/findings/    # Benchmark-Ergebnisse, Evaluationsberichte
+└── .gitignore            # API-Schlüssel, DB, PII ausgeschlossen
 ```
 
 ---
 
 ## 📚 Literaturverzeichnis
 
-### Academic Papers
+#
+## Wissenschaftliche Publikationen
 
 | # | Reference | Relevance |
 |---|-----------|-----------|
@@ -294,12 +296,13 @@ Vollstandige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](r
 | 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
 | 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
 | 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik and Science.* | Curriculum coverage analysis methodology |
+| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik und Science.* | Curriculum coverage analysis methodology |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
 
-### Open Source Libraries
+#
+## Open-Source-Bibliotheken
 
-| Library | Usage | Lizenz |
+| Bibliothek | Verwendung | Lizenz |
 |---------|-------|---------|
 | [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
 | [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
@@ -311,16 +314,18 @@ Vollstandige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](r
 | [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
 | [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
 
-### Curriculum Standards (Primary Sources)
+#
+## Lehrplanstandards (Primärquellen)
 
-| Standard | Publisher |
+| Standard | Herausgeber |
 |----------|-----------|
 | Kernlehrplan Mathematik/Physik/Chemie NRW (Sek I 2019, Sek II 2023) | MSB NRW |
 | UK National Curriculum (Mathematik, Science) | DfE England |
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
-### Textbook Corpora
+#
+## Lehrbuchkorpora
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
 
@@ -330,12 +335,14 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
-### Acknowledgments
+#
+## Danksagungen
 
-- **BWKI 2026** — Competition platform
-- **Alibaba Cloud Bailian** — Free API quota (1M tokens per model)
-- **OpenRouter** — Modell routing (tested)
-- **LM Studio** — Local inference (initial development)## 📜 Zitationshinweis
+- **BWKI 2026** — Wettbewerbsplattform
+- **Alibaba Cloud Bailian** — Kostenloses API-Kontingent (1M Tokens pro Modell)
+- **OpenRouter** — Modell-Routing (getestet)
+- **LM Studio** — Lokale Inferenz (erste Entwicklung)
+## 📜 Zitationshinweis
 
 ```bibtex
 @misc{linguaGraph2026,
@@ -352,29 +359,29 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ## 📜 Lizenz & Compliance
 
-- **Lizenz**: Alle Rechte vorbehalten — BWKI 2026 competition project
-- **Privacy**: Participant data fully anonymized. No PII in repository. See [`docs/ethics/`](docs/ethics/) for GDPR compliance.
-- **AI Ethics**: LLM usage limited to concept extraction from textbook text. No synthetic data presented as human data.
-- **Data Sources**: Textbook excerpts used for academic research under fair use principles.
+- **Lizenz**: Alle Rechte vorbehalten — BWKI 2026 Wettbewerbsprojekt
+- **Datenschutz**: Teilnehmerdaten vollständig anonymisiert. Keine PII im Repository. Siehe [`docs/ethics/`](docs/ethics/) für DSGVO-Compliance.
+- **KI-Ethik**: LLM-Nutzung beschränkt auf Konzeptextraktion aus Lehrbuchtexten. Keine synthetischen Daten als menschliche Daten dargestellt.
+- **Datenquellen**: Lehrbuchauszüge für akademische Forschung unter Fair-Use-Grundsätzen verwendet.
 
 ---
 
 ## 🤝 Kontakt
 
-- **Competition**: [BWKI 2026](https://www.bw-ki.de/)
+- **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
-- **Author**: Rongjing J. — bilingual researcher (ZH/DE), passionate about AI & education
+- **Autor**: Rongjing J. — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung
 
 <p align="center">
-  <sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>
+  <sub>Mit ❤️ für BWKI 2026 — denn Wissen sollte verstanden, nicht nur gelehrt werden.</sub>
 </p>
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#60a5fa,#a78bfa);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem;text-decoration:none">
     🧠 LinguaGraph Forschungsportal →
   </a>
   <br>
-  <span style="color:#94a3b8;font-size:0.85rem">Forschungsfragen · Erkenntniss · Interaktives 3D · Validation · Paper</span>
+  <span style="color:#94a3b8;font-size:0,85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
 </p>
 
 

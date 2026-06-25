@@ -7,6 +7,7 @@
     <title>CognitiveSpace v2 — Mathematics Knowledge Graph · ZH/EN/DE</title>
     <script src="https://unpkg.com/3d-force-graph"></script>
     <script src="data.js"></script>
+    <script src="i18n.js"></script>
     <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
@@ -129,38 +130,38 @@
 
     <div id="loading">
         <div class="spinner"></div>
-        <p>CognitiveSpace</p>
+        <p data-i18n="loading">CognitiveSpace</p>
         <div class="err" id="loadErr"></div>
     </div>
 
     <div id="hud">
         <h1>Cognitive<span>Space</span></h1>
-        <div class="sub" id="sub">574 concepts · 3538 relations</div>
+        <div class="sub" id="sub">{countC} concepts · {countR} relations</div>
         <div class="s">
-            <div class="si"><span class="sv" id="sC">0</span><span class="sl">Concepts</span></div>
-            <div class="si"><span class="sv" id="sR">0</span><span class="sl">Relations</span></div>
-            <div class="si"><span class="sv" id="sL">0</span><span class="sl">Levels</span></div>
+            <div class="si"><span class="sv" id="sC">0</span><span class="sl" data-i18n="stats.concepts">Concepts</span></div>
+            <div class="si"><span class="sv" id="sR">0</span><span class="sl" data-i18n="stats.relations">Relations</span></div>
+            <div class="si"><span class="sv" id="sL">0</span><span class="sl" data-i18n="stats.levels">Levels</span></div>
         </div>
         <div class="br" id="vb">
-            <button class="b v a" data-m="universe">Universe</button>
-            <button class="b v" data-m="spacefill">Space-Fill</button>
-            <button class="b v" data-m="compare">Compare</button>
+            <button class="b v a" data-m="universe" data-i18n="mode.universe">Universe</button>
+            <button class="b v" data-m="spacefill" data-i18n="mode.spacefill">Space-Fill</button>
+            <button class="b v" data-m="compare" data-i18n="mode.compare">Compare</button>
         </div>
         <div class="br" id="lb">
-            <button class="b l a" data-g="all">All</button>
+            <button class="b l a" data-g="all" data-i18n="lang.all">All</button>
             <button class="b l" data-g="zh">ZH</button>
             <button class="b l" data-g="en">EN</button>
             <button class="b l" data-g="de">DE</button>
         </div>
         <div class="br" style="margin-bottom:0">
-            <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem">⟳ Auto Rotate</button>
+            <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem" data-i18n="auto.rotate">⟳ Auto Rotate</button>
         </div>
-        <button id="rbtn" class="b" style="display:none;width:100%;margin-top:4px;border-color:rgba(255,107,107,.15);color:#ff6b6b">← Clear</button>
+        <button id="rbtn" class="b" style="display:none;width:100%;margin-top:4px;border-color:rgba(255,107,107,.15);color:#ff6b6b" data-i18n="clear">← Clear</button>
         <div class="leg">
-            <span class="li"><span class="ld" style="background:#4ade80"></span>Elementary</span>
-            <span class="li"><span class="ld" style="background:#22d3ee"></span>Middle</span>
-            <span class="li"><span class="ld" style="background:#60a5fa"></span>High</span>
-            <span class="li"><span class="ld" style="background:#c084fc"></span>College</span>
+            <span class="li"><span class="ld" style="background:#4ade80"></span><span data-i18n="level.elementary">Elementary</span></span>
+            <span class="li"><span class="ld" style="background:#22d3ee"></span><span data-i18n="level.middle">Middle</span></span>
+            <span class="li"><span class="ld" style="background:#60a5fa"></span><span data-i18n="level.high">High</span></span>
+            <span class="li"><span class="ld" style="background:#c084fc"></span><span data-i18n="level.college">College</span></span>
         </div>
     </div>
 
@@ -172,9 +173,9 @@
         <div class="note" id="dnote"></div>
         <div class="rf" id="dr"></div>
     </div>
-    <div id="mode-tag">UNIVERSE</div>
-    <a href="story/index.html" target="_blank" style="position:absolute;top:20px;right:20px;z-index:100;font-size:.55rem;color:#4a7dff;background:rgba(74,125,255,.1);border:1px solid rgba(74,125,255,.2);border-radius:6px;padding:6px 12px;text-decoration:none;letter-spacing:.4px">📖 Research Portal</a>
-    <div id="ctrl-hint">DRAG · SCROLL · WASD</div>
+    <div id="mode-tag" data-i18n="mode.universe">UNIVERSE</div>
+    <a href="story/index.html" target="_blank" style="position:absolute;top:20px;right:20px;z-index:100;font-size:.55rem;color:#4a7dff;background:rgba(74,125,255,.1);border:1px solid rgba(74,125,255,.2);border-radius:6px;padding:6px 12px;text-decoration:none;letter-spacing:.4px" data-i18n="research.portal">📖 Research Portal</a>
+    <div id="ctrl-hint" data-i18n="ctrl.hint">DRAG · SCROLL · WASD</div>
 
     <script>
 // CognitiveSpace — Embedded visualization data
@@ -207,7 +208,7 @@
     function init() {
         // Check dependencies
         if (typeof ForceGraph3D === 'undefined') {
-            document.getElementById('loadErr').textContent = '3d-force-graph failed to load. Check network.';
+            document.getElementById('loadErr').textContent = ''+i18n.tr('error.load')+'';
             document.getElementById('loadErr').style.display = 'block';
             return;
         }
@@ -215,7 +216,7 @@
         const data = typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT :
                      typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null;
         if (!data || !data.nodes || !data.nodes.length) {
-            document.getElementById('loadErr').textContent = 'Knowledge graph data not found.';
+            document.getElementById('loadErr').textContent = ''+i18n.tr('error.data')+'';
             document.getElementById('loadErr').style.display = 'block';
             return;
         }
@@ -224,11 +225,12 @@
         document.getElementById('sC').textContent = ND.length;
         document.getElementById('sR').textContent = LK.length;
         document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
-        document.getElementById('sub').textContent = ND.length+' concepts · '+LK.length+' relations';
+        document.getElementById('sub').textContent = i18n.tr('hud.subtitle', {concepts: ND.length, relations: LK.length});
 
         buildAdj();
         mkGraph();
         mkUI();
+        i18n.apply();
 
         // Hide loading
         setTimeout(() => {
@@ -497,7 +499,7 @@
         document.getElementById('dl').innerHTML = ['zh','en','de']
             .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
         const lv = n.level||'college', lc = LV[lv]||LV.college;
-        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+(n.source_count||1)+' sources';
+        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+((n.source_count||1)+' '+i18n.tr('sources'));
 
         // ── Compute node-level metrics ──
         const gd = G.graphData();
@@ -535,44 +537,44 @@
 
         // Node role classification
         const avgDegree = gd ? (2 * gd.links.length / gd.nodes.length) : 6.2;
-        let role = 'Intermediate'; let roleColor = '#60a5fa';
-        if (hdsDepth >= 3) { role = 'Prerequisite Chain'; roleColor = '#22d3ee'; }
-        else if (connections > avgDegree * 2) { role = 'Hub Concept'; roleColor = '#f59e0b'; }
-        else if (connections <= 2) { role = 'Peripheral'; roleColor = '#6b7280'; }
+        let role = i18n.tr('role.intermediate'); let roleColor = '#60a5fa';
+        if (hdsDepth >= 3) { role = i18n.tr('role.prerequisite_chain'); roleColor = '#22d3ee'; }
+        else if (connections > avgDegree * 2) { role = i18n.tr('role.hub'); roleColor = '#f59e0b'; }
+        else if (connections <= 2) { role = i18n.tr('role.peripheral'); roleColor = '#6b7280'; }
 
         // Auto-generated insight
         const lvOrder = {elementary:1, middle:2, high:3, college:4};
         const lev = lvOrder[lv]||3;
         let insight = '';
-        if (role === 'Hub Concept') insight = 'This concept connects to many others, acting as a structural hub. Understanding it unlocks multiple advanced topics.';
-        else if (role === 'Prerequisite Chain') insight = 'This concept sits in a deep dependency chain (depth='+hdsDepth+'), serving as a building block for higher concepts.';
-        else if (role === 'Peripheral') insight = 'This concept has few direct connections — a specialized topic with narrow dependencies.';
-        else insight = 'This concept holds a balanced position in the knowledge network with moderate connectivity.';
+        if (role === i18n.tr('role.hub')) insight = i18n.tr('insight.hub');
+        else if (role === i18n.tr('role.prerequisite_chain')) insight = i18n.tr('insight.chain', {depth: hdsDepth});
+        else if (role === i18n.tr('role.peripheral')) insight = i18n.tr('insight.peripheral');
+        else insight = i18n.tr('insight.balanced');
 
-        const lvDesc = {elementary:'Foundational: basic arithmetic and early geometry concepts', middle:'Intermediate: algebra, equations, and function concepts', high:'Advanced: calculus, probability, and vector concepts', college:'Specialized: higher mathematics with formal proofs and theory'}[lv]||'General concept';
+        const lvDesc = i18n.tr('desc.'+lv);
 
         // Render metrics
         const uniqueNbrs = [...new Set(neighbors)]; const topNbrs = uniqueNbrs.slice(0,5);
-        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">Connected to:</span><span class="val">'+topNbrs.join(', ')+(uniqueNbrs.length>5?', +'+(uniqueNbrs.length-5):'')+'</span></div>' : '';
+        const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">'+i18n.tr('detail.connected_to')+'</span><span class="val">'+topNbrs.join(', ')+(uniqueNbrs.length>5?', +'+(uniqueNbrs.length-5):'')+'</span></div>' : '';
 
         document.getElementById('dmetrics').innerHTML =
-            '<div style="margin-bottom:3px;font-size:.6rem;color:#7a9aff;font-weight:500">NODE PROFILE</div>'+
-            '<div class="row"><span class="label">Degree:</span><span class="val">'+connections+' connections</span></div>'+nbrHtml+
-            '<div class="row"><span class="label">Role:</span><span class="val" style="color:'+roleColor+'">'+role+'</span></div>'+
-            '<div class="row"><span class="label">HDS depth:</span><span class="val">'+hdsDepth+' levels</span></div>'+
-            '<div class="row"><span class="label">Sources:</span><span class="val">'+(n.source_count||1)+' textbooks</span></div>'+
-            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">GRAPH PROFILE (full dataset: '+(gd?gd.nodes.length:574)+' nodes)</div>'+
-            '<div class="row"><span class="label">CDS:</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
-            '<div class="row"><span class="label">Avg degree:</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
-            '<div class="row"><span class="label">LDS ZH-EN:</span><span class="val">0.504</span></div>'+
-            '<div class="row"><span class="label">LDS ZH-DE:</span><span class="val">0.443</span></div>'+
-            '<div class="row"><span class="label">LDS EN-DE:</span><span class="val">0.511</span></div>';
+            '<div style="margin-bottom:3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.node.profile')+'</div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.degree')+'</span><span class="val">'+connections+' connections</span></div>'+nbrHtml+
+            '<div class="row"><span class="label">'+i18n.tr('detail.role')+'</span><span class="val" style="color:'+roleColor+'">'+role+'</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.hds_depth')+'</span><span class="val">'+hdsDepth+' levels</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.sources')+'</span><span class="val">'+(n.source_count||1)+' textbooks</span></div>'+
+            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:574)})+</div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.cds')+'</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.avg_degree')+'</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhen')+'</span><span class="val">0.504</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhde')+'</span><span class="val">0.443</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.lds_ende')+'</span><span class="val">0.511</span></div>';
 
         document.getElementById('dnote').innerHTML =
-            '<div style="margin-bottom:2px;font-weight:500;color:#7a9aff">ABOUT</div>'+
+            '<div style="margin-bottom:2px;font-weight:500;color:#7a9aff">'+i18n.tr('detail.about')+'</div>'+
             '<em>'+lvDesc+'.</em><br><br>'+
             '<em>'+insight+'</em><br><br>'+
-            '<em>CDS = 2|E|/(|V|·(|V|-1)) — concept interconnectedness (full graph).<br>HDS = longest prerequisite chain from this concept.<br>LDS = 1 − |A∩B|/|A∪B| — cross-language structural divergence.</em>';
+            '<em>'+i18n.tr('def.cds')+'<br>'+i18n.tr('def.hds')+'<br>'+i18n.tr('def.lds')+'</em>';
 
         const refs = n.cross_references||[];
         document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
@@ -584,7 +586,7 @@
     /* ─── View Mode ───────────────────────────────────────────────── */
     function setMode(m) {
         mode = m;
-        document.getElementById('mode-tag').textContent = MT[m]||m.toUpperCase();
+        document.getElementById('mode-tag').textContent = i18n.tr('mode.'+m);
         if (!G) return;
 
         // Dynamic view update: re-create graph data with mode-specific values
@@ -631,7 +633,7 @@
          .graphData({ nodes: fn, links: fl });
 
         // Update HUD
-        document.getElementById('sub').textContent = fn.length + ' concepts · ' + fl.length + ' relations';
+        document.getElementById('sub').textContent = i18n.tr('hud.subtitle', {concepts: fn.length, relations: fl.length});
     }
 
     /* ─── Language Filter ─────────────────────────────────────────── */

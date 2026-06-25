@@ -145,5 +145,46 @@ Claude **不是**研究员。Claude 的角色是 **PM + QA Lead**：
 
 ---
 
-*底层要求版本: v2.0 | 2026-06-17*
-*治理周期详见 [PROJECT_CYCLE.md](PROJECT_CYCLE.md)*
+## 7. 三语同步规则 (必读)
+
+### 7.1 README 翻译
+
+修改 `README.md`（英文版）后，**必须运行**：
+
+```bash
+cd $PROJECT_DIR && python sync_readmes.py
+```
+
+这会自动重新生成 `README_DE.md` 和 `README_ZH.md` 的完整翻译。
+
+- `sync_readmes.py` 使用 `body_map` 词典进行段落级替换（最长匹配优先）
+- 修改后务必重新运行，防止 DE/ZH 版本过时
+- 如需新增段落翻译，在 `build_body_map()` 中添加对应条目
+
+### 7.2 呈现性 HTML 文件的三语支持
+
+所有面向用户的 HTML 页面（portal、3D viewer、story dashboard）必须支持 EN/DE/ZH 切换。
+
+**架构模式**（以 portal 为参考）：
+1. 引入 `i18n.js`（或页面内嵌 `TRANSLATIONS` 对象）
+2. 静态文本元素使用 `data-i18n="key"` 属性
+3. JS 动态文本调用 `t('key')` 或 `i18n.tr('key')` 函数
+4. 语言偏好存储在 `localStorage` 中 (`preferredLang`)
+5. 默认语言：从 `localStorage` 读取 → 回退到浏览器语言 → 回退到英文
+
+**当前状态**：
+- `cognitive-space/portal/index.html`：✅ 已三语（内置 TRANSLATIONS 对象 + setLanguage()）
+- `cognitive-space/web/index.html`：✅ 已三语（i18n.js 驱动）
+- `cognitive-space/web/v1_baseline.html`：✅ 已三语
+
+### 7.3 修改流程
+
+修改任一呈现性文件后：
+1. 同步更新对应语言的翻译（TRANSLATIONS 对象或 i18n.js）
+2. 在浏览器中测试所有 3 种语言
+3. 确保 `localStorage` 持久化正常工作
+4. 将更新复制到 `_deploy/` 目录
+
+---
+
+*底层要求版本: v2.1 | 2026-06-25*

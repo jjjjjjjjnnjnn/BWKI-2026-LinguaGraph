@@ -6,6 +6,7 @@
     <title>CognitiveSpace V1 — Working Baseline</title>
     <script src="https://unpkg.com/3d-force-graph"></script>
     <script src="data.js"></script>
+    <script src="i18n.js"></script>
     <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Segoe UI',system-ui,sans-serif; background:#050a14; color:#d0d0d0; overflow:hidden; }
@@ -39,26 +40,26 @@
         <h1>Cognitive<span>Space</span></h1>
         <div class="sub" id="sub">574 concepts · 3538 relations</div>
         <div class="s">
-            <div class="si"><span class="sv" id="sC">0</span><span class="sl">Concepts</span></div>
-            <div class="si"><span class="sv" id="sR">0</span><span class="sl">Relations</span></div>
-            <div class="si"><span class="sv" id="sL">0</span><span class="sl">Levels</span></div>
+            <div class="si"><span class="sv" id="sC">0</span><span class="sl" data-i18n="stats.concepts">Concepts</span></div>
+            <div class="si"><span class="sv" id="sR">0</span><span class="sl" data-i18n="stats.relations">Relations</span></div>
+            <div class="si"><span class="sv" id="sL">0</span><span class="sl" data-i18n="stats.levels">Levels</span></div>
         </div>
         <div class="br" id="vb">
-            <button class="b a" data-m="universe">Universe</button>
-            <button class="b" data-m="spacefill">Space-Fill</button>
-            <button class="b" data-m="compare">Compare</button>
+            <button class="b a" data-m="universe" data-i18n="mode.universe">Universe</button>
+            <button class="b" data-m="spacefill" data-i18n="mode.spacefill">Space-Fill</button>
+            <button class="b" data-m="compare" data-i18n="mode.compare">Compare</button>
         </div>
         <div class="br" id="lb">
-            <button class="b a" data-g="all">All</button>
+            <button class="b a" data-g="all" data-i18n="lang.all">All</button>
             <button class="b" data-g="zh">ZH</button>
             <button class="b" data-g="en">EN</button>
             <button class="b" data-g="de">DE</button>
         </div>
         <div class="leg">
-            <span class="li"><span class="ld" style="background:#ff0000"></span>High</span>
-            <span class="li"><span class="ld" style="background:#ff00ff"></span>College</span>
-            <span class="li"><span class="ld" style="background:#ffff00"></span>Middle</span>
-            <span class="li"><span class="ld" style="background:#00ff00"></span>Elementary</span>
+            <span class="li"><span class="ld" style="background:#ff0000"></span><span data-i18n="level.high">High</span></span>
+            <span class="li"><span class="ld" style="background:#ff00ff"></span><span data-i18n="level.college">College</span></span>
+            <span class="li"><span class="ld" style="background:#ffff00"></span><span data-i18n="level.middle">Middle</span></span>
+            <span class="li"><span class="ld" style="background:#00ff00"></span><span data-i18n="level.elementary">Elementary</span></span>
         </div>
     </div>
 
@@ -95,12 +96,14 @@ function init() {
                  typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null;
     if (!data||!data.nodes||!data.nodes.length) return;
     ND=data.nodes; LK=data.links;
+    i18n.apply();
     document.getElementById('sC').textContent=ND.length;
     document.getElementById('sR').textContent=LK.length;
     document.getElementById('sL').textContent=new Set(ND.map(n=>n.level||'')).size;
-    document.getElementById('sub').textContent=ND.length+' concepts · '+LK.length+' relations';
+    document.getElementById('sub').textContent=i18n.tr('hud.subtitle', {concepts: ND.length, relations: LK.length});
     buildAdj();
     mkGraph();
+    i18n.apply();
     setTimeout(()=>{document.getElementById('loading').classList.add('hidden');setTimeout(()=>{const e=document.getElementById('loading');if(e)e.style.display='none';},800);},600);
 }
 
@@ -193,7 +196,7 @@ function hideDetail(){document.getElementById('detail').style.display='none';}
 
 function setMode(m) {
     mode=m;
-    document.getElementById('mode-tag').textContent=MT[m]||m.toUpperCase();
+    document.getElementById('mode-tag').textContent=i18n.tr('mode.'+m);
     if(!G) return;
     const gd=G.graphData();
     let fn,fl;
@@ -212,7 +215,7 @@ function setMode(m) {
         n.val=base*m2;
     });
     G.nodeColor('color').nodeVal('val').nodeRelSize(15).nodeOpacity(1).linkWidth(0.4).linkOpacity(0.35).linkDirectionalParticles(0).graphData({nodes:fn,links:fl});
-    document.getElementById('sub').textContent=fn.length+' concepts · '+fl.length+' relations';
+    document.getElementById('sub').textContent=i18n.tr('hud.subtitle', {concepts: fn.length, relations: fl.length});
 }
 
 function setLang(l) {
@@ -230,7 +233,7 @@ function setLang(l) {
     fn.forEach(n=>{ n.color=colorCB(n); });
     G.graphData({nodes:fn,links:fl});
     if(savedPos)setTimeout(()=>{G.cameraPosition(savedPos,{x:0,y:0,z:0},0);},50);
-    document.getElementById('sub').textContent=l==='all'?ND.length+' concepts · '+LK.length+' relations':fn.length+' / '+ND.length+' concepts';
+    document.getElementById('sub').textContent=l==='all'?i18n.tr('hud.subtitle', {concepts: ND.length, relations: LK.length}):fn.length+' / '+ND.length+' '+i18n.tr('stats.concepts');
 }
 
 function mkUI() {
