@@ -1,0 +1,111 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第五章 特征值与特征向量",
+    "section": "5.1-5.2 特征值、特征向量与对角化",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "特征值",
+      "aliases": ["eigenvalue", "Eigenwert"],
+      "definition_snippet": "满足 Ax = λx 的数 λ",
+      "category": "concept"
+    },
+    {
+      "name": "特征向量",
+      "aliases": ["eigenvector", "Eigenvektor"],
+      "definition_snippet": "满足 Ax = λx 的非零向量 x",
+      "category": "concept"
+    },
+    {
+      "name": "特征方程",
+      "aliases": ["characteristic equation", "charakteristische Gleichung"],
+      "definition_snippet": "|A - λI| = 0，用于求特征值",
+      "category": "concept"
+    },
+    {
+      "name": "特征多项式",
+      "aliases": ["characteristic polynomial", "charakteristisches Polynom"],
+      "definition_snippet": "f(λ) = |A - λI|，λ 的 n 次多项式",
+      "category": "concept"
+    },
+    {
+      "name": "矩阵的迹",
+      "aliases": ["trace", "Spur"],
+      "definition_snippet": "主对角线元素之和：tr(A) = Σaᵢᵢ = Σλᵢ",
+      "category": "concept"
+    },
+    {
+      "name": "对角化",
+      "aliases": ["diagonalization", "Diagonalisierung"],
+      "definition_snippet": "A = PDP⁻¹，其中 D 是对角矩阵",
+      "category": "concept"
+    },
+    {
+      "name": "相似矩阵",
+      "aliases": ["similar matrices", "ähnliche Matrizen"],
+      "definition_snippet": "A = PBP⁻¹ 称 A 与 B 相似",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "特征值",
+      "target": "特征方程",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "特征值是特征方程的根"
+    },
+    {
+      "source": "特征向量",
+      "target": "特征值",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "特征向量属于某个特定的特征值"
+    },
+    {
+      "source": "特征多项式",
+      "target": "特征方程",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "特征方程是特征多项式等于零"
+    },
+    {
+      "source": "对角化",
+      "target": "特征值",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "对角矩阵的对角元是特征值"
+    },
+    {
+      "source": "对角化",
+      "target": "特征向量",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "可逆矩阵 P 的列是特征向量"
+    },
+    {
+      "source": "相似矩阵",
+      "target": "特征值",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "相似矩阵有相同的特征值"
+    },
+    {
+      "source": "矩阵的迹",
+      "target": "特征值",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "迹等于特征值之和"
+    },
+    {
+      "source": "特征值",
+      "target": "行列式",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "特征值之积等于行列式"
+    }
+  ]
+}

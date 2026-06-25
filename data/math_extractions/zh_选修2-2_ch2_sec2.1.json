@@ -1,0 +1,142 @@
+{
+  "source_textbook": {
+    "name": "人教版高中数学选修2-2",
+    "language": "zh",
+    "chapter": "第二章 定积分及其应用",
+    "section": "2.1 定积分的概念",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "定积分",
+      "aliases": ["definite integral", "bestimmtes Integral"],
+      "definition_snippet": "函数 f(x) 在区间 [a, b] 上的黎曼和的极限：∫_a^b f(x) dx",
+      "category": "concept"
+    },
+    {
+      "name": "积分下限",
+      "aliases": ["lower limit", "untere Grenze"],
+      "definition_snippet": "定积分区间 [a, b] 的左端点 a",
+      "category": "concept"
+    },
+    {
+      "name": "积分上限",
+      "aliases": ["upper limit", "obere Grenze"],
+      "definition_snippet": "定积分区间 [a, b] 的右端点 b",
+      "category": "concept"
+    },
+    {
+      "name": "被积函数",
+      "aliases": ["integrand", "Integrand"],
+      "definition_snippet": "定积分 ∫_a^b f(x) dx 中的函数 f(x)",
+      "category": "concept"
+    },
+    {
+      "name": "黎曼和",
+      "aliases": ["Riemann sum", "Riemann-Summe"],
+      "definition_snippet": "将区间分割后各小区间上函数值与区间长度乘积的和：Σ f(ξ_i) · Δx_i",
+      "category": "concept"
+    },
+    {
+      "name": "曲边梯形",
+      "aliases": ["curvilinear trapezoid"],
+      "definition_snippet": "由曲线 y = f(x)、x 轴及直线 x = a、x = b 围成的图形",
+      "category": "concept"
+    },
+    {
+      "name": "微积分基本定理",
+      "aliases": ["牛顿-莱布尼茨公式", "Fundamental Theorem of Calculus", "Hauptsatz der Analysis"],
+      "definition_snippet": "∫_a^b f(x) dx = F(b) - F(a)，其中 F'(x) = f(x)",
+      "category": "theorem"
+    },
+    {
+      "name": "原函数",
+      "aliases": ["antiderivative", "Stammfunktion"],
+      "definition_snippet": "若 F'(x) = f(x)，则 F(x) 是 f(x) 的一个原函数",
+      "category": "concept"
+    },
+    {
+      "name": "线性性质",
+      "aliases": ["linearity", "Linearität"],
+      "definition_snippet": "∫[af(x) + bg(x)]dx = a∫f(x)dx + b∫g(x)dx",
+      "category": "property"
+    },
+    {
+      "name": "区间可加性",
+      "aliases": ["additivity", "Additivität"],
+      "definition_snippet": "∫_a^b f(x)dx = ∫_a^c f(x)dx + ∫_c^b f(x)dx",
+      "category": "property"
+    },
+    {
+      "name": "估值定理",
+      "aliases": ["estimation theorem"],
+      "definition_snippet": "若 m ≤ f(x) ≤ M，则 m(b-a) ≤ ∫_a^b f(x)dx ≤ M(b-a)",
+      "category": "theorem"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "定积分",
+      "target": "极限",
+      "type": "prerequisite",
+      "importance": 0.95,
+      "evidence": "定积分定义为黎曼和的极限"
+    },
+    {
+      "source": "定积分",
+      "target": "黎曼和",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "定积分通过黎曼和的极限来定义"
+    },
+    {
+      "source": "黎曼和",
+      "target": "被积函数",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "黎曼和由被积函数在各小区间上的值构成"
+    },
+    {
+      "source": "微积分基本定理",
+      "target": "定积分",
+      "type": "applies_to",
+      "importance": 0.95,
+      "evidence": "微积分基本定理将定积分的计算转化为求原函数"
+    },
+    {
+      "source": "微积分基本定理",
+      "target": "原函数",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "微积分基本定理要求 F(x) 是 f(x) 的原函数"
+    },
+    {
+      "source": "原函数",
+      "target": "导数",
+      "type": "inverse_of",
+      "importance": 0.85,
+      "evidence": "原函数的导数等于被积函数：F'(x) = f(x)"
+    },
+    {
+      "source": "定积分",
+      "target": "曲边梯形",
+      "type": "applies_to",
+      "importance": 0.8,
+      "evidence": "定积分在几何上表示曲边梯形的面积"
+    },
+    {
+      "source": "积分下限",
+      "target": "定积分",
+      "type": "part_of",
+      "importance": 0.7,
+      "evidence": "积分下限是定积分记号的组成部分"
+    },
+    {
+      "source": "积分上限",
+      "target": "定积分",
+      "type": "part_of",
+      "importance": 0.7,
+      "evidence": "积分上限是定积分记号的组成部分"
+    }
+  ]
+}

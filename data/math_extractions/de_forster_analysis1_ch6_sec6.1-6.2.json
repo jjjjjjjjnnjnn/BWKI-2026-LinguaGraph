@@ -1,0 +1,85 @@
+{
+  "source_textbook": {
+    "name": "Otto Forster: Analysis 1",
+    "language": "de",
+    "chapter": "6 Taylor-Entwicklung und Grenzwertsätze",
+    "section": "6.1-6.2 Taylorsatz und l'Hospitalsche Regel",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "Taylorsatz",
+      "aliases": ["泰勒定理", "Taylor's Theorem"],
+      "definition_snippet": "f(x) = Σf⁽ᵏ⁾(a)(x-a)ᵏ/k! + R_n mit Restglied in Lagrange-Form",
+      "category": "theorem"
+    },
+    {
+      "name": "Maclaurin-Reihe",
+      "aliases": ["麦克劳林级数", "Maclaurin series"],
+      "definition_snippet": "Taylor-Reihe um a=0: e^x = Σxⁿ/n!, sin x = Σ(-1)ⁿx²ⁿ⁺¹/(2n+1)!",
+      "category": "concept"
+    },
+    {
+      "name": "Restglied",
+      "aliases": ["余项", "remainder"],
+      "definition_snippet": "R_n(x) = f⁽ⁿ⁺¹⁾(ξ)(x-a)ⁿ⁺¹/(n+1)! — das Fehlerglied der Taylor-Approximation",
+      "category": "concept"
+    },
+    {
+      "name": "l'Hospitalsche Regel",
+      "aliases": ["洛必达法则", "L'Hôpital's Rule"],
+      "definition_snippet": "lim f(x)/g(x) = lim f'(x)/g'(x) für 0/0 oder ∞/∞",
+      "category": "theorem"
+    },
+    {
+      "name": "unbestimmte Formen",
+      "aliases": ["未定式", "indeterminate forms"],
+      "definition_snippet": "0/0, ∞/∞, 0·∞, ∞-∞, 1^∞, 0^0, ∞^0 — Formen die nicht direkt ausgewertet werden können",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "Taylorsatz",
+      "target": "Ableitung",
+      "type": "requires",
+      "importance": 0.95,
+      "evidence": "Der Taylorsatz verwendet alle höheren Ableitungen"
+    },
+    {
+      "source": "Maclaurin-Reihe",
+      "target": "Taylorsatz",
+      "type": "specialization",
+      "importance": 0.9,
+      "evidence": "Maclaurin-Reihe ist Taylorsatz für a=0"
+    },
+    {
+      "source": "Restglied",
+      "target": "Taylorsatz",
+      "type": "part_of",
+      "importance": 0.85,
+      "evidence": "Das Restglied gibt den Fehler der Taylor-Approximation an"
+    },
+    {
+      "source": "l'Hospitalsche Regel",
+      "target": "Ableitung",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Die l'Hospitalsche Regel verwendet Ableitungen zur Grenzwertberechnung"
+    },
+    {
+      "source": "l'Hospitalsche Regel",
+      "target": "Grenzwert",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "Die l'Hospitalsche Regel wird zur Berechnung unbestimmter Formen verwendet"
+    },
+    {
+      "source": "Taylorsatz",
+      "target": "Tangente",
+      "type": "generalization",
+      "importance": 0.8,
+      "evidence": "Das Taylor-Polynom verallgemeinert die Tangentenapproximation"
+    }
+  ]
+}

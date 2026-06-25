@@ -1,0 +1,98 @@
+{
+  "source_textbook": {
+    "name": "Stewart Calculus (8th ed.)",
+    "language": "en",
+    "chapter": "3 Differentiation Rules",
+    "section": "3.2 The Product and Quotient Rules",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "Product Rule",
+      "aliases": ["积法则", "Produktregel"],
+      "definition_snippet": "d/dx[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)",
+      "category": "theorem"
+    },
+    {
+      "name": "Quotient Rule",
+      "aliases": ["商法则", "Quotientenregel"],
+      "definition_snippet": "d/dx[f(x)/g(x)] = [f'(x)g(x) - f(x)g'(x)] / [g(x)]²",
+      "category": "theorem"
+    },
+    {
+      "name": "Higher-Order Derivatives",
+      "aliases": ["高阶导数", "höhere Ableitungen"],
+      "definition_snippet": "Derivatives of derivatives: f''(x), f'''(x), f⁽⁴⁾(x), etc.",
+      "category": "concept"
+    },
+    {
+      "name": "second derivative",
+      "aliases": ["二阶导数", "zweite Ableitung"],
+      "definition_snippet": "The derivative of the derivative: f''(x) = d²f/dx²",
+      "category": "concept"
+    },
+    {
+      "name": "acceleration",
+      "aliases": ["加速度", "Beschleunigung"],
+      "definition_snippet": "The second derivative of position: a(t) = s''(t) = v'(t)",
+      "category": "concept"
+    },
+    {
+      "name": "jerk",
+      "aliases": ["加加速度", "Ruck"],
+      "definition_snippet": "The third derivative of position: s'''(t)",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "Product Rule",
+      "target": "Derivative",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "The Product Rule gives the derivative of a product of functions"
+    },
+    {
+      "source": "Quotient Rule",
+      "target": "Product Rule",
+      "type": "requires",
+      "importance": 0.8,
+      "evidence": "The Quotient Rule can be derived from the Product Rule and Chain Rule"
+    },
+    {
+      "source": "Quotient Rule",
+      "target": "Derivative",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "The Quotient Rule gives the derivative of a ratio of functions"
+    },
+    {
+      "source": "Higher-Order Derivatives",
+      "target": "Derivative",
+      "type": "generalization",
+      "importance": 0.85,
+      "evidence": "Higher-order derivatives generalize the concept of first derivative"
+    },
+    {
+      "source": "second derivative",
+      "target": "Higher-Order Derivatives",
+      "type": "part_of",
+      "importance": 0.8,
+      "evidence": "The second derivative is the first higher-order derivative"
+    },
+    {
+      "source": "acceleration",
+      "target": "second derivative",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "Acceleration is the second derivative of the position function"
+    },
+    {
+      "source": "jerk",
+      "target": "Higher-Order Derivatives",
+      "type": "representation",
+      "importance": 0.7,
+      "evidence": "Jerk is the third derivative of position"
+    }
+  ]
+}

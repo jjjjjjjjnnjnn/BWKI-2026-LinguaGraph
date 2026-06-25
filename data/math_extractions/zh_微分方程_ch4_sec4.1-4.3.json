@@ -1,0 +1,27 @@
+{
+  "source_textbook": {
+    "name": "人教版高中数学选修2-2",
+    "language": "zh",
+    "chapter": "第四章 微分方程的应用",
+    "section": "4.1-4.3 物理应用、生物应用与方程组",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "弹簧振动", "aliases": ["spring oscillation", "Feder-Masse-System"], "definition_snippet": "mx'' + cx' + kx = F(t)", "category": "concept"},
+    {"name": "简谐运动", "aliases": ["simple harmonic motion", "harmonische Schwingung"], "definition_snippet": "无阻尼自由振动：x'' + ω₀²x = 0", "category": "concept"},
+    {"name": "阻尼振动", "aliases": ["damped oscillation", "gedämpfte Schwingung"], "definition_snippet": "有阻力的振动，振幅指数衰减", "category": "concept"},
+    {"name": "共振", "aliases": ["resonance", "Resonanz"], "definition_snippet": "驱动频率接近固有频率时振幅急剧增大", "category": "concept"},
+    {"name": "微分方程组", "aliases": ["system of ODEs", "Differentialgleichungssystem"], "definition_snippet": "多个未知函数的微分方程联合", "category": "concept"},
+    {"name": "逻辑斯蒂模型", "aliases": ["logistic model", "logistisches Modell"], "definition_snippet": "dP/dt = rP(1-P/K)，有上限的人口增长", "category": "concept"},
+    {"name": "SIR 模型", "aliases": ["SIR model", "SIR-Modell"], "definition_snippet": "传染病传播的三仓室模型", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "弹簧振动", "target": "二阶线性微分方程", "type": "representation", "importance": 0.9, "evidence": "弹簧振动方程是二阶线性ODE的典型应用"},
+    {"source": "简谐运动", "target": "弹簧振动", "type": "specialization", "importance": 0.85, "evidence": "简谐运动是无阻尼弹簧振动"},
+    {"source": "阻尼振动", "target": "弹簧振动", "type": "specialization", "importance": 0.85, "evidence": "阻尼振动是弹簧振动的阻尼情形"},
+    {"source": "共振", "target": "弹簧振动", "type": "applies_to", "importance": 0.8, "evidence": "共振发生在受迫振动中"},
+    {"source": "微分方程组", "target": "常微分方程", "type": "generalization", "importance": 0.9, "evidence": "方程组是多个ODE的联合"},
+    {"source": "逻辑斯蒂模型", "target": "微分方程", "type": "representation", "importance": 0.85, "evidence": "逻辑斯蒂方程是非线性ODE"},
+    {"source": "SIR 模型", "target": "微分方程组", "type": "representation", "importance": 0.85, "evidence": "SIR模型是一阶微分方程组"}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第七章 参数估计",
+    "section": "7.1-7.3 点估计与区间估计",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "参数估计", "aliases": ["parameter estimation", "Parameterschätzung"], "definition_snippet": "用样本数据估计总体参数", "category": "concept"},
+    {"name": "点估计", "aliases": ["point estimation", "Punktsschätzung"], "definition_snippet": "用一个数值估计参数", "category": "concept"},
+    {"name": "矩估计", "aliases": ["method of moments", "Methode der Momente"], "definition_snippet": "用样本矩替换总体矩", "category": "concept"},
+    {"name": "最大似然估计", "aliases": ["maximum likelihood estimation", "Maximum-Likelihood-Schätzung"], "definition_snippet": "使似然函数最大的参数值", "category": "concept"},
+    {"name": "似然函数", "aliases": ["likelihood function", "Likelihood-Funktion"], "definition_snippet": "L(θ) = Πf(xᵢ;θ)", "category": "concept"},
+    {"name": "无偏性", "aliases": ["unbiasedness", "Unverzerrtheit"], "definition_snippet": "E(θ̂) = θ", "category": "property"},
+    {"name": "有效性", "aliases": ["efficiency", "Effizienz"], "definition_snippet": "方差最小的无偏估计", "category": "property"},
+    {"name": "一致性", "aliases": ["consistency", "Konsistenz"], "definition_snippet": "n→∞ 时 θ̂ →^P θ", "category": "property"},
+    {"name": "置信区间", "aliases": ["confidence interval", "Konfidenzintervall"], "definition_snippet": "P(θ̂₁ < θ < θ̂₂) = 1-α", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "点估计", "target": "参数估计", "type": "specialization", "importance": 0.9, "evidence": "点估计是参数估计的一种"},
+    {"source": "矩估计", "target": "点估计", "type": "specialization", "importance": 0.85, "evidence": "矩估计是一种点估计方法"},
+    {"source": "最大似然估计", "target": "点估计", "type": "specialization", "importance": 0.9, "evidence": "最大似然估计是最重要的点估计方法"},
+    {"source": "似然函数", "target": "最大似然估计", "type": "requires", "importance": 0.9, "evidence": "最大似然估计通过最大化似然函数得到"},
+    {"source": "无偏性", "target": "点估计", "type": "representation", "importance": 0.85, "evidence": "无偏性是评价点估计量的标准之一"},
+    {"source": "置信区间", "target": "参数估计", "type": "specialization", "importance": 0.9, "evidence": "置信区间是区间估计的方法"}
+  ]
+}

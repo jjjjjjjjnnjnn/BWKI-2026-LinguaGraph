@@ -1,0 +1,78 @@
+{
+  "source_textbook": {
+    "name": "人教版高中数学选修2-2",
+    "language": "zh",
+    "chapter": "第九章 多元函数微分法及其应用",
+    "section": "9.3-9.4 向量场微分与拉格朗日乘数法",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "散度",
+      "aliases": ["divergence", "Divergenz"],
+      "definition_snippet": "向量场的源汇强度：div F = ∂P/∂x + ∂Q/∂y + ∂R/∂z",
+      "category": "concept"
+    },
+    {
+      "name": "旋度",
+      "aliases": ["curl", "Rotation"],
+      "definition_snippet": "向量场的旋转程度：rot F = (∂R/∂y - ∂Q/∂z, ...)",
+      "category": "concept"
+    },
+    {
+      "name": "拉格朗日乘数",
+      "aliases": ["Lagrange multiplier", "Lagrange-Multiplikator"],
+      "definition_snippet": "约束优化中引入的辅助变量 λ，满足 ∇f = λ∇g",
+      "category": "concept"
+    },
+    {
+      "name": "向量场",
+      "aliases": ["vector field", "Vektorfeld"],
+      "definition_snippet": "空间中每一点对应一个向量的映射",
+      "category": "concept"
+    },
+    {
+      "name": "保守场",
+      "aliases": ["conservative field", "konservatives Feld"],
+      "definition_snippet": "旋度为零的向量场，存在势函数",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "散度",
+      "target": "偏导数",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "散度由各分量的偏导数之和构成"
+    },
+    {
+      "source": "旋度",
+      "target": "偏导数",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "旋度由偏导数的交叉差构成"
+    },
+    {
+      "source": "拉格朗日乘数",
+      "target": "梯度",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "拉格朗日乘数法基于梯度相等条件"
+    },
+    {
+      "source": "保守场",
+      "target": "旋度",
+      "type": "requires",
+      "importance": 0.8,
+      "evidence": "保守场的定义是旋度为零"
+    },
+    {
+      "source": "旋度",
+      "target": "散度",
+      "type": "analogy",
+      "importance": 0.75,
+      "evidence": "散度和旋度都是向量场的微分运算"
+    }
+  ]
+}

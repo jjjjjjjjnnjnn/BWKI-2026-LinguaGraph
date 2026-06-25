@@ -1,0 +1,33 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第八章 假设检验",
+    "section": "8.1-8.4 假设检验的基本思想与常用检验",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "假设检验", "aliases": ["hypothesis testing", "Hypothesentest"], "definition_snippet": "对总体参数提出假设并用样本进行检验", "category": "concept"},
+    {"name": "原假设", "aliases": ["null hypothesis", "Nullhypothese"], "definition_snippet": "H₀：需要检验的假设", "category": "concept"},
+    {"name": "备择假设", "aliases": ["alternative hypothesis", "Alternativhypothese"], "definition_snippet": "H₁：与 H₀ 对立的假设", "category": "concept"},
+    {"name": "检验统计量", "aliases": ["test statistic", "Teststatistik"], "definition_snippet": "用于判断 H₀ 是否成立的统计量", "category": "concept"},
+    {"name": "拒绝域", "aliases": ["rejection region", "Ablehnungsbereich"], "definition_snippet": "使 H₀ 被拒绝的检验统计量取值范围", "category": "concept"},
+    {"name": "显著性水平", "aliases": ["significance level", "Signifikanzniveau"], "definition_snippet": "α = P(拒绝 H₀ | H₀ 为真)", "category": "concept"},
+    {"name": "第一类错误", "aliases": ["Type I error", "Fehler 1. Art"], "definition_snippet": "H₀ 为真时拒绝 H₀（弃真）", "category": "concept"},
+    {"name": "第二类错误", "aliases": ["Type II error", "Fehler 2. Art"], "definition_snippet": "H₀ 为假时接受 H₀（取伪）", "category": "concept"},
+    {"name": "Z检验", "aliases": ["Z-test", "Z-Test"], "definition_snippet": "σ² 已知时检验均值", "category": "concept"},
+    {"name": "t检验", "aliases": ["t-test", "t-Test"], "definition_snippet": "σ² 未知时检验均值", "category": "concept"},
+    {"name": "χ²检验", "aliases": ["chi-squared test", "Chi-Quadrat-Test"], "definition_snippet": "检验方差", "category": "concept"},
+    {"name": "F检验", "aliases": ["F-test", "F-Test"], "definition_snippet": "检验两总体方差比", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "假设检验", "target": "原假设", "type": "representation", "importance": 0.9, "evidence": "假设检验围绕原假设展开"},
+    {"source": "原假设", "target": "备择假设", "type": "inverse_of", "importance": 0.85, "evidence": "原假设和备择假设互为对立"},
+    {"source": "检验统计量", "target": "假设检验", "type": "requires", "importance": 0.9, "evidence": "假设检验通过检验统计量做判断"},
+    {"source": "拒绝域", "target": "检验统计量", "type": "representation", "importance": 0.85, "evidence": "拒绝域是检验统计量的取值范围"},
+    {"source": "显著性水平", "target": "第一类错误", "type": "representation", "importance": 0.9, "evidence": "显著性水平是第一类错误的概率上界"},
+    {"source": "Z检验", "target": "假设检验", "type": "specialization", "importance": 0.85, "evidence": "Z检验是假设检验的一种"},
+    {"source": "t检验", "target": "假设检验", "type": "specialization", "importance": 0.9, "evidence": "t检验是最常用的假设检验"},
+    {"source": "F检验", "target": "假设检验", "type": "specialization", "importance": 0.85, "evidence": "F检验用于方差比的检验"}
+  ]
+}

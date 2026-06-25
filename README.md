@@ -47,6 +47,8 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
+  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
+  <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
 <p align="center">
@@ -62,9 +64,9 @@
 
 - [🔥 Why LinguaGraph?](#-why-linguagraph)
 - [📐 Metrics at a Glance](#-metrics-at-a-glance)
-- [🏆 10 Findings (F1–F10)](#-10-findings-f1f10)
+- [🏆 12 Findings (F1–F12)](#-12-findings-f1f12)
 - [📊 Dataset](#-dataset)
-- [✅ Extraction Validation](#-extraction-validation)
+- [✅ Extraction & Human Validation](#-extraction--human-validation)
 - [🚀 Quick Start](#-quick-start)
 - [🧪 Model Benchmark](#-model-benchmark)
 - [📁 Project Structure](#-project-structure)
@@ -103,7 +105,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ---
 
-## 🏆 10 Findings (F1–F10)
+## 🏆 12 Findings (F1–F12)
 
 | # | Finding | Evidence | Impact |
 |---|---------|----------|--------|
@@ -117,6 +119,8 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | STEM density pattern is universal across subjects |
 | **F9** | **Coverage Score** varies dramatically across systems | NRW 34%, UK 82%, US 76%, China 8% | Educational system design fundamentally affects textbook alignment |
 | **F10** | Coverage trajectories reveal **system design philosophy** | UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization) | Assessment structure shapes curriculum-textbook relationship |
+| **F11** | **Human LDS** rank order matches Wikipedia corpus ✅ | N=8 participants, 90 responses, 3 levels | Cross-level consistency: individual → textbook → curriculum |
+| **F12** | Human LDS (**0.727**) exceeds simulation baseline (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |
 
 ---
 
@@ -131,7 +135,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ---
 
-## ✅ Extraction Validation
+## ✅ Extraction & Human Validation
 
 **92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):
 
@@ -142,7 +146,19 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **All** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
 
 > Error analysis: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.
-> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology and [`scripts/evaluate_gold.py`](scripts/evaluate_gold.py) for reproducible evaluation.
+
+**🧑 Human Validation Study (N=8)**
+- 101 responses from ZH/DE/EN native speakers across 5 social topics
+- Within-subject DE-EN LDS: **0.773** (same person, different language, different concepts)
+- Between-subject LDS rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
+- ✅ **Identical rank order** to Wikipedia corpus — cross-level validation
+
+**🤖 Simulation Baseline (300 responses)**
+- Mean simulated LDS: **0.647** (SD=0.086)
+- **Human LDS (0.727) > Simulation LDS (0.647)**, p=0.05
+- Confirms cross-language divergence exceeds random expectation
+
+> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
 
 ---
 

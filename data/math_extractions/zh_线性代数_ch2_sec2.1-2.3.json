@@ -1,0 +1,123 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第二章 矩阵及其运算",
+    "section": "2.1-2.3 矩阵的基本概念与运算",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "矩阵",
+      "aliases": ["matrix", "Matrix"],
+      "definition_snippet": "由 m×n 个数按一定次序排成的 m 行 n 列的数表",
+      "category": "concept"
+    },
+    {
+      "name": "方阵",
+      "aliases": ["square matrix", "quadratische Matrix"],
+      "definition_snippet": "行数等于列数的矩阵",
+      "category": "concept"
+    },
+    {
+      "name": "单位矩阵",
+      "aliases": ["identity matrix", "Einheitsmatrix"],
+      "definition_snippet": "主对角线为 1，其余为 0 的方阵，记作 I",
+      "category": "concept"
+    },
+    {
+      "name": "对称矩阵",
+      "aliases": ["symmetric matrix", "symmetrische Matrix"],
+      "definition_snippet": "满足 A^T = A 的方阵",
+      "category": "concept"
+    },
+    {
+      "name": "矩阵转置",
+      "aliases": ["transpose", "Transponierte"],
+      "definition_snippet": "将矩阵的行与列互换：(A^T)ᵢⱼ = Aⱼᵢ",
+      "category": "operation"
+    },
+    {
+      "name": "矩阵乘法",
+      "aliases": ["matrix multiplication", "Matrizenmultiplikation"],
+      "definition_snippet": "C = AB，其中 cᵢⱼ = Σ aᵢₖ · bₖⱼ，不满足交换律",
+      "category": "operation"
+    },
+    {
+      "name": "逆矩阵",
+      "aliases": ["inverse matrix", "Inverse Matrix"],
+      "definition_snippet": "若 AB = BA = I，则 B = A⁻¹",
+      "category": "concept"
+    },
+    {
+      "name": "矩阵的幂",
+      "aliases": ["matrix power", "Matrixpotenz"],
+      "definition_snippet": "Aⁿ = A · A · ... · A（n 次乘法）",
+      "category": "operation"
+    },
+    {
+      "name": "线性方程组",
+      "aliases": ["linear system", "lineares Gleichungssystem", "linear equations"],
+      "definition_snippet": "由多个一次方程组成的方程组，可用矩阵 Ax = b 表示",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "方阵",
+      "target": "矩阵",
+      "type": "specialization",
+      "importance": 0.85,
+      "evidence": "方阵是行数等于列数的特殊矩阵"
+    },
+    {
+      "source": "单位矩阵",
+      "target": "方阵",
+      "type": "specialization",
+      "importance": 0.8,
+      "evidence": "单位矩阵是特殊的对角方阵"
+    },
+    {
+      "source": "逆矩阵",
+      "target": "方阵",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "只有方阵才可能有逆矩阵"
+    },
+    {
+      "source": "逆矩阵",
+      "target": "行列式",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "方阵可逆的充要条件是行列式不为零"
+    },
+    {
+      "source": "矩阵乘法",
+      "target": "矩阵",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "矩阵乘法是矩阵的核心运算"
+    },
+    {
+      "source": "矩阵转置",
+      "target": "矩阵",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "转置是矩阵的基本操作之一"
+    },
+    {
+      "source": "对称矩阵",
+      "target": "矩阵转置",
+      "type": "requires",
+      "importance": 0.8,
+      "evidence": "对称矩阵的定义依赖于转置操作"
+    },
+    {
+      "source": "矩阵",
+      "target": "线性方程组",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "矩阵是线性方程组的紧凑表示形式"
+    }
+  ]
+}

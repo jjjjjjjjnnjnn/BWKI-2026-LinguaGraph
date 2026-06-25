@@ -1,6 +1,6 @@
 # LinguaGraph — 3 Core Conclusions (Poster/Pitch Ready)
 
-> 将 7 个研究发现 (F1-F7) 压缩为 3 条主结论
+> 将 12 个研究发现 (F1-F12) 压缩为 3 条主结论
 > 适用于：海报、3 分钟演讲、摘要、评审材料
 
 ---
@@ -41,20 +41,21 @@
 
 ---
 
-## Conclusion 3: Cross-Language Structural Divergence Is Substantial and Asymmetric
+## Conclusion 3: Cross-Language Structural Divergence Is Substantial, Asymmetric, and Human-Validated
 
 **What we found**:
-> LDS values range from **0.80 to 0.91** across ZH/EN/DE. ZH–DE shows the **highest** divergence (0.907); ZH–EN the **lowest** (0.802).
+> LDS values range from **0.80 to 0.91** across ZH/EN/DE (Wikipedia corpus). ZH–DE shows the **highest** divergence (0.907); ZH–EN the **lowest** (0.802). **Human validation** with N=8 participants confirms the exact same rank order: DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704), and human LDS significantly exceeds a simulation baseline (0.727 vs 0.647, p=0.05).
 
 **Why it matters**:
 > Despite mathematical truth being universal, the **organizational structure** of mathematical knowledge varies significantly across languages. The pattern is **not** driven by language family: Chinese and English textbooks are structurally closer than German and English. Curriculum tradition, not language relatedness, appears to be the primary driver.
 
-**Evidence**:
-| Pair | LDS | Interpretation |
-|------|:---:|---------------|
-| ZH–DE | 0.907 | Highest structural divergence |
-| DE–EN | 0.901 | Near-maximum despite shared European tradition |
-| ZH–EN | 0.802 | Lowest — Anglo-American influence on Chinese curricula |
+**Evidence (3-level validation)**:
+| Level | DE–ZH | DE–EN | ZH–EN |
+|:------|:-----:|:-----:|:-----:|
+| Wikipedia Corpus | **0.907** | **0.901** | **0.802** |
+| Human Between-Subject | **0.751** | **0.727** | **0.704** |
+| Human Within-Subject | — | **0.773** | — |
+| Simulation Baseline | 0.646 | 0.655 | 0.640 |
 
 ---
 

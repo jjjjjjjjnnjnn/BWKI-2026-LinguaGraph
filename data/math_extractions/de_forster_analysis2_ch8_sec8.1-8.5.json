@@ -1,0 +1,104 @@
+{
+  "source_textbook": {
+    "name": "Otto Forster: Analysis 2",
+    "language": "de",
+    "chapter": "8 Mehrdimensionale Analysis",
+    "section": "8.1-8.5 Partielle Ableitungen, Gradient, Divergenz",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "partielle Ableitung",
+      "aliases": ["partial derivative", "偏导数"],
+      "definition_snippet": "Ableitung nach einer Variablen unter Festhalten der anderen",
+      "category": "concept"
+    },
+    {
+      "name": "Gradient",
+      "aliases": ["gradient", "梯度"],
+      "definition_snippet": "grad f = (∂f/∂x, ∂f/∂y) — Vektor des steigendsten Anstiegs",
+      "category": "concept"
+    },
+    {
+      "name": "Richtungsableitung",
+      "aliases": ["directional derivative", "方向导数"],
+      "definition_snippet": "Änderungsrate in Richtung u: D_u f = ∇f · u",
+      "category": "concept"
+    },
+    {
+      "name": "Lagrange-Multiplikatoren",
+      "aliases": ["Lagrange multipliers", "拉格朗日乘数"],
+      "definition_snippet": "Methode zur beschränkten Optimierung: ∇f = λ∇g",
+      "category": "concept"
+    },
+    {
+      "name": "Divergenz",
+      "aliases": ["divergence", "散度"],
+      "definition_snippet": "div F = ∂P/∂x + ∂Q/∂y + ∂R/∂z — Stärke der Quellen",
+      "category": "concept"
+    },
+    {
+      "name": "Rotation",
+      "aliases": ["curl", "旋度"],
+      "definition_snippet": "rot F — Maß für die Rotation eines Vektorfeldes",
+      "category": "concept"
+    },
+    {
+      "name": "mehrdimensionale Kettenregel",
+      "aliases": ["multivariable chain rule", "多元链式法则"],
+      "definition_snippet": "dz/dt = ∂f/∂x · dx/dt + ∂f/∂y · dy/dt",
+      "category": "theorem"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "partielle Ableitung",
+      "target": "Ableitung",
+      "type": "generalization",
+      "importance": 0.95,
+      "evidence": "Partielle Ableitungen verallgemeinern die eindimensionale Differentiation"
+    },
+    {
+      "source": "Gradient",
+      "target": "partielle Ableitung",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Gradient besteht aus partiellen Ableitungen"
+    },
+    {
+      "source": "Richtungsableitung",
+      "target": "Gradient",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "Richtungsableitung = Gradient · Richtungsvektor"
+    },
+    {
+      "source": "Lagrange-Multiplikatoren",
+      "target": "Gradient",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Lagrange-Methode basiert auf Gleichheit der Gradienten"
+    },
+    {
+      "source": "Divergenz",
+      "target": "partielle Ableitung",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "Divergenz ist Summe partieller Ableitungen"
+    },
+    {
+      "source": "Rotation",
+      "target": "partielle Ableitung",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "Rotation besteht aus Kreuzableitungen"
+    },
+    {
+      "source": "mehrdimensionale Kettenregel",
+      "target": "Kettenregel",
+      "type": "generalization",
+      "importance": 0.9,
+      "evidence": "Mehrdimensionale Kettenregel verallgemeint die eindimensionale"
+    }
+  ]
+}

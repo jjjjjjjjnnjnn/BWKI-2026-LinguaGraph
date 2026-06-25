@@ -24,8 +24,9 @@ Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt,
 - Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg
 - CognitiveSpace: skalierbare 3D-Visualisierung mit 574 Konzepten aus 68 Lehrbüchern
 - Vollständige Pipeline: Textextraktion → Graphkonstruktion → Alignierung → Analyse → Visualisierung
+- **Humanvalidierung**: Erste empirische Bestätigung des LDS anhand von N=8 Probanden (90 Antworten, 6 Within-Subject-Vergleiche) mit konsistenter Rangfolge über alle Analyseebenen hinweg (F11, F12)
 
-Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Humanstudie zur Validierung des LDS ist in Vorbereitung.
+Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Humanstudie (N=8) validiert den Language Drift Score erstmals auf individueller kognitiver Ebene und bestätigt die Konsistenz der Rangfolge über alle Analyseebenen hinweg (F11: konsistente Rangfolge DE–ZH > DE–EN > ZH–EN; F12: menschliche LDS > Simulationsbasislinie, p=0,05).
 
 ---
 
@@ -67,4 +68,4 @@ Diese Arbeit leistet folgende Beiträge:
 
 ### 1.4 Gliederung
 
-Die Arbeit ist wie folgt aufgebaut. Kapitel 2 gibt einen Überblick über verwandte Arbeiten aus Linguistik, KI-Forschung und Wissensgraphen. Kapitel 3 beschreibt die Methodik beider Pipelines. Kapitel 4 präsentiert die Ergebnisse des CognitiveSpace-Wissensgraphen. Kapitel 5 skizziert das geplante Humanstudienprotokoll. Kapitel 6 diskutiert die Ergebnisse und Limitationen. Kapitel 7 fasst die Arbeit zusammen.
+Die Arbeit ist wie folgt aufgebaut. Kapitel 2 gibt einen Überblick über verwandte Arbeiten aus Linguistik, KI-Forschung und Wissensgraphen. Kapitel 3 beschreibt die Methodik beider Pipelines. Kapitel 4 präsentiert die Ergebnisse — vom CognitiveSpace-Wissensgraphen über die LDS-Analyse bis zur Humanvalidierung (F1–F12). Kapitel 5 diskutiert die Ergebnisse und Limitationen. Kapitel 6 fasst die Arbeit zusammen.

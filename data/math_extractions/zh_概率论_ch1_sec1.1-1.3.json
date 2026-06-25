@@ -1,0 +1,29 @@
+{
+  "source_textbook": {
+    "name": "浙江大学《概率论与数理统计》",
+    "language": "zh",
+    "chapter": "第一章 概率论的基本概念",
+    "section": "1.1-1.3 随机试验、概率与条件概率",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "随机试验", "aliases": ["random experiment", "Zufallsexperiment"], "definition_snippet": "满足可重复性、多结果性、不确定性的试验", "category": "concept"},
+    {"name": "样本空间", "aliases": ["sample space", "Ergebnisraum"], "definition_snippet": "随机试验所有可能结果的集合 Ω", "category": "concept"},
+    {"name": "随机事件", "aliases": ["random event", "Ereignis"], "definition_snippet": "样本空间的子集", "category": "concept"},
+    {"name": "概率", "aliases": ["probability", "Wahrscheinlichkeit"], "definition_snippet": "事件发生可能性的度量，满足公理化定义", "category": "concept"},
+    {"name": "古典概型", "aliases": ["classical probability", "klassisches Modell"], "definition_snippet": "等可能概型：P(A) = |A|/|Ω|", "category": "concept"},
+    {"name": "条件概率", "aliases": ["conditional probability", "bedingte Wahrscheinlichkeit"], "definition_snippet": "P(B|A) = P(AB)/P(A)", "category": "concept"},
+    {"name": "全概率公式", "aliases": ["total probability", "Totalwahrscheinlichkeit"], "definition_snippet": "P(B) = Σ P(Aᵢ)P(B|Aᵢ)", "category": "theorem"},
+    {"name": "贝叶斯公式", "aliases": ["Bayes' theorem", "Satz von Bayes"], "definition_snippet": "P(Aⱼ|B) = P(Aⱼ)P(B|Aⱼ) / P(B)", "category": "theorem"},
+    {"name": "事件的独立性", "aliases": ["independence", "Unabhängigkeit"], "definition_snippet": "P(AB) = P(A)P(B)", "category": "property"}
+  ],
+  "extracted_relations": [
+    {"source": "样本空间", "target": "随机试验", "type": "representation", "importance": 0.9, "evidence": "样本空间是随机试验所有结果的集合"},
+    {"source": "随机事件", "target": "样本空间", "type": "part_of", "importance": 0.85, "evidence": "随机事件是样本空间的子集"},
+    {"source": "概率", "target": "随机事件", "type": "applies_to", "importance": 0.9, "evidence": "概率是事件发生可能性的度量"},
+    {"source": "条件概率", "target": "概率", "type": "requires", "importance": 0.9, "evidence": "条件概率建立在概率定义之上"},
+    {"source": "全概率公式", "target": "条件概率", "type": "requires", "importance": 0.85, "evidence": "全概率公式通过条件概率计算"},
+    {"source": "贝叶斯公式", "target": "条件概率", "type": "requires", "importance": 0.9, "evidence": "贝叶斯公式是条件概率的变形"},
+    {"source": "事件的独立性", "target": "概率", "type": "requires", "importance": 0.85, "evidence": "独立性的定义基于概率乘积"}
+  ]
+}

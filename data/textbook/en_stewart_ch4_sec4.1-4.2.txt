@@ -1,0 +1,37 @@
+Chapter 4 L'Hôpital's Rule and Series
+
+4.1 L'Hôpital's Rule
+
+The 0/0 Case: If lim f(x) = lim g(x) = 0, and lim f'(x)/g'(x) exists, then
+lim f(x)/g(x) = lim f'(x)/g'(x)
+
+The ∞/∞ Case: If lim f(x) = lim g(x) = ∞, and lim f'(x)/g'(x) exists, then
+lim f(x)/g(x) = lim f'(x)/g'(x)
+
+Other Indeterminate Forms:
+- 0·∞: Rewrite as 0/(1/∞) or ∞/(1/0)
+- ∞-∞: Combine fractions
+- 1^∞, 0^0, ∞^0: Take logarithm, then apply L'Hôpital
+
+Examples:
+1. lim_{x→0} sin x / x = lim_{x→0} cos x / 1 = 1
+2. lim_{x→∞} (ln x) / x = lim_{x→∞} (1/x) / 1 = 0
+3. lim_{x→0} (e^x - 1 - x) / x² = lim_{x→0} (e^x - 1) / 2x = lim_{x→0} e^x / 2 = 1/2
+
+L'Hôpital's Rule connects differentiation to limit computation. It requires the existence of the limit of the ratio of derivatives, which is a stronger condition than the existence of the original limit.
+
+4.2 Taylor Series
+
+Taylor's Theorem: If f has n+1 derivatives near a, then
+f(x) = f(a) + f'(a)(x-a) + f''(a)(x-a)²/2! + ... + R_n
+
+Maclaurin Series (a = 0):
+- e^x = Σ xⁿ/n! for all x
+- sin x = Σ (-1)ⁿx²ⁿ⁺¹/(2n+1)! for all x
+- cos x = Σ (-1)ⁿx²ⁿ/(2n)! for all x
+- 1/(1-x) = Σ xⁿ for |x| < 1
+- ln(1+x) = Σ (-1)ⁿ⁻¹xⁿ/n for -1 < x ≤ 1
+
+Taylor series generalizes the tangent line approximation to use all higher-order derivatives. The remainder term R_n determines the accuracy of the polynomial approximation.
+
+Key relationship: Taylor series connects differentiation, integration, and infinite series — three major topics in calculus unified through the concept of derivatives.

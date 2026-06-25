@@ -1,0 +1,148 @@
+{
+  "source_textbook": {
+    "name": "Gilbert Strang: Introduction to Linear Algebra (18.06)",
+    "language": "en",
+    "chapter": "4 Vector Spaces",
+    "section": "4.1-4.6 Vectors, Linear Independence, Basis, Rank",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "vector space",
+      "aliases": ["Vektorraum", "向量空间"],
+      "definition_snippet": "A set closed under vector addition and scalar multiplication",
+      "category": "concept"
+    },
+    {
+      "name": "basis",
+      "aliases": ["Basis", "基"],
+      "definition_snippet": "A linearly independent spanning set for a vector space",
+      "category": "concept"
+    },
+    {
+      "name": "dimension",
+      "aliases": ["Dimension", "维数"],
+      "definition_snippet": "The number of vectors in any basis",
+      "category": "concept"
+    },
+    {
+      "name": "linear combination",
+      "aliases": ["lineare Kombination", "线性组合"],
+      "definition_snippet": "c₁v₁ + ... + cₖvₖ",
+      "category": "concept"
+    },
+    {
+      "name": "span",
+      "aliases": ["Aufspann", "张成"],
+      "definition_snippet": "Set of all linear combinations of a set of vectors",
+      "category": "concept"
+    },
+    {
+      "name": "linear independence",
+      "aliases": ["lineare Unabhängigkeit", "线性无关"],
+      "definition_snippet": "c₁v₁ + ... + cₖvₖ = 0 implies all cᵢ = 0",
+      "category": "property"
+    },
+    {
+      "name": "column space",
+      "aliases": ["Spaltenraum", "列空间"],
+      "definition_snippet": "Span of the columns of a matrix",
+      "category": "concept"
+    },
+    {
+      "name": "null space",
+      "aliases": ["Nullraum", "零空间"],
+      "definition_snippet": "Set of all x such that Ax = 0",
+      "category": "concept"
+    },
+    {
+      "name": "rank",
+      "aliases": ["Rang", "秩"],
+      "definition_snippet": "Dimension of column space = dimension of row space",
+      "category": "concept"
+    },
+    {
+      "name": "nullity",
+      "aliases": ["Defekt", "零度"],
+      "definition_snippet": "Dimension of null space",
+      "category": "concept"
+    },
+    {
+      "name": "rank-nullity theorem",
+      "aliases": ["Rang-Defekt-Satz", "秩-零度定理"],
+      "definition_snippet": "rank(A) + nullity(A) = n",
+      "category": "theorem"
+    },
+    {
+      "name": "change of basis",
+      "aliases": ["Basiswechsel", "基变换"],
+      "definition_snippet": "Transition matrix between two bases",
+      "category": "operation"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "basis",
+      "target": "vector space",
+      "type": "representation",
+      "importance": 0.95,
+      "evidence": "A basis completely characterizes a vector space"
+    },
+    {
+      "source": "dimension",
+      "target": "basis",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Dimension is the size of any basis"
+    },
+    {
+      "source": "linear independence",
+      "target": "basis",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "A basis must be linearly independent"
+    },
+    {
+      "source": "span",
+      "target": "basis",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "A basis must span the space"
+    },
+    {
+      "source": "column space",
+      "target": "vector space",
+      "type": "specialization",
+      "importance": 0.85,
+      "evidence": "Column space is a subspace of Rᵐ"
+    },
+    {
+      "source": "null space",
+      "target": "vector space",
+      "type": "specialization",
+      "importance": 0.85,
+      "evidence": "Null space is a subspace of Rⁿ"
+    },
+    {
+      "source": "rank",
+      "target": "column space",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Rank equals dimension of column space"
+    },
+    {
+      "source": "rank-nullity theorem",
+      "target": "rank",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "The theorem relates rank and nullity"
+    },
+    {
+      "source": "rank-nullity theorem",
+      "target": "nullity",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "The theorem relates rank and nullity"
+    }
+  ]
+}

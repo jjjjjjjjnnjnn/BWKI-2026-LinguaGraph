@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
+<title data-i18n="page_title">LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
 <meta name="description" content="A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States.">
 <meta name="theme-color" content="#0a0e17">
 <meta property="og:title" content="LinguaGraph — Cross-Lingual Knowledge Structure Analysis">
@@ -46,6 +46,16 @@ nav a {
 }
 nav a:hover { color: var(--text); background: rgba(255,255,255,.05); }
 nav a.active { color: var(--accent); background: rgba(96,165,250,.12); }
+
+/* Language Switcher */
+.lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 8px; }
+.lang-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text2);
+  padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600;
+  transition: all .2s;
+}
+.lang-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+.lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* Sections */
 section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
@@ -179,6 +189,11 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <a href="#validation">Validation</a>
   <a href="#paper">Paper</a>
   <a href="#open-science">Open Science</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLanguage('en')" title="English">EN</button>
+    <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">DE</button>
+    <button class="lang-btn" onclick="setLanguage('zh')" title="中文">ZH</button>
+  </div>
 </nav>
 
 <!-- Lightbox -->
@@ -312,7 +327,7 @@ graph LR
 <!-- ==================== FINDING A: CDS ==================== -->
 <section id="finding-a" class="fade-in">
   <h2 class="section-title">Findings</h2>
-  <p class="section-sub">Four structural discoveries about how knowledge is organized across disciplines, languages and education systems</p></section>
+  <p class="section-sub">Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals</p></section>
 
 
 
@@ -416,6 +431,69 @@ graph LR
       <strong><span class="tag tag-yellow">F10</span></strong> Trajectories reveal system design philosophy: UK ↗ exam-driven breadth, NRW ↘ specialization, US → stable broad, CN → selective depth.
     </p>
     <div class="meta"><span class="tag tag-yellow">Metric: CS</span> <span class="tag tag-blue">F9, F10</span> <span class="tag tag-green">Systems: DE, UK, US, CN</span></div>
+  </div>
+</section>
+
+<!-- ==================== FINDING E: HUMAN VALIDATION ==================== -->
+<section id="finding-e" class="fade-in">
+<div class="finding-card" style="border-left:4px solid var(--purple)">
+    <h3><i class="bi bi-people" style="color:var(--purple)"></i> Finding E: Human validation confirms language-driven cognitive divergence</h3>
+    <div class="lead">Real participants show the same cross-language pattern as aggregated corpora — but with smaller magnitude, confirming education amplifies language-specific organization.</div>
+    <p>We collected <strong>101 open-ended responses</strong> from N=8 multilingual participants (ZH, DE, EN native speakers) across 5 social topics. Extraction via qwen-plus (F1=0.939 validated on 92 gold labels) achieved 89% coverage. Within-subject DE-EN LDS averaged <strong>0.773</strong>, with bilingual participants using completely different concept sets in each language. Between-subject group LDS: DE–ZH <strong>0.751</strong>, DE–EN <strong>0.727</strong>, ZH–EN <strong>0.704</strong>. The rank order matches the Wikipedia corpus exactly (DE–ZH > DE–EN > ZH–EN), while a computational baseline of 300 simulated responses yields significantly lower LDS (0.647, p=0.050).</p>
+    <div class="evidence">
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.773</div><div class="ev-label">🧑 Within-subject DE–EN</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.751</div><div class="ev-label">🌍 Between DE–ZH</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.727</div><div class="ev-label">🌍 Between DE–EN</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.704</div><div class="ev-label">🌍 Between ZH–EN</div></div>
+    </div>
+    <div class="table-container" style="margin:16px 0;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead>
+          <tr style="background:var(--surface2);border-bottom:2px solid var(--purple)">
+            <th style="padding:8px 12px;text-align:left">Level</th>
+            <th style="padding:8px 12px;text-align:center">DE–ZH</th>
+            <th style="padding:8px 12px;text-align:center">DE–EN</th>
+            <th style="padding:8px 12px;text-align:center">ZH–EN</th>
+            <th style="padding:8px 12px;text-align:center">Rank Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Human (Within)</strong></td>
+            <td style="padding:8px 12px;text-align:center">—</td>
+            <td style="padding:8px 12px;text-align:center"><strong>0.773</strong></td>
+            <td style="padding:8px 12px;text-align:center">—</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Human (Between)</strong></td>
+            <td style="padding:8px 12px;text-align:center"><strong>0.751</strong></td>
+            <td style="padding:8px 12px;text-align:center">0.727</td>
+            <td style="padding:8px 12px;text-align:center">0.704</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px"><strong>Wikipedia Corpus</strong></td>
+            <td style="padding:8px 12px;text-align:center"><strong>0.907</strong></td>
+            <td style="padding:8px 12px;text-align:center">0.901</td>
+            <td style="padding:8px 12px;text-align:center">0.802</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
+          </tr>
+          <tr style="background:var(--surface2);font-style:italic">
+            <td style="padding:8px 12px"><strong>Simulation Baseline</strong></td>
+            <td style="padding:8px 12px;text-align:center">0.646</td>
+            <td style="padding:8px 12px;text-align:center">0.655</td>
+            <td style="padding:8px 12px;text-align:center">0.640</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--orange)">flat</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
+      <strong><span class="tag tag-purple">F11</span></strong> Human LDS rank order matches Wikipedia corpus (DE–ZH > DE–EN > ZH–EN), validating the metric at the individual cognitive level.<br>
+      <strong><span class="tag tag-purple">F12</span></strong> Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05), confirming divergence is not random variation.
+    </p>
+    <div class="meta"><span class="tag tag-purple">Metric: LDS</span> <span class="tag tag-blue">F11, F12</span> <span class="tag tag-green">N=8 participants, 300 simulation</span></div>
   </div>
 </section>
 
@@ -809,6 +887,66 @@ new Chart(document.getElementById('benchmarkChart'), {
       y: { ticks: { font: { size: 9 }, color: '#94a3b8' } }
     }
   }
+});
+</script>
+const TRANSLATIONS = {
+  en: {
+    page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
+    nav_research: 'Research', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
+    nav_findings: 'Findings', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Curriculum',
+    nav_validation: 'Validation', nav_paper: 'Paper', nav_open: 'Open Science',
+    hero_title: 'How do different languages and educational systems organize the same knowledge?',
+    hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States',
+    hero_cta: 'Explore Findings →', hero_3d: 'CognitiveSpace 3D',
+    section_findings: 'Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals',
+  },
+  de: {
+    page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
+    nav_research: 'Forschung', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
+    nav_findings: 'Erkenntnisse', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Lehrplan',
+    nav_validation: 'Validierung', nav_paper: 'Paper', nav_open: 'Open Science',
+    hero_title: 'Wie organisieren verschiedene Sprachen und Bildungssysteme das gleiche Wissen?',
+    hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA',
+    hero_cta: 'Erkenntnisse entdecken →', hero_3d: 'CognitiveSpace 3D',
+    section_findings: 'Fünf strukturelle Entdeckungen über die Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
+  },
+  zh: {
+    page_title: 'LinguaGraph — 跨语言知识结构分析',
+    nav_research: '研究', nav_contributions: '贡献', nav_methodology: '方法',
+    nav_findings: '发现', nav_cognitivespace: '认知空间', nav_curriculum: '课程',
+    nav_validation: '验证', nav_paper: '论文', nav_open: '开放科学',
+    hero_title: '不同语言和教育体系是如何组织同一种知识的？',
+    hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析',
+    hero_cta: '探索发现 →', hero_3d: '认知空间 3D',
+    section_findings: '关于知识如何在学科、语言、教育体系和个人之间组织的五项结构性发现',
+  },
+};
+
+function setLanguage(lang) {
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
+  document.querySelectorAll('nav a').forEach(a => {
+    const id = a.getAttribute('href')?.replace('#', '');
+    if (id && navMap[id]) a.textContent = t[navMap[id]];
+  });
+  const h1 = document.querySelector('.hero h1');
+  if (h1) h1.textContent = t.hero_title;
+  const hSub = document.querySelector('.hero .subtitle');
+  if (hSub) hSub.textContent = t.hero_sub;
+  const cta = document.querySelector('.hero .ctas a:first-child');
+  if (cta) cta.innerHTML = t.hero_cta;
+  const btn3d = document.querySelector('.hero .ctas a:nth-child(2)');
+  if (btn3d) btn3d.innerHTML = t.hero_3d;
+  const sub = document.querySelector('#finding-a .section-sub');
+  if (sub) sub.textContent = t.section_findings;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+  localStorage.setItem('portal_lang', lang);
+  document.documentElement.lang = lang;
+}
+document.addEventListener('DOMContentLoaded', () => setLanguage(localStorage.getItem('portal_lang') || 'en'));
+window.addEventListener('pageshow', () => {
+  const s = localStorage.getItem('portal_lang') || 'en';
+  if (!document.querySelector('.lang-btn.active')?.textContent.toLowerCase().includes(s)) setLanguage(s);
 });
 </script>
 </body>

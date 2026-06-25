@@ -1,0 +1,29 @@
+{
+  "source_textbook": {
+    "name": "人教版《偏微分方程基础》",
+    "language": "zh",
+    "chapter": "第十章 偏微分方程基础",
+    "section": "10.1-10.3 三类经典PDE、分离变量法与傅里叶级数",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {"name": "波动方程", "aliases": ["wave equation", "Wellengleichung"], "definition_snippet": "∂²u/∂t² = c²∂²u/∂x²，描述弦振动和波动", "category": "concept"},
+    {"name": "热传导方程", "aliases": ["heat equation", "Wärmegleichung"], "definition_snippet": "∂u/∂t = k∂²u/∂x²，描述温度扩散", "category": "concept"},
+    {"name": "拉普拉斯方程", "aliases": ["Laplace equation", "Laplace-Gleichung"], "definition_snippet": "∂²u/∂x² + ∂²u/∂y² = 0，描述稳态场", "category": "concept"},
+    {"name": "调和函数", "aliases": ["harmonic function", "harmonische Funktion"], "definition_snippet": "满足拉普拉斯方程的函数", "category": "concept"},
+    {"name": "分离变量法", "aliases": ["separation of variables", "Trennung der Variablen"], "definition_snippet": "假设 u(x,t) = X(x)T(t) 将 PDE 化为 ODE", "category": "concept"},
+    {"name": "傅里叶级数", "aliases": ["Fourier series", "Fourierreihe"], "definition_snippet": "f(x) = a₀/2 + Σ[aₙcos(nπx/L) + bₙsin(nπx/L)]", "category": "concept"},
+    {"name": "特征值问题", "aliases": ["eigenvalue problem", "Eigenwertproblem"], "definition_snippet": "分离变量后产生的 Sturm-Liouville 问题", "category": "concept"},
+    {"name": "达朗贝尔解", "aliases": ["d'Alembert solution", "d'Alembertsche Lösung"], "definition_snippet": "波动方程的通解：u = f(x-ct) + g(x+ct)", "category": "theorem"}
+  ],
+  "extracted_relations": [
+    {"source": "波动方程", "target": "偏微分方程", "type": "specialization", "importance": 0.95, "evidence": "波动方程是最经典的双曲型PDE"},
+    {"source": "热传导方程", "target": "偏微分方程", "type": "specialization", "importance": 0.95, "evidence": "热传导方程是典型的抛物型PDE"},
+    {"source": "拉普拉斯方程", "target": "偏微分方程", "type": "specialization", "importance": 0.95, "evidence": "拉普拉斯方程是椭圆型PDE"},
+    {"source": "调和函数", "target": "拉普拉斯方程", "type": "representation", "importance": 0.85, "evidence": "调和函数是拉普拉斯方程的解"},
+    {"source": "分离变量法", "target": "偏微分方程", "type": "applies_to", "importance": 0.9, "evidence": "分离变量法是求解PDE的基本方法"},
+    {"source": "傅里叶级数", "target": "分离变量法", "type": "requires", "importance": 0.9, "evidence": "分离变量法的解展开为傅里叶级数"},
+    {"source": "特征值问题", "target": "分离变量法", "type": "requires", "importance": 0.85, "evidence": "分离变量产生特征值问题"},
+    {"source": "达朗贝尔解", "target": "波动方程", "type": "representation", "importance": 0.9, "evidence": "达朗贝尔给出了波动方程的通解"}
+  ]
+}

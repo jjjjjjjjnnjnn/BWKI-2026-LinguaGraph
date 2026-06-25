@@ -1,0 +1,97 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第六章 二次型",
+    "section": "6.1-6.2 二次型与正交对角化",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "二次型",
+      "aliases": ["quadratic form", "quadratische Form"],
+      "definition_snippet": "n 元二次齐次多项式 f = x^T A x",
+      "category": "concept"
+    },
+    {
+      "name": "标准形",
+      "aliases": ["standard form", "Normalform"],
+      "definition_snippet": "f = λ₁y₁² + λ₂y₂² + ... + λₙyₙ²",
+      "category": "concept"
+    },
+    {
+      "name": "正定矩阵",
+      "aliases": ["positive definite matrix", "positiv definite Matrix"],
+      "definition_snippet": "所有特征值 > 0 的对称矩阵",
+      "category": "concept"
+    },
+    {
+      "name": "正定二次型",
+      "aliases": ["positive definite quadratic form", "positiv definite quadratische Form"],
+      "definition_snippet": "对所有非零 x 都有 x^T A x > 0",
+      "category": "concept"
+    },
+    {
+      "name": "正交矩阵",
+      "aliases": ["orthogonal matrix", "orthogonale Matrix"],
+      "definition_snippet": "Q^T Q = I 的矩阵",
+      "category": "concept"
+    },
+    {
+      "name": "合同变换",
+      "aliases": ["congruence transformation", "Kongruenztransformation"],
+      "definition_snippet": "通过 x = Cy 将二次型化为标准形",
+      "category": "operation"
+    },
+    {
+      "name": "实对称矩阵正交对角化",
+      "aliases": ["orthogonal diagonalization", "orthogonale Diagonalisierung"],
+      "definition_snippet": "A = QΛQ^T，Q 是正交矩阵",
+      "category": "theorem"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "二次型",
+      "target": "矩阵",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "二次型可以写成矩阵形式 x^T A x"
+    },
+    {
+      "source": "正定矩阵",
+      "target": "特征值",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "正定矩阵的充要条件是所有特征值大于零"
+    },
+    {
+      "source": "正定二次型",
+      "target": "正定矩阵",
+      "type": "representation",
+      "importance": 0.85,
+      "evidence": "正定二次型对应正定矩阵"
+    },
+    {
+      "source": "正交矩阵",
+      "target": "逆矩阵",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "正交矩阵的逆等于转置"
+    },
+    {
+      "source": "实对称矩阵正交对角化",
+      "target": "正交矩阵",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "正交对角化需要正交矩阵"
+    },
+    {
+      "source": "实对称矩阵正交对角化",
+      "target": "特征值",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "对角元是特征值"
+    }
+  ]
+}

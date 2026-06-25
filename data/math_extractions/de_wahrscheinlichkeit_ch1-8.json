@@ -1,0 +1,52 @@
+{
+  "source_textbook": {
+    "name": "Wahrscheinlichkeitsrechnung und Statistik",
+    "language": "de",
+    "chapter": "1-8 Wahrscheinlichkeit und Statistik",
+    "section": "Vollständige Abdeckung: Wahrscheinlichkeit bis Hypothesentest",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {"name": "Wahrscheinlichkeit", "aliases": ["probability", "概率"], "definition_snippet": "Maß für die Möglichkeit eines Ereignisses", "category": "concept"},
+    {"name": "bedingte Wahrscheinlichkeit", "aliases": ["conditional probability", "条件概率"], "definition_snippet": "P(B|A) = P(AB)/P(A)", "category": "concept"},
+    {"name": "Satz von Bayes", "aliases": ["Bayes' theorem", "贝叶斯公式"], "definition_snippet": "P(Aⱼ|B) = P(Aⱼ)P(B|Aⱼ)/P(B)", "category": "theorem"},
+    {"name": "Zufallsgröße", "aliases": ["random variable", "随机变量"], "definition_snippet": "Funktion vom Ergebnisraum nach ℝ", "category": "concept"},
+    {"name": "Binomialverteilung", "aliases": ["binomial distribution", "二项分布"], "definition_snippet": "B(n,p): n unabhängige Bernoulli-Versuche", "category": "concept"},
+    {"name": "Poissonverteilung", "aliases": ["Poisson distribution", "泊松分布"], "definition_snippet": "P(λ): Ereignisse in festem Intervall", "category": "concept"},
+    {"name": "Normalverteilung", "aliases": ["normal distribution", "正态分布"], "definition_snippet": "N(μ,σ²): wichtigste stetige Verteilung", "category": "concept"},
+    {"name": "Erwartungswert", "aliases": ["expectation", "数学期望"], "definition_snippet": "E(X) = ∫xf(x)dx — Mittelwert", "category": "concept"},
+    {"name": "Varianz", "aliases": ["variance", "方差"], "definition_snippet": "Var(X) = E(X²) - [E(X)]² — Streuungsmaß", "category": "concept"},
+    {"name": "Kovarianz", "aliases": ["covariance", "协方差"], "definition_snippet": "Kov(X,Y) = E(XY) - E(X)E(Y)", "category": "concept"},
+    {"name": "Gesetz der großen Zahlen", "aliases": ["Law of Large Numbers", "大数定律"], "definition_snippet": "Stichprobenmittelwert konvergiert zum Erwartungswert", "category": "theorem"},
+    {"name": "Zentraler Grenzwertsatz", "aliases": ["Central Limit Theorem", "中心极限定理"], "definition_snippet": "Summe iid Zufallsgrößen → Normal", "category": "theorem"},
+    {"name": "Statistik", "aliases": ["statistic", "统计量"], "definition_snippet": "Funktion der Stichprobendaten (keine unbekannten Parameter)", "category": "concept"},
+    {"name": "Chi-Quadrat-Verteilung", "aliases": ["chi-squared distribution", "χ²分布"], "definition_snippet": "Summe quadrierter Standardnormalverteilungen", "category": "concept"},
+    {"name": "t-Verteilung", "aliases": ["t-distribution", "t分布"], "definition_snippet": "Normal / √(Chi-Quadrat/df)", "category": "concept"},
+    {"name": "F-Verteilung", "aliases": ["F-distribution", "F分布"], "definition_snippet": "Verhältnis zweier Chi-Quadrat/df", "category": "concept"},
+    {"name": "Maximum-Likelihood-Schätzung", "aliases": ["maximum likelihood estimation", "最大似然估计"], "definition_snippet": "θ̂ = argmax L(θ)", "category": "concept"},
+    {"name": "Konfidenzintervall", "aliases": ["confidence interval", "置信区间"], "definition_snippet": "Intervall mit P(θ innen) = 1-α", "category": "concept"},
+    {"name": "Hypothesentest", "aliases": ["hypothesis testing", "假设检验"], "definition_snippet": "Teste H₀ mit Stichprobendaten", "category": "concept"},
+    {"name": "Signifikanzniveau", "aliases": ["significance level", "显著性水平"], "definition_snippet": "α = P(H₀ ablehnen | H₀ wahr)", "category": "concept"},
+    {"name": "Fehler 1. Art", "aliases": ["Type I error", "第一类错误"], "definition_snippet": "H₀ ablehnen obwohl sie wahr ist", "category": "concept"},
+    {"name": "Fehler 2. Art", "aliases": ["Type II error", "第二类错误"], "definition_snippet": "H₀ akzeptieren obwohl sie falsch ist", "category": "concept"},
+    {"name": "t-Test", "aliases": ["t-test", "t检验"], "definition_snippet": "Test für Mittelwert bei unbekannter Varianz", "category": "concept"},
+    {"name": "F-Test", "aliases": ["F-test", "F检验"], "definition_snippet": "Test für Gleichheit zweier Varianzen", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "bedingte Wahrscheinlichkeit", "target": "Wahrscheinlichkeit", "type": "requires", "importance": 0.9, "evidence": "Bedingte Wahrscheinlichkeit baut auf Wahrscheinlichkeit auf"},
+    {"source": "Satz von Bayes", "target": "bedingte Wahrscheinlichkeit", "type": "requires", "importance": 0.9, "evidence": "Satz von Bayes folgt aus bedingter Wahrscheinlichkeit"},
+    {"source": "Zufallsgröße", "target": "Wahrscheinlichkeit", "type": "requires", "importance": 0.9, "evidence": "Zufallsgrößen verwenden das Wahrscheinlichkeitsmaß"},
+    {"source": "Normalverteilung", "target": "Zufallsgröße", "type": "specialization", "importance": 0.95, "evidence": "Normalverteilung ist die wichtigste stetige Verteilung"},
+    {"source": "Erwartungswert", "target": "Zufallsgröße", "type": "representation", "importance": 0.9, "evidence": "Erwartungswert beschreibt die Mitte der Verteilung"},
+    {"source": "Varianz", "target": "Erwartungswert", "type": "requires", "importance": 0.9, "evidence": "Varianz wird über Erwartungswert definiert"},
+    {"source": "Kovarianz", "target": "Erwartungswert", "type": "requires", "importance": 0.85, "evidence": "Kovarianz wird über Erwartungswert definiert"},
+    {"source": "Gesetz der großen Zahlen", "target": "Erwartungswert", "type": "requires", "importance": 0.9, "evidence": "GLZ beschreibt Konvergenz zum Erwartungswert"},
+    {"source": "Zentraler Grenzwertsatz", "target": "Normalverteilung", "type": "representation", "importance": 0.95, "evidence": "ZGS zeigt Annäherung an Normalverteilung"},
+    {"source": "Chi-Quadrat-Verteilung", "target": "Normalverteilung", "type": "requires", "importance": 0.85, "evidence": "Chi-Quadrat ist Summe quadrierter Normalverteilungen"},
+    {"source": "t-Verteilung", "target": "Normalverteilung", "type": "requires", "importance": 0.85, "evidence": "t-Verteilung verwendet Standardnormalverteilung"},
+    {"source": "F-Verteilung", "target": "Chi-Quadrat-Verteilung", "type": "requires", "importance": 0.85, "evidence": "F-Verteilung ist Verhältnis zweier Chi-Quadrat"},
+    {"source": "Hypothesentest", "target": "Statistik", "type": "requires", "importance": 0.9, "evidence": "Hypothesentests verwenden Teststatistiken"},
+    {"source": "t-Test", "target": "Hypothesentest", "type": "specialization", "importance": 0.9, "evidence": "t-Test ist ein spezifischer Hypothesentest"},
+    {"source": "F-Test", "target": "Hypothesentest", "type": "specialization", "importance": 0.85, "evidence": "F-Test ist ein spezifischer Hypothesentest"}
+  ]
+}

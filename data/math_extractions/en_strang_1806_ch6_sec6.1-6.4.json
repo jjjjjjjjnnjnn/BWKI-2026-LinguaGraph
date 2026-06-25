@@ -1,0 +1,91 @@
+{
+  "source_textbook": {
+    "name": "Gilbert Strang: Introduction to Linear Algebra (18.06)",
+    "language": "en",
+    "chapter": "6 Eigenvalues and Eigenvectors",
+    "section": "6.1-6.4 Eigenvalue Equation, Diagonalization, Applications",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "eigenvalue",
+      "aliases": ["Eigenwert", "特征值"],
+      "definition_snippet": "A scalar λ such that Ax = λx for some nonzero x",
+      "category": "concept"
+    },
+    {
+      "name": "eigenvector",
+      "aliases": ["Eigenvektor", "特征向量"],
+      "definition_snippet": "A nonzero vector x satisfying Ax = λx",
+      "category": "concept"
+    },
+    {
+      "name": "eigenvalue equation",
+      "aliases": ["Eigenwert-Gleichung", "特征值方程"],
+      "definition_snippet": "Ax = λx — the fundamental equation of eigenvalue theory",
+      "category": "concept"
+    },
+    {
+      "name": "diagonalization",
+      "aliases": ["Diagonalisierung", "对角化"],
+      "definition_snippet": "A = SΛS⁻¹ where S has eigenvectors and Λ has eigenvalues",
+      "category": "concept"
+    },
+    {
+      "name": "spectral theorem",
+      "aliases": ["Spektralsatz", "谱定理"],
+      "definition_snippet": "Real symmetric A = QΛQ^T with orthogonal Q",
+      "category": "theorem"
+    },
+    {
+      "name": "similarity",
+      "aliases": ["Ähnlichkeit", "相似"],
+      "definition_snippet": "A = PBP⁻¹ means A and B are similar",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "eigenvalue",
+      "target": "eigenvalue equation",
+      "type": "representation",
+      "importance": 0.9,
+      "evidence": "Eigenvalues are solutions to the eigenvalue equation"
+    },
+    {
+      "source": "eigenvector",
+      "target": "eigenvalue",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Eigenvectors are associated with specific eigenvalues"
+    },
+    {
+      "source": "diagonalization",
+      "target": "eigenvalue",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Diagonal entries are eigenvalues"
+    },
+    {
+      "source": "diagonalization",
+      "target": "eigenvector",
+      "type": "requires",
+      "importance": 0.9,
+      "evidence": "Columns of S are eigenvectors"
+    },
+    {
+      "source": "spectral theorem",
+      "target": "diagonalization",
+      "type": "specialization",
+      "importance": 0.85,
+      "evidence": "Spectral theorem guarantees orthogonal diagonalization for symmetric matrices"
+    },
+    {
+      "source": "similarity",
+      "target": "eigenvalue",
+      "type": "representation",
+      "importance": 0.8,
+      "evidence": "Similar matrices share the same eigenvalues"
+    }
+  ]
+}

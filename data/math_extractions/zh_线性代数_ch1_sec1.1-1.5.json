@@ -1,0 +1,97 @@
+{
+  "source_textbook": {
+    "name": "同济大学《线性代数》",
+    "language": "zh",
+    "chapter": "第一章 行列式",
+    "section": "1.1-1.5 行列式的定义与性质",
+    "license": "CC-BY-SA (教育用途)"
+  },
+  "extracted_concepts": [
+    {
+      "name": "行列式",
+      "aliases": ["determinant", "Determinante"],
+      "definition_snippet": "方阵的一个标量值，反映矩阵的可逆性和线性变换的缩放因子",
+      "category": "concept"
+    },
+    {
+      "name": "二阶行列式",
+      "aliases": ["2×2 determinant", "Determinante 2. Ordnung"],
+      "definition_snippet": "|a b; c d| = ad - bc",
+      "category": "concept"
+    },
+    {
+      "name": "三阶行列式",
+      "aliases": ["3×3 determinant", "Determinante 3. Ordnung"],
+      "definition_snippet": "按第一行展开的三阶行列式计算方法",
+      "category": "concept"
+    },
+    {
+      "name": "逆序数",
+      "aliases": ["inversion number", "Inversionszahl"],
+      "definition_snippet": "排列中逆序的总数，决定行列式项的符号",
+      "category": "concept"
+    },
+    {
+      "name": "对换",
+      "aliases": ["transposition", "Transposition"],
+      "definition_snippet": "交换排列中两个元素的位置，改变排列的奇偶性",
+      "category": "concept"
+    },
+    {
+      "name": "克莱姆法则",
+      "aliases": ["Cramer's Rule", "Cramersche Regel"],
+      "definition_snippet": "系数行列式 D≠0 时，线性方程组有唯一解 xᵢ = Dᵢ/D",
+      "category": "theorem"
+    },
+    {
+      "name": "伴随矩阵",
+      "aliases": ["adjugate matrix", "Adjungierte"],
+      "definition_snippet": "由代数余子式构成的矩阵的转置，用于求逆矩阵",
+      "category": "concept"
+    }
+  ],
+  "extracted_relations": [
+    {
+      "source": "行列式",
+      "target": "矩阵",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "行列式是方阵的一个标量属性"
+    },
+    {
+      "source": "克莱姆法则",
+      "target": "行列式",
+      "type": "requires",
+      "importance": 0.95,
+      "evidence": "克莱姆法则通过行列式求解线性方程组"
+    },
+    {
+      "source": "克莱姆法则",
+      "target": "线性方程组",
+      "type": "applies_to",
+      "importance": 0.9,
+      "evidence": "克莱姆法则给出线性方程组的唯一解公式"
+    },
+    {
+      "source": "伴随矩阵",
+      "target": "行列式",
+      "type": "requires",
+      "importance": 0.85,
+      "evidence": "伴随矩阵的计算需要代数余子式，与行列式密切相关"
+    },
+    {
+      "source": "二阶行列式",
+      "target": "行列式",
+      "type": "specialization",
+      "importance": 0.8,
+      "evidence": "二阶行列式是行列式的最简单情形"
+    },
+    {
+      "source": "逆序数",
+      "target": "行列式",
+      "type": "requires",
+      "importance": 0.8,
+      "evidence": "行列式的定义依赖于排列的逆序数来确定符号"
+    }
+  ]
+}
