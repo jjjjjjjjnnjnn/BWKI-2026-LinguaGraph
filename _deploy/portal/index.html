@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https:; object-src 'none'; base-uri 'self';">
 <title data-i18n="page_title">LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
 <meta name="description" content="A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States.">
 <meta name="theme-color" content="#0a0e17">
@@ -15,7 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
-mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:false, securityLevel:'loose' });
+mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:false, securityLevel:'sandbox' });
 window.addEventListener('DOMContentLoaded', () => { try { mermaid.run({ querySelector: '.mermaid' }); } catch(e) {} });
 </script>
 <style>
@@ -280,7 +280,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
 <!-- ==================== METHODOLOGY ==================== -->
 <section id="methodology" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_method">Methodology</h2>
+  <h2 class="section-title">Methodology</h2>
   <p class="section-sub" data-i18n="method_sub">From textbook text to structural insights in five steps</p>
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
@@ -329,7 +329,7 @@ graph LR
 
 <!-- ==================== FINDING A: CDS ==================== -->
 <section id="finding-a" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_findings">Findings</h2>
+  <h2 class="section-title">Findings</h2>
   <p class="section-sub" data-i18n="section_findings">Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals</p></section>
 
 
@@ -519,7 +519,7 @@ graph LR
 
 <!-- ==================== LIMITATIONS ==================== -->
 <section id="limitations" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_limitations">Limitations</h2>
+  <h2 class="section-title">Limitations</h2>
   <p class="section-sub" data-i18n="limitations_sub">Transparent assessment of methodological boundaries and potential biases</p>
 
   <div class="card-grid">
@@ -607,7 +607,7 @@ graph LR
 
 <!-- ==================== VALIDATION ==================== -->
 <section id="validation" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_validation">Validation</h2>
+  <h2 class="section-title">Validation</h2>
   <p class="section-sub" data-i18n="validation_sub">Gold standard annotations and model benchmarks</p>
 
   <div class="card-grid" style="margin-bottom:40px">
@@ -642,7 +642,7 @@ graph LR
 
 <!-- ==================== PAPER ==================== -->
 <section id="paper" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_paper">Paper</h2>
+  <h2 class="section-title">Paper</h2>
   <p class="section-sub" data-i18n="paper_sub">Preprint manuscript available in the repository</p>
 
   <div class="card-grid" style="margin-bottom:32px">
@@ -676,7 +676,7 @@ graph LR
 
 <!-- ==================== OPEN SCIENCE ==================== -->
 <section id="open-science" class="fade-in">
-  <h2 class="section-title"> data-i18n="section_openscience">Open Science</h2>
+  <h2 class="section-title">Open Science</h2>
   <p class="section-sub" data-i18n="openscience_sub">All data, code and results are publicly available</p>
 
   <div class="card-grid">
@@ -1100,160 +1100,125 @@ const TRANSLATIONS = {
 function setLanguage(lang) {
   var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.title = t.page_title;
-
   // Nav
   var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
   document.querySelectorAll('nav a').forEach(function(a) {
-    var id = a.getAttribute('href') ? a.getAttribute('href').replace('#', '') : '';
-    if (id && navMap[id]) a.textContent = t[navMap[id]];
+    var id = a.getAttribute('href');
+    if (id && navMap[id.replace('#','')]) a.textContent = t[navMap[id.replace('#','')]];
   });
-
   // Hero
   var h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = t.hero_title;
   var hSub = document.querySelector('.hero .subtitle');
   if (hSub) hSub.textContent = t.hero_sub;
-
-  // CTAs
   var cta = document.querySelector('.hero .ctas a:first-child');
   if (cta) cta.innerHTML = t.cta_findings;
   var btn3d = document.querySelector('.hero .ctas a:nth-child(2)');
   if (btn3d) btn3d.innerHTML = t.cta_3d;
-
-  // Section: Research Questions (#research)
-  secTrans('#research', { '.section-title': 'section_rq', '.section-sub': 'rq_sub' });
-  cardTrans('#research .card:nth-child(1)', { 'h3': 'rq1_title', 'p:first-of-type': 'rq1_question', 'p:nth-of-type(2)': 'rq1_answer', '.meta .tag': 'rq1_metric' });
-  cardTrans('#research .card:nth-child(2)', { 'h3': 'rq2_title', 'p:first-of-type': 'rq2_question', 'p:nth-of-type(2)': 'rq2_answer' });
-  cardTrans('#research .card:nth-child(3)', { 'h3': 'rq3_title', 'p:first-of-type': 'rq3_question', 'p:nth-of-type(2)': 'rq3_answer' });
-
-  // Section: Contributions (#contributions)
-  secTrans('#contributions', { '.section-title': 'section_contrib', '.section-sub': 'contrib_sub' });
-  cardTrans('#contributions .card:nth-child(1)', { 'h3': 'contrib1_title', 'p': 'contrib1_desc' });
-
-  // Section: Methodology
-  secTrans('#methodology', { '.section-title': 'section_method', '.section-sub': 'method_sub' });
-
-  // Section: Findings
-  secTrans('#finding-a', { '.section-title': 'section_findings', '.section-sub': 'section_findings' });
-  secTrans('.finding-card:nth-of-type(1)', { 'h3': 'finding_a_title', '.lead': 'finding_a_sub' });
-  secTrans('.finding-card:nth-of-type(2)', { 'h3': 'finding_b_title', '.lead': 'finding_b_sub' });
-  secTrans('.finding-card:nth-of-type(3)', { 'h3': 'finding_c_title', '.lead': 'finding_c_sub' });
-  secTrans('.finding-card:nth-of-type(4)', { 'h3': 'finding_d_title', '.lead': 'finding_d_sub' });
-  secTrans('.finding-card:nth-of-type(5)', { 'h3': 'finding_e_title', '.lead': 'finding_e_sub' });
-
-  // Figure captions
-  figCaption(0, 'fig3_caption');
-  figCaption(1, 'fig7_caption');
-  figCaption(2, 'fig5_caption');
-  figCaption(3, 'fig4_caption');
-
-  // Section: Curriculum
-  secTrans('#curriculum', { '.section-title': 'section_curriculum', '.section-sub': 'curriculum_sub' });
-
-  // Section: Validation
-  secTrans('#validation', { '.section-title': 'section_validation', '.section-sub': 'validation_sub' });
-
-  // Section: Limitations
-  secTrans('#limitations', { '.section-title': 'section_limitations', '.section-sub': 'limitations_sub' });
-
-  // Section: Paper
-  secTrans('#paper', { '.section-title': 'section_paper', '.section-sub': 'paper_sub' });
-
-  // Section: Open Science
-  secTrans('#open-science', { '.section-title': 'section_openscience', '.section-sub': 'openscience_sub' });
-
-  // Section: CognitiveSpace
-  secTrans('#cognitivespace', { '.section-title': 'section_cognitivespace', '.section-sub': 'cognitivespace_sub' });
-
-  // Open Science cards
-  oscTrans();
-
-  // Lang buttons
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
-
-  // Also update any data-i18n elements
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    if (t[key]) el.textContent = t[key];
-  });
-
-  localStorage.setItem('portal_lang', lang);
-  document.documentElement.lang = lang;
-
   // Stats
   var statLabels = document.querySelectorAll('.hero .stat-label');
   var statKeys = ['stat_concepts','stat_relations','stat_languages','stat_disciplines','stat_edu_systems','stat_gold_labels','stat_overall_f1'];
-  statLabels.forEach(function(l,i){if(l&&t[statKeys[i]])l.textContent=t[statKeys[i]];});
+  statLabels.forEach(function(l,i) { if (l && t[statKeys[i]]) l.textContent = t[statKeys[i]]; });
 
-  // RQ section cards
-  _ct('#research .card-grid .card:nth-child(1)', 0, 'rq1_title', 'rq1_question');
-  _ct('#research .card-grid .card:nth-child(2)', 0, 'rq2_title', 'rq2_question');
-  _ct('#research .card-grid .card:nth-child(3)', 0, 'rq3_title', 'rq3_question');
-  // RQ answer paragraphs (3rd paragraph in each card)
+  // Inline helper: set textContent if element and key exist
+  function _q(sel, key) { var e = document.querySelector(sel); if (e && key && t[key]) e.textContent = t[key]; }
+  function _a(sel, key) { var e = document.querySelector(sel); if (e && key && t[key]) e.innerHTML = t[key]; }
+
+  // Section titles and subtitles
+  _q('#research .section-title', 'section_rq');
+  _q('#research .section-sub', 'rq_sub');
+  _q('#contributions .section-title', 'section_contrib');
+  _q('#contributions .section-sub', 'contrib_sub');
+  _q('#methodology .section-title', 'section_method');
+  _q('#methodology .section-sub', 'method_sub');
+  _q('.finding-a-header .section-title', 'section_findings');
+  _q('.finding-a-header + p.section-sub', 'section_findings');
+  _q('#curriculum .section-title', 'section_curriculum');
+  _q('#curriculum .section-sub', 'curriculum_sub');
+  _q('#validation .section-title', 'section_validation');
+  _q('#validation .section-sub', 'validation_sub');
+  _q('#limitations .section-title', 'section_limitations');
+  _q('#limitations .section-sub', 'limitations_sub');
+  _q('#paper .section-title', 'section_paper');
+  _q('#paper .section-sub', 'paper_sub');
+  _q('#open-science .section-title', 'section_openscience');
+  _q('#open-science .section-sub', 'openscience_sub');
+  _q('#cognitivespace .section-title', 'section_cognitivespace');
+  _q('#cognitivespace .section-sub', 'cognitivespace_sub');
+
+  // RQ cards
   var rqCards = document.querySelectorAll('#research .card-grid .card');
-  if(rqCards[0]){var p=rqCards[0].querySelectorAll('p');if(p[1]&&t.rq1_answer)p[1].textContent=t.rq1_answer;}
-  if(rqCards[1]){var p=rqCards[1].querySelectorAll('p');if(p[1]&&t.rq2_answer)p[1].textContent=t.rq2_answer;}
-  if(rqCards[2]){var p=rqCards[2].querySelectorAll('p');if(p[1]&&t.rq3_answer)p[1].textContent=t.rq3_answer;}
-  // RQ metric tags
-  if(rqCards[0]){var m=rqCards[0].querySelector('.meta');if(m&&t.rq1_metric)m.textContent=t.rq1_metric;}
+  if (rqCards.length >= 3) {
+    var h, p;
+    h = rqCards[0].querySelector('h3'); p = rqCards[0].querySelectorAll('p');
+    if (h && t.rq1_title) h.textContent = t.rq1_title;
+    if (p[0] && t.rq1_question) p[0].textContent = t.rq1_question;
+    if (p[1] && t.rq1_answer) p[1].textContent = t.rq1_answer;
+    var m = rqCards[0].querySelector('.meta .tag');
+    if (m && t.rq1_metric) m.textContent = t.rq1_metric;
+    h = rqCards[1].querySelector('h3'); p = rqCards[1].querySelectorAll('p');
+    if (h && t.rq2_title) h.textContent = t.rq2_title;
+    if (p[0] && t.rq2_question) p[0].textContent = t.rq2_question;
+    if (p[1] && t.rq2_answer) p[1].textContent = t.rq2_answer;
+    h = rqCards[2].querySelector('h3'); p = rqCards[2].querySelectorAll('p');
+    if (h && t.rq3_title) h.textContent = t.rq3_title;
+    if (p[0] && t.rq3_question) p[0].textContent = t.rq3_question;
+    if (p[1] && t.rq3_answer) p[1].textContent = t.rq3_answer;
+  }
 
-  // Contributions
-  _st('#contributions .section-title', 'section_contrib');
-  _st('#contributions .section-sub', 'contrib_sub');
-  _ct('#contributions .card-grid .card:nth-child(1)', 0, 'contrib1_title', 'contrib1_desc');
-  var c2 = document.querySelector('#contributions .card-grid .card:nth-child(2)');
-  if(c2){var ct=c2.querySelector('h3');if(ct&&t.contrib2_title)ct.textContent=t.contrib2_title;}
-  var c3 = document.querySelector('#contributions .card-grid .card:nth-child(3)');
-  if(c3){var ct=c3.querySelector('h3');if(ct&&t.contrib3_title)ct.textContent=t.contrib3_title;}
-  var c4 = document.querySelector('#contributions .card-grid .card:nth-child(4)');
-  if(c4){var ct=c4.querySelector('h3');if(ct&&t.contrib4_title)ct.textContent=t.contrib4_title;}
+  // Contributions cards
+  var conCards = document.querySelectorAll('#contributions .card-grid .card');
+  var conT = ['contrib1_title','contrib2_title','contrib3_title','contrib4_title'];
+  conCards.forEach(function(c,i) {
+    var ch = c.querySelector('h3');
+    var cp = c.querySelector('p');
+    if (ch && t[conT[i]]) ch.textContent = t[conT[i]];
+    if (i === 0 && cp && t.contrib1_desc) cp.textContent = t.contrib1_desc;
+  });
 
-  // Methodology
-  _st('#methodology .section-title', 'section_method');
-  _st('#methodology .section-sub', 'method_sub');
-
-  // Findings
-  _st('#finding-a .section-title', 'section_findings');
-  _st('#finding-a > .section-sub', 'section_findings');
+  // Finding cards
+  var findCards = document.querySelectorAll('.finding-card');
+  var findT = ['finding_a_title','finding_b_title','finding_c_title','finding_d_title','finding_e_title'];
+  var findS = ['finding_a_sub','finding_b_sub','finding_c_sub','finding_d_sub','finding_e_sub'];
+  findCards.forEach(function(c,i) {
+    var ch = c.querySelector('h3');
+    var cl = c.querySelector('.lead');
+    if (ch && t[findT[i]]) ch.textContent = t[findT[i]];
+    if (cl && t[findS[i]]) cl.textContent = t[findS[i]];
+  });
 
   // Figure captions
   var figs = document.querySelectorAll('.fig-label');
   var figKeys = ['fig3_caption','fig7_caption','fig5_caption','fig4_caption'];
-  figs.forEach(function(f,i){if(f&&t[figKeys[i]])f.textContent=t[figKeys[i]];});
+  figs.forEach(function(f,i) { if (f && t[figKeys[i]]) f.textContent = t[figKeys[i]]; });
 
-  // Curriculum
-  _st('#curriculum .section-title', 'section_curriculum');
-  _st('#curriculum .section-sub', 'curriculum_sub');
+  // Curriculum cards
   var currCards = document.querySelectorAll('#curriculum .card-grid .card');
-  var currKeys = ['curr_nrw_title','curr_nrw_desc','curr_uk_title','curr_uk_desc','curr_us_title','curr_us_desc','curr_cn_title','curr_cn_desc'];
-  currCards.forEach(function(c,i){
-    if(i>=4)return;
-    var h=c.querySelector('h3');var p=c.querySelector('p');
-    if(h&&t[currKeys[i*2]])h.textContent=t[currKeys[i*2]];
-    if(p&&t[currKeys[i*2+1]])p.textContent=t[currKeys[i*2+1]];
+  var currT = ['curr_nrw_title','curr_uk_title','curr_us_title','curr_cn_title'];
+  currCards.forEach(function(c,i) {
+    if (i >= 4) return;
+    var ch = c.querySelector('h3');
+    var cp = c.querySelector('p');
+    if (ch && t[currT[i]]) ch.textContent = t[currT[i]];
+    if (cp && t[currT[i]+'_desc']) cp.textContent = t[currT[i]+'_desc'];
   });
 
-  // Validation
-  _st('#validation .section-title', 'section_validation');
-  _st('#validation .section-sub', 'validation_sub');
+  // Validation cards
+  _q('#validation .card-grid .card:first-child p', 'validation_gold_desc');
+  _q('#validation .card-grid .card:last-child p', 'validation_bench_desc');
 
-  // Limitations
-  _st('#limitations .section-title', 'section_limitations');
-  _st('#limitations .section-sub', 'limitations_sub');
+  // Open Science cards
+  var oscCards = document.querySelectorAll('#open-science .card');
+  var oscKeys = ['openscience_code','openscience_code_desc','openscience_dataset','openscience_dataset_desc','openscience_paper','openscience_paper_desc','openscience_figures','openscience_figures_desc','openscience_bench','openscience_bench_desc','openscience_contact','openscience_contact_desc'];
+  oscCards.forEach(function(c,i) {
+    if (i*2+1 >= oscKeys.length) return;
+    var ch = c.querySelector('h3');
+    var cp = c.querySelector('p');
+    if (ch && t[oscKeys[i*2]]) ch.textContent = t[oscKeys[i*2]];
+    if (cp && t[oscKeys[i*2+1]]) cp.textContent = t[oscKeys[i*2+1]];
+  });
 
-  // Paper
-  _st('#paper .section-title', 'section_paper');
-  _st('#paper .section-sub', 'paper_sub');
-
-  // Open Science
-  _st('#open-science .section-title', 'section_openscience');
-  _st('#open-science .section-sub', 'openscience_sub');
-
-  // CognitiveSpace
-  _st('#cognitivespace .section-title', 'section_cognitivespace');
-  _st('#cognitivespace .section-sub', 'cognitivespace_sub');
-
-  // All data-i18n elements (fallback)
+  // data-i18n fallback (skip nav elements)
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     if (t[key] && !el.closest('nav')) el.textContent = t[key];
