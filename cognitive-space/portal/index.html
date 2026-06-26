@@ -931,6 +931,8 @@ const TRANSLATIONS = {
     fig4_caption: 'Fig 4: LDS Heatmap',
     finding_d_title: 'Education systems emphasize different curriculum designs',
     finding_d_sub: 'Finding D — Coverage scores range from 8% (China) to 82% (UK). The UK follows an exam-driven ascending model; Germany NRW reflects specialization-driven decline.',
+    finding_e_title: 'Human validation confirms language-driven cognitive divergence',
+    finding_e_sub: 'Finding E — Real participants show the same cross-language pattern as aggregated corpora — but with smaller magnitude, confirming education amplifies language-specific organization.',
     section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
     curr_nrw_title: 'NRW (Germany) — Specialization Model',
     curr_nrw_desc: 'Coverage decreases with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it.',
@@ -996,6 +998,8 @@ const TRANSLATIONS = {
     fig4_caption: 'Abb. 4: LDS-Heatmap',
     finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
     finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 8% (China) bis 82% (GB). Großbritannien folgt einem prüfungsgetriebenen aufsteigenden Modell; NRW spiegelt spezialisierungsbedingten Rückgang wider.',
+    finding_e_title: 'Humanvalidierung bestätigt sprachbedingte kognitive Divergenz',
+    finding_e_sub: 'Erkenntnis E — Echte Probanden zeigen dasselbe sprachübergreifende Muster wie aggregierte Korpora, jedoch mit geringerer Magnitude.',
     section_curriculum: 'Lehrplananalyse', curriculum_sub: 'Wie vier Bildungssysteme ihre Lehrpläne mit Lehrbuchinhalten abgleichen',
     curr_nrw_title: 'NRW (Deutschland) — Spezialisierungsmodell',
     curr_nrw_desc: 'Abdeckung nimmt mit der Stufe ab: 50% in frühen Phasen → 31% in fortgeschrittenen. Lehrkräfte haben curriculare Freiheit — sie wählen aus dem Lehrplan aus, anstatt alles abzudecken.',
@@ -1094,28 +1098,176 @@ const TRANSLATIONS = {
 
 
 function setLanguage(lang) {
-  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.title = t.page_title;
-  const navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
-  document.querySelectorAll('nav a').forEach(a => {
-    const id = a.getAttribute('href')?.replace('#', '');
+
+  // Nav
+  var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
+  document.querySelectorAll('nav a').forEach(function(a) {
+    var id = a.getAttribute('href') ? a.getAttribute('href').replace('#', '') : '';
     if (id && navMap[id]) a.textContent = t[navMap[id]];
   });
+
   // Hero
-  const h1 = document.querySelector('.hero h1');
+  var h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = t.hero_title;
-  const hSub = document.querySelector('.hero .subtitle');
+  var hSub = document.querySelector('.hero .subtitle');
   if (hSub) hSub.textContent = t.hero_sub;
-  const cta = document.querySelector('.hero .ctas a:first-child');
+
+  // CTAs
+  var cta = document.querySelector('.hero .ctas a:first-child');
   if (cta) cta.innerHTML = t.cta_findings;
-  const btn3d = document.querySelector('.hero .ctas a:nth-child(2)');
+  var btn3d = document.querySelector('.hero .ctas a:nth-child(2)');
   if (btn3d) btn3d.innerHTML = t.cta_3d;
-  // All data-i18n elements
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
+
+  // Section: Research Questions (#research)
+  secTrans('#research', { '.section-title': 'section_rq', '.section-sub': 'rq_sub' });
+  cardTrans('#research .card:nth-child(1)', { 'h3': 'rq1_title', 'p:first-of-type': 'rq1_question', 'p:nth-of-type(2)': 'rq1_answer', '.meta .tag': 'rq1_metric' });
+  cardTrans('#research .card:nth-child(2)', { 'h3': 'rq2_title', 'p:first-of-type': 'rq2_question', 'p:nth-of-type(2)': 'rq2_answer' });
+  cardTrans('#research .card:nth-child(3)', { 'h3': 'rq3_title', 'p:first-of-type': 'rq3_question', 'p:nth-of-type(2)': 'rq3_answer' });
+
+  // Section: Contributions (#contributions)
+  secTrans('#contributions', { '.section-title': 'section_contrib', '.section-sub': 'contrib_sub' });
+  cardTrans('#contributions .card:nth-child(1)', { 'h3': 'contrib1_title', 'p': 'contrib1_desc' });
+
+  // Section: Methodology
+  secTrans('#methodology', { '.section-title': 'section_method', '.section-sub': 'method_sub' });
+
+  // Section: Findings
+  secTrans('#finding-a', { '.section-title': 'section_findings', '.section-sub': 'section_findings' });
+  secTrans('.finding-card:nth-of-type(1)', { 'h3': 'finding_a_title', '.lead': 'finding_a_sub' });
+  secTrans('.finding-card:nth-of-type(2)', { 'h3': 'finding_b_title', '.lead': 'finding_b_sub' });
+  secTrans('.finding-card:nth-of-type(3)', { 'h3': 'finding_c_title', '.lead': 'finding_c_sub' });
+  secTrans('.finding-card:nth-of-type(4)', { 'h3': 'finding_d_title', '.lead': 'finding_d_sub' });
+  secTrans('.finding-card:nth-of-type(5)', { 'h3': 'finding_e_title', '.lead': 'finding_e_sub' });
+
+  // Figure captions
+  figCaption(0, 'fig3_caption');
+  figCaption(1, 'fig7_caption');
+  figCaption(2, 'fig5_caption');
+  figCaption(3, 'fig4_caption');
+
+  // Section: Curriculum
+  secTrans('#curriculum', { '.section-title': 'section_curriculum', '.section-sub': 'curriculum_sub' });
+
+  // Section: Validation
+  secTrans('#validation', { '.section-title': 'section_validation', '.section-sub': 'validation_sub' });
+
+  // Section: Limitations
+  secTrans('#limitations', { '.section-title': 'section_limitations', '.section-sub': 'limitations_sub' });
+
+  // Section: Paper
+  secTrans('#paper', { '.section-title': 'section_paper', '.section-sub': 'paper_sub' });
+
+  // Section: Open Science
+  secTrans('#open-science', { '.section-title': 'section_openscience', '.section-sub': 'openscience_sub' });
+
+  // Section: CognitiveSpace
+  secTrans('#cognitivespace', { '.section-title': 'section_cognitivespace', '.section-sub': 'cognitivespace_sub' });
+
+  // Open Science cards
+  oscTrans();
+
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
+
+  // Also update any data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
     if (t[key]) el.textContent = t[key];
   });
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+
+  localStorage.setItem('portal_lang', lang);
+  document.documentElement.lang = lang;
+}
+
+// Helper: translate section title + subtitle
+
+// Section translation helper (inline)
+  function _st(s, k) { var e = document.querySelector(s); if(e) e.textContent = t[k]; }
+  function _ct(p, i, hk, pk) { var c = document.querySelector(p); if(!c)return; var h=c.querySelector('h3');var d=c.querySelector('p');if(h&&t[hk])h.textContent=t[hk];if(d&&t[pk])d.textContent=t[pk]; }
+
+  // Stats
+  var statLabels = document.querySelectorAll('.hero .stat-label');
+  var statKeys = ['stat_concepts','stat_relations','stat_languages','stat_disciplines','stat_edu_systems','stat_gold_labels','stat_overall_f1'];
+  statLabels.forEach(function(l,i){if(l&&t[statKeys[i]])l.textContent=t[statKeys[i]];});
+
+  // RQ section cards
+  _ct('#research .card-grid .card:nth-child(1)', 0, 'rq1_title', 'rq1_question');
+  _ct('#research .card-grid .card:nth-child(2)', 0, 'rq2_title', 'rq2_question');
+  _ct('#research .card-grid .card:nth-child(3)', 0, 'rq3_title', 'rq3_question');
+  // RQ answer paragraphs (3rd paragraph in each card)
+  var rqCards = document.querySelectorAll('#research .card-grid .card');
+  if(rqCards[0]){var p=rqCards[0].querySelectorAll('p');if(p[1]&&t.rq1_answer)p[1].textContent=t.rq1_answer;}
+  if(rqCards[1]){var p=rqCards[1].querySelectorAll('p');if(p[1]&&t.rq2_answer)p[1].textContent=t.rq2_answer;}
+  if(rqCards[2]){var p=rqCards[2].querySelectorAll('p');if(p[1]&&t.rq3_answer)p[1].textContent=t.rq3_answer;}
+  // RQ metric tags
+  if(rqCards[0]){var m=rqCards[0].querySelector('.meta');if(m&&t.rq1_metric)m.textContent=t.rq1_metric;}
+
+  // Contributions
+  _st('#contributions .section-title', 'section_contrib');
+  _st('#contributions .section-sub', 'contrib_sub');
+  _ct('#contributions .card-grid .card:nth-child(1)', 0, 'contrib1_title', 'contrib1_desc');
+  var c2 = document.querySelector('#contributions .card-grid .card:nth-child(2)');
+  if(c2){var ct=c2.querySelector('h3');if(ct&&t.contrib2_title)ct.textContent=t.contrib2_title;}
+  var c3 = document.querySelector('#contributions .card-grid .card:nth-child(3)');
+  if(c3){var ct=c3.querySelector('h3');if(ct&&t.contrib3_title)ct.textContent=t.contrib3_title;}
+  var c4 = document.querySelector('#contributions .card-grid .card:nth-child(4)');
+  if(c4){var ct=c4.querySelector('h3');if(ct&&t.contrib4_title)ct.textContent=t.contrib4_title;}
+
+  // Methodology
+  _st('#methodology .section-title', 'section_method');
+  _st('#methodology .section-sub', 'method_sub');
+
+  // Findings
+  _st('#finding-a .section-title', 'section_findings');
+  _st('#finding-a > .section-sub', 'section_findings');
+
+  // Figure captions
+  var figs = document.querySelectorAll('.fig-label');
+  var figKeys = ['fig3_caption','fig7_caption','fig5_caption','fig4_caption'];
+  figs.forEach(function(f,i){if(f&&t[figKeys[i]])f.textContent=t[figKeys[i]];});
+
+  // Curriculum
+  _st('#curriculum .section-title', 'section_curriculum');
+  _st('#curriculum .section-sub', 'curriculum_sub');
+  var currCards = document.querySelectorAll('#curriculum .card-grid .card');
+  var currKeys = ['curr_nrw_title','curr_nrw_desc','curr_uk_title','curr_uk_desc','curr_us_title','curr_us_desc','curr_cn_title','curr_cn_desc'];
+  currCards.forEach(function(c,i){
+    if(i>=4)return;
+    var h=c.querySelector('h3');var p=c.querySelector('p');
+    if(h&&t[currKeys[i*2]])h.textContent=t[currKeys[i*2]];
+    if(p&&t[currKeys[i*2+1]])p.textContent=t[currKeys[i*2+1]];
+  });
+
+  // Validation
+  _st('#validation .section-title', 'section_validation');
+  _st('#validation .section-sub', 'validation_sub');
+
+  // Limitations
+  _st('#limitations .section-title', 'section_limitations');
+  _st('#limitations .section-sub', 'limitations_sub');
+
+  // Paper
+  _st('#paper .section-title', 'section_paper');
+  _st('#paper .section-sub', 'paper_sub');
+
+  // Open Science
+  _st('#open-science .section-title', 'section_openscience');
+  _st('#open-science .section-sub', 'openscience_sub');
+
+  // CognitiveSpace
+  _st('#cognitivespace .section-title', 'section_cognitivespace');
+  _st('#cognitivespace .section-sub', 'cognitivespace_sub');
+
+  // All data-i18n elements (fallback)
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] && !el.closest('nav')) el.textContent = t[key];
+  });
+
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
 }function initLang() {
