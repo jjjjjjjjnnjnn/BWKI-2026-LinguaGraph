@@ -1179,13 +1179,6 @@ function setLanguage(lang) {
 
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
-}
-
-// Helper: translate section title + subtitle
-
-// Section translation helper (inline)
-  function _st(s, k) { var e = document.querySelector(s); if(e) e.textContent = t[k]; }
-  function _ct(p, i, hk, pk) { var c = document.querySelector(p); if(!c)return; var h=c.querySelector('h3');var d=c.querySelector('p');if(h&&t[hk])h.textContent=t[hk];if(d&&t[pk])d.textContent=t[pk]; }
 
   // Stats
   var statLabels = document.querySelectorAll('.hero .stat-label');
