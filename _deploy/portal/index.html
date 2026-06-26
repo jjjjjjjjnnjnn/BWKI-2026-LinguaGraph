@@ -167,7 +167,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .fade-in { opacity: 0; transform: translateY(24px); transition: all .6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-<!-- Chart containers -->
+/* Chart containers */
 .chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; max-width: 700px; margin: 0 auto; }
 .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
@@ -328,19 +328,19 @@ graph LR
 </section>
 
 <!-- ==================== FINDING A: CDS ==================== -->
-<section id="finding-a" class="fade-in"><h2 class="section-title" data-i18n="section_findings">Findings</h2>
+<section id="finding-a" class="fade-in"><h2 class="section-title" data-i18n="section_findings_title">Findings</h2>
   <p class="section-sub" data-i18n="section_findings">Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals</p></section>
 
 
 
   <section id="finding-a-content" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--accent)">
-    <h3 data-i18n="finding_a_title"><i class="bi bi-bar-chart-line" style="color:var(--accent)"></i> Finding A: Knowledge density peaks early</h3>
+    <h3><i class="bi bi-bar-chart-line" style="color:var(--accent)"></i> <span data-i18n="finding_a_title">Finding A: Knowledge density peaks early</span></h3>
     <div class="lead" data-i18n="finding_a_sub">All three STEM disciplines concentrate their densest knowledge connections at introductory stages, not advanced ones.</div>
     <p data-i18n="finding_a_body">Mathematics peaks at <strong>middle school</strong> (CDS = 0.271). Physics peaks at <strong>elementary school</strong> (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_a_body2">This contradicts the natural assumption that "more advanced knowledge is more densely connected." Instead, curricula are designed to maximize connection density during foundational stages (early integration) before branching into specialization (later differentiation).</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label" data-i18n="finding_a_ev1">Math CDS (Middle)</div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label" data-i18n="finding_a_ev1">Math CDS (Middle)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.222</div><div class="ev-label" data-i18n="finding_a_ev2">Physics CDS (Elementary)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">3.7×</div><div class="ev-label" data-i18n="finding_a_ev3">Middle → High drop</div></div>
       <div class="ev-item"><div class="ev-num">✅</div><div class="ev-label" data-i18n="finding_a_ev4">ZH/EN/DE independent verification</div></div>
@@ -363,12 +363,12 @@ graph LR
 <!-- ==================== FINDING B: HDS ==================== -->
   <section id="finding-b" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--green)">
-    <h3 data-i18n="finding_b_title"><i class="bi bi-diagram-3" style="color:var(--green)"></i> Finding B: Knowledge structures stay shallow</h3>
+    <h3><i class="bi bi-diagram-3" style="color:var(--green)"></i> <span data-i18n="finding_b_title">Finding B: Knowledge structures stay shallow</span></h3>
     <div class="lead" data-i18n="finding_b_sub">Educational knowledge has a universal upper bound on prerequisite depth, regardless of discipline.</div>
     <p data-i18n="finding_b_body">Maximum prerequisite chain depth is <strong>HDS ≤ 8</strong> for mathematics and <strong>HDS ≤ 6</strong> for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts).</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_b_body2">Physics has 2.1× more sequential depth than mathematics (64% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">8</div><div class="ev-label" data-i18n="finding_b_ev1">Math HDS (max)</div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">8</div><div class="ev-label" data-i18n="finding_b_ev1">Math HDS (max)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.40</div><div class="ev-label" data-i18n="finding_b_ev2">Math HDS (mean)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">83%</div><div class="ev-label" data-i18n="finding_b_ev3">Root concepts (Math)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">2.1×</div><div class="ev-label" data-i18n="finding_b_ev4">Physics depth vs Math</div></div>
@@ -385,12 +385,12 @@ graph LR
 <!-- ==================== FINDING C: LDS ==================== -->
   <section id="finding-c" class="fade-in">
 <div class="finding-card" style="border-left:4px solid #22d3ee">
-    <h3 data-i18n="finding_c_title"><i class="bi bi-translate" style="color:#22d3ee"></i> Finding C: Languages organize knowledge differently</h3>
+    <h3><i class="bi bi-translate" style="color:#22d3ee"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Cross-language structural divergence is high and asymmetric — driven by curriculum tradition, not language family.</div>
     <p data-i18n="finding_c_body">The ZH–DE pair shows the <strong>highest</strong> structural divergence (LDS = 0.907), while ZH–EN shows the <strong>lowest</strong> (0.802). DE–EN is nearly as high (0.901). This is counterintuitive: despite Chinese and English belonging to different language families, their textbook structures are more similar than those of two European languages.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.907</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (highest)</div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.907</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (highest)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.901</div><div class="ev-label" data-i18n="finding_c_ev2">DE–EN</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.802</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (lowest)</div></div>
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label" data-i18n="finding_c_ev4">Topic variance</div></div>
@@ -407,11 +407,11 @@ graph LR
 <!-- ==================== FINDING D: COVERAGE ==================== -->
   <section id="finding-d" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--yellow)">
-    <h3 data-i18n="finding_d_title"><i class="bi bi-building" style="color:var(--yellow)"></i> Finding D: Education systems emphasize different curriculum designs</h3>
+    <h3><i class="bi bi-building" style="color:var(--yellow)"></i> <span data-i18n="finding_d_title">Finding D: Education systems emphasize different curriculum designs</span></h3>
     <div class="lead" data-i18n="finding_d_sub">Textbook–curriculum coverage varies dramatically — not because of quality differences, but because of fundamentally different educational philosophies.</div>
     <p data-i18n="finding_d_body">Coverage scores range from <strong>8% (China) to 82% (UK)</strong>. The UK curriculum shows an ascending trajectory (53% at early stages → 90% at later stages), reflecting an exam-driven, comprehensive model. Germany's NRW curriculum descends (50% → 31%), reflecting increasing teacher specialization and curricular choice. The US (76%) and China (8%) maintain stable but contrasting coverage levels.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label" data-i18n="finding_d_ev1">🇬🇧 UK (highest)</div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label" data-i18n="finding_d_ev1">🇬🇧 UK (highest)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">76%</div><div class="ev-label" data-i18n="finding_d_ev2">🇺🇸 US</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">34%</div><div class="ev-label" data-i18n="finding_d_ev3">🇩🇪 NRW Germany</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">8%</div><div class="ev-label" data-i18n="finding_d_ev4">🇨🇳 China</div></div>
@@ -426,7 +426,7 @@ graph LR
         <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px"><strong>Fig 9</strong> — Stage-by-stage trajectory (UK ↗, NRW ↘)</p>
       </div>
     </div>
-    <p style="font-size:.9rem;margin-top:8px;color:var(--text2)" data-i18n="finding_e_body">
+    <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
       <strong><span class="tag tag-yellow">F9</span></strong> Coverage scores vary dramatically across education systems (8%–82%). Curriculum design philosophy, not alignment quality, drives differences.<br>
       <strong><span class="tag tag-yellow">F10</span></strong> Trajectories reveal system design philosophy: UK ↗ exam-driven breadth, NRW ↘ specialization, US → stable broad, CN → selective depth.
     </p>
@@ -435,9 +435,9 @@ graph LR
 </section>
 <section id="finding-e" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--purple)">
-    <h3 data-i18n="finding_e_title"><i class="bi bi-people" style="color:var(--purple)"></i> Finding E: Human validation confirms language-driven cognitive divergence</h3>
+    <h3><i class="bi bi-people" style="color:var(--purple)"></i> <span data-i18n="finding_e_title">Finding E: Human validation confirms language-driven cognitive divergence</span></h3>
     <div class="lead" data-i18n="finding_e_sub">Real participants show the same cross-language pattern as aggregated corpora — but with smaller magnitude, confirming education amplifies language-specific organization.</div>
-    <p>We collected <strong>101 open-ended responses</strong> from N=8 multilingual participants (ZH, DE, EN native speakers) across 5 social topics. Extraction via qwen-plus (F1=0.939 validated on 92 gold labels) achieved 89% coverage. Within-subject DE-EN LDS averaged <strong>0.773</strong>, with bilingual participants using completely different concept sets in each language. Between-subject group LDS: DE–ZH <strong>0.751</strong>, DE–EN <strong>0.727</strong>, ZH–EN <strong>0.704</strong>. The rank order matches the Wikipedia corpus exactly (DE–ZH > DE–EN > ZH–EN), while a computational baseline of 300 simulated responses yields significantly lower LDS (0.647, p=0.050).</p>
+    <p data-i18n="finding_e_body">We collected 101 open-ended responses from N=8 multilingual participants (ZH, DE, EN native speakers) across 5 social topics. Extraction via qwen-plus (F1=0.939 validated on 92 gold labels) achieved 89% coverage. Within-subject DE-EN LDS averaged 0.773, with bilingual participants using completely different concept sets in each language. Between-subject group LDS: DE–ZH 0.751, DE–EN 0.727, ZH–EN 0.704. The rank order matches the Wikipedia corpus exactly (DE–ZH > DE–EN > ZH–EN), while a computational baseline of 300 simulated responses yields significantly lower LDS (0.647, p=0.050).</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.773</div><div class="ev-label" data-i18n="finding_e_ev1">🧑 Within-subject DE–EN</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.751</div><div class="ev-label" data-i18n="finding_e_ev2">🌍 Between DE–ZH</div></div>
@@ -586,15 +586,15 @@ graph LR
   <h3 style="margin-bottom:16px;font-size:1.2rem">Three Competing Explanations</h3>
   <div class="card-grid">
     <div class="card">
-      <h3><span class="tag tag-red" style="font-size:1rem">❌</span> A: Curriculum Granularity" data-i18n="expl_a_title"></h3>
+      <h3><span class="tag tag-red" style="font-size:1rem">❌</span> <span data-i18n="expl_a_title">A: Curriculum Granularity</span></h3>
       <p data-i18n="expl_a_desc">Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — China has the densest curriculum (2,124 concepts) but the lowest coverage (8%).</p>
     </div>
     <div class="card" style="border-color:var(--green)">
-      <h3><span class="tag tag-green" style="font-size:1rem">✅</span> B: Educational Philosophy <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span>" data-i18n="expl_b_title"></h3>
+      <h3><span class="tag tag-green" style="font-size:1rem">✅</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span></h3>
       <p data-i18n="expl_b_desc">Coverage patterns reflect system-level choices: UK's exam-driven breadth (↗), NRW's specialization (↘), US stable broad standards (→), China's selective depth (→).</p>
     </div>
     <div class="card">
-      <h3><span class="tag tag-yellow" style="font-size:1rem">⚠️</span> C: Division of Labor" data-i18n="expl_c_title"></h3>
+      <h3><span class="tag tag-yellow" style="font-size:1rem">⚠️</span> <span data-i18n="expl_c_title">C: Division of Labor</span></h3>
       <p data-i18n="expl_c_desc">Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.</p>
     </div>
   </div>
@@ -917,6 +917,7 @@ const TRANSLATIONS = {
     contrib4_title: 'Empirical findings across 4 education systems',
     contrib1_desc: '1,160+ concepts and 4,100+ relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (F1 = 0.939).',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
+    section_findings_title: 'Findings',
     section_findings: 'Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals',
     finding_a_title: 'Knowledge density peaks early',
     finding_a_sub: 'Finding A — All three STEM disciplines follow a peak-and-decline pattern. Mathematics peaks at middle school, physics at elementary school, and chemistry at middle school.',
@@ -1196,6 +1197,7 @@ const TRANSLATIONS = {
     contrib4_title: 'Empirische Ergebnisse aus 4 Bildungssystemen',
     contrib1_desc: '1.160+ Konzepte und 4.100+ Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180+ Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (F1 = 0,939).',
     section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
+    section_findings_title: 'Erkenntnisse',
     section_findings: 'Fünf strukturelle Entdeckungen über die Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
     finding_a_title: 'Wissensdichte erreicht frühen Höhepunkt',
     finding_a_sub: 'Erkenntnis A — Alle drei MINT-Disziplinen folgen einem Muster aus Höhepunkt und Abfall. Mathematik erreicht den Höhepunkt in der Mittelstufe, Physik in der Grundschule, Chemie in der Mittelstufe.',
@@ -1273,6 +1275,7 @@ const TRANSLATIONS = {
     contrib4_title: '跨四个教育体系的实证发现',
     contrib1_desc: '1,160+ 个概念和 4,100+ 条关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（F1 = 0.939）。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
+    section_findings_title: '研究发现',
     section_findings: '关于知识如何在学科、语言、教育体系和个人之间组织的五项结构性发现',
     finding_a_title: '知识密度早期达到峰值',
     finding_a_sub: '发现 A — 三个 STEM 学科都遵循峰值-下降模式。数学在初中达到峰值，物理在小学，化学在初中。',
@@ -1448,7 +1451,7 @@ function setLanguage(lang) {
   // Stats
   var statLabels = document.querySelectorAll('.hero .stat-label');
   var statKeys = ['stat_concepts','stat_relations','stat_languages','stat_disciplines','stat_edu_systems','stat_gold_labels','stat_overall_f1'];
-  statLabels.forEach(function(l,i) { if (l && t[statKeys[i]]) l.textContent = t[statKeys[i]]; });
+  statLabels.forEach(function(l,i) { if (l && t[statKeys[i]]) l.innerHTML = t[statKeys[i]]; });
 
   // Inline helper: set textContent if element and key exist
   function _q(sel, key) { var e = document.querySelector(sel); if (e && key && t[key]) e.textContent = t[key]; }
@@ -1461,8 +1464,6 @@ function setLanguage(lang) {
   _q('#contributions .section-sub', 'contrib_sub');
   _q('#methodology .section-title', 'section_method');
   _q('#methodology .section-sub', 'method_sub');
-  _q('.finding-a-header .section-title', 'section_findings');
-  _q('.finding-a-header + p.section-sub', 'section_findings');
   _q('#curriculum .section-title', 'section_curriculum');
   _q('#curriculum .section-sub', 'curriculum_sub');
   _q('#validation .section-title', 'section_validation');
@@ -1506,14 +1507,12 @@ function setLanguage(lang) {
     if (i === 0 && cp && t.contrib1_desc) cp.textContent = t.contrib1_desc;
   });
 
-  // Finding cards
+  // Finding cards — subtitles only (titles use data-i18n spans)
   var findCards = document.querySelectorAll('.finding-card');
   var findT = ['finding_a_title','finding_b_title','finding_c_title','finding_d_title','finding_e_title'];
   var findS = ['finding_a_sub','finding_b_sub','finding_c_sub','finding_d_sub','finding_e_sub'];
   findCards.forEach(function(c,i) {
-    var ch = c.querySelector('h3');
     var cl = c.querySelector('.lead');
-    if (ch && t[findT[i]]) ch.textContent = t[findT[i]];
     if (cl && t[findS[i]]) cl.textContent = t[findS[i]];
   });
 
@@ -1551,7 +1550,7 @@ function setLanguage(lang) {
   // data-i18n fallback (skip nav elements)
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
-    if (t[key] && !el.closest('nav') && !el.closest('.mermaid')) el.textContent = t[key];
+    if (t[key] && !el.closest('nav') && !el.closest('.mermaid')) el.innerHTML = t[key];
   });
 
   // Lang buttons
