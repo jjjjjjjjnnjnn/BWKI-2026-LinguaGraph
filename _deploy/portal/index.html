@@ -263,17 +263,17 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="contrib-card">
       <div class="num">2</div>
       <h3 data-i18n="contrib2_title">Three structural metrics for knowledge organization</h3>
-      <p><strong>CDS</strong> (concept density), <strong>HDS</strong> (hierarchy depth) and <strong>LDS</strong> (language drift) quantify how knowledge is connected, sequenced and structured across languages and disciplines.</p>
+      <p data-i18n="contrib2_desc"><strong>CDS</strong> (concept density), <strong>HDS</strong> (hierarchy depth) and <strong>LDS</strong> (language drift) quantify how knowledge is connected, sequenced and structured across languages and disciplines.</p>
     </div>
     <div class="contrib-card">
       <div class="num">3</div>
       <h3 data-i18n="contrib3_title">Curriculum coverage analysis framework</h3>
-      <p>The <strong>Coverage Score</strong> measures textbook–curriculum alignment across four education systems (Germany, UK, US, China), revealing how different educational philosophies produce systematically different alignment patterns.</p>
+      <p data-i18n="contrib3_desc">The <strong>Coverage Score</strong> measures textbook–curriculum alignment across four education systems (Germany, UK, US, China), revealing how different educational philosophies produce systematically different alignment patterns.</p>
     </div>
     <div class="contrib-card">
       <div class="num">4</div>
       <h3 data-i18n="contrib4_title">Empirical findings across 4 education systems</h3>
-      <p>10 findings spanning density universals (F1–F3, F6–F8), cross-language divergence (F4–F5), and curriculum design philosophy (F9–F10) — all independently verifiable from the released data and pipeline.</p>
+      <p data-i18n="contrib4_desc">10 findings spanning density universals (F1–F3, F6–F8), cross-language divergence (F4–F5), and curriculum design philosophy (F9–F10) — all independently verifiable from the released data and pipeline.</p>
     </div>
   </div>
 </section>
@@ -284,7 +284,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <p class="section-sub" data-i18n="method_sub">From textbook text to structural insights in five steps</p>
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
-    <div class="mermaid">
+    <div class="mermaid" data-i18n="metric_cs">
 %%{init:{'theme':'dark','themeVariables':{'primaryColor':'#1e293b','primaryTextColor':'#e2e8f0','primaryBorderColor':'#2d3a50','lineColor':'#60a5fa','secondaryColor':'#111827','tertiaryColor':'#1a2332'}}}%%
 graph LR
     T1[180+ Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
@@ -307,17 +307,17 @@ graph LR
     <div class="metric-card">
       <div class="sym">CDS</div>
       <div class="formula">2&#124;E&#124; / (&#124;V&#124;·(&#124;V&#124;−1))</div>
-      <div class="desc">How densely connected knowledge is at each education level. Higher = more integrated.</div>
+      <div class="desc" data-i18n="metric_cds">How densely connected knowledge is at each education level. Higher = more integrated.</div>
     </div>
     <div class="metric-card">
       <div class="sym" style="color:var(--green)">HDS</div>
       <div class="formula">max BFS depth(prerequisite)</div>
-      <div class="desc">Longest prerequisite chain for each concept. Measures hierarchical depth.</div>
+      <div class="desc" data-i18n="metric_hds">Longest prerequisite chain for each concept. Measures hierarchical depth.</div>
     </div>
     <div class="metric-card">
       <div class="sym" style="color:#22d3ee">LDS</div>
       <div class="formula">1 − mean(GED, Jaccard)</div>
-      <div class="desc">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
+      <div class="desc" data-i18n="metric_lds">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
     <div class="metric-card">
       <div class="sym" style="color:var(--yellow)">CS</div>
@@ -488,8 +488,8 @@ graph LR
       </table>
     </div>
     <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
-      <strong><span class="tag tag-purple">F11</span></strong> Human LDS rank order matches Wikipedia corpus (DE–ZH > DE–EN > ZH–EN), validating the metric at the individual cognitive level.<br>
-      <strong><span class="tag tag-purple">F12</span></strong> Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05), confirming divergence is not random variation.
+      <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">Human LDS rank order matches Wikipedia corpus (DE–ZH > DE–EN > ZH–EN), validating the metric at the individual cognitive level.</span><br>
+      <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05), confirming divergence is not random variation.</span>
     </p>
     <div class="meta"><span class="tag tag-purple">Metric: LDS</span> <span class="tag tag-blue">F11, F12</span> <span class="tag tag-green">N=8 participants, 300 simulation</span></div>
   </div>
@@ -505,7 +505,7 @@ graph LR
       <iframe src="../index.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" title="CognitiveSpace 3D" loading="lazy"></iframe>
     </div>
   </div>
-  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
+  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="../index.html" target="_blank" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none"><i class="bi bi-boxes"></i> Open Full Screen</a>
     <span style="padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text2)"><i class="bi bi-database"></i> 574 nodes · 3,538 links · 3 languages</span>
@@ -520,32 +520,32 @@ graph LR
   <div class="card-grid">
     <div class="card">
       <h3><i class="bi bi-database" style="color:var(--yellow)"></i> Textbook Selection Bias</h3>
-      <p>The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
+      <p data-i18n="limitations1_desc">The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
       <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68+ textbooks</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> Limited Discipline Coverage</h3>
-      <p>Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims (e.g., "knowledge density peaks early") are therefore limited to STEM education.</p>
+      <p data-i18n="limitations2_desc">Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims (e.g., "knowledge density peaks early") are therefore limited to STEM education.</p>
       <div class="meta" data-i18n="limitations2_mit">Mitigation: Framework is design-agnostic and extendable</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-rulers" style="color:var(--red)"></i> Curriculum Granularity Mismatch</h3>
-      <p>Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
+      <p data-i18n="limitations3_desc">Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
       <div class="meta" data-i18n="limitations3_mit">Mitigation: Analysis focuses on within-system trajectories, not absolute values</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> LLM Extraction Reliability</h3>
-      <p>Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <p data-i18n="limitations4_desc">Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-translate" style="color:var(--pink)"></i> Language Coverage Gap</h3>
-      <p>Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia). The framework's applicability to Romance, Slavic, Arabic, or other language families remains untested.</p>
+      <p data-i18n="limitations5_desc">Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia). The framework's applicability to Romance, Slavic, Arabic, or other language families remains untested.</p>
       <div class="meta" data-i18n="limitations5_mit">Mitigation: Existing three-language comparison already reveals systematic patterns</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-patch-exclamation" style="color:var(--yellow)"></i> Gold Label Sample Size</h3>
-      <p>92 gold labels, while sufficient for overall F1 estimation (especially for social concepts, n=72), are limited for fine-grained per-language, per-domain analysis. The mathematical domain has only 20 labels across 3 languages, and the German math F1 estimate (0.506) has high variance.</p>
+      <p data-i18n="limitations6_desc">92 gold labels, while sufficient for overall F1 estimation (especially for social concepts, n=72), are limited for fine-grained per-language, per-domain analysis. The mathematical domain has only 20 labels across 3 languages, and the German math F1 estimate (0.506) has high variance.</p>
       <div class="meta" data-i18n="limitations6_mit">Mitigation: Social concept results (n=72) are statistically robust</div>
     </div>
   </div>
@@ -560,13 +560,13 @@ graph LR
     <div class="card" style="border-top:3px solid #2563eb">
       <h3 data-i18n="curr_nrw_title">🇩🇪 NRW (Germany)</h3>
       <div style="font-size:2.2rem;font-weight:700;color:#60a5fa;margin:8px 0">34%</div>
-      <p data-i18n="curr_uk_desc">Coverage <strong>decreases</strong> with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it. Reflects a specialization-driven philosophy.</p>
+      <p data-i18n="curr_nrw_desc">Coverage <strong>decreases</strong> with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it. Reflects a specialization-driven philosophy.</p>
       <div class="meta">Trajectory: <span style="color:var(--red)">↘ descending</span> · Stages: Sek I → Sek II</div>
     </div>
     <div class="card" style="border-top:3px solid #dc2626">
       <h3 data-i18n="curr_uk_title">🇬🇧 UK National Curriculum</h3>
       <div style="font-size:2.2rem;font-weight:700;color:#34d399;margin:8px 0">82%</div>
-      <p>Coverage <strong>increases</strong> with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested. Highest overall alignment.</p>
+      <p data-i18n="curr_uk_desc">Coverage <strong>increases</strong> with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested. Highest overall alignment.</p>
       <div class="meta">Trajectory: <span style="color:var(--green)">↗ ascending</span> · Stages: Key Stage 1–4</div>
     </div>
     <div class="card" style="border-top:3px solid #2563eb">
@@ -619,7 +619,7 @@ graph LR
           </tbody>
         </table>
       </div>
-      <p style="font-size:.82rem;color:var(--text2)">Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.</p>
+      <p style="font-size:.82rem;color:var(--text2)" data-i18n="val_note">Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.</p>
     </div>
 
     <div class="card">
@@ -628,7 +628,7 @@ graph LR
       <div class="chart-box" style="margin:16px 0;max-width:100%">
         <canvas id="benchmarkChart" height="380"></canvas>
       </div>
-      <div style="margin-top:12px;font-size:.82rem;color:var(--text2)">
+      <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production:</strong> qwen-plus · <strong>Best free:</strong> qwen3-30b-a3b (F1=0.858) · <strong>Best non-Qwen:</strong> glm-4.6 (F1=0.819)
       </div>
     </div>
@@ -644,19 +644,19 @@ graph LR
     <div class="card" style="text-align:center">
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
-      <p>LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
+      <p data-i18n="paper_abstract_text">LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
       <div class="meta">📄 <a href="docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
-      <p>Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
+      <p data-i18n="paper_sections_text">Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
       <div class="meta">📚 9 sections · ~56 KB · <a href="docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px">
-    <h3 style="margin-bottom:12px">Cite this work</h3>
+    <h3 style="margin-bottom:12px" data-i18n="paper_cite_title">Cite this work</h3>
     <pre style="background:var(--surface);padding:16px;border-radius:8px;font-size:.82rem;overflow-x:auto;color:var(--text2);position:relative" id="bibtex">@misc{linguaGraph2026,
   author = {Rongjing, J.},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
@@ -1060,6 +1060,13 @@ const TRANSLATIONS = {
     expl_b_desc: 'Coverage patterns reflect system-level choices: UK exam-driven breadth (↗), NRW specialization (↘), US stable broad standards (→), China selective depth (→).',
     expl_c_title: 'C: Division of Labor',
     expl_c_desc: 'Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.',
+    contrib2_desc: 'CDS (concept density), HDS (hierarchy depth) and LDS (language drift) quantify how knowledge is connected, sequenced and structured across languages and disciplines.',
+    contrib3_desc: 'The Coverage Score measures textbook-curriculum alignment across four education systems (Germany, UK, US, China), revealing how different educational philosophies produce systematically different alignment patterns.',
+    contrib4_desc: '10 findings spanning density universals (F1-F3, F6-F8), cross-language divergence (F4-F5), and curriculum design philosophy (F9-F10) — all independently verifiable from the released data and pipeline.',
+    metric_cds: 'How densely connected knowledge is at each education level. Higher = more integrated.',
+    metric_hds: 'Longest prerequisite chain for each concept. Measures hierarchical depth.',
+    metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
+    metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
   },
   de: {
     finding_a_body: 'Mathematik erreicht den Hoehepunkt in der Mittelstufe (CDS = 0,271). Physik in der Grundschule (CDS = 0,222). Chemie ebenfalls in der Mittelstufe (CDS = 0,042). Nach dem Hoehepunkt fallt die Dichte stark ab — ein 3,7-facher Rueckgang von der Mittel- zur Oberstufe in Mathematik.',
@@ -1231,6 +1238,13 @@ const TRANSLATIONS = {
     section_cognitivespace: 'Interaktiver CognitiveSpace',
     cognitivespace_sub: 'Erkunden Sie 1.160+ Konzepte in einem interaktiven 3D-Wissensgraphen',
     curr_explanations_title: 'Drei konkurrierende Erklärungen',
+    contrib2_desc: 'CDS (Konzeptdichte), HDS (Hierarchietiefe) und LDS (Sprachabdrift) quantifizieren, wie Wissen ueber Sprachen und Disziplinen hinweg verbunden, angeordnet und strukturiert ist.',
+    contrib3_desc: 'Der Coverage Score misst die Lehrplanabdeckung ueber vier Bildungssysteme (DE, UK, US, CN) und zeigt systematische Unterschiede.',
+    contrib4_desc: '10 Ergebnisse zu Dichteuniversalien (F1-F3, F6-F8), sprachuebergreifender Divergenz (F4-F5) und Lehrplandesign (F9-F10).',
+    metric_cds: 'Wie dicht Wissen auf jeder Bildungsstufe vernetzt ist. Hoeher = integrierter.',
+    metric_hds: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst Hierarchietiefe.',
+    metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
+    metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
   },
   zh: {
     page_title: 'LinguaGraph — 跨语言知识结构分析',
@@ -1402,6 +1416,13 @@ curr_explanations_title: '三种竞争性解释',
     expl_b_desc: '覆盖率模式反映了体系层面的选择：英国的考试驱动广度（↗），北威州的专业化（↘），美国的稳定广泛标准（→），中国的选择性深度（→）。',
     expl_c_title: 'C：劳动分工',
     expl_c_desc: '有些概念可能在其他科目中教授（如化学中的物理概念）。合理但未经验证——跨学科概念映射可能揭示系统性转移。',
+    contrib2_desc: 'CDS（概念密度）、HDS（层次深度）和 LDS（语言漂移）量化了知识在不同语言和学科之间的连接方式、排序方式和结构方式。',
+    contrib3_desc: '覆盖率得分衡量了教材与课程在四个教育体系（德国、英国、美国、中国）之间的对齐程度，揭示了不同教育理念如何产生系统性的对齐差异。',
+    contrib4_desc: '10 项发现涵盖密度普遍性（F1-F3, F6-F8）、跨语言差异（F4-F5）和课程设计理念（F9-F10）——全部可独立验证。',
+    metric_cds: '衡量每个教育阶段知识的连接密度。越高 = 越整合。',
+    metric_hds: '每个概念的最长前提链。衡量层次深度。',
+    metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
+    metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
   },
 };
 
