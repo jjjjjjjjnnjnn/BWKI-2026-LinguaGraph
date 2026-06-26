@@ -184,14 +184,14 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <div class="brand">🧠 <span>LinguaGraph</span></div>
   <a href="#research">Research</a>
   <a href="#contributions">Contributions</a>
-  <a href="#methodology">Methodology</a>
+  <a href="#methodology" data-i18n="section_method">Methodology</a>
   <a href="#finding-a">Findings</a>
   <a href="#cognitivespace">CognitiveSpace</a>
-  <a href="#limitations">Limitations</a>
+  <a href="#limitations" data-i18n="section_limitations">Limitations</a>
   <a href="#curriculum">Curriculum</a>
-  <a href="#validation">Validation</a>
-  <a href="#paper">Paper</a>
-  <a href="#open-science">Open Science</a>
+  <a href="#validation" data-i18n="section_validation">Validation</a>
+  <a href="#paper" data-i18n="section_paper">Paper</a>
+  <a href="#open-science" data-i18n="section_openscience">Open Science</a>
   <div class="lang-switcher">
     <button class="lang-btn active" title="English">EN</button>
     <button class="lang-btn" title="Deutsch">DE</button>
@@ -210,8 +210,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <h1>How do different languages<br>and educational systems<br>organize the same knowledge?</h1>
   <p class="subtitle">A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num" style="color:var(--accent)">1,160+</div><div class="stat-label">Concepts</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--green)">4,100+</div><div class="stat-label">Relations</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent)">1,160+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">4,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
     <div class="stat"><div class="stat-num" style="color:#22d3ee">3</div><div class="stat-label">Languages<br>ZH · EN · DE</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--orange)">3</div><div class="stat-label">Disciplines<br>Math · Physics · Chemistry</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--pink)">4</div><div class="stat-label">Education Systems<br>DE · UK · US · CN</div></div>
@@ -226,7 +226,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
 <!-- ==================== RESEARCH QUESTIONS ==================== -->
 <section id="research" class="fade-in">
-  <h2 class="section-title">Research Questions</h2>
+  <h2 class="section-title" data-i18n="section_rq">Research Questions</h2>
   <p class="section-sub">Three complementary lenses on how the same knowledge is organized differently</p>
   <div class="card-grid">
     <div class="card" style="border-top:3px solid var(--accent)">
@@ -252,7 +252,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
 <!-- ==================== CONTRIBUTIONS ==================== -->
 <section id="contributions" class="fade-in" style="background:var(--surface);border-radius:24px;padding:80px 24px">
-  <h2 class="section-title">Research Contributions</h2>
+  <h2 class="section-title" data-i18n="section_contrib">Research Contributions</h2>
   <p class="section-sub">What this project delivers to the field</p>
   <div class="contrib-grid">
     <div class="contrib-card">
@@ -502,7 +502,7 @@ graph LR
 
 <!-- ==================== COGNITIVESPACE ==================== -->
 <section id="cognitivespace" class="fade-in" style="text-align:center">
-  <h2 class="section-title">Interactive CognitiveSpace</h2>
+  <h2 class="section-title" data-i18n="section_cognitivespace">Interactive CognitiveSpace</h2>
   <p class="section-sub">Explore 1,160+ concepts in an interactive 3D knowledge graph</p>
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:24px">
@@ -558,7 +558,7 @@ graph LR
 
 <!-- ==================== CURRICULUM ==================== -->
 <section id="curriculum" class="fade-in">
-  <h2 class="section-title">Curriculum Analysis</h2>
+  <h2 class="section-title" data-i18n="section_curriculum">Curriculum Analysis</h2>
   <p class="section-sub">How four education systems align their curricula with textbook content</p>
 
   <div class="card-grid" style="margin-bottom:32px">
@@ -900,32 +900,198 @@ const TRANSLATIONS = {
     nav_research: 'Research', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
     nav_findings: 'Findings', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Curriculum',
     nav_validation: 'Validation', nav_paper: 'Paper', nav_open: 'Open Science',
-    hero_title: 'How do different languages and educational systems organize the same knowledge?',
-    hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States',
-    hero_cta: 'Explore Findings →', hero_3d: 'CognitiveSpace 3D',
+    hero_title: 'How do different languages<br>and educational systems<br>organize the same knowledge?',
+    hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
+    cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
+    stat_concepts: 'Concepts', stat_relations: 'Relations', stat_languages: 'Languages', stat_disciplines: 'Disciplines',
+    stat_edu_systems: 'Education Systems', stat_gold_labels: 'Gold Labels', stat_overall_f1: 'Overall F1',
+    section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
+    rq1_title: 'RQ1: Language', rq1_question: 'How do different languages organize the same knowledge?',
+    rq1_answer: 'Chinese and German textbooks show the highest structural divergence (LDS=0.907); Chinese and English the lowest (0.802). Curriculum tradition — not language family — drives these differences.',
+    rq1_metric: 'LDS: 0.802–0.907',
+    rq2_title: 'RQ2: Discipline', rq2_question: 'How do different STEM subjects organize knowledge?',
+    rq2_answer: 'All three disciplines follow an early-peak-later-decline pattern. Knowledge density peaks at middle or elementary school, then drops sharply. Maximum prerequisite depth is bounded at 8.',
+    rq2_cds: 'CDS: 0.042–0.271', rq2_hds: 'HDS: max 8',
+    rq3_title: 'RQ3: Education System', rq3_question: 'How do different curricula organize the same subject?',
+    rq3_answer: 'Coverage scores range from 8% (China) to 82% (UK). These differences reflect educational philosophy — exam-driven breadth versus specialized depth — not alignment quality.',
+    rq3_cs: 'CS: 8%–82%',
+    section_contrib: 'Research Contributions', contrib_sub: 'What this project delivers to the field',
+    contrib1_title: 'A multilingual STEM knowledge graph',
+    contrib1_desc: '1,160+ concepts and 4,100+ relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (F1 = 0.939).',
+    section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings: 'Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals',
+    finding_a_title: 'Knowledge density peaks early',
+    finding_a_sub: 'Finding A — All three STEM disciplines follow a peak-and-decline pattern. Mathematics peaks at middle school, physics at elementary school, and chemistry at middle school.',
+    fig3_caption: 'Fig 3: CDS by Education Level', fig7_caption: 'Fig 7: Three Subject CDS',
+    finding_b_title: 'Knowledge structures stay shallow',
+    finding_b_sub: 'Finding B — Maximum prerequisite depth is HDS ≤ 8 for math and ≤ 6 for physics. Over 83% of concepts are roots.',
+    fig5_caption: 'Fig 5: HDS Distribution',
+    finding_c_title: 'Languages organize knowledge differently',
+    finding_c_sub: 'Finding C — ZH–DE textbooks diverge most (LDS=0.907), ZH–EN least (0.802). Curriculum tradition, not language family, drives these differences.',
+    fig4_caption: 'Fig 4: LDS Heatmap',
+    finding_d_title: 'Education systems emphasize different curriculum designs',
+    finding_d_sub: 'Finding D — Coverage scores range from 8% (China) to 82% (UK). The UK follows an exam-driven ascending model; Germany NRW reflects specialization-driven decline.',
+    section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
+    curr_nrw_title: 'NRW (Germany) — Specialization Model',
+    curr_nrw_desc: 'Coverage decreases with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it.',
+    curr_uk_title: 'UK — Exam-Driven Model',
+    curr_uk_desc: 'Coverage increases with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested.',
+    curr_us_title: 'US — Broad Standards Model',
+    curr_us_desc: 'Stable high coverage across stages. The US standards define broad learning goals rather than detailed syllabi, giving textbook authors interpretive freedom while maintaining alignment.',
+    curr_cn_title: 'China — Selective Depth Model',
+    curr_cn_desc: 'Very low but deliberate coverage. Chinese textbooks are highly selective, focusing on depth over breadth. Each topic is explored rigorously but few curriculum topics are addressed.',
+    section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
+    validation_gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against qwen-plus extraction.',
+    validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.',
+    section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
+    section_paper: 'Paper', paper_sub: 'Preprint manuscript available in the repository',
+    paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
+    paper_sections: 'Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix',
+    paper_copy_bib: 'Copy BibTeX',
+    section_openscience: 'Open Science', openscience_sub: 'All data, code and results are publicly available',
+    openscience_dataset: 'Full Dataset', openscience_dataset_desc: 'Knowledge graphs, gold labels, extractions',
+    openscience_code: 'Source Code', openscience_code_desc: 'Complete analysis pipeline',
+    openscience_paper: 'Research Paper', openscience_paper_desc: 'Full manuscript with methodology',
+    openscience_bench: 'Benchmark Results', openscience_bench_desc: '20-model comparison',
+    openscience_figures: 'Figures & Visualizations', openscience_figures_desc: 'Publication-ready charts',
+    openscience_contact: 'Get in Touch', openscience_contact_desc: 'Questions, feedback, collaborations',
+    footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
+    section_cognitivespace: 'Interactive CognitiveSpace',
+    cognitivespace_sub: 'Explore 1,160+ concepts in an interactive 3D knowledge graph',
+    curr_explanations_title: 'Three competing explanations',
   },
   de: {
     page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
     nav_research: 'Forschung', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
     nav_findings: 'Erkenntnisse', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Lehrplan',
     nav_validation: 'Validierung', nav_paper: 'Paper', nav_open: 'Open Science',
-    hero_title: 'Wie organisieren verschiedene Sprachen und Bildungssysteme das gleiche Wissen?',
-    hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA',
-    hero_cta: 'Erkenntnisse entdecken →', hero_3d: 'CognitiveSpace 3D',
+    hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br>das gleiche Wissen?',
+    hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
+    cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
+    stat_concepts: 'Konzepte', stat_relations: 'Beziehungen', stat_languages: 'Sprachen', stat_disciplines: 'Disziplinen',
+    stat_edu_systems: 'Bildungssysteme', stat_gold_labels: 'Goldstandard', stat_overall_f1: 'Gesamt-F1',
+    section_rq: 'Forschungsfragen', rq_sub: 'Drei komplementäre Perspektiven auf die Organisation desselben Wissens',
+    rq1_title: 'FF1: Sprache', rq1_question: 'Wie organisieren verschiedene Sprachen das gleiche Wissen?',
+    rq1_answer: 'Chinesische und deutsche Lehrbücher zeigen die höchste strukturelle Divergenz (LDS=0,907); chinesische und englische die niedrigste (0,802). Die Curriculartradition — nicht die Sprachfamilie — bestimmt diese Unterschiede.',
+    rq1_metric: 'LDS: 0,802–0,907',
+    rq2_title: 'FF2: Disziplin', rq2_question: 'Wie organisieren verschiedene MINT-Fächer Wissen?',
+    rq2_answer: 'Alle drei Disziplinen folgen einem Muster aus frühem Höhepunkt und anschließendem Abfall. Die Wissensdichte erreicht ihren Höhepunkt in der Mittel- oder Grundschule und fällt dann stark ab.',
+    rq2_cds: 'CDS: 0,042–0,271', rq2_hds: 'HDS: max. 8',
+    rq3_title: 'FF3: Bildungssystem', rq3_question: 'Wie organisieren verschiedene Lehrpläne das gleiche Fach?',
+    rq3_answer: 'Die Abdeckungswerte reichen von 8% (China) bis 82% (Großbritannien). Diese Unterschiede spiegeln die Bildungssystemphilosophie wider — prüfungsgetriebene Breite versus spezialisierte Tiefe.',
+    rq3_cs: 'CS: 8%–82%',
+    section_contrib: 'Forschungsbeiträge', contrib_sub: 'Was dieses Projekt für das Feld leistet',
+    contrib1_title: 'Ein mehrsprachiger MINT-Wissensgraph',
+    contrib1_desc: '1.160+ Konzepte und 4.100+ Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180+ Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (F1 = 0,939).',
+    section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
     section_findings: 'Fünf strukturelle Entdeckungen über die Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
+    finding_a_title: 'Wissensdichte erreicht frühen Höhepunkt',
+    finding_a_sub: 'Erkenntnis A — Alle drei MINT-Disziplinen folgen einem Muster aus Höhepunkt und Abfall. Mathematik erreicht den Höhepunkt in der Mittelstufe, Physik in der Grundschule, Chemie in der Mittelstufe.',
+    fig3_caption: 'Abb. 3: CDS nach Bildungsstufe', fig7_caption: 'Abb. 7: CDS der drei Fächer',
+    finding_b_title: 'Wissensstrukturen bleiben flach',
+    finding_b_sub: 'Erkenntnis B — Die maximale Voraussetzungstiefe beträgt HDS ≤ 8 für Mathematik und ≤ 6 für Physik. Über 83% der Konzepte sind Wurzeln.',
+    fig5_caption: 'Abb. 5: HDS-Verteilung',
+    finding_c_title: 'Sprachen organisieren Wissen unterschiedlich',
+    finding_c_sub: 'Erkenntnis C — ZH–DE-Lehrbücher divergieren am stärksten (LDS=0,907), ZH–EN am wenigsten (0,802). Die Curriculartradition und nicht die Sprachfamilie bestimmt diese Unterschiede.',
+    fig4_caption: 'Abb. 4: LDS-Heatmap',
+    finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
+    finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 8% (China) bis 82% (GB). Großbritannien folgt einem prüfungsgetriebenen aufsteigenden Modell; NRW spiegelt spezialisierungsbedingten Rückgang wider.',
+    section_curriculum: 'Lehrplananalyse', curriculum_sub: 'Wie vier Bildungssysteme ihre Lehrpläne mit Lehrbuchinhalten abgleichen',
+    curr_nrw_title: 'NRW (Deutschland) — Spezialisierungsmodell',
+    curr_nrw_desc: 'Abdeckung nimmt mit der Stufe ab: 50% in frühen Phasen → 31% in fortgeschrittenen. Lehrkräfte haben curriculare Freiheit — sie wählen aus dem Lehrplan aus, anstatt alles abzudecken.',
+    curr_uk_title: 'Großbritannien — Prüfungsgetriebenes Modell',
+    curr_uk_desc: 'Abdeckung steigt mit der Stufe: 53% → 90%. Das prüfungsgetriebene System führt zu umfassender Lehrbuchabdeckung — jeder Lehrplanpunkt muss unterrichtet werden, da er geprüft werden könnte.',
+    curr_us_title: 'USA — Breites Standards-Modell',
+    curr_us_desc: 'Stabile hohe Abdeckung über alle Stufen hinweg. Die US-Standards definieren breite Lernziele statt detaillierter Lehrpläne, was Lehrbuchautoren Interpretationsspielraum gibt.',
+    curr_cn_title: 'China — Selektives Tiefenmodell',
+    curr_cn_desc: 'Sehr niedrige, aber bewusste Abdeckung. Chinesische Lehrbücher sind hochselektiv und konzentrieren sich auf Tiefe statt Breite. Jedes Thema wird gründlich behandelt, aber nur wenige Lehrplanthemen werden aufgegriffen.',
+    section_validation: 'Validierung', validation_sub: 'Goldstandard-Annotationen und Modellvergleiche',
+    validation_gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in allen drei Sprachen. Validiert mit qwen-plus-Extraktion.',
+    validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. qwen-plus als Produktionsmodell ausgewählt.',
+    section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
+    section_paper: 'Paper', paper_sub: 'Vorabdruck des Manuskripts im Repository verfügbar',
+    paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 180+ Lehrbüchern erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
+    paper_sections: 'Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Anhang',
+    paper_copy_bib: 'BibTeX kopieren',
+    section_openscience: 'Open Science', openscience_sub: 'Alle Daten, Code und Ergebnisse sind öffentlich verfügbar',
+    openscience_dataset: 'Vollständiger Datensatz', openscience_dataset_desc: 'Wissensgraphen, Goldlabels, Extraktionen',
+    openscience_code: 'Quellcode', openscience_code_desc: 'Vollständige Analyse-Pipeline',
+    openscience_paper: 'Forschungspapier', openscience_paper_desc: 'Vollständiges Manuskript mit Methodik',
+    openscience_bench: 'Benchmark-Ergebnisse', openscience_bench_desc: '20-Modell-Vergleich',
+    openscience_figures: 'Abbildungen & Visualisierungen', openscience_figures_desc: 'Publikationsreife Diagramme',
+    openscience_contact: 'Kontakt', openscience_contact_desc: 'Fragen, Feedback, Kooperationen',
+    footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
+    section_cognitivespace: 'Interaktiver CognitiveSpace',
+    cognitivespace_sub: 'Erkunden Sie 1.160+ Konzepte in einem interaktiven 3D-Wissensgraphen',
+    curr_explanations_title: 'Drei konkurrierende Erklärungen',
   },
   zh: {
     page_title: 'LinguaGraph — 跨语言知识结构分析',
     nav_research: '研究', nav_contributions: '贡献', nav_methodology: '方法',
     nav_findings: '发现', nav_cognitivespace: '认知空间', nav_curriculum: '课程',
     nav_validation: '验证', nav_paper: '论文', nav_open: '开放科学',
-    hero_title: '不同语言和教育体系是如何组织同一种知识的？',
-    hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析',
-    hero_cta: '探索发现 →', hero_3d: '认知空间 3D',
+    hero_title: '不同语言和教育体系<br>是如何组织<br>同一种知识的？',
+    hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
+    cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
+    stat_concepts: '概念', stat_relations: '关系', stat_languages: '语言', stat_disciplines: '学科',
+    stat_edu_systems: '教育体系', stat_gold_labels: '黄金标注', stat_overall_f1: '总体 F1',
+    section_rq: '研究问题', rq_sub: '理解同一知识如何被不同组织方式呈现的三个互补视角',
+    rq1_title: '问题1：语言', rq1_question: '不同语言如何组织相同的知识？',
+    rq1_answer: '中文和德文教材的结构差异最大（LDS=0.907），中文和英文差异最小（0.802）。课程传统——而非语系——驱动着这些差异。',
+    rq1_metric: 'LDS：0.802–0.907',
+    rq2_title: '问题2：学科', rq2_question: '不同 STEM 学科如何组织知识？',
+    rq2_answer: '三个学科都遵循先达到峰值后下降的模式。知识密度在初中或小学达到峰值，然后急剧下降。最大前提知识深度不超过 8。',
+    rq2_cds: 'CDS：0.042–0.271', rq2_hds: 'HDS：最大值 8',
+    rq3_title: '问题3：教育体系', rq3_question: '不同课程体系如何组织同一学科？',
+    rq3_answer: '课程覆盖率从 8%（中国）到 82%（英国）不等。这些差异反映了教育理念——考试驱动的广度与专业化的深度。',
+    rq3_cs: 'CS：8%–82%',
+    section_contrib: '研究贡献', contrib_sub: '本项目为领域的贡献',
+    contrib1_title: '多语言 STEM 知识图谱',
+    contrib1_desc: '1,160+ 个概念和 4,100+ 条关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（F1 = 0.939）。',
+    section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings: '关于知识如何在学科、语言、教育体系和个人之间组织的五项结构性发现',
+    finding_a_title: '知识密度早期达到峰值',
+    finding_a_sub: '发现 A — 三个 STEM 学科都遵循峰值-下降模式。数学在初中达到峰值，物理在小学，化学在初中。',
+    fig3_caption: '图 3：按教育阶段的 CDS', fig7_caption: '图 7：三个学科的 CDS',
+    finding_b_title: '知识结构保持浅层',
+    finding_b_sub: '发现 B — 最大前提知识深度为数学 HDS ≤ 8，物理 ≤ 6。83% 以上的概念是根节点。',
+    fig5_caption: '图 5：HDS 分布',
+    finding_c_title: '语言以不同方式组织知识',
+    finding_c_sub: '发现 C — 中德教材差异最大（LDS=0.907），中英差异最小（0.802）。课程传统而非语系驱动这些差异。',
+    fig4_caption: '图 4：LDS 热力图',
+    finding_d_title: '教育体系强调不同的课程设计',
+    finding_d_sub: '发现 D — 覆盖率从 8%（中国）到 82%（英国）。英国采用考试驱动的上升模式；德国北威州体现专业化驱动的下降模式。',
+    section_curriculum: '课程分析', curriculum_sub: '四个教育体系如何使课程与教材内容对齐',
+    curr_nrw_title: '北威州（德国）——专业化模式',
+    curr_nrw_desc: '覆盖率随阶段下降：早期 50% → 高级 31%。教师享有课程自由——他们从课程中选择而非全覆盖。',
+    curr_uk_title: '英国——考试驱动模式',
+    curr_uk_desc: '覆盖率随阶段上升：53% → 90%。考试驱动系统使教材全覆盖——每个课程点都必须教授，因为可能被考查。',
+    curr_us_title: '美国——广泛标准模式',
+    curr_us_desc: '各阶段覆盖率保持高位稳定。美国标准定义广泛的学习目标而非详细的课程大纲。',
+    curr_cn_title: '中国——选择性深度模式',
+    curr_cn_desc: '覆盖率非常低但有意为之。中国教材高度选择性，注重深度而非广度。每个主题都深入探讨，但只涉及少数课程主题。',
+    section_validation: '验证', validation_sub: '黄金标准标注与模型基准',
+    validation_gold_desc: '人工标注的黄金标准，涵盖所有三种语言的社会概念和数学概念。经 qwen-plus 提取验证。',
+    validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。qwen-plus 被选为生产模型。',
+    section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
+    section_paper: '论文', paper_sub: '预印本手稿可在仓库中获取',
+    paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 180+ 本教材中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
+    paper_sections: '引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理附录',
+    paper_copy_bib: '复制 BibTeX',
+    section_openscience: '开放科学', openscience_sub: '所有数据、代码和结果公开可用',
+    openscience_dataset: '完整数据集', openscience_dataset_desc: '知识图谱、黄金标签、提取结果',
+    openscience_code: '源代码', openscience_code_desc: '完整分析流程',
+    openscience_paper: '研究论文', openscience_paper_desc: '含方法论的完整手稿',
+    openscience_bench: '基准测试结果', openscience_bench_desc: '20 模型对比',
+    openscience_figures: '图表与可视化', openscience_figures_desc: '可出版的图表',
+    openscience_contact: '联系我们', openscience_contact_desc: '问题、反馈、合作',
+    footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
+    section_cognitivespace: '交互式 CognitiveSpace',
+    cognitivespace_sub: '在交互式 3D 知识图谱中探索 1,160+ 个概念',
+    curr_explanations_title: '三种竞争性解释',
   },
 };
+
 
 function setLanguage(lang) {
   const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
@@ -935,23 +1101,24 @@ function setLanguage(lang) {
     const id = a.getAttribute('href')?.replace('#', '');
     if (id && navMap[id]) a.textContent = t[navMap[id]];
   });
+  // Hero
   const h1 = document.querySelector('.hero h1');
-  if (h1) h1.textContent = t.hero_title;
+  if (h1) h1.innerHTML = t.hero_title;
   const hSub = document.querySelector('.hero .subtitle');
   if (hSub) hSub.textContent = t.hero_sub;
   const cta = document.querySelector('.hero .ctas a:first-child');
-  if (cta) cta.innerHTML = t.hero_cta;
+  if (cta) cta.innerHTML = t.cta_findings;
   const btn3d = document.querySelector('.hero .ctas a:nth-child(2)');
-  if (btn3d) btn3d.innerHTML = t.hero_3d;
-  const sub = document.querySelector('#finding-a .section-sub');
-  if (sub) sub.textContent = t.section_findings;
+  if (btn3d) btn3d.innerHTML = t.cta_3d;
+  // All data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
-}
-window.setLanguage = setLanguage;
-
-function initLang() {
+}function initLang() {
   const saved = localStorage.getItem('portal_lang') || 'en';
   setLanguage(saved);
   document.querySelectorAll('.lang-btn').forEach(btn => {
