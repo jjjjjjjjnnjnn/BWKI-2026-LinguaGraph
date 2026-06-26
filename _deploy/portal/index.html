@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
 mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:false, securityLevel:'sandbox' });
-window.addEventListener('DOMContentLoaded', () => { try { mermaid.run({ querySelector: '.mermaid' }); } catch(e) {} });
+window.addEventListener('DOMContentLoaded', () => { mermaid.run({ querySelector: '.mermaid' }).catch(() => {}); });
 </script>
 <style>
 :root {
@@ -284,7 +284,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <p class="section-sub" data-i18n="method_sub">From textbook text to structural insights in five steps</p>
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
-    <div class="mermaid" data-i18n="metric_cs">
+    <div class="mermaid">
 %%{init:{'theme':'dark','themeVariables':{'primaryColor':'#1e293b','primaryTextColor':'#e2e8f0','primaryBorderColor':'#2d3a50','lineColor':'#60a5fa','secondaryColor':'#111827','tertiaryColor':'#1a2332'}}}%%
 graph LR
     T1[180+ Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
@@ -1551,7 +1551,7 @@ function setLanguage(lang) {
   // data-i18n fallback (skip nav elements)
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
-    if (t[key] && !el.closest('nav')) el.textContent = t[key];
+    if (t[key] && !el.closest('nav') && !el.closest('.mermaid')) el.textContent = t[key];
   });
 
   // Lang buttons
