@@ -45,6 +45,7 @@ def main():
         ("merge_extractions.py", "Merge extractions"),
         ("align_languages.py", "Align languages"),
         ("export_graph.py", "Export graphs"),
+        ("validate_pipeline.py", "Quality gates"),
     ]
 
     print("CognitiveSpace — Full Pipeline")
