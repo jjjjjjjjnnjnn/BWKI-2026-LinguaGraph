@@ -304,6 +304,13 @@ LEVEL_RULES = [
     ("analysis", "college", 4),
     ("lambacher", "high", 3),
     ("khan academy", "high", 3),
+    ("westermann", "middle", 2),
+    ("cornelsen", "middle", 2),
+    ("klett", "middle", 2),
+    ("oxford", "high", 3),
+    ("cambridge", "high", 3),
+    ("pearson", "high", 3),
+    ("springer", "college", 4),
 ]
 
 

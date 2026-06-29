@@ -152,28 +152,6 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
 
     Plus a cross_language mapping for the color-coding.
     """
-    # Simplified level inference from textbook references
-    LEVEL_KEYWORDS = [
-        ("elementary", ["小学"]),
-        ("middle", ["初中", "七年", "八年", "九年"]),
-        ("high", ["高中", "选修", "必修"]),
-    ]
-
-    def infer_level_from_refs(refs: list) -> tuple[str, int]:
-        texts = []
-        for r in refs:
-            if isinstance(r, dict):
-                texts.append(r.get("textbook", ""))
-            elif isinstance(r, str):
-                texts.append(r)
-        combined = " ".join(texts)
-        for level, keywords in LEVEL_KEYWORDS:
-            for kw in keywords:
-                if kw in combined:
-                    order = {"elementary": 1, "middle": 2, "high": 3, "college": 4}.get(level, 4)
-                    return level, order
-        return "college", 4  # default
-
     nodes = []
     links = []
     node_ids: set[str] = set()
@@ -195,7 +173,8 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
             g["display_name"]
         )
         domain = classify_domain(g)
-        level, level_order = infer_level_from_refs(g.get("cross_references", []))
+        level = g.get("level", "college")
+        level_order = g.get("level_order", 4)
 
         node = {
             "id": g["id"],
