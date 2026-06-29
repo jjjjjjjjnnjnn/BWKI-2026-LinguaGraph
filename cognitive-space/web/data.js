@@ -3,7 +3,7 @@
 // 68 textbooks: 45 ZH + 20 EN + 10 DE
 const COGNITIVE_DATA_EXT = {
   "version": "2.0",
-  "generated_at": "2026-06-29T09:15:50.244277",
+  "generated_at": "2026-06-29T09:30:33.214543",
   "nodes": [
     {
       "id": "math_calculus_导数",
@@ -94,8 +94,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "积分"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -116,8 +116,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "微分"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -138,8 +138,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "原函数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -352,8 +352,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "极限定理"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -436,8 +436,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "麦克劳林级数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -458,8 +458,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "幂级数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -480,8 +480,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "收敛"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -502,8 +502,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "散度"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -530,8 +530,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Partielle Ableitung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -552,8 +552,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "方向导数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -574,8 +574,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "梯度"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -596,8 +596,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Divergenz (Vektor)"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -618,8 +618,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "旋度"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -640,8 +640,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "拉格朗日乘数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -696,8 +696,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Gewöhnliche DGL"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -718,8 +718,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Partielle DGL"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -740,8 +740,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "复合函数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -910,8 +910,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "原函数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -994,8 +994,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "中间变量"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1016,8 +1016,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "外层函数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1038,8 +1038,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "内层函数"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1060,8 +1060,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Unbestimmte Form"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1082,8 +1082,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "柯西中值定理"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1138,8 +1138,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "麦克劳林公式"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1160,8 +1160,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "拉格朗日余项"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1182,8 +1182,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Allgemeine Lösung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1204,8 +1204,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Partikuläre Lösung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1226,8 +1226,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "初始条件"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1248,8 +1248,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Separierbare Gleichung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -1440,8 +1440,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "线性方程组"
       },
       "group": "linear_algebra",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -2226,8 +2226,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "概率"
       },
       "group": "statistics",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 6,
       "cross_references": [
@@ -2672,8 +2672,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "方差"
       },
       "group": "statistics",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 5,
       "cross_references": [
@@ -3276,8 +3276,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Lineare DGL höherer Ordnung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3366,8 +3366,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Homogene Gleichung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3388,8 +3388,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Nicht-homogene Gleichung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3472,8 +3472,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "弹簧振动"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3494,8 +3494,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Harmonische Schwingung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3516,8 +3516,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Gedämpfte Schwingung"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3606,8 +3606,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "SIR模型"
       },
       "group": "calculus",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3756,8 +3756,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Natürliche Zahlen"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3784,8 +3784,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "加法"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3812,8 +3812,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "减法"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3840,8 +3840,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "乘法"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3868,8 +3868,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "除法"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3896,8 +3896,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "分数"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3918,8 +3918,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "小数"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3940,8 +3940,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Prozent"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -3968,8 +3968,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "周长"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -3990,8 +3990,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "面积"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4012,8 +4012,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "体积"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4040,8 +4040,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "角"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 3,
       "cross_references": [
@@ -4074,8 +4074,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Rechter Winkel"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4096,8 +4096,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "三角形"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4124,8 +4124,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "长方形"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4146,8 +4146,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "正方形"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4174,8 +4174,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "圆"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 3,
       "cross_references": [
@@ -4208,8 +4208,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "长方体"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4230,8 +4230,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "正方体"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4252,8 +4252,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "圆柱"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4274,8 +4274,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "球"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4296,8 +4296,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "厘米"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4318,8 +4318,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "米"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4340,8 +4340,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "千克"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4362,8 +4362,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "乘法口诀"
       },
       "group": "elementary",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4384,8 +4384,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Rationale Zahl"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4412,8 +4412,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "整式"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4440,8 +4440,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Lineare Gleichung einer Unbekannten"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4462,8 +4462,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "线性方程组"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 3,
       "cross_references": [
@@ -4496,8 +4496,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "不等式"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4524,8 +4524,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "一次函数"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 4,
       "cross_references": [
@@ -4564,8 +4564,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "勾股定理"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 4,
       "cross_references": [
@@ -4604,8 +4604,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Kongruente Dreiecke"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4626,8 +4626,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "相似三角形"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4654,8 +4654,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Quadratische Funktion"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4676,8 +4676,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Quadratische Gleichung"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4698,8 +4698,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "Trigonometrische Funktionen"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4720,8 +4720,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "平行四边形"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -4742,8 +4742,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "长方形"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "elementary",
+      "level_order": 1,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -4770,8 +4770,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "菱形"
       },
       "group": "middle",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -5224,8 +5224,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "三角形"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -5252,8 +5252,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "圆"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 3,
       "cross_references": [
@@ -5286,8 +5286,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "抛物线"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -5308,8 +5308,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "面积"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 1,
       "cross_references": [
@@ -5330,8 +5330,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "体积"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "high",
+      "level_order": 3,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -5358,8 +5358,8 @@ const COGNITIVE_DATA_EXT = {
         "de": "平面直角坐标系"
       },
       "group": "geometry",
-      "level": "college",
-      "level_order": 4,
+      "level": "middle",
+      "level_order": 2,
       "importance": 8,
       "source_count": 2,
       "cross_references": [
@@ -14613,12 +14613,12 @@ const COGNITIVE_DATA_EXT = {
     "total_links": 238,
     "domains": [
       "middle",
-      "geometry",
-      "calculus",
       "elementary",
       "general",
       "linear_algebra",
-      "statistics"
+      "calculus",
+      "statistics",
+      "geometry"
     ],
     "languages": [
       "zh",
