@@ -179,10 +179,14 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
     node_ids: set[str] = set()
 
     # Build nodes — only include groups with actual source data
+    skipped = 0
     for g in aligned_groups:
         has_data = len(g.get("cross_references", [])) > 0
         if not has_data:
             continue  # Skip placeholder groups with no textbook data yet
+        if g["id"] in node_ids:
+            skipped += 1
+            continue  # Skip duplicate group IDs
 
         primary_name = (
             g["labels"].get("zh") or
@@ -206,6 +210,9 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
         }
         nodes.append(node)
         node_ids.add(g["id"])
+
+    if skipped:
+        print(f"  [DEDUP] Skipped {skipped} duplicate group(s)")
 
     # Add one node for each unmatched concept from aligned_data
     for c in aligned_data.get("unmatched_concepts", []):
