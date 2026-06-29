@@ -55,6 +55,16 @@ nav a {
 nav a:hover { color: var(--text); background: var(--surface); text-decoration: none; }
 nav a.active { color: var(--accent); background: rgba(96,165,250,.1); }
 
+/* Language Switcher */
+.lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 4px; flex-shrink: 0; }
+.lang-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text2);
+  padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600;
+  transition: all .2s; flex-shrink: 0;
+}
+.lang-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+.lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
 /* ===== Sections ===== */
 section {
   max-width: 1100px; margin: 0 auto; padding: 80px 24px;
@@ -247,6 +257,11 @@ footer { text-align: center; padding: 48px 24px; color: var(--text2); font-size:
   <a href="#figures">Figures</a>
   <a href="#timeline">Timeline</a>
   <a href="#paper">Paper</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" title="English">EN</button>
+    <button class="lang-btn" title="Deutsch">DE</button>
+    <button class="lang-btn" title="中文">ZH</button>
+  </div>
 </nav>
 
 <!-- Lightbox -->
@@ -844,6 +859,383 @@ document.addEventListener('keydown', e => {
 
 // Immediately show hero without animation delay
 document.getElementById('overview').classList.add('visible');
+
+// ===== TRANSLATIONS =====
+var TRANSLATIONS = {
+  en: {
+    page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
+    nav_overview: 'Overview', nav_rqs: 'Research Questions', nav_dataset: 'Dataset',
+    nav_methods: 'Methods', nav_findings: 'Findings', nav_figures: 'Figures',
+    nav_space: 'CognitiveSpace', nav_timeline: 'Timeline', nav_paper: 'Paper',
+    hero_title: 'LinguaGraph',
+    hero_sub: 'How do different languages and education systems organize the same knowledge?<br>A cross-lingual, cross-disciplinary framework for measuring structural differences in educational knowledge organization.',
+    stat_concepts: 'Concepts', stat_relations: 'Relations', stat_languages: 'Languages',
+    stat_disciplines: 'Disciplines', stat_edu_systems: 'Education Systems',
+    stat_gold_labels: 'Gold Labels', stat_f1: 'Overall F1',
+    metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
+    metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
+    section_rqs_title: 'Research Questions', section_rqs_sub: 'Three complementary lenses on knowledge organization',
+    rq1_title: 'RQ1: Language', rq1_question: '<strong>Question:</strong> How do different languages organize the same knowledge?',
+    rq1_answer: 'ZH–DE textbooks show highest structural divergence; ZH–EN the lowest, suggesting curriculum tradition (not language family) drives organization.',
+    rq1_metric: 'LDS: 0.802–0.907',
+    rq2_title: 'RQ2: Discipline', rq2_question: '<strong>Question:</strong> How do different subjects organize their knowledge?',
+    rq2_answer: 'Knowledge density peaks early (middle/elementary) then declines. Depth is bounded at HDS ≤ 8. Physics has 2.1× more sequential depth than math.',
+    rq2_metric: 'CDS: 0.042–0.271',
+    rq3_title: 'RQ3: Education System', rq3_question: '<strong>Question:</strong> How do different education systems organize curricula?',
+    rq3_answer: 'Coverage varies dramatically: UK 82% → US 76% → NRW 34% → CN 8%. Trajectories reveal system design philosophy (exam-driven vs. specialization).',
+    rq3_metric: 'CS: 8%–82%',
+    section_dataset_title: 'Dataset', section_dataset_sub: '180+ textbooks across 3 languages, 3 disciplines, 4 education systems',
+    math_title: 'Mathematics', math_desc: '574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
+    physics_title: 'Physics', physics_desc: '366 concepts, 383 relations across 94 textbook versions. Covers mechanics through quantum physics.',
+    chemistry_title: 'Chemistry', chemistry_desc: '220 concepts, 215 relations across 18 textbook versions. Covers general chemistry through organic chemistry.',
+    curr_title: 'Curriculum Standards',
+    th_system: 'System', th_country: 'Country', th_disciplines: 'Disciplines',
+    th_coverage: 'Coverage (Math)', th_trajectory: 'Trajectory',
+    sources_title: 'Textbook Sources',
+    zh_title: 'Chinese (33+ publishers)', zh_desc: 'Renjiao K-12, Tongji Analysis, Sichuan University, Peking University, Ma Wenwei, Cheng Shouzhuo, Zhao Kaihua, and 25+ more.',
+    en_title: 'English (34+ publishers)', en_desc: 'Khan Academy, CK-12, Stewart Calculus, Halliday Resnick Walker, Griffiths, Feynman Lectures, AP Physics, IB, IGCSE.',
+    de_title: 'German (27+ publishers)', de_desc: 'Duden, Lambacher Schweizer, Westermann, Cornelsen, Klett, Dorn-Bader, Tipler, Demtroeder, Papula, Fischer.',
+    section_methods_title: 'Methods', section_methods_sub: 'Four metrics + gold standard validation',
+    metric_cds_name: 'Concept Density Score', metric_cds_desc: 'How densely connected knowledge is at each education level. Higher = more integrated.',
+    metric_hds_name: 'Hierarchy Depth Score', metric_hds_desc: 'Longest prerequisite chain for each concept. Measures knowledge hierarchy depth.',
+    metric_lds_name: 'Language Drift Score', metric_lds_desc: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
+    metric_cs_name: 'Coverage Score', metric_cs_desc: 'How much of the curriculum the textbooks cover. Textbook–curriculum alignment.',
+    gold_title: 'Extraction Quality: 92 Gold Labels',
+    gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against qwen-plus extraction.',
+    th_domain: 'Domain', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
+    th_overall: 'Overall', th_n: 'n',
+    social_concepts: 'Social Concepts', mathematical_concepts: 'Mathematical Concepts',
+    all_label: 'All',
+    bench_title: 'Model Benchmark (Top 6 / 20 Models)',
+    th_rank: 'Rank', th_model: 'Model', th_f1_social: 'F1 (Social)', th_f1_math: 'F1 (Math)',
+    section_findings_title: '10 Findings (F1–F10)', section_findings_sub: 'Quantitative evidence for structural differences in knowledge organization',
+    th_fnum: '#', th_finding: 'Finding', th_evidence: 'Evidence', th_metric: 'Metric',
+    section_figures_title: 'Figures', section_figures_sub: 'Key visualizations from the LinguaGraph analysis',
+    fig3_caption: '<strong>Fig 3</strong> — Concept Density Score (CDS) across education levels for Mathematics. CDS peaks at Middle school (0.271), then declines 3.7x to High school (0.073).',
+    fig4_caption: '<strong>Fig 4</strong> — Language Drift Score (LDS) heatmap across ZH/EN/DE. ZH–DE shows highest divergence (0.907); ZH–EN the lowest (0.802).',
+    fig5_caption: '<strong>Fig 5</strong> — Hierarchy Depth Score (HDS) distribution. Maximum chain depth is 8; 83% of concepts are root nodes with no prerequisites.',
+    fig6_caption: '<strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.',
+    fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds universally.',
+    section_space_title: 'Interactive Cognitive Space', section_space_sub: 'Explore the 3D knowledge graph — rotate, filter, compare',
+    space_desc: 'The CognitiveSpace visualization lets you explore all 1,160+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.',
+    space_cta: 'Launch CognitiveSpace 3D',
+    space_meta: 'Three.js · 3 discipline layers · Cross-lingual comparison · 4 view modes',
+    section_timeline_title: 'Project Timeline', section_timeline_sub: 'From concept to comprehensive framework',
+    section_paper_title: 'Paper & References', section_paper_sub: 'Preprint manuscript, citations, and related work',
+    preprint_title: 'Preprint', preprint_desc: 'Full manuscript covering all 3 research questions, 4 metrics, 10 findings, model benchmarks, and error analysis.',
+    data_title: 'Data', data_desc: 'All knowledge graphs, curriculum alignments, and evaluation results available in the repository.',
+    references_title: 'Key References',
+    cite_title: 'Cite this work',
+    footer_title: 'LinguaGraph', footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
+    footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
+    footer_github: 'GitHub',
+  },
+  de: {
+    page_title: 'LinguaGraph — Sprachuebergreifende Analyse von Wissensstrukturen',
+    nav_overview: 'Ueberblick', nav_rqs: 'Forschungsfragen', nav_dataset: 'Datensatz',
+    nav_methods: 'Methoden', nav_findings: 'Erkenntnisse', nav_figures: 'Abbildungen',
+    nav_space: 'CognitiveSpace', nav_timeline: 'Zeitstrahl', nav_paper: 'Paper',
+    hero_title: 'LinguaGraph',
+    hero_sub: 'Wie organisieren verschiedene Sprachen und Bildungssysteme das gleiche Wissen?<br>Ein sprachuebergreifender Rahmen zur Messung struktureller Unterschiede in der Bildungsorganisation von Wissen.',
+    stat_concepts: 'Konzepte', stat_relations: 'Beziehungen', stat_languages: 'Sprachen',
+    stat_disciplines: 'Disziplinen', stat_edu_systems: 'Bildungssysteme',
+    stat_gold_labels: 'Goldstandard', stat_f1: 'Gesamt-F1',
+    metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
+    metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
+    section_rqs_title: 'Forschungsfragen', section_rqs_sub: 'Drei komplementaere Perspektiven auf Wissensorganisation',
+    rq1_title: 'FF1: Sprache', rq1_question: '<strong>Frage:</strong> Wie organisieren verschiedene Sprachen das gleiche Wissen?',
+    rq1_answer: 'ZH–DE-Lehrbuecher zeigen die hoechste strukturelle Divergenz; ZH–EN die niedrigste. Die Curriculartradition bestimmt diese Unterschiede.',
+    rq1_metric: 'LDS: 0,802–0,907',
+    rq2_title: 'FF2: Disziplin', rq2_question: '<strong>Frage:</strong> Wie organisieren verschiedene Faecher ihr Wissen?',
+    rq2_answer: 'Wissensdichte erreicht frueh ihren Hoehepunkt, dann Abfall. Die Tiefe ist auf HDS ≤ 8 begrenzt. Physik hat die 2,1-fache Tiefe von Mathematik.',
+    rq2_metric: 'CDS: 0,042–0,271',
+    rq3_title: 'FF3: Bildungssystem', rq3_question: '<strong>Frage:</strong> Wie organisieren verschiedene Bildungssysteme Lehrplaene?',
+    rq3_answer: 'Abdeckung variiert stark: GB 82% → US 76% → NRW 34% → CN 8%. Trajektorien zeigen Systemphilosophie (pruefungsgetrieben vs. Spezialisierung).',
+    rq3_metric: 'CS: 8%–82%',
+    section_dataset_title: 'Datensatz', section_dataset_sub: '180+ Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
+    math_title: 'Mathematik', math_desc: '574 Konzepte, 3.538 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
+    physics_title: 'Physik', physics_desc: '366 Konzepte, 383 Beziehungen aus 94 Lehrbuchversionen. Von Mechanik bis Quantenphysik.',
+    chemistry_title: 'Chemie', chemistry_desc: '220 Konzepte, 215 Beziehungen aus 18 Lehrbuchversionen. Von allgemeiner bis organischer Chemie.',
+    curr_title: 'Lehrplanstandards',
+    th_system: 'System', th_country: 'Land', th_disciplines: 'Faecher',
+    th_coverage: 'Abdeckung (Math)', th_trajectory: 'Trajektorie',
+    sources_title: 'Lehrbuchquellen',
+    zh_title: 'Chinesisch (33+ Verlage)', zh_desc: 'Renjiao K-12, Tongji Analysis, Sichuan University, Peking University, Ma Wenwei, Cheng Shouzhuo, Zhao Kaihua und 25+ weitere.',
+    en_title: 'Englisch (34+ Verlage)', en_desc: 'Khan Academy, CK-12, Stewart Calculus, Halliday Resnick Walker, Griffiths, Feynman Lectures, AP Physics, IB, IGCSE.',
+    de_title: 'Deutsch (27+ Verlage)', de_desc: 'Duden, Lambacher Schweizer, Westermann, Cornelsen, Klett, Dorn-Bader, Tipler, Demtroeder, Papula, Fischer.',
+    section_methods_title: 'Methoden', section_methods_sub: 'Vier Metriken + Goldstandard-Validierung',
+    metric_cds_name: 'Concept Density Score', metric_cds_desc: 'Wie dicht Wissen auf jeder Bildungsstufe vernetzt ist. Hoeher = integrierter.',
+    metric_hds_name: 'Hierarchy Depth Score', metric_hds_desc: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst die Hierarchietiefe des Wissens.',
+    metric_lds_name: 'Language Drift Score', metric_lds_desc: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
+    metric_cs_name: 'Coverage Score', metric_cs_desc: 'Wie viel des Lehrplans die Lehrbuecher abdecken. Lehrbuch-Lehrplan-Abgleich.',
+    gold_title: 'Extraktionsqualitaet: 92 Goldlabels',
+    gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in 3 Sprachen, bewertet mit qwen-plus-Extraktion.',
+    th_domain: 'Bereich', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
+    th_overall: 'Gesamt', th_n: 'n',
+    social_concepts: 'Soziale Konzepte', mathematical_concepts: 'Mathematische Konzepte',
+    all_label: 'Alle',
+    bench_title: 'Modell-Benchmark (Top 6 / 20 Modelle)',
+    th_rank: 'Rang', th_model: 'Modell', th_f1_social: 'F1 (Sozial)', th_f1_math: 'F1 (Math)',
+    section_findings_title: '10 Erkenntnisse (F1–F10)', section_findings_sub: 'Quantitative Belege fuer strukturelle Unterschiede in der Wissensorganisation',
+    th_fnum: '#', th_finding: 'Erkenntnis', th_evidence: 'Belege', th_metric: 'Metrik',
+    section_figures_title: 'Abbildungen', section_figures_sub: 'Wichtige Visualisierungen aus der LinguaGraph-Analyse',
+    fig3_caption: '<strong>Abb. 3</strong> — Concept Density Score (CDS) nach Bildungsstufe fuer Mathematik. CDS erreicht Hoehepunkt in der Mittelstufe (0,271), dann 3,7-facher Abfall zur Oberstufe (0,073).',
+    fig4_caption: '<strong>Abb. 4</strong> — Language Drift Score (LDS) Heatmap ueber ZH/EN/DE. ZH–DE zeigt hoechste Divergenz (0,907); ZH–EN die niedrigste (0,802).',
+    fig5_caption: '<strong>Abb. 5</strong> — Hierarchietiefe (HDS) Verteilung. Maximale Kettentiefe ist 8; 83% der Konzepte sind Wurzelknoten.',
+    fig6_caption: '<strong>Abb. 6</strong> — CDS-Vergleich: Math vs. Physik. Physik erreicht frueheren Hoehepunkt (Grundschule), beide folgen demselben Muster.',
+    fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt universell.',
+    section_space_title: 'Interaktiver CognitiveSpace', section_space_sub: 'Erkunden Sie den 3D-Wissensgraphen — rotieren, filtern, vergleichen',
+    space_desc: 'Die CognitiveSpace-Visualisierung laesst Sie alle 1.160+ Konzepte in einer interaktiven 3D-Umgebung erkunden. Wechseln Sie zwischen Zoom-/Rotations-/Flugmodi, filtern Sie nach Sprache und vergleichen Sie sprachuebergreifende Wissensstrukturen.',
+    space_cta: 'CognitiveSpace 3D starten',
+    space_meta: 'Three.js · 3 Disziplin-Ebenen · Sprachuebergreifend · 4 Ansichtsmodi',
+    section_timeline_title: 'Projektzeitstrahl', section_timeline_sub: 'Vom Konzept zum umfassenden Rahmen',
+    section_paper_title: 'Paper & Referenzen', section_paper_sub: 'Vorabdruck des Manuskripts, Zitationen und verwandte Arbeiten',
+    preprint_title: 'Vorabdruck', preprint_desc: 'Vollstaendiges Manuskript mit allen 3 Forschungsfragen, 4 Metriken, 10 Erkenntnissen, Modellvergleichen und Fehleranalyse.',
+    data_title: 'Daten', data_desc: 'Alle Wissensgraphen, Lehrplanabgleiche und Bewertungsergebnisse im Repository verfuegbar.',
+    references_title: 'Wichtige Referenzen',
+    cite_title: 'Diese Arbeit zitieren',
+    footer_title: 'LinguaGraph', footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
+    footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
+    footer_github: 'GitHub',
+  },
+  zh: {
+    page_title: 'LinguaGraph — 跨语言知识结构分析',
+    nav_overview: '概述', nav_rqs: '研究问题', nav_dataset: '数据集',
+    nav_methods: '方法', nav_findings: '发现', nav_figures: '图表',
+    nav_space: '认知空间', nav_timeline: '时间线', nav_paper: '论文',
+    hero_title: 'LinguaGraph',
+    hero_sub: '不同语言和教育体系是如何组织同一种知识的？<br>一个跨语言、跨学科的知识结构差异度量框架。',
+    stat_concepts: '概念', stat_relations: '关系', stat_languages: '语言',
+    stat_disciplines: '学科', stat_edu_systems: '教育体系',
+    stat_gold_labels: '黄金标注', stat_f1: '总体 F1',
+    metric_cds: '概念密度得分', metric_hds: '层次深度得分',
+    metric_lds: '语言漂移得分', metric_cs: '覆盖率得分',
+    section_rqs_title: '研究问题', section_rqs_sub: '理解知识组织的三个互补视角',
+    rq1_title: '问题1：语言', rq1_question: '<strong>问题：</strong>不同语言如何组织相同的知识？',
+    rq1_answer: '中德教材结构差异最大，中英差异最小。课程传统（而非语系）驱动这些差异。',
+    rq1_metric: 'LDS：0.802–0.907',
+    rq2_title: '问题2：学科', rq2_question: '<strong>问题：</strong>不同学科如何组织知识？',
+    rq2_answer: '知识密度在小学/初中早期达到峰值，然后下降。深度上限为 HDS ≤ 8。物理的顺序深度是数学的 2.1 倍。',
+    rq2_metric: 'CDS：0.042–0.271',
+    rq3_title: '问题3：教育体系', rq3_question: '<strong>问题：</strong>不同教育体系如何组织课程？',
+    rq3_answer: '覆盖率差异显著：英国 82% → 美国 76% → 北威州 34% → 中国 8%。轨迹揭示了体系设计理念（考试驱动 vs 专业化）。',
+    rq3_metric: 'CS：8%–82%',
+    section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180+ 本教材',
+    math_title: '数学', math_desc: '574 个概念，3,538 条关系，来自 68 本教材。从算术到高等微积分。',
+    physics_title: '物理', physics_desc: '366 个概念，383 条关系，来自 94 个教材版本。从力学到量子物理。',
+    chemistry_title: '化学', chemistry_desc: '220 个概念，215 条关系，来自 18 个教材版本。从普通化学到有机化学。',
+    curr_title: '课程标准',
+    th_system: '体系', th_country: '国家', th_disciplines: '学科',
+    th_coverage: '覆盖率（数学）', th_trajectory: '轨迹',
+    sources_title: '教材来源',
+    zh_title: '中文（33+ 出版社）', zh_desc: '人教版 K-12、同济高数、四川大学、北京大学、马文蔚、程守洙、赵凯华等 25+ 个版本。',
+    en_title: '英文（34+ 出版社）', en_desc: 'Khan Academy, CK-12, Stewart Calculus, Halliday Resnick Walker, Griffiths, Feynman Lectures, AP Physics, IB, IGCSE。',
+    de_title: '德文（27+ 出版社）', de_desc: 'Duden, Lambacher Schweizer, Westermann, Cornelsen, Klett, Dorn-Bader, Tipler, Demtröder, Papula, Fischer。',
+    section_methods_title: '方法', section_methods_sub: '四个指标 + 黄金标准验证',
+    metric_cds_name: '概念密度得分', metric_cds_desc: '衡量每个教育阶段知识的连接密度。越高 = 越整合。',
+    metric_hds_name: '层次深度得分', metric_hds_desc: '每个概念的最长前提链。衡量知识层次深度。',
+    metric_lds_name: '语言漂移得分', metric_lds_desc: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
+    metric_cs_name: '覆盖率得分', metric_cs_desc: '课程内容有多少被教材覆盖。教材–课程对齐程度。',
+    gold_title: '提取质量：92 个黄金标签',
+    gold_desc: '人工标注的黄金标准，涵盖 3 种语言的社会概念和数学概念，经 qwen-plus 提取验证。',
+    th_domain: '领域', th_zh_f1: '中文 F1', th_de_f1: '德文 F1', th_en_f1: '英文 F1',
+    th_overall: '总体', th_n: '数量',
+    social_concepts: '社会概念', mathematical_concepts: '数学概念',
+    all_label: '全部',
+    bench_title: '模型基准测试（Top 6 / 20 模型）',
+    th_rank: '排名', th_model: '模型', th_f1_social: 'F1（社会）', th_f1_math: 'F1（数学）',
+    section_findings_title: '10 项发现（F1–F10）', section_findings_sub: '知识组织结构差异的量化证据',
+    th_fnum: '#', th_finding: '发现', th_evidence: '证据', th_metric: '指标',
+    section_figures_title: '图表', section_figures_sub: 'LinguaGraph 分析的关键可视化',
+    fig3_caption: '<strong>图 3</strong> — 数学概念密度得分（CDS）按教育阶段分布。CDS 在初中达到峰值（0.271），然后下降 3.7 倍至高中（0.073）。',
+    fig4_caption: '<strong>图 4</strong> — 语言漂移得分（LDS）跨 ZH/EN/DE 热力图。中德差异最大（0.907），中英差异最小（0.802）。',
+    fig5_caption: '<strong>图 5</strong> — 层次深度得分（HDS）分布。最大链深度为 8；83% 的概念是无前提知识的根节点。',
+    fig6_caption: '<strong>图 6</strong> — CDS 对比：数学 vs 物理。物理峰值更早（小学），两者都遵循相同的先峰后降模式。',
+    fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式具有普遍性。',
+    section_space_title: '交互式认知空间', section_space_sub: '探索 3D 知识图谱 — 旋转、筛选、对比',
+    space_desc: 'CognitiveSpace 可视化让您在交互式 3D 环境中探索全部 1,160+ 个概念。在缩放/旋转/飞行模式间切换，按语言筛选，切换学科图层，比较跨语言知识结构。',
+    space_cta: '启动 CognitiveSpace 3D',
+    space_meta: 'Three.js · 3 个学科层 · 跨语言比较 · 4 种视图模式',
+    section_timeline_title: '项目时间线', section_timeline_sub: '从概念到综合框架',
+    section_paper_title: '论文与参考文献', section_paper_sub: '预印本手稿、引用和相关工作',
+    preprint_title: '预印本', preprint_desc: '完整手稿涵盖所有 3 个研究问题、4 个指标、10 项发现、模型基准和错误分析。',
+    data_title: '数据', data_desc: '所有知识图谱、课程对齐和评估结果均可在仓库中获取。',
+    references_title: '主要参考文献',
+    cite_title: '引用本作品',
+    footer_title: 'LinguaGraph', footer_desc: '跨语言知识结构分析框架',
+    footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',
+    footer_github: 'GitHub',
+  }
+};
+
+function setLanguage(lang) {
+  var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.title = t.page_title;
+
+  // Helper: single element innerHTML
+  function _q(sel, key) { var e = document.querySelector(sel); if (e && key && t[key]) e.innerHTML = t[key]; }
+
+  // Nav
+  var navMap = { overview: 'nav_overview', rqs: 'nav_rqs', dataset: 'nav_dataset',
+    methods: 'nav_methods', findings: 'nav_findings', figures: 'nav_figures',
+    space: 'nav_space', timeline: 'nav_timeline', paper: 'nav_paper' };
+  document.querySelectorAll('nav a').forEach(function(a) {
+    var id = a.getAttribute('href');
+    if (id && navMap[id.replace('#','')]) a.textContent = t[navMap[id.replace('#','')]];
+  });
+
+  // Hero stat labels — first .stats grid (7 items)
+  var statLabels = ['stat_concepts','stat_relations','stat_languages','stat_disciplines','stat_edu_systems','stat_gold_labels','stat_f1'];
+  document.querySelectorAll('.hero .stats:first-of-type .stat-card .label').forEach(function(l,i) {
+    if (l && t[statLabels[i]]) l.innerHTML = t[statLabels[i]];
+  });
+
+  // Hero metric labels — second .stats grid (4 items)
+  var metricLabels = ['metric_cds','metric_hds','metric_lds','metric_cs'];
+  document.querySelectorAll('.hero .stats:last-of-type .stat-card .label').forEach(function(l,i) {
+    if (l && t[metricLabels[i]]) l.innerHTML = t[metricLabels[i]];
+  });
+
+  // Section titles & subtitles
+  _q('#rqs h2', 'section_rqs_title');
+  _q('#rqs .subtitle', 'section_rqs_sub');
+  _q('#dataset h2', 'section_dataset_title');
+  _q('#dataset .subtitle', 'section_dataset_sub');
+  _q('#methods h2', 'section_methods_title');
+  _q('#methods .subtitle', 'section_methods_sub');
+  _q('#findings h2', 'section_findings_title');
+  _q('#findings .subtitle', 'section_findings_sub');
+  _q('#figures h2', 'section_figures_title');
+  _q('#figures .subtitle', 'section_figures_sub');
+  _q('#space h2', 'section_space_title');
+  _q('#space .subtitle', 'section_space_sub');
+  _q('#timeline h2', 'section_timeline_title');
+  _q('#timeline .subtitle', 'section_timeline_sub');
+  _q('#paper h2', 'section_paper_title');
+  _q('#paper .subtitle', 'section_paper_sub');
+
+  // RQ cards
+  var rqCards = document.querySelectorAll('#rqs .rq-card');
+  if (rqCards.length >= 3) {
+    var rqTitles = ['rq1_title','rq2_title','rq3_title'];
+    var rqQs = ['rq1_question','rq2_question','rq3_question'];
+    var rqAs = ['rq1_answer','rq2_answer','rq3_answer'];
+    var rqMs = ['rq1_metric','rq2_metric','rq3_metric'];
+    rqCards.forEach(function(c,i) {
+      var h3 = c.querySelector('h3');
+      var ps = c.querySelectorAll('p');
+      var m = c.querySelector('.rq-metric');
+      if (h3 && t[rqTitles[i]]) h3.innerHTML = t[rqTitles[i]];
+      if (ps[0] && t[rqQs[i]]) ps[0].innerHTML = t[rqQs[i]];
+      if (ps[1] && t[rqAs[i]]) ps[1].innerHTML = t[rqAs[i]];
+      if (m && t[rqMs[i]]) m.innerHTML = t[rqMs[i]];
+    });
+  }
+
+  // Dataset — 3 discipline cards (first .card-grid)
+  var dsCards = document.querySelectorAll('#dataset .card-grid:first-of-type .card');
+  var dsTitles = ['math_title','physics_title','chemistry_title'];
+  var dsDescs = ['math_desc','physics_desc','chemistry_desc'];
+  dsCards.forEach(function(c,i) {
+    var h3 = c.querySelector('h3');
+    var p = c.querySelector('p');
+    if (h3 && t[dsTitles[i]]) h3.innerHTML = t[dsTitles[i]];
+    if (p && t[dsDescs[i]]) p.innerHTML = t[dsDescs[i]];
+  });
+
+  // Curriculum table headers
+  ['th_system','th_country','th_disciplines','th_coverage','th_trajectory'].forEach(function(k,i) {
+    var th = document.querySelectorAll('#dataset .data-table:first-of-type thead th');
+    if (th[i] && t[k]) th[i].innerHTML = t[k];
+  });
+
+  // Textbook source cards (second .card-grid)
+  var srcCards = document.querySelectorAll('#dataset .card-grid:nth-of-type(2) .card');
+  var srcTitles = ['zh_title','en_title','de_title'];
+  var srcDescs = ['zh_desc','en_desc','de_desc'];
+  srcCards.forEach(function(c,i) {
+    var h3 = c.querySelector('h3');
+    var p = c.querySelector('p');
+    if (h3 && t[srcTitles[i]]) h3.innerHTML = t[srcTitles[i]];
+    if (p && t[srcDescs[i]]) p.innerHTML = t[srcDescs[i]];
+  });
+
+  // Dataset extra titles
+  _q('#dataset > h3:first-of-type', 'curr_title');
+  _q('#dataset > h3:nth-of-type(2)', 'sources_title');
+  // Methods — extra titles and metric cards
+  _q('#methods > h3:first-of-type', 'gold_title');
+  _q('#methods > h3:nth-of-type(2)', 'bench_title');
+  var metCards = document.querySelectorAll('#methods .metric-card');
+  var metNames = ['metric_cds_name','metric_hds_name','metric_lds_name','metric_cs_name'];
+  var metDescs = ['metric_cds_desc','metric_hds_desc','metric_lds_desc','metric_cs_desc'];
+  metCards.forEach(function(c,i) {
+    var n = c.querySelector('.name');
+    var d = c.querySelector('.desc');
+    if (n && t[metNames[i]]) n.innerHTML = t[metNames[i]];
+    if (d && t[metDescs[i]]) d.innerHTML = t[metDescs[i]];
+  });
+
+  // Gold table headers (first data-table in #methods)
+  ['th_domain','th_zh_f1','th_de_f1','th_en_f1','th_overall','th_n'].forEach(function(k,i) {
+    var th = document.querySelectorAll('#methods .data-table:first-of-type thead th');
+    if (th[i] && t[k]) th[i].innerHTML = t[k];
+  });
+
+  // Benchmark table headers (second data-table in #methods)
+  ['th_rank','th_model','th_f1_social','th_f1_math','th_overall'].forEach(function(k,i) {
+    var th = document.querySelectorAll('#methods .data-table:nth-of-type(2) thead th');
+    if (th[i] && t[k]) th[i].innerHTML = t[k];
+  });
+
+  // Finding table headers
+  ['th_fnum','th_finding','th_evidence','th_metric'].forEach(function(k,i) {
+    var th = document.querySelectorAll('#findings .finding-table thead th');
+    if (th[i] && t[k]) th[i].innerHTML = t[k];
+  });
+
+  // Figure captions
+  var figKeys = ['fig3_caption','fig4_caption','fig5_caption','fig6_caption','fig7_caption'];
+  document.querySelectorAll('.fig-label').forEach(function(f,i) { if (f && t[figKeys[i]]) f.innerHTML = t[figKeys[i]]; });
+
+  // Cognitive space
+  _q('#space .card p', 'space_desc');
+  var spaceCta = document.querySelector('#space .card a');
+  if (spaceCta && t.space_cta) spaceCta.innerHTML = t.space_cta;
+  _q('#space .card .meta', 'space_meta');
+
+  // Paper
+  _q('#paper .card:first-child h3', 'preprint_title');
+  _q('#paper .card:first-child p', 'preprint_desc');
+  _q('#paper .card:last-child h3', 'data_title');
+  _q('#paper .card:last-child p', 'data_desc');
+  _q('#paper > h3', 'references_title');
+  _q('#paper h4', 'cite_title');
+
+  // Footer
+  _q('footer strong', 'footer_title');
+  var footerPs = document.querySelectorAll('footer p');
+  if (footerPs.length > 1) footerPs[1].innerHTML = t.footer_copyright || footerPs[1].innerHTML;
+  if (footerPs.length > 2) footerPs[2].innerHTML = '<a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">' + (t.footer_github || 'GitHub') + '</a>';
+
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
+  localStorage.setItem('story_lang', lang);
+  document.documentElement.lang = lang;
+}
+
+function initLang() {
+  var saved = localStorage.getItem('story_lang') || 'en';
+  setLanguage(saved);
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { setLanguage(btn.textContent.toLowerCase()); });
+  });
+}
+document.addEventListener('DOMContentLoaded', initLang);
+window.addEventListener('pageshow', function() {
+  var s = localStorage.getItem('story_lang') || 'en';
+  if (!document.querySelector('.lang-btn.active') || !document.querySelector('.lang-btn.active').textContent.toLowerCase().includes(s)) setLanguage(s);
+});
 </script>
 </body>
 </html>
