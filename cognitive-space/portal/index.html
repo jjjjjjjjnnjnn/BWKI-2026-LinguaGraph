@@ -322,7 +322,7 @@ graph LR
     <div class="metric-card">
       <div class="sym" style="color:var(--yellow)">CS</div>
       <div class="formula">&#124;V_tb ∩ V_cur&#124; / &#124;V_cur&#124;</div>
-      <div class="desc">Textbook–curriculum alignment. How much of the official curriculum textbooks actually cover.</div>
+      <div class="desc" data-i18n="metric_cs">Textbook–curriculum alignment. How much of the official curriculum textbooks actually cover.</div>
     </div>
   </div>
 </section>
@@ -519,32 +519,32 @@ graph LR
 
   <div class="card-grid">
     <div class="card">
-      <h3><i class="bi bi-database" style="color:var(--yellow)"></i> Textbook Selection Bias</h3>
+      <h3><i class="bi bi-database" style="color:var(--yellow)"></i> <span data-i18n="limitations1_title">Textbook Selection Bias</span></h3>
       <p data-i18n="limitations1_desc">The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
       <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68+ textbooks</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> Limited Discipline Coverage</h3>
+      <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> <span data-i18n="limitations2_title">Limited Discipline Coverage</span></h3>
       <p data-i18n="limitations2_desc">Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims (e.g., "knowledge density peaks early") are therefore limited to STEM education.</p>
       <div class="meta" data-i18n="limitations2_mit">Mitigation: Framework is design-agnostic and extendable</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-rulers" style="color:var(--red)"></i> Curriculum Granularity Mismatch</h3>
+      <h3><i class="bi bi-rulers" style="color:var(--red)"></i> <span data-i18n="limitations3_title">Curriculum Granularity Mismatch</span></h3>
       <p data-i18n="limitations3_desc">Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
       <div class="meta" data-i18n="limitations3_mit">Mitigation: Analysis focuses on within-system trajectories, not absolute values</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> LLM Extraction Reliability</h3>
+      <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> <span data-i18n="limitations4_title">LLM Extraction Reliability</span></h3>
       <p data-i18n="limitations4_desc">Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-translate" style="color:var(--pink)"></i> Language Coverage Gap</h3>
+      <h3><i class="bi bi-translate" style="color:var(--pink)"></i> <span data-i18n="limitations5_title">Language Coverage Gap</span></h3>
       <p data-i18n="limitations5_desc">Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia). The framework's applicability to Romance, Slavic, Arabic, or other language families remains untested.</p>
       <div class="meta" data-i18n="limitations5_mit">Mitigation: Existing three-language comparison already reveals systematic patterns</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-patch-exclamation" style="color:var(--yellow)"></i> Gold Label Sample Size</h3>
+      <h3><i class="bi bi-patch-exclamation" style="color:var(--yellow)"></i> <span data-i18n="limitations6_title">Gold Label Sample Size</span></h3>
       <p data-i18n="limitations6_desc">92 gold labels, while sufficient for overall F1 estimation (especially for social concepts, n=72), are limited for fine-grained per-language, per-domain analysis. The mathematical domain has only 20 labels across 3 languages, and the German math F1 estimate (0.506) has high variance.</p>
       <div class="meta" data-i18n="limitations6_mit">Mitigation: Social concept results (n=72) are statistically robust</div>
     </div>
@@ -894,7 +894,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
     nav_research: 'Research', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
     nav_findings: 'Findings', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Curriculum',
-    nav_validation: 'Validation', nav_paper: 'Paper', nav_open: 'Open Science',
+    nav_validation: 'Validation', nav_paper: 'Paper', nav_limitations: 'Limitations', nav_open: 'Open Science',
     hero_title: 'How do different languages<br>and educational systems<br>organize the same knowledge?',
     hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
@@ -1174,7 +1174,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
     nav_research: 'Forschung', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
     nav_findings: 'Erkenntnisse', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Lehrplan',
-    nav_validation: 'Validierung', nav_paper: 'Paper', nav_open: 'Open Science',
+    nav_validation: 'Validierung', nav_paper: 'Paper', nav_limitations: 'Einschränkungen', nav_open: 'Open Science',
     hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br>das gleiche Wissen?',
     hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
     cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
@@ -1252,7 +1252,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — 跨语言知识结构分析',
     nav_research: '研究', nav_contributions: '贡献', nav_methodology: '方法',
     nav_findings: '发现', nav_cognitivespace: '认知空间', nav_curriculum: '课程',
-    nav_validation: '验证', nav_paper: '论文', nav_open: '开放科学',
+    nav_validation: '验证', nav_paper: '论文', nav_limitations: '局限性', nav_open: '开放科学',
     hero_title: '不同语言和教育体系<br>是如何组织<br>同一种知识的？',
     hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
     cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
@@ -1434,7 +1434,7 @@ function setLanguage(lang) {
   var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.title = t.page_title;
   // Nav
-  var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', limitations: 'nav_curriculum', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
+  var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', curriculum: 'nav_curriculum', limitations: 'nav_limitations', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
   document.querySelectorAll('nav a').forEach(function(a) {
     var id = a.getAttribute('href');
     if (id && navMap[id.replace('#','')]) a.textContent = t[navMap[id.replace('#','')]];
