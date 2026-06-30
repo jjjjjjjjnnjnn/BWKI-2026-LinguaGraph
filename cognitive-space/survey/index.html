@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="page_title">LinguaGraph — Cross-Linguistic Knowledge Survey</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0e17; --surface: #111827; --surface2: #1a2332;
+  --card: #1e293b; --border: #2d3a50; --text: #e2e8f0;
+  --text2: #94a3b8; --accent: #60a5fa; --green: #34d399;
+  --red: #f87171; --yellow: #fbbf24;
+  --radius: 8px; --maxw: 640px;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  min-height: 100vh; display: flex; justify-content: center;
+}
+.container { max-width: var(--maxw); width: 100%; padding: 40px 20px; }
+h1 { font-size: 1.5rem; margin-bottom: 8px; }
+h2 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent); }
+p { margin-bottom: 16px; color: var(--text2); font-size: 0.95rem; }
+.step { display: none; }
+.step.active { display: block; }
+
+.btn {
+  display: inline-block; padding: 12px 28px; border: none; border-radius: var(--radius);
+  font-size: 1rem; font-weight: 600; cursor: pointer; transition: all .2s;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent), #a78bfa); color: #fff; }
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface2); }
+
+.lang-btn {
+  display: block; width: 100%; padding: 20px; margin-bottom: 12px;
+  background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+  color: var(--text); font-size: 1.1rem; cursor: pointer; transition: all .2s; text-align: left;
+}
+.lang-btn:hover { border-color: var(--accent); background: var(--surface2); }
+.lang-btn .sub { display: block; font-size: .8rem; color: var(--text2); margin-top: 4px; }
+
+.consent-box {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; font-size: .85rem;
+}
+.consent-check { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.consent-check input { width: 20px; height: 20px; cursor: pointer; }
+
+.progress-bar {
+  height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 30px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--accent); transition: width .3s; border-radius: 2px; }
+
+.prompt-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin-bottom: 20px;
+}
+.prompt-card .num {
+  display: inline-block; background: var(--accent); color: #fff; border-radius: 50%;
+  width: 28px; height: 28px; text-align: center; line-height: 28px; font-size: .85rem;
+  font-weight: 700; margin-bottom: 12px;
+}
+.prompt-card .topic { font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px; }
+.prompt-card .question { font-size: 1.05rem; margin-bottom: 16px; line-height: 1.5; }
+.prompt-card textarea {
+  width: 100%; min-height: 120px; padding: 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text);
+  font-size: .95rem; line-height: 1.5; resize: vertical; font-family: inherit;
+}
+.prompt-card textarea:focus { outline: none; border-color: var(--accent); }
+.char-count { text-align: right; font-size: .8rem; color: var(--text2); margin-top: 6px; }
+.char-count.warn { color: var(--red); }
+.char-count.ok { color: var(--green); }
+
+.nav-btns { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+
+.data-export {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; margin-top: 20px; font-family: monospace; font-size: .75rem;
+  max-height: 200px; overflow: auto; white-space: pre-wrap; color: var(--text2);
+}
+.hidden { display: none; }
+.timer { font-size: .8rem; color: var(--text2); text-align: right; margin-bottom: 10px; }
+
+.flash {
+  position: fixed; top: 20px; right: 20px; padding: 12px 20px;
+  border-radius: var(--radius); font-size: .9rem; z-index: 100;
+  animation: fadeIn .3s;
+}
+.flash-success { background: var(--green); color: #000; }
+.flash-error { background: var(--red); color: #fff; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== STEP 1: LANGUAGE SELECTION ===== -->
+<div id="step-language" class="step active">
+  <h1 data-i18n="page_title">LinguaGraph</h1>
+  <p data-i18n="welcome">Help us understand how different languages organize knowledge. This survey takes approximately 15 minutes.</p>
+  <p data-i18n="choose_lang"><strong>Please select your preferred language:</strong></p>
+  <button class="lang-btn" data-lang="zh">
+    <span data-i18n="lang_zh">中文 (Chinese)</span>
+    <span class="sub" data-i18n="lang_zh_desc">普通话母语者</span>
+  </button>
+  <button class="lang-btn" data-lang="de">
+    <span data-i18n="lang_de">Deutsch (German)</span>
+    <span class="sub" data-i18n="lang_de_desc">Muttersprachler Deutsch</span>
+  </button>
+  <button class="lang-btn" data-lang="en">
+    <span data-i18n="lang_en">English</span>
+    <span class="sub" data-i18n="lang_en_desc">Native English speaker</span>
+  </button>
+</div>
+
+<!-- ===== STEP 2: CONSENT ===== -->
+<div id="step-consent" class="step">
+  <h2 data-i18n="consent_title">Informed Consent</h2>
+  <div class="consent-box" id="consent-text"></div>
+  <div class="consent-check">
+    <input type="checkbox" id="consent-checkbox">
+    <label for="consent-checkbox" data-i18n="consent_agree">I have read and understand the above information. I agree to participate.</label>
+  </div>
+  <button class="btn btn-primary" id="consent-btn" disabled data-i18n="consent_start">Start Survey</button>
+</div>
+
+<!-- ===== STEP 3: SURVEY ===== -->
+<div id="step-survey" class="step">
+  <h2 data-i18n="survey_title">Describe What These Concepts Mean to You</h2>
+  <p data-i18n="survey_instruction">For each topic below, please write 2-5 sentences describing what it means to you. There are no right or wrong answers — we are interested in your personal understanding.</p>
+  <div class="timer" id="timer">0:00</div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+
+  <div id="prompts-container"></div>
+
+  <div class="nav-btns">
+    <button class="btn btn-secondary" id="prev-btn" data-i18n="prev">Previous</button>
+    <button class="btn btn-primary" id="next-btn" data-i18n="next">Next</button>
+    <button class="btn btn-primary hidden" id="submit-btn" data-i18n="submit">Submit</button>
+  </div>
+</div>
+
+<!-- ===== STEP 4: DEBRIEF ===== -->
+<div id="step-debrief" class="step">
+  <h2 data-i18n="debrief_title">Thank You</h2>
+  <p data-i18n="debrief_text">Your responses have been saved. This study investigates how speakers of different languages organize abstract concepts. Your responses will be anonymized and analyzed using concept extraction algorithms.</p>
+  <p data-i18n="debrief_download">Please download your data using the button below and send it to the researcher.</p>
+  <button class="btn btn-primary" id="download-btn" data-i18n="download">Download My Data</button>
+  <div class="data-export hidden" id="data-preview"></div>
+  <p style="margin-top:20px;font-size:.8rem;color:var(--text2)" data-i18n="debrief_id">Your response ID:</p>
+  <p style="font-family:monospace;font-size:.8rem;color:var(--accent)" id="response-id"></p>
+</div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════════════════════
+const T = {
+  zh: {
+    page_title: 'LinguaGraph — 跨语言知识调查',
+    welcome: '请帮助我们了解不同语言如何组织知识。本问卷约需15分钟。',
+    choose_lang: '<strong>请选择您的语言：</strong>',
+    lang_zh: '中文', lang_zh_desc: '普通话母语者',
+    lang_de: 'Deutsch', lang_de_desc: '德语母语者',
+    lang_en: 'English', lang_en_desc: '英语母语者',
+    consent_title: '知情同意书',
+    consent_agree: '我已阅读并理解以上信息，同意参与本研究。',
+    consent_start: '开始问卷',
+    survey_title: '请描述以下概念对您的意义',
+    survey_instruction: '对于每个主题，请用2-5句话描述它对您的意义。答案没有对错之分——我们感兴趣的是您的个人理解。',
+    prev: '上一题', next: '下一题', submit: '提交',
+    debrief_title: '感谢您的参与',
+    debrief_text: '您的回答已保存。本研究旨在调查不同语言使用者如何组织抽象概念。您的回答将被匿名化并使用概念提取算法进行分析。',
+    debrief_download: '请点击下方按钮下载您的数据并发送给研究者。',
+    debrief_id: '您的回答编号：',
+    download: '下载我的数据',
+    min_length: '请至少写30个字符',
+    all_done: '全部完成！',
+    consent_body: '研究目的：本研究旨在了解不同语言使用者如何组织抽象概念。\n\n流程：您将用您的母语回答5个开放式问题。预计时间：15分钟。\n\n保密性：所有回答将匿名处理。数据仅用于学术研究。\n\n自愿参与：您可以随时退出，无需说明理由。\n\n联系方式：如有疑问，请联系研究者。',
+    topics: ['自由', '正义', '责任', '家', '成功'],
+    prompts: [
+      '请描述"自由"对您意味着什么。哪些概念或想法对理解"自由"最重要？',
+      '请描述"正义"对您意味着什么。哪些概念或想法对理解"正义"最重要？',
+      '请描述"责任"对您意味着什么。哪些概念或想法对理解"责任"最重要？',
+      '请描述"家"对您意味着什么。哪些概念或想法对理解"家"最重要？',
+      '请描述"成功"对您意味着什么。哪些概念或想法对理解"成功"最重要？'
+    ],
+    data_note: '数据将在您点击"下载"时导出为JSON文件。',
+  },
+  de: {
+    page_title: 'LinguaGraph — Sprachübergreifende Wissensumfrage',
+    welcome: 'Helfen Sie uns zu verstehen, wie verschiedene Sprachen Wissen organisieren. Diese Umfrage dauert etwa 15 Minuten.',
+    choose_lang: '<strong>Bitte wählen Sie Ihre Sprache:</strong>',
+    lang_zh: '中文', lang_zh_desc: 'Chinesische Muttersprachler',
+    lang_de: 'Deutsch', lang_de_desc: 'Deutsche Muttersprachler',
+    lang_en: 'English', lang_en_desc: 'Englische Muttersprachler',
+    consent_title: 'Einwilligungserklärung',
+    consent_agree: 'Ich habe die obigen Informationen gelesen und verstanden. Ich stimme der Teilnahme zu.',
+    consent_start: 'Umfrage starten',
+    survey_title: 'Beschreiben Sie, was diese Konzepte für Sie bedeuten',
+    survey_instruction: 'Bitte schreiben Sie zu jedem Thema 2-5 Sätze, die beschreiben, was es für Sie bedeutet. Es gibt keine richtigen oder falschen Antworten.',
+    prev: 'Zurück', next: 'Weiter', submit: 'Absenden',
+    debrief_title: 'Vielen Dank',
+    debrief_text: 'Ihre Antworten wurden gespeichert. Diese Studie untersucht, wie Sprecher verschiedener Sprachen abstrakte Konzepte organisieren.',
+    debrief_download: 'Bitte laden Sie Ihre Daten herunter und senden Sie sie an den Forscher.',
+    debrief_id: 'Ihre Antwort-ID:',
+    download: 'Meine Daten herunterladen',
+    min_length: 'Bitte mindestens 30 Zeichen',
+    all_done: 'Abgeschlossen!',
+    consent_body: 'Forschungsziel: Diese Studie untersucht, wie Sprecher verschiedener Sprachen abstrakte Konzepte organisieren.\n\nAblauf: Sie beantworten 5 offene Fragen in Ihrer Muttersprache. Dauer: ca. 15 Minuten.\n\nVertraulichkeit: Alle Antworten werden anonymisiert. Daten nur für Forschungszwecke.\n\nFreiwilligkeit: Sie können jederzeit ohne Angabe von Gründen abbrechen.\n\nKontakt: Bei Fragen wenden Sie sich an den Forscher.',
+    topics: ['Freiheit', 'Gerechtigkeit', 'Verantwortung', 'Zuhause', 'Erfolg'],
+    prompts: [
+      'Was bedeutet Freiheit für Sie? Welche Konzepte sind am wichtigsten, um Freiheit zu verstehen?',
+      'Was bedeutet Gerechtigkeit für Sie? Welche Konzepte sind am wichtigsten, um Gerechtigkeit zu verstehen?',
+      'Was bedeutet Verantwortung für Sie? Welche Konzepte sind am wichtigsten, um Verantwortung zu verstehen?',
+      'Was bedeutet Zuhause für Sie? Welche Konzepte sind am wichtigsten, um Zuhause zu verstehen?',
+      'Was bedeutet Erfolg für Sie? Welche Konzepte sind am wichtigsten, um Erfolg zu verstehen?',
+    ],
+    data_note: 'Die Daten werden als JSON-Datei exportiert, wenn Sie auf "Herunterladen" klicken.',
+  },
+  en: {
+    page_title: 'LinguaGraph — Cross-Linguistic Knowledge Survey',
+    welcome: 'Help us understand how different languages organize knowledge. This survey takes approximately 15 minutes.',
+    choose_lang: '<strong>Please select your preferred language:</strong>',
+    lang_zh: '中文 (Chinese)', lang_zh_desc: 'Native Mandarin speaker',
+    lang_de: 'Deutsch (German)', lang_de_desc: 'Native German speaker',
+    lang_en: 'English', lang_en_desc: 'Native English speaker',
+    consent_title: 'Informed Consent',
+    consent_agree: 'I have read and understand the above information. I agree to participate.',
+    consent_start: 'Start Survey',
+    survey_title: 'Describe What These Concepts Mean to You',
+    survey_instruction: 'For each topic below, please write 2-5 sentences describing what it means to you. There are no right or wrong answers.',
+    prev: 'Previous', next: 'Next', submit: 'Submit',
+    debrief_title: 'Thank You',
+    debrief_text: 'Your responses have been saved. This study investigates how speakers of different languages organize abstract concepts.',
+    debrief_download: 'Please download your data and send it to the researcher.',
+    debrief_id: 'Your response ID:',
+    download: 'Download My Data',
+    min_length: 'Please write at least 30 characters',
+    all_done: 'All Done!',
+    consent_body: 'Research Purpose: This study investigates how speakers of different languages organize abstract concepts.\n\nProcedure: You will answer 5 open-ended questions in your native language. Estimated time: 15 minutes.\n\nConfidentiality: All responses will be anonymized. Data used for research purposes only.\n\nVoluntary: You may withdraw at any time without providing a reason.\n\nContact: Contact the researcher with any questions.',
+    topics: ['Freedom', 'Justice', 'Responsibility', 'Home', 'Success'],
+    prompts: [
+      'Please describe what freedom means to you. What concepts or ideas are most important for understanding freedom?',
+      'Please describe what justice means to you. What concepts or ideas are most important for understanding justice?',
+      'Please describe what responsibility means to you. What concepts or ideas are most important for understanding responsibility?',
+      'Please describe what home means to you. What concepts or ideas are most important for understanding home?',
+      'Please describe what success means to you. What concepts or ideas are most important for understanding success?',
+    ],
+    data_note: 'Data will be exported as a JSON file when you click Download.',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+let lang = 'en';
+let currentQuestion = 0;
+let responses = {};
+let startTime = null;
+let questionStartTimes = {};
+let timerInterval = null;
+
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+function t(key) {
+  return T[lang]?.[key] ?? T['en']?.[key] ?? key;
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function flash(msg, type='success') {
+  const el = document.createElement('div');
+  el.className = `flash flash-${type}`;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generateId() {
+  const d = new Date();
+  return `R${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}_${lang.toUpperCase()}_${Math.random().toString(36).slice(2,8).toUpperCase()}`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 1: LANGUAGE SELECTION
+// ═══════════════════════════════════════════════════════════
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    lang = btn.dataset.lang;
+    applyLanguage();
+    showStep('step-consent');
+    document.getElementById('consent-text').textContent = T[lang].consent_body;
+    document.getElementById('consent-checkbox').checked = false;
+    document.getElementById('consent-btn').disabled = true;
+  });
+});
+
+// Consent checkbox
+document.getElementById('consent-checkbox').addEventListener('change', function() {
+  document.getElementById('consent-btn').disabled = !this.checked;
+});
+
+// Start survey
+document.getElementById('consent-btn').addEventListener('click', () => {
+  startSurvey();
+});
+
+function applyLanguage() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[lang]?.[key]) el.textContent = T[lang][key];
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 3: SURVEY
+// ═══════════════════════════════════════════════════════════
+function startSurvey() {
+  const topicOrder = shuffle([0, 1, 2, 3, 4]);
+  const container = document.getElementById('prompts-container');
+  container.innerHTML = '';
+  const topics = T[lang].topics;
+  const prompts = T[lang].prompts;
+
+  topicOrder.forEach((topicIdx, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.id = `q-${qIdx}`;
+    if (qIdx > 0) card.style.display = 'none';
+
+    card.innerHTML = `
+      <div class="num">${qIdx + 1}</div>
+      <div class="topic">${topics[topicIdx]}</div>
+      <div class="question">${prompts[topicIdx]}</div>
+      <textarea id="ta-${qIdx}" data-topic="${topicIdx}" placeholder="Write at least 30 characters..."></textarea>
+      <div class="char-count" id="cc-${qIdx}">0 chars</div>
+    `;
+
+    container.appendChild(card);
+
+    // Character count
+    const ta = card.querySelector('textarea');
+    const cc = card.querySelector('.char-count');
+    ta.addEventListener('input', () => {
+      const len = ta.value.length;
+      cc.textContent = `${len} chars`;
+      cc.className = 'char-count' + (len < 10 ? ' warn' : len >= 30 ? ' ok' : '');
+      responses[qIdx] = { topicIdx, text: ta.value, timestamp: new Date().toISOString() };
+    });
+  });
+
+  responses = {};
+  questionStartTimes = {};
+  currentQuestion = 0;
+  startTime = Date.now();
+
+  // Timer
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+
+  showStep('step-survey');
+  updateNav();
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  document.getElementById('timer').textContent = `${m}:${String(s).padStart(2, '0')}`;
+}
+
+function showQuestion(idx) {
+  document.querySelectorAll('.prompt-card').forEach(c => c.style.display = 'none');
+  const el = document.getElementById(`q-${idx}`);
+  if (el) el.style.display = 'block';
+  document.getElementById('progress-fill').style.width = `${((idx + 1) / 5) * 100}%`;
+}
+
+function updateNav() {
+  showQuestion(currentQuestion);
+  document.getElementById('prev-btn').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+  document.getElementById('next-btn').classList.toggle('hidden', currentQuestion === 4);
+  document.getElementById('submit-btn').classList.toggle('hidden', currentQuestion < 4);
+}
+
+document.getElementById('prev-btn').addEventListener('click', () => {
+  if (currentQuestion > 0) { currentQuestion--; updateNav(); }
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+  const ta = document.getElementById(`ta-${currentQuestion}`);
+  if (ta && ta.value.trim().length < 30) {
+    flash(t('min_length'), 'error');
+    return;
+  }
+  if (currentQuestion < 4) { currentQuestion++; updateNav(); }
+});
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+  const ta = document.getElementById(`ta-${currentQuestion}`);
+  if (ta && ta.value.trim().length < 30) {
+    flash(t('min_length'), 'error');
+    return;
+  }
+  finishSurvey();
+});
+
+// ═══════════════════════════════════════════════════════════
+// STEP 4: DEBRIEF
+// ═══════════════════════════════════════════════════════════
+function finishSurvey() {
+  if (timerInterval) clearInterval(timerInterval);
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+
+  // Build response data
+  const responseId = generateId();
+  const data = {
+    response_id: responseId,
+    language: lang,
+    timestamp: new Date().toISOString(),
+    duration_seconds: elapsed,
+    topic_order: Array.from(document.querySelectorAll('.prompt-card')).map(c => {
+      const ta = c.querySelector('textarea');
+      return { topic_index: parseInt(ta.dataset.topic), order: parseInt(c.id.split('-')[1]) };
+    }),
+    responses: Object.values(responses).sort((a, b) => a.topicIdx - b.topicIdx),
+    consent: true,
+    metadata: { survey_version: '1.0', platform: 'web' }
+  };
+
+  // Save to localStorage
+  localStorage.setItem('linguagraph_response', JSON.stringify(data));
+  localStorage.setItem('linguagraph_response_id', responseId);
+
+  document.getElementById('response-id').textContent = responseId;
+  document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+  document.getElementById('data-preview').classList.remove('hidden');
+
+  showStep('step-debrief');
+}
+
+document.getElementById('download-btn').addEventListener('click', () => {
+  const raw = localStorage.getItem('linguagraph_response');
+  if (!raw) { flash('No data found', 'error'); return; }
+  const blob = new Blob([raw], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `linguagraph_${lang}_${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  flash('Download started!');
+});
+</script>
+</body>
+</html>
