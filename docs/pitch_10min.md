@@ -94,7 +94,7 @@ Measures the longest chain of prerequisite relations starting from each concept.
 
 **Finding:** ❌ False. Max depth is only 8. 83% of concepts have no prerequisites at all. Mathematics is a shallow web, not a deep tree.
 
-### LDS (Language Drift Score)
+### LDS (Linguistic Divergence Score)
 `1 − mean(GED, Jaccard_Node, Jaccard_Edge)` — How differently do languages structure the same topic?
 
 Combines graph edit distance with node and edge Jaccard similarity.

@@ -76,7 +76,7 @@
 
 | 指标 | 定义 | 预期 |
 |------|------|------|
-| Language Drift Score (LDS) | 1 - mean(GED, Jaccard, Cosine) | 0.3-0.7 |
+| Linguistic Divergence Score (LDS) | 1 - mean(GED, Jaccard, Cosine) | 0.3-0.7 |
 | Concept Overlap | 三语共有概念比例 | ≥ 30% |
 | Conceptual Stability | 概念跨语言一致性 | 0.5-0.9 |
 
@@ -86,7 +86,7 @@
 |--------|----------|
 | 跨语言认知图比较 | LDS 在不同语言对上有显著差异 |
 | LLM 概念提取一致性 | 三语提取的 Concept F1 差异 < 10% |
-| Language Drift Score | LDS 与 Conceptualizer baseline 相关性 > 0.5 |
+| Linguistic Divergence Score | LDS 与 Conceptualizer baseline 相关性 > 0.5 |
 
 ## 4. 时间线
 

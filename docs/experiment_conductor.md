@@ -81,12 +81,11 @@ python scripts/bwki_analysis.py --export-figures
 After steps above, this table fills automatically:
 
 ```
-| Concept   | Internet LDS | Model LDS | Human LDS |
-|-----------|-------------|-----------|-----------|
-| Success   | 0.97        | 0.79      | 0.76      |
-| Freedom   | 0.81        | 0.68      | 0.66      |
-| Home      | 0.31        | 0.28      | 0.24      |
-                                r = 0.82
+| Language Pair | LDS-K (Textbook) | Human LDS-C (Pilot, N=8) |
+|:-------------:|:----------------:|:------------------------:|
+| ZH-EN         | 0.934            | 0.704                    |
+| DE-EN         | 0.938            | 0.727                    |
+| ZH-DE         | 0.519            | 0.751                    |
 ```
 
 This table is worth more than any additional corpus expansion.

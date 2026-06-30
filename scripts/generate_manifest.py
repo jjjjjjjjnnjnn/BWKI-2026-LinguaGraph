@@ -34,7 +34,7 @@ def git_commit() -> str | None:
             capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=5,
         )
         return r.stdout.strip() if r.returncode == 0 else None
-    except Exception:
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         return None
 
 
@@ -45,7 +45,7 @@ def git_branch() -> str | None:
             capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=5,
         )
         return r.stdout.strip() if r.returncode == 0 else None
-    except Exception:
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         return None
 
 
@@ -56,7 +56,7 @@ def git_commit_date() -> str | None:
             capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=5,
         )
         return r.stdout.strip() if r.returncode == 0 else None
-    except Exception:
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         return None
 
 
@@ -69,7 +69,7 @@ def md5(path: Path) -> str | None:
 def load_json_safe(path: Path) -> dict | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+    except (json.JSONDecodeError, OSError, KeyError):
         return None
 
 

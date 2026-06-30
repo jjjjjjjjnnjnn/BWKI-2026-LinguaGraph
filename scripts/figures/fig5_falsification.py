@@ -29,47 +29,14 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 MODEL_COMP_DIR = PROJECT_ROOT / "data" / "model_comparison"
 
-RANDOM_SEED = 42
+from _lds_utils import lds_jaccard, load_aligned, get_lang_graphs, RANDOM_SEED
+
 N_TRIALS = 10
-
-# ── Inline LDS (Jaccard-only) ──
-
-def lds_pair(nodes_a: list, nodes_b: list, edges_a: list, edges_b: list) -> float:
-    set_a, set_b = set(nodes_a), set(nodes_b)
-    node_jac = len(set_a & set_b) / max(len(set_a | set_b), 1)
-    set_ea, set_eb = set(edges_a), set(edges_b)
-    edge_jac = len(set_ea & set_eb) / max(len(set_ea | set_eb), 1)
-    return round(1.0 - (node_jac + edge_jac) / 2, 4)
-
-def load_aligned() -> dict:
-    path = PROJECT_ROOT / "data" / "math_extractions" / "merged" / "aligned_data.json"
-    return json.loads(path.read_text(encoding="utf-8"))
-
-def get_lang_graphs(aligned: dict) -> tuple[dict, dict]:
-    groups = aligned.get("aligned_groups", [])
-    lang_nodes: dict[str, list[str]] = {"zh": [], "en": [], "de": []}
-    for g in groups:
-        labels = g.get("labels", {})
-        for lang in ["zh", "en", "de"]:
-            if labels.get(lang):
-                lang_nodes[lang].append(labels[lang])
-    lang_edges: dict[str, set[tuple[str, str]]] = {"zh": set(), "en": set(), "de": set()}
-    gid_to_labels: dict[str, dict] = {g["id"]: g.get("labels", {}) for g in groups}
-    for r in aligned.get("relations", []):
-        sg = r.get("source_group") or r.get("source", "")
-        tg = r.get("target_group") or r.get("target", "")
-        if sg in gid_to_labels and tg in gid_to_labels:
-            for lang in ["zh", "en", "de"]:
-                s_label = gid_to_labels[sg].get(lang)
-                t_label = gid_to_labels[tg].get(lang)
-                if s_label and t_label:
-                    lang_edges[lang].add((s_label, t_label))
-    return lang_nodes, lang_edges
 
 def compute_lds_for_pair(nodes_a, nodes_b, edges_a, edges_b) -> float:
     if len(nodes_a) < 2 or len(nodes_b) < 2:
         return 0.5
-    return lds_pair(nodes_a, nodes_b, edges_a, edges_b)
+    return lds_jaccard(nodes_a, nodes_b, edges_a, edges_b)["lds_score"]
 
 def baseline_lds(lang_nodes, lang_edges) -> dict:
     results = {}

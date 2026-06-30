@@ -28,17 +28,7 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# Inline LDS (Jaccard-only)
-def lds_jaccard(nodes_a: list, nodes_b: list, edges_a: list, edges_b: list) -> dict:
-    set_a, set_b = set(nodes_a), set(nodes_b)
-    node_jac = len(set_a & set_b) / max(len(set_a | set_b), 1)
-    set_ea, set_eb = set(edges_a), set(edges_b)
-    edge_jac = len(set_ea & set_eb) / max(len(set_ea | set_eb), 1)
-    combined = (node_jac + edge_jac) / 2
-    return {"lds_score": round(1.0 - combined, 4)}
-
-def lds_simple(nodes_a, nodes_b, edges_a, edges_b):
-    return lds_jaccard(nodes_a, nodes_b, edges_a, edges_b)["lds_score"]
+from _lds_utils import lds_jaccard
 
 DATA_DIR = PROJECT_ROOT / "data" / "math_extractions" / "merged"
 OUTPUT_DIR = PROJECT_ROOT / "outputs" / "figures"
@@ -212,7 +202,7 @@ def condition_random_graph(aligned: dict) -> dict:
         ("DE-EN", (random_nodes_zh, random_nodes_en, list(random_edges_zh), list(random_edges_en))),
         ("ZH-DE", (random_nodes_zh, random_nodes_en, list(random_edges_zh), list(random_edges_en))),
     ]:
-        lds = lds_simple(nodes_a, nodes_b, edges_a, edges_b)
+        lds = lds_jaccard(nodes_a, nodes_b, edges_a, edges_b)["lds_score"]
         results[pair_name] = lds
     return results
 

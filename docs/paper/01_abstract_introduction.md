@@ -13,14 +13,14 @@ Diese Arbeit stellt die Frage, ob Sprache nicht nur die Kommunikation, sondern d
 
 Die Methodik basiert auf zwei komplementären Pipelines:
 
-1. **LinguaGraph Pipeline**: Extraktion von Konzepten aus Probandentexten (ZH/DE/EN), Konstruktion kognitiver Graphen und Berechnung des *Language Drift Score* (LDS) — eines neuartigen metrischen Maßes für strukturelle Divergenz zwischen Sprachen.
+1. **LinguaGraph Pipeline**: Extraktion von Konzepten aus Probandentexten (ZH/DE/EN), Konstruktion kognitiver Graphen und Berechnung des *Linguistic Divergence Score* (LDS) — eines neuartigen metrischen Maßes für strukturelle Divergenz zwischen Sprachen.
 
 2. **CognitiveSpace Pipeline**: Automatisierte Extraktion eines mathematischen Wissensgraphen aus 68 Lehrbüchern (45 CH, 20 EN, 10 DE) mit **574 Konzepten und 3538 Relationen** über vier Bildungsstufen (Grundschule bis Universität). Die sprachübergreifende Alignierung erzielt 247 dreisprachig abgedeckte Konzepte (43 %) bei null strukturellen Konflikten.
 
 Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt, die die Wissensexpansion von der Kernmathematik zur Hochschulmathematik sichtbar macht — mit interaktiven Sprachfiltern (ZH/EN/DE).
 
 **Zentrale Beiträge**:
-- Language Drift Score (LDS) als neuartige Metrik für sprachübergreifende Strukturanalyse — inklusive **LDS-K (Wissen)** , **LDS-C (Kognition)** und **ΔLDS = LDS-C − LDS-K**
+- Linguistic Divergence Score (LDS) als neuartige Metrik für sprachübergreifende Strukturanalyse — inklusive **LDS-K (Wissen)** , **LDS-C (Kognition)** und **ΔLDS = LDS-C − LDS-K**
 - **Null Model Suite**: Falsifikation der Annahme, dass LDS-K sprachgetriebene Divergenz misst — tatsächlich dominieren Gradverteilungsstrukturen, und Lehrbuchwissen konvergiert sprachübergreifend
 - Kernbeitrag verschiebt sich zu **ΔLDS** (menschliche Kognition minus Lehrbuchstruktur), der den sprachspezifischen Anteil isoliert
 - Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg (556 Konzepte, 4 Nullmodelle, 19-Modell-Benchmark)
@@ -52,15 +52,15 @@ Die übergeordnete Forschungsfrage lautet:
 
 Daraus leiten sich drei Teilfragen ab:
 
-1. **Existiert ein messbarer "Language Drift"** zwischen kognitiven Graphen aus ZH-, EN- und DE-Texten?
+1. **Existiert ein messbarer "Linguistic Drift"** zwischen kognitiven Graphen aus ZH-, EN- und DE-Texten?
 2. **Sind LLM-extrahierte Wissensgraphen ein valides Instrument**, um sprachübergreifende Strukturunterschiede zu erfassen?
-3. **Ist der Language Drift Score (LDS) stabil und interpretierbar** über verschiedene Themen und Sprachen hinweg?
+3. **Ist der Linguistic Divergence Score (LDS) stabil und interpretierbar** über verschiedene Themen und Sprachen hinweg?
 
 ### 1.3 Beiträge
 
 Diese Arbeit leistet folgende Beiträge:
 
-1. **Language Drift Score (LDS)** — Eine neuartige graphentheoretische Metrik, die die strukturelle Divergenz zwischen sprachspezifischen Wissensgraphen quantifiziert. LDS = 1 — GraphSimilarity, wobei Ähnlichkeit über gemeinsame Konzepte und Relationen gemessen wird.
+1. **Linguistic Divergence Score (LDS)** — Eine neuartige graphentheoretische Metrik, die die strukturelle Divergenz zwischen sprachspezifischen Wissensgraphen quantifiziert. LDS = 1 — GraphSimilarity, wobei Ähnlichkeit über gemeinsame Konzepte und Relationen gemessen wird.
 
 2. **Erster systematischer Vergleich mathematischer Wissensstrukturen** über ZH/EN/DE hinweg — basierend auf 68 Lehrbüchern, 574 extrahierten Konzepten und 3538 Relationen.
 

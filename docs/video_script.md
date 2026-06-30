@@ -23,10 +23,10 @@
 **Visual:** Animated text: "Does language shape how we think?"
 
 **Narration (DE):**
-"Mein Forschungsprojekt LinguaGraph untersucht genau diese Frage. Wir verwenden KI, um kognitive Landkarten in drei Sprachen zu erstellen — Chinesisch, Englisch und Deutsch — und messen die strukturellen Unterschiede mit einem neuen Metric: dem Language Drift Score."
+"Mein Forschungsprojekt LinguaGraph untersucht genau diese Frage. Wir verwenden KI, um kognitive Landkarten in drei Sprachen zu erstellen — Chinesisch, Englisch und Deutsch — und messen die strukturellen Unterschiede mit einem neuen Metric: der Linguistic Divergence Score (LDS)."
 
 **Narration (EN subtitle):**
-"My research project LinguaGraph investigates exactly this question. We use AI to create cognitive maps in three languages — Chinese, English, and German — and measure structural differences with a new metric: the Language Drift Score."
+"My research project LinguaGraph investigates exactly this question. We use AI to create cognitive maps in three languages — Chinese, English, and German — and measure structural differences with a new metric: the Linguistic Divergence Score (LDS)."
 
 ---
 
@@ -42,7 +42,7 @@ Wenn wir 'Erfolg' betrachten:
 - Die englische Stadt betont 'Achievement' und 'Opportunity'  
 - Die deutsche Stadt betont 'Leistung' und 'Karriere'
 
-Der Language Drift Score misst, wie unterschiedlich diese Strukturen sind. Für 'Erfolg' liegt er bei 0.27 — die höchste Differenz aller getesteten Konzepte."
+Der Linguistic Divergence Score (LDS) misst, wie unterschiedlich diese Strukturen sind. Für Lehrbuchwissen liegen die Werte zwischen 0.52 (ZH-DE) und 0.94 (DE-EN)."
 
 **Visual:** Zoom into each city, highlight different buildings
 
@@ -53,18 +53,15 @@ Der Language Drift Score misst, wie unterschiedlich diese Strukturen sind. Für 
 **Visual:** LDS comparison chart + concept ranking
 
 **Narration (DE):**
-"Unsere Vorstudie analysierte 813 Texte in drei Sprachen. Das Ergebnis:
+"Meine Analyse von 68 Mathematiklehrbüchern zeigt:
 
-| Konzept | LDS |
-|---------|-----|
-| Erfolg | 0.27 |
-| Verantwortung | 0.26 |
-| Freiheit | 0.23 |
-| Zuhause | 0.24 |
+| Sprachpaar | LDS-K |
+|:----------:|:-----:|
+| ZH-EN | 0.934 |
+| DE-EN | 0.938 |
+| ZH-DE | 0.519 |
 
-'Erfolg' zeigt die höchste sprachliche Differenz. Das bedeutet: Chinesen, Engländer und Deutsche haben strukturell unterschiedliche Vorstellungen von Erfolg.
-
-Interessanterweise zeigt 'Zuhause' die niedrigste Differenz — ein universelles Konzept."
+Überraschenderweise konvergieren chinesische und deutsche Lehrbücher (0.519), während ZH-EN und DE-EN nahe dem Rauschniveau liegen. Curriculum-Tradition ist der Haupttreiber, nicht Sprachfamilie."
 
 ---
 

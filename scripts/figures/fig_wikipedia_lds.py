@@ -28,12 +28,7 @@ OUTPUT_DIR = PROJECT_ROOT / "outputs" / "figures"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def lds_jaccard(nodes_a: list, nodes_b: list, edges_a: list, edges_b: list) -> float:
-    set_a, set_b = set(nodes_a), set(nodes_b)
-    node_jac = len(set_a & set_b) / max(len(set_a | set_b), 1)
-    set_ea, set_eb = set(edges_a), set(edges_b)
-    edge_jac = len(set_ea & set_eb) / max(len(set_ea | set_eb), 1)
-    return round(1.0 - (node_jac + edge_jac) / 2, 4)
+from _lds_utils import lds_jaccard
 
 
 def load_wiki_data() -> dict:
@@ -69,7 +64,7 @@ def compute_lds_for_topic(topic_data: dict) -> dict:
         if not nodes_a or not nodes_b:
             results[pair_name] = None
             continue
-        results[pair_name] = lds_jaccard(nodes_a, nodes_b, edges_a, edges_b)
+        results[pair_name] = lds_jaccard(nodes_a, nodes_b, edges_a, edges_b)["lds_score"]
 
     return results
 
@@ -96,7 +91,7 @@ def compute_pooled_lds(topics: dict) -> dict:
         results[pair_name] = lds_jaccard(
             pooled[la]["concepts"], pooled[lb]["concepts"],
             pooled[la]["edges"], pooled[lb]["edges"],
-        )
+        )["lds_score"]
     return results
 
 

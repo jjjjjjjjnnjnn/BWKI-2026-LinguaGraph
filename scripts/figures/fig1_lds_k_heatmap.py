@@ -24,18 +24,7 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# Inline LDS (Jaccard-only, no GED — GED requires networkx)
-def lds_jaccard(nodes_a: list, nodes_b: list, edges_a: list, edges_b: list) -> dict:
-    set_a, set_b = set(nodes_a), set(nodes_b)
-    node_jac = len(set_a & set_b) / max(len(set_a | set_b), 1)
-    set_ea, set_eb = set(edges_a), set(edges_b)
-    edge_jac = len(set_ea & set_eb) / max(len(set_ea | set_eb), 1)
-    combined = (node_jac + edge_jac) / 2
-    return {
-        "lds_score": round(1.0 - combined, 4),
-        "jaccard_node": round(node_jac, 4),
-        "jaccard_edge": round(edge_jac, 4),
-    }
+from _lds_utils import lds_jaccard
 
 EXPERT_DIR = PROJECT_ROOT / "config" / "expert_graphs"
 OUTPUT_DIR = PROJECT_ROOT / "outputs" / "figures"

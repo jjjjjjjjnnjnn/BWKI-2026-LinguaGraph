@@ -111,7 +111,7 @@ Generated: 2026-06-17 22:17
 | Freiheit | 5 |
 
 
-## 4. Language Drift Score (LDS)
+## 4. Linguistic Divergence Score (LDS)
 
 | Student | Topic | Pair | LCD | Similarity |
 

@@ -127,9 +127,9 @@ Diese deterministische Positionierung garantiert, dass jedes Konzept bei jedem L
 
 **Interaktion**: Der Graph unterstützt Sprachfilterung (ZH/EN/DE), drei Ansichtsmodi (Universe, Space-Fill, Compare), Knotendetailansicht mit Lehrbuchquellen und einen BFS-Ripple-Effekt bei Klick.
 
-### 2.7 Language Drift Score (LDS)
+### 2.7 Linguistic Divergence Score (LDS)
 
-Der Language Drift Score quantifiziert die strukturelle Divergenz zwischen zwei sprachspezifischen kognitiven Graphen:
+Der Linguistic Divergence Score quantifiziert die strukturelle Divergenz zwischen zwei sprachspezifischen kognitiven Graphen:
 
 ```
 LDS(A, B) = 1 - |ConceptSet(A) ∩ ConceptSet(B)| / |ConceptSet(A) ∪ ConceptSet(B)|
