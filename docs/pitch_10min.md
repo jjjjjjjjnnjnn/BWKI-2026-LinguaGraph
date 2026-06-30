@@ -46,7 +46,7 @@ LinguaGraph builds on four research traditions:
 TEXTBOOKS (ZH/EN/DE STEM)
   ↓ qwen-plus API · MIMO Prompt
 CONCEPT EXTRACTION (1,160+ concepts, 4,100+ relations)
-  ↓ Gold Labels (92, F1=0.939)
+  ↓ Gold Labels (72 social, F1=0.939)
 KNOWLEDGE GRAPHS (Math · Physics · Chemistry)
   ↓ CDS ↓ HDS ↓ LDS
 STRUCTURAL INSIGHTS
@@ -168,7 +168,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in German textbooks. Social concept extraction is uniformly strong.
 
 ### Model Benchmark (20 models)
-- **Production model:** qwen-plus (F1=0.939 overall on 92 gold labels)
+- **Production model:** qwen-plus (F1=0.939 for social concepts, 72 labels)
 - **Best free alternative:** qwen3-30b-a3b (F1=0.858)
 - **Best non-Qwen:** glm-4.6 (F1=0.819)
 
@@ -203,7 +203,7 @@ The dominant error type is **structural** — missing or incorrect prerequisite 
 - First framework combining LLM-based extraction with multi-lingual knowledge graph analysis
 - Four novel quantitative metrics (CDS, HDS, LDS, CS)
 - Comprehensive dataset: 1,160+ concepts, 4,100+ relations, 3 languages, 4 education systems
-- Gold-validated extraction pipeline (F1=0.939)
+- Gold-validated extraction pipeline (F1=0.939 for social concepts)
 - 10 findings spanning density, depth, language, and coverage
 
 ---

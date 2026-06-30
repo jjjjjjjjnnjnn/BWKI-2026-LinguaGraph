@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Complete BaiLian model benchmark — tests every accessible model on 20 gold labels."""
 
-import json, re, sqlite3, sys
+import json, os, re, sqlite3, sys
 from collections import defaultdict
 from openai import OpenAI
 from pathlib import Path
@@ -11,7 +11,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 from evaluate_gold import compute_f1
 
 API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-API_KEY = "***"
+API_KEY = os.environ.get("BAILIAN_API_KEY", "")
+if not API_KEY:
+    print("ERROR: Set BAILIAN_API_KEY environment variable")
+    sys.exit(1)
 MODELS = ["qwen-turbo", "qwen-plus", "qwen-plus-latest", "qwen-max", "qwen-omni-turbo"]
 
 conn = sqlite3.connect(str(Path(__file__).parent.parent / "linguaGraph.db"))

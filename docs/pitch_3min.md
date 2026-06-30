@@ -12,7 +12,7 @@ Mathematics is universal. But the way knowledge is organized in textbooks — wh
 
 ## 2. The Framework (45s)
 
-LinguaGraph builds multi-lingual knowledge graphs from textbook corpora using LLM-based concept extraction (qwen-plus, 92 gold labels, F1=0.939). We then measure four structural indicators:
+LinguaGraph builds multi-lingual knowledge graphs from textbook corpora using LLM-based concept extraction (qwen-plus, 92 gold labels, F1=0.939 for social concepts). We then measure four structural indicators:
 
 | Metric | What it measures | Range |
 |--------|-----------------|-------|

@@ -9,16 +9,22 @@ Usage:
     python scripts/run_model_comparison_v2.py --models qwen-plus,gpt-4o
 """
 
-import json, re, sys, os, time
+import json, os, re, time
 from pathlib import Path
 from datetime import datetime
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 GOLD_PATH = PROJECT_ROOT / "data" / "gold" / "gold_dataset.json"
 OUTPUT_DIR = PROJECT_ROOT / "data" / "model_comparison"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-EXTRACT_PROMPT = (PROJECT_ROOT / "config" / "prompts" / "extract.md").read_text(encoding="utf-8")
+# Lazy-loaded extract prompt (avoid module-level file I/O)
+_EXTRACT_PROMPT: str | None = None
+
+def _get_extract_prompt() -> str:
+    global _EXTRACT_PROMPT
+    if _EXTRACT_PROMPT is None:
+        _EXTRACT_PROMPT = (PROJECT_ROOT / "config" / "prompts" / "extract.md").read_text(encoding="utf-8")
+    return _EXTRACT_PROMPT
 
 # ── API Configuration ──
 BAILIAN_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
@@ -87,7 +93,7 @@ def call_llm(text, lang, model_config, max_retries=2):
             resp = client.chat.completions.create(
                 model=model_config["model_id"],
                 messages=[
-                    {"role": "system", "content": EXTRACT_PROMPT},
+                    {"role": "system", "content": _get_extract_prompt()},
                     {"role": "user", "content": user_msg},
                 ],
                 temperature=0.3,
@@ -137,6 +143,7 @@ def check_encoding(predicted, lang):
 
 
 def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--models", type=str, default=None,

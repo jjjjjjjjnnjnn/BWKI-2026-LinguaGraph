@@ -1,3 +1,6 @@
+> ⚠️ OBSOLETE: This skeleton predates the LDS-K/LDS-C/ΔLDS framework and
+> Null Model Suite. See `docs/paper/` for current paper structure.
+
 # LinguaGraph — Full Paper Skeleton
 
 > **Status:** Template · **Target:** BWKI 2026 Full Submission

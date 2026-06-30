@@ -1,3 +1,7 @@
+> ⚠️ OBSOLETE: This document describes the keyword-matching fallback pipeline.
+> Current pipeline uses LLM extraction (qwen-plus). See `docs/lds_formal_definition.md`
+> for the current LDS-K framework and values.
+
 # LinguaGraph Pilot Study Report
 
 **日期:** 2026-06-17

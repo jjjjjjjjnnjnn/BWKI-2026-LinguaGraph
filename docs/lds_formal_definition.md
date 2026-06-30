@@ -363,9 +363,9 @@ Bonferroni-adjusted α = 0.0167 (3 comparisons)
 
 ---
 
-## 7. Implementation
+## 8. Implementation
 
-### 7.1 LDS Computation (Standard)
+### 8.1 LDS Computation (Standard)
 
 ```python
 # Inline Jaccard-only LDS (no networkx dependency needed)
@@ -377,7 +377,7 @@ def lds_jaccard(nodes_a, nodes_b, edges_a, edges_b):
     return {"lds_score": round(lds, 4), "jaccard_node": round(node_jac, 4), "jaccard_edge": round(edge_jac, 4)}
 ```
 
-### 7.2 Structure Null Implementation
+### 8.2 Structure Null Implementation
 
 ```python
 def degree_preserving_rewire(edges, n_swaps=1000):
@@ -394,7 +394,7 @@ def degree_preserving_rewire(edges, n_swaps=1000):
     return edge_list
 ```
 
-### 7.3 Script Reference
+### 8.3 Script Reference
 
 | Script | Function |
 |--------|----------|

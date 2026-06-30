@@ -53,10 +53,12 @@ def run_extraction(model: str, api_url: str, api_key: str) -> bool:
         sys.executable, str(PROJECT_DIR / "scripts" / "batch_process_responses.py"),
         "--api-url", api_url,
         "--model", model,
-        "--api-key", api_key,
         "--gold-only",
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    env = os.environ.copy()
+    if api_key:
+        env["OPENROUTER_API_KEY"] = api_key
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=600, env=env)
     print(result.stdout[-300:] if result.stdout else "")
     if result.returncode != 0:
         print(f"  [ERROR] {result.stderr[-200:]}")

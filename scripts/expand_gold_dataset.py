@@ -14,7 +14,7 @@ Usage:
     python scripts/expand_gold_dataset.py --import      # Import reviewed results
 """
 
-import json, sqlite3, sys, time, re
+import json, os, sqlite3, sys, time, re
 from collections import defaultdict
 from datetime import datetime
 from openai import OpenAI
@@ -26,7 +26,10 @@ sys.path.insert(0, str(PROJECT_DIR / "scripts"))
 from db_utils import insert, query, get_connection
 
 API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-API_KEY = "***"
+API_KEY = os.environ.get("BAILIAN_API_KEY", "")
+if not API_KEY:
+    print("ERROR: Set BAILIAN_API_KEY environment variable")
+    sys.exit(1)
 MODEL = "qwen-plus"
 
 REVIEW_DIR = PROJECT_DIR / "research" / "gold_review"

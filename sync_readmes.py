@@ -195,10 +195,10 @@ def build_body_map(lang: str) -> dict:
                 'HDS-Mittelwert 0,85 vs. 0,40',
             '220 chemistry concepts':
                 '220 Chemiekonzepte',
-            'NRW 34%, UK 82%, US 76%, China 8%':
-                'NRW 34%, Großbritannien 82%, USA 76%, China 8%',
-            "UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization)":
-                "Großbritannien ↑ 53→90% (prüfungsgetrieben); NRW ↘ 50→31% (Spezialisierung)",
+            'NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4%':
+                'NRW 12,7%, Großbritannien 37,3%, USA 17,2%, CN 95,4%',
+            'Coverage scores reveal **design philosophy**: NRW specialized (12.7%) vs CN broad (95.4%)':
+                'Coverage-Werte offenbaren **Designphilosophie**: NRW spezialisiert (12,7%) vs CN breit (95,4%)',
             'N=8 participants, 90 responses, 3 levels':
                 'N=8 Probanden, 90 Antworten, 3 Ebenen',
             '300 simulated responses, mock extraction':
@@ -237,8 +237,8 @@ def build_body_map(lang: str) -> dict:
                 '**3,7× Dichteabfall** von Mittel- zur Oberstufe',
             'HDS ≤ **8** (mean 0.40); 83% of concepts are roots':
                 'HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln',
-            '**ZH–DE** divergence highest (LDS=0.907), ZH–EN lowest (0.802)':
-                '**ZH–DE** Divergenz am höchsten (LDS=0,907), ZH–EN am niedrigsten (0,802)',
+            '**ZH–DE** converges (LDS-K=0.519), ZH–EN and DE–EN approach noise (0.934, 0.938)':
+                '**ZH–DE** konvergiert (LDS-K=0,519), ZH–EN und DE–EN nahe Rauschniveau (0,934, 0,938)',
             'LDS is **topic-dependent**':
                 'LDS ist **themenabhängig**',
             '**Physics** peaks at **Elementary** (0.222), Math at Middle (0.271)':
@@ -408,8 +408,9 @@ def build_body_map(lang: str) -> dict:
             '0.727': '0,727',
             '0.704': '0,704',
             '0.647': '0,647',
-            '0.907': '0,907',
-            '0.802': '0,802',
+            '0.519': '0,519',
+            '0.934': '0,934',
+            '0.938': '0,938',
             '0.042': '0,042',
             '0.222': '0,222',
             '0.40': '0,40',
@@ -528,10 +529,10 @@ def build_body_map(lang: str) -> dict:
                 'HDS 均值 0.85 对比 0.40',
             '220 chemistry concepts':
                 '220 个化学概念',
-            'NRW 34%, UK 82%, US 76%, China 8%':
-                '北威州 34%，英国 82%，美国 76%，中国 8%',
-            "UK ↑ 53→90% (exam-driven); NRW ↘ 50→31% (specialization)":
-                "英国 ↑ 53→90%（考试驱动）；北威州 ↘ 50→31%（专业化）",
+            'NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4%':
+                '北威州 12.7%，英国 37.3%，美国 17.2%，中国 95.4%',
+            'Coverage scores reveal **design philosophy**: NRW specialized (12.7%) vs CN broad (95.4%)':
+                '覆盖率揭示了**设计理念**: 北威州专业化 (12.7%) 对比中国广度 (95.4%)',
             'N=8 participants, 90 responses, 3 levels':
                 'N=8 参与者，90 份回答，3 个层次',
             '300 simulated responses, mock extraction':
@@ -570,8 +571,8 @@ def build_body_map(lang: str) -> dict:
                 '**密度下降 3.7 倍**从初中到高中',
             'HDS ≤ **8** (mean 0.40); 83% of concepts are roots':
                 'HDS ≤ **8**（均值 0.40）；83% 的概念是根节点',
-            '**ZH–DE** divergence highest (LDS=0.907), ZH–EN lowest (0.802)':
-                '**中文-德语**差异最大（LDS=0.907），中文-英语最小（0.802）',
+            '**ZH–DE** converges (LDS-K=0.519), ZH–EN and DE–EN approach noise (0.934, 0.938)':
+                '**中文-德语**趋同（LDS-K=0.519），中文-英语和德语-英语接近噪声水平（0.934、0.938）',
             'LDS is **topic-dependent**':
                 'LDS **依赖于话题**',
             '**Physics** peaks at **Elementary** (0.222), Math at Middle (0.271)':

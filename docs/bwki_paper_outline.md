@@ -108,7 +108,7 @@
 - **Status**: ✅ `research/findings/top_drift_concepts.md`
 - **Content**: Table of 5 concepts ranked by LDS
 - **Figure**: Bar chart: Success > Responsibility > Justice > Freedom > Home
-- **Key finding**: Success has highest LDS (0.97), Freedom lowest (0.81)
+- **Key finding**: LDS-K ranges from 0.519 (ZH-DE, convergent) to 0.938 (DE-EN, approaching noise floor)
 
 ### 4.2 Concept Shift Analysis (1 page)
 - **Status**: ✅ Data in DB

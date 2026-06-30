@@ -15,7 +15,7 @@ Usage:
     python scripts/analyze_human_lds.py [--n-iterations 1000]
 """
 
-import argparse, json, math, random, statistics, sys
+import argparse, json, math, random, re, statistics, sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -48,7 +48,6 @@ def extract_concepts(text: str) -> set[str]:
     In production, this uses the LLM pipeline (qwen-plus).
     For now, a placeholder that extracts unique words >3 chars.
     """
-    import re
     words = re.findall(r'\b[a-zA-Z_а-яА-Я]{4,}\b', text)
     return set(w.lower() for w in words)
 
