@@ -46,7 +46,7 @@
   <img src="https://img.shields.io/badge/concepts-1,160%2B-informational?style=flat-square" alt="1160+ 概念">
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
-  <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
+  <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
   <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
@@ -100,8 +100,8 @@
 |--------|-----------|---------|-----------------|
 | **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | 每教育阶段的知识互联密度 |
 | **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | 最大前提知识链长度 |
-| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | 跨语言结构差异度 |
-| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | 教材与课程对齐度 |
+| **LDS** | Linguistic Divergence Score (LDS) | 1 − (Jaccard_node + Jaccard_edge) / 2 | Cross-language structural (dis)similarity |
+| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | 教材与课程对齐度 (updated: CN 95.4%, NRW 12.7%, UK 37.3%, US 17.2%) |
 
 ---
 
@@ -112,14 +112,14 @@
 | **F1** | CDS 在**初中**达到峰值（0.271），而非小学 | 在中文、英文、德文中独立确认 | 挑战"知识随阶段增长而变密"的假设 |
 | **F2** | **密度下降 3.7 倍**从初中到高中 | 0.271 → 0.073；概念数量 4.2 倍 | 整合枢纽后的课程多样化 |
 | **F3** | HDS ≤ **8**（均值 0.40）；83% 的概念是根节点 | 对 3,538 条前提关系进行 BFS | 数学是一个浅层网络，而非深层树状结构 |
-| **F4** | **中文-德语**差异最大（LDS=0.907），中文-英语最小（0.802） | 维基百科语料，5 个社会话题 | 反直觉：欧洲语言在结构上并不更接近 |
-| **F5** | LDS **依赖于话题** | 语对内部差异约 0.2 | 跨语言差异因知识领域而异 |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |
+| **F5** | LDS **依赖于话题**; **Null Model** confirms Full < Structure for all pairs | 语对内部差异约 0.2; Full LDS-K=0.73, Structure LDS-K=0.77 | 跨语言差异因知识领域而异; taxonomy alone explains most variance |
 | **F6** | **物理**在**小学**达到峰值（0.222），数学在初中（0.271） | 366 个物理概念，3 种语言 | 两者都遵循"早期整合，后期分化"的模式 |
 | **F7** | 物理的前提知识链**深 2.1 倍** | HDS 均值 0.85 对比 0.40 | 物理知识更具累积性和顺序性 |
 | **F8** | **化学**在初中达到峰值（0.042），比数学低 6.5 倍 | 220 个化学概念 | STEM 密度模式跨学科具有普遍性 |
-| **F9** | **覆盖率**在不同教育体系中差异巨大 | 北威州 34%，英国 82%，美国 76%，中国 8% | 教育体系设计从根本上影响教材对齐度 |
-| **F10** | 覆盖率轨迹揭示了**体系设计理念** | 英国 ↑ 53→90%（考试驱动）；北威州 ↘ 50→31%（专业化） | 考试结构塑造了课程与教材的关系 |
-| **F11** | **人类 LDS** 排序与维基百科语料一致 ✅ | N=8 参与者，90 份回答，3 个层次 | 跨层次一致性：个体 → 教材 → 课程 |
+| **F9** | **覆盖率**在不同教育体系中差异巨大 | 北威州 12.7%，英国 37.3%，美国 17.2%，中国 95.4% | 教育体系设计从根本上影响教材对齐度; China's centralized curriculum drives near-universal coverage |
+| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |
+| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |
 | **F12** | 人类 LDS (**0.727**) 超过模拟基线 (**0.647**, p=0.05) | 300 条模拟回答，模拟提取 | 差异是真实存在的，而非随机波动 |
 
 ---
@@ -128,8 +128,8 @@
 
 | 学科 | 概念 | 关系 | 教材 | 语言 | 课程覆盖率 |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **数学** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
-| **物理** | 366 | 383 | 94 个版本 | ZH/EN/DE | NRW 38% |
+| **数学** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **物理** | 366 | 383 | 94 个版本 | ZH/EN/DE | NRW coverage NA |
 | **化学** | 220 | 215 | 18 个版本 | ZH/EN/DE | NRW 36% |
 | **总计** | **1,160+** | **4,100+** | **180+** | **3 种语言** | **4 个教育体系** |
 
@@ -149,14 +149,20 @@
 
 **🧑 人类验证研究（N=8）**
 - 来自中文/德文/英文母语者的 101 份回答，覆盖 5 个社会话题
-- 被试内 DE-EN LDS：**0.773**（同一人，不同语言，不同概念）
-- 被试间 LDS 排序：**DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
-- ✅ **与维基百科语料排序一致**——跨层次验证
+- Within-subject DE-EN LDS-C: **0.773** (same person, different language, different concepts)
+- Between-subject LDS-C rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
+- Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — structure-level divergence shows a different pattern from concept-level
 
 **🤖 模拟基线（300 条回答）**
-- 模拟 LDS 均值：**0.647**（标准差=0.086）
-- **人类 LDS (0.727) > 模拟 LDS (0.647)**，p=0.05
+- Mean simulated LDS-C: **0.647** (SD=0.086)
+- **Human LDS-C (0.727) > Simulation LDS-C (0.647)**, p=0.05
 - 确认跨语言差异超出了随机预期
+
+**🧪 Null Model (Structure vs Full Graphs)**
+- Full knowledge-graph LDS-K: **0.73** (mean across all pairs)
+- Structure-only (taxonomy) LDS-K: **0.77** (mean)
+- **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
+- Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
 
 > 完整方法论参见 [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md)，人类分析脚本参见 [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py)，模拟基线脚本参见 [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py)。
 
@@ -247,7 +253,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 模型基准测试
 
-在相同的 20 个黄金标签（20 个社会 + 20 个数学）上测试了 20 个模型，通过[阿里云百联平台](https://bailian.console.aliyun.com/)：
+19 models tested across 3 API platforms (Bailian, OpenRouter, LM Studio) on identical 20 gold labels (20 social + 20 math), F1 range 0.55–0.67 — best results shown below:
 
 | 模型 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 速度 |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|

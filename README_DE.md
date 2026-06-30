@@ -46,7 +46,7 @@
   <img src="https://img.shields.io/badge/concepts-1,160%2B-informational?style=flat-square" alt="1160+ Konzepte">
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
-  <img src="https://img.shields.io/badge/coverage-NRW%2034%25%20%7C%20UK%2082%25%20%7C%20US%2076%25-yellow?style=flat-square" alt="Coverage Scores">
+  <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
   <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
@@ -100,8 +100,8 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 |--------|-----------|---------|-----------------|
 | **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | Vernetzungsdichte des Wissens pro Bildungsstufe |
 | **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | Maximale Länge der Voraussetzungskette |
-| **LDS** | Language Drift Score | 1 − mean(GED, Jaccard_node, Jaccard_edge) | Sprachübergreifende strukturelle Divergenz |
-| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Lehrbuch-Lehrplan-Abgleich |
+| **LDS** | Linguistic Divergence Score (LDS) | 1 − (Jaccard_node + Jaccard_edge) / 2 | Cross-language structural (dis)similarity |
+| **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Lehrbuch-Lehrplan-Abgleich (updated: CN 95.4%, NRW 12.7%, UK 37.3%, US 17.2%) |
 
 ---
 
@@ -112,14 +112,14 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
 | **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
 | **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 3.538 Voraussetzungsrelationen | Mathematik ist ein flaches Netz, kein tiefer Baum |
-| **F4** | **ZH–DE** Divergenz am höchsten (LDS=0,907), ZH–EN am niedrigsten (0,802) | Wikipedia-Korpus, 5 soziale Themen | Gegenintuitiv: Europäische Sprachen sind strukturell nicht näher |
-| **F5** | LDS ist **themenabhängig** | ~0,2 Variation innerhalb der Paare | Sprachübergreifende Divergenz variiert nach Wissensdomäne |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0,519) converges; ZH-EN (0,934), DE-EN (0,938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |
+| **F5** | LDS ist **themenabhängig**; **Null Model** confirms Full < Structure for all pairs | ~0,2 Variation innerhalb der Paare; Full LDS-K=0.73, Structure LDS-K=0.77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; taxonomy alone explains most variance |
 | **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 366 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
 | **F7** | Physik hat **2,1× tiefere** Voraussetzungsketten | HDS-Mittelwert 0,85 vs. 0,40 | Physikwissen ist kumulativer und sequenzieller |
 | **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | STEM-Dichtemuster ist fächerübergreifend universell |
-| **F9** | **Coverage Score** variiert dramatisch zwischen Systemen | NRW 34%, Großbritannien 82%, USA 76%, China 8% | Die Gestaltung des Bildungssystems beeinflusst grundlegend den Lehrbuchabgleich |
-| **F10** | Coverage-Verläufe offenbaren **Systemdesignphilosophie** | Großbritannien ↑ 53→90% (prüfungsgetrieben); NRW ↘ 50→31% (Spezialisierung) | Prüfungsstruktur prägt die Lehrplan-Lehrbuch-Beziehung |
-| **F11** | **Humanes LDS** Rangfolge stimmt mit Wikipedia-Korpus überein ✅ | N=8 Probanden, 90 Antworten, 3 Ebenen | Ebenenübergreifende Konsistenz: Individuum → Lehrbuch → Lehrplan |
+| **F9** | **Coverage Score** variiert dramatisch zwischen Systemen | NRW 12,7%, Großbritannien 37,3%, USA 17,2%, CN 95,4% | Die Gestaltung des Bildungssystems beeinflusst grundlegend den Lehrbuchabgleich; China's centralized curriculum drives near-universal coverage |
+| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |
+| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |
 | **F12** | Humanes LDS (**0,727**) übertrifft Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |
 
 ---
@@ -128,8 +128,8 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 | Fach | Konzepte | Beziehungen | Lehrbucher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematik** | 574 | 3.538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
-| **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW 38% |
+| **Mathematik** | 574 | 3.538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW coverage NA |
 | **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE | NRW 36% |
 | **Gesamt** | **1.160+** | **4.100+** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |
 
@@ -149,14 +149,20 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 **🧑 Humanvalidierungsstudie (N=8)**
 - 101 Antworten von ZH/DE/EN-Muttersprachlern zu 5 sozialen Themen
-- Innerhalb der Versuchspersonen DE-EN LDS: **0,773** (gleiche Person, andere Sprache, andere Konzepte)
-- Zwischen den Gruppen LDS-Rangfolge: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
-- ✅ **Identische Rangfolge** mit Wikipedia-Korpus — ebenenübergreifende Validierung
+- Within-subject DE-EN LDS-C: **0,773** (same person, different language, different concepts)
+- Between-subject LDS-C rank order: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
+- Textbook LDS-K rank order: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — structure-level divergence shows a different pattern from concept-level
 
 **🤖 Simulationsbasislinie (300 Antworten)**
-- Mittleres simuliertes LDS: **0,647** (SD=0,086)
-- **Humanes LDS (0,727) > Simulations-LDS (0,647)**, p=0,05
+- Mean simulated LDS-C: **0,647** (SD=0.086)
+- **Human LDS-C (0,727) > Simulation LDS-C (0,647)**, p=0.05
 - Bestätigt, dass sprachübergreifende Divergenz über zufällige Erwartung hinausgeht
+
+**🧪 Null Model (Structure vs Full Graphs)**
+- Full knowledge-graph LDS-K: **0.73** (mean across all pairs)
+- Structure-only (taxonomy) LDS-K: **0.77** (mean)
+- **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
+- Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
 
 > Siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) für die vollständige Methodik, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) für die Humananalyse und [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) für die Simulation.
 
@@ -247,7 +253,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 Modellvergleich
 
-20 Modelle getestet auf identischen 20 Goldlabels (20 sozial + 20 Mathe) über [Alibaba Cloud Bailian](https://bailian.console.aliyun.com/):
+19 models tested across 3 API platforms (Bailian, OpenRouter, LM Studio) on identical 20 gold labels (20 social + 20 math), F1 range 0.55–0.67 — best results shown below:
 
 | Modell | Bereich | ZH F1 | DE F1 | EN F1 | Geschwindigkeit |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|

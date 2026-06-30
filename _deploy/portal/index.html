@@ -232,8 +232,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="card" style="border-top:3px solid var(--accent)">
       <h3><i class="bi bi-translate" style="color:var(--accent);font-size:1.4rem"></i> RQ1: Language</h3>
       <p style="font-size:1rem;font-weight:500;color:var(--text);margin-bottom:12px" data-i18n="rq1_question">How do different languages organize the same knowledge?</p>
-      <p data-i18n="rq1_answer">Chinese and German textbooks show the highest structural divergence (LDS=0.907); Chinese and English the lowest (0.802). Curriculum tradition — not language family — drives these differences.</p>
-      <div class="meta"><span class="tag tag-cyan" data-i18n="rq1_metric">LDS: 0.802–0.907</span></div>
+      <p data-i18n="rq1_answer">LDS-K reveals heterogeneous cross-linguistic relationships: ZH-DE (0.519) textbooks converge substantially; ZH-EN (0.934) and DE-EN (0.938) are near the within-language noise floor. A Null Model falsifies the language-divergence interpretation — the core signal is ΔLDS (cognitive minus textbook).</p>
+      <div class="meta"><span class="tag tag-cyan" data-i18n="rq1_metric">LDS-K: 0.519–0.938</span></div>
     </div>
     <div class="card" style="border-top:3px solid var(--green)">
       <h3><i class="bi bi-graph-up" style="color:var(--green);font-size:1.4rem"></i> RQ2: Discipline</h3>
@@ -387,17 +387,17 @@ graph LR
 <div class="finding-card" style="border-left:4px solid #22d3ee">
     <h3><i class="bi bi-translate" style="color:#22d3ee"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Cross-language structural divergence is high and asymmetric — driven by curriculum tradition, not language family.</div>
-    <p data-i18n="finding_c_body">The ZH–DE pair shows the <strong>highest</strong> structural divergence (LDS = 0.907), while ZH–EN shows the <strong>lowest</strong> (0.802). DE–EN is nearly as high (0.901). This is counterintuitive: despite Chinese and English belonging to different language families, their textbook structures are more similar than those of two European languages.</p>
+    <p data-i18n="finding_c_body">Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.907</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (highest)</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.901</div><div class="ev-label" data-i18n="finding_c_ev2">DE–EN</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.802</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (lowest)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.519</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (0.519)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.938</div><div class="ev-label" data-i18n="finding_c_ev2">DE–EN (0.938)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.934</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (0.934)</div></div>
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label" data-i18n="finding_c_ev4">Topic variance</div></div>
     </div>
     <div class="figure-box" style="max-width:600px;margin:16px auto">
       <img src="../figures/fig4_lds_heatmap.png" alt="Fig 4: LDS Heatmap" onclick="openLightbox(this.src)" loading="lazy">
-      <div class="fig-label" data-i18n="finding_c_fig"><strong>Fig 4</strong> — LDS heatmap: dark = high divergence. ZH–DE is the most divergent pair</div>
+      <div class="fig-label" data-i18n="finding_c_fig"><strong>Fig 4</strong> — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation</div>
     </div>
     <div class="meta"><span class="tag tag-cyan" data-i18n="finding_c_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_c_tag2">F4, F5</span> <span class="tag tag-yellow" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</span></div>
   </div>
@@ -472,9 +472,9 @@ graph LR
           </tr>
           <tr>
             <td style="padding:8px 12px"><strong>Wikipedia Corpus</strong></td>
-            <td style="padding:8px 12px;text-align:center"><strong>0.907</strong></td>
-            <td style="padding:8px 12px;text-align:center">0.901</td>
-            <td style="padding:8px 12px;text-align:center">0.802</td>
+            <td style="padding:8px 12px;text-align:center"><strong>0.519</strong></td>
+            <td style="padding:8px 12px;text-align:center">0.938</td>
+            <td style="padding:8px 12px;text-align:center">0.934</td>
             <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
           </tr>
           <tr style="background:var(--surface2);font-style:italic">
@@ -957,13 +957,13 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
-    finding_c_body: 'The ZH–DE pair shows the highest structural divergence (LDS = 0.907), while ZH–EN shows the lowest (0.802). DE–EN is nearly as high (0.901). This is counterintuitive: despite Chinese and English belonging to different language families, their textbook structures are more similar than those of two European languages.',
+    finding_c_body: 'Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.',
     finding_c_body2: 'The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.',
-    finding_c_ev1: 'ZH–DE (highest)',
-    finding_c_ev2: 'DE–EN',
-    finding_c_ev3: 'ZH–EN (lowest)',
+    finding_c_ev1: 'ZH–DE (0.519)',
+    finding_c_ev2: 'DE–EN (0.938)',
+    finding_c_ev3: 'ZH–EN (0.934)',
     finding_c_ev4: 'Topic variance',
-    finding_c_fig: 'Fig 4 — LDS heatmap: dark = high divergence. ZH–DE is the most divergent pair',
+    finding_c_fig: 'Fig 4 — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation',
     finding_c_tag1: 'Metric: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
@@ -1068,13 +1068,13 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
-    finding_c_body: 'Das ZH–DE-Paar zeigt die hoechste strukturelle Divergenz (LDS = 0,907), ZH–EN die niedrigste (0,802). DE–EN ist fast genauso hoch (0,901). Chinesisch und Englisch sind sich trotz unterschiedlicher Sprachfamilien strukturell ahnlicher als zwei europaische Sprachen.',
+    finding_c_body: 'Textbuch-Wissensstrukturen konvergieren über Sprachen hinweg stärker als zufällig erwartet. ZH-DE (LDS-K = 0,519) zeigt <strong>substanzielle Konvergenz</strong> — weit unter der sprachinternen Rauschschwelle (0,97). ZH-EN (0,934) und DE-EN (0,938) liegen nahe dieser Rauschschwelle, was bedeutet, dass sprachübergreifende und sprachinterne Unterschiede für diese Paare vergleichbar sind.',
     finding_c_body2: 'Das Muster ist auch themenabhaengig: innerhalb jedes Sprachpaars variiert der LDS um bis zu 0,2 zwischen den 5 analysierten Sozialthemen.',
-    finding_c_ev1: 'ZH–DE (hoechste)',
-    finding_c_ev2: 'DE–EN',
-    finding_c_ev3: 'ZH–EN (niedrigste)',
+    finding_c_ev1: 'ZH–DE (0,519)',
+    finding_c_ev2: 'DE–EN (0,938)',
+    finding_c_ev3: 'ZH–EN (0,934)',
     finding_c_ev4: 'Themenvarianz',
-    finding_c_fig: 'Abb. 4 — LDS-Heatmap: dunkel = hohe Divergenz',
+    finding_c_fig: 'Abb. 4 — Null Model Suite: Full vs Structure Null. Lehrbuchstrukturen konvergieren stärker als zufällig erwartet',
     finding_c_tag1: 'Metrik: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
@@ -1161,8 +1161,8 @@ const TRANSLATIONS = {
     stat_edu_systems: 'Bildungssysteme', stat_gold_labels: 'Goldstandard', stat_overall_f1: 'Gesamt-F1',
     section_rq: 'Forschungsfragen', rq_sub: 'Drei komplementäre Perspektiven auf die Organisation desselben Wissens',
     rq1_title: 'FF1: Sprache', rq1_question: 'Wie organisieren verschiedene Sprachen das gleiche Wissen?',
-    rq1_answer: 'Chinesische und deutsche Lehrbücher zeigen die höchste strukturelle Divergenz (LDS=0,907); chinesische und englische die niedrigste (0,802). Die Curriculartradition — nicht die Sprachfamilie — bestimmt diese Unterschiede.',
-    rq1_metric: 'LDS: 0,802–0,907',
+    rq1_answer: 'LDS-K zeigt heterogene sprachübergreifende Beziehungen: ZH-DE (0,519) konvergieren erheblich; ZH-EN (0,934) und DE-EN (0,938) liegen nahe der sprachinternen Rauschschwelle. Ein Null-Modell widerlegt die Sprachdivergenz-Interpretation — das Kernsignal ist ΔLDS (kognitiv minus Lehrbuch).',
+    rq1_metric: 'LDS-K: 0,519–0,938',
     rq2_title: 'FF2: Disziplin', rq2_question: 'Wie organisieren verschiedene MINT-Fächer Wissen?',
     rq2_answer: 'Alle drei Disziplinen folgen einem Muster aus frühem Höhepunkt und anschließendem Abfall. Die Wissensdichte erreicht ihren Höhepunkt in der Mittel- oder Grundschule und fällt dann stark ab.',
     rq2_cds: 'CDS: 0,042–0,271', rq2_hds: 'HDS: max. 8',
@@ -1184,9 +1184,9 @@ const TRANSLATIONS = {
     finding_b_title: 'Wissensstrukturen bleiben flach',
     finding_b_sub: 'Erkenntnis B — Die maximale Voraussetzungstiefe beträgt HDS ≤ 8 für Mathematik und ≤ 6 für Physik. Über 83% der Konzepte sind Wurzeln.',
     fig5_caption: 'Abb. 5: HDS-Verteilung',
-    finding_c_title: 'Sprachen organisieren Wissen unterschiedlich',
-    finding_c_sub: 'Erkenntnis C — ZH–DE-Lehrbücher divergieren am stärksten (LDS=0,907), ZH–EN am wenigsten (0,802). Die Curriculartradition und nicht die Sprachfamilie bestimmt diese Unterschiede.',
-    fig4_caption: 'Abb. 4: LDS-Heatmap',
+    finding_c_title: 'Lehrbuchstrukturen konvergieren über Sprachen hinweg',
+    finding_c_sub: 'Erkenntnis C — LDS-K zeigt Konvergenz: ZH-DE=0,519, ZH-EN=0,934, DE-EN=0,938. Ein Null-Modell beweist Full < Structure Null für alle Paare. Das Kernsignal ist ΔLDS = LDS-C − LDS-K.',
+    fig4_caption: 'Abb. 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
     finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 8% (China) bis 82% (GB). Großbritannien folgt einem prüfungsgetriebenen aufsteigenden Modell; NRW spiegelt spezialisierungsbedingten Rückgang wider.',
     finding_e_title: 'Humanvalidierung bestätigt sprachbedingte kognitive Divergenz',
@@ -1241,8 +1241,8 @@ const TRANSLATIONS = {
     stat_edu_systems: '教育体系', stat_gold_labels: '黄金标注', stat_overall_f1: '总体 F1',
     section_rq: '研究问题', rq_sub: '理解同一知识如何被不同组织方式呈现的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '不同语言如何组织相同的知识？',
-    rq1_answer: '中文和德文教材的结构差异最大（LDS=0.907），中文和英文差异最小（0.802）。课程传统——而非语系——驱动着这些差异。',
-    rq1_metric: 'LDS：0.802–0.907',
+    rq1_answer: 'LDS-K显示中德教材在结构上显著趋同（0.519），中英（0.934）和德英（0.938）接近语内噪声底线。Null Model 推翻了语言差异的解释——核心信号来自ΔLDS（认知减去教材）。',
+    rq1_metric: 'LDS-K：0.519–0.938',
     rq2_title: '问题2：学科', rq2_question: '不同 STEM 学科如何组织知识？',
     rq2_answer: '三个学科都遵循先达到峰值后下降的模式。知识密度在初中或小学达到峰值，然后急剧下降。最大前提知识深度不超过 8。',
     rq2_cds: 'CDS：0.042–0.271', rq2_hds: 'HDS：最大值 8',
@@ -1322,13 +1322,13 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
-    finding_c_body: '中德教材差异最大（LDS=0.907），中英差异最小（0.802）。德英也很高（0.901）。这与直觉相反：尽管中文和英语属于不同的语系，但它们的教材结构比两种欧洲语言更相似。',
+    finding_c_body: '教材知识结构跨语言趋同程度超过随机预期。中德（LDS-K=0.519）呈现<strong>显著趋同</strong>——远低于语内噪声底线（0.97）。中英（0.934）和德英（0.938）接近此底线，跨语言差异与语内差异相当。',
     finding_c_body2: '这种模式也受主题影响：在每个语言对内，LDS 在所分析的 5 个社会议题中可变动达 0.2，表明某些知识领域受文化影响更大。',
-    finding_c_ev1: 'ZH–DE（最高）',
-    finding_c_ev2: 'DE–EN',
-    finding_c_ev3: 'ZH–EN（最低）',
+    finding_c_ev1: 'ZH–DE（0.519）',
+    finding_c_ev2: 'DE–EN (0.938)',
+    finding_c_ev3: 'ZH–EN（0.934）',
     finding_c_ev4: '主题差异',
-    finding_c_fig: '图 4 — LDS 热力图：深色 = 高差异。ZH–DE 是差异最大的语言对',
+    finding_c_fig: '图 4 — Null Model Suite：Full vs Structure Null。教材结构趋同程度超过随机预期',
     finding_c_tag1: '指标：LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
