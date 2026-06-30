@@ -152,198 +152,19 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
 
     Plus a cross_language mapping for the color-coding.
     """
-def infer_implicit_relations(aligned_groups: list[dict],
-                              existing_relations: list[dict],
-                              aligned_data: dict | None = None) -> list[dict]:
-    """
-    Infer implicit prerequisite/related_to relations from co-occurrence in
-    the same textbook. This connects isolated nodes by looking at
-    which concepts share source references, including unmatched concepts.
-
-    Returns additional relations to merge into the existing list.
-    """
-    # Build a map: textbook → list of entries (aligned groups + unmatched)
-    textbook_entries: dict[str, list[dict]] = {}
-    group_by_id: dict[str, dict] = {}
-
-    for g in aligned_groups:
-        gid = g["id"]
-        group_by_id[gid] = g
-        for ref in g.get("cross_references", []):
-            if isinstance(ref, dict):
-                tname = ref.get("textbook", "")
-                if tname:
-                    textbook_entries.setdefault(tname, []).append({
-                        "id": gid, "type": "aligned", "chapter": ref.get("chapter", ""),
-                        "level": g.get("domain", g.get("level", ""))
-                    })
-
-    # Also index unmatched concepts
-    for c in (aligned_data or {}).get("unmatched_concepts", []):
-        cid = f"math_unmatched_{c['canonical_name']}"
-        for ref in c.get("source", {}).get("cross_references", []):
-            if isinstance(ref, dict):
-                tname = ref.get("textbook", "")
-                if tname:
-                    # Infer level from concept metadata or from textbook name
-                    cl = c.get("level", "")
-                    textbook_entries.setdefault(tname, []).append({
-                        "id": cid, "type": "unmatched", "chapter": ref.get("chapter", ""),
-                        "level": cl
-                    })
-
-    # Build existing relation set for dedup
-    existing_pairs: set[tuple[str, str]] = set()
-    for r in existing_relations:
-        sg = r.get("source_group") or r.get("source", "")
-        tg = r.get("target_group") or r.get("target", "")
-        if sg and tg:
-            existing_pairs.add((sg, tg))
-
-    # Per-node cap to prevent excessive connections
-    MAX_INFERRED_PER_NODE = 15
-    inferred_count: dict[str, int] = {}
-
-    new_relations: list[dict] = []
-    seen: set[tuple[str, str]] = set()
-
-    for textbook, entries in textbook_entries.items():
-        if len(entries) < 2:
-            continue
-
-        for i in range(len(entries)):
-            for j in range(i + 1, len(entries)):
-                a = entries[i]
-                b = entries[j]
-                a_id, b_id = a["id"], b["id"]
-                if a_id == b_id:
-                    continue
-
-                pair = (a_id, b_id)
-                reverse = (b_id, a_id)
-
-                if pair in existing_pairs or reverse in existing_pairs:
-                    continue
-                if pair in seen or reverse in seen:
-                    continue
-
-                # Same-level filter: only connect concepts from the same education level
-                a_level = a.get("level", "")
-                b_level = b.get("level", "")
-                if a_level and b_level and a_level != b_level:
-                    continue
-
-                seen.add(pair)
-
-                # Determine if same chapter (high cohesion) or cross-chapter (moderate)
-                same_chapter = a.get("chapter") == b.get("chapter") and a.get("chapter", "")
-                
-                # Try to determine direction from chapter ordering:
-                # Earlier chapter → later chapter = prerequisite
-                # Extract numeric chapter for comparison
-                import re as _cr
-                def _ch_num(ch):
-                    m = _cr.search(r'(\d+)', ch or '')
-                    return int(m.group(1)) if m else 0
-                
-                a_ch = _ch_num(a.get("chapter", ""))
-                b_ch = _ch_num(b.get("chapter", ""))
-                
-                if a_ch > 0 and b_ch > 0 and a_ch != b_ch:
-                    # Directional: lower chapter → higher chapter = prerequisite
-                    if a_ch < b_ch:
-                        src_id, tgt_id = a_id, b_id
-                        rel_type = "prerequisite"
-                    else:
-                        src_id, tgt_id = b_id, a_id
-                        rel_type = "prerequisite"
-                    importance = 0.35  # Cross-chapter prerequisite
-                elif same_chapter:
-                    # Same chapter: undirected strong related_to
-                    src_id, tgt_id = a_id, b_id
-                    rel_type = "related_to"
-                    importance = 0.6  # High cohesion: same chapter
-                else:
-                    # Same textbook but can't determine order
-                    src_id, tgt_id = a_id, b_id
-                    rel_type = "related"
-                    importance = 0.2  # Weak: same textbook only
-
-                # Per-node cap check
-                if inferred_count.get(src_id, 0) >= MAX_INFERRED_PER_NODE:
-                    continue
-                if inferred_count.get(tgt_id, 0) >= MAX_INFERRED_PER_NODE:
-                    continue
-
-                new_relations.append({
-                    "source": src_id,
-                    "target": tgt_id,
-                    "source_group": src_id,
-                    "target_group": tgt_id,
-                    "type": rel_type,
-                    "importance": importance,
-                    "evidence": f"Co-occur in {textbook}",
-                    "known": True,
-                    "inferred": True,
-                })
-                inferred_count[src_id] = inferred_count.get(src_id, 0) + 1
-                inferred_count[tgt_id] = inferred_count.get(tgt_id, 0) + 1
-
-    return new_relations
-
-
-def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
-                              output_path: Path, aligned_data: dict | None = None):
-    """
-    Export data in the format expected by 3d-force-graph (demo.html).
-
-    The visualization needs:
-    - nodes: [{id, name, group, importance, labels, source, level, level_order}]
-    - links: [{source, target, type, importance, evidence}]
-    """
-    # Simplified level inference from textbook references
-    LEVEL_KEYWORDS = [
-        ("elementary", ["小学"]),
-        ("middle", ["初中", "七年", "八年", "九年"]),
-        ("high", ["高中", "选修", "必修"]),
-    ]
-
-    def infer_level_from_refs(refs: list) -> tuple[str, int]:
-        texts = []
-        for r in refs:
-            if isinstance(r, dict):
-                texts.append(r.get("textbook", ""))
-            elif isinstance(r, str):
-                texts.append(r)
-        combined = " ".join(texts)
-        for level, keywords in LEVEL_KEYWORDS:
-            for kw in keywords:
-                if kw in combined:
-                    order = {"elementary": 1, "middle": 2, "high": 3, "college": 4}.get(level, 4)
-                    return level, order
-        return "college", 4  # default
-
     nodes = []
     links = []
     node_ids: set[str] = set()
 
-    # --- Step 0: Infer implicit relations to connect isolated nodes ---
-    implicit = infer_implicit_relations(aligned_groups, relations, aligned_data)
-    all_relations = relations + implicit
-
-    # Build lookup for relation count per node
-    rel_counts: dict[str, int] = {}
-    for r in all_relations:
-        sg = r.get("source_group") or r.get("source", "")
-        tg = r.get("target_group") or r.get("target", "")
-        if sg: rel_counts[sg] = rel_counts.get(sg, 0) + 1
-        if tg: rel_counts[tg] = rel_counts.get(tg, 0) + 1
-
-    # --- Step 1: Build nodes from aligned groups with data ---
+    # Build nodes — only include groups with actual source data
+    skipped = 0
     for g in aligned_groups:
         has_data = len(g.get("cross_references", [])) > 0
         if not has_data:
             continue  # Skip placeholder groups with no textbook data yet
+        if g["id"] in node_ids:
+            skipped += 1
+            continue  # Skip duplicate group IDs
 
         primary_name = (
             g["labels"].get("zh") or
@@ -352,7 +173,8 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
             g["display_name"]
         )
         domain = classify_domain(g)
-        level, level_order = infer_level_from_refs(g.get("cross_references", []))
+        level = g.get("level", "college")
+        level_order = g.get("level_order", 4)
 
         node = {
             "id": g["id"],
@@ -368,123 +190,8 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
         nodes.append(node)
         node_ids.add(g["id"])
 
-    # --- Step 1.5: Backfill EN/DE translations for unmatched ZH-only concepts ---
-    # Primary lookup: aligned group labels
-    label_lookup: dict[str, dict] = {}
-    def _norm(n):
-        import re
-        return re.sub(r'[\s\-_()（）\[\]]+', '', n.lower()).strip()
-
-    for g in aligned_groups:
-        for lang, label in g["labels"].items():
-            if label:
-                label_lookup[_norm(label)] = g["labels"]
-        dn = g.get("display_name", "")
-        if dn:
-            label_lookup[_norm(dn)] = g["labels"]
-
-    # Fallback: known translations for elementary/middle school concepts not in CROSS_LANG_MAP
-    KNOWN_ZH_EN: dict[str, dict[str, str]] = {
-        "自然数": {"en": "Natural Number", "de": "Natürliche Zahl"},
-        "整数": {"en": "Integer", "de": "Ganze Zahl"},
-        "加法": {"en": "Addition", "de": "Addition"},
-        "减法": {"en": "Subtraction", "de": "Subtraktion"},
-        "乘法": {"en": "Multiplication", "de": "Multiplikation"},
-        "除法": {"en": "Division", "de": "Division"},
-        "分数": {"en": "Fraction", "de": "Bruch"},
-        "小数": {"en": "Decimal", "de": "Dezimalzahl"},
-        "百分数": {"en": "Percentage", "de": "Prozent"},
-        "面积": {"en": "Area", "de": "Fläche"},
-        "体积": {"en": "Volume", "de": "Volumen"},
-        "棱长": {"en": "Edge Length", "de": "Kantenlänge"},
-        "周长": {"en": "Perimeter", "de": "Umfang"},
-        "运算律": {"en": "Operation Laws", "de": "Rechengesetze"},
-        "四则运算": {"en": "Arithmetic", "de": "Grundrechenarten"},
-        "交换律": {"en": "Commutative Law", "de": "Kommutativgesetz"},
-        "结合律": {"en": "Associative Law", "de": "Assoziativgesetz"},
-        "分配律": {"en": "Distributive Law", "de": "Distributivgesetz"},
-        "估算": {"en": "Estimation", "de": "Schätzung"},
-        "近似数": {"en": "Approximate Number", "de": "Näherungswert"},
-        "位值": {"en": "Place Value", "de": "Stellenwert"},
-        "因数": {"en": "Factor", "de": "Teiler"},
-        "倍数": {"en": "Multiple", "de": "Vielfaches"},
-        "素数": {"en": "Prime Number", "de": "Primzahl"},
-        "公因数": {"en": "Common Factor", "de": "Gemeinsamer Teiler"},
-        "公倍数": {"en": "Common Multiple", "de": "Gemeinsames Vielfaches"},
-        "奇数": {"en": "Odd Number", "de": "Ungerade Zahl"},
-        "偶数": {"en": "Even Number", "de": "Gerade Zahl"},
-        "质数": {"en": "Prime", "de": "Primzahl"},
-        "合数": {"en": "Composite Number", "de": "Zusammengesetzte Zahl"},
-        "代数": {"en": "Algebra", "de": "Algebra"},
-        "方程": {"en": "Equation", "de": "Gleichung"},
-        "不等式": {"en": "Inequality", "de": "Ungleichung"},
-        "有理数": {"en": "Rational Number", "de": "Rationale Zahl"},
-        "无理数": {"en": "Irrational Number", "de": "Irrationale Zahl"},
-        "实数": {"en": "Real Number", "de": "Reelle Zahl"},
-        "复数": {"en": "Complex Number", "de": "Komplexe Zahl"},
-        "坐标": {"en": "Coordinate", "de": "Koordinate"},
-        "变量": {"en": "Variable", "de": "Variable"},
-        "单项式": {"en": "Monomial", "de": "Monom"},
-        "多项式": {"en": "Polynomial", "de": "Polynom"},
-        "恒等式": {"en": "Identity", "de": "Identität"},
-        "比例": {"en": "Proportion", "de": "Proportion"},
-        "平均值": {"en": "Average", "de": "Durchschnitt"},
-        "统计": {"en": "Statistics", "de": "Statistik"},
-        "概率": {"en": "Probability", "de": "Wahrscheinlichkeit"},
-        "命题": {"en": "Proposition", "de": "Aussage"},
-        "对数": {"en": "Logarithm", "de": "Logarithmus"},
-        "指数": {"en": "Exponent", "de": "Exponent"},
-        "正弦": {"en": "Sine", "de": "Sinus"},
-        "余弦": {"en": "Cosine", "de": "Kosinus"},
-        "正切": {"en": "Tangent", "de": "Tangens"},
-        "弧度": {"en": "Radian", "de": "Bogenmaß"},
-    }
-
-    backfilled = 0
-    for c in aligned_data.get("unmatched_concepts", []):
-        if c.get("language") != "zh":
-            continue
-        name = c.get("canonical_name", "")
-        if not name:
-            continue
-
-        # Try 1: aligned group labels by normalized name
-        norm = _norm(name)
-        if norm in label_lookup:
-            fl = label_lookup[norm]
-            if fl.get("en") and fl.get("de"):
-                c["_translations"] = {"en": fl["en"], "de": fl["de"]}
-                backfilled += 1
-                continue
-
-        # Try 2: alias match
-        for alias in c.get("aliases", []):
-            na = _norm(alias)
-            if na in label_lookup:
-                fl = label_lookup[na]
-                if fl.get("en") and fl.get("de"):
-                    c["_translations"] = {"en": fl["en"], "de": fl["de"]}
-                    backfilled += 1
-                    break
-        if "_translations" in c:
-            continue
-
-        # Try 3: KNOWN_ZH_EN lookup
-        if name in KNOWN_ZH_EN:
-            trans = KNOWN_ZH_EN[name]
-            c["_translations"] = {"en": trans["en"], "de": trans["de"]}
-            backfilled += 1
-            continue
-
-        # Try 4: fuzzy match (if normalized name contains a known key)
-        for zh_key, trans in KNOWN_ZH_EN.items():
-            if zh_key in name or name in zh_key:
-                c["_translations"] = {"en": trans["en"], "de": trans["de"]}
-                backfilled += 1
-                break
-
-    if backfilled > 0:
-        print(f"  [A2] Backfilled EN/DE translations for {backfilled} ZH-only concepts")
+    if skipped:
+        print(f"  [DEDUP] Skipped {skipped} duplicate group(s)")
 
     # Add one node for each unmatched concept from aligned_data
     for c in aligned_data.get("unmatched_concepts", []):
@@ -493,17 +200,10 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
             # Infer level from the concept's source references
             level = c.get("level", "college")
             level_order = c.get("level_order", 4)
-            # Use backfilled translations if available
-            translations = c.get("_translations", {})
-            labels = {c["language"]: c["canonical_name"]}
-            if translations.get("en"):
-                labels["en"] = translations["en"]
-            if translations.get("de"):
-                labels["de"] = translations["de"]
             node = {
                 "id": cid,
                 "name": c["canonical_name"],
-                "labels": labels,
+                "labels": {c["language"]: c["canonical_name"]},
                 "group": "general",
                 "level": level,
                 "level_order": level_order,
@@ -514,8 +214,8 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
             nodes.append(node)
             node_ids.add(cid)
 
-    # Build links (existing + inferred)
-    for r in all_relations:
+    # Build links
+    for r in relations:
         src_group = r.get("source_group")
         tgt_group = r.get("target_group")
         if src_group and tgt_group:
@@ -524,8 +224,7 @@ def export_visualization_data(aligned_groups: list[dict], relations: list[dict],
                 "target": tgt_group,
                 "type": r.get("type", "related_to"),
                 "importance": r.get("importance", 0.5),
-                "known": r.get("known", True),
-                "inferred": r.get("inferred", False),
+                "known": True,  # all expert relations are "known"
                 "evidence": r.get("evidence", ""),
             }
             links.append(link)

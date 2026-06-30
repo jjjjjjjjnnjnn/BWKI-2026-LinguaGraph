@@ -4,6 +4,18 @@
 
 ---
 
+## 三条不可违反原则（优先级高于一切具体规则）
+
+```
+P1 — Single Source of Truth:     manifest.json 是唯一数字来源
+P2 — Immutable Release:          release/ 目录是不可修改的快照
+P3 — Validated Pipeline:         所有结果必须通过 release.py 验证
+```
+
+违反任意一条 = 项目数据完整性失效。详见 `.claire/workflows/principles.md`。
+
+---
+
 ## 1. Claude 角色定义
 
 Claude **不是**研究员。Claude 的角色是 **PM + QA Lead**：
@@ -80,15 +92,19 @@ Claude **不是**研究员。Claude 的角色是 **PM + QA Lead**：
 | 2026-09-21 | 完整提交 | ~3 个月 |
 | 2026-11-13 | 决赛 | ~5 个月 |
 
-### 当前阶段: 论文结果整合 (P0完成, P2待确认)
+### 当前阶段: 论文结果整合 + 数据治理完成
 
 - [x] 创意提交材料包 ✅ 已提交并冻结
 - [x] GitHub Release v0.1 已创建 ✅
 - [x] **P0**: 人类数据整合 ✅ (S001-S008 → 提取/图/LDS → 论文 §§4, 3.4)
-- [ ] **P1**: 仿真基线计算 (300 SIM_* → 统计对照) — 待用户确认
-- [ ] **P2**: 论文结构修复 — 部分完成
-- [ ] Portal 网站更新 (新增 Human Validation 章节)
-- [ ] 演讲材料更新 (30s/3min)
+- [x] **P1**: 仿真基线计算 ✅ (300 SIM_* → 统计对照)
+- [x] **P2**: 论文结构修复 ✅
+- [x] **Data Governance**: Pipeline SSOT + Quality Gates + Manifest + Release Bundle ✅
+- [x] **Data Lineage**: LINGUAGRAPH_DATA_LINEAGE.md ✅
+- [x] **3 Principles**: SSOT / Immutable Release / Validated Pipeline ✅
+- [ ] **Month 1 (Jul 1-31)**: 双板块实验 + LDS formal definition
+- [ ] **Month 2 (Aug 1-31)**: 理论 + 分析
+- [ ] **Month 3 (Sep 1-21)**: 演示 + 交付
 
 ---
 
@@ -184,6 +200,65 @@ cd $PROJECT_DIR && python sync_readmes.py
 2. 在浏览器中测试所有 3 种语言
 3. 确保 `localStorage` 持久化正常工作
 4. 将更新复制到 `_deploy/` 目录
+
+---
+
+## 8. Agent 协作框架（与 Codex 配合）
+
+> 当 Codex 作为项目主管/架构师、Claude Code 作为执行工程师时，必须遵守以下规则。
+
+### 8.1 角色分工
+
+| 角色 | 职责 | 产出物 |
+|------|------|--------|
+| **Codex**（项目主管） | 研究问题分解、架构决策、任务拆分、质量审查 | 结构化任务说明、ADR、审查报告 |
+| **Claude Code**（执行工程师） | 编码实现、调试修复、数据更新、文档同步 | 通过 Quality Gates 的代码和数据 |
+
+### 8.2 任务手写格式
+
+Codex 交代任务时必须包含以下结构（见 `.claire/workflows/agent-collaboration.md`）：
+
+```yaml
+---
+phase: "实现"
+task_id: "T-YYYY-MM-DD-NNN"
+priority: "P0/P1/P2"
+depends_on: []
+---
+
+## 目标
+## 上下文
+## 输入
+## 要求（可验证）
+## 验证方法
+## 不包含
+```
+
+### 8.3 Claude Code 对 Codex 的约束回答
+
+- **任务说明不完整** → 暂停，请 Codex 补充
+- **数据不支持指定方向** → 附 `quality_report.py` 证据说明
+- **需要在冻结规则外操作** → Codex 必须明确授权
+
+### 8.4 不可绕过规则
+
+以下规则 Codex 和 Claude Code 都必须遵守：
+
+1. **所有修改必须通过 `release.py` 验证**（除非明确标注"跳过管线"）
+2. **Pipeline 唯一源码** = `scripts/math_graph_pipeline/`
+3. **冻结规则不可违反**（见 §3）
+4. **论文数字必须来自 `manifest.json`**
+5. **Gate 3 失败 → 退回修复，不可跳过**
+
+### 8.5 快速参考
+
+| 场景 | Codex | Claude Code | 门控 |
+|------|-------|-------------|------|
+| 提出 RQ / 拆任务 | 主导 | 接收 | Gate 0, 1 |
+| 写代码 / 更新管线 | 审查 | 主导 | Gate 2, 3 |
+| 质量审查 / 发布 | 主导 | 配合 | Gate 4, 5 |
+
+> 完整版详见 `.claire/workflows/agent-collaboration.md`
 
 ---
 

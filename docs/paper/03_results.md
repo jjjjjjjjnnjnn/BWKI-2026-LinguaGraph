@@ -17,7 +17,7 @@ Die Extraktion und Fusion der 68 Lehrbücher ergibt einen Wissensgraphen mit fol
 | Gesamtrelationen | 3538 (525 direkt + ~3000 inferiert) |
 | Lehrbuchquellen | 68 (45 ZH + 20 EN + 10 DE) |
 | Bildungsstufen | 4 (Grundschule → Universität) |
-| Strukturkonflikte | 0 |
+| Dichte | 0,0015 |
 | Isolierte Knoten | 2 (< 0,5 %) |
 
 ### 3.2 Verteilung nach Bildungsstufe
@@ -75,11 +75,34 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 [Abbildung: CognitiveSpace-3D-Visualisierung — 574 Konzepte in konzentrischen Kugelschalen,
 vier farbcodierte Bildungsstufen, sichtbare 3538 Relationen als blaue Verbindungslinien]
 
+### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
+
+Die Pipeline-basierte LDS-K Analyse der Mathematik-Lehrbücher (556 Konzepte, 3 Sprachen) ergibt:
+
+| Sprachpaar | LDS-K |
+|:----------:|:-----:|
+| ZH-EN | 0.934 |
+| DE-EN | 0.938 |
+| ZH-DE | 0.519 |
+
+Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbücher sind strukturell ähnlicher als jede der beiden mit den englischen Lehrbüchern. Um zu testen, ob diese Werte tatsächlich sprachgetriebene Divergenz messen, wurde eine **Null Model Suite** mit degree-preserving Randomisierung (Double-Edge Swap, 1000 Iterationen) durchgeführt:
+
+| Bedingung | ZH-EN | DE-EN | ZH-DE |
+|:----------|:-----:|:-----:|:-----:|
+| Full (LDS-K baseline) | 0.934 | 0.938 | 0.519 |
+| Structure Null (degree-preserving) | **0.957** | **0.957** | **0.717** |
+| Node-Permuted Null | 0.934 | 0.938 | 0.519 |
+| Complete Random | 1.000 | 1.000 | 1.000 |
+
+**Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare. Unter degree-preserving Randomisierung sind die randomisierten Graphen systematisch unterschiedlicher als die echten Graphen. Dies bedeutet, dass **Lehrbuch-Wissensstrukturen über Sprachgrenzen hinweg konvergieren** — das Gegenteil einer sprachgetriebenen Divergenz.
+
+Die Interpretation: LDS-K wird von der **Gradverteilungsstruktur** dominiert (eine Eigenschaft, die von universeller mathematischer Prerequisite-Logik geteilt wird), nicht von sprachspezifischen Inhaltsarrangements. Der wissenschaftliche Kernbeitrag verschiebt sich damit zu **ΔLDS = LDS-C − LDS-K**, der den sprachspezifischen Anteil der menschlichen Kognition isoliert.
+
 ---
 
 ## 4. Humanvalidierung: Kognitive Graphen mehrsprachiger Probanden
 
-> Die vorherige Sektion präsentierte LDS-Ergebnisse basierend auf einem Wikipedia-Korpus. Dieser Abschnitt validiert diese Befunde anhand **echter Probandendaten** (N=8, 90 extrahierte Antworten).
+> Dieser Abschnitt präsentiert LDS-C Ergebnisse basierend auf **echten Probandendaten** (N=8, 90 extrahierte Antworten) im sozialen Themenbereich.
 
 ### 4.1 Versuchsdesign und Datengrundlage
 
@@ -125,24 +148,23 @@ Durch Aggregation aller Antworten einer Sprachgruppe entstehen Gruppen-graphen, 
 | ZH–EN | 0,662 | 0,917 | 0,710 | 0,648 | 0,583 | **0,704** |
 | **Mittel** | **0,845** | **0,821** | **0,699** | **0,632** | **0,640** | **0,727** |
 
-### 4.4 Vergleich mit Wikipedia-Korpus
+### 4.4 Vergleich mit Textbook-LDS-K
 
-Der Vergleich zwischen Human- und Wikipedia-LDS zeigt ein klares Muster:
+Der Vergleich zwischen Human-LDS-C und Textbook-LDS-K zeigt ein aufschlussreiches Muster:
 
-| Sprachpaar | Human LDS (Between) | Wikipedia LDS (Korpus) | Differenz |
-|:----------:|:-------------------:|:---------------------:|:---------:|
-| DE–ZH | **0,751** | **0,907** | −0,156 |
-| DE–EN | 0,727 | 0,901 | −0,174 |
-| ZH–EN | 0,704 | 0,802 | −0,098 |
-| **Mittel** | **0,727** | **0,870** | **−0,143** |
+| Sprachpaar | Human LDS-C (Between) | Textbook LDS-K | Differenz | Interpretation |
+|:----------:|:---------------------:|:--------------:|:---------:|----------------|
+| DE–ZH | **0,751** | **0,519** | **+0,232** | Kognitive Divergenz > Strukturkonvergenz |
+| DE–EN | 0,727 | 0,938 | −0,211 | Kognitive Divergenz < Textbuchdivergenz |
+| ZH–EN | 0,704 | 0,934 | −0,230 | Kognitive Divergenz < Textbuchdivergenz |
 
-**Drei zentrale Befunde**:
+**Zwei zentrale Befunde**:
 
-1. **Rangfolge bleibt erhalten**: DE–ZH > DE–EN > ZH–EN in beiden Datensätzen. Die sprachpaarspezifische Divergenz ist kein Artefakt der Korpusauswahl, sondern ein reproduzierbares Muster.
+1. **DE–ZH ist der Schlüsselfall**: Die höchste kognitive Divergenz (LDS-C=0,751) trifft auf die geringste Textbuchdivergenz (LDS-K=0,519). Dies ist konsistent mit der ΔLDS-Hypothese: der sprachliche Einfluss auf die Kognition (DE↔ZH) ist größer als der auf die institutionelle Wissensorganisation.
 
-2. **Human LDS < Wikipedia LDS**: Individuelle kognitive Graphen zeigen geringere Divergenz als aggregierte Textkorpora. Dies ist konsistent mit der Interpretation, dass Bildungssysteme sprachspezifische Organisationsmuster verstärken.
+2. **DE–EN und ZH–EN zeigen das umgekehrte Muster**: Textbookstrukturen divergieren stark (0,938, 0,934), während die kognitive Divergenz moderat ausfällt (0,727, 0,704). Dies bestätigt, dass LDS-K und LDS-C unterschiedliche Phänomene messen.
 
-3. **Themenvariation ist substanziell**: Freiheit (M=0,845) und Gerechtigkeit (M=0,821) zeigen die höchste Divergenz, Zuhause (M=0,640) die niedrigste. Dies bestätigt die Hypothese, dass abstrakte, politisch-philosophische Konzepte stärker sprachabhängig sind als alltägliche Erfahrungskonzepte.
+Die Rangfolge der kognitiven Divergenz (DE–ZH > DE–EN > ZH–EN) bleibt konsistent, während die Rangfolge der Textbuchdivergenz grundlegend anders ist (DE–EN > ZH–EN > ZH-DE). Dies zeigt, dass LDS-K und LDS-C komplementäre, aber nicht austauschbare Metriken sind.
 
 ### 4.5 Robuste Extraktionsqualität
 
@@ -160,10 +182,12 @@ Die hohe Extraktionsqualität stellt sicher, dass die beobachteten LDS-Unterschi
 
 ### 4.6 Zusammenfassung
 
-Die Humanvalidierung bestätigt die drei Kernbefunde der Korpusanalyse:
+Die Humanvalidierung zeigt drei Kernbefunde:
 
-1. **Sprachliche Divergenz ist ein reproduzierbares Phänomen** auf individueller und Gruppenebene
-2. **DE–ZH zeigt die größte, ZH–EN die geringste strukturelle Divergenz** — konsistent über alle Analyseebenen
-3. **Die Themenspezifität der Divergenz bleibt erhalten** — abstrakte Konzepte (Freiheit, Gerechtigkeit) divergieren stärker als konkrete (Zuhause)
+1. **Kognitive sprachliche Divergenz ist messbar**: Within-Subject LDS (M=0,773) und Between-Subject LDS (M=0,727) sind substanziell und zeigen eine konsistente Rangfolge (DE–ZH > DE–EN > ZH–EN).
 
-Die Ergebnisse validieren LDS als Maß für sprachübergreifende kognitive Strukturunterschiede und erweitern die Gültigkeit der Korpusbefunde auf die individuelle Kognitionsebene.
+2. **LDS-C und LDS-K messen unterschiedliche Phänomene**: Während die Textbuchstruktur sprachübergreifend konvergiert (Null Model Befund), zeigt die menschliche Kognition eine sprachspezifische Divergenz. Der DE–ZH Fall ist besonders aufschlussreich: höchste kognitive Divergenz bei geringster Textbuchdivergenz.
+
+3. **Themenvariation ist substanziell**: Abstrakte Konzepte (Freiheit, Gerechtigkeit) zeigen höhere Divergenz als konkrete (Zuhause). Dies bestätigt die Hypothese, dass abstrakte, politisch-philosophische Konzepte stärkeren sprachlichen Einfluss auf die Kognition zeigen.
+
+Die Ergebnisse validieren LDS-C als Maß für sprachübergreifende kognitive Strukturunterschiede und etablieren **ΔLDS = LDS-C − LDS-K** als zentrale Metrik für die Isolierung des sprachspezifischen Signals.

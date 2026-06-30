@@ -334,9 +334,12 @@ def align_concepts(concepts: list[dict]) -> tuple[list[dict], list[dict]]:
             "labels": {},
             "sources": [],
             "cross_references": [],
+            "level": "",  # will be set below
+            "level_order": 4,
         }
 
         concepts_to_index = []
+        group_level_order = 4  # default: college
         for lang_code, conc in [("zh", zh_conc), ("en", en_conc), ("de", de_conc)]:
             if conc:
                 idx = concepts.index(conc)
@@ -347,10 +350,19 @@ def align_concepts(concepts: list[dict]) -> tuple[list[dict], list[dict]]:
                     if ref not in group["cross_references"]:
                         group["cross_references"].append(ref)
                 concepts_to_index.append(conc)
+                # Forward level — take the minimum level_order (most basic)
+                conc_order = conc.get("level_order", 4)
+                if conc_order < group_level_order:
+                    group_level_order = conc_order
             else:
                 # Language not yet extracted — use the known label as placeholder
                 subj = zh_name if lang_code == "zh" else en_name if lang_code == "en" else de_name
                 group["labels"][lang_code] = subj
+
+        # Set level from merged data (minimum level_order = most basic)
+        level_map = {1: "elementary", 2: "middle", 3: "high", 4: "college"}
+        group["level_order"] = group_level_order
+        group["level"] = level_map.get(group_level_order, "college")
 
         aligned_groups.append(group)
 

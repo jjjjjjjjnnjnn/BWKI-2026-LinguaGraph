@@ -1,282 +1,140 @@
 {
-  "description": "Curriculum Coverage Score — 教材对NRW课标的覆盖率",
-  "curriculum_source": "Kernlehrplan Mathematik NRW (Sek I 2019 + Sek II 2023)",
-  "textbook_source": "LinguaGraph math_full.json (197 concepts)",
-  "methodology": "Keyword + mapping-based concept matching (de→zh bridge)",
-  "coverage_by_stage": {
-    "seki_erprobung": {
-      "stage": "seki_erprobung",
-      "stage_label": "Erprobungsstufe (5-6)",
-      "curriculum_concepts": 58,
-      "matched_textbook_concepts": 6,
-      "coverage_score": 0.1034
+  "description": "Multi-Curriculum Coverage Scores — 课标概念→教材概念匹配 (全部4体系)",
+  "methodology": "curriculum_concepts → textbook_concepts (keyword bridge + 2-overlap threshold)",
+  "textbook_source": "LinguaGraph math_full.json (3833 concepts)",
+  "curricula": {
+    "NRW": {
+      "overall": {
+        "curriculum_concepts": 299,
+        "matched": 38,
+        "coverage": 0.1271
+      },
+      "seki_erprobung": {
+        "curriculum_concepts": 58,
+        "matched": 12,
+        "coverage": 0.2069
+      },
+      "seki_stufe1": {
+        "curriculum_concepts": 48,
+        "matched": 9,
+        "coverage": 0.1875
+      },
+      "seki_stufe2": {
+        "curriculum_concepts": 59,
+        "matched": 9,
+        "coverage": 0.1525
+      },
+      "sekii_einfuehrung": {
+        "curriculum_concepts": 42,
+        "matched": 7,
+        "coverage": 0.1667
+      },
+      "sekii_grundkurs": {
+        "curriculum_concepts": 39,
+        "matched": 1,
+        "coverage": 0.0256
+      },
+      "sekii_leistungskurs": {
+        "curriculum_concepts": 53,
+        "matched": 4,
+        "coverage": 0.0755
+      }
     },
-    "seki_stufe1": {
-      "stage": "seki_stufe1",
-      "stage_label": "Erste Stufe (7-8)",
-      "curriculum_concepts": 48,
-      "matched_textbook_concepts": 11,
-      "coverage_score": 0.2292
+    "UK": {
+      "overall": {
+        "curriculum_concepts": 397,
+        "matched": 148,
+        "coverage": 0.3728
+      },
+      "uk_ks1_y1": {
+        "curriculum_concepts": 30,
+        "matched": 10,
+        "coverage": 0.3333
+      },
+      "uk_ks1_y2": {
+        "curriculum_concepts": 40,
+        "matched": 16,
+        "coverage": 0.4
+      },
+      "uk_ks2_y3": {
+        "curriculum_concepts": 36,
+        "matched": 15,
+        "coverage": 0.4167
+      },
+      "uk_ks2_y4": {
+        "curriculum_concepts": 42,
+        "matched": 17,
+        "coverage": 0.4048
+      },
+      "uk_ks2_y5": {
+        "curriculum_concepts": 52,
+        "matched": 25,
+        "coverage": 0.4808
+      },
+      "uk_ks2_y6": {
+        "curriculum_concepts": 57,
+        "matched": 25,
+        "coverage": 0.4386
+      },
+      "uk_ks3": {
+        "curriculum_concepts": 80,
+        "matched": 24,
+        "coverage": 0.3
+      },
+      "uk_ks4": {
+        "curriculum_concepts": 60,
+        "matched": 17,
+        "coverage": 0.2833
+      }
     },
-    "seki_stufe2": {
-      "stage": "seki_stufe2",
-      "stage_label": "Zweite Stufe (9-10)",
-      "curriculum_concepts": 59,
-      "matched_textbook_concepts": 14,
-      "coverage_score": 0.2373
+    "US": {
+      "overall": {
+        "curriculum_concepts": 2124,
+        "matched": 366,
+        "coverage": 0.1723
+      },
+      "us_k5": {
+        "curriculum_concepts": 708,
+        "matched": 127,
+        "coverage": 0.1794
+      },
+      "us_68": {
+        "curriculum_concepts": 708,
+        "matched": 127,
+        "coverage": 0.1794
+      },
+      "us_912": {
+        "curriculum_concepts": 708,
+        "matched": 127,
+        "coverage": 0.1794
+      }
     },
-    "sekii_einfuehrung": {
-      "stage": "sekii_einfuehrung",
-      "stage_label": "Einführungsphase (11)",
-      "curriculum_concepts": 42,
-      "matched_textbook_concepts": 6,
-      "coverage_score": 0.1429
-    },
-    "sekii_grundkurs": {
-      "stage": "sekii_grundkurs",
-      "stage_label": "Grundkurs (12-13)",
-      "curriculum_concepts": 39,
-      "matched_textbook_concepts": 1,
-      "coverage_score": 0.0256
-    },
-    "sekii_leistungskurs": {
-      "stage": "sekii_leistungskurs",
-      "stage_label": "Leistungskurs (12-13)",
-      "curriculum_concepts": 53,
-      "matched_textbook_concepts": 4,
-      "coverage_score": 0.0755
-    },
-    "overall": {
-      "stage": "overall",
-      "stage_label": "Overall",
-      "curriculum_concepts": 299,
-      "matched_textbook_concepts": 37,
-      "coverage_score": 0.1237
+    "China": {
+      "overall": {
+        "curriculum_concepts": 87,
+        "matched": 83,
+        "coverage": 0.954
+      },
+      "cn_grade_1_2": {
+        "curriculum_concepts": 18,
+        "matched": 18,
+        "coverage": 1.0
+      },
+      "cn_grade_3_4": {
+        "curriculum_concepts": 19,
+        "matched": 18,
+        "coverage": 0.9474
+      },
+      "cn_grade_5_6": {
+        "curriculum_concepts": 26,
+        "matched": 25,
+        "coverage": 0.9615
+      },
+      "cn_grade_7_9": {
+        "curriculum_concepts": 24,
+        "matched": 22,
+        "coverage": 0.9167
+      }
     }
-  },
-  "concept_matches_sample": {
-    "seki_erprobung": [
-      [
-        "curriculum_nrw_Ari_seki_erprobung_Darstellung_Stellenwerttafel_Zahlenstrahl_Wortf",
-        "Darstellung: Stellenwerttafel, Zahlenstrahl, Wortform, Bruch",
-        [
-          "math_elementary_百分数",
-          "math_elementary_分数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_erprobung_Zusammenhang_zwischen_Größen_Diagramm_Tabelle_W",
-        "Zusammenhang zwischen Größen: Diagramm, Tabelle, Wortform, M",
-        [
-          "math_linear_algebra_线性变换的矩阵表示"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_erprobung_Zusammenhang_zwischen_Größen_Diagramm_Tabelle_W",
-        "Zusammenhang zwischen Größen: Diagramm, Tabelle, Wortform, M",
-        [
-          "math_linear_algebra_线性变换的矩阵表示"
-        ]
-      ],
-      [
-        "curriculum_nrw_Geo_seki_erprobung_Ebene_Figuren_Kreis_besondere_Dreiecke_besonder",
-        "Ebene Figuren: Kreis, besondere Dreiecke, besondere Vierecke",
-        [
-          "math_geometry_三角形",
-          "math_geometry_圆",
-          "math_elementary_三角形"
-        ]
-      ],
-      [
-        "curriculum_nrw_Geo_seki_erprobung_Lagebeziehung_und_Symmetrie_Parallelität_Orthogo",
-        "Lagebeziehung und Symmetrie: Parallelität, Orthogonalität, P",
-        [
-          "math_linear_algebra_对称矩阵"
-        ]
-      ]
-    ],
-    "seki_stufe1": [
-      [
-        "curriculum_nrw_Fkt_seki_stufe1_proportionale_und_antiproportionale_Zuordnung_Zuo",
-        "proportionale und antiproportionale Zuordnung: Zuordnungsvor",
-        [
-          "math_linear_algebra_线性变换的矩阵表示"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_stufe1_lineare_Funktionen_Funktionsterm_Graph_Tabelle",
-        "lineare Funktionen: Funktionsterm, Graph, Tabelle, Wortform,",
-        [
-          "math_linear_algebra_线性变换的矩阵表示"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_stufe1_beschreiben_den_Einfluss_der_Parameter_auf_den_Gra",
-        "beschreiben den Einfluss der Parameter auf den Graphen einer",
-        [
-          "math_middle_一次函数",
-          "math_calculus_调和函数",
-          "math_calculus_外层函数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Geo_seki_stufe1_Umfang_und_Flächeninhalt_Dreieck_Viereck_zusamm",
-        "Umfang und Flächeninhalt: Dreieck, Viereck, zusammengesetzte",
-        [
-          "math_middle_相似三角形",
-          "math_geometry_三角形",
-          "math_middle_全等三角形"
-        ]
-      ],
-      [
-        "curriculum_nrw_Geo_seki_stufe1_geometrische_Sätze_Neben_Scheitel_Stufen_und",
-        "geometrische Sätze: Neben-, Scheitel-, Stufen- und Wechselwi",
-        [
-          "math_linear_algebra_Cayley-Hamilton 定理",
-          "math_statistics_中心极限定理",
-          "math_calculus_极限定理"
-        ]
-      ]
-    ],
-    "seki_stufe2": [
-      [
-        "curriculum_nrw_Ari_seki_stufe2_Lösungsverfahren_und_Algorithmen_algorithmische_N",
-        "Lösungsverfahren und Algorithmen: algorithmische Näherungsve",
-        [
-          "math_linear_algebra_Cayley-Hamilton 定理",
-          "math_statistics_贝叶斯公式",
-          "math_statistics_中心极限定理"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ari_seki_stufe2_Lösungsverfahren_und_Algorithmen_algorithmische_N",
-        "Lösungsverfahren und Algorithmen: algorithmische Näherungsve",
-        [
-          "math_linear_algebra_Cayley-Hamilton 定理",
-          "math_statistics_贝叶斯公式",
-          "math_statistics_中心极限定理"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ari_seki_stufe2_wählen_Verfahren_zum_Lösen_quadratischer_Gleichung",
-        "wählen Verfahren zum Lösen quadratischer Gleichungen begründ",
-        [
-          "math_calculus_常微分方程",
-          "math_calculus_微分方程",
-          "math_calculus_微分方程组"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_stufe2_quadratische_Funktionen_Term_Normalform_Scheite",
-        "quadratische Funktionen: Term (Normalform, Scheitelpunktform",
-        [
-          "math_linear_algebra_线性变换的矩阵表示",
-          "math_linear_algebra_对称矩阵"
-        ]
-      ],
-      [
-        "curriculum_nrw_Fkt_seki_stufe2_exponentielle_Funktionen_fx_a_qxa_0q",
-        "exponentielle Funktionen: f(x) = a ⋅ qx,a > 0,q > 0, Term, G",
-        [
-          "math_linear_algebra_线性变换的矩阵表示"
-        ]
-      ]
-    ],
-    "sekii_einfuehrung": [
-      [
-        "curriculum_nrw_Ana_sekii_einfuehrung_erkunden_und_systematisieren_den_Einfluss_von_Para",
-        "erkunden und systematisieren den Einfluss von Parametern im ",
-        [
-          "math_middle_一次函数",
-          "math_calculus_调和函数",
-          "math_calculus_外层函数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ana_sekii_einfuehrung_deuten_die_Ableitung_an_einer_Stelle_als_lokale_Än",
-        "deuten die Ableitung an einer Stelle als lokale Änderungsrat",
-        [
-          "math_calculus_常微分方程",
-          "math_calculus_微分方程",
-          "math_calculus_导数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ana_sekii_einfuehrung_beschreiben_das_Monotonieverhalten_einer_Funktion",
-        "beschreiben das Monotonieverhalten einer Funktion mithilfe d",
-        [
-          "math_middle_一次函数",
-          "math_calculus_常微分方程",
-          "math_calculus_导数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ana_sekii_einfuehrung_beschreiben_das_Krümmungsverhalten_des_Graphen_ein",
-        "beschreiben das Krümmungsverhalten des Graphen einer Funktio",
-        [
-          "math_middle_一次函数",
-          "math_calculus_常微分方程",
-          "math_calculus_导数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Ana_sekii_einfuehrung_nutzen_an_den_unterschiedlichen_Darstellungsformen",
-        "nutzen an den unterschiedlichen Darstellungsformen einer Fun",
-        [
-          "math_middle_一次函数",
-          "math_calculus_调和函数",
-          "math_calculus_外层函数"
-        ]
-      ]
-    ],
-    "sekii_grundkurs": [
-      [
-        "curriculum_nrw_Sto_sekii_grundkurs_erläutern_den_Begriff_der_Zufallsgröße_an_geeignet",
-        "erläutern den Begriff der Zufallsgröße an geeigneten Beispie",
-        [
-          "math_elementary_厘米",
-          "math_elementary_三角形",
-          "math_elementary_球"
-        ]
-      ]
-    ],
-    "sekii_leistungskurs": [
-      [
-        "curriculum_nrw_Sto_sekii_leistungskurs_Beurteilende_Statistik_Prognoseintervall_Konfide",
-        "Beurteilende Statistik: Prognoseintervall, Konfidenzinterval",
-        [
-          "math_statistics_随机变量",
-          "math_statistics_联合分布",
-          "math_statistics_贝叶斯公式"
-        ]
-      ],
-      [
-        "curriculum_nrw_Sto_sekii_leistungskurs_interpretieren_die_bei_einer_Stichprobe_erhobene_r",
-        "interpretieren die bei einer Stichprobe erhobene relative Hä",
-        [
-          "math_statistics_条件概率",
-          "math_statistics_概率",
-          "math_statistics_概率密度函数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Sto_sekii_leistungskurs_unterscheiden_diskrete_und_stetige_Zufallsgrößen_u",
-        "unterscheiden diskrete und stetige Zufallsgrößen und deuten ",
-        [
-          "math_middle_一次函数",
-          "math_calculus_调和函数",
-          "math_calculus_外层函数"
-        ]
-      ],
-      [
-        "curriculum_nrw_Sto_sekii_leistungskurs_beschreiben_den_Einfluss_der_Parameter_und_auf",
-        "beschreiben den Einfluss der Parameter µ und σ auf die Norma",
-        [
-          "math_middle_一次函数",
-          "math_elementary_厘米",
-          "math_elementary_三角形"
-        ]
-      ]
-    ]
   }
 }

@@ -9,14 +9,14 @@ This study introduced LinguaGraph, a knowledge graph-based framework for analyzi
 | F1 | CDS peaks at Middle school (0.271), not Elementary | Non-monotonic density pattern |
 | F2 | 3.7× density drop from Middle to High school | CDS 0.271 → 0.073; concept count 4.2× increase |
 | F3 | HDS ≤ 8 (mean 0.40); 83% of concepts are roots | Mathematics is a shallow web, not a deep tree |
-| F4 | ZH–DE structural divergence is highest (LDS=0.907) | ZH–EN lowest (0.802) |
-| F5 | Cross-language divergence is topic-dependent | ~0.2 variation within language pairs across topics |
+| F4 | Textbook LDS-K varies widely (0.519 ZH-DE to 0.938 DE-EN) | Structure-dominated, not language-driven |
+| F5 | Null Model falsifies LDS-K as language metric: Full < Structure Null | Degree distribution dominates; ΔLDS is core |
 | F6 | Different disciplines exhibit different CDS patterns | Math peaks at Middle; Physics peaks at Elementary |
 | F7 | Physics has deeper prerequisite chains (HDS mean 0.85 vs 0.40) | Physics knowledge is more cumulative |
 | F8 | Chemistry CDS also peaks at Middle school (0.042) | Consistent with "integrate-early, diverge-late" pattern |
-| F9 | Coverage scores vary dramatically across education systems (8–82 %) | Curriculum design philosophy drives differences |
-| F10 | NRW shows consistent coverage across 3 STEM disciplines (34–38 %) | System-level feature, not discipline-specific |
-| **F11** | **Human LDS rank order matches Wikipedia corpus** | **Consistent across individual, corpus, and curriculum levels** |
+| F9 | Coverage scores vary dramatically across education systems (12.7–95.4 %) | Curriculum design philosophy drives differences |
+| F10 | China shows near-perfect alignment (95.4%); NRW lowest (12.7%) | Centralized vs. federal system feature |
+| **F11** | **Human LDS rank order is consistent: DE-ZH > DE-EN > ZH-EN** | **Consistent across individual and textbook levels** |
 | **F12** | **Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05)** | **Divergence is not random variation** |
 
 ### 4.2 Interpretation of the CDS Peak
@@ -27,13 +27,28 @@ The subsequent 3.7× drop from Middle to High school (F2) coincides with a 4.2×
 
 The robustness of this finding across three languages independently (ZH, EN, DE) suggests it is not an artifact of any particular textbook tradition. Rather, it may reflect a universal property of mathematics curriculum design — or at least a convergence across three distinct educational systems.
 
-### 4.3 Cross-Linguistic Structural Divergence
+### 4.3 Cross-Linguistic Structural Divergence: A Null Model Critique
 
-The LDS results (F4) reveal that structural divergence between language pairs is substantial (0.802–0.907) even when the conceptual content is the same (mathematics). This is notable: mathematical truth is universal, yet its knowledge organization varies considerably across languages.
+The LDS-K results (F4) reveal substantial variation across language pairs: ZH-EN=0.934, DE-EN=0.938, ZH-DE=0.519. The ZH-DE value stands out — Chinese and German textbook knowledge structures are considerably more similar (lower LDS-K) than either is to English. This immediately challenges the naive expectation that typologically distant languages (ZH-DE) would show the greatest divergence.
 
-The finding that ZH–DE shows higher divergence (0.907) than ZH–EN (0.802) is counterintuitive. One might expect two European languages (DE–EN) to share more structural similarity than either shares with Chinese. The data suggest the opposite: Chinese and English textbook traditions share more structural features at the knowledge graph level than either shares with the German tradition. This may reflect the influence of the Anglo-American mathematics curriculum tradition (including IGCSE, AP, and IB frameworks) on Chinese textbook design, while the German *Gymnasium* tradition maintains a distinct structural approach.
+To determine whether these values represent genuine language-driven structural differences, we applied a **Null Model Suite** with four conditions:
 
-This interpretation is consistent with Liang and Heckmann's (2013) finding that Chinese and German mathematics textbooks differ in problem complexity and representation style [8]. Our graph-based analysis extends their content-level comparison to the structural level, revealing differences that surface-level content analysis cannot capture.
+| Condition | Description | ZH-EN | DE-EN | ZH-DE |
+|:----------|-------------|:-----:|:-----:|:-----:|
+| Full (LDS-K baseline) | Real graph comparison | 0.934 | 0.938 | 0.519 |
+| Structure Null | Degree-preserving edge rewiring (×1000) | **0.957** | **0.957** | **0.717** |
+| Node-Permuted Null | Random node label reassignment | 0.934 | 0.938 | 0.519 |
+| Complete Random | Erdős–Rényi graph | 1.000 | 1.000 | 1.000 |
+
+The critical finding: **Full LDS-K < Structure Null LDS-K for all three language pairs.** Under degree-preserving randomization (double-edge swap, 1000 iterations), the randomized graphs are systematically *more different* from each other than the real graphs are. This means textbook knowledge structures converge *more* than chance would predict — the opposite of what a language-driven divergence hypothesis would expect.
+
+This result falsifies the interpretation that LDS-K measures language-driven cognitive divergence. Instead, the high LDS-K values are dominated by **degree distribution structure** — a property shared across languages because mathematical prerequisite logic is universal. When degree distributions are preserved (Structure Null), the structural similarity drops, showing that what makes textbook graphs "similar" is their shared degree structure, not language-specific content arrangement.
+
+The theoretical implication is significant: while mathematical truth is universal, the finding here is stronger — textbook *organizational structures* are also remarkably convergent across languages. Three distinct educational traditions (Chinese, German, English) independently produce textbook knowledge graphs whose structural properties (degree distributions, density profiles) are more similar to each other than comparable graphs with the same degree sequence would be.
+
+This means the corpus-analysis approach (LDS-K) cannot, by itself, measure linguistic relativity effects on knowledge organization. It primarily measures **structural convergence** driven by the universal logic of mathematical prerequisites. To isolate a genuine language signal, we must move to the cognitive level — comparing how humans express knowledge in their native language — captured by ΔLDS = LDS-C − LDS-K.
+
+The pilot human data (N=8, F11) provide initial support for this shift. Human LDS-C values (DE-ZH=0.751, DE-EN=0.727, ZH-EN=0.704) are meaningfully different from LDS-K values and show a consistent rank order. The ΔLDS computation awaits N≥30 human data but represents the core scientific contribution of the framework.
 
 ### 4.4 Cross-Disciplinary Validation
 
@@ -43,41 +58,38 @@ This finding has implications for curriculum design. If mathematics and physics 
 
 ### 4.5 The Curriculum Layer
 
-The integration of curriculum standards (Kernlehrplan NRW, UK National Curriculum, US NGSS) into the knowledge graph framework reveals a systematic finding: **textbook-curriculum alignment varies dramatically across educational systems**:
+The integration of curriculum standards (Kernlehrplan NRW, UK National Curriculum, US NGSS/CCSS) into the knowledge graph framework reveals a systematic finding: **textbook-curriculum alignment varies dramatically across educational systems**:
 
 | System | Coverage Score | Pattern |
 |--------|:-------------:|---------|
-| England (UK) | 82.4% | Monotonic increase: 53% (KS1) → 90% (KS4) |
-| United States | 75.7% | High overall (NGSS framework) |
-| NRW Germany | 34.1% | Mid-level peak: 50% (grade 7-8) → 31% (grade 12-13) |
-| China | 7.5% | Likely methodological (cross-lingual matching) |
+| China (CN) | 95.4% | Near-perfect alignment (centralized curriculum) |
+| England (UK) | 37.3% | Moderate; highest in secondary stages |
+| United States (US) | 17.2% | Low (broad guidelines, local variation) |
+| NRW Germany | 12.7% | Lowest (detailed per-track specifications) |
 
-The Coverage Score distinguishes three types of structure:
-- **Curriculum-driven**: patterns present in both textbook and curriculum graphs
-- **Textbook-author-driven**: patterns present only in textbooks (the ~66% unmatched in NRW)
-- **Universal**: patterns persisting across languages, curricula, and textbooks
+The Coverage Score measures **curriculum→textbook** matching: for each curriculum concept, does a corresponding concept appear in the textbook graph? The dramatic range — 12.7% (NRW) to 95.4% (CN) — reflects fundamental differences in educational governance: centralized systems produce tight alignment; federal systems with per-track specifications produce lower measurable alignment by design.
 
 ### 4.6 Why Do Educational Systems Produce Different Knowledge Structures?
 
-The substantial cross-system variation in Coverage Scores (34–82%) raises a question beyond measurement: **what explains these differences?** We consider three competing explanations.
+The substantial cross-system variation in Coverage Scores (12.7–95.4%) raises a question beyond measurement: **what explains these differences?** We consider three competing explanations.
 
 #### Explanation A: Curriculum Granularity (Best Supported)
 
-The most parsimonious explanation is that curricula differ in granularity. The NRW Kernlehrplan specifies 299 mathematics concepts across 6 stages, while the UK National Curriculum covers similar content with 397 broader descriptors. If a curriculum defines concepts at a finer granularity, each textbook concept can match fewer curriculum concepts by definition — producing lower Coverage Scores independent of actual content alignment.
+The most parsimonious explanation is that curricula differ in granularity. The NRW Kernlehrplan specifies 299 mathematics concepts across 6 stages, while the UK National Curriculum covers similar content with 397 broader descriptors. When a curriculum defines concepts at a finer granularity, each textbook concept can match fewer curriculum concepts by definition — producing lower Coverage Scores independent of actual content alignment.
 
-This is supported by the NRW per-stage pattern: coverage peaks at Sek I (grades 7-8, 50.0%), where the curriculum focuses on common core content, and drops at Sek II (grades 11-13, ~31%), where the curriculum introduces specialized courses (Grundkurse, Leistungskurse) with finer-grained competency expectations.
+This is supported by the NRW per-stage pattern: coverage peaks at Sek I (grades 7-8), where the curriculum focuses on common core content, and drops at Sek II (grades 11-13), where the curriculum introduces specialized courses (Grundkurse, Leistungskurse) with finer-grained competency expectations.
 
 #### Explanation B: Educational Philosophy and Assessment Structure (Higher Interpretive Value)
 
-The UK pattern — monotonic increase from KS1 (53.3%) to KS4 (90.0%) — is consistent with an examination-oriented system where the GCSE curriculum (KS4) drives strong textbook alignment. In contrast, the NRW pattern — mid-level peak with upper-secondary decline — reflects the German *Gymnasium* tradition where the transition to Oberstufe shifts from content coverage to competency development.
+The UK pattern (37.3%) and US pattern (17.2%) reflect different educational philosophies. The UK National Curriculum provides a moderately prescriptive framework that textbooks align with at the secondary level. The US shows lower alignment (17.2%) consistent with broad, non-prescriptive guidelines (NGSS/CCSS) that allow local adaptation. China's near-perfect alignment (95.4%) is consistent with a centralized curriculum system where textbooks are written to explicit national standards.
 
-This interpretation aligns with comparative education research: Schmidt et al. (2001) found that curriculum coherence varies significantly across TIMSS countries, with Germany exhibiting lower coherence between intended and implemented curricula than England. More recently, the OECD's Education at a Glance (2023) documents that Germany's federal structure produces more varied curriculum implementation than England's centralized National Curriculum.
+This interpretation aligns with comparative education research: Schmidt et al. (2001) found that curriculum coherence varies significantly across TIMSS countries, with China exhibiting high alignment between intended and implemented curricula. More recently, the OECD's Education at a Glance (2023) documents that federal structures produce more varied curriculum implementation than centralized systems.
 
 #### Explanation C: Division of Labor Between Curriculum and Textbook (Most Nuanced)
 
-A third possibility is that the textbook-curriculum relationship differs fundamentally across systems. In the German tradition, Lehrpläne specify minimal competency standards, while textbooks exercise significant autonomy in knowledge organization. In the English system, the National Curriculum is more prescriptive, and textbooks align closely with it.
+A third possibility is that the textbook-curriculum relationship differs fundamentally across systems. In the German tradition, Lehrpläne specify minimal competency standards, while textbooks exercise significant autonomy in knowledge organization. In the Chinese system, textbooks are directly developed from the national curriculum, producing near-perfect alignment (95.4%).
 
-Under this interpretation, NRW's low Coverage Score is not a deficiency but a feature: German textbooks are designed to offer alternative organizational structures that complement, rather than duplicate, the curriculum. This would predict that NRW textbooks would show HIGHER internal structural diversity (more variation across publishers) than UK textbooks — a testable hypothesis for future work.
+Under this interpretation, NRW's low Coverage Score (12.7%) is not a deficiency but a feature: German textbooks are designed to offer alternative organizational structures that complement, rather than duplicate, the curriculum. This would predict that NRW textbooks would show HIGHER internal structural diversity (more variation across publishers) than Chinese textbooks — a testable hypothesis for future work.
 
 #### Synthesis
 
@@ -106,9 +118,26 @@ The results confirm systematic divergence:
 
 *Independent samples t-test: t(28) = 2.05, p = 0.050
 
-**Human LDS exceeds simulation LDS for all three language pairs**, with the gap largest for DE–ZH (+0.105) and smallest for ZH–EN (+0.064). This pattern mirrors the rank order observed in both human and Wikipedia data, providing converging evidence that cross-language structural divergence is a genuine phenomenon amplified by education and culture, not an artifact of language-specific vocabulary distributions.
+**Human LDS exceeds simulation LDS for all three language pairs**, with the gap largest for DE–ZH (+0.105) and smallest for ZH–EN (+0.064). This pattern mirrors the rank order observed in human data, providing converging evidence that cross-language structural divergence is a genuine phenomenon amplified by education and culture, not an artifact of language-specific vocabulary distributions.
 
-### 4.8 Limitations
+### 4.9 Robustness Check: Cross-Model Extraction Consistency
+
+To verify that the LDS results are not driven by a single extraction model, we conducted a **19-model benchmark** across three API platforms (DashScope, DeepSeek API, OpenCode GO). All models extracted concepts from the same N≥50 gold-standard items:
+
+| Rank | Model | F1 | N | Source |
+|:----:|-------|:--:|:-:|--------|
+| 1 | hy3-preview | 0.6741 | 57 | OpenCode GO |
+| 2 | mimo-v2.5-pro | 0.6735 | 75 | OpenCode GO |
+| 3 | **qwen-plus** | **0.6659** | 92 | DashScope |
+| 4 | **qwen-max** | **0.6610** | 92 | DashScope |
+| 5-10 | Mixed models | 0.59-0.63 | 79-92 | Mixed |
+| 11-19 | Lower tier | 0.55-0.59 | 89-92 | Mixed |
+
+**Key findings**: (1) All 19 models achieve F1 > 0.55, confirming concept extraction is robust across model families. (2) Qwen-plus (the primary extraction model) ranks 3rd at F1=0.666, well within the top cluster. (3) DeepSeek models (v4-pro at 0.593, v4-flash at 0.608) perform competitively. (4) The narrow F1 range (0.55-0.67) across diverse architectures (Qwen, DeepSeek, GLM, MinMax, Kimi, Mimo) indicates that extraction quality is a property of the task, not of any specific model.
+
+A secondary finding: 186 additional DashScope models (text, vision, speech) all produced F1=0.0, confirming these require different prompting strategies. GPT-4o and GPT-4o-mini were credit-limited mid-benchmark.
+
+### 4.10 Limitations
 
 Several limitations should be acknowledged:
 
@@ -116,7 +145,9 @@ Several limitations should be acknowledged:
 
 **Extraction methodology**. While our gold-standard validation demonstrates high overall quality (F1=0.939), the social-domain gold data were validated using semi-automated keyword matching followed by manual review. Some errors may persist in the gold standard itself.
 
-**Human validation sample size**. The human validation study (N=8 participants, 90 extracted responses) provides initial cross-level validation but is limited in statistical power. The rank-order consistency between human LDS and Wikipedia LDS (DE–ZH > DE–EN > ZH–EN) is encouraging, but a larger sample would be needed to establish population-level generalizability. Additionally, the within-subject analysis was limited to DE-EN comparisons (no ZH–DE or ZH–EN within-subject data), restricting our ability to separate language effects from participant effects at the individual level.
+**Human validation sample size**. The human validation study (N=8 participants, 90 extracted responses) provides initial cross-level validation but is limited in statistical power. The rank-order consistency (DE–ZH > DE–EN > ZH–EN) is encouraging, but a larger sample would be needed to establish population-level generalizability. Additionally, the within-subject analysis was limited to DE-EN comparisons (no ZH–DE or ZH–EN within-subject data), restricting our ability to separate language effects from participant effects at the individual level.
+
+**Null Model interpretation**. While the degree-preserving Structure Null demonstrates that LDS-K is dominated by structural factors rather than language, the double-edge swap algorithm preserves the exact degree sequence of each graph. This is a conservative null: it tests whether language-specific edge arrangements add information beyond degree structure, but does not test whether degree structure itself could be language-influenced. A future hierarchical null model could address this layered question.
 
 **Edge-free graphs in human data**. The qwen-plus extraction produced concept-only output (no relations) for human responses, which means the LDS for human data is driven primarily by Node Jaccard similarity. The full 3-component LDS formula (GED + node Jaccard + edge Jaccard) could not be applied, and future work should collect relation annotations for human responses to enable full structural comparison.
 

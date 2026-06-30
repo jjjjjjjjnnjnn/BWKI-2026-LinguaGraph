@@ -215,7 +215,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="stat"><div class="stat-num" style="color:#22d3ee">3</div><div class="stat-label" data-i18n="stat_languages">Languages<br>ZH · EN · DE</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--orange)">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--pink)">4</div><div class="stat-label" data-i18n="stat_edu_systems">Education Systems<br>DE · UK · US · CN</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--yellow)">92</div><div class="stat-label" data-i18n="stat_gold_labels">Gold Labels<br>ZH F1=0.974</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--yellow)">19</div><div class="stat-label" data-i18n="stat_gold_labels">Models<span class="stats-sub">19-model benchmark</span></div></div>
     <div class="stat"><div class="stat-num" style="color:var(--green)">0.939</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1<br>qwen-plus</div></div>
   </div>
   <div class="ctas">
@@ -244,8 +244,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="card" style="border-top:3px solid var(--yellow)">
       <h3><i class="bi bi-building" style="color:var(--yellow);font-size:1.4rem"></i> RQ3: Education System</h3>
       <p style="font-size:1rem;font-weight:500;color:var(--text);margin-bottom:12px" data-i18n="rq3_question">How do different curricula organize the same subject?</p>
-      <p data-i18n="rq3_answer">Coverage scores range from 8% (China) to 82% (UK). These differences reflect educational philosophy — exam-driven breadth versus specialized depth — not alignment quality.</p>
-      <div class="meta"><span class="tag tag-yellow" data-i18n="rq3_cs">CS: 8%–82%</span></div>
+      <p data-i18n="rq3_answer">Coverage scores range from 12.7% (NRW) to 95.4% (China). These dramatic differences reflect educational governance — centralized systems (China) produce near-perfect alignment, while federal systems (NRW, US) allow local adaptation.</p>
+      <div class="meta"><span class="tag tag-yellow" data-i18n="rq3_cs">CS: 12.7%–95.4%</span></div>
     </div>
   </div>
 </section>
@@ -409,7 +409,7 @@ graph LR
 <div class="finding-card" style="border-left:4px solid var(--yellow)">
     <h3><i class="bi bi-building" style="color:var(--yellow)"></i> <span data-i18n="finding_d_title">Finding D: Education systems emphasize different curriculum designs</span></h3>
     <div class="lead" data-i18n="finding_d_sub">Textbook–curriculum coverage varies dramatically — not because of quality differences, but because of fundamentally different educational philosophies.</div>
-    <p data-i18n="finding_d_body">Coverage scores range from <strong>8% (China) to 82% (UK)</strong>. The UK curriculum shows an ascending trajectory (53% at early stages → 90% at later stages), reflecting an exam-driven, comprehensive model. Germany's NRW curriculum descends (50% → 31%), reflecting increasing teacher specialization and curricular choice. The US (76%) and China (8%) maintain stable but contrasting coverage levels.</p>
+    <p data-i18n="finding_d_body">Coverage scores range from <strong>12.7% (NRW) to 95.4% (China)</strong>. China shows near-perfect alignment under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. These differences reflect educational governance, not alignment quality.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">82%</div><div class="ev-label" data-i18n="finding_d_ev1">🇬🇧 UK (highest)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">76%</div><div class="ev-label" data-i18n="finding_d_ev2">🇺🇸 US</div></div>
@@ -427,8 +427,8 @@ graph LR
       </div>
     </div>
     <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
-      <strong><span class="tag tag-yellow">F9</span></strong> Coverage scores vary dramatically across education systems (8%–82%). Curriculum design philosophy, not alignment quality, drives differences.<br>
-      <strong><span class="tag tag-yellow">F10</span></strong> Trajectories reveal system design philosophy: UK ↗ exam-driven breadth, NRW ↘ specialization, US → stable broad, CN → selective depth.
+      <strong><span class="tag tag-yellow">F9</span></strong> Coverage scores vary dramatically across education systems (12.7%–95.4%). Educational governance — centralized vs. federal — drives differences, not alignment quality.<br>
+      <strong><span class="tag tag-yellow">F10</span></strong> China's near-perfect alignment (95.4%) versus NRW's low alignment (12.7%) reflects the spectrum from centralized curriculum to local adaptation.
     </p>
     <div class="meta"><span class="tag tag-yellow" data-i18n="finding_d_tag1">Metric: CS</span> <span class="tag tag-blue" data-i18n="finding_d_tag2">F9, F10</span> <span class="tag tag-green" data-i18n="finding_d_tag3">Systems: DE, UK, US, CN</span></div>
   </div>
@@ -488,8 +488,8 @@ graph LR
       </table>
     </div>
     <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
-      <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">Human LDS rank order matches Wikipedia corpus (DE–ZH > DE–EN > ZH–EN), validating the metric at the individual cognitive level.</span><br>
-      <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05), confirming divergence is not random variation.</span>
+      <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">Human LDS rank order (DE-ZH > DE-EN > ZH-EN) differs from textbook LDS-K — cognitive and institutional divergence are distinct phenomena.</span><br>
+      <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05). The DE-ZH case shows highest cognitive divergence (0.751) at lowest textbook divergence (0.519).</span>
     </p>
     <div class="meta"><span class="tag tag-purple" data-i18n="finding_e_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_e_tag2">F11, F12</span> <span class="tag tag-green" data-i18n="finding_e_tag3">N=8 participants, 300 simulation</span></div>
   </div>
@@ -591,7 +591,7 @@ graph LR
     </div>
     <div class="card" style="border-color:var(--green)">
       <h3><span class="tag tag-green" style="font-size:1rem">✅</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span></h3>
-      <p data-i18n="expl_b_desc">Coverage patterns reflect system-level choices: UK's exam-driven breadth (↗), NRW's specialization (↘), US stable broad standards (→), China's selective depth (→).</p>
+      <p data-i18n="expl_b_desc">Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW per-track specifications (12.7%).</p>
     </div>
     <div class="card">
       <h3><span class="tag tag-yellow" style="font-size:1rem">⚠️</span> <span data-i18n="expl_c_title">C: Division of Labor</span></h3>
@@ -629,7 +629,7 @@ graph LR
         <canvas id="benchmarkChart" height="380"></canvas>
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
-        <strong>Production:</strong> qwen-plus · <strong>Best free:</strong> qwen3-30b-a3b (F1=0.858) · <strong>Best non-Qwen:</strong> glm-4.6 (F1=0.819)
+        <strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
       </div>
     </div>
   </div>
@@ -762,10 +762,10 @@ window.copyBibtex = copyBibtex;
 new Chart(document.getElementById('coverageChart'), {
   type: 'bar',
   data: {
-    labels: ['NRW (Germany)', 'China', 'US', 'UK'],
+    labels: ['NRW (Germany)', 'US', 'UK', 'China'],
     datasets: [{
       label: 'Coverage Score (%)',
-      data: [34, 8, 76, 82],
+      data: [12.7, 17.2, 37.3, 95.4],
       backgroundColor: ['rgba(96,165,250,.85)', 'rgba(251,191,36,.85)', 'rgba(34,211,238,.85)', 'rgba(52,211,153,.85)'],
       borderColor: ['#60a5fa', '#fbbf24', '#22d3ee', '#34d399'],
       borderWidth: 2,
@@ -788,57 +788,31 @@ new Chart(document.getElementById('coverageChart'), {
   }
 });
 
-// Chart.js — Coverage Trajectory
+// Chart.js — Coverage Trajectory (per-stage grouped)
 new Chart(document.getElementById('trajectoryChart'), {
-  type: 'line',
+  type: 'bar',
   data: {
     labels: ['Early', 'Mid', 'Late'],
     datasets: [{
-      label: 'UK ↗ exam-driven',
-      data: [53, 82, 90],
-      borderColor: '#34d399',
-      backgroundColor: 'rgba(52,211,153,.12)',
-      fill: true,
-      tension: .3,
-      pointRadius: 5,
-      pointBackgroundColor: '#34d399',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 1
+      label: 'China (CN)',
+      data: [97.4, 96.2, 91.7],
+      backgroundColor: 'rgba(251,191,36,.85)',
+      borderRadius: 4,
     }, {
-      label: 'NRW ↘ specialization',
-      data: [50, 42, 31],
-      borderColor: '#f87171',
-      backgroundColor: 'rgba(248,113,113,.12)',
-      fill: true,
-      tension: .3,
-      pointRadius: 5,
-      pointBackgroundColor: '#f87171',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 1
+      label: 'UK',
+      data: [36.7, 43.8, 29.2],
+      backgroundColor: 'rgba(52,211,153,.85)',
+      borderRadius: 4,
     }, {
-      label: 'US → stable',
-      data: [76, 76, 76],
-      borderColor: '#22d3ee',
-      backgroundColor: 'rgba(34,211,238,.08)',
-      borderDash: [5,5],
-      fill: false,
-      tension: 0,
-      pointRadius: 4,
-      pointBackgroundColor: '#22d3ee',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 1
+      label: 'US',
+      data: [17.9, 17.9, 17.9],
+      backgroundColor: 'rgba(34,211,238,.85)',
+      borderRadius: 4,
     }, {
-      label: 'CN → selective',
-      data: [8, 8, 8],
-      borderColor: '#fbbf24',
-      backgroundColor: 'rgba(251,191,36,.08)',
-      borderDash: [5,5],
-      fill: false,
-      tension: 0,
-      pointRadius: 4,
-      pointBackgroundColor: '#fbbf24',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 1
+      label: 'NRW (DE)',
+      data: [18.7, 16.7, 5.1],
+      backgroundColor: 'rgba(96,165,250,.85)',
+      borderRadius: 4,
     }]
   },
   options: {
@@ -847,11 +821,11 @@ new Chart(document.getElementById('trajectoryChart'), {
     aspectRatio: 1.6,
     plugins: {
       legend: { labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 12, padding: 8 } },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } }
     },
     scales: {
       y: { min: 0, max: 100, ticks: { callback: v => v + '%', color: '#94a3b8', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,.05)' } },
-      x: { ticks: { color: '#94a3b8', font: { size: 9 } } }
+      x: { stacked: false, ticks: { color: '#94a3b8', font: { size: 9 } } }
     }
   }
 });
@@ -860,15 +834,15 @@ new Chart(document.getElementById('trajectoryChart'), {
 new Chart(document.getElementById('benchmarkChart'), {
   type: 'bar',
   data: {
-    labels: ['qwen-plus', 'qwen3-30b-a3b', 'glm-4.6', 'qwen3.7-max', 'qwen-coder-plus', 'qwen-plus-latest', 'qwen3.7-plus', 'qwen3.6-plus', 'qwen-max', 'qwen-turbo', 'qwen3.6-flash', 'glm-5', 'qwen-coder-turbo', 'qwen-mt-lite', 'deepseek-r1-7b', 'qwen-mt-flash', 'qwen-math-turbo', 'qwen-plus-2025-07', 'qwen-plus-2025-01', 'glm-4.5'],
+    labels: ['hy3-preview', 'mimo-v2.5-pro', 'qwen-plus ★', 'qwen-max', 'mimo-v2.5', 'kimi-k2.6', 'qwen3.7-max', 'qwen3.5-plus', 'deepseek-v4-flash', 'deepseek-v4-pro', 'glm-5', 'glm-5.2', 'glm-5.1', 'kimi-k2.5', 'minimax-m3', 'qwen3.6-plus', 'minimax-m2.5', 'minimax-m2.7', 'deepseek-chat'],
     datasets: [{
       label: 'Overall F1',
-      data: [0.882, 0.858, 0.819, 0.780, 0.767, 0.748, 0.735, 0.722, 0.719, 0.715, 0.708, 0.692, 0.671, 0.655, 0.648, 0.624, 0.609, 0.603, 0.598, 0.583],
+      data: [0.674, 0.674, 0.666, 0.661, 0.628, 0.626, 0.614, 0.613, 0.608, 0.593, 0.592, 0.591, 0.590, 0.588, 0.580, 0.577, 0.576, 0.566, 0.547],
       backgroundColor: ctx => {
         const v = ctx.parsed.y;
-        if (v >= 0.85) return 'rgba(52,211,153,.85)';
-        if (v >= 0.75) return 'rgba(96,165,250,.85)';
-        if (v >= 0.65) return 'rgba(251,191,36,.85)';
+        if (v >= 0.66) return 'rgba(52,211,153,.85)';
+        if (v >= 0.61) return 'rgba(96,165,250,.85)';
+        if (v >= 0.57) return 'rgba(251,191,36,.85)';
         return 'rgba(248,113,113,.85)';
       },
       borderWidth: 0,
@@ -883,7 +857,7 @@ new Chart(document.getElementById('benchmarkChart'), {
       tooltip: { callbacks: { label: ctx => 'F1 = ' + ctx.parsed.y.toFixed(3) } }
     },
     scales: {
-      x: { min: 0.5, max: 1, ticks: { callback: v => v.toFixed(2), color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,.05)' } },
+      x: { min: 0.5, max: 0.7, ticks: { callback: v => v.toFixed(2), color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,.05)' } },
       y: { ticks: { font: { size: 9 }, color: '#94a3b8' } }
     }
   }
@@ -902,14 +876,14 @@ const TRANSLATIONS = {
     stat_edu_systems: 'Education Systems', stat_gold_labels: 'Gold Labels', stat_overall_f1: 'Overall F1',
     section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
     rq1_title: 'RQ1: Language', rq1_question: 'How do different languages organize the same knowledge?',
-    rq1_answer: 'Chinese and German textbooks show the highest structural divergence (LDS=0.907); Chinese and English the lowest (0.802). Curriculum tradition — not language family — drives these differences.',
-    rq1_metric: 'LDS: 0.802–0.907',
+    rq1_answer: 'Chinese and German textbooks are structurally most similar (LDS-K=0.519); English diverges from both (ZH-EN=0.934, DE-EN=0.938). A Null Model reveals textbook structures converge more than chance — the language signal emerges in human cognitive expression (ΔLDS).',
+    rq1_metric: 'LDS-K: 0.519–0.938',
     rq2_title: 'RQ2: Discipline', rq2_question: 'How do different STEM subjects organize knowledge?',
     rq2_answer: 'All three disciplines follow an early-peak-later-decline pattern. Knowledge density peaks at middle or elementary school, then drops sharply. Maximum prerequisite depth is bounded at 8.',
     rq2_cds: 'CDS: 0.042–0.271', rq2_hds: 'HDS: max 8',
     rq3_title: 'RQ3: Education System', rq3_question: 'How do different curricula organize the same subject?',
     rq3_answer: 'Coverage scores range from 8% (China) to 82% (UK). These differences reflect educational philosophy — exam-driven breadth versus specialized depth — not alignment quality.',
-    rq3_cs: 'CS: 8%–82%',
+    rq3_cs: 'CS: 12.7%–95.4%',
     section_contrib: 'Research Contributions', contrib_sub: 'What this project delivers to the field',
     contrib1_title: 'A multilingual STEM knowledge graph',
     contrib2_title: 'Three structural metrics for knowledge organization',
@@ -925,22 +899,22 @@ const TRANSLATIONS = {
     finding_b_title: 'Knowledge structures stay shallow',
     finding_b_sub: 'Finding B — Maximum prerequisite depth is HDS ≤ 8 for math and ≤ 6 for physics. Over 83% of concepts are roots.',
     fig5_caption: 'Fig 5: HDS Distribution',
-    finding_c_title: 'Languages organize knowledge differently',
-    finding_c_sub: 'Finding C — ZH–DE textbooks diverge most (LDS=0.907), ZH–EN least (0.802). Curriculum tradition, not language family, drives these differences.',
-    fig4_caption: 'Fig 4: LDS Heatmap',
-    finding_d_title: 'Education systems emphasize different curriculum designs',
-    finding_d_sub: 'Finding D — Coverage scores range from 8% (China) to 82% (UK). The UK follows an exam-driven ascending model; Germany NRW reflects specialization-driven decline.',
-    finding_e_title: 'Human validation confirms language-driven cognitive divergence',
-    finding_e_sub: 'Finding E — Real participants show the same cross-language pattern as aggregated corpora — but with smaller magnitude, confirming education amplifies language-specific organization.',
+    finding_c_title: 'Textbook structures converge across languages',
+    finding_c_sub: 'Finding C — LDS-K values show textbook knowledge convergence (ZH-DE=0.519, ZH-EN=0.934, DE-EN=0.938). A Null Model proves Full < Structure Null for all pairs: textbook structures are more similar than chance. The core signal is ΔLDS = LDS-C − LDS-K.',
+    fig4_caption: 'Fig 4: Null Model Suite — Full vs Structure Null',
+    finding_d_title: 'Curriculum alignment varies dramatically by governance',
+    finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). China shows near-perfect alignment under centralized curriculum; NRW and US reflect local adaptation.',
+    finding_e_title: 'Human data isolates the language signal',
+    finding_e_sub: 'Finding E — Human LDS-C (DE-ZH=0.751, DE-EN=0.727, ZH-EN=0.704) shows different rank order from LDS-K. The DE-ZH case is critical: highest cognitive divergence meets lowest textbook divergence, confirming ΔLDS isolates language effects.',
     section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
-    curr_nrw_title: 'NRW (Germany) — Specialization Model',
-    curr_nrw_desc: 'Coverage decreases with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it.',
-    curr_uk_title: 'UK — Exam-Driven Model',
-    curr_uk_desc: 'Coverage increases with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested.',
+    curr_nrw_title: 'NRW (Germany) — Local Adaptation Model',
+    curr_nrw_desc: 'Coverage is lowest (12.7%). Per-track detailed specifications (Gymnasium, Gesamtschule, Realschule) produce fragmented alignment. German textbooks exercise significant autonomy from curriculum.',
+    curr_uk_title: 'UK — National Curriculum Model',
+    curr_uk_desc: 'Moderate coverage (37.3%). The National Curriculum provides structured standards, with higher alignment in early stages and moderate drop at GCSE level.',
     curr_us_title: 'US — Broad Standards Model',
-    curr_us_desc: 'Stable high coverage across stages. The US standards define broad learning goals rather than detailed syllabi, giving textbook authors interpretive freedom while maintaining alignment.',
-    curr_cn_title: 'China — Selective Depth Model',
-    curr_cn_desc: 'Very low but deliberate coverage. Chinese textbooks are highly selective, focusing on depth over breadth. Each topic is explored rigorously but few curriculum topics are addressed.',
+    curr_us_desc: 'Low coverage (17.2%). The NGSS/CCSS define broad learning goals rather than detailed syllabi, giving textbook authors interpretive freedom while maintaining general direction.',
+    curr_cn_title: 'China — Centralized Model',
+    curr_cn_desc: 'Near-perfect coverage (95.4%). Textbooks are developed directly from the national curriculum, producing the highest alignment among all four systems.',
     section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
     val_gold_title: 'Gold Dataset: 92 Labels',
     val_bench_title: 'Model Benchmark: 20 Models',
@@ -1031,7 +1005,7 @@ const TRANSLATIONS = {
     limitations3_desc: 'Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph.',
     limitations3_mit: 'Mitigation: Analysis focuses on within-system trajectories, not absolute values',
     limitations4_title: 'LLM Extraction Reliability',
-    limitations4_desc: 'Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics.',
+    limitations4_desc: 'Concept extraction depends on qwen-plus, a single model. The 19-model benchmark (F1 range 0.55-0.67) confirms extraction consistency across architectures. Extraction errors propagate through downstream metrics.',
     limitations4_mit: 'Mitigation: 92 gold labels ensure measurable quality bounds',
     limitations5_title: 'Language Coverage Gap',
     limitations5_desc: 'Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia).',
@@ -1045,7 +1019,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematics',
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
-    val_bench_note: '<strong>Production:</strong> qwen-plus · <strong>Best free:</strong> qwen3-30b-a3b (F1=0.858) · <strong>Best non-Qwen:</strong> glm-4.6 (F1=0.819)',
+    val_bench_note: '<strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
     paper_abstract_title: 'Abstract',
     paper_abstract_text: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
     paper_sections_title: 'Sections',
@@ -1061,7 +1035,7 @@ const TRANSLATIONS = {
     expl_a_title: 'A: Curriculum Granularity',
     expl_a_desc: 'Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — China has the densest curriculum (2,124 concepts) but the lowest coverage (8%).',
     expl_b_title: 'B: Educational Philosophy',
-    expl_b_desc: 'Coverage patterns reflect system-level choices: UK exam-driven breadth (↗), NRW specialization (↘), US stable broad standards (→), China selective depth (→).',
+    expl_b_desc: 'Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW detailed per-track specs (12.7%). Higher granularity ≠ better alignment.',
     expl_c_title: 'C: Division of Labor',
     expl_c_desc: 'Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.',
     contrib2_desc: 'CDS (concept density), HDS (hierarchy depth) and LDS (language drift) quantify how knowledge is connected, sequenced and structured across languages and disciplines.',
@@ -1104,15 +1078,15 @@ const TRANSLATIONS = {
     finding_c_tag1: 'Metrik: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
-    finding_d_body: 'Abdeckungswerte reichen von 8% (China) bis 82% (UK). Der britische Lehrplan zeigt eine aufsteigende Trajektorie (53% auf 90%). NRWs Lehrplan fallt (50% auf 31%). Die USA (76%) und China (8%) bleiben stabil.',
+    finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung.',
     finding_d_ev1: 'UK (hoechste)',
     finding_d_ev2: 'US',
     finding_d_ev3: 'NRW Deutschland',
     finding_d_ev4: 'China',
     finding_d_fig8: 'Abb. 8 — Gesamtabdeckungswert',
     finding_d_fig9: 'Abb. 9 — Stufenweise Trajektorie (UK ↗, NRW ↘)',
-    finding_d_f9: 'Abdeckungswerte variieren stark zwischen Bildungssystemen (8%–82%). Die Lehrplandesignphilosophie bestimmt die Unterschiede.',
-    finding_d_f10: 'Trajektorien zeigen Systemdesign: UK ↗ pruefungsgetrieben, NRW ↘ Spezialisierung, US → stabil breit, CN → selektive Tiefe.',
+    finding_d_f9: 'Abdeckungswerte variieren stark zwischen Bildungssystemen (12.7%–95.4%). Bildungsgovernance — zentralisiert vs. föderal — bestimmt die Unterschiede.',
+    finding_d_f10: 'China (95.4%) vs. NRW (12.7%): das Spektrum von zentralisiertem Lehrplan bis lokaler Anpassung.',
     finding_d_tag1: 'Metrik: CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systeme: DE, UK, US, CN',
@@ -1121,8 +1095,8 @@ const TRANSLATIONS = {
     finding_e_ev2: 'Zwischen DE-ZH',
     finding_e_ev3: 'Zwischen DE-EN',
     finding_e_ev4: 'Zwischen ZH-EN',
-    finding_e_f11: 'Menschliche LDS-Reihenfolge stimmt mit Wikipedia-Korpus ueberein, Metrik auf individueller kognitiver Ebene validiert.',
-    finding_e_f12: 'Menschliche LDS (0,727) uebersteigt Simulationsbasislinie (0,647, p=0,05).',
+    finding_e_f11: 'Menschliche LDS-Reihenfolge (DE-ZH > DE-EN > ZH-EN) unterscheidet sich von Textbook-LDS-K — kognitive und institutionelle Divergenz sind unterschiedliche Phänomene.',
+    finding_e_f12: 'Menschliche LDS (0.727) übersteigt Simulationsbasislinie (0.647, p=0.05). DE-ZH: höchste kognitive Divergenz (0.751) bei niedrigster Textbuchdivergenz (0.519).',
     finding_e_tag1: 'Metrik: LDS',
     finding_e_tag2: 'F11, F12',
     finding_e_tag3: 'N=8 Teilnehmer, 300 Simulationen',
@@ -1142,7 +1116,7 @@ const TRANSLATIONS = {
     limitations3_desc: 'Lehrplandokumente variieren stark in der Granularitaet: US-Math 2.124 Konzepte, UK-Science 186.',
     limitations3_mit: 'Massnahme: Fokus auf systeminterne Trajektorien',
     limitations4_title: 'LLM-Extraktionszuverlaessigkeit',
-    limitations4_desc: 'Konzeptextraktion haengt von qwen-plus ab. F1 = 0,939 bei sozialen, aber nur 0,674 in Mathematik.',
+    limitations4_desc: 'Konzeptextraktion hängt von qwen-plus ab. 19-Modell-Benchmark (F1-Bereich 0.55-0.67) bestätigt Extraktionskonsistenz. Mathematik nur 0.674 gesamt, Deutsch 0.506.',
     limitations4_mit: 'Massnahme: 92 Goldlabels gewaehrleisten messbare Qualitaet',
     limitations5_title: 'Sprachabdeckungsluecke',
     limitations5_desc: 'Nur drei Sprachen (ZH, EN, DE) analysiert. Nur zwei Sprachfamilien.',
@@ -1156,7 +1130,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematik',
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
-    val_bench_note: '<strong>Produktion:</strong> qwen-plus · <strong>Beste kostenlos:</strong> qwen3-30b-a3b (F1=0,858) · <strong>Bestes Nicht-Qwen:</strong> glm-4.6 (F1=0,819)',
+    val_bench_note: '<strong>Produktion:</strong> qwen-plus (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
     paper_abstract_title: 'Zusammenfassung',
     paper_abstract_text: 'LinguaGraph fuehrt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme dasselbe Wissen organisieren.',
     paper_sections_title: 'Abschnitte',
@@ -1173,7 +1147,7 @@ const TRANSLATIONS = {
     three_explanations: 'Drei konkurrierende Erklaerungen',
     expl_a_title: 'A: Lehrplangranularitaet',
     expl_b_title: 'B: Bildungssystemphilosophie',
-    expl_b_desc: 'Abdeckungsmuster spiegeln Systementscheidungen: UK pruefungsgetrieben (↗), NRW Spezialisierung (↘), US stabil breit (→), CN selektive Tiefe (→).',
+    expl_b_desc: 'Abdeckungsmuster spiegeln Bildungsgovernance: CN zentralisiert (95.4%), UK nationaler Lehrplan (37.3%), US breite Standards (17.2%), NRW detaillierte Vorgaben (12.7%). Höhere Granularität ≠ bessere Abdeckung.',
     expl_c_title: 'C: Arbeitsteilung',
     expl_c_desc: 'Manche Konzepte werden in anderen Faechern gelehrt (z.B. Physik in Chemie). Plausibel aber unbestaatigt.',
     page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
@@ -1194,7 +1168,7 @@ const TRANSLATIONS = {
     rq2_cds: 'CDS: 0,042–0,271', rq2_hds: 'HDS: max. 8',
     rq3_title: 'FF3: Bildungssystem', rq3_question: 'Wie organisieren verschiedene Lehrpläne das gleiche Fach?',
     rq3_answer: 'Die Abdeckungswerte reichen von 8% (China) bis 82% (Großbritannien). Diese Unterschiede spiegeln die Bildungssystemphilosophie wider — prüfungsgetriebene Breite versus spezialisierte Tiefe.',
-    rq3_cs: 'CS: 8%–82%',
+    rq3_cs: 'CS: 12.7%–95.4%',
     section_contrib: 'Forschungsbeiträge', contrib_sub: 'Was dieses Projekt für das Feld leistet',
     contrib1_title: 'Ein mehrsprachiger MINT-Wissensgraph',
     contrib2_title: 'Drei strukturelle Metriken fuer Wissensorganisation',
@@ -1274,7 +1248,7 @@ const TRANSLATIONS = {
     rq2_cds: 'CDS：0.042–0.271', rq2_hds: 'HDS：最大值 8',
     rq3_title: '问题3：教育体系', rq3_question: '不同课程体系如何组织同一学科？',
     rq3_answer: '课程覆盖率从 8%（中国）到 82%（英国）不等。这些差异反映了教育理念——考试驱动的广度与专业化的深度。',
-    rq3_cs: 'CS：8%–82%',
+    rq3_cs: 'CS：12.7%–95.4%',
     section_contrib: '研究贡献', contrib_sub: '本项目为领域的贡献',
     contrib1_title: '多语言 STEM 知识图谱',
     contrib2_title: '知识组织的三项结构指标',
@@ -1290,23 +1264,23 @@ const TRANSLATIONS = {
     finding_b_title: '知识结构保持浅层',
     finding_b_sub: '发现 B — 最大前提知识深度为数学 HDS ≤ 8，物理 ≤ 6。83% 以上的概念是根节点。',
     fig5_caption: '图 5：HDS 分布',
-    finding_c_title: '语言以不同方式组织知识',
-    finding_c_sub: '发现 C — 中德教材差异最大（LDS=0.907），中英差异最小（0.802）。课程传统而非语系驱动这些差异。',
-    fig4_caption: '图 4：LDS 热力图',
-    finding_d_title: '教育体系强调不同的课程设计',
-    finding_d_sub: '发现 D — 覆盖率从 8%（中国）到 82%（英国）。英国采用考试驱动的上升模式；德国北威州体现专业化驱动的下降模式。',
+    finding_c_title: '教材知识结构跨语言趋同',
+    finding_c_sub: '发现 C — 教材 LDS-K 显示知识系统趋同（中德=0.519，中英=0.934，德英=0.938）。Null Model 证明 Full < Structure Null：教材结构比随机更相似。核心信号是 ΔLDS。',
+    fig4_caption: '图 4：Null Model Suite — Full vs Structure Null',
+    finding_d_title: '课程覆盖因教育治理模式而异',
+    finding_d_sub: '发现 D — 覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐；NRW 和美国反映本地适应性。',
     section_curriculum: '课程分析', curriculum_sub: '四个教育体系如何使课程与教材内容对齐',
-    curr_nrw_title: '北威州（德国）——专业化模式',
-    curr_nrw_desc: '覆盖率随阶段下降：早期 50% → 高级 31%。教师享有课程自由——他们从课程中选择而非全覆盖。',
-    curr_uk_title: '英国——考试驱动模式',
-    curr_uk_desc: '覆盖率随阶段上升：53% → 90%。考试驱动系统使教材全覆盖——每个课程点都必须教授，因为可能被考查。',
+    curr_nrw_title: '北威州（德国）——本地适应模式',
+    curr_nrw_desc: '覆盖率最低（12.7%）。按学校类型的详细分类规范（文理中学、综合中学、实科中学）导致分散的对齐。德国教材享有显著的课程自主权。',
+    curr_uk_title: '英国——国家课程模式',
+    curr_uk_desc: '中等覆盖率（37.3%）。国家课程提供结构化标准，早期阶段对齐度较高，GCSE 阶段略有下降。',
     curr_us_title: '美国——广泛标准模式',
-    curr_us_desc: '各阶段覆盖率保持高位稳定。美国标准定义广泛的学习目标而非详细的课程大纲。',
-    curr_cn_title: '中国——选择性深度模式',
-    curr_cn_desc: '覆盖率非常低但有意为之。中国教材高度选择性，注重深度而非广度。每个主题都深入探讨，但只涉及少数课程主题。',
+    curr_us_desc: '低覆盖率（17.2%）。NGSS/CCSS 定义广泛学习目标而非详细大纲，赋予教材编写者解读自由。',
+    curr_cn_title: '中国——集中制模式',
+    curr_cn_desc: '近乎完美覆盖率（95.4%）。教材直接依据国家课程标准编写，在所有四个体系中对齐度最高。',
     section_validation: '验证', validation_sub: '黄金标准标注与模型基准',
     val_gold_title: '黄金数据集：92 个标签',
-    val_bench_title: '模型基准：20 个模型',
+    val_bench_title: '模型基准: 19 个模型',
     validation_gold_desc: '人工标注的黄金标准，涵盖所有三种语言的社会概念和数学概念。经 qwen-plus 提取验证。',
     validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。qwen-plus 被选为生产模型。',
     section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
@@ -1358,15 +1332,15 @@ curr_explanations_title: '三种竞争性解释',
     finding_c_tag1: '指标：LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
-    finding_d_body: '覆盖率从 8%（中国）到 82%（英国）。英国课程展示了上升轨迹（53% 到 90%），反映了考试驱动的综合模式。德国北威州的课程下降（50% 到 31%），反映了教师专业化和课程选择的增加。美国（76%）和中国（8%）保持稳定但截然不同的覆盖水平。',
-    finding_d_ev1: 'UK（最高）',
-    finding_d_ev2: 'US',
-    finding_d_ev3: 'NRW Germany',
-    finding_d_ev4: 'China',
+    finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。这些差异反映教育治理结构而非对齐质量。',
+    finding_d_ev1: '中国（最高）',
+    finding_d_ev2: '英国',
+    finding_d_ev3: '美国',
+    finding_d_ev4: 'NRW 德国',
     finding_d_fig8: '图 8 — 总体覆盖率得分',
     finding_d_fig9: '图 9 — 分阶段轨迹（UK ↗，NRW ↘）',
-    finding_d_f9: '覆盖率在不同教育体系之间差异巨大（8%–82%）。驱动差异的是课程设计理念，而非对齐质量。',
-    finding_d_f10: '轨迹反映了体系设计理念：UK ↗ 考试驱动的广度，NRW ↘ 专业化，US → 稳定广度，CN → 选择性深度。',
+    finding_d_f9: '覆盖率在不同教育体系之间差异巨大（12.7%–95.4%）。教育治理结构——集中制 vs 联邦制——驱动差异，而非对齐质量。',
+    finding_d_f10: '中国近乎完美对齐（95.4%）vs NRW 低对齐（12.7%），体现了从集中课程到本地适应的光谱。',
     finding_d_tag1: '指标：CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: '体系：DE, UK, US, CN',
@@ -1375,8 +1349,8 @@ curr_explanations_title: '三种竞争性解释',
     finding_e_ev2: '组间 DE-ZH',
     finding_e_ev3: '组间 DE-EN',
     finding_e_ev4: '组间 ZH-EN',
-    finding_e_f11: '人类 LDS 排序与维基百科语料库一致（DE–ZH > DE–EN > ZH–EN），在个体认知层面验证了指标。',
-    finding_e_f12: '人类 LDS（0.727）超过仿真基线（0.647, p=0.05），确认差异不是随机波动。',
+    finding_e_f11: '人类 LDS 排序（DE-ZH > DE-EN > ZH-EN）与教材 LDS-K 不同——认知和制度分歧是不同的现象。',
+    finding_e_f12: '人类 LDS（0.727）超过仿真基线（0.647, p=0.05）。DE-ZH 情况最显著：最高认知分歧（0.751）伴随最低教材分歧（0.519）。',
     finding_e_tag1: '指标：LDS',
     finding_e_tag2: 'F11, F12',
     finding_e_tag3: 'N=8 参与者，300 仿真',
@@ -1427,7 +1401,7 @@ curr_explanations_title: '三种竞争性解释',
     three_explanations: '三种竞争性解释',
     expl_a_title: 'A：课程粒度',
     expl_b_title: 'B：教育理念',
-    expl_b_desc: '覆盖率模式反映了体系层面的选择：英国的考试驱动广度（↗），北威州的专业化（↘），美国的稳定广泛标准（→），中国的选择性深度（→）。',
+    expl_b_desc: '覆盖率模式反映教育治理结构：中国集中制（95.4%），英国国家课程（37.3%），美国宽泛标准（17.2%），北威州详细分类规范（12.7%）。更高粒度 ≠ 更好覆盖。',
     expl_c_title: 'C：劳动分工',
     expl_c_desc: '有些概念可能在其他科目中教授（如化学中的物理概念）。合理但未经验证——跨学科概念映射可能揭示系统性转移。',
     contrib2_desc: 'CDS（概念密度）、HDS（层次深度）和 LDS（语言漂移）量化了知识在不同语言和学科之间的连接方式、排序方式和结构方式。',
