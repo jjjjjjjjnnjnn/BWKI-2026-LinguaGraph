@@ -68,7 +68,7 @@
     "zh": {"concepts": ["自由", "权利", "选择", ...], "relations": [...]},
     "de": {"concepts": ["Freiheit", "Recht", "Selbstbestimmung", ...], "relations": [...]},
     "en": {"concepts": ["freedom", "rights", "choice", ...], "relations": [...]},
-    "lds": {"zh-de": 0.907, "de-en": 0.901, "zh-en": 0.802}
+    "lds": {"zh-de": 0.519, "de-en": 0.938, "zh-en": 0.934}
   },
   ...
 }
@@ -114,11 +114,11 @@ Never during the demo. Cache is static for the event.
 │  ┌─────────┬─────────┬─────────┐                    │
 │  │         │ DE      │ EN      │                    │
 │  ├─────────┼─────────┼─────────┤                    │
-│  │ ZH      │ 0.91    │ 0.82    │                    │
-│  │ DE      │ —       │ 0.90    │                    │
+│  │ ZH      │ 0.52    │ 0.93    │                    │
+│  │ DE      │ —       │ 0.94    │                    │
 │  └─────────┴─────────┴─────────┘                    │
 ├─────────────────────────────────────────────────────┤
-│  ↑ Language pair divergence rank: DE-ZH highest,    │
+│  ↑ Language pair convergence: ZH-DE=0.52, ZH-EN=0.93, DE-EN=0.94      │
 │  ZH-EN lowest — consistent across all three levels  │
 └─────────────────────────────────────────────────────┘
 ```

@@ -315,7 +315,7 @@ graph LR
 
     subgraph Curriculum["🎯 Curriculum Layer"]
         CURR["4 Curricula<br/>DE/UK/US/CN"]
-        CS["Coverage Score<br/>34%–82%"]
+        CS["Coverage Score<br/>12.7%–95.4%"]
     end
 
     T1 --> LLM
@@ -359,8 +359,8 @@ flowchart TB
     subgraph RQ1["RQ1: Language"]
         direction TB
         Q1["How do different languages<br/>organize the same knowledge?"]
-        L1["ZH ↔ EN ↔ DE<br/>5 Social Topics"]
-        R1["→ LDS = 0.80–0.91<br/>ZH-DE highest (0.907)"]
+        L1["ZH–EN · DE–EN · ZH–DE<br/>5 Social Topics"]
+        R1["→ LDS = 0.52–0.94<br/>Null Model convergence"]
     end
     subgraph RQ2["RQ2: Discipline"]
         direction TB
@@ -372,7 +372,7 @@ flowchart TB
         direction TB
         Q3["How do different curricula<br/>organize the same subject?"]
         L3["NRW · UK · US · CN<br/>4 curricula vs textbooks"]
-        R3["→ CS = 34%–82%<br/>System design philosophy"]
+        R3["→ CS = 12.7%–95.4%<br/>Coverage varies by system"]
     end
 
     RQ1 --> RQ2 --> RQ3
@@ -389,8 +389,8 @@ flowchart TB
       <div class="rq-icon">🌐</div>
       <h3>RQ1: Language</h3>
       <p><strong>Question:</strong> How do different languages organize the same knowledge?</p>
-      <div class="rq-answer">ZH–DE textbooks show highest structural divergence; ZH–EN the lowest, suggesting curriculum tradition (not language family) drives organization.</div>
-      <div class="rq-metric">LDS: 0.802–0.907</div>
+      <div class="rq-answer">Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).</div>
+      <div class="rq-metric">LDS: 0.519–0.938</div>
     </div>
     <div class="rq-card">
       <div class="rq-icon">🔬</div>
@@ -403,8 +403,8 @@ flowchart TB
       <div class="rq-icon">📋</div>
       <h3>RQ3: Education System</h3>
       <p><strong>Question:</strong> How do different education systems organize curricula?</p>
-      <div class="rq-answer">Coverage varies dramatically: UK 82% → US 76% → NRW 34% → CN 8%. Trajectories reveal system design philosophy (exam-driven vs. specialization).</div>
-      <div class="rq-metric">CS: 8%–82%</div>
+      <div class="rq-answer">Coverage varies dramatically: CN 95.4% → UK 37.3% → US 17.2% → NRW 12.7%. Chinese textbooks achieve near-complete curriculum coverage; Western systems show selective alignment.</div>
+      <div class="rq-metric">CS: 12,7%–95,4%</div>
     </div>
   </div>
 </section>
@@ -420,7 +420,7 @@ flowchart TB
     <div class="card">
       <h3>📐 Mathematics</h3>
       <p>574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus. Validated against 4 national curricula.</p>
-      <div class="meta">CDS peak: 0.271 · HDS max: 8 · LDS range: 0.80–0.91</div>
+      <div class="meta">CDS peak: 0.271 · HDS max: 8 · LDS range: 0.52–0.94</div>
     </div>
     <div class="card">
       <h3>⚡ Physics</h3>
@@ -430,7 +430,7 @@ flowchart TB
     <div class="card">
       <h3>🧪 Chemistry</h3>
       <p>220 concepts, 215 relations across 18 textbook versions. Covers general chemistry through organic chemistry. Curriculum-aligned with NRW.</p>
-      <div class="meta">CDS peak: 0.042 · NRW coverage: 36%</div>
+      <div class="meta">CDS peak: 0.042 · NRW coverage: 12.7%</div>
     </div>
   </div>
 
@@ -440,10 +440,10 @@ flowchart TB
       <tr><th>System</th><th>Country</th><th>Disciplines</th><th>Coverage (Math)</th><th>Trajectory</th></tr>
     </thead>
     <tbody>
-      <tr><td>Kernlehrplan NRW</td><td>🇩🇪 Germany</td><td>Math, Physics, Chemistry</td><td><strong>34%</strong></td><td>↘ 50% → 31% (specialization)</td></tr>
-      <tr><td>UK National Curriculum</td><td>🇬🇧 United Kingdom</td><td>Math, Science</td><td><strong>82%</strong></td><td>↗ 53% → 90% (exam-driven)</td></tr>
-      <tr><td>US NGSS + CCSS</td><td>🇺🇸 United States</td><td>Math, Science</td><td><strong>76%</strong></td><td>→ Stable high coverage</td></tr>
-      <tr><td>中国国家课程标准</td><td>🇨🇳 China</td><td>Math, Physics, Chemistry</td><td><strong>8%</strong></td><td>→ Highly selective (exam-focused)</td></tr>
+      <tr><td>Kernlehrplan NRW</td><td>🇩🇪 Germany</td><td>Math, Physics, Chemistry</td><td><strong>12.7%</strong></td><td>→ Selective alignment</td></tr>
+      <tr><td>UK National Curriculum</td><td>🇬🇧 United Kingdom</td><td>Math, Science</td><td><strong>37.3%</strong></td><td>→ Moderate alignment</td></tr>
+      <tr><td>US NGSS + CCSS</td><td>🇺🇸 United States</td><td>Math, Science</td><td><strong>17.2%</strong></td><td>→ Low alignment</td></tr>
+      <tr><td>中国国家课程标准</td><td>🇨🇳 China</td><td>Math, Physics, Chemistry</td><td><strong>95.4%</strong></td><td>→ Near-complete coverage</td></tr>
     </tbody>
   </table>
 
@@ -533,18 +533,31 @@ flowchart TB
     </tbody>
   </table>
 
-  <h3 style="margin:40px 0 16px">Model Benchmark (Top 6 / 20 Models)</h3>
+  <h3 style="margin:40px 0 16px">Model Benchmark (19 Models)</h3>
   <table class="data-table">
     <thead>
-      <tr><th>Rank</th><th>Model</th><th>F1 (Social)</th><th>F1 (Math)</th><th>Overall</th></tr>
+      <tr><th>Rank</th><th>Model</th><th>Overall F1</th></tr>
     </thead>
     <tbody>
-      <tr><td>🥇</td><td><strong>qwen-plus</strong></td><td>0.939</td><td>0.674</td><td><strong>0.882</strong></td></tr>
-      <tr><td>🥈</td><td>qwen3-30b-a3b</td><td>0.911</td><td>0.672</td><td>0.858</td></tr>
-      <tr><td>🥉</td><td>glm-4.6</td><td>0.872</td><td>0.671</td><td>0.819</td></tr>
-      <tr><td>4</td><td>qwen3.7-max</td><td>0.828</td><td>0.653</td><td>0.780</td></tr>
-      <tr><td>5</td><td>qwen-coder-plus</td><td>0.809</td><td>0.660</td><td>0.767</td></tr>
-      <tr><td>6</td><td>qwen-plus-latest</td><td>0.803</td><td>0.637</td><td>0.748</td></tr>
+      <tr style="background:rgba(52,211,153,.05)"><td>🥇</td><td>hy3-preview</td><td><strong>0.674</strong></td></tr>
+      <tr style="background:rgba(52,211,153,.05)"><td>🥇</td><td>mimo-v2.5-pro</td><td><strong>0.674</strong></td></tr>
+      <tr><td>🥉</td><td>qwen-plus ★</td><td><strong>0.666</strong></td></tr>
+      <tr><td>4</td><td>qwen-max</td><td>0.661</td></tr>
+      <tr><td>5</td><td>mimo-v2.5</td><td>0.628</td></tr>
+      <tr><td>6</td><td>kimi-k2.6</td><td>0.626</td></tr>
+      <tr><td>7</td><td>qwen3.7-max</td><td>0.614</td></tr>
+      <tr><td>8</td><td>qwen3.5-plus</td><td>0.613</td></tr>
+      <tr><td>9</td><td>deepseek-v4-flash</td><td>0.608</td></tr>
+      <tr><td>10</td><td>deepseek-v4-pro</td><td>0.593</td></tr>
+      <tr><td>11</td><td>glm-5</td><td>0.592</td></tr>
+      <tr><td>12</td><td>glm-5.2</td><td>0.591</td></tr>
+      <tr><td>13</td><td>glm-5.1</td><td>0.590</td></tr>
+      <tr><td>14</td><td>kimi-k2.5</td><td>0.588</td></tr>
+      <tr><td>15</td><td>minimax-m3</td><td>0.580</td></tr>
+      <tr><td>16</td><td>qwen3.6-plus</td><td>0.577</td></tr>
+      <tr><td>17</td><td>minimax-m2.5</td><td>0.576</td></tr>
+      <tr><td>18</td><td>minimax-m2.7</td><td>0.566</td></tr>
+      <tr><td>19</td><td>deepseek-chat</td><td>0.547</td></tr>
     </tbody>
   </table>
 </section>
@@ -581,14 +594,14 @@ flowchart TB
       </tr>
       <tr class="fhighlight">
         <td class="fnum">F4</td>
-        <td><strong>ZH–DE structural divergence is highest (LDS=0.907)</strong><br><span style="color:var(--text2);font-size:.82rem">ZH–EN is lowest (0.802) — curriculum tradition > language family</span></td>
-        <td>ZH–DE: 0.907<br>DE–EN: 0.901<br>ZH–EN: 0.802</td>
+        <td><strong>Textbook structures converge between ZH and DE (LDS=0.519); DE–EN diverges most (0.938)</strong><br><span style="color:var(--text2);font-size:.82rem">ZH–DE convergence contradicts simple language-family expectations</span></td>
+        <td>ZH–DE: 0.519<br>DE–EN: 0.938<br>ZH–EN: 0.934</td>
         <td><span class="tag tag-cyan">LDS</span></td>
       </tr>
       <tr>
         <td class="fnum">F5</td>
-        <td><strong>LDS varies by topic (up to 0.2 within pairs)</strong><br><span style="color:var(--text2);font-size:.82rem">Cross-language divergence is not uniform — topic-dependent</span></td>
-        <td>Range: ~0.2</td>
+        <td><strong>LDS ranges 0.519–0.938 across language pairs</strong><br><span style="color:var(--text2);font-size:.82rem">Cross-language structural similarity is not uniform</span></td>
+        <td>Range: ~0.42</td>
         <td><span class="tag tag-cyan">LDS</span></td>
       </tr>
       <tr class="fhighlight">
@@ -611,14 +624,14 @@ flowchart TB
       </tr>
       <tr class="fhighlight">
         <td class="fnum">F9</td>
-        <td><strong>Coverage varies dramatically across systems</strong><br><span style="color:var(--text2);font-size:.82rem">NRW 34% · UK 82% · US 76% · CN 8%</span></td>
-        <td>34%–82% range</td>
+        <td><strong>Coverage varies dramatically across systems — CN leads, NRW lowest</strong><br><span style="color:var(--text2);font-size:.82rem">CN 95.4% · UK 37.3% · US 17.2% · NRW 12.7%</span></td>
+        <td>12.7%–95.4% range</td>
         <td><span class="tag tag-yellow">CS</span></td>
       </tr>
       <tr>
         <td class="fnum">F10</td>
-        <td><strong>Coverage trajectories reveal system design philosophy</strong><br><span style="color:var(--text2);font-size:.82rem">UK ↗ 53→90% (exam-driven); NRW ↘ 50→31% (specialization)</span></td>
-        <td>UK: ↗ 53%→90%<br>NRW: ↘ 50%→31%</td>
+        <td><strong>Coverage reveals textbook–curriculum relationship varies by system</strong><br><span style="color:var(--text2);font-size:.82rem">CN: near-complete; UK: moderate; US/NRW: selective alignment</span></td>
+        <td>CN: 95.4%<br>NRW: 12.7%</td>
         <td><span class="tag tag-yellow">CS</span></td>
       </tr>
     </tbody>
@@ -639,7 +652,7 @@ flowchart TB
 
   <div class="figure-box">
     <img src="../figures/fig4_lds_heatmap.png" alt="Fig 4: LDS Heatmap" onclick="openLightbox(this.src)" loading="lazy">
-    <div class="fig-label"><strong>Fig 4</strong> — Language Drift Score (LDS) heatmap across ZH/EN/DE. ZH–DE shows highest divergence (0.907); ZH–EN the lowest (0.802).</div>
+    <div class="fig-label"><strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938).</div>
   </div>
 
   <div class="figure-box">
@@ -689,8 +702,8 @@ timeline
     Phase 2 : Physics Expansion : 366 concepts : 383 relations : 94 versions : Cross-disciplinary validation
     Phase 3 : Chemistry Expansion : 220 concepts : 215 relations : 18 versions : Three-discipline comparison
     Phase 4 : Curriculum Layer : NRW curriculum : UK curriculum : US curriculum : CN curriculum
-    Phase 5 : Coverage Score : 34%–82% range : F9/F10 findings : System philosophy analysis
-    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.939 : 20-model benchmark : qwen-plus selected
+    Phase 5 : Coverage Score : 12.7%–95.4% range : F9/F10 findings : System philosophy analysis
+    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.939 : 19-model benchmark : qwen-plus selected
     Phase 7 : Paper & Release : Full paper : v0.2 release : GitHub Pages : Trilingual README
     </div>
   </div>
@@ -729,7 +742,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 6 — Validation</div>
       <h4>Gold Standard Validation & Model Benchmark</h4>
-      <p>Expanded from 20 to 92 gold labels. Benchmarked 20 models across Bailian API. qwen-plus selected as production model (F1=0.939 social, F1=0.882 overall).</p>
+      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. qwen-plus selected as production model (F1=0.939 social, F1=0.882 overall).</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 7 — Publication</div>
@@ -876,14 +889,14 @@ var TRANSLATIONS = {
     metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
     section_rqs_title: 'Research Questions', section_rqs_sub: 'Three complementary lenses on knowledge organization',
     rq1_title: 'RQ1: Language', rq1_question: '<strong>Question:</strong> How do different languages organize the same knowledge?',
-    rq1_answer: 'ZH–DE textbooks show highest structural divergence; ZH–EN the lowest, suggesting curriculum tradition (not language family) drives organization.',
-    rq1_metric: 'LDS: 0.802–0.907',
+    rq1_answer: 'Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).',
+    rq1_metric: 'LDS: 0.519–0.938',
     rq2_title: 'RQ2: Discipline', rq2_question: '<strong>Question:</strong> How do different subjects organize their knowledge?',
     rq2_answer: 'Knowledge density peaks early (middle/elementary) then declines. Depth is bounded at HDS ≤ 8. Physics has 2.1× more sequential depth than math.',
     rq2_metric: 'CDS: 0.042–0.271',
     rq3_title: 'RQ3: Education System', rq3_question: '<strong>Question:</strong> How do different education systems organize curricula?',
-    rq3_answer: 'Coverage varies dramatically: UK 82% → US 76% → NRW 34% → CN 8%. Trajectories reveal system design philosophy (exam-driven vs. specialization).',
-    rq3_metric: 'CS: 8%–82%',
+    rq3_answer: 'Coverage varies dramatically: CN 95.4% → UK 37.3% → US 17.2% → NRW 12.7%. Chinese textbooks achieve near-complete curriculum coverage; Western systems show selective alignment.',
+    rq3_metric: 'CS: 12.7%–95.4%',
     section_dataset_title: 'Dataset', section_dataset_sub: '180+ textbooks across 3 languages, 3 disciplines, 4 education systems',
     math_title: 'Mathematics', math_desc: '574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
     physics_title: 'Physics', physics_desc: '366 concepts, 383 relations across 94 textbook versions. Covers mechanics through quantum physics.',
@@ -906,13 +919,13 @@ var TRANSLATIONS = {
     th_overall: 'Overall', th_n: 'n',
     social_concepts: 'Social Concepts', mathematical_concepts: 'Mathematical Concepts',
     all_label: 'All',
-    bench_title: 'Model Benchmark (Top 6 / 20 Models)',
+    bench_title: 'Model Benchmark (19 Models)',
     th_rank: 'Rank', th_model: 'Model', th_f1_social: 'F1 (Social)', th_f1_math: 'F1 (Math)',
     section_findings_title: '10 Findings (F1–F10)', section_findings_sub: 'Quantitative evidence for structural differences in knowledge organization',
     th_fnum: '#', th_finding: 'Finding', th_evidence: 'Evidence', th_metric: 'Metric',
     section_figures_title: 'Figures', section_figures_sub: 'Key visualizations from the LinguaGraph analysis',
     fig3_caption: '<strong>Fig 3</strong> — Concept Density Score (CDS) across education levels for Mathematics. CDS peaks at Middle school (0.271), then declines 3.7x to High school (0.073).',
-    fig4_caption: '<strong>Fig 4</strong> — Language Drift Score (LDS) heatmap across ZH/EN/DE. ZH–DE shows highest divergence (0.907); ZH–EN the lowest (0.802).',
+    fig4_caption: '<strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938).',
     fig5_caption: '<strong>Fig 5</strong> — Hierarchy Depth Score (HDS) distribution. Maximum chain depth is 8; 83% of concepts are root nodes with no prerequisites.',
     fig6_caption: '<strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.',
     fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds universally.',
@@ -944,14 +957,14 @@ var TRANSLATIONS = {
     metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
     section_rqs_title: 'Forschungsfragen', section_rqs_sub: 'Drei komplementaere Perspektiven auf Wissensorganisation',
     rq1_title: 'FF1: Sprache', rq1_question: '<strong>Frage:</strong> Wie organisieren verschiedene Sprachen das gleiche Wissen?',
-    rq1_answer: 'ZH–DE-Lehrbuecher zeigen die hoechste strukturelle Divergenz; ZH–EN die niedrigste. Die Curriculartradition bestimmt diese Unterschiede.',
-    rq1_metric: 'LDS: 0,802–0,907',
+    rq1_answer: 'Nullmodell-Analyse zeigt Konvergenz der Lehrbuchstrukturen zwischen ZH und DE (LDS=0,519), entgegen sprachfamilienbasierter Erwartungen. ZH–EN und DE–EN bleiben stark divergent (0,934; 0,938).',
+    rq1_metric: 'LDS: 0,519–0,938',
     rq2_title: 'FF2: Disziplin', rq2_question: '<strong>Frage:</strong> Wie organisieren verschiedene Faecher ihr Wissen?',
     rq2_answer: 'Wissensdichte erreicht frueh ihren Hoehepunkt, dann Abfall. Die Tiefe ist auf HDS ≤ 8 begrenzt. Physik hat die 2,1-fache Tiefe von Mathematik.',
     rq2_metric: 'CDS: 0,042–0,271',
     rq3_title: 'FF3: Bildungssystem', rq3_question: '<strong>Frage:</strong> Wie organisieren verschiedene Bildungssysteme Lehrplaene?',
-    rq3_answer: 'Abdeckung variiert stark: GB 82% → US 76% → NRW 34% → CN 8%. Trajektorien zeigen Systemphilosophie (pruefungsgetrieben vs. Spezialisierung).',
-    rq3_metric: 'CS: 8%–82%',
+    rq3_answer: 'Abdeckung variiert stark: CN 95,4% → GB 37,3% → US 17,2% → NRW 12,7%. Chinesische Lehrbuecher erreichen nahezu vollstaendige Lehrplanabdeckung; westliche Systeme zeigen selektive Anpassung.',
+    rq3_metric: 'CS: 12,7%–95,4%',
     section_dataset_title: 'Datensatz', section_dataset_sub: '180+ Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
     math_title: 'Mathematik', math_desc: '574 Konzepte, 3.538 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
     physics_title: 'Physik', physics_desc: '366 Konzepte, 383 Beziehungen aus 94 Lehrbuchversionen. Von Mechanik bis Quantenphysik.',
@@ -974,13 +987,13 @@ var TRANSLATIONS = {
     th_overall: 'Gesamt', th_n: 'n',
     social_concepts: 'Soziale Konzepte', mathematical_concepts: 'Mathematische Konzepte',
     all_label: 'Alle',
-    bench_title: 'Modell-Benchmark (Top 6 / 20 Modelle)',
+    bench_title: 'Modell-Benchmark (19 Modelle)',
     th_rank: 'Rang', th_model: 'Modell', th_f1_social: 'F1 (Sozial)', th_f1_math: 'F1 (Math)',
     section_findings_title: '10 Erkenntnisse (F1–F10)', section_findings_sub: 'Quantitative Belege fuer strukturelle Unterschiede in der Wissensorganisation',
     th_fnum: '#', th_finding: 'Erkenntnis', th_evidence: 'Belege', th_metric: 'Metrik',
     section_figures_title: 'Abbildungen', section_figures_sub: 'Wichtige Visualisierungen aus der LinguaGraph-Analyse',
     fig3_caption: '<strong>Abb. 3</strong> — Concept Density Score (CDS) nach Bildungsstufe fuer Mathematik. CDS erreicht Hoehepunkt in der Mittelstufe (0,271), dann 3,7-facher Abfall zur Oberstufe (0,073).',
-    fig4_caption: '<strong>Abb. 4</strong> — Language Drift Score (LDS) Heatmap ueber ZH/EN/DE. ZH–DE zeigt hoechste Divergenz (0,907); ZH–EN die niedrigste (0,802).',
+    fig4_caption: '<strong>Abb. 4</strong> — LDS Null Model Suite ueber ZH/EN/DE. ZH–DE konvergiert (0,519); DE–EN divergiert am staerksten (0,938).',
     fig5_caption: '<strong>Abb. 5</strong> — Hierarchietiefe (HDS) Verteilung. Maximale Kettentiefe ist 8; 83% der Konzepte sind Wurzelknoten.',
     fig6_caption: '<strong>Abb. 6</strong> — CDS-Vergleich: Math vs. Physik. Physik erreicht frueheren Hoehepunkt (Grundschule), beide folgen demselben Muster.',
     fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt universell.',
@@ -1012,14 +1025,14 @@ var TRANSLATIONS = {
     metric_lds: '语言漂移得分', metric_cs: '覆盖率得分',
     section_rqs_title: '研究问题', section_rqs_sub: '理解知识组织的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '<strong>问题：</strong>不同语言如何组织相同的知识？',
-    rq1_answer: '中德教材结构差异最大，中英差异最小。课程传统（而非语系）驱动这些差异。',
-    rq1_metric: 'LDS：0.802–0.907',
+    rq1_answer: '零模型分析显示，中德教材结构趋同（LDS=0.519），这与语系预期相反。中英、德英之间仍高度分歧（0.934、0.938）。',
+    rq1_metric: 'LDS：0.519–0.938',
     rq2_title: '问题2：学科', rq2_question: '<strong>问题：</strong>不同学科如何组织知识？',
     rq2_answer: '知识密度在小学/初中早期达到峰值，然后下降。深度上限为 HDS ≤ 8。物理的顺序深度是数学的 2.1 倍。',
     rq2_metric: 'CDS：0.042–0.271',
     rq3_title: '问题3：教育体系', rq3_question: '<strong>问题：</strong>不同教育体系如何组织课程？',
-    rq3_answer: '覆盖率差异显著：英国 82% → 美国 76% → 北威州 34% → 中国 8%。轨迹揭示了体系设计理念（考试驱动 vs 专业化）。',
-    rq3_metric: 'CS：8%–82%',
+    rq3_answer: '覆盖率差异显著：中国 95.4% → 英国 37.3% → 美国 17.2% → 北威州 12.7%。中文教材实现了近乎完全的课程覆盖；西方体系则呈现选择性对齐。',
+    rq3_metric: 'CS：12.7%–95.4%',
     section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180+ 本教材',
     math_title: '数学', math_desc: '574 个概念，3,538 条关系，来自 68 本教材。从算术到高等微积分。',
     physics_title: '物理', physics_desc: '366 个概念，383 条关系，来自 94 个教材版本。从力学到量子物理。',
@@ -1042,13 +1055,13 @@ var TRANSLATIONS = {
     th_overall: '总体', th_n: '数量',
     social_concepts: '社会概念', mathematical_concepts: '数学概念',
     all_label: '全部',
-    bench_title: '模型基准测试（Top 6 / 20 模型）',
+    bench_title: '模型基准测试（19 个模型）',
     th_rank: '排名', th_model: '模型', th_f1_social: 'F1（社会）', th_f1_math: 'F1（数学）',
     section_findings_title: '10 项发现（F1–F10）', section_findings_sub: '知识组织结构差异的量化证据',
     th_fnum: '#', th_finding: '发现', th_evidence: '证据', th_metric: '指标',
     section_figures_title: '图表', section_figures_sub: 'LinguaGraph 分析的关键可视化',
     fig3_caption: '<strong>图 3</strong> — 数学概念密度得分（CDS）按教育阶段分布。CDS 在初中达到峰值（0.271），然后下降 3.7 倍至高中（0.073）。',
-    fig4_caption: '<strong>图 4</strong> — 语言漂移得分（LDS）跨 ZH/EN/DE 热力图。中德差异最大（0.907），中英差异最小（0.802）。',
+    fig4_caption: '<strong>图 4</strong> — LDS 零模型套件跨 ZH/EN/DE。中德趋同（0.519），德英差异最大（0.938）。',
     fig5_caption: '<strong>图 5</strong> — 层次深度得分（HDS）分布。最大链深度为 8；83% 的概念是无前提知识的根节点。',
     fig6_caption: '<strong>图 6</strong> — CDS 对比：数学 vs 物理。物理峰值更早（小学），两者都遵循相同的先峰后降模式。',
     fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式具有普遍性。',
@@ -1182,8 +1195,8 @@ function setLanguage(lang) {
     if (th[i] && t[k]) th[i].innerHTML = t[k];
   });
 
-  // Benchmark table headers (second data-table in #methods)
-  ['th_rank','th_model','th_f1_social','th_f1_math','th_overall'].forEach(function(k,i) {
+  // Benchmark table headers (second data-table in #methods) — 3-column layout
+  ['th_rank','th_model','th_overall'].forEach(function(k,i) {
     var th = document.querySelectorAll('#methods .data-table:nth-of-type(2) thead th');
     if (th[i] && t[k]) th[i].innerHTML = t[k];
   });

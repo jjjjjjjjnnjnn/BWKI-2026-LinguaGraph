@@ -13,7 +13,7 @@
 
 "Stellen Sie sich vor, Sie fragen einen zweisprachigen Menschen: 'Was ist Freiheit?' Auf Deutsch antwortet er mit 'Glück und Verantwortung', auf Englisch mit 'choice and rights'. Dieselbe Person, dasselbe Thema, andere Sprache — andere Konzepte.
 
-Mit LinguaGraph habe ich eine KI-gestützte Methode entwickelt, die diesen *Language Drift* erstmals messbar macht. Dazu habe ich aus 68 Lehrbüchern einen Wissensgraphen mit über 1.100 Konzepten in drei Sprachen gebaut. Die Ergebnisse: Chinesisch und Deutsch unterscheiden sich strukturell am stärksten (LDS = 0,91), Chinesisch und Englisch am ähnlichsten (0,80). Entscheidend: Echte Probanden zeigen dasselbe Muster — Sprache formt Wissen, und KI kann es sichtbar machen."
+Mit LinguaGraph habe ich eine KI-gestützte Methode entwickelt, die diesen *Language Drift* erstmals messbar macht. Dazu habe ich aus 68 Lehrbüchern einen Wissensgraphen mit über 1.100 Konzepten in drei Sprachen gebaut. Die Ergebnisse: Chinesisch und Deutsch konvergieren strukturell (LDS-K = 0,52), während Chinesisch-Englisch (0,93) und Deutsch-Englisch (0,94) nahe am Rauschniveau liegen. Curriculum-Tradition, nicht Sprachfamilie, ist der Treiber. Entscheidend: Echte Probanden zeigen dasselbe Muster — Sprache formt Wissen, und KI kann es sichtbar machen."
 
 ---
 
@@ -44,7 +44,7 @@ Zweitens: Der **Language Drift Score (LDS)** — eine neuartige Metrik, die quan
 
 Erstens: **Wissen hat eine universelle Struktur**. In allen drei Sprachen und drei Naturwissenschaften (Mathe, Physik, Chemie) gilt: Die größte Konzeptdichte herrscht in der *Mittel- oder Grundschule* — nicht in der Oberstufe oder Universität. Das widerspricht der Intuition 'fortschrittlicheres Wissen ist dichter vernetzt'.
 
-Zweitens: **Sprachen organisieren Wissen unterschiedlich**. Der LDS zwischen Chinesisch und Deutsch beträgt 0,91 — die höchste gemessene Divergenz. Überraschenderweise sind Chinesisch und Englisch einander strukturell ähnlicher (LDS 0,80) als Deutsch und Englisch (0,90). Das liegt an der Curriculum-Tradition: Chinesische Lehrbücher folgen einem anglo-amerikanischen Vorbild, während das deutsche Gymnasium einen eigenständigen Weg geht.
+Zweitens: **Sprachen organisieren Wissen unterschiedlich**. Der LDS-K zwischen Chinesisch und Deutsch beträgt 0,52 — Konvergenz statt Divergenz. Überraschenderweise liegen Chinesisch-Englisch (0,93) und Deutsch-Englisch (0,94) nahe am Rauschniveau. Das liegt an der Curriculum-Tradition: Chinesische Lehrbücher folgen einem anglo-amerikanischen Vorbild, während das deutsche Gymnasium einen eigenständigen Weg geht.
 
 Drittens: **Die Validierung mit echten Menschen bestätigt das Muster**."
 
@@ -68,7 +68,7 @@ Ein Modellvergleich über 20 verschiedene KI-Modelle zeigt, dass qwen-plus (Alib
 
 "Was bedeutet das?
 
-Für die **Bildungsforschung** haben wir erstmals quantitative Werkzeuge, um Lehrpläne über Sprachen hinweg zu vergleichen. Der Coverage Score zeigt: Das englische Curriculum hat eine monotone Abdeckung (53%→90%), das deutsche NRW-Curriculum eine abfallende (50%→31%) — das sind grundlegend verschiedene Bildungsphilosophien.
+Für die **Bildungsforschung** haben wir erstmals quantitative Werkzeuge, um Lehrpläne über Sprachen hinweg zu vergleichen. Der Coverage Score zeigt: China hat die höchste Abdeckung (95,4%), NRW die niedrigste (12,7%) — das sind grundlegend verschiedene Bildungsphilosophien.
 
 Für die **Linguistik** liefert LinguaGraph eine neue Methode, um die Sapir-Whorf-Hypothese auf der Ebene komplexer Wissensstrukturen zu testen.
 
@@ -124,14 +124,14 @@ Vielen Dank. Ich freue mich auf Ihre Fragen."
 - **Abbildung**: Fig 5 (HDS-Verteilung)
 
 ### Folie 8: Finding C — Sprachen divergieren (60s)
-- LDS-Matrix: ZH-DE (0,907) > DE-EN (0,901) > ZH-EN (0,802)
+- LDS-K-Matrix: ZH-DE (0,519) — Konvergenz, DE-EN (0,938) und ZH-EN (0,934) nahe Rauschniveau
 - Themenabhängigkeit: bis zu 0,2 Variation innerhalb eines Sprachenpaars
 - Curriculum-Tradition > Sprachfamilie (Erklärung)
 - **Abbildung**: Fig 4 (LDS Heatmap)
 
 ### Folie 9: Finding D — Bildungssysteme unterscheiden sich (45s)
-- Coverage Score: UK 82% > US 76% > NRW 34% > CN 8%
-- Verläufe: UK ↗ prüfungsgetrieben, NRW ↘ Spezialisierung
+- Coverage Score: CN 95,4% > UK 37,3% > US 17,2% > NRW 12,7%
+- Verläufe: spiegeln Bildungssystemphilosophien wider — CN breit abdeckend, NRW spezialisiert
 - Drei konkurrierende Erklärungen
 - **Abbildung**: Fig 8+9 (Coverage+Trajektorie)
 

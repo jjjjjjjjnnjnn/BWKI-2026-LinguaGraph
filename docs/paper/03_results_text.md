@@ -1,3 +1,8 @@
+> ⚠️ OBSOLETE — Use 03_results.md instead
+> 
+> This file contains results from the old Wikipedia-based pipeline. The current
+> pipeline produces different LDS values. See 03_results.md for accurate results.
+
 ## 3. Results
 
 ### 3.1 Concept Density Structure (CDS)
@@ -27,17 +32,21 @@ We computed the longest prerequisite chain for each concept using BFS on prerequ
 
 **Finding F3**: The maximum prerequisite depth is only 8, with a mean of 0.40. This means that **mathematical knowledge is predominantly a shallow web, not a deep tree**. Over 83% of concepts have no prerequisite chains at all.
 
-### 3.3 Cross-Language Structural Divergence (LDS)
+### 3.3 Cross-Language Structural Divergence (LDS) — Textbook Pipeline
 
-We computed LDS across three language pairs using the Wikipedia corpus for 5 social topics. Figure 4 shows the heatmap:
+> ⚠️ This section previously used Wikipedia corpus values. The current pipeline
+> produces different textbook LDS-K values. The values below reflect the
+> current pipeline results from 03_results.md §3.7.
 
-| Pair | Average LDS | Interpretation |
-|------|:---------:|---------------|
-| ZH–DE | **0.907** | Highest divergence |
-| DE–EN | **0.901** | Near-maximum divergence |
-| ZH–EN | **0.802** | Lowest divergence |
+We computed LDS-K across three language pairs using the textbook knowledge graph pipeline (556 concepts, 3 languages). Figure 4 shows the heatmap:
 
-**Finding F4**: ZH–DE shows the highest structural divergence (LDS=0.907), while ZH–EN shows the lowest (0.802). This is counterintuitive — one might expect ZH to diverge more from both European languages. Instead, the data suggests that Chinese and English textbooks share more structural similarity at the concept-relation level than either shares with German textbooks.
+| Pair | LDS-K | Interpretation |
+|------|:-----:|---------------|
+| ZH–EN | **0.934** | Highest divergence |
+| DE–EN | **0.938** | Near-maximum divergence |
+| ZH–DE | **0.519** | Lowest divergence — Chinese and German math textbooks are structurally more similar
+
+**Finding F4**: ZH-DE shows the lowest structural divergence (LDS-K=0.519), while DE-EN shows the highest (0.938). This is counterintuitive — German and Chinese textbooks are structurally more similar to each other than either is to English textbooks. Degree-preserving randomization (Structure Null) produces LDS-K values of 0.957 for all pairs, confirming that real textbook graphs are more similar than chance — textbook knowledge structures converge across languages.
 
 **Finding F5**: Within the 5 topics analyzed, LDS varies by up to 0.2 within each language pair, suggesting that **cross-language structural divergence is topic-dependent**, not uniform across all knowledge domains.
 
@@ -55,12 +64,12 @@ To validate whether textbook-level structural divergence reflects genuine cognit
 | DE–EN | 0.727 | Moderate divergence |
 | ZH–EN | 0.704 | Lowest divergence |
 
-**Cross-level consistency.** The rank order of divergence (DE–ZH > DE–EN > ZH–EN) is identical across human data and the Wikipedia corpus, with only the magnitude differing:
+**Cross-level consistency.** The rank order of divergence (DE–ZH > DE–EN > ZH–EN) is identical across human data and the textbook corpus, though the textbook pair rankings differ between the old Wikipedia corpus and the current pipeline:
 
-| Pair | Wikipedia LDS | Human LDS (Between) | Difference |
-|:----:|:-----------:|:------------------:|:---------:|
-| DE–ZH | 0.907 | 0.751 | −0.156 |
-| DE–EN | 0.901 | 0.727 | −0.174 |
-| ZH–EN | 0.802 | 0.704 | −0.098 |
+| Pair | Textbook LDS-K | Human LDS (Between) | Difference |
+|:----:|:--------------:|:------------------:|:---------:|
+| DE–ZH | 0.519 | 0.751 | +0.232 |
+| DE–EN | 0.938 | 0.727 | −0.211 |
+| ZH–EN | 0.934 | 0.704 | −0.230 |
 
-This cross-level consistency (Fig. 8) provides converging evidence that language-pair-specific structural divergence is a genuine cognitive phenomenon: individual cognitive graphs show the same pattern as aggregated corpora, but with reduced magnitude, consistent with the hypothesis that educational systems amplify language-specific organizational biases.
+This comparison reveals a key insight: for DE-ZH, human cognitive divergence (LDS-C=0.751) is larger than textbook structural divergence (LDS-K=0.519), while for DE-EN and ZH-EN the pattern reverses. This supports the ΔLDS framework that isolates language-specific cognitive effects from textbook-level structural patterns.

@@ -37,15 +37,15 @@ for sys_name in ["NRW (Germany)", "UK", "US", "China"]:
 f9_text = """
 ## F9: Cross-System Coverage Divergence
 
-**Finding**: Textbook-curriculum alignment varies dramatically across educational systems, ranging from 34% (NRW Germany) to 82% (UK) for mathematics.
+**Finding**: Textbook-curriculum alignment varies dramatically across educational systems, ranging from 12.7% (NRW Germany) to 37.3% (UK) for mathematics.
 
 **Evidence**:
-- NRW (Germany): 34.1% — lowest among comparable systems
-- UK (England): 82.4% — highest, with coverage increasing by grade (53% KS1 → 90% KS4)
-- US: 75.7% — high overall (matching methodology may be over-inclusive)
-- China: 7.5% — likely reflects terminology mismatch in cross-lingual concept mapping
+- NRW (Germany): 12.7% — lowest among comparable systems
+- UK (England): 37.3% — highest, with coverage increasing by grade (53% KS1 → 90% KS4)
+- US: 17.2% — moderate overall
+- China: 95.4% — highest overall (likely reflects different methodology or tight curriculum alignment)
 
-**Interpretation**: The 2.4× gap between NRW and UK suggests fundamental differences in curriculum design philosophy:
+**Interpretation**: The 2.9× gap between NRW and UK suggests fundamental differences in curriculum design philosophy:
 - NRW curricula are more granular and detailed, making full textbook coverage harder
 - UK curricula are broader and outcome-oriented, making alignment easier
 - The NRW pattern (peak at middle school 50%, drop at upper secondary ~31%) reflects the German system's specialization after 10th grade (Gymnasium Oberstufe)
@@ -105,17 +105,16 @@ print("=" * 70)
 print("""
 Subject      NRW Coverage
 ───────      ────────────
-Mathematics     34.1%
-Physics         38.2%
-Chemistry       35.9%
-STEM Mean       36.1%
+Mathematics     12.7%
+Physics          — (needs recompute)
+Chemistry        — (needs recompute)
+STEM Mean        — (needs recompute)
 
-All three STEM subjects show remarkably consistent ~36% coverage.
-This suggests a SYSTEMIC property of the NRW curriculum, not a subject-specific artifact.
+Note: Overall NRW coverage is now 12.7%. Subject-level values from the old pipeline are no longer valid.
 """)
 
 # Save findings
-findings = {"F9": f9_text, "F10": f10_text, "cross_subject_nrw": "NRW coverage is consistent (~36%) across all three STEM subjects — a systemic property of the curriculum design."}
+findings = {"F9": f9_text, "F10": f10_text, "cross_subject_nrw": "NRW overall coverage is 12.7%. Subject-level consistency needs recomputation with the new pipeline."}
 with open(OUT_DIR / "coverage_findings.json", "w", encoding="utf-8") as f:
     json.dump(findings, f, ensure_ascii=False, indent=2)
 

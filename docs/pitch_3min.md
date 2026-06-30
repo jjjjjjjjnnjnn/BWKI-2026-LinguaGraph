@@ -18,16 +18,16 @@ LinguaGraph builds multi-lingual knowledge graphs from textbook corpora using LL
 |--------|-----------------|-------|
 | **CDS** | How densely connected knowledge is | 0.042–0.271 |
 | **HDS** | How deep prerequisite chains go | Max 8 |
-| **LDS** | How different languages structure the same topic | 0.80–0.91 |
-| **CS** | How well textbooks cover official curricula | 8%–82% |
+| **LDS-K** | How different languages structure the same topic | 0.52–0.94 |
+| **CS** | How well textbooks cover official curricula | 12.7%–95.4% |
 
 ## 3. The Surprising Findings (60s)
 
 **F1:** Knowledge density peaks at **middle school** (CDS=0.271), not college. The transition to high school brings a **3.7× drop**. Both physics and chemistry follow the same early-peak-later-decline pattern.
 
-**F4:** Chinese and German textbooks show the **highest structural divergence** (LDS=0.907), while Chinese and English are surprisingly close (0.802). Curriculum tradition, not language family, drives this.
+**F4:** LDS-K reveals structural **convergence**: ZH-DE=0.519 (convergent), while ZH-EN=0.934 and DE-EN=0.938 approach noise level. Curriculum tradition, not language family, drives this.
 
-**F9:** Coverage scores range from **8% (China) to 82% (UK)**. But China's low score reflects selective depth, not poor alignment — their textbooks go deeper on fewer topics.
+**F9:** Coverage scores range from **12.7% (NRW) to 95.4% (China)**. NRW's low score reflects specialization depth, while China's high score reflects broad curriculum alignment.
 
 ## 4. The Big Picture (45s)
 

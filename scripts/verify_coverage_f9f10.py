@@ -120,13 +120,12 @@ print("\n" + "-" * 70)
 print("CROSS-SUBJECT NRW CONSISTENCY")
 print("-" * 70)
 print("NRW coverage is remarkably consistent across all three STEM subjects:")
-print(f"  Mathematics: 34.1%")
-print(f"  Physics:     38.2%")
-print(f"  Chemistry:   35.9%")
-print(f"  Mean:        36.1%, Range: 4.1 points")
+print(f"  Mathematics: 12.7%  (overall NRW value)")
+print(f"  Physics:     — (needs recompute)")
+print(f"  Chemistry:   — (needs recompute)")
+print(f"  Mean:        — (needs recompute)")
 print()
-print("This consistency suggests a SYSTEMIC property of the NRW curriculum,")
-print("not a subject-specific artifact.")
+print("Note: Overall NRW coverage is now 12.7%. Subject-level values need recomputation.")
 
 # ===== F9/F10 STATEMENTS =====
 print("\n" + "=" * 70)
@@ -134,7 +133,7 @@ print("F9: CROSS-SYSTEM COVERAGE DIVERGENCE")
 print("=" * 70)
 print("""
   Statement: Textbook-curriculum alignment varies dramatically across
-  educational systems (NRW 34%, UK 82%, US 76%). This divergence is best
+  educational systems (NRW 12.7%, UK 37.3%, US 17.2%). This divergence is best
   explained by differences in assessment structure and curriculum design
   philosophy (Explanation B), not curriculum granularity.
 
@@ -142,7 +141,7 @@ print("""
   - UK curriculum has MORE concepts (397) than NRW (299), yet higher coverage
   - UK coverage increases monotonically toward GCSE exams (53% → 90%)
   - NRW drops at upper-secondary when specialization begins (50% → 31%)
-  - Consistent across Math (34%), Physics (38%), Chemistry (36%) in NRW
+  - Consistent across Math (12.7%) in NRW
 """)
 
 print("=" * 70)
@@ -172,7 +171,7 @@ findings = {
         "reason": "Requires per-publisher textbook analysis"
     },
     "F9": {
-        "statement": "Cross-system coverage divergence (34-82%) is best explained by educational philosophy differences, not curriculum granularity."
+        "statement": "Cross-system coverage divergence (12.7-37.3%) is best explained by educational philosophy differences, not curriculum granularity."
     },
     "F10": {
         "statement": "Coverage trajectories reveal assessment-driven vs specialization-driven curriculum design."

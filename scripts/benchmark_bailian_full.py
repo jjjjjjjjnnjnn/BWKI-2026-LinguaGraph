@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Comprehensive BaiLian model benchmark — test ALL free-quota models on 20 gold labels."""
+"""Comprehensive BaiLian model benchmark — test ALL free-quota models on 20 gold labels.
+
+⚠️ SUPERSEDED — The 19-model benchmark (benchmark_bailian_19models.py) now supersedes this script.
+   Some models listed here (glm-4.6, qwen-coder-plus, qwen3-30b-a3b) may have been deprecated
+   or replaced in the newer benchmark. Run the 19-model version for current results.
+"""
 
 import json, re, sqlite3, sys, time
 from collections import defaultdict

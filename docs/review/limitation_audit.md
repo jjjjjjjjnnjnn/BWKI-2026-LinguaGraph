@@ -46,7 +46,7 @@
 | Limitation | Impact | Severity | Mitigation |
 |-----------|--------|----------|------------|
 | 3-component LDS (GED + NodeJac + EdgeJac) averages heterogeneous quantities | GED similarity depends on graph size; EdgeJac penalizes empty edge sets differently | **Medium** | All three components are reported separately; LDS interpreted as ordinal, not absolute |
-| No theoretical upper-bound calibration | LDS=0.907 is "high" but the scale is relative | **Low** | Simulation baseline (0.647) provides reference point; human LDS > simulated LDS validates metric |
+| No theoretical upper-bound calibration | LDS-K=0.519 (ZH-DE convergence) but the scale is relative | **Low** | Simulation baseline (0.647) provides reference point; human LDS > simulated LDS validates metric |
 | Edge Jaccard = 0 for human data (no edges) | Pulls LDS artifactually high for edge-free graphs | **Medium** | Noted explicitly; future work should extract relations for human responses |
 
 ### 2.3 Coverage Score (CS)
