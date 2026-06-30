@@ -62,7 +62,7 @@
 | **数据源** | `data/math_extractions/merged/aligned_data.json` |
 | **反证条件** | Full ≤ Structure Null → LDS 由度分布等结构因素主导 |
 
-### 实际结果（2026-06-29 运行）
+### 实际结果（2026-06-30 运行）
 
 | 条件 | ZH-EN | DE-EN | ZH-DE |
 |------|-------|-------|-------|
@@ -70,9 +70,15 @@
 | Structure Null | 0.957 | 0.957 | **0.717** |
 | Node-Permuted Null | 0.934 | 0.938 | 0.519 |
 | Complete Random | 1.000 | 1.000 | 1.000 |
+| **Within-language (noise floor)** | **0.970** | **0.962** | **0.974** |
+| **Monolingual control** | **0.970** | **0.962** | **0.974** |
+| **Label permutation** | 0.841 | 0.870 | 0.670 |
 
 **关键发现**: Full LDS < Structure Null LDS — 真实图比随机化图更相似。
 - 教材知识跨语言一致性很强（LDS-K 收敛而非发散）
+- **Within-language noise floor ≈ 0.97**: 同语言随机分半尚且如此
+- ZH-DE (0.52) 远低于噪声基底 → 真正的结构收敛
+- ZH-EN (0.93) 和 DE-EN (0.94) 接近噪声基底 → 典型差异水平
 - LDS-K **不**支持"语言驱动认知分歧"假说
 - 核心科学价值在 LDS-C（人类数据）和 ΔLDS，不在 LDS-K 本身
 
