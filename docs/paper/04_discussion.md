@@ -137,7 +137,41 @@ To verify that the LDS results are not driven by a single extraction model, we c
 
 A secondary finding: 186 additional DashScope models (text, vision, speech) all produced F1=0.0, confirming these require different prompting strategies. GPT-4o and GPT-4o-mini were credit-limited mid-benchmark.
 
-### 4.10 Limitations
+### 4.10 Threats to Validity
+
+We identify six principal threats to the validity of the reported findings.
+
+**Extraction model dependence**. All LDS computations depend on concept extraction via qwen-plus. While the 19-model benchmark confirms cross-model consistency (F1 range 0.55-0.67), a different extraction architecture could produce systematically different concept sets, potentially altering LDS values. This threat is partially mitigated by the narrow F1 range across diverse model families.
+
+**Corpus representativeness**. The mathematics corpus (68 textbooks) is comprehensive but biased: Chinese textbooks are predominantly from a single publisher (Renjiao), German textbooks are skewed toward university-level materials, and the English corpus is limited to IGCSE/IB frameworks. The within-language split-half null (LDS≈0.97) quantifies this threat.
+
+**Translation asymmetry in concept alignment**. Cross-language concept alignment depends on expert judgment. Misalignments inflate LDS by contributing to the union without intersecting. This threat is partially controlled by the aligned_groups structure, but asymmetric coverage remains a source of measurement error.
+
+**Curriculum selection bias**. Curriculum documents vary in granularity (NRW: 299 concepts, UK: 397, US: 2,124, CN: 87). Higher granularity mechanically lowers coverage scores. Our per-stage analysis partially controls for this.
+
+**Sample size limitation (pilot human data)**. The ΔLDS analysis relies on N=8 participants. The pilot data should be interpreted as feasibility evidence, not confirmatory. The heterogeneous ΔLDS pattern (DE-ZH +0.232, ZH-EN −0.230, DE-EN −0.211) may change qualitatively as N increases.
+
+**Null model scope**. The degree-preserving Structure Null tests edge arrangement beyond degree structure, but not whether degree structure itself is language-influenced. A future hierarchical null model could address this.
+
+### 4.11 LDS Interpretation Framework
+
+Rather than imposing arbitrary thresholds on LDS values, we anchor interpretation to the Null Model Suite:
+
+| LDS Range | Interpretation | Anchor |
+|:---------:|---------------|--------|
+| > 0.97 | Complete divergence | Above within-language noise floor |
+| 0.90–0.97 | Typical cross-language divergence | Near noise floor |
+| 0.50–0.90 | Partial convergence | Below noise floor, above Structure Null |
+| 0.00–0.50 | Substantial convergence | Well below all null expectations |
+
+Under this framework:
+- **Within-language noise floor** ≈ 0.97 (split-half) → upper bound for meaningful comparison
+- **Structure Null** ≈ 0.96 (degree-preserving) → structural baseline
+- **Complete Random** = 1.00 → sanity check
+
+ZH-DE (0.519) falls in the "partial convergence" range — substantially below null expectations. ZH-EN (0.934) and DE-EN (0.938) fall in the "near noise floor" range — indistinguishable from two random halves of the same language's textbook graph. These are primarily observations rather than explanations; the mechanism driving heterogeneity across pairs requires further investigation.
+
+### 4.12 Limitations
 
 Several limitations should be acknowledged:
 
@@ -155,9 +189,9 @@ Several limitations should be acknowledged:
 
 **Generalizability**. Mathematics, physics, and chemistry may share structural properties not present in humanities or social science disciplines. Extending to additional domains is a priority.
 
-**LDS formula**. The 3-component LDS (GED + node Jaccard + edge Jaccard) has the advantage of capturing multiple structural dimensions, but the statistical properties of the averaged score are not fully characterized. Edge Jaccard is sensitive to direction assignments, and GED similarity depends on graph size.
+**LDS interpretation**. The LDS Interpretation Framework (Section 4.11) anchors numerical values to null model baselines, but the thresholds (0.90, 0.50) are descriptive rather than inferential. As human data accumulates, bootstrap-derived confidence intervals should replace these descriptive thresholds for hypothesis testing.
 
-### 4.9 Implications
+### 4.13 Implications
 
 Despite these limitations, the current findings have implications for three communities:
 
@@ -165,4 +199,4 @@ Despite these limitations, the current findings have implications for three comm
 
 **For AI in education**: The automated pipeline demonstrates that large-scale cross-lingual knowledge graph construction from textbooks is feasible using current LLMs. This opens the possibility of curriculum-level knowledge analysis at a scale that manual content analysis cannot achieve.
 
-**For the study of linguistic relativity**: While our data do not directly address whether "language shapes thought," they demonstrate that language-specific knowledge organization patterns exist and can be quantified. This provides a methodological foundation for future work connecting textbook structure to cognitive structure.
+**For the study of linguistic relativity**: Our data do not support a uniform "language shapes knowledge" claim. Instead, they demonstrate that cross-linguistic structural relationships are heterogeneous — some language pairs converge substantially (ZH-DE), while others are at noise level (ZH-EN, DE-EN). The LinguaGraph framework provides tools for measuring this heterogeneity, but the question of whether a genuine language signal in cognitive expression exists remains open, pending the collection and analysis of human response data at adequate sample sizes.

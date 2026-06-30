@@ -1,12 +1,20 @@
 ## 5. Conclusion
 
-### 5.1 Unified Finding
+### 5.1 Summary of Observations
 
-This study investigated how different languages and educational systems organize the same knowledge. Using a cross-lingual knowledge graph framework applied to **574 mathematics and 366 physics concepts** across Chinese, German, and English, we found a consistent structural pattern:
+This study introduces LinguaGraph, a knowledge graph-based framework for measuring how knowledge is organized across languages (Chinese, German, English), disciplines (Mathematics, Physics, Chemistry), and educational systems (NRW, UK, US, China). The consistent structural pattern across all three disciplines is:
 
 > **Educational knowledge organization follows a universal "integrate-early, diverge-late" pattern: maximum connection density occurs at foundational stages (Elementary/Middle school) across both disciplines and all three languages, then monotonically declines as knowledge specializes.**
 
-Mathematics peaks at Middle school (CDS=0.271), Physics at Elementary school (CDS=0.222) — not at advanced levels as one might intuitively assume. This challenges the implicit belief that "more advanced knowledge is more densely connected."
+The cross-linguistic LDS analysis reveals a more nuanced picture. Rather than a uniform "language effect," we observe **heterogeneous cross-linguistic structural relationships**:
+
+| Language Pair | LDS-K (Textbook) | Interpretation |
+|:-------------:|:----------------:|---------------|
+| ZH–DE | 0.519 | **Substantial convergence** — far below within-language noise floor (0.97) |
+| ZH–EN | 0.934 | **Near noise floor** — not distinguishable from within-language variation |
+| DE–EN | 0.938 | **Near noise floor** — not distinguishable from within-language variation |
+
+The critical finding is not that "language affects knowledge structure" but that **different language pairs exhibit systematically different degrees of structural convergence**, with ZH-DE showing a pattern that standard null models (degree-preserving randomization, within-language split-half) cannot explain. This heterogeneity — rather than uniformity — is the primary observation our framework enables.
 
 ### 5.2 Three Dimensions of Structure
 
@@ -14,26 +22,27 @@ Mathematics peaks at Middle school (CDS=0.271), Physics at Elementary school (CD
 |-----------|---------|-------|
 | **Density (CDS)** | ALL disciplines peak in early stages, then decline | Math: 0.271 @ Middle; Physics: 0.222 @ Elementary; Chemistry: 0.042 @ Middle |
 | **Depth (HDS)** | Prerequisite chains are universally bounded | Max 8 (Math deepest at 8, Physics at 6) |
-| **Divergence (LDS-K)** | Textbook structures converge across languages; Null Model falsifies language-driven divergence | Full < Structure Null for all 3 pairs; core finding is ΔLDS |
-| **Coverage (CS)** | Textbook-curriculum alignment varies dramatically | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% |
+| **Divergence (LDS-K)** | Heterogeneous: ZH-DE converges (0.52); ZH-EN and DE-EN at noise level (0.93-0.94) | Within-language noise floor: ~0.97 |
+| **Coverage (CS)** | Textbook-curriculum alignment varies by governance model | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% |
 
-### 5.3 Core Scientific Contribution: The Null Model Reframing
+### 5.3 Core Scientific Contribution: A Framework for Measuring Cross-Linguistic Structural Heterogeneity
 
-The key methodological contribution of this study is the **Null Model Suite for LDS interpretation**. Without it, the high LDS-K values (0.519–0.938) would naively be interpreted as evidence for language-driven structural divergence. The degree-preserving Structure Null reveals the opposite: real textbook graphs are systematically **more similar** across languages than randomized graphs with the same degree sequence. This means:
+The key contribution of this study is **not** a universal finding about language and cognition, but rather a **methodological framework** that makes heterogeneous cross-linguistic structural relationships visible and quantifiable. Specifically:
 
-1. **LDS-K measures structural convergence, not divergence** — textbook knowledge organization is dominated by shared mathematical prerequisite logic
-2. **The interpretable signal is ΔLDS = LDS-C − LDS-K** — the difference between cognitive expression and textbook structure isolates the language-specific component
-3. **Wikipedia-based LDS (0.80–0.91) was an artifact of corpus construction** — the pipeline-corrected LDS-K tells a fundamentally different story
+1. **LDS alone is insufficient** — the Null Model Suite shows that LDS-K values must be interpreted against multiple baselines (Structure Null, within-language noise floor, Complete Random)
+2. **LDS-K reveals structural convergence, not divergence** — all three language pairs show LDS-K values at or below their within-language noise floors
+3. **ΔLDS = LDS-C − LDS-K is proposed as the interpretable language signal**, but requires N ≥ 30 human data for statistical validation
+4. **Pilot data (N=8) shows heterogeneous ΔLDS**: only DE-ZH (+0.232) supports the ΔLDS > 0 hypothesis; ZH-EN (−0.230) and DE-EN (−0.211) do not. The explanation for this pattern is not yet known and requires further investigation.
 
-The 19-model benchmark (hy3-preview F1=0.674 to deepseek-chat F1=0.547) confirms that extraction quality is robust and consistent across model families, supporting the reliability of the pipeline.
+The 19-model benchmark (F1 range 0.55–0.67) and Wikipedia negative control (LDS=1.0) confirm that these observations are not artifacts of extraction methodology.
 
 ### 5.4 Contributions
 
-We introduce LinguaGraph, the first framework that:
+We introduce LinguaGraph, a framework that:
 
 1. **Automatically constructs multilingual educational knowledge graphs** from textbooks across ZH/EN/DE
 2. **Quantifies structural patterns** via four graph-based metrics (CDS, HDS, LDS, CS)
-3. **Provides a Null Model foundation** for interpreting LDS, reframing the metric from "divergence" to "convergence" and identifying ΔLDS as the core signal
+3. **Provides a Null Model foundation** for interpreting LDS, revealing heterogeneous cross-linguistic structural relationships rather than a uniform language effect
 4. **Cross-validates across three STEM disciplines** (Mathematics, Physics, Chemistry)
 5. **Integrates curriculum alignment** across four educational systems (NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4%)
 6. **Benchmarks 19 multilingual LLMs** for concept extraction (F1 range 0.55–0.67), confirming cross-model robustness
@@ -59,4 +68,4 @@ The study has five principal limitations:
 
 ### Final Statement
 
-> **Knowledge in education follows a non-linear structural organization that is universal in its early-stage integration, discipline-dependent in its rate of divergence, and — counterintuitively — convergent rather than divergent across languages at the textbook level. The language signal emerges only in cognitive expression (LDS-C), isolated by the ΔLDS metric. LinguaGraph makes these invisible structural patterns visible, measurable, and comparable across 3 disciplines, 3 languages, and 4 educational systems.**
+> **Knowledge in education follows a non-linear structural organization that is universal in its early-stage integration and discipline-dependent in its rate of divergence. Cross-linguistic structural relationships are heterogeneous: textbook structures converge to varying degrees across language pairs, with ZH-DE showing substantially greater convergence than ZH-EN or DE-EN relative to within-language baselines. The LinguaGraph framework makes these invisible structural patterns visible, measurable, and comparable — providing a methodological foundation for investigating when, why, and to what extent language-specific knowledge organization exists. The question of whether a genuine language signal in cognitive expression exists remains open, pending the collection and analysis of N ≥ 30 human responses.**
