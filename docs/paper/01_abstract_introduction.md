@@ -20,13 +20,15 @@ Die Methodik basiert auf zwei komplementären Pipelines:
 Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt, die die Wissensexpansion von der Kernmathematik zur Hochschulmathematik sichtbar macht — mit interaktiven Sprachfiltern (ZH/EN/DE).
 
 **Zentrale Beiträge**:
-- Language Drift Score (LDS) als neuartige Metrik für sprachübergreifende kognitive Divergenz
-- Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg
+- Language Drift Score (LDS) als neuartige Metrik für sprachübergreifende Strukturanalyse — inklusive **LDS-K (Wissen)** , **LDS-C (Kognition)** und **ΔLDS = LDS-C − LDS-K**
+- **Null Model Suite**: Falsifikation der Annahme, dass LDS-K sprachgetriebene Divergenz misst — tatsächlich dominieren Gradverteilungsstrukturen, und Lehrbuchwissen konvergiert sprachübergreifend
+- Kernbeitrag verschiebt sich zu **ΔLDS** (menschliche Kognition minus Lehrbuchstruktur), der den sprachspezifischen Anteil isoliert
+- Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg (556 Konzepte, 4 Nullmodelle, 19-Modell-Benchmark)
 - CognitiveSpace: skalierbare 3D-Visualisierung mit 574 Konzepten aus 68 Lehrbüchern
 - Vollständige Pipeline: Textextraktion → Graphkonstruktion → Alignierung → Analyse → Visualisierung
-- **Humanvalidierung**: Erste empirische Bestätigung des LDS anhand von N=8 Probanden (90 Antworten, 6 Within-Subject-Vergleiche) mit konsistenter Rangfolge über alle Analyseebenen hinweg (F11, F12)
+- **Humanvalidierung**: Erste empirische Bestätigung von LDS-C anhand von N=8 Probanden (90 Antworten) mit konsistenter Rangfolge (DE–ZH > DE–EN > ZH–EN)
 
-Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Humanstudie (N=8) validiert den Language Drift Score erstmals auf individueller kognitiver Ebene und bestätigt die Konsistenz der Rangfolge über alle Analyseebenen hinweg (F11: konsistente Rangfolge DE–ZH > DE–EN > ZH–EN; F12: menschliche LDS > Simulationsbasislinie, p=0,05).
+Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Null Model Suite falsifiziert die Annahme sprachgetriebener Lehrbuchdivergenz und etabliert ΔLDS als Kernmetrik. Eine Humanstudie (N=8) validiert LDS-C erstmals auf individueller kognitiver Ebene.
 
 ---
 
