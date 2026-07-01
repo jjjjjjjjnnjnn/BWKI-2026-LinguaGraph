@@ -502,7 +502,7 @@ graph LR
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:24px">
     <div style="position:relative;padding-bottom:56.25%;background:var(--surface)">
-      <iframe src="../index.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" title="CognitiveSpace 3D" loading="lazy"></iframe>
+      <iframe src="../web/index.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" title="CognitiveSpace 3D" loading="lazy"></iframe>
     </div>
   </div>
   <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
@@ -623,7 +623,7 @@ graph LR
     </div>
 
     <div class="card">
-      <h3><i class="bi bi-cpu" style="color:var(--accent)"></i> <span data-i18n="val_bench_title">Model Benchmark: 20 Models</span></h3>
+      <h3><i class="bi bi-cpu" style="color:var(--accent)"></i> <span data-i18n="val_bench_title">Model Benchmark: 19 Models</span></h3>
       <p data-i18n="validation_bench_desc">All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.</p>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
         <canvas id="benchmarkChart" height="380"></canvas>
@@ -917,7 +917,7 @@ const TRANSLATIONS = {
     curr_cn_desc: 'Near-perfect coverage (95.4%). Textbooks are developed directly from the national curriculum, producing the highest alignment among all four systems.',
     section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
     val_gold_title: 'Gold Dataset: 92 Labels',
-    val_bench_title: 'Model Benchmark: 20 Models',
+    val_bench_title: 'Model Benchmark: 19 Models',
     validation_gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against qwen-plus extraction.',
     validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.',
     section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
@@ -968,10 +968,10 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
     finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. These differences reflect educational governance — centralized vs. federal — not alignment quality.',
-    finding_d_ev1: 'UK (highest)',
-    finding_d_ev2: 'US',
-    finding_d_ev3: 'NRW Germany',
-    finding_d_ev4: 'China',
+    finding_d_ev1: 'China (highest)',
+    finding_d_ev2: 'UK',
+    finding_d_ev3: 'US',
+    finding_d_ev4: 'NRW Germany',
     finding_d_fig8: 'Fig 8 — Overall Coverage Score',
     finding_d_fig9: 'Fig 9 — Stage-by-stage trajectory (UK ↗, NRW ↘)',
     finding_d_f9: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). Educational governance — centralized vs. federal — drives differences, not alignment quality.',
@@ -1079,10 +1079,10 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
     finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung.',
-    finding_d_ev1: 'UK (hoechste)',
-    finding_d_ev2: 'US',
-    finding_d_ev3: 'NRW Deutschland',
-    finding_d_ev4: 'China',
+    finding_d_ev1: 'China (hoechste)',
+    finding_d_ev2: 'GB',
+    finding_d_ev3: 'US',
+    finding_d_ev4: 'NRW Deutschland',
     finding_d_fig8: 'Abb. 8 — Gesamtabdeckungswert',
     finding_d_fig9: 'Abb. 9 — Stufenweise Trajektorie (UK ↗, NRW ↘)',
     finding_d_f9: 'Abdeckungswerte variieren stark zwischen Bildungssystemen (12.7%–95.4%). Bildungsgovernance — zentralisiert vs. föderal — bestimmt die Unterschiede.',
@@ -1201,7 +1201,7 @@ const TRANSLATIONS = {
     curr_cn_desc: 'Nahezu perfekte Abstimmung (95,4%) mit einem zentralisierten nationalen Lehrplan. Chinesische Lehrbücher folgen eng dem nationalen Lehrplan, was zur höchsten Abdeckung aller vier Systeme führt.',
     section_validation: 'Validierung', validation_sub: 'Goldstandard-Annotationen und Modellvergleiche',
     val_gold_title: 'Gold-Datensatz: 92 Labels',
-    val_bench_title: 'Modell-Benchmark: 20 Modelle',
+    val_bench_title: 'Modell-Benchmark: 19 Modelle',
     validation_gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in allen drei Sprachen. Validiert mit qwen-plus-Extraktion.',
     validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. qwen-plus als Produktionsmodell ausgewählt.',
     section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
@@ -1383,7 +1383,7 @@ curr_explanations_title: '三种竞争性解释',
     val_math: '数学',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
-    val_bench_note: '<strong>生产模型：</strong> qwen-plus · <strong>最佳免费：</strong> qwen3-30b-a3b (F1=0.858) · <strong>最佳非千问：</strong> glm-4.6 (F1=0.819)',
+    val_bench_note: '<strong>生产模型：</strong> qwen-plus (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
     paper_abstract_title: '摘要',
     paper_abstract_text: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于 LLM 从 180+ 本教材中进行概念提取，构建多语言知识图谱并通过四个指标量化结构差异。',
     paper_sections_title: '章节结构',
