@@ -234,14 +234,14 @@ Local: cognitive-space/web/index.html (file:// works)
 
 ### 30 seconds (poster / README)
 
-> **"Languages shape how we organize knowledge. LinguaGraph is a cross-lingual cognitive analysis system that extracts concepts from educational texts, builds knowledge graphs, measures structural differences using LDS (Language Distance Score), and visualizes them in an interactive 3D space."**
+> **"Languages shape how we organize knowledge. LinguaGraph is a cross-lingual cognitive analysis system that extracts concepts from educational texts, builds knowledge graphs, measures structural differences using LDS (Linguistic Divergence Score), and visualizes them in an interactive 3D space."**
 
 ### 1 minute (oral introduction)
 
-> "Languages do not only differ in vocabulary and grammar. They may also differ in how knowledge is structured and connected. To explore this question, I developed LinguaGraph, a cross-lingual cognitive analysis platform. The system extracts concepts from textbooks in Chinese, German, and English, constructs knowledge graphs, computes structural differences through LDS (Language Distance Score), and visualizes the resulting cognitive structures in an interactive 3D environment called CognitiveSpace."
+> "Languages do not only differ in vocabulary and grammar. They may also differ in how knowledge is structured and connected. To explore this question, I developed LinguaGraph, a cross-lingual cognitive analysis platform. The system extracts concepts from textbooks in Chinese, German, and English, constructs knowledge graphs, computes structural differences through LDS (Linguistic Divergence Score), and visualizes the resulting cognitive structures in an interactive 3D environment called CognitiveSpace."
 
 ### Abstract (paper)
 
-> "How does language influence the way knowledge is organized? This project investigates cross-lingual cognitive structures through automated knowledge graph construction. Educational texts in Chinese, German, and English are processed using a lightweight concept extraction pipeline, transformed into structured knowledge graphs, and compared using the Language Distance Score (LDS). The resulting cognitive structures are explored through CognitiveSpace, an interactive three-dimensional visualization environment designed for comparative analysis."
+> "How does language influence the way knowledge is organized? This project investigates cross-lingual cognitive structures through automated knowledge graph construction. Educational texts in Chinese, German, and English are processed using a lightweight concept extraction pipeline, transformed into structured knowledge graphs, and compared using the Linguistic Divergence Score (LDS). The resulting cognitive structures are explored through CognitiveSpace, an interactive three-dimensional visualization environment designed for comparative analysis."
 
 These three versions share the same structure: research question → method → metric → visualization. No premature claims about completed validation.

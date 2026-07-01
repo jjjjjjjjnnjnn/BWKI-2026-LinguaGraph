@@ -339,7 +339,7 @@ graph LR
   <div class="stats" style="margin-top:8px">
     <div class="stat-card"><div class="num" style="font-size:1.1rem">CDS</div><div class="label">Concept Density Score</div></div>
     <div class="stat-card"><div class="num green" style="font-size:1.1rem">HDS</div><div class="label">Hierarchy Depth Score</div></div>
-    <div class="stat-card"><div class="num cyan" style="font-size:1.1rem">LDS</div><div class="label">Language Drift Score</div></div>
+    <div class="stat-card"><div class="num cyan" style="font-size:1.1rem">LDS</div><div class="label">Linguistic Divergence Score</div></div>
     <div class="stat-card"><div class="num orange" style="font-size:1.1rem">CS</div><div class="label">Coverage Score</div></div>
   </div>
 </section>
@@ -486,8 +486,8 @@ flowchart TB
     </div>
     <div class="metric-card">
       <div class="symbol" style="color:var(--cyan)">LDS</div>
-      <div class="name">Language Drift Score</div>
-      <div class="formula">1 − mean(GED, Jaccard)</div>
+      <div class="name">Linguistic Divergence Score</div>
+      <div class="formula">1 − (J(V_a,V_b) + J(E_a,E_b))/2</div>
       <div class="desc">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
     <div class="metric-card">
@@ -886,7 +886,7 @@ var TRANSLATIONS = {
     stat_disciplines: 'Disciplines', stat_edu_systems: 'Education Systems',
     stat_gold_labels: 'Gold Labels', stat_f1: 'Overall F1',
     metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
-    metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
+    metric_lds: 'Linguistic Divergence Score', metric_cs: 'Coverage Score',
     section_rqs_title: 'Research Questions', section_rqs_sub: 'Three complementary lenses on knowledge organization',
     rq1_title: 'RQ1: Language', rq1_question: '<strong>Question:</strong> How do different languages organize the same knowledge?',
     rq1_answer: 'Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).',
@@ -911,7 +911,7 @@ var TRANSLATIONS = {
     section_methods_title: 'Methods', section_methods_sub: 'Four metrics + gold standard validation',
     metric_cds_name: 'Concept Density Score', metric_cds_desc: 'How densely connected knowledge is at each education level. Higher = more integrated.',
     metric_hds_name: 'Hierarchy Depth Score', metric_hds_desc: 'Longest prerequisite chain for each concept. Measures knowledge hierarchy depth.',
-    metric_lds_name: 'Language Drift Score', metric_lds_desc: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
+    metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'How much of the curriculum the textbooks cover. Textbook–curriculum alignment.',
     gold_title: 'Extraction Quality: 92 Gold Labels',
     gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against qwen-plus extraction.',
@@ -954,7 +954,7 @@ var TRANSLATIONS = {
     stat_disciplines: 'Disziplinen', stat_edu_systems: 'Bildungssysteme',
     stat_gold_labels: 'Goldstandard', stat_f1: 'Gesamt-F1',
     metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
-    metric_lds: 'Language Drift Score', metric_cs: 'Coverage Score',
+    metric_lds: 'Linguistic Divergence Score', metric_cs: 'Coverage Score',
     section_rqs_title: 'Forschungsfragen', section_rqs_sub: 'Drei komplementaere Perspektiven auf Wissensorganisation',
     rq1_title: 'FF1: Sprache', rq1_question: '<strong>Frage:</strong> Wie organisieren verschiedene Sprachen das gleiche Wissen?',
     rq1_answer: 'Nullmodell-Analyse zeigt Konvergenz der Lehrbuchstrukturen zwischen ZH und DE (LDS=0,519), entgegen sprachfamilienbasierter Erwartungen. ZH–EN und DE–EN bleiben stark divergent (0,934; 0,938).',
@@ -979,7 +979,7 @@ var TRANSLATIONS = {
     section_methods_title: 'Methoden', section_methods_sub: 'Vier Metriken + Goldstandard-Validierung',
     metric_cds_name: 'Concept Density Score', metric_cds_desc: 'Wie dicht Wissen auf jeder Bildungsstufe vernetzt ist. Hoeher = integrierter.',
     metric_hds_name: 'Hierarchy Depth Score', metric_hds_desc: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst die Hierarchietiefe des Wissens.',
-    metric_lds_name: 'Language Drift Score', metric_lds_desc: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
+    metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'Wie viel des Lehrplans die Lehrbuecher abdecken. Lehrbuch-Lehrplan-Abgleich.',
     gold_title: 'Extraktionsqualitaet: 92 Goldlabels',
     gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in 3 Sprachen, bewertet mit qwen-plus-Extraktion.',

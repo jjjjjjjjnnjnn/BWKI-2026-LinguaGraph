@@ -242,7 +242,6 @@ python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
-#
 ## Test any model
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
@@ -287,7 +286,6 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 
 ## 📚 Literaturverzeichnis
 
-#
 ## Wissenschaftliche Publikationen
 
 | # | Reference | Relevance |
@@ -305,7 +303,6 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik und Science.* | Curriculum coverage analysis methodology |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
 
-#
 ## Open-Source-Bibliotheken
 
 | Bibliothek | Verwendung | Lizenz |
@@ -320,7 +317,6 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
 | [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
 
-#
 ## Lehrplanstandards (Primärquellen)
 
 | Standard | Herausgeber |
@@ -330,7 +326,6 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
-#
 ## Lehrbuchkorpora
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
@@ -341,7 +336,6 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
-#
 ## Danksagungen
 
 - **BWKI 2026** — Wettbewerbsplattform
@@ -387,7 +381,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
     🧠 LinguaGraph Forschungsportal →
   </a>
   <br>
-  <span style="color:#94a3b8;font-size:0,85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
+  <span style="color:#94a3b8;font-size:0.85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
 </p>
 
 

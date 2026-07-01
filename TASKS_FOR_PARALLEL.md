@@ -138,9 +138,9 @@
 {
   "condition": "ablation_full",
   "lds_values": {
-    "ZH-EN": 0.802,
-    "DE-EN": 0.854,
-    "ZH-DE": 0.907
+    "ZH-EN": 0.934,
+    "DE-EN": 0.938,
+    "ZH-DE": 0.519
   },
   "run_at": "2026-06-29T..."
 }

@@ -14,7 +14,7 @@
 
 | # | Contribution | Type |
 |---|-------------|------|
-| 1 | **LDS (Language Distance Score)** — graph-theoretic metric for cross-language structural divergence | Research |
+| 1 | **LDS (Linguistic Divergence Score)** — graph-theoretic metric for cross-language structural divergence | Research |
 | 2 | **Cross-lingual analysis framework** — textbook extraction → KG → LDS → comparison pipeline | Method |
 | 3 | **CognitiveSpace** — interactive 3D visualization of cross-lingual knowledge structures | Demo |
 | 4 | **Lightweight local inference** — runs on Qwen2.5-0.5B GGUF (CPU, no cloud API) | Engineering |
