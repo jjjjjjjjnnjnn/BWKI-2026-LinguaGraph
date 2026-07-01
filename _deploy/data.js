@@ -14629,3 +14629,4 @@ var data = {
     ]
   }
 };
+var COGNITIVE_DATA = data;
