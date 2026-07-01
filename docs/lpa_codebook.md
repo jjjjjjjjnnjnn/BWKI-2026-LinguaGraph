@@ -1,7 +1,7 @@
 # LPA Codebook — Coding Dimensions, Definitions, and Rules
 
-> **Version**: 0.2 (exploratory) | **N pilot**: 6 DE
-> **Status**: Pre-registration ready | **Last updated**: 2026-07-01
+> **Version**: 0.3 (exploratory, IRR-informed) | **N pilot**: 6 DE
+> **Status**: Codebook v0.2→v0.3 revisions based on IRR baseline | **Last updated**: 2026-07-01
 
 ---
 
@@ -13,7 +13,11 @@ This codebook defines the coding dimensions and criteria for the Language Produc
 
 1. **Binary coding per criterion**: Each criterion is marked present (1) or absent (0). Partial credit is not assigned.
 2. **Independent dimensions**: Each dimension is coded and reported separately. Cross-dimension aggregation requires prior empirical validation (e.g., factor analysis at N ≥ 120).
-3. **Refusal handling**: Missing responses or explicit refusals ("Kann kein Englisch sorry") are coded as `refused: 1`. They are reported separately and excluded from criterion counts on a per-task basis.
+3. **Refusal handling**:
+   - Per-task refusal: If a response explicitly refuses a specific task ("Kann kein Englisch sorry", "-", ".."), code `refused: 1` for that task. ALL criteria for that task are coded 0 (absent).
+   - Cross-task spillover: A refusal on one task does NOT carry over to other tasks. Each task is coded independently.
+   - Temporal task (Q7): If a respondent writes "Kann kein Englisch sorry" in response to the temporal question, this is a task-level refusal. Code as T- (incomplete), NOT as T? (ambiguous). The presence of English text does not constitute a valid temporal response.
+   - Three or more task-level refusals: Flag the respondent for potential low-effort exclusion.
 4. **Threshold-coded criteria**: For continuous features (e.g., word count, number of clauses), binary thresholds are defined below with explicit rationale.
 
 ---
@@ -204,6 +208,17 @@ This policy applies to: coding criteria, inclusion/exclusion rules, scoring thre
 | ALL: Removed composite score computation | No evidence supports cross-dimension additivity (see `docs/lpa_framework.md`) |
 | ALL: Renamed "metrics" → "coding dimensions" | Accurate description: framework codes behavior, it does not measure latent constructs |
 | ALL: Renamed "compute_lpa()" → "code_respondent()" in pipeline | Naming reflects methodology: coding, not measurement |
+| ALL: IRR baseline (N=6, 30 criteria) | Mean κ = 0.782, 19/30 ≥ 0.80, 9 criteria below threshold |
+
+### v0.2 → v0.3 (2026-07-01, IRR-driven)
+
+| Change | Rationale |
+|--------|-----------|
+| Refusal handling: clarified cross-task independence | IRR found "Kann kein Englisch sorry" coded inconsistently (T? vs T-) across tasks |
+| Temporal task refusal rule: explicit guidance | Q7 refusals must be coded T- (incomplete), not T? (ambiguous) |
+| Spatial coding: manner_verb criterion clarified | Criterion now requires explicit manner verb (läuft, rennt), not generic motion verb (geht) |
+| Naming: creative criterion threshold raised | Must contain non-initial uppercase OR >15 characters; excludes single-word functional names |
+| Free association: beyond_prototype criterion dependency | Requires ≥3 total words, not just ≥2 non-prototypical ones |
 
 ### Implementation
 
