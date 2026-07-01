@@ -382,6 +382,16 @@ def build_body_map(lang: str) -> dict:
                 '- **LM Studio** — Lokale Inferenz (erste Entwicklung)',
             '- **OpenRouter** — Model routing (tested)':
                 '- **OpenRouter** — Modell-Routing (getestet)',
+            '- **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance':
+                '- **Schloss Heessen** — Internatsschule in Hamm, Deutschland; institutionelle Unterstützung und Bildungsberatung',
+            '- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation':
+                '- **Hochschule Hamm-Lippstadt (HSHL)** — Akademische Beratung und professionelle Konsultation',
+            '- **OpenCode GO** — AI service platform providing model API access':
+                '- **OpenCode GO** — KI-Dienstplattform mit Modell-API-Zugang',
+            '- **Claude Code** — AI-assisted development platform (Anthropic)':
+                '- **Claude Code** — KI-gestützte Entwicklungsplattform (Anthropic)',
+            '- **MimoCode** — AI service platform via OpenCode GO':
+                '- **MimoCode** — KI-Dienstplattform über OpenCode GO',
 
             # ===== Footer =====
             '<sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>':
@@ -713,6 +723,16 @@ def build_body_map(lang: str) -> dict:
                 '- **OpenRouter** — 模型路由（已测试）',
             '- **LM Studio** — Local inference (initial development)':
                 '- **LM Studio** — 本地推理（初期开发）',
+            '- **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance':
+                '- **Schloss Heessen** — 德国哈姆寄宿学校；机构支持与教育指导',
+            '- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation':
+                '- **Hamm-Lippstadt 应用科学大学（HSHL）** — 学术咨询与专业顾问',
+            '- **OpenCode GO** — AI service platform providing model API access':
+                '- **OpenCode GO** — AI 服务平台，提供模型 API 接入',
+            '- **Claude Code** — AI-assisted development platform (Anthropic)':
+                '- **Claude Code** — AI 辅助开发平台（Anthropic）',
+            '- **MimoCode** — AI service platform via OpenCode GO':
+                '- **MimoCode** — AI 服务平台（通过 OpenCode GO）',
 
             # ===== Footer =====
             '<sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>':
