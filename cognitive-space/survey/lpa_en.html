@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Linguistic Language Production Survey</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0e17; --surface: #111827; --surface2: #1a2332;
+  --card: #1e293b; --border: #2d3a50; --text: #e2e8f0;
+  --text2: #94a3b8; --accent: #60a5fa; --green: #34d399;
+  --red: #f87171; --yellow: #fbbf24;
+  --radius: 8px; --maxw: 640px;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  min-height: 100vh; display: flex; justify-content: center;
+}
+.container { max-width: var(--maxw); width: 100%; padding: 40px 20px; }
+h1 { font-size: 1.5rem; margin-bottom: 8px; }
+h2 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent); }
+p { margin-bottom: 16px; color: var(--text2); font-size: 0.95rem; }
+.step { display: none; }
+.step.active { display: block; }
+
+.btn {
+  display: inline-block; padding: 12px 28px; border: none; border-radius: var(--radius);
+  font-size: 1rem; font-weight: 600; cursor: pointer; transition: all .2s;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent), #a78bfa); color: #fff; }
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface2); }
+
+.consent-box {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; font-size: .85rem;
+}
+.consent-check { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.consent-check input { width: 20px; height: 20px; cursor: pointer; }
+
+.progress-bar {
+  height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 30px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--accent); transition: width .3s; border-radius: 2px; }
+
+.prompt-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin-bottom: 20px;
+}
+.prompt-card .num {
+  display: inline-block; background: var(--accent); color: #fff; border-radius: 50%;
+  width: 28px; height: 28px; text-align: center; line-height: 28px; font-size: .85rem;
+  font-weight: 700; margin-bottom: 12px;
+}
+.prompt-card .topic {
+  font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px;
+}
+.prompt-card .question { font-size: 1.05rem; margin-bottom: 16px; line-height: 1.5; }
+.prompt-card .sub-question {
+  font-size: .95rem; color: var(--text2); margin-bottom: 12px; padding: 12px; background: var(--surface);
+  border-radius: var(--radius); border-left: 3px solid var(--accent);
+}
+.prompt-card textarea {
+  width: 100%; min-height: 120px; padding: 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text);
+  font-size: .95rem; line-height: 1.5; resize: vertical; font-family: inherit;
+}
+.prompt-card textarea.small { min-height: 80px; }
+.prompt-card textarea.tiny { min-height: 60px; }
+.prompt-card textarea:focus { outline: none; border-color: var(--accent); }
+.char-count { text-align: right; font-size: .8rem; color: var(--text2); margin-top: 6px; }
+.char-count.warn { color: var(--red); }
+.char-count.ok { color: var(--green); }
+
+.svg-scene {
+  display: flex; justify-content: center; margin-bottom: 16px;
+  background: var(--surface); border-radius: var(--radius); padding: 16px;
+}
+
+.nav-btns { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.hidden { display: none; }
+.timer { font-size: .8rem; color: var(--text2); text-align: right; margin-bottom: 10px; }
+
+.demographics-form { margin-bottom: 20px; }
+.demographics-form label { display: block; margin-bottom: 6px; font-size: .9rem; color: var(--text2); }
+.demographics-form select, .demographics-form input[type="text"] {
+  width: 100%; padding: 10px 12px; margin-bottom: 16px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text);
+  font-size: .95rem; font-family: inherit;
+}
+.demographics-form select:focus, .demographics-form input:focus { outline: none; border-color: var(--accent); }
+
+.flash {
+  position: fixed; top: 20px; right: 20px; padding: 12px 20px;
+  border-radius: var(--radius); font-size: .9rem; z-index: 100;
+  animation: fadeIn .3s;
+}
+.flash-success { background: var(--green); color: #000; }
+.flash-error { background: var(--red); color: #fff; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.data-export {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; margin-top: 20px; font-family: monospace; font-size: .75rem;
+  max-height: 200px; overflow: auto; white-space: pre-wrap; color: var(--text2);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== STEP 1: WELCOME ===== -->
+<div id="step-welcome" class="step active">
+  <h1>Cross-Linguistic Language Production Survey</h1>
+  <p>This study investigates how speakers of different languages complete various language production tasks.</p>
+  <p>You will complete <strong>10 language tasks</strong>, including free association, scenario description, translation, and more. Estimated time: <strong>15-20 minutes</strong>.</p>
+  <p>All responses will be anonymized and used solely for academic research.</p>
+  <br>
+  <button class="btn btn-primary" id="start-btn">Start Survey</button>
+</div>
+
+<!-- ===== STEP 2: CONSENT ===== -->
+<div id="step-consent" class="step">
+  <h2>Informed Consent</h2>
+  <div class="consent-box">
+    <strong>Research Purpose:</strong> This study investigates how speakers of different languages produce language across various linguistic tasks.<br><br>
+    <strong>Procedure:</strong> You will complete 10 short language tasks in your native language. Estimated time: 15-20 minutes.<br><br>
+    <strong>Data Use:</strong> Your responses will be anonymized and used solely for academic research and scientific publications. All data will be stored and analyzed anonymously.<br><br>
+    <strong>Voluntary Participation:</strong> You may withdraw at any time without providing a reason. Data submitted before withdrawal may still be used unless you explicitly request its removal.<br><br>
+    <strong>Confidentiality:</strong> Your personal information will be kept strictly confidential. No individual identification will appear in research reports.<br><br>
+    <strong>Contact:</strong> Please contact the researcher with any questions.
+  </div>
+  <div class="consent-check">
+    <input type="checkbox" id="consent-checkbox">
+    <label for="consent-checkbox">I have read and understood the above information. I agree to participate in this study.</label>
+  </div>
+  <button class="btn btn-primary" id="consent-btn" disabled>Continue</button>
+</div>
+
+<!-- ===== STEP 3: DEMOGRAPHICS ===== -->
+<div id="step-demo" class="step">
+  <h2>Demographics</h2>
+  <p>Please provide your basic information. All data will be processed anonymously.</p>
+  <div class="demographics-form">
+    <label for="demo-native">Native Language *</label>
+    <input type="text" id="demo-native" placeholder="e.g., English" autocomplete="off">
+
+    <label for="demo-other-langs">Other languages you speak (comma-separated, by fluency)</label>
+    <input type="text" id="demo-other-langs" placeholder="e.g., German, Spanish" autocomplete="off">
+
+    <label for="demo-age">Age Group *</label>
+    <select id="demo-age">
+      <option value="">Please select</option>
+      <option value="under18">Under 18</option>
+      <option value="18-24">18-24</option>
+      <option value="25-34">25-34</option>
+      <option value="35-44">35-44</option>
+      <option value="45-54">45-54</option>
+      <option value="55-64">55-64</option>
+      <option value="65plus">65 or above</option>
+    </select>
+
+    <label for="demo-gender">Gender *</label>
+    <select id="demo-gender">
+      <option value="">Please select</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="nonbinary">Non-binary</option>
+      <option value="prefer-not">Prefer not to say</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" id="demo-btn">Start Language Tasks</button>
+</div>
+
+<!-- ===== STEP 4: SURVEY ===== -->
+<div id="step-survey" class="step">
+  <h2>Language Production Tasks</h2>
+  <p>Follow the instructions for each task. There are no right or wrong answers &mdash; we are interested in your natural language use.</p>
+  <div class="timer" id="timer">0:00</div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div id="prompts-container"></div>
+  <div class="nav-btns">
+    <button class="btn btn-secondary" id="prev-btn" style="display:none">Previous</button>
+    <button class="btn btn-primary" id="next-btn">Next</button>
+    <button class="btn btn-primary hidden" id="submit-btn">Submit</button>
+  </div>
+</div>
+
+<!-- ===== STEP 5: DEBRIEF ===== -->
+<div id="step-debrief" class="step">
+  <h2>Thank You</h2>
+  <p>Your responses have been saved. This study investigates how speakers of different languages differ in language production tasks. Your anonymized responses will be analyzed cross-linguistically.</p>
+  <p>Please download your data using the button below and send it to the researcher.</p>
+  <button class="btn btn-primary" id="download-btn">Download My Data</button>
+  <div class="data-export hidden" id="data-preview"></div>
+  <p style="margin-top:20px;font-size:.8rem;color:var(--text2)">Your response ID:</p>
+  <p style="font-family:monospace;font-size:.8rem;color:var(--accent)" id="response-id"></p>
+</div>
+
+</div>
+
+<script>
+const TASKS = [
+  {
+    topic: 'Free Association',
+    question: 'Please write the <strong>first five words</strong> that come to your mind for the concept <strong>"Time"</strong> as quickly as possible.',
+    minLen: 5, placeholder: 'e.g., past, future, clock, flow, memory…'
+  },
+  {
+    topic: 'Cultural Concept Explanation',
+    question: 'Please explain the German concept <strong>"Schadenfreude"</strong>.',
+    sub: 'Complete the following two parts:<br>(a) Explain what "Schadenfreude" means in English.<br>(b) Explain this concept in <strong>another language</strong> you know well.<br><br><strong>Important:</strong> Do not literally translate your English explanation into the other language. Write independent explanations in both languages.',
+    minLen: 30, placeholder: 'Please explain "Schadenfreude" in English and another language…'
+  },
+  {
+    topic: 'Social Embarrassment',
+    question: 'You have said something wrong in front of <strong>20 people</strong> and everyone is <strong>laughing</strong>. What would you most likely say in your native language?',
+    sub: 'Write only <strong>one sentence</strong>, maximum 15 words.',
+    minLen: 5, placeholder: 'The most natural thing you would say…'
+  },
+  {
+    topic: 'Picture Description',
+    question: 'Describe in your native language what is happening in the picture.',
+    sub: 'Maximum 20 words.',
+    minLen: 5,
+    svg: 'vase',
+    placeholder: 'Describe the scene…'
+  },
+  {
+    topic: 'Motion Event',
+    question: 'Express the following situation in your native language:',
+    sub: '"Mike comes out of a room, walks through the living room and enters the garden."',
+    minLen: 10, placeholder: 'Express this naturally in your native language…'
+  },
+  {
+    topic: 'Static Spatial Description',
+    question: 'Describe the position of the <strong>cup</strong> and the <strong>pen</strong> relative to the <strong>book</strong> in your native language.',
+    sub: 'Look carefully at the spatial arrangement in the image below.',
+    minLen: 10,
+    svg: 'spatial',
+    placeholder: 'Describe the spatial relationships…'
+  },
+  {
+    topic: 'Temporal Reference',
+    question: 'Express the following two sentences in your native language:',
+    sub: '(1) "The exam is in six days."<br><br>(2) "The exam has been moved forward by two days."<br><br>Please write both expressions separately.',
+    minLen: 10, placeholder: 'Write both temporal expressions in your native language…'
+  },
+  {
+    topic: 'Scene Description',
+    question: 'Describe the following scene in your native language:',
+    sub: '',
+    minLen: 15,
+    svg: 'giving',
+    placeholder: 'Describe what the people in the image are doing…'
+  },
+  {
+    topic: 'Complex Sentence',
+    question: 'Express the following situation in your native language:',
+    sub: '"Yesterday afternoon, because of the rain, the mother gave the girl an umbrella."',
+    minLen: 10, placeholder: 'Express this naturally in your native language…'
+  },
+  {
+    topic: 'Naming a Robot',
+    question: 'In a large hospital, there is a robot responsible for the following tasks:',
+    sub: '&bull; Guiding visitors through the lobby<br>&bull; Delivering medicine to hospital wards<br>&bull; Keeping patients company by chatting<br><br>Please invent an <strong>official name</strong> for this robot in your native language, and briefly explain <strong>why you chose this name</strong>.',
+    minLen: 10, placeholder: 'The robot\'s name and the reason behind it…'
+  }
+];
+
+// ===== STATE =====
+let currentQuestion = 0;
+let responses = {};
+let startTime = null;
+let questionStartTimes = {};
+let timerInterval = null;
+let demographics = {};
+
+// ===== HELPERS =====
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function flash(msg, type) {
+  const el = document.createElement('div');
+  el.className = 'flash flash-' + (type || 'success');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+function generateId() {
+  const d = new Date();
+  return 'LPA-EN_' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '_' + Math.random().toString(36).slice(2,8).toUpperCase();
+}
+
+// ===== SVG GENERATORS =====
+function renderSVGVase() {
+  return '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="max-width:240px;width:100%;height:auto">' +
+    '<rect x="30" y="110" width="140" height="8" rx="2" fill="#5c4033"/>' +
+    '<rect x="15" y="116" width="170" height="6" rx="2" fill="#3e2723"/>' +
+    '<path d="M100 20 Q130 30 125 70 L120 110 L80 110 L75 70 Q70 30 100 20Z" fill="#88ccee" stroke="#5599bb" stroke-width="1.5" transform="rotate(35, 100, 80)"/>' +
+    '<ellipse cx="120" cy="52" rx="10" ry="6" fill="#88ccee" stroke="#5599bb" stroke-width="1" transform="rotate(35, 120, 52)"/>' +
+    '<circle cx="128" cy="90" r="2" fill="#88ccee" opacity=".7"/>' +
+    '<circle cx="131" cy="100" r="2.5" fill="#88ccee" opacity=".6"/>' +
+    '<circle cx="126" cy="110" r="2" fill="#88ccee" opacity=".5"/>' +
+    '<circle cx="122" cy="118" r="1.5" fill="#88ccee" opacity=".4"/>' +
+    '</svg>';
+}
+
+function renderSVGSpatial() {
+  return '<svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" style="max-width:280px;width:100%;height:auto">' +
+    '<rect x="10" y="105" width="220" height="6" rx="2" fill="#5c4033"/>' +
+    '<rect x="80" y="55" width="80" height="50" rx="2" fill="#e8d5a3" stroke="#b8963e" stroke-width="1.5"/>' +
+    '<text x="120" y="85" text-anchor="middle" font-size="11" fill="#8B7355">Book</text>' +
+    '<rect x="20" y="50" width="35" height="40" rx="3" fill="#f0f0f0" stroke="#ccc" stroke-width="1.5"/>' +
+    '<path d="M22 60 L37 50 L52 60 L52 85 L22 85Z" fill="#e0e0e0" stroke="#bbb" stroke-width="1"/>' +
+    '<text x="36" y="78" text-anchor="middle" font-size="9" fill="#999">Cup</text>' +
+    '<line x1="185" y1="50" x2="205" y2="30" stroke="#333" stroke-width="3" stroke-linecap="round"/>' +
+    '<line x1="205" y1="30" x2="210" y2="25" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>' +
+    '<line x1="187" y1="48" x2="207" y2="28" stroke="#555" stroke-width="1" stroke-linecap="round"/>' +
+    '<text x="200" y="58" text-anchor="middle" font-size="9" fill="#999">Pen</text>' +
+    '</svg>';
+}
+
+function renderSVGGiving() {
+  return '<svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" style="max-width:280px;width:100%;height:auto">' +
+    '<!-- Person A (left) -->' +
+    '<circle cx="60" cy="25" r="16" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>' +
+    '<line x1="60" y1="41" x2="60" y2="90" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>' +
+    '<line x1="60" y1="55" x2="95" y2="65" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="60" y1="55" x2="30" y2="70" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="60" y1="90" x2="45" y2="120" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="60" y1="90" x2="75" y2="120" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>' +
+    '<text x="60" y="137" text-anchor="middle" font-size="11" fill="#94a3b8">A</text>' +
+    '<!-- Book -->' +
+    '<rect x="95" y="58" width="28" height="20" rx="2" fill="#e8d5a3" stroke="#b8963e" stroke-width="1.5"/>' +
+    '<line x1="109" y1="58" x2="109" y2="78" stroke="#b8963e" stroke-width="1" stroke-dasharray="2,1"/>' +
+    '<!-- Person B (right) -->' +
+    '<circle cx="180" cy="25" r="16" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5"/>' +
+    '<line x1="180" y1="41" x2="180" y2="90" stroke="#60a5fa" stroke-width="5" stroke-linecap="round"/>' +
+    '<line x1="180" y1="55" x2="135" y2="65" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="180" y1="55" x2="200" y2="70" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="180" y1="90" x2="165" y2="120" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>' +
+    '<line x1="180" y1="90" x2="195" y2="120" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>' +
+    '<text x="180" y="137" text-anchor="middle" font-size="11" fill="#94a3b8">B</text>' +
+    '<!-- Arrow -->' +
+    '<text x="120" y="52" text-anchor="middle" font-size="16" fill="#34d399">&rarr;</text>' +
+    '</svg>';
+}
+
+// ===== SURVEY =====
+function startSurvey() {
+  const container = document.getElementById('prompts-container');
+  container.innerHTML = '';
+
+  TASKS.forEach(function(task, idx) {
+    const card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.id = 'q-' + idx;
+    if (idx > 0) card.style.display = 'none';
+
+    let svgHtml = '';
+    if (task.svg === 'vase') svgHtml = renderSVGVase();
+    else if (task.svg === 'spatial') svgHtml = renderSVGSpatial();
+    else if (task.svg === 'giving') svgHtml = renderSVGGiving();
+
+    const subHtml = task.sub ? '<div class="sub-question">' + task.sub + '</div>' : '';
+    const svgSection = svgHtml ? '<div class="svg-scene">' + svgHtml + '</div>' : '';
+
+    const taClass = task.minLen <= 5 ? 'tiny' : 'small';
+
+    card.innerHTML =
+      '<div class="num">' + (idx + 1) + '</div>' +
+      '<div class="topic">' + task.topic + '</div>' +
+      '<div class="question">' + task.question + '</div>' +
+      subHtml +
+      svgSection +
+      '<textarea id="ta-' + idx + '" class="' + taClass + '" placeholder="' + task.placeholder + '"></textarea>' +
+      '<div class="char-count" id="cc-' + idx + '">0 chars</div>';
+
+    container.appendChild(card);
+
+    const ta = card.querySelector('textarea');
+    const cc = card.querySelector('.char-count');
+    ta.addEventListener('input', function() {
+      const len = this.value.length;
+      cc.textContent = len + ' chars';
+      cc.className = 'char-count' + (len < task.minLen ? ' warn' : ' ok');
+      responses[idx] = { taskIdx: idx, text: this.value, timestamp: new Date().toISOString() };
+    });
+  });
+
+  responses = {};
+  questionStartTimes = {};
+  currentQuestion = 0;
+  startTime = Date.now();
+  questionStartTimes[0] = startTime;
+
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+
+  showStep('step-survey');
+  updateNav();
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  document.getElementById('timer').textContent = m + ':' + String(s).padStart(2, '0');
+}
+
+function showQuestion(idx) {
+  document.querySelectorAll('.prompt-card').forEach(function(c) { c.style.display = 'none'; });
+  const el = document.getElementById('q-' + idx);
+  if (el) el.style.display = 'block';
+  document.getElementById('progress-fill').style.width = ((idx + 1) / 10 * 100) + '%';
+
+  if (idx > 0 && questionStartTimes[idx] === undefined) {
+    questionStartTimes[idx] = Date.now();
+  }
+}
+
+function updateNav() {
+  showQuestion(currentQuestion);
+  document.getElementById('prev-btn').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+  document.getElementById('next-btn').classList.toggle('hidden', currentQuestion === 9);
+  document.getElementById('submit-btn').classList.toggle('hidden', currentQuestion < 9);
+}
+
+function getMinLen(qIdx) {
+  return TASKS[qIdx] ? TASKS[qIdx].minLen : 30;
+}
+
+// ===== EVENT LISTENERS =====
+document.getElementById('start-btn').addEventListener('click', function() {
+  showStep('step-consent');
+  document.getElementById('consent-checkbox').checked = false;
+  document.getElementById('consent-btn').disabled = true;
+});
+
+document.getElementById('consent-checkbox').addEventListener('change', function() {
+  document.getElementById('consent-btn').disabled = !this.checked;
+});
+
+document.getElementById('consent-btn').addEventListener('click', function() {
+  showStep('step-demo');
+});
+
+document.getElementById('demo-btn').addEventListener('click', function() {
+  const native = document.getElementById('demo-native').value.trim();
+  const age = document.getElementById('demo-age').value;
+  const gender = document.getElementById('demo-gender').value;
+
+  if (!native) { flash('Please enter your native language', 'error'); return; }
+  if (!age) { flash('Please select your age group', 'error'); return; }
+  if (!gender) { flash('Please select your gender', 'error'); return; }
+
+  demographics = {
+    nativeLanguage: native,
+    otherLanguages: document.getElementById('demo-other-langs').value.trim(),
+    ageGroup: age,
+    gender: gender
+  };
+
+  startSurvey();
+});
+
+document.getElementById('prev-btn').addEventListener('click', function() {
+  if (currentQuestion > 0) { currentQuestion--; updateNav(); }
+});
+
+document.getElementById('next-btn').addEventListener('click', function() {
+  const ta = document.getElementById('ta-' + currentQuestion);
+  const minLen = getMinLen(currentQuestion);
+  if (ta && ta.value.trim().length < minLen) {
+    if (minLen === 5) flash('Please write at least 5 characters', 'error');
+    else flash('Please write at least ' + minLen + ' characters', 'error');
+    return;
+  }
+  if (currentQuestion < 9) { currentQuestion++; updateNav(); }
+});
+
+document.getElementById('submit-btn').addEventListener('click', function() {
+  const ta = document.getElementById('ta-' + currentQuestion);
+  const minLen = getMinLen(currentQuestion);
+  if (ta && ta.value.trim().length < minLen) {
+    if (minLen === 5) flash('Please write at least 5 characters', 'error');
+    else flash('Please write at least ' + minLen + ' characters', 'error');
+    return;
+  }
+  finishSurvey();
+});
+
+function finishSurvey() {
+  if (timerInterval) clearInterval(timerInterval);
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const responseId = generateId();
+
+  const timing = {};
+  const sortedKeys = Object.keys(questionStartTimes).map(Number).sort(function(a, b) { return a - b; });
+  sortedKeys.forEach(function(key, i) {
+    const nextKey = i + 1 < sortedKeys.length ? sortedKeys[i + 1] : null;
+    if (nextKey !== null) {
+      timing[key] = Math.floor((questionStartTimes[nextKey] - questionStartTimes[key]) / 1000);
+    }
+  });
+  const lastIdx = sortedKeys.length - 1;
+  const prevSum = Object.values(timing).reduce(function(a, b) { return a + b; }, 0);
+  timing[lastIdx] = elapsed - prevSum;
+
+  const data = {
+    survey: 'lpa',
+    language: 'en',
+    response_id: responseId,
+    timestamp: new Date().toISOString(),
+    duration_seconds: elapsed,
+    demographics: demographics,
+    responses: Object.values(responses).sort(function(a, b) { return a.taskIdx - b.taskIdx; }),
+    task_timing_seconds: timing,
+    consent: true,
+    metadata: {
+      survey_version: 'lpa_v1',
+      platform: 'web',
+      task_count: 10
+    }
+  };
+
+  localStorage.setItem('lpa_en_response', JSON.stringify(data));
+  localStorage.setItem('lpa_en_response_id', responseId);
+
+  document.getElementById('response-id').textContent = responseId;
+  document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+  document.getElementById('data-preview').classList.remove('hidden');
+
+  showStep('step-debrief');
+}
+
+document.getElementById('download-btn').addEventListener('click', function() {
+  const raw = localStorage.getItem('lpa_en_response');
+  if (!raw) { flash('No data found', 'error'); return; }
+  const blob = new Blob([raw], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'lpa_en_' + Date.now() + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  flash('Download started!');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跨语言语言产出分析问卷</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0e17; --surface: #111827; --surface2: #1a2332;
+  --card: #1e293b; --border: #2d3a50; --text: #e2e8f0;
+  --text2: #94a3b8; --accent: #60a5fa; --green: #34d399;
+  --red: #f87171; --yellow: #fbbf24;
+  --radius: 8px; --maxw: 640px;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  min-height: 100vh; display: flex; justify-content: center;
+}
+.container { max-width: var(--maxw); width: 100%; padding: 40px 20px; }
+h1 { font-size: 1.5rem; margin-bottom: 8px; }
+h2 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent); }
+p { margin-bottom: 16px; color: var(--text2); font-size: 0.95rem; }
+.step { display: none; }
+.step.active { display: block; }
+
+.btn {
+  display: inline-block; padding: 12px 28px; border: none; border-radius: var(--radius);
+  font-size: 1rem; font-weight: 600; cursor: pointer; transition: all .2s;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent), #a78bfa); color: #fff; }
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface2); }
+
+.consent-box {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; font-size: .85rem;
+}
+.consent-check { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.consent-check input { width: 20px; height: 20px; cursor: pointer; }
+
+.progress-bar {
+  height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 30px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--accent); transition: width .3s; border-radius: 2px; }
+
+.prompt-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin-bottom: 20px;
+}
+.prompt-card .num {
+  display: inline-block; background: var(--accent); color: #fff; border-radius: 50%;
+  width: 28px; height: 28px; text-align: center; line-height: 28px; font-size: .85rem;
+  font-weight: 700; margin-bottom: 12px;
+}
+.prompt-card .topic {
+  font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px;
+}
+.prompt-card .question { font-size: 1.05rem; margin-bottom: 16px; line-height: 1.5; }
+.prompt-card .sub-question {
+  font-size: .95rem; color: var(--text2); margin-bottom: 12px; padding: 12px; background: var(--surface);
+  border-radius: var(--radius); border-left: 3px solid var(--accent);
+}
+.prompt-card textarea {
+  width: 100%; min-height: 120px; padding: 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text);
+  font-size: .95rem; line-height: 1.5; resize: vertical; font-family: inherit;
+}
+.prompt-card textarea.small { min-height: 80px; }
+.prompt-card textarea.tiny { min-height: 60px; }
+.prompt-card textarea:focus { outline: none; border-color: var(--accent); }
+.char-count { text-align: right; font-size: .8rem; color: var(--text2); margin-top: 6px; }
+.char-count.warn { color: var(--red); }
+.char-count.ok { color: var(--green); }
+
+.svg-scene {
+  display: flex; justify-content: center; margin-bottom: 16px;
+  background: var(--surface); border-radius: var(--radius); padding: 16px;
+}
+
+.nav-btns { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.hidden { display: none; }
+.timer { font-size: .8rem; color: var(--text2); text-align: right; margin-bottom: 10px; }
+
+.demographics-form { margin-bottom: 20px; }
+.demographics-form label { display: block; margin-bottom: 6px; font-size: .9rem; color: var(--text2); }
+.demographics-form select, .demographics-form input[type="text"] {
+  width: 100%; padding: 10px 12px; margin-bottom: 16px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text);
+  font-size: .95rem; font-family: inherit;
+}
+.demographics-form select:focus, .demographics-form input:focus { outline: none; border-color: var(--accent); }
+
+.flash {
+  position: fixed; top: 20px; right: 20px; padding: 12px 20px;
+  border-radius: var(--radius); font-size: .9rem; z-index: 100;
+  animation: fadeIn .3s;
+}
+.flash-success { background: var(--green); color: #000; }
+.flash-error { background: var(--red); color: #fff; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.data-export {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; margin-top: 20px; font-family: monospace; font-size: .75rem;
+  max-height: 200px; overflow: auto; white-space: pre-wrap; color: var(--text2);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== STEP 1: WELCOME ===== -->
+<div id="step-welcome" class="step active">
+  <h1>跨语言语言产出分析问卷</h1>
+  <p>本研究旨在调查不同语言使用者如何完成各类语言产出任务。</p>
+  <p>您将完成10项语言任务，包括自由联想、情景描述、翻译等。预计需要 <strong>15-20 分钟</strong>。</p>
+  <p>所有回答将匿名处理，仅用于学术研究。</p>
+  <br>
+  <button class="btn btn-primary" id="start-btn">开始问卷</button>
+</div>
+
+<!-- ===== STEP 2: CONSENT ===== -->
+<div id="step-consent" class="step">
+  <h2>知情同意书</h2>
+  <div class="consent-box">
+    <strong>研究目的：</strong>本研究旨在调查不同语言使用者完成语言产出任务时的语言表现差异。<br><br>
+    <strong>流程：</strong>您将使用您的母语完成10项简短的语言任务。预计时间：15-20分钟。<br><br>
+    <strong>数据使用：</strong>您的回答将被匿名化处理，仅用于学术研究和科学出版物。所有数据将以匿名形式存储和分析。<br><br>
+    <strong>自愿参与：</strong>您可随时退出本研究，无需说明理由。退出前已提交的数据可能仍被使用，除非您明确要求撤回。<br><br>
+    <strong>保密性：</strong>您的个人信息将严格保密，不会在研究报告中单独识别。<br><br>
+    <strong>联系方式：</strong>如有任何问题，请联系研究者。
+  </div>
+  <div class="consent-check">
+    <input type="checkbox" id="consent-checkbox">
+    <label for="consent-checkbox">我已阅读并理解以上信息，同意参与本研究。</label>
+  </div>
+  <button class="btn btn-primary" id="consent-btn" disabled>继续</button>
+</div>
+
+<!-- ===== STEP 3: DEMOGRAPHICS ===== -->
+<div id="step-demo" class="step">
+  <h2>基本信息</h2>
+  <p>请填写您的基本信息。所有信息将匿名处理。</p>
+  <div class="demographics-form">
+    <label for="demo-native">母语 *</label>
+    <input type="text" id="demo-native" placeholder="例如：中文（普通话）" autocomplete="off">
+
+    <label for="demo-other-langs">您掌握的其他语言（按流利程度排序，逗号分隔）</label>
+    <input type="text" id="demo-other-langs" placeholder="例如：英语, 日语" autocomplete="off">
+
+    <label for="demo-age">年龄段 *</label>
+    <select id="demo-age">
+      <option value="">请选择</option>
+      <option value="under18">18岁以下</option>
+      <option value="18-24">18-24岁</option>
+      <option value="25-34">25-34岁</option>
+      <option value="35-44">35-44岁</option>
+      <option value="45-54">45-54岁</option>
+      <option value="55-64">55-64岁</option>
+      <option value="65plus">65岁及以上</option>
+    </select>
+
+    <label for="demo-gender">性别 *</label>
+    <select id="demo-gender">
+      <option value="">请选择</option>
+      <option value="male">男</option>
+      <option value="female">女</option>
+      <option value="nonbinary">非二元</option>
+      <option value="prefer-not">不愿透露</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" id="demo-btn">开始语言任务</button>
+</div>
+
+<!-- ===== STEP 4: SURVEY ===== -->
+<div id="step-survey" class="step">
+  <h2>语言产出任务</h2>
+  <p>请根据每个任务的说明完成作答。没有标准答案——我们关注的是您自然的语言使用方式。</p>
+  <div class="timer" id="timer">0:00</div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div id="prompts-container"></div>
+  <div class="nav-btns">
+    <button class="btn btn-secondary" id="prev-btn" style="display:none">上一题</button>
+    <button class="btn btn-primary" id="next-btn">下一题</button>
+    <button class="btn btn-primary hidden" id="submit-btn">提交</button>
+  </div>
+</div>
+
+<!-- ===== STEP 5: DEBRIEF ===== -->
+<div id="step-debrief" class="step">
+  <h2>感谢您的参与</h2>
+  <p>您的回答已保存。本研究旨在调查不同语言使用者在语言产出任务中的表现差异。您的回答将被匿名化并进行跨语言分析。</p>
+  <p>请点击下方按钮下载您的数据，并将其发送给研究者。</p>
+  <button class="btn btn-primary" id="download-btn">下载我的数据</button>
+  <div class="data-export hidden" id="data-preview"></div>
+  <p style="margin-top:20px;font-size:.8rem;color:var(--text2)">您的回答编号：</p>
+  <p style="font-family:monospace;font-size:.8rem;color:var(--accent)" id="response-id"></p>
+</div>
+
+</div>
+
+<script>
+const TASKS = [
+  {
+    topic: '自由联想',
+    question: '请尽可能快地写出您听到"<strong>时间</strong>"这个词时首先想到的<strong>五个词语</strong>。',
+    minLen: 5, placeholder: '例如：过去、未来、钟表、流逝、记忆……'
+  },
+  {
+    topic: '文化概念解释',
+    question: '请解释中文概念"<strong>面子</strong>"。',
+    sub: '请完成以下两部分：<br>(a) 用中文解释"面子"的含义。<br>(b) 用您掌握的一门外语解释"面子"这个概念。<br><br><strong>重要：</strong>请不要把中文解释逐字翻译成外语。请用两种语言分别独立解释。',
+    minLen: 30, placeholder: '请分别用中文和外语解释"面子"的含义……'
+  },
+  {
+    topic: '社交尴尬场景',
+    question: '您在 <strong>20 个人</strong>面前说错了话，大家<strong>都笑了</strong>。在这种情况下，您最可能用您的母语说出什么话？',
+    sub: '请只写<strong>一个句子</strong>，最多 15 个词。',
+    minLen: 5, placeholder: '写出您最可能脱口而出的那句话……'
+  },
+  {
+    topic: '图片描述',
+    question: '请用您的母语描述图片中正在发生的事情。',
+    sub: '最多 20 个词。',
+    minLen: 5,
+    svg: 'vase',
+    placeholder: '描述图中场景……'
+  },
+  {
+    topic: '运动事件',
+    question: '请用您的母语表达以下情景：',
+    sub: '"Mike 从房间里出来，穿过客厅，走进花园。"',
+    minLen: 10, placeholder: '请用您的母语自然表达这句话……'
+  },
+  {
+    topic: '静态空间描述',
+    question: '请用您的母语描述<strong>杯子</strong>和<strong>笔</strong>相对于<strong>书</strong>的位置。',
+    sub: '仔细观察下图中的物品位置关系。',
+    minLen: 10,
+    svg: 'spatial',
+    placeholder: '描述杯子、笔和书的位置关系……'
+  },
+  {
+    topic: '时间参照表达',
+    question: '请用您的母语表达以下两个句子：',
+    sub: '(1) "考试在六天后。"<br><br>(2) "考试被提前了两天。"<br><br>请分别写出两种表达。',
+    minLen: 10, placeholder: '请分别写出两个句子的母语表达……'
+  },
+  {
+    topic: '场景描述',
+    question: '请用您的母语描述以下场景：',
+    sub: '',
+    minLen: 15,
+    svg: 'giving',
+    placeholder: '描述图中人物正在做什么……'
+  },
+  {
+    topic: '复杂句表达',
+    question: '请用您的母语表达以下情景：',
+    sub: '"昨天下午，因为下雨，妈妈给了女孩一把雨伞。"',
+    minLen: 10, placeholder: '请用您的母语自然表达这个句子……'
+  },
+  {
+    topic: '命名机器人',
+    question: '在一家大型医院里，有一个机器人负责以下工作：',
+    sub: '&bull; 在大厅为访客指路<br>&bull; 将药品送到各个病房<br>&bull; 陪伴病人聊天<br><br>请用您的母语为这个机器人<strong>起一个正式的名字</strong>，并简单说明<strong>为什么选择这个名字</strong>。',
+    minLen: 10, placeholder: '机器人的名字及其含义……'
+  }
+];
+
+// ===== STATE =====
+let currentQuestion = 0;
+let responses = {};
+let startTime = null;
+let questionStartTimes = {};
+let timerInterval = null;
+let demographics = {};
+
+// ===== HELPERS =====
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function flash(msg, type) {
+  const el = document.createElement('div');
+  el.className = 'flash flash-' + (type || 'success');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+function generateId() {
+  const d = new Date();
+  return `LPA-ZH_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}_${Math.random().toString(36).slice(2,8).toUpperCase()}`;
+}
+
+// ===== SVG GENERATORS =====
+function renderSVGVase() {
+  return `<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="max-width:240px;width:100%;height:auto">
+    <rect x="30" y="110" width="140" height="8" rx="2" fill="#5c4033"/>
+    <rect x="15" y="116" width="170" height="6" rx="2" fill="#3e2723"/>
+    <path d="M100 20 Q130 30 125 70 L120 110 L80 110 L75 70 Q70 30 100 20Z" fill="#88ccee" stroke="#5599bb" stroke-width="1.5" transform="rotate(35, 100, 80)"/>
+    <ellipse cx="120" cy="52" rx="10" ry="6" fill="#88ccee" stroke="#5599bb" stroke-width="1" transform="rotate(35, 120, 52)"/>
+    <circle cx="128" cy="90" r="2" fill="#88ccee" opacity=".7"/>
+    <circle cx="131" cy="100" r="2.5" fill="#88ccee" opacity=".6"/>
+    <circle cx="126" cy="110" r="2" fill="#88ccee" opacity=".5"/>
+    <circle cx="122" cy="118" r="1.5" fill="#88ccee" opacity=".4"/>
+  </svg>`;
+}
+
+function renderSVGSpatial() {
+  return `<svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" style="max-width:280px;width:100%;height:auto">
+    <rect x="10" y="105" width="220" height="6" rx="2" fill="#5c4033"/>
+    <rect x="80" y="55" width="80" height="50" rx="2" fill="#e8d5a3" stroke="#b8963e" stroke-width="1.5"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" fill="#8B7355">书</text>
+    <rect x="20" y="50" width="35" height="40" rx="3" fill="#f0f0f0" stroke="#ccc" stroke-width="1.5"/>
+    <path d="M22 60 L37 50 L52 60 L52 85 L22 85Z" fill="#e0e0e0" stroke="#bbb" stroke-width="1"/>
+    <text x="36" y="78" text-anchor="middle" font-size="9" fill="#999">杯</text>
+    <line x1="185" y1="50" x2="205" y2="30" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+    <line x1="205" y1="30" x2="210" y2="25" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="187" y1="48" x2="207" y2="28" stroke="#555" stroke-width="1" stroke-linecap="round"/>
+    <text x="200" y="58" text-anchor="middle" font-size="9" fill="#999">笔</text>
+  </svg>`;
+}
+
+function renderSVGGiving() {
+  return `<svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" style="max-width:280px;width:100%;height:auto">
+    <!-- Person A (left) -->
+    <circle cx="60" cy="25" r="16" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="60" y1="41" x2="60" y2="90" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
+    <line x1="60" y1="55" x2="95" y2="65" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+    <line x1="60" y1="55" x2="30" y2="70" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+    <line x1="60" y1="90" x2="45" y2="120" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+    <line x1="60" y1="90" x2="75" y2="120" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+    <text x="60" y="137" text-anchor="middle" font-size="11" fill="#94a3b8">A</text>
+
+    <!-- Book -->
+    <rect x="95" y="58" width="28" height="20" rx="2" fill="#e8d5a3" stroke="#b8963e" stroke-width="1.5"/>
+    <line x1="109" y1="58" x2="109" y2="78" stroke="#b8963e" stroke-width="1" stroke-dasharray="2,1"/>
+
+    <!-- Person B (right) -->
+    <circle cx="180" cy="25" r="16" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5"/>
+    <line x1="180" y1="41" x2="180" y2="90" stroke="#60a5fa" stroke-width="5" stroke-linecap="round"/>
+    <line x1="180" y1="55" x2="135" y2="65" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+    <line x1="180" y1="55" x2="200" y2="70" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+    <line x1="180" y1="90" x2="165" y2="120" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+    <line x1="180" y1="90" x2="195" y2="120" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+    <text x="180" y="137" text-anchor="middle" font-size="11" fill="#94a3b8">B</text>
+
+    <!-- Arrow -->
+    <text x="120" y="52" text-anchor="middle" font-size="16" fill="#34d399">&rarr;</text>
+  </svg>`;
+}
+
+// ===== SURVEY =====
+function startSurvey() {
+  const container = document.getElementById('prompts-container');
+  container.innerHTML = '';
+
+  TASKS.forEach((task, idx) => {
+    const card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.id = 'q-' + idx;
+    if (idx > 0) card.style.display = 'none';
+
+    let svgHtml = '';
+    if (task.svg === 'vase') svgHtml = renderSVGVase();
+    else if (task.svg === 'spatial') svgHtml = renderSVGSpatial();
+    else if (task.svg === 'giving') svgHtml = renderSVGGiving();
+
+    const subHtml = task.sub ? '<div class="sub-question">' + task.sub + '</div>' : '';
+    const svgSection = svgHtml ? '<div class="svg-scene">' + svgHtml + '</div>' : '';
+
+    const taClass = task.minLen <= 5 ? 'tiny' : 'small';
+
+    card.innerHTML =
+      '<div class="num">' + (idx + 1) + '</div>' +
+      '<div class="topic">' + task.topic + '</div>' +
+      '<div class="question">' + task.question + '</div>' +
+      subHtml +
+      svgSection +
+      '<textarea id="ta-' + idx + '" class="' + taClass + '" placeholder="' + task.placeholder + '"></textarea>' +
+      '<div class="char-count" id="cc-' + idx + '">0 字符</div>';
+
+    container.appendChild(card);
+
+    const ta = card.querySelector('textarea');
+    const cc = card.querySelector('.char-count');
+    ta.addEventListener('input', function() {
+      const len = this.value.length;
+      cc.textContent = len + ' 字符';
+      cc.className = 'char-count' + (len < task.minLen ? ' warn' : ' ok');
+      responses[idx] = { taskIdx: idx, text: this.value, timestamp: new Date().toISOString() };
+    });
+  });
+
+  responses = {};
+  questionStartTimes = {};
+  currentQuestion = 0;
+  startTime = Date.now();
+  questionStartTimes[0] = startTime;
+
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+
+  showStep('step-survey');
+  updateNav();
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  document.getElementById('timer').textContent = m + ':' + String(s).padStart(2, '0');
+}
+
+function showQuestion(idx) {
+  document.querySelectorAll('.prompt-card').forEach(c => c.style.display = 'none');
+  const el = document.getElementById('q-' + idx);
+  if (el) el.style.display = 'block';
+  document.getElementById('progress-fill').style.width = ((idx + 1) / 10 * 100) + '%';
+
+  // Record time spent on previous question
+  if (idx > 0 && questionStartTimes[idx] === undefined) {
+    questionStartTimes[idx] = Date.now();
+  }
+}
+
+function updateNav() {
+  showQuestion(currentQuestion);
+  document.getElementById('prev-btn').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+  document.getElementById('next-btn').classList.toggle('hidden', currentQuestion === 9);
+  document.getElementById('submit-btn').classList.toggle('hidden', currentQuestion < 9);
+}
+
+function getMinLen(qIdx) {
+  return TASKS[qIdx] ? TASKS[qIdx].minLen : 30;
+}
+
+// ===== EVENT LISTENERS =====
+document.getElementById('start-btn').addEventListener('click', function() {
+  showStep('step-consent');
+  document.getElementById('consent-checkbox').checked = false;
+  document.getElementById('consent-btn').disabled = true;
+});
+
+document.getElementById('consent-checkbox').addEventListener('change', function() {
+  document.getElementById('consent-btn').disabled = !this.checked;
+});
+
+document.getElementById('consent-btn').addEventListener('click', function() {
+  showStep('step-demo');
+});
+
+document.getElementById('demo-btn').addEventListener('click', function() {
+  const native = document.getElementById('demo-native').value.trim();
+  const age = document.getElementById('demo-age').value;
+  const gender = document.getElementById('demo-gender').value;
+
+  if (!native) { flash('请填写您的母语', 'error'); return; }
+  if (!age) { flash('请选择年龄段', 'error'); return; }
+  if (!gender) { flash('请选择性别', 'error'); return; }
+
+  demographics = {
+    nativeLanguage: native,
+    otherLanguages: document.getElementById('demo-other-langs').value.trim(),
+    ageGroup: age,
+    gender: gender
+  };
+
+  startSurvey();
+});
+
+document.getElementById('prev-btn').addEventListener('click', function() {
+  if (currentQuestion > 0) { currentQuestion--; updateNav(); }
+});
+
+document.getElementById('next-btn').addEventListener('click', function() {
+  const ta = document.getElementById('ta-' + currentQuestion);
+  const minLen = getMinLen(currentQuestion);
+  if (ta && ta.value.trim().length < minLen) {
+    if (minLen === 5) flash('请至少写 5 个字符', 'error');
+    else flash('请至少写 ' + minLen + ' 个字符', 'error');
+    return;
+  }
+  if (currentQuestion < 9) { currentQuestion++; updateNav(); }
+});
+
+document.getElementById('submit-btn').addEventListener('click', function() {
+  const ta = document.getElementById('ta-' + currentQuestion);
+  const minLen = getMinLen(currentQuestion);
+  if (ta && ta.value.trim().length < minLen) {
+    if (minLen === 5) flash('请至少写 5 个字符', 'error');
+    else flash('请至少写 ' + minLen + ' 个字符', 'error');
+    return;
+  }
+  finishSurvey();
+});
+
+function finishSurvey() {
+  if (timerInterval) clearInterval(timerInterval);
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const responseId = generateId();
+
+  // Build timing per question
+  const timing = {};
+  const sortedKeys = Object.keys(questionStartTimes).map(Number).sort((a, b) => a - b);
+  sortedKeys.forEach((key, i) => {
+    const nextKey = i + 1 < sortedKeys.length ? sortedKeys[i + 1] : null;
+    if (nextKey !== null) {
+      timing[key] = Math.floor((questionStartTimes[nextKey] - questionStartTimes[key]) / 1000);
+    }
+  });
+  // Last question duration = total - sum of previous
+  const lastIdx = sortedKeys.length - 1;
+  const prevSum = Object.values(timing).reduce((a, b) => a + b, 0);
+  timing[lastIdx] = elapsed - prevSum;
+
+  const data = {
+    survey: 'lpa',
+    language: 'zh',
+    response_id: responseId,
+    timestamp: new Date().toISOString(),
+    duration_seconds: elapsed,
+    demographics: demographics,
+    responses: Object.values(responses).sort((a, b) => a.taskIdx - b.taskIdx),
+    task_timing_seconds: timing,
+    consent: true,
+    metadata: {
+      survey_version: 'lpa_v1',
+      platform: 'web',
+      task_count: 10
+    }
+  };
+
+  localStorage.setItem('lpa_zh_response', JSON.stringify(data));
+  localStorage.setItem('lpa_zh_response_id', responseId);
+
+  document.getElementById('response-id').textContent = responseId;
+  document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+  document.getElementById('data-preview').classList.remove('hidden');
+
+  showStep('step-debrief');
+}
+
+document.getElementById('download-btn').addEventListener('click', function() {
+  const raw = localStorage.getItem('lpa_zh_response');
+  if (!raw) { flash('未找到数据', 'error'); return; }
+  const blob = new Blob([raw], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'lpa_zh_' + Date.now() + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  flash('下载已开始！');
+});
+</script>
+</body>
+</html>
