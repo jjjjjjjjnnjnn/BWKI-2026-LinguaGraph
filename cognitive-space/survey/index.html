@@ -149,10 +149,11 @@ p { margin-bottom: 16px; color: var(--text2); font-size: 0.95rem; }
 <div id="step-debrief" class="step">
   <h2 data-i18n="debrief_title">Thank You</h2>
   <p data-i18n="debrief_text">Your responses have been saved. This study investigates how speakers of different languages organize abstract concepts. Your responses will be anonymized and analyzed using concept extraction algorithms.</p>
-  <p data-i18n="debrief_download">Please download your data using the button below and send it to the researcher.</p>
+  <p data-i18n="debrief_download">Please download your data and send it to the researcher:</p>
   <button class="btn btn-primary" id="download-btn" data-i18n="download">Download My Data</button>
+  <button class="btn btn-secondary" id="email-btn" style="margin-left:8px" data-i18n="email_btn">📧 Send via Email</button>
   <div class="data-export hidden" id="data-preview"></div>
-  <p style="margin-top:20px;font-size:.8rem;color:var(--text2)" data-i18n="debrief_id">Your response ID:</p>
+  <p style="margin-top:16px;font-size:.8rem;color:var(--text2)" data-i18n="debrief_id">Your response ID:</p>
   <p style="font-family:monospace;font-size:.8rem;color:var(--accent)" id="response-id"></p>
 </div>
 
@@ -471,6 +472,15 @@ document.getElementById('download-btn').addEventListener('click', () => {
   a.click();
   URL.revokeObjectURL(url);
   flash('Download started!');
+});
+
+document.getElementById('email-btn').addEventListener('click', () => {
+  const raw = localStorage.getItem('linguagraph_response');
+  if (!raw) { flash('No data found', 'error'); return; }
+  const subj = encodeURIComponent('LinguaGraph Survey Response');
+  const data = encodeURIComponent(raw);
+  window.location.href = 'mailto:?subject=' + subj + '&body=' + data;
+  flash('Email opened! Send to the researcher please.');
 });
 </script>
 </body>
