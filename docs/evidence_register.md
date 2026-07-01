@@ -38,6 +38,20 @@
 
 ---
 
+## IRR Status (2026-07-01)
+
+| Dimension | Mean κ | Criteria ≥ 0.70 | Status |
+|-----------|:------:|:---------------:|:------:|
+| D1 Spatial | 0.801 | 9/13 (69%) | ✅ Above threshold; 4 criteria need revision |
+| D2 Temporal | 0.400 | 0/1 (0%) | 🔧 Codebook revision needed (refusal handling) |
+| D3 Flexibility | 0.851 | 10/14 (71%) | ✅ Above threshold; 4 criteria need revision |
+| D4 Lexical | 0.515 | 3/10 (30%) | 🔧 Major revision needed; free association criteria low |
+| **Overall** | **0.782** | **19/30 (63%)** | ✅ Above 0.70; next target: 80%+ at N=20 |
+
+**Next**: Revise codebook v0.3 → recode → 20-sample IRR with 2nd human coder.
+
+---
+
 ## Principles for Updating
 
 1. **New claims** require an entry before they appear in any discussion or conclusion.

@@ -91,11 +91,12 @@ Fragen? Kontaktieren Sie den Forscher.
 
 | Date | Channel | Lang | Est. reach | New completes | Cumulative | Notes |
 |:----:|---------|:----:|:----------:|:-------------:|:----------:|-------|
-| | ZH: WeChat group A | ZH | ~80 | | 8 | |
-| | DE: Schloss Heessen | DE | ~30 | | 8 | |
-| | EN: Reddit r/SampleSize | EN | ~200 | | 8 | |
-| | DE: HSHL mailing list | DE | ~100 | | 8 | |
-| | EN: r/Samplesize repost | EN | ~100 | | 8 | |
+| 7/1 | Reddit r/SampleSize | EN | ~200 | 1+ | 9+ | ✅ Live + backend active |
+| | ZH: WeChat | ZH | ~80 | | 9 | ⏳ Pending |
+| | DE: Schloss Heessen | DE | ~30 | | 9 | ⏳ LPA distributed |
+| | DE: HSHL mailing list | DE | ~100 | | 9 | ⏳ Pending |
+| | EN: r/linguistics | EN | ~500 | | 9 | 📋 Planned day 2 |
+| | EN: r/cogsci | EN | ~300 | | 9 | 📋 Planned day 3 |
 
 ## Milestones
 
