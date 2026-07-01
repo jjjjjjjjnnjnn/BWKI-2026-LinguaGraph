@@ -393,6 +393,132 @@ def build_body_map(lang: str) -> dict:
             '- **MimoCode** — AI service platform via OpenCode GO':
                 '- **MimoCode** — KI-Dienstplattform über OpenCode GO',
 
+            # ===== Human Validation (LDS-C variant) =====
+            '- Within-subject DE-EN LDS-C: **0.773** (same person, different language, different concepts)':
+                '- Innerhalb der Versuchsperson DE-EN LDS-C: **0,773** (gleiche Person, andere Sprache, andere Konzepte)',
+            '- Between-subject LDS-C rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**':
+                '- Zwischen den Versuchspersonen LDS-C Rangfolge: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**',
+            '- Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — structure-level divergence shows a different pattern from concept-level':
+                '- Lehrbuch LDS-K Reihenfolge: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — Strukturebene zeigt ein anderes Muster als Konzeptebene',
+            '- Mean simulated LDS-C: **0.647** (SD=0.086)':
+                '- Simulierter LDS-C Mittelwert: **0,647** (SD=0,086)',
+            '- **Human LDS-C (0.727) > Simulation LDS-C (0.647)**, p=0.05':
+                '- **Menschlicher LDS-C (0,727) > Simulations-LDS-C (0,647)**, p=0,05',
+            '- Confirms cross-language divergence exceeds random expectation':
+                '- Bestätigt, dass sprachübergreifende Divergenz die zufällige Erwartung übersteigt',
+            '> See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.':
+                '> Vollständige Methodik siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md), Humananalyse siehe [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) und Simulation siehe [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py).',
+            '| Domain | ZH F1 | DE F1 | EN F1 | Overall | n |':
+                '| Bereich | ZH F1 | DE F1 | EN F1 | Gesamt | n |',
+            '| Subject | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |':
+                '| Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |',
+            '| **Physics** | 366 | 383 | 94 editions | ZH/EN/DE |':
+                '| **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE |',
+            '| **Chemistry** | 220 | 215 | 18 editions | ZH/EN/DE |':
+                '| **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE |',
+            '| **Total** | **1,160+** | **4,100+** | **180+** | **3 languages** | **4 educational systems** |':
+                '| **Gesamt** | **1.160+** | **4.100+** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |',
+            '> Error analysis: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.':
+                '> Fehleranalyse: 29% der Fehler stammen von sehr kurzen Antworten (1-2 Wörter); 40% von teilweisen Auslassungen. Keine systematische Fehlleitung.',
+
+            # ===== Null Model =====
+            '**🧪 Null Model (Structure vs Full Graphs)**':
+                '**🧪 Nullmodell (Struktur vs. Vollständige Graphen)**',
+            'Full knowledge-graph LDS-K: **0.73** (mean across all pairs)':
+                'Vollständiger Wissensgraph LDS-K: **0,73** (Mittelwert über alle Paare)',
+            'Structure-only (taxonomy) LDS-K: **0.77** (mean)':
+                'Nur-Struktur (Taxonomie) LDS-K: **0,77** (Mittelwert)',
+            '**Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence':
+                '**Full < Structure für alle Paare** — das Hinzufügen von Kantenbeziehungen verringert eher die Divergenz, als sie zu verstärken',
+            'Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent':
+                'Die Taxonomie (gemeinsame Konzeptorganisation) erklärt den Großteil der Varianz; sprachspezifische Beziehungen sind konvergent',
+
+            # ===== Findings table (F4-F5, F9-F12) =====
+            '| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |':
+                '| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | 19-Modell-Benchmark, 3 API-Plattformen, 20 Labels | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab |',
+            '| **F5** | LDS is **topic-dependent**; **Null Model** confirms Full < Structure for all pairs | ~0.2 variation within pairs; Full LDS-K=0.73, Structure LDS-K=0.77 | Cross-language divergence varies by knowledge domain; taxonomy alone explains most variance |':
+                '| **F5** | LDS ist **themenabhängig**; **Nullmodell** bestätigt Full < Structure für alle Paare | ~0,2 Variation innerhalb der Paare; Full LDS-K=0,73, Structure LDS-K=0,77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; Taxonomie allein erklärt den Großteil der Varianz |',
+            '| **F9** | **Coverage Score** varies dramatically across systems | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% | Educational system design fundamentally affects textbook alignment; China\'s centralized curriculum drives near-universal coverage |':
+                '| **F9** | **Abdeckungsgrad** variiert dramatisch zwischen Systemen | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% | Die Gestaltung des Bildungssystems beeinflusst grundlegend die Lehrbuchausrichtung; Chinas zentralisierter Lehrplan ermöglicht nahezu universelle Abdeckung |',
+            '| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |':
+                '| **F10** | Abdeckungsverläufe offenbaren **Governance-Modell** | UK prüfungsgetriebene Konvergenz; NRW Spezialisierungsdivergenz; China zentralisierte Vollausrichtung | Lehrplan-Governance (zentral vs. föderal vs. prüfungsgetrieben) bestimmt den Abdeckungsverlauf |',
+            '| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |':
+                '| **F11** | **Menschliche LDS-C**-Reihenfolge unterscheidet sich von **LDS-K**; **ΔLDS** als Kernmetrik vorgeschlagen | N=8 Teilnehmer, 90 Antworten; 19-Modell-Benchmark | Oberfläche (Konzeptbenennung) ≠ strukturelle (Beziehungs-)Divergenz; die Lücke selbst ist informativ |',
+            '| **F12** | Human LDS (**0.727**) exceeds simulation baseline (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |':
+                '| **F12** | Menschlicher LDS (**0,727**) übersteigt Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |',
+
+            # ===== Textbook corpora =====
+            '- **Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.**':
+                '- **Lehrbuchinhalte für die Wissensgraphkonstruktion verwendet (akademische Forschung, Fair Use). Vollständige Quellenangabe in den Graph-Metadatendateien.**',
+
+            # ===== Academic papers table =====
+            '| # | Reference | Relevance |':
+                '| # | Referenz | Relevanz |',
+            '| Foundational — concept mapping theory underpinning CDS/HDS |':
+                '| Grundlegend — Concept-Mapping-Theorie als Grundlage von CDS/HDS |',
+            '| Assimilation theory — knowledge is structured, not listed |':
+                '| Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |',
+            '| TIMSS curriculum coherence — Coverage Score inspiration |':
+                '| TIMSS-Lehrplankohärenz — Inspiration für den Coverage Score |',
+            '| Cross-national textbook comparison methodology |':
+                '| Internationale Lehrbuchvergleichsmethodik |',
+            '| Linguistic relativity — research question context |':
+                '| Sprachliche Relativität — Kontext der Forschungsfrage |',
+            '| Network analysis of cognitive/educational structures |':
+                '| Netzwerkanalyse kognitiver/bildungsbezogener Strukturen |',
+            '| Most directly relevant EKG pipeline methodology |':
+                '| Direkt relevanteste EKG-Pipeline-Methodik |',
+            '| Prerequisite inference — supports HDS metric |':
+                '| Voraussetzungsinferenz — unterstützt HDS-Metrik |',
+            '| Cross-national textbook problem analysis |':
+                '| Internationale Lehrbuch-Problemanalyse |',
+            '| Cross-national curriculum structure data |':
+                '| Internationale Lehrplanstrukturdaten |',
+            '| Curriculum coverage analysis methodology |':
+                '| Methodik der Lehrplanabdeckungsanalyse |',
+            '| Transformer architecture — foundational for LLMs used |':
+                '| Transformer-Architektur — grundlegend für verwendete LLMs |',
+
+            # ===== Open source library usage column =====
+            '| LLM API client for concept extraction |':
+                '| LLM-API-Client zur Konzeptextraktion |',
+            '| Graph construction and analysis (CDS, HDS) |':
+                '| Graphenkonstruktion und -analyse (CDS, HDS) |',
+            '| Figure generation (Fig 3-7) |':
+                '| Abbildungserstellung (Fig 3-7) |',
+            '| Numerical computation, similarity metrics |':
+                '| Numerische Berechnung, Ähnlichkeitsmetriken |',
+            '| Statistical analysis, correlation tests |':
+                '| Statistische Analyse, Korrelationstests |',
+            '| Baseline models and evaluation |':
+                '| Basislinienmodelle und Evaluierung |',
+            '| 3D knowledge graph visualization (CognitiveSpace) |':
+                '| 3D-Wissensgraph-Visualisierung (CognitiveSpace) |',
+            '| Workbench web application |':
+                '| Workbench-Webanwendung |',
+            '| Statistical data visualization |':
+                '| Statistische Datenvisualisierung |',
+
+            # ===== Deploy table =====
+            '| Platform | Publish Directory |':
+                '| Plattform | Veröffentlichungsverzeichnis |',
+            '| **GitHub Pages** | Deploy from `_deploy/` directory (auto-deployed via CI) |':
+                '| **GitHub Pages** | Bereitstellung aus `_deploy/`-Verzeichnis (automatisch via CI) |',
+            '| **Local** | Open `cognitive-space/portal/index.html` in your browser |':
+                '| **Lokal** | Öffnen Sie `cognitive-space/portal/index.html` in Ihrem Browser |',
+
+            # ===== Contact section =====
+            '- **Competition**: [BWKI 2026](https://www.bw-ki.de/)':
+                '- **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)',
+            '- **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)':
+                '- **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)',
+            '- **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser':
+                '- **3D-Demo**: Öffnen Sie [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in Ihrem Browser',
+
+            # ===== Updated Acknowledgments =====
+            '- **BWKI 2026** — Competition platform and framework':
+                '- **BWKI 2026** — Wettbewerbsplattform und Rahmen',
+
             # ===== Footer =====
             '<sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>':
                 '<sub>Mit ❤️ für BWKI 2026 — denn Wissen sollte verstanden, nicht nur gelehrt werden.</sub>',

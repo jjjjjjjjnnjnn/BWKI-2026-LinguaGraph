@@ -112,21 +112,21 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
 | **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
 | **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 3.538 Voraussetzungsrelationen | Mathematik ist ein flaches Netz, kein tiefer Baum |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0,519) converges; ZH-EN (0,934), DE-EN (0,938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |
-| **F5** | LDS ist **themenabhängig**; **Null Model** confirms Full < Structure for all pairs | ~0,2 Variation innerhalb der Paare; Full LDS-K=0.73, Structure LDS-K=0.77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; taxonomy alone explains most variance |
+| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | 19-Modell-Benchmark, 3 API-Plattformen, 20 Labels | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab |
+| **F5** | LDS ist **themenabhängig**; **Nullmodell** bestätigt Full < Structure für alle Paare | ~0,2 Variation innerhalb der Paare; Full LDS-K=0,73, Structure LDS-K=0,77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; Taxonomie allein erklärt den Großteil der Varianz |
 | **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 366 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
 | **F7** | Physik hat **2,1× tiefere** Voraussetzungsketten | HDS-Mittelwert 0,85 vs. 0,40 | Physikwissen ist kumulativer und sequenzieller |
 | **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | STEM-Dichtemuster ist fächerübergreifend universell |
-| **F9** | **Coverage Score** variiert dramatisch zwischen Systemen | NRW 12,7%, Großbritannien 37,3%, USA 17,2%, CN 95,4% | Die Gestaltung des Bildungssystems beeinflusst grundlegend den Lehrbuchabgleich; China's centralized curriculum drives near-universal coverage |
-| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |
-| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |
-| **F12** | Humanes LDS (**0,727**) übertrifft Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |
+| **F9** | **Abdeckungsgrad** variiert dramatisch zwischen Systemen | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% | Die Gestaltung des Bildungssystems beeinflusst grundlegend die Lehrbuchausrichtung; Chinas zentralisierter Lehrplan ermöglicht nahezu universelle Abdeckung |
+| **F10** | Abdeckungsverläufe offenbaren **Governance-Modell** | UK prüfungsgetriebene Konvergenz; NRW Spezialisierungsdivergenz; China zentralisierte Vollausrichtung | Lehrplan-Governance (zentral vs. föderal vs. prüfungsgetrieben) bestimmt den Abdeckungsverlauf |
+| **F11** | **Menschliche LDS-C**-Reihenfolge unterscheidet sich von **LDS-K**; **ΔLDS** als Kernmetrik vorgeschlagen | N=8 Teilnehmer, 90 Antworten; 19-Modell-Benchmark | Oberfläche (Konzeptbenennung) ≠ strukturelle (Beziehungs-)Divergenz; die Lücke selbst ist informativ |
+| **F12** | Menschlicher LDS (**0,727**) übersteigt Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |
 
 ---
 
 ## 📊 Datensatz
 
-| Fach | Konzepte | Beziehungen | Lehrbucher | Sprachen | Lehrplanabdeckung |
+| Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **Mathematik** | 574 | 3.538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW coverage NA |
@@ -149,22 +149,22 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 **🧑 Humanvalidierungsstudie (N=8)**
 - 101 Antworten von ZH/DE/EN-Muttersprachlern zu 5 sozialen Themen
-- Within-subject DE-EN LDS-C: **0,773** (same person, different language, different concepts)
-- Between-subject LDS-C rank order: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
-- Textbook LDS-K rank order: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — structure-level divergence shows a different pattern from concept-level
+- Innerhalb der Versuchsperson DE-EN LDS-C: **0,773** (gleiche Person, andere Sprache, andere Konzepte)
+- Zwischen den Versuchspersonen LDS-C Rangfolge: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
+- Lehrbuch LDS-K Reihenfolge: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — Strukturebene zeigt ein anderes Muster als Konzeptebene
 
 **🤖 Simulationsbasislinie (300 Antworten)**
-- Mean simulated LDS-C: **0,647** (SD=0.086)
-- **Human LDS-C (0,727) > Simulation LDS-C (0,647)**, p=0.05
-- Bestätigt, dass sprachübergreifende Divergenz über zufällige Erwartung hinausgeht
+- Simulierter LDS-C Mittelwert: **0,647** (SD=0,086)
+- **Menschlicher LDS-C (0,727) > Simulations-LDS-C (0,647)**, p=0,05
+- Bestätigt, dass sprachübergreifende Divergenz die zufällige Erwartung übersteigt
 
-**🧪 Null Model (Structure vs Full Graphs)**
-- Full knowledge-graph LDS-K: **0.73** (mean across all pairs)
-- Structure-only (taxonomy) LDS-K: **0.77** (mean)
-- **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
-- Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
+**🧪 Nullmodell (Struktur vs. Vollständige Graphen)**
+- Vollständiger Wissensgraph LDS-K: **0,73** (Mittelwert über alle Paare)
+- Nur-Struktur (Taxonomie) LDS-K: **0,77** (Mittelwert)
+- **Full < Structure für alle Paare** — das Hinzufügen von Kantenbeziehungen verringert eher die Divergenz, als sie zu verstärken
+- Die Taxonomie (gemeinsame Konzeptorganisation) erklärt den Großteil der Varianz; sprachspezifische Beziehungen sind konvergent
 
-> Siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) für die vollständige Methodik, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) für die Humananalyse und [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) für die Simulation.
+> Vollständige Methodik siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md), Humananalyse siehe [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) und Simulation siehe [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py).
 
 ---
 
@@ -173,7 +173,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 Das Forschungsportal ist eine **Zero-Build-Statikseite**. Überall bereitstellen:
 
-| Plattform | Verzeichnis |
+| Plattform | Veröffentlichungsverzeichnis |
 |----------|------------------|
 | **GitHub Pages** | Bereitstellungsbundle-Inhalt:
 _deploy/data.js
@@ -242,6 +242,7 @@ python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
+#
 ## Test any model
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
@@ -286,37 +287,40 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 
 ## 📚 Literaturverzeichnis
 
+#
 ## Wissenschaftliche Publikationen
 
-| # | Reference | Relevance |
+| # | Referenz | Relevanz |
 |---|-----------|-----------|
-| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Foundational — concept mapping theory underpinning CDS/HDS |
-| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilation theory — knowledge is structured, not listed |
-| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS curriculum coherence — Coverage Score inspiration |
-| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Cross-national textbook comparison methodology |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Linguistic relativity — research question context |
-| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Network analysis of cognitive/educational structures |
-| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Most directly relevant EKG pipeline methodology |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
-| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
-| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik und Science.* | Curriculum coverage analysis methodology |
-| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Grundlegend — Concept-Mapping-Theorie als Grundlage von CDS/HDS |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS-Lehrplankohärenz — Inspiration für den Coverage Score |
+| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Internationale Lehrbuchvergleichsmethodik |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Sprachliche Relativität — Kontext der Forschungsfrage |
+| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Netzwerkanalyse kognitiver/bildungsbezogener Strukturen |
+| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Direkt relevanteste EKG-Pipeline-Methodik |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Voraussetzungsinferenz — unterstützt HDS-Metrik |
+| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Internationale Lehrbuch-Problemanalyse |
+| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Internationale Lehrplanstrukturdaten |
+| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik und Science.* | Methodik der Lehrplanabdeckungsanalyse |
+| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer-Architektur — grundlegend für verwendete LLMs |
 
+#
 ## Open-Source-Bibliotheken
 
 | Bibliothek | Verwendung | Lizenz |
 |---------|-------|---------|
-| [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
-| [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
-| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Figure generation (Fig 3-7) | PSF |
-| [numpy/numpy](https://github.com/numpy/numpy) | Numerical computation, similarity metrics | BSD-3 |
-| [scipy/scipy](https://github.com/scipy/scipy) | Statistical analysis, correlation tests | BSD-3 |
-| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Baseline models and evaluation | BSD-3 |
-| [Three.js](https://github.com/mrdoob/three.js) | 3D knowledge graph visualization (CognitiveSpace) | MIT |
-| [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
-| [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
+| [openai/openai-python](https://github.com/openai/openai-python) | LLM-API-Client zur Konzeptextraktion | MIT |
+| [networkx/networkx](https://github.com/networkx/networkx) | Graphenkonstruktion und -analyse (CDS, HDS) | BSD-3 |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Abbildungserstellung (Fig 3-7) | PSF |
+| [numpy/numpy](https://github.com/numpy/numpy) | Numerische Berechnung, Ähnlichkeitsmetriken | BSD-3 |
+| [scipy/scipy](https://github.com/scipy/scipy) | Statistische Analyse, Korrelationstests | BSD-3 |
+| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Basislinienmodelle und Evaluierung | BSD-3 |
+| [Three.js](https://github.com/mrdoob/three.js) | 3D-Wissensgraph-Visualisierung (CognitiveSpace) | MIT |
+| [Flask](https://github.com/pallets/flask) | Workbench-Webanwendung | BSD-3 |
+| [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistische Datenvisualisierung | BSD-3 |
 
+#
 ## Lehrplanstandards (Primärquellen)
 
 | Standard | Herausgeber |
@@ -326,6 +330,7 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
+#
 ## Lehrbuchkorpora
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
@@ -336,6 +341,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
+#
 ## Danksagungen
 
 - **BWKI 2026** — Wettbewerbsplattform und Rahmen
@@ -376,7 +382,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 - **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
-- **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
+- **3D-Demo**: Öffnen Sie [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in Ihrem Browser
 - **Autor**: Rongjing J. — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung
 
 <p align="center">
@@ -387,7 +393,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
     🧠 LinguaGraph Forschungsportal →
   </a>
   <br>
-  <span style="color:#94a3b8;font-size:0.85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
+  <span style="color:#94a3b8;font-size:0,85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
 </p>
 
 

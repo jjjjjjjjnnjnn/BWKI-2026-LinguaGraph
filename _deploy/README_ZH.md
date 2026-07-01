@@ -242,6 +242,7 @@ python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
+#
 ## Test any model
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
@@ -286,6 +287,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 📚 参考文献
 
+#
 ## 学术论文
 
 | # | Reference | Relevance |
@@ -303,6 +305,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学和 Science.* | Curriculum coverage analysis methodology |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
 
+#
 ## 开源库
 
 | 库 | 用途 | 许可 |
@@ -317,6 +320,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
 | [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
 
+#
 ## 课程标准（原始来源）
 
 | 标准 | 发布者 |
@@ -326,6 +330,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
+#
 ## 教材语料库
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
@@ -336,9 +341,10 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
+#
 ## 致谢
 
-- **BWKI 2026** — 竞赛平台与框架
+- **BWKI 2026** — 竞赛平台 and framework
 - **Schloss Heessen** — 德国哈姆寄宿学校；机构支持与教育指导
 - **Hamm-Lippstadt 应用科学大学（HSHL）** — 学术咨询与专业顾问
 - **OpenCode GO** — AI 服务平台，提供模型 API 接入
