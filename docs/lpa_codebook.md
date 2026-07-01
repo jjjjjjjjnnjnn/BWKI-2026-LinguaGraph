@@ -142,22 +142,48 @@ This codebook defines the coding dimensions and criteria for the Language Produc
 
 ## Inter-Rater Reliability Protocol
 
+> **Important**: These thresholds are defined **a priori** — no post-hoc adjustment is permitted after IRR calculation. Decisions must be made before viewing the κ values.
+
+### Predefined Decision Rules
+
+| Cohen's κ | Interpretation | Action |
+|:---------:|---------------|--------|
+| ≥ 0.80 | Almost perfect agreement | **Accept** — criterion is reliable |
+| 0.70–0.79 | Substantial agreement | **Discuss** — flag borderline cases, document in codebook |
+| 0.60–0.69 | Moderate agreement | **Revise** — review criterion definition, adjudicate disagreements, re-code |
+| < 0.60 | Less than moderate | **Exclude** — criterion cannot be reliably coded with current definition |
+
 ### Procedure
 
-1. **Sample**: 20 responses (or until κ ≥ 0.70 achieved per dimension, whichever is larger)
+1. **Sample**: 20 responses (or 100% of pilot data, whichever is smaller)
 2. **Coders**: Primary coder + independent coder, blind to each other's coding
 3. **Training phase**: Both coders independently code 5 responses, compare, discuss disagreements
 4. **Coding phase**: Both coders independently code the remaining 15 responses
-5. **Calculation**: Cohen's κ per criterion (Cohen, 1960); percentage agreement for reference (Landis & Koch, 1977)
+5. **Computation**: Cohen's κ per criterion (Cohen, 1960); percentage agreement for reference
+6. **Decision**: Apply the threshold table above — no post-hoc adjustment
 
-### Thresholds (Landis & Koch, 1977)
+### Implementation
 
-| κ | Interpretation | Action |
-|:---:|---------------|--------|
-| ≥ 0.80 | Almost perfect | Accept |
-| 0.61–0.79 | Substantial | Accept, review borderline criteria |
-| 0.41–0.60 | Moderate | Refine criterion definition, re-code |
-| ≤ 0.40 | Fair/poor | Revise criterion or exclude |
+```bash
+python scripts/analyze_lpa.py --irr --coder1 coder1.json --coder2 coder2.json
+```
+
+---
+
+## Decision Log
+
+### v0.1 → v0.2 (2026-07-01)
+
+| Change | Rationale |
+|--------|-----------|
+| D1: Merged static + motion into single dimension | Both measure spatial granularity; splitting was artificial for N=6 pilot |
+| D1: Reduced from 10 to 9 criteria | Criterion "Multi-frame" removed because ≤5% of pilot responses provided sufficient data |
+| D1: Renamed "ref_frame" to "orientation_detail" | Original label was misleading — "reference frame" implies psycholinguistic claim beyond what the data supports |
+| D3: Reduced from 12 to 7 criteria | Individual social-script strategy flags collapsed into single "sophisticated strategy" criterion |
+| D4: Capped associative diversity at 3 categories | Pilot showed ≥5 categories never occurred; threshold lowered from 5 to 3 for discriminability |
+| ALL: Removed composite score computation | No evidence supports cross-dimension additivity (see `docs/lpa_framework.md`) |
+| ALL: Renamed "metrics" → "coding dimensions" | Accurate description: framework codes behavior, it does not measure latent constructs |
+| ALL: Renamed "compute_lpa()" → "code_respondent()" in pipeline | Naming reflects methodology: coding, not measurement |
 
 ### Implementation
 
