@@ -1,147 +1,141 @@
-# Language Production Analysis (LPA) — Framework & Execution Plan
-> **Status**: Active | **N target**: 120 (DE), 30+ ZH, 30+ EN
-> **Integration**: Third evidence layer in LinguaGraph triangulation framework
+# Language Production Analysis (LPA) — Exploratory Coding Framework
+> **Version**: 0.1 (exploratory) | **Status**: Pilot phase | **N pilot**: 6 DE
 
 ---
 
-## Scientific Positioning
+## Positioning
 
-### Three-Layer Evidence Architecture
+LPA is an **exploratory coding framework** for analyzing open-ended language production data across languages. It is NOT a validated psychometric instrument. The dimensions and coding criteria below represent hypotheses about how linguistic behavior can be systematically described — not established scales.
+
+### Three Evidence Streams (Parallel, No Causal Hierarchy)
 
 ```
-Layer 1: Textbook Knowledge Structure (LDS-K)          ✅ COMPLETE
-  → "How do educational materials organize knowledge across languages?"
-
-Layer 2: Human Concept Structure (LDS-C)                🔶 COLLECTING
-  → "Do human conceptual representations follow similar patterns?"
-
-Layer 3: Language Production Analysis (LPA)             🔶 NEW
-  → "Do spontaneous language production patterns show 
-     systematic cross-linguistic variation?"
+              Language
+                 │
+      ┌──────────┼──────────┐
+      ▼          ▼          ▼
+ Knowledge   Concepts    Production
+ Structure   (LDS-C)     (LPA)
+ (LDS-K)
+      │          │           │
+      ▼          ▼           ▼
+ Educational  Human open-  Elicited
+  textbooks   ended        linguistic
+              responses    tasks
 ```
 
-**Core argument**: Three independent methods converge on the same conclusion — language systematically shapes cognition, visible at multiple levels (knowledge structure, concept representation, language production).
+Each stream addresses a **different research question**:
+- **LDS-K**: How do educational materials organize knowledge across languages?
+- **LDS-C**: Do human conceptual representations follow similar cross-linguistic patterns?
+- **LPA**: What systematic patterns appear in spontaneous language production across languages?
 
-### Key Hypotheses
-
-| Hypothesis | Layer 1 (LDS-K) | Layer 2 (LDS-C) | Layer 3 (LPA) |
-|------------|:---------------:|:---------------:|:-------------:|
-| H1: ZH-DE closer than ZH-EN/DE-EN | ✅ ZH-DE=0.519 | 🔶 Pending N≥30 | 🔶 Pending |
-| H2: Within-language variation > cross-language expectation | ✅ Null Model | 🔶 Pending | Plausible |
-| H3: Systematic cross-linguistic patterns in language production | — | — | Testable now |
+The three streams can **inform** each other but do not **depend** on each other. Convergent patterns across streams strengthen the overall research program; divergent patterns are equally informative.
 
 ---
 
-## LPA Dimensions & Coding Scheme
+## Coding Dimensions
 
-### D1: Spatial Cognition (Tasks 5–6)
-**Metric**: Spatial Granularity Score (SGS, 0–10)
+### D1: Spatial Granularity (Tasks 5–6)
 
-| Criterion | Points | Coding |
-|-----------|:------:|--------|
-| Motion: Source mentioned | 1 | *aus dem Raum* |
-| Motion: Path mentioned | 1 | *durch das Wohnzimmer* |
-| Motion: Goal mentioned | 1 | *in den Garten* |
-| Motion: Manner verb | 1 | *läuft* vs *geht* |
-| Static: Object 1 presence | 1 | Cup mentioned |
-| Static: Object 2 presence | 1 | Pen mentioned |
-| Static: Spatial relation 1 | 1 | *hinter/vor/neben* |
-| Static: Spatial relation 2 | 1 | Both objects related to book |
-| Static: Orientation detail | 1 | *Henkel, Schreibseite, parallel* |
-| Static: Reference frame | 1 | Intrinsic + relative combined |
+**Question**: How detailed are spatial descriptions within and across languages?
 
-**Pilot scores (N=6)**: R1=6, R2=2, R3=6, R4=5, R5=9, R6=9
+| Criterion | Description | Task |
+|-----------|-------------|:----:|
+| Source mention (*aus dem Raum, from the room, 从房间*) | Motion origin encoded | Q5 |
+| Path mention (*durch das Wohnzimmer, through the living room, 穿过客厅*) | Motion trajectory encoded | Q5 |
+| Goal mention (*in den Garten, into the garden, 进入花园*) | Motion destination encoded | Q5 |
+| Manner verb (*läuft, runs, 跑*) vs generic (*geht, goes, 走*) | Motion quality encoded | Q5 |
+| Object 1 presence (cup/Tasse/杯子) | First reference object | Q6 |
+| Object 2 presence (pen/Stift/笔) | Second reference object | Q6 |
+| Spatial relation (hinter/vor/neben/behind/front/next to) | Spatial relationship encoded | Q6 |
+| Second spatial relation | Both objects located w.r.t. reference | Q6 |
+| Orientation detail (handle/writing-side/direction) | Beyond basic relation | Q6 |
+| Multiple reference frames (intrinsic + relative) | Combinatorial frame use | Q6 |
 
-### D2: Temporal Cognition (Task 7)
-**Metric**: Temporal Frame Preference (TFP)
+Reported as: **individual criterion flags**, not a summed score.
 
-| Category | Code | Description |
-|----------|:----:|-------------|
-| Correct-unambiguous | T+ | *vorverlegt* (earlier) |
-| Ambiguous-avoidant | T? | *verschoben* (shifted) |
-| Non-standard | T~ | *vorwärts bewegt* (literal) |
-| Incomplete | T- | Missing or partial response |
+### D2: Temporal Framing (Task 7)
+
+**Question**: How do speakers resolve temporal metaphor ambiguity?
+
+| Category | Label | Description |
+|:--------:|:-----:|-------------|
+| T+ | Unambiguous | *vorverlegt* — clear "earlier" interpretation |
+| T? | Ambiguous/avoidant | *verschoben* — direction-neutral |
+| T~ | Non-standard | *vorwärts bewegt* — literal translation attempt |
+| T- | Incomplete | Missing or refused response |
+
+Reported as: **categorical distribution** per language.
 
 ### D3: Conceptual Flexibility (Tasks 2, 3, 8, 9)
-**Metric**: Conceptual Flexibility Index (CFI, 0–8)
 
-| Criterion | Points | Task Source |
-|-----------|:------:|:-----------:|
-| Bilingual explanation attempted | 1 | Q2 |
-| True bilingual (DE+EN parallel) | 2 | Q2 |
-| Code-switching within utterance | 1 | Q2 |
-| Social script >1 clause | 1 | Q3 |
-| Perspective shift from default | 1 | Q8/Q9 (agent change) |
-| Causal subordination | 1 | Q9 (*da es regnete*) |
-| Naturalness (not literal translation) | 1 | Q9 |
+**Question**: What strategies do speakers use for conceptually demanding tasks?
 
-### D4: Lexical Creativity (Tasks 1, 10)
-**Metric**: Lexical Creativity Score (LCS, 0–6)
+| Criterion | Description | Task |
+|-----------|-------------|:----:|
+| Bilingual attempt | Speaker tries to explain in 2+ languages | Q2 |
+| True bilingual parallel | Both languages, equivalent content | Q2 |
+| Code-switching | Alternates languages within utterance | Q2 |
+| Multi-clause social script | >1 clause in embarrassment response | Q3 |
+| Sophisticated strategy | Apology, philosophical, or de-escalation | Q3 |
+| Perspective shift | Agent differs from default (mother→girl) | Q8/Q9 |
+| Causal subordination | *da, because, 因为* clause | Q9 |
 
-| Criterion | Points | Source |
-|-----------|:------:|--------|
-| >3 unique associates in Q1 | 1 | Q1 |
-| Non-prototypical associates | 1 | Q1 (not Uhr) |
-| Multi-word name in Q10 | 1 | Q10 |
-| Functional-precise name | 1 | Q10 |
-| Creative/original name | 1 | Q10 |
-| Bilingual hybrid name | 1 | Q10 |
+Reported as: **individual criterion flags** + **strategy type distribution**.
 
----
+### D4: Lexical Production (Tasks 1, 10)
 
-## Analysis Pipeline
+**Question**: What lexical strategies appear in free association and naming?
 
-```python
-analyze_lpa.py
-├── read_csv()          # Read survey responses (DE/EN/ZH)
-├── code_spatial()      # Code D1: SGS scores
-├── code_temporal()     # Code D2: TFP categories
-├── code_flexibility()  # Code D3: CFI scores
-├── code_creativity()   # Code D4: LCS scores
-├── compute_profiles()  # Aggregate across dimensions
-├── cross_language_compare()  # ZH vs EN vs DE
-└── report()           # Generate analysis report
-```
+| Criterion | Description | Task |
+|-----------|-------------|:----:|
+| Associative diversity | ≥3 distinct semantic categories in Q1 | Q1 |
+| Non-prototypical associates | Beyond the most obvious response | Q1 |
+| Multi-word name | ≥2 words in robot name | Q10 |
+| Functional specification | Name encodes function/domain | Q10 |
+| Creative/original | Non-trivial coinage | Q10 |
+| Bilingual element | Code-mixing in naming | Q10 |
+
+Reported as: **individual criterion flags** + **strategy type inventory**.
 
 ---
 
-## Immediate Execution Plan
+## Inter-Rater Reliability Protocol
 
-### Phase 1: Create ZH & EN Questionnaire Versions (HOURS)
-- Translate all 10 tasks to Chinese and English
-- Maintain identical task structure for cross-linguistic comparability
-- Deploy as static HTML survey (like LinguaGraph survey)
+To establish coding reliability before any cross-linguistic comparison:
 
-### Phase 2: Code Existing DE Pilot (HOURS)
-- Apply coding scheme to 6 existing responses
-- Validate inter-rater reliability if possible
-- Generate pilot LPA report
+1. **Sample**: 20 responses (or 100% of pilot) randomly selected
+2. **Coders**: Primary coder (automated/L1 speaker) + independent coder
+3. **Metric**: Cohen's κ per criterion (≥0.70 threshold), percentage agreement
+4. **Reconciliation**: Disagreements reviewed, criteria refined, re-coded
+5. **Report**: κ values reported alongside all LPA results
 
-### Phase 3: Build Analysis Script (DAY)
-- Python script implementing the full LPA pipeline
-- Statistical comparison framework
-- Visualization generation
-
-### Phase 4: Data Collection (WEEKS)
-- Distribute ZH/EN versions alongside DE version
-- Target: 30+ per language group
-- Target: 120 total across all languages
-
-### Phase 5: Paper Integration (WEEKS)
-- §3.x Language Production Analysis results
-- §4.x Triangulation across three evidence layers
-- §5.x Summary: convergent evidence for cross-linguistic cognitive variation
+Implementation: `scripts/analyze_lpa.py --irr` flag for automated inter-rater comparison.
 
 ---
 
-## Paper Integration
+## Dataset Value
 
-### Suggested Structure
+The primary output of this study is NOT a set of scores — it is a **cross-linguistic open-response dataset**:
 
-**New subsection in Results**: `§3.4 Language Production Analysis (Exploratory)`
+- **DE**: ~120 respondents × 10 tasks → ~1,200 open-ended responses
+- **ZH**: TBD (target 30+) → ~300+ responses
+- **EN**: TBD (target 30+) → ~300+ responses
+- **Total**: ~1,800+ open-ended linguistic responses across 3 languages
 
-> "To complement the structural knowledge graph analysis, we conducted an exploratory language production study..."
+This dataset has independent value for:
+- NLP research (cross-linguistic text generation)
+- Cognitive linguistics (spatial/temporal reference across languages)
+- Bilingualism research (code-switching patterns)
+- Methodology development (automated coding of open-ended responses)
 
-**New subsection in Discussion**: `§4.x Triangulation Across Three Evidence Layers`
+---
 
-> "The three independent methods — textbook knowledge graphs (LDS-K), human concept graphs (LDS-C), and language production analysis (LPA) — provide convergent evidence for systematic cross-linguistic cognitive variation..."
+## Reporting Principles
+
+1. **No composite scores.** Each dimension is reported separately with its own criteria.
+2. **No cross-dimension weighting.** No evidence supports combining SGS + TFP + CFI + LCS.
+3. **No causal arrows.** LPA does not "support" or "validate" LDS-K or LDS-C.
+4. **Exploratory qualifiers.** All findings use *observed, exploratory, suggests, is consistent with*.
+5. **Effect sizes, not p-values.** Cohen's d or similar for cross-language comparisons.
+6. **Inter-rater reliability.** κ values mandatory for all coded dimensions.

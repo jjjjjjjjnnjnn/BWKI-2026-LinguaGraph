@@ -1,45 +1,41 @@
 ## 3.4 Exploratorische Sprachproduktionsanalyse (LPA)
 
-Zur Ergänzung der strukturierten Wissensgraphenanalyse führten wir eine explorative Sprachproduktionsstudie durch. Zehn linguistische Aufgaben wurden an deutsche Muttersprachler verteilt (N=6 Pilot, N=120 im Feld). Die Aufgaben umfassen: freie Assoziation, zweisprachige Konzept-erklärung, soziale Skripte, visuelle Beschreibung, Raumsprache (Bewegung + Statik), Zeitreferenz, Ereignisbeschreibung und Namensstrategien.
+### 3.4.1 Einordnung
 
-### 3.4.1 Analyserahmen
+Parallel zur strukturierten Wissensgraphenanalyse (LDS-K, §3.1–3.3) und der Konzeptanalyse menschlicher Probanden (LDS-C, §3.4) wurde ein dritter, unabhängiger Datenstrom erhoben: eine explorative Sprachproduktionsstudie. Zehn linguistische Aufgaben wurden an deutsche Muttersprachler verteilt (N=6 Pilot, N≥120 im Feld). Die Aufgaben umfassen freie Assoziation, zweisprachige Konzepterklärung, soziale Skripte, visuelle Beschreibung, Raumsprache (Bewegung + Statik), Zeitreferenz, Ereignisbeschreibung und Namensstrategien.
 
-Vier Dimensionen der Sprachproduktion wurden codiert:
+Die LPA ist als **exploratives Codierframework** konzipiert — nicht als validiertes psychometrisches Instrument. Die berichteten Kriterien dienen der Hypothesengenerierung und der systematischen Beschreibung beobachteter Muster.
 
-| Dimension | Metrik | Bereich | Beschreibung |
-|-----------|--------|:-------:|-------------|
-| **Räumliche Kognition** | SGS (Spatial Granularity Score) | 0–10 | Detailgrad räumlicher Beschreibungen (Bewegungspfad + statische Relationen) |
-| **Zeitliche Kognition** | TFP (Temporal Frame Preference) | T-/T?/T~/T+ | Umgang mit zeitlicher Metaphernambiguität |
-| **Konzeptuelle Flexibilität** | CFI (Conceptual Flexibility Index) | 0–8 | Zweisprachige Erklärungen, Perspektivwechsel, soziale Skripte |
-| **Lexikalische Kreativität** | LCS (Lexical Creativity Score) | 0–6 | Assoziationsvielfalt, Namensstrategien |
+### 3.4.2 Codierdimensionen
 
-### 3.4.2 Pilotergebnisse (N=6)
+Vier Dimensionen wurden mit einem Kriterienkatalog codiert:
 
-| Proband | SGS (0–10) | TFP | CFI (0–8) | LCS (0–6) | Gesamt (0–27) |
-|:-------:|:----------:|:---:|:---------:|:---------:|:-------------:|
-| R1 | 8 | T+ | 6 | 6 | **23 (0,85)** |
-| R2 | 3 | T? | 5 | 5 | **15 (0,56)** |
-| R3 | 5 | T? | 1 | 2 | **10 (0,37)** |
-| R4 | 6 | T? | 3 | 0 | **11 (0,41)** |
-| R5 | 7 | T~ | 4 | 6 | **18 (0,67)** |
-| R6 | 10 | T? | 7 | 3 | **22 (0,81)** |
+**D1 — Räumliche Granularität (Aufgaben 5–6):** Bewegungspfad (Quelle, Pfad, Ziel, Bewegungsart) und statische Raumbeschreibung (Objekterwähnung, Relationen, Orientierungsdetails, Referenzrahmen).
 
-**Kohortenmittel**: SGS=0,65 · CFI=0,54 · LCS=0,61 · Gesamt=0,61
+**D2 — Zeitliche Rahmung (Aufgabe 7):** Kategorisierung der temporalen Metaphernauflösung als eindeutig (T+), ambigue (T?), nicht-standard (T~) oder unvollständig (T-).
 
-### 3.4.3 Zentrale Beobachtungen
+**D3 — Konzeptuelle Flexibilität (Aufgaben 2, 3, 8, 9):** Zweisprachige Erklärungsversuche, soziale Skriptstrategien (Entschuldigung, Trotz, Philosophisch, Deeskalation), Perspektivwechsel in der Ereignisschilderung, kausale Subordination.
 
-**Räumliche Sprache (Aufgaben 5–6)**:
-Die räumliche Beschreibungsgranularität variiert erheblich innerhalb derselben Sprachgruppe. Proband R6 beschreibt detailliert *„Der Stift liegt mit der Schreibseite nach unten links neben dem Buch, die Tasse steht über dem Buch"* inklusive Schreibseitenorientierung — während R2 nur *„Vor dem Buch steht die Tasse"* produziert. Diese intra-linguale Variation ist konsistent mit Befunden zur individuellen Unterschiedlichkeit räumlicher Referenzrahmen (vgl. Levinson, 2003) und hat methodische Implikationen für cross-linguistische Sprachproduktionsstudien.
+**D4 — Lexikalische Produktion (Aufgaben 1, 10):** Assoziative Diversität, prototypische vs. nicht-prototypische Assoziationen, Benennungsstrategien (funktional, kreativ, zweisprachig).
 
-**Zeitliche Metapher (Aufgabe 7)**:
-Nur 1/6 Probanden produzierte eine eindeutige temporale Vorverlegung (*vorverlegt*). Die übrigen Antworten zeigten Ambiguitätsvermeidung (*verschoben*) oder nicht-standardisierte Formulierungen (*vorwärts bewegt*). Diese Beobachtung ist konsistent mit der von Boroditsky (2000) dokumentierten Ambiguität zeitlicher Metaphern — hier jedoch in einer natürlichen Elizitierungsumgebung statt im Forced-Choice-Design.
+Die vollständige Kriterienliste ist in `docs/lpa_framework.md` dokumentiert. Es werden **keine zusammengesetzten Scores** gebildet; jede Dimension wird separat auf Kriterienebene berichtet.
 
-**Zweisprachige Konzeptrepräsentation (Aufgabe 2)**:
-2/6 Probanden produzierten echte zweisprachige Parallelerklärungen für das Konzept *Fernweh*, inklusive Code-Switching innerhalb derselben Äußerung (z.B. *„its a Desiree tot Go far away from Home"*). Dies deutet auf unterschiedliche Strategien der konzeptuellen Repräsentation bei zweisprachigen Sprechern hin.
+### 3.4.3 Pilotergebnisse (N=6 DE)
 
-**Ereigniskonstruktion (Aufgaben 8–9)**:
-Bei identischer szenischer Vorgabe wählten verschiedene Probanden unterschiedliche Handlungsperspektiven: mal die Mutter als Agens (*gab die Mutter dem Mädchen*), mal das Mädchen als Agens (*Das Mädchen nahm den Regenschirm mit*). Diese Variation der Ereigniskonstruktion (Event Construal) ist ein bekanntes Phänomen der kognitiven Linguistik, das hier in einer kontrollierten Elizitierung repliziert wird.
+**D1 Räumliche Granularität:** Die Kriterienerfüllung reichte von 3/11 bis 11/11. Proband DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*). Proband DE02 codierte nur ein Objekt ohne räumliche Relation. Diese intra-linguale Variation ist konsistent mit Befunden zur individuellen Unterschiedlichkeit räumlicher Referenzrahmen (Levinson, 2003).
 
-### 3.4.4 Methodische Anmerkung
+**D2 Zeitliche Rahmung:** Von 6 Probanden produzierte einer eine eindeutig auflösende Formulierung (T+: *vorverlegt*), einer eine nicht-standardisierte Lehnübersetzung (T~: *vorwärts bewegt*), drei eine ambiguous Vermeidungsstrategie (T?: *verschoben*), einer eine unvollständige Antwort (T-). Die beobachtete Ambiguität ist konsistent mit Befunden zur Moving-Time-Metapher (Boroditsky, 2000).
 
-Diese Analyse ist explorativ und qualitativ. Die N=6 Pilotdaten dienen der Hypothesengenerierung und der Validierung des Codierschemas. Die Vollstudie (N=120 DE, zuzüglich ZH/EN) wird systematische cross-linguistische Vergleiche der Sprachproduktionsdimensionen ermöglichen. Die LPA-Ergebnisse sind als unabhängige Evidenzschicht konzipiert, die mit den LDS-K- und LDS-C-Befunden trianguliert werden kann.
+**D3 Konzeptuelle Flexibilität:** Zwei Probanden produzierten echte zweisprachige Parallelerklärungen (*Fernweh* auf DE + EN). Code-Switching innerhalb derselben Äußerung wurde bei einem Probanden beobachtet (DE: *Fernweh ist das Gegenteil von Heimweh* → EN: *its a Desiree tot Go far away*). Soziale Skriptstrategien verteilten sich über sechs Kategorien (Entschuldigung, Befehl, Trotz/humorvoll, Hecken, Deeskalation, Philosophisch). Perspektivwechsel in der Ereignisschilderung trat bei einem Probanden auf (Agenswechsel von Mutter zu Mädchen).
+
+**D4 Lexikalische Produktion:** Assoziative Kategorien zu *Zeit* umfassten Messung, Institution, Zeitdruck und Kalender. Benennungsstrategien für den Krankenhausroboter reichten von funktional-präzise (*Medizinischer Stationsassistenz-Roboter*) über kreativ-neologistisch (*Der Allesmacher*) bis zu zweisprachig hybrid (*Krankenschwester bot*).
+
+### 3.4.4 Methodische Anmerkungen und nächste Schritte
+
+Diese Analyse ist explorativ. Die N=6 Pilotdaten dienen der Validierung des Codierschemas. Vor systematischen cross-linguistischen Vergleichen werden folgende methodische Schritte durchgeführt:
+
+1. **Inter-Rater-Reliabilität:** Cohen's κ ≥ 0,70 für alle Kriterien (angestrebt). Zwei unabhängige Codierer werden 20 Antworten codieren.
+2. **Dimensionsanalyse:** Bei N≥120 wird mittels explorativer Faktorenanalyse (PCA) geprüft, ob die vier postulierten Dimensionen empirisch trennbar sind.
+3. **Cross-linguistische Erweiterung:** Äquivalente Fragebögen für ZH und EN sind erstellt und werden parallel erhoben.
+
+Die LPA-Ergebnisse sind als **unabhängiger, explorativer Evidenzstrom** konzipiert. Sie stehen parallel zu LDS-K und LDS-C, nicht in einer kausalen Hierarchie. Konvergente Muster zwischen den Strömen können sich gegenseitig stützen; divergente Muster sind gleichermaßen informativ.
