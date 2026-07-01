@@ -1,72 +1,55 @@
 # LinguaGraph — Prioritäten & Roadmap
 
-> **Stand:** 2026-06-18 · Nächster Meilenstein: BWKI Ideenanmeldung (28. Juni)
+> **Stand:** 2026-07-01 · Nächster Meilenstein: Vollständige Einreichung (21. September)
 
 ---
 
 ## 🥇 Aktuelle Prioritäten
 
-### Stufe 1: BWKI Ideenanmeldung (Deadline 28. Juni)
+### Stufe 1: Paper + Experimente (Jul–Aug)
 
-| Aufgabe | Status | Wer |
-|---------|--------|-----|
-| Beschreibungstext (960/1000) | ✅ Fertig | — |
-| Datenquellen (820/1000) | ✅ Fertig | — |
-| Pipeline-Diagramm (SVG) | ✅ Fertig | — |
-| **Einreichen auf idee.bw-ki.de** | ❌ **Nicht geschehen** | **DU** |
+| Aufgabe | Status | Anmerkung |
+|---------|:------:|-----------|
+| LDS 正式定義 v3 | ✅ Fertig | `docs/lds_formal_definition.md` |
+| OSF 预注册 | ✅ Fertig | `docs/osf_preregistration.md` |
+| 论文撰写 | 🔶 ~80% | 主要章节完整，需语言统一 (DE为主) |
+| 人类实验 N=8→30 | 🔶 **Critical Path** | 调查前端 ✅, 招募 ❌ |
+| ΔLDS 分析 | 🔶 部分 (`scripts/analyze_human_lds.py`) | 等待 N≥30 数据 |
+| 黄金数据集 20→50 | ❌ 未开始 | E4 里程碑 |
 
-→ **Priority #1:** Formular öffnen, Texte kopieren, Datei anhängen, absenden.
-
-### Stufe 2: Human Data Pipeline (Juli–August)
+### Stufe 2: 论文提交准备 (Aug–Sep)
 
 ```text
-Probanden rekrutieren (20 ZH / 20 DE / 20 EN)
-        ↓
-Pilot (3+3+3) → Analyse → Adjust
-        ↓
-Hauptstudie (60 Probanden)
-        ↓
-Ergebnisse → LDS Vergleiche → Charts
+Paper DE 语言统一
+图表嵌入 → PDF 生成
+Poster / Präsentation 准备
 ```
 
-### Stufe 3: Results Dashboard
+### Stufe 3: Finale Einreichung (Deadline 21. September)
 
 ```text
-Automatisierte Pipeline:
-Raw Data → Extraction → Graph → LDS → CI → Charts → Report
-```
-
-### Stufe 4: Finale Submission (Deadline 21. September)
-
-```text
-Paper schreiben (IMRaD)
-Three.js Cognitive City finalisieren
+Paper finalisieren
 Poster / Präsentation vorbereiten
+Einreichung auf bw-ki.de
 ```
 
 ---
 
-## 📊 Ressourcenverteilung (Empfohlen)
+## 📊 Ressourcenverteilung (Empfohlen Jul)
 
 ```text
-Nächste 2 Wochen:
-
-40%  Pilot-Datenerhebung (3+3+3 Probanden)
-25%  Results-Pipeline automatisieren
-20%  Three.js / UI / Visualisierung
-10%  Paper-Charts & Diagramme
- 5%  Lokales Modell evaluieren (nur Benchmark)
+40%  Paper schreiben + DE Übersetzung
+30%  Probanden-Rekrutierung
+15%  Ergebnisse analysieren + Charts
+10%  Visualisierung / UI polieren
+ 5%  Gold Dataset erweitern
 ```
 
 ---
 
-## 🔮 Future Work (Phase 2 — nach BWKI)
+## 🔮 Nach BWKI
 
 - **Model Merging & Fine-Tuning** — Qwen2.5-1.5B + LoRA + TIES + GGUF
-  - Vollständig dokumentiert in `docs/model_strategy.md`
-  - Training Pipeline in `docs/training_pipeline.md`
-  - Konfiguration in `config/training/`
-  - Muss NICHT vor BWKI gemacht werden
 - Multi-Agent Orchestrierung
 - Knowledge Base (RAG) Integration
 
@@ -78,20 +61,22 @@ Nächste 2 Wochen:
 - ❌ Neue Metriken erfinden (LDS ist frozen)
 - ❌ Pipeline umbauen
 - ❌ Concept Mapping erweitern
+- ❌ Neue Corpora sammeln (语料扩展已停止)
 
 ---
 
 ## 📋 Nächste konkrete Schritte
 
 ```
-Sofort (heute):
-1. Ideenanmeldung absenden (idee.bw-ki.de)
+Sofort:
+1. 🔴 论文 DE 语言统一 (04_discussion, 05_conclusion → DE)
+2. 🔴 删除过时文件 (03_results_text.md ✅)
+3. 🔶 编写招募材料 (ZH/EN/DE)
+4. 🔶 部署调查问卷到 GitHub Pages
+5. 🔶 通过学校/微信渠道启动招募
 
-Nach Anmeldung:
-2. Probanden-Rekrutierung planen (WhatsApp / Schule / WeChat)
-3. 3 Pilot-Probanden finden (1 ZH, 1 DE, 1 EN)
-4. Ethics Package drucken + Einverständnis einholen
-5. Pilot-Durchlauf: Umfrage → Extraction → LDS → Report
-6. Results Dashboard bauen
-7. Three.js Stadt für Pilot-Daten rendern
+Nach Rekrutierung:
+6. ΔLDS 计算 + 分析
+7. Paper 图表嵌入
+8. PDF/LaTeX 论文生成
 ```

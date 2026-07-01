@@ -183,17 +183,17 @@ Report Cohen's d for ΔLDS, and interpret against thresholds (small/medium/large
 |------|--------|-------|
 | Informed consent (ZH/EN/DE) | ✅ Done | Ethics review |
 | Survey prompts (ZH/EN/DE) | ✅ Done | Prior experiment |
-| Survey frontend | ❌ Not built | — |
+| Survey frontend | ✅ **Built** (`cognitive-space/survey/index.html`) | — |
 | Data quality checks | ⚠️ Partial (post-hoc) | Need automated |
 | Recruitment materials | ❌ Not written | — |
 | Recruitment channels | ❌ Not contacted | — |
-| ΔLDS analysis code | ❌ Not written | — |
+| ΔLDS analysis code | ⚠️ Partial (`scripts/analyze_human_lds.py`) | — |
 
 ## 7. Immediate Next Steps
 
-1. Build survey frontend (single HTML file, no server needed)
+1. ~~Build survey frontend~~ ✅ Already built
 2. Write recruitment call in ZH/EN/DE
-3. Deploy via GitHub Pages
+3. Deploy survey via GitHub Pages
 4. Begin recruitment
 5. Collect until N ≥ 30
 6. Run ΔLDS analysis
