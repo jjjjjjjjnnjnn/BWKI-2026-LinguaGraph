@@ -134,8 +134,22 @@ This dataset has independent value for:
 ## Reporting Principles
 
 1. **No composite scores.** Each dimension is reported separately with its own criteria.
-2. **No cross-dimension weighting.** No evidence supports combining SGS + TFP + CFI + LCS.
-3. **No causal arrows.** LPA does not "support" or "validate" LDS-K or LDS-C.
+2. **No cross-dimension weighting.** No evidence supports combining dimensions.
+3. **No causal arrows between evidence streams.** LPA does not "support" or "validate" LDS-K or LDS-C.
 4. **Exploratory qualifiers.** All findings use *observed, exploratory, suggests, is consistent with*.
-5. **Effect sizes, not p-values.** Cohen's d or similar for cross-language comparisons.
+5. **Effect sizes instead of p-values.** Cohen's d or similar for cross-language comparisons.
 6. **Inter-rater reliability.** κ values mandatory for all coded dimensions.
+
+---
+
+## Methodological Maturity Across Evidence Streams
+
+The three evidence streams in this research program are at different stages of methodological maturity. This is intentional and transparently acknowledged.
+
+| Stream | Methodological type | Maturity | Evidence stage |
+|--------|-------------------|:--------:|----------------|
+| **LDS-K** | Graph-theoretic comparison with validated null models | **High** | Algorithm frozen, quality gates established, null model suite validated |
+| **LDS-C** | Concept graph comparison from open-ended responses | **Medium** | Pipeline complete; core evidence pending N ≥ 30 human data |
+| **LPA** | Exploratory qualitative coding framework | **Early** | Codebook draft, pilot coding scheme, IRR pending (see `docs/lpa_codebook.md`) |
+
+These maturity differences do NOT weaken the overall research program. On the contrary, explicitly acknowledging them (a) prevents any single stream from bearing more evidentiary weight than it can support, (b) clarifies to reviewers what each stream can and cannot claim, and (c) demonstrates methodological awareness rather than over-claiming.
