@@ -170,6 +170,26 @@ python scripts/analyze_lpa.py --irr --coder1 coder1.json --coder2 coder2.json
 
 ---
 
+## Method Change Governance
+
+To distinguish prospective (pre-registered) from retrospective (post-hoc) method changes:
+
+| Change type | Definition | Required action |
+|-------------|-----------|----------------|
+| **Prospective** | Defined and documented before data analysis | Standard documentation in codebook |
+| **Retrospective** | Introduced after seeing data patterns | Decision Log entry + rationale + "would prior version change results?" assessment |
+
+### Retrospective change policy
+
+A retrospective method change must document:
+1. **Why** the change was necessary (data-driven, reliability-driven, theoretical)
+2. **What** the prior method was (explicit, reproducible)
+3. **What** the new method is
+4. **Impact**: whether historical results would change if re-run with the new method
+5. **Flag**: "Retrospective" label in the Decision Log
+
+This policy applies to: coding criteria, inclusion/exclusion rules, scoring thresholds, aggregation methods, and statistical procedures.
+
 ## Decision Log
 
 ### v0.1 → v0.2 (2026-07-01)
