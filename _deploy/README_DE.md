@@ -338,10 +338,16 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ## Danksagungen
 
-- **BWKI 2026** — Wettbewerbsplattform
+- **BWKI 2026** — Wettbewerbsplattform und Rahmen
+- **Schloss Heessen** — Internatsschule in Hamm, Deutschland; institutionelle Unterstützung und Bildungsberatung
+- **Hochschule Hamm-Lippstadt (HSHL)** — Akademische Beratung und professionelle Konsultation
+- **OpenCode GO** — KI-Dienstplattform mit Modell-API-Zugang
+- **Claude Code** — KI-gestützte Entwicklungsplattform (Anthropic)
+- **MimoCode** — KI-Dienstplattform über OpenCode GO
 - **Alibaba Cloud Bailian** — Kostenloses API-Kontingent (1M Tokens pro Modell)
 - **OpenRouter** — Modell-Routing (getestet)
 - **LM Studio** — Lokale Inferenz (erste Entwicklung)
+
 ## 📜 Zitationshinweis
 
 ```bibtex

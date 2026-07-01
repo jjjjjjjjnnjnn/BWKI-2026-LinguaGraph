@@ -338,10 +338,16 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ## 致谢
 
-- **BWKI 2026** — 竞赛平台
+- **BWKI 2026** — 竞赛平台与框架
+- **Schloss Heessen** — 德国哈姆寄宿学校；机构支持与教育指导
+- **Hamm-Lippstadt 应用科学大学（HSHL）** — 学术咨询与专业顾问
+- **OpenCode GO** — AI 服务平台，提供模型 API 接入
+- **Claude Code** — AI 辅助开发平台（Anthropic）
+- **MimoCode** — AI 服务平台（通过 OpenCode GO）
 - **阿里云百联** — 免费 API 额度（每个模型 100 万 token）
 - **OpenRouter** — 模型路由（已测试）
 - **LM Studio** — 本地推理（初期开发）
+
 ## 📜 引用说明
 
 ```bibtex

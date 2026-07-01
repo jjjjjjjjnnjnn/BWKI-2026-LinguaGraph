@@ -338,10 +338,17 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ### Acknowledgments
 
-- **BWKI 2026** — Competition platform
+- **BWKI 2026** — Competition platform and framework
+- **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance
+- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation
+- **OpenCode GO** — AI service platform providing model API access
+- **Claude Code** — AI-assisted development platform (Anthropic)
+- **MimoCode** — AI service platform via OpenCode GO
 - **Alibaba Cloud Bailian** — Free API quota (1M tokens per model)
 - **OpenRouter** — Model routing (tested)
-- **LM Studio** — Local inference (initial development)## 📜 Citation
+- **LM Studio** — Local inference (initial development)
+
+## 📜 Citation
 
 ```bibtex
 @misc{linguaGraph2026,
