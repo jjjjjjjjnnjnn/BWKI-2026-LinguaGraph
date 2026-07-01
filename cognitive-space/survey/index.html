@@ -262,7 +262,7 @@ const T = {
 // ═══════════════════════════════════════════════════════════
 // CONFIG — Paste your Google Apps Script URL here
 // ═══════════════════════════════════════════════════════════
-const ENDPOINT_URL = '';
+const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbztARwvcBXrdXUE_SAPvAep1rFlsqcAtuZEx9mds2Vcjv4nUf1VtrrZyRyRqoNYE9iU/exec';
 
 // ═══════════════════════════════════════════════════════════
 // STATE
@@ -461,12 +461,27 @@ function finishSurvey() {
 
   // Submit to backend if configured
   if (ENDPOINT_URL) {
-    fetch(ENDPOINT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(err => console.log('Backend submit failed (no-cors is expected):', err));
+    // Hidden iframe target to prevent page redirect
+    var iframe = document.createElement('iframe');
+    iframe.name = 'submit_frame';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    // Form POST to bypass CORS
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = ENDPOINT_URL;
+    form.target = 'submit_frame';
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(data);
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    // Clean up after submission
+    setTimeout(() => {
+      if (document.body.contains(form)) document.body.removeChild(form);
+    }, 1000);
   }
 
   document.getElementById('response-id').textContent = responseId;

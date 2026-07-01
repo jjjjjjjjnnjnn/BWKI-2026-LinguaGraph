@@ -260,6 +260,11 @@ const T = {
 };
 
 // ═══════════════════════════════════════════════════════════
+// CONFIG — Paste your Google Apps Script URL here
+// ═══════════════════════════════════════════════════════════
+const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbztARwvcBXrdXUE_SAPvAep1rFlsqcAtuZEx9mds2Vcjv4nUf1VtrrZyRyRqoNYE9iU/exec';
+
+// ═══════════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════════
 let lang = 'en';
@@ -453,6 +458,31 @@ function finishSurvey() {
   // Save to localStorage
   localStorage.setItem('linguagraph_response', JSON.stringify(data));
   localStorage.setItem('linguagraph_response_id', responseId);
+
+  // Submit to backend if configured
+  if (ENDPOINT_URL) {
+    // Hidden iframe target to prevent page redirect
+    var iframe = document.createElement('iframe');
+    iframe.name = 'submit_frame';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    // Form POST to bypass CORS
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = ENDPOINT_URL;
+    form.target = 'submit_frame';
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(data);
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    // Clean up after submission
+    setTimeout(() => {
+      if (document.body.contains(form)) document.body.removeChild(form);
+    }, 1000);
+  }
 
   document.getElementById('response-id').textContent = responseId;
   document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);

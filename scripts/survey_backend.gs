@@ -18,8 +18,15 @@ function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    // Parse incoming JSON
-    const data = JSON.parse(e.postData.contents);
+    // Parse incoming data (supports both form POST and JSON POST)
+    let data;
+    if (e.postData && e.postData.contents) {
+      data = JSON.parse(e.postData.contents);
+    } else if (e.parameter && e.parameter.data) {
+      data = JSON.parse(e.parameter.data);
+    } else {
+      throw new Error('No data received. Send as form field "data" or JSON body.');
+    }
 
     // Build header row if empty
     if (sheet.getLastRow() === 0) {
@@ -57,9 +64,9 @@ function doPost(e) {
 
     sheet.appendRow(row);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: true, id: data.response_id }))
-      .setMimeType(ContentService.MimeType.JSON);
+    // Return HTML (shown in hidden iframe, user won't see it)
+    var html = '<html><body><script>window.close();</script>OK</body></html>';
+    return HtmlService.createHtmlOutput(html);
 
   } catch (err) {
     return ContentService
