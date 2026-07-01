@@ -1,49 +1,49 @@
-## 2. Related Work
+## 2. Verwandte Arbeiten
 
-This section situates LinguaGraph within four research strands: educational knowledge graphs, curriculum analysis and comparison, concept mapping and cognitive structure, and cross-lingual knowledge integration.
+Dieser Abschnitt verortet LinguaGraph in vier Forschungssträngen: pädagogische Wissensgraphen, Curriculumanalyse und -vergleich, Concept Mapping und kognitive Struktur sowie sprachübergreifende Wissensintegration.
 
-### 2.1 Educational Knowledge Graphs
+### 2.1 Pädagogische Wissensgraphen
 
-The construction of knowledge graphs from educational resources has seen significant advances in recent years. Yao et al. (2019) proposed joint embedding learning for educational knowledge graphs, demonstrating that concept relationships can be automatically inferred from curriculum documents [1]. Zhao, Sun, and Xu (2022) developed EDUKG, a heterogeneous K-12 educational knowledge graph spanning multiple subjects, showing the feasibility of large-scale curriculum-level knowledge organization [2].
+Die Konstruktion von Wissensgraphen aus Bildungsressourcen hat in den letzten Jahren bedeutende Fortschritte erfahren. Yao et al. (2019) schlugen Joint Embedding Learning für pädagogische Wissensgraphen vor und zeigten, dass Konzeptbeziehungen automatisch aus Curriculumsdokumenten abgeleitet werden können [1]. Zhao, Sun und Xu (2022) entwickelten EDUKG, einen heterogenen K-12-Bildungswissensgraphen, der mehrere Fächer umfasst, und demonstrierten die Machbarkeit einer groß angelegten Wissensorganisation auf Curriculumniveau [2].
 
-Most relevant to LinguaGraph is the work of Ain, Chatti, and Qussa (2025), who developed an optimized pipeline for automatic educational knowledge graph construction [3]. Their approach uses large language models for concept extraction, similar to our MIMO prompt methodology. A follow-up study compared top-down and bottom-up construction approaches, finding that bottom-up extraction from textbook content yields more complete concept coverage [4]. LinguaGraph adopts a bottom-up approach but extends it by incorporating cross-language alignment — a dimension absent from existing EKG pipelines.
+Am relevantesten für LinguaGraph ist die Arbeit von Ain, Chatti und Qussa (2025), die eine optimierte Pipeline zur automatischen Konstruktion pädagogischer Wissensgraphen entwickelten [3]. Ihr Ansatz verwendet Large Language Models zur Konzeptextraktion, ähnlich unserer MIMO-Prompt-Methodik. Eine Folgestudie verglich Top-Down- und Bottom-Up-Konstruktionsansätze und stellte fest, dass die Bottom-Up-Extraktion aus Lehrbuchinhalten eine vollständigere Konzeptabdeckung liefert [4]. LinguaGraph übernimmt einen Bottom-Up-Ansatz, erweitert ihn jedoch um sprachübergreifende Ausrichtung — eine Dimension, die in bestehenden EKG-Pipelines fehlt.
 
-Alatrash, Chatti, and Wibowo (2025) specifically addressed prerequisite inference in educational knowledge graphs, proposing a multi-criteria approach that considers textual, structural, and taxonomic signals [5]. Their method directly informs the HDS metric in our framework, which measures the depth of prerequisite chains as a proxy for knowledge hierarchy.
+Alatrash, Chatti und Wibowo (2025) befassten sich speziell mit der Inferenz von Voraussetzungsbeziehungen in pädagogischen Wissensgraphen und schlugen einen multikriteriellen Ansatz vor, der textuelle, strukturelle und taxonomische Signale berücksichtigt [5]. Ihre Methode fließt unmittelbar in die HDS-Metrik unseres Frameworks ein, die die Tiefe von Voraussetzungsketten als Proxy für die Wissenshierarchie misst.
 
-### 2.2 Curriculum Analysis and Comparison
+### 2.2 Curriculumanalyse und -vergleich
 
-Cross-national curriculum comparison has been a cornerstone of international education research. The TIMSS (Trends in International Mathematics and Science Study) framework provides systematic methodology for comparing curricula across countries, including curriculum intention, implementation, and attainment dimensions [6]. The OECD PISA studies similarly analyze how curriculum structures affect learning outcomes [7].
+Der länderübergreifende Curriculumsvergleich ist ein Eckpfeiler der internationalen Bildungsforschung. Das TIMSS-Rahmenwerk (Trends in International Mathematics and Science Study) bietet eine systematische Methodik zum Vergleich von Curricula über Länder hinweg, einschließlich der Dimensionen Curriculumintention, -implementierung und -ergebnis [6]. Die OECD-PISA-Studien analysieren in ähnlicher Weise, wie Curriculumsstrukturen Lernergebnisse beeinflussen [7].
 
-Specific comparisons between German and Chinese mathematics curricula have been conducted by Liang and Heckmann (2013), who analyzed textbook problems and found systematic differences in problem complexity and representation style [8]. Fan, Zhu, and Miao (2013) extended this to a broader cross-national comparison of textbook problems [9]. While these studies focus on problem-level or content-level comparison, LinguaGraph introduces a graph-level comparison — the Language Drift Score (LDS) — which captures structural differences that surface-level content analysis misses.
+Spezifische Vergleiche zwischen deutschen und chinesischen Mathematikcurricula wurden von Liang und Heckmann (2013) durchgeführt, die Lehrbuchaufgaben analysierten und systematische Unterschiede in Aufgabenkomplexität und Darstellungsstil feststellten [8]. Fan, Zhu und Miao (2013) erweiterten dies auf einen breiteren länderübergreifenden Vergleich von Lehrbuchaufgaben [9]. Während diese Studien sich auf Aufgaben- oder Inhaltsebene konzentrieren, führt LinguaGraph einen Graphenvergleich ein — den Language Drift Score (LDS) — der strukturelle Unterschiede erfasst, die eine oberflächliche Inhaltsanalyse übersieht.
 
-The recently published Kernlehrplan NRW (2019, 2023) for German Gymnasium mathematics provides a formal competency-based curriculum structure [10]. The Chinese equivalent, the *Yiwu Jiaoyu Shuxue Kecheng Biaozhun* (2022) and the *Putong Gaozhong Shuxue Kecheng Biaozhun* (2017), similarly define learning progressions and content standards [11]. LinguaGraph is the first system to our knowledge that converts these curriculum standards into structured knowledge graphs for direct cross-language comparison.
+Der kürzlich veröffentlichte Kernlehrplan NRW (2019, 2023) für das deutsche Gymnasium im Fach Mathematik bietet eine formale kompetenzbasierte Curriculumsstruktur [10]. Das chinesische Pendant, der *Yiwu Jiaoyu Shuxue Kecheng Biaozhun* (2022) und der *Putong Gaozhong Shuxue Kecheng Biaozhun* (2017), definieren in ähnlicher Weise Lernprogressionen und Inhaltsstandards [11]. LinguaGraph ist nach unserem Kenntnisstand das erste System, das diese Curriculumsstandards in strukturierte Wissensgraphen für den direkten sprachübergreifenden Vergleich überführt.
 
-### 2.3 Concept Mapping and Knowledge Organization
+### 2.3 Concept Mapping und Wissensorganisation
 
-The theoretical foundation of knowledge structure analysis traces to Ausubel's assimilation theory of meaningful learning (1963), which argues that knowledge is organized hierarchically rather than as isolated facts [12]. Novak and Cañas (2008) operationalized this theory through concept mapping, demonstrating that knowledge structures can be externalized as propositional networks [13]. Their framework underlies the CDS and HDS metrics in LinguaGraph: Concept Density Score captures the connectedness of concepts within a knowledge domain, while Hierarchy Depth Score measures prerequisite chain depth.
+Die theoretische Grundlage der Wissensstrukturanalyse geht auf Ausubels Assimilationstheorie des sinnvollen Lernens (1963) zurück, die argumentiert, dass Wissen hierarchisch und nicht als isolierte Fakten organisiert ist [12]. Novak und Cañas (2008) operationalisierten diese Theorie durch Concept Mapping und zeigten, dass Wissensstrukturen als propositionale Netzwerke externalisiert werden können [13]. Ihr Rahmenwerk liegt den CDS- und HDS-Metriken in LinguaGraph zugrunde: Der Concept Density Score erfasst die Vernetztheit von Konzepten innerhalb einer Wissensdomäne, während der Hierarchy Depth Score die Tiefe der Voraussetzungsketten misst.
 
-Recent advances have automated concept map generation. Weakly supervised approaches using graph translation (2021) [14] and generative LLM-based methods (2025) [15] have made large-scale concept mapping feasible. LinguaGraph differs from these approaches in its multilingual orientation: rather than generating concept maps for a single language, we construct parallel knowledge graphs across Chinese, German, and English, enabling cross-linguistic structural comparison.
+Jüngste Fortschritte haben die automatische Generierung von Concept Maps ermöglicht. Schwach überwachte Ansätze mittels Graphtranslation (2021) [14] und generative LLM-basierte Methoden (2025) [15] haben groß angelegtes Concept Mapping praktikabel gemacht. LinguaGraph unterscheidet sich von diesen Ansätzen durch seine mehrsprachige Ausrichtung: Anstatt Concept Maps für eine einzelne Sprache zu generieren, konstruieren wir parallele Wissensgraphen für Chinesisch, Deutsch und Englisch und ermöglichen so einen sprachübergreifenden Strukturvergleich.
 
-### 2.4 Cross-lingual Knowledge Graph Alignment
+### 2.4 Sprachübergreifende Wissensgraph-Ausrichtung
 
-Cross-lingual knowledge graph alignment aims to identify equivalent entities and relations across languages. Early work by McGillivray et al. (2016) proposed multilingual knowledge graph embeddings for cross-lingual alignment [16]. Subsequent research developed entity alignment methods using adversarial training [17], subgraph networks [18], and co-training with entity descriptions [19].
+Die sprachübergreifende Wissensgraph-Ausrichtung zielt darauf ab, äquivalente Entitäten und Relationen sprachübergreifend zu identifizieren. Frühe Arbeiten von McGillivray et al. (2016) schlugen multilinguale Wissensgraph-Embeddings für die sprachübergreifende Ausrichtung vor [16]. Nachfolgende Forschung entwickelte Methoden zur Entitätsausrichtung mittels adversarialem Training [17], Subgraph-Netzwerken [18] und Co-Training mit Entitätsbeschreibungen [19].
 
-These alignment-focused approaches differ fundamentally from LinguaGraph's goal. Alignment research asks: *How do we match equivalent concepts across languages?* LinguaGraph asks: *Given matched concepts, what structural differences remain between language-specific knowledge organizations?* The LDS metric captures these residual structural differences — the divergence that persists after concept alignment — which existing cross-lingual KG research has not systematically quantified.
+Diese ausrichtungsfokussierten Ansätze unterscheiden sich grundlegend von LinguaGraphs Zielsetzung. Die Ausrichtungsforschung fragt: *Wie lassen sich äquivalente Konzepte sprachübergreifend abgleichen?* LinguaGraph fragt: *Welche strukturellen Unterschiede verbleiben bei gegebenen abgeglichenen Konzepten zwischen sprachspezifischen Wissensorganisationen?* Die LDS-Metrik erfasst diese verbleibenden strukturellen Unterschiede — die nach der Konzeptausrichtung fortbestehende Divergenz — die von der bestehenden sprachübergreifenden KG-Forschung nicht systematisch quantifiziert wurde.
 
-### 2.5 Research Gap
+### 2.5 Forschungslücke
 
-While each of these research strands has independently explored aspects of knowledge structure analysis, no existing work integrates:
+Während jeder dieser Forschungsstränge unabhängig Aspekte der Wissensstrukturanalyse untersucht hat, integriert keine bestehende Arbeit:
 
-1. **Automatic knowledge graph construction** from multilingual textbook content
-2. **Systematic comparison** of knowledge structures across languages
-3. **Quantitative metrics** (LDS, CDS, HDS) for structural comparison
-4. **Curriculum-level analysis** comparing textbook knowledge graphs to official curriculum standards
+1. **Automatische Wissensgraphkonstruktion** aus mehrsprachigen Lehrbuchinhalten
+2. **Systematischer Vergleich** von Wissensstrukturen über Sprachen hinweg
+3. **Quantitative Metriken** (LDS, CDS, HDS) für den Strukturvergleich
+4. **Curriculumsbezogene Analyse**, die Lehrbuchwissensgraphen mit offiziellen Curriculumsstandards vergleicht
 
-LinguaGraph addresses this gap by providing an integrated pipeline from textbook extraction through cross-language structural analysis, with validated metrics that capture knowledge organization differences at multiple levels — across languages (LDS), education levels (CDS), and hierarchical depth (HDS).
+LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrbuchextraktion bis zur sprachübergreifenden Strukturanalyse, mit validierten Metriken, die Unterschiede in der Wissensorganisation auf mehreren Ebenen erfassen — über Sprachen (LDS), Bildungsstufen (CDS) und hierarchische Tiefe (HDS) hinweg.
 
 ---
 
-## References
+## Literaturverzeichnis
 
 [1] Yao, S., Wang, R., & Sun, S. (2019). Joint Embedding Learning of Educational Knowledge Graphs. arXiv:1911.08776.
 

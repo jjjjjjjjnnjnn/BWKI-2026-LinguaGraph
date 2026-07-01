@@ -1,78 +1,78 @@
-# LinguaGraph — 3 Core Conclusions (Poster/Pitch Ready)
+# LinguaGraph — 3 Kernschlussfolgerungen (Poster/Pitch-fähig)
 
-> 将 12 个研究发现 (F1-F12) 压缩为 3 条主结论
-> 适用于：海报、3 分钟演讲、摘要、评审材料
+> Komprimierung der 12 Forschungsbefunde (F1–F12) auf 3 Hauptschlussfolgerungen
+> Geeignet für: Poster, 3-Minuten-Vortrag, Abstract, Begutachtungsunterlagen
 
 ---
 
-## Conclusion 1: Knowledge Density Is Non-Monotonic and Discipline-Dependent
+## Schlussfolgerung 1: Die Wissensdichte ist nicht-monoton und disziplinabhängig
 
-**What we found**:
-> Knowledge density peaks early for both disciplines — Mathematics at **Middle school** (CDS=0.271), Physics at **Elementary school** (CDS=0.222) — and declines monotonically thereafter.
+**Was wir fanden**:
+> Die Wissensdichte erreicht ihren Höhepunkt früh in beiden Disziplinen — Mathematik in der **Mittelstufe** (CDS=0,271), Physik in der **Grundschule** (CDS=0,222) — und fällt danach monoton ab.
 
-**Why it matters**:
-> The assumption that "more advanced knowledge is more densely connected" is false **for both disciplines**. Both follow a **peak-and-decline** pattern, with maximum structural integration occurring at the introductory level. This convergence suggests a universal property of educational knowledge organization: curricula are designed to maximize connection density during foundational stages, then diverge into specialization.
+**Warum es relevant ist**:
+> Die Annahme, dass „fortgeschritteneres Wissen dichter vernetzt ist", ist für **beide Disziplinen falsch**. Beide folgen einem **Gipfel-und-Abfall**-Muster, wobei die maximale strukturelle Integration auf der Einführungsstufe auftritt. Diese Konvergenz deutet auf eine universelle Eigenschaft der pädagogischen Wissensorganisation hin: Curricula sind darauf ausgelegt, die Verbindungsdichte in den Grundlagenphasen zu maximieren, bevor sie in die Spezialisierung divergieren.
 
-**Evidence**:
-| Discipline | Peak Level | Peak CDS | Shape |
+**Evidenz**:
+| Disziplin | Spitzenniveau | Spitzen-CDS | Verlaufsform |
 |-----------|-----------|---------|-------|
-| Mathematics | Middle school | 0.271 | ↑ peak ↓ steady decline |
-| Physics | Elementary school | 0.222 | ↑ peak ↓ rapid decline |
+| Mathematik | Mittelstufe | 0,271 | ↑ Gipfel ↓ stetiger Abfall |
+| Physik | Grundschule | 0,222 | ↑ Gipfel ↓ rascher Abfall |
 
-**Robustness**: ✅ Confirmed in ZH, EN, DE independently
+**Robustheit**: ✅ Unabhängig in ZH, EN, DE bestätigt
 
 ---
 
-## Conclusion 2: Knowledge Depth Has a Universal Upper Limit
+## Schlussfolgerung 2: Die Wissenstiefe hat eine universelle Obergrenze
 
-**What we found**:
-> Maximum prerequisite chain depth is bounded at **HDS ≤ 8**, regardless of discipline. Mean depth differs by discipline (Math: 0.40, Physics: 0.85).
+**Was wir fanden**:
+> Die maximale Tiefe der Voraussetzungsketten ist auf **HDS ≤ 8** beschränkt, unabhängig von der Disziplin. Die mittlere Tiefe unterscheidet sich je nach Disziplin (Mathe: 0,40, Physik: 0,85).
 
-**Why it matters**:
-> Educational knowledge appears to respect a natural depth limit on prerequisite structures. Both disciplines share the same bound. Physics has **2.1× more sequential depth** than mathematics (64% roots in physics vs 83% in math), but not the 2.8× previously estimated with a smaller sample.
+**Warum es relevant ist**:
+> Pädagogisches Wissen scheint einer natürlichen Tiefengrenze für Voraussetzungsstrukturen zu unterliegen. Beide Disziplinen teilen dieselbe Obergrenze. Physik weist eine **2,1-fach höhere sequenzielle Tiefe** auf als Mathematik (64 % Wurzeln in Physik vs. 83 % in Mathe), jedoch nicht die zuvor mit einer kleineren Stichprobe geschätzten 2,8-fache.
 
-**Evidence**:
-| Metric | Math | Physics |
+**Evidenz**:
+| Metrik | Mathe | Physik |
 |--------|:----:|:-------:|
-| Max HDS | 8 | 6 |
-| Mean HDS | 0.40 | 0.85 |
-| Root concepts | 83% | 64% |
-| Structure type | Shallow web | Deeper chain |
+| Max. HDS | 8 | 6 |
+| Mittlere HDS | 0,40 | 0,85 |
+| Wurzelkonzepte | 83 % | 64 % |
+| Strukturtyp | Flaches Netz | Tiefere Kette |
 
 ---
 
-## Conclusion 3: Textbook Knowledge Structures Converge Cross-Linguistically; ΔLDS Isolates the Language Signal
+## Schlussfolgerung 3: Lehrbuchwissenschaftliche Strukturen konvergieren sprachübergreifend; ΔLDS isoliert das Sprachsignal
 
-**What we found**:
-> Textbook-derived LDS-K values range from **0.519 (ZH-DE) to 0.938 (DE-EN)**, but a **Null Model critique** reveals that these values are fully dominated by degree-distribution structure — not language. Under degree-preserving randomization (Structure Null), the real graphs are systematically **more similar** than randomized graphs (ZH-EN: 0.934 < 0.957; DE-EN: 0.938 < 0.957; ZH-DE: 0.519 < 0.717). This falsifies the hypothesis that LDS-K measures language-driven divergence.
+**Was wir fanden**:
+> Die lehrbuchbasierten LDS-K-Werte reichen von **0,519 (ZH-DE) bis 0,938 (DE-EN)**, doch eine **Nullmodell-Kritik** zeigt, dass diese Werte vollständig von der Gradverteilungsstruktur dominiert werden — nicht von der Sprache. Unter gradbewahrender Randomisierung (Structure Null) sind die realen Graphen systematisch **ähnlicher** als randomisierte Graphen (ZH-EN: 0,934 < 0,957; DE-EN: 0,938 < 0,957; ZH-DE: 0,519 < 0,717). Dies falsifiziert die Hypothese, dass LDS-K sprachbedingte Divergenz misst.
 
-**Why it matters**:
-> Despite mathematical truth being universal, textbook knowledge structures across languages are **remarkably similar** — more so than degree-randomized graphs would predict. This convergence suggests that mathematical prerequisite logic, rather than language, dominates institutional knowledge organization. The core scientific contribution shifts from LDS-K (textbook divergence) to **ΔLDS = LDS-C − LDS-K** (cognitive divergence beyond knowledge structure), which isolates the language-specific component of human knowledge expression.
+**Warum es relevant ist**:
+> Obwohl mathematische Wahrheit universell ist, sind lehrbuchwissenschaftliche Wissensstrukturen über Sprachen hinweg **bemerkenswert ähnlich** — ähnlicher, als gradrandomisierte Graphen erwarten ließen. Diese Konvergenz deutet darauf hin, dass die mathematische Voraussetzungslogik — und nicht die Sprache — die institutionelle Wissensorganisation dominiert. Der zentrale wissenschaftliche Beitrag verschiebt sich von LDS-K (Lehrbuchdivergenz) zu **ΔLDS = LDS-C − LDS-K** (kognitive Divergenz jenseits der Wissensstruktur), wodurch die sprachspezifische Komponente des menschlichen Wissensausdrucks isoliert wird.
 
-**Evidence (Null Model Suite)**:
-| Condition | ZH-EN | DE-EN | ZH-DE |
+**Evidenz (Nullmodell-Suite)**:
+| Bedingung | ZH-EN | DE-EN | ZH-DE |
 |:----------|:-----:|:-----:|:-----:|
-| Full (LDS-K baseline) | 0.934 | 0.938 | 0.519 |
-| Structure Null (deg.-preserving) | **0.957** | **0.957** | **0.717** |
-| Node-Permuted Null | 0.934 | 0.938 | 0.519 |
-| Complete Random | 1.000 | 1.000 | 1.000 |
-| **Interpretation** | Structure dominates | Structure dominates | Real MORE similar than random |
+| Voll (LDS-K-Basislinie) | 0,934 | 0,938 | 0,519 |
+| Structure Null (gradbewahrend) | **0,957** | **0,957** | **0,717** |
+| Node-Permuted Null | 0,934 | 0,938 | 0,519 |
+| Complete Random | 1,000 | 1,000 | 1,000 |
+| **Interpretation** | Struktur dominiert | Struktur dominiert | Real ÄHNLICHER als Zufall |
 
-**Pilot human data** (N=8): ZH-EN=0.704, DE-EN=0.727, DE-ZH=0.751 — all meaningfully below LDS-K, consistent with the hypothesis that **within-subject human expression converges** even when LDS-K baseline is high. ΔLDS computation awaits N ≥ 30.
+**Pilot-Human-Daten** (N=8): ZH-EN=0,704, DE-EN=0,727, DE-ZH=0,751 — alle bedeutsam unter LDS-K, konsistent mit der Hypothese, dass **innersubjektlicher menschlicher Ausdruck konvergiert**, selbst wenn die LDS-K-Basislinie hoch ist. Die ΔLDS-Berechnung erwartet N ≥ 30.
 
 ---
 
-## Unified Narrative (30-Second Pitch)
+## Einheitliche Narration (30-Sekunden-Pitch)
 
-> **Mathematics, physics, and chemistry knowledge follow different density trajectories, respect a universal depth bound, and — counterintuitively — show remarkable structural convergence across languages at the textbook level. The language signal emerges only when measuring human cognitive expression (LDS-C), not institutional knowledge organization (LDS-K). ΔLDS isolates this language effect. LinguaGraph makes these invisible structural patterns visible, measurable, and comparable across 3 disciplines, 3 languages, and 4 educational systems.**
+> **Mathematik, Physik und Chemie folgen unterschiedlichen Dichtetrajektorien, respektieren eine universelle Tiefengrenze und zeigen — kontraintuitiv — bemerkenswerte strukturelle Konvergenz über Sprachen hinweg auf Lehrbuchebene. Das Sprachsignal tritt erst bei der Messung menschlichen kognitiven Ausdrucks (LDS-C) zutage, nicht bei institutioneller Wissensorganisation (LDS-K). ΔLDS isoliert diesen Spracheffekt. LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.**
 
-> LinguaGraph makes these invisible structural patterns visible, measurable, and comparable across 3 disciplines, 3 languages, and 4 educational systems.
+> LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.
 
-## Theory → Evidence Chain
+## Theorie → Evidenz-Kette
 
-| Conclusion | Theory | Evidence Source | Supports |
+| Schlussfolgerung | Theorie | Evidenzquelle | Unterstützt |
 |-----------|--------|----------------|----------|
-| C1 | Ausubel (1963) — knowledge integration before specialization | CDS by level (Math + Physics + Chemistry) | Curriculum design |
-| C2 | Novak & Cañas (2008) — concept maps as propositional networks | HDS distribution (Math + Physics) | Learning progression |
-| C3 | Null Model (degree-preserving rewiring) | LDS-K vs Structure Null (Full < Null) | **Falsification** — LDS-K does NOT measure language divergence |
-| ΔLDS Hypothesis | Linguistic relativity (Whorf, 1956; Lucy, 1997) | LDS-C vs LDS-K, backed by Null Model | Language effect on cognitive expression |
+| C1 | Ausubel (1963) — Wissensintegration vor Spezialisierung | CDS nach Niveau (Mathe + Physik + Chemie) | Curriculumentwicklung |
+| C2 | Novak & Cañas (2008) — Concept Maps als propositionale Netzwerke | HDS-Verteilung (Mathe + Physik) | Lernprogression |
+| C3 | Nullmodell (gradbewahrendes Rewiring) | LDS-K vs. Structure Null (Voll < Null) | **Falsifikation** — LDS-K misst KEINE Sprachdivergenz |
+| ΔLDS-Hypothese | Linguistische Relativität (Whorf, 1956; Lucy, 1997) | LDS-C vs. LDS-K, gestützt durch Nullmodell | Spracheffekt auf kognitiven Ausdruck |
