@@ -87,9 +87,23 @@ Fragen? Kontaktieren Sie den Forscher.
 
 ---
 
-## Tracking
+## Recruitment Campaign (实验式管理)
 
-| Date | ZH | DE | EN | Total | Notes |
-|:----:|:--:|:--:|:--:|:-----:|-------|
-| (existing) | 4 | 2 | 2 | **8** | Pilot |
-| | | | | | |
+| Date | Channel | Lang | Est. reach | New completes | Cumulative | Notes |
+|:----:|---------|:----:|:----------:|:-------------:|:----------:|-------|
+| | ZH: WeChat group A | ZH | ~80 | | 8 | |
+| | DE: Schloss Heessen | DE | ~30 | | 8 | |
+| | EN: Reddit r/SampleSize | EN | ~200 | | 8 | |
+| | DE: HSHL mailing list | DE | ~100 | | 8 | |
+| | EN: r/Samplesize repost | EN | ~100 | | 8 | |
+
+## Milestones
+
+| N | Action | Evidence impact |
+|:--:|--------|-----------------|
+| 8 | Current pilot | Preliminary LDS-C estimates, high uncertainty |
+| ~15 | Data quality check | Assess extraction yield, response quality, bootstrapped CI width |
+| ~30 | Pre-registered target | First formal ΔLDS analysis, power analysis validation |
+| ~50+ | Extended sample | Saturated CI widths, subgroup analysis possible |
+
+> Note: "N=30" is a **milestone**, not a scientific threshold. The stopping criterion is statistical precision, not a fixed number.
