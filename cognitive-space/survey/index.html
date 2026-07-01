@@ -260,6 +260,11 @@ const T = {
 };
 
 // ═══════════════════════════════════════════════════════════
+// CONFIG — Paste your Google Apps Script URL here
+// ═══════════════════════════════════════════════════════════
+const ENDPOINT_URL = '';
+
+// ═══════════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════════
 let lang = 'en';
@@ -453,6 +458,16 @@ function finishSurvey() {
   // Save to localStorage
   localStorage.setItem('linguagraph_response', JSON.stringify(data));
   localStorage.setItem('linguagraph_response_id', responseId);
+
+  // Submit to backend if configured
+  if (ENDPOINT_URL) {
+    fetch(ENDPOINT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.log('Backend submit failed (no-cors is expected):', err));
+  }
 
   document.getElementById('response-id').textContent = responseId;
   document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
