@@ -60,7 +60,7 @@
 ## 📑 目录
 
 <details>
-<summary><b>Click to expand / collapse</b></summary>
+<summary><b>点击展开/折叠</b></summary>
 
 - [🔥 为什么需要 LinguaGraph?](#-为什么需要-linguagraph)
 - [📐 核心指标一览](#-核心指标一览)
@@ -112,14 +112,14 @@
 | **F1** | CDS 在**初中**达到峰值（0.271），而非小学 | 在中文、英文、德文中独立确认 | 挑战"知识随阶段增长而变密"的假设 |
 | **F2** | **密度下降 3.7 倍**从初中到高中 | 0.271 → 0.073；概念数量 4.2 倍 | 整合枢纽后的课程多样化 |
 | **F3** | HDS ≤ **8**（均值 0.40）；83% 的概念是根节点 | 对 3,538 条前提关系进行 BFS | 数学是一个浅层网络，而非深层树状结构 |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |
-| **F5** | LDS **依赖于话题**; **Null Model** confirms Full < Structure for all pairs | 语对内部差异约 0.2; Full LDS-K=0.73, Structure LDS-K=0.77 | 跨语言差异因知识领域而异; taxonomy alone explains most variance |
+| **F4** | **LDS-K 揭示异质性趋同**：中德 (0.519) 趋同；中英 (0.934)、德英 (0.938) 接近噪声底线 | 19 模型基准，3 个 API 平台，20 个标签 | 知识结构 LDS 与表层语言预期不一致 |
+| **F5** | LDS 与**话题相关**；**Null Model** 确认所有语对的 Full < Structure | 语对内部差异约 0.2；Full LDS-K=0.73, Structure LDS-K=0.77 | 跨语言差异因知识领域而异；分类本身解释了大部分方差 |
 | **F6** | **物理**在**小学**达到峰值（0.222），数学在初中（0.271） | 366 个物理概念，3 种语言 | 两者都遵循"早期整合，后期分化"的模式 |
 | **F7** | 物理的前提知识链**深 2.1 倍** | HDS 均值 0.85 对比 0.40 | 物理知识更具累积性和顺序性 |
 | **F8** | **化学**在初中达到峰值（0.042），比数学低 6.5 倍 | 220 个化学概念 | STEM 密度模式跨学科具有普遍性 |
-| **F9** | **覆盖率**在不同教育体系中差异巨大 | 北威州 12.7%，英国 37.3%，美国 17.2%，中国 95.4% | 教育体系设计从根本上影响教材对齐度; China's centralized curriculum drives near-universal coverage |
-| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |
-| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |
+| **F9** | **覆盖率**在不同教育体系中差异巨大 | 北威州 12.7%，英国 37.3%，美国 17.2%，中国 95.4% | 教育体系设计从根本上影响教材对齐；中国集中式课程实现近乎全覆盖 |
+| **F10** | 覆盖轨迹揭示**治理模式** | 英国考试驱动趋同；NRW 专业化分化；中国集中式全覆盖 | 课程治理（集中 vs 联邦 vs 考试驱动）决定覆盖轨迹 |
+| **F11** | **人类 LDS-C** 排序与 **LDS-K** 不同；提出 **ΔLDS** 作为核心指标 | N=8 参与者，90 条回答；19 模型基准 | 表面（概念命名）≠ 结构（关系）差异；差距本身即有信息量 |
 | **F12** | 人类 LDS (**0.727**) 超过模拟基线 (**0.647**, p=0.05) | 300 条模拟回答，模拟提取 | 差异是真实存在的，而非随机波动 |
 
 ---
@@ -129,7 +129,7 @@
 | 学科 | 概念 | 关系 | 教材 | 语言 | 课程覆盖率 |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **数学** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
-| **物理** | 366 | 383 | 94 个版本 | ZH/EN/DE | NRW coverage NA |
+| **物理** | 366 | 383 | 94 版本 | ZH/EN/DE | NRW 覆盖 NA |
 | **化学** | 220 | 215 | 18 个版本 | ZH/EN/DE | NRW 36% |
 | **总计** | **1,160+** | **4,100+** | **180+** | **3 种语言** | **4 个教育体系** |
 
@@ -149,20 +149,20 @@
 
 **🧑 人类验证研究（N=8）**
 - 来自中文/德文/英文母语者的 101 份回答，覆盖 5 个社会话题
-- Within-subject DE-EN LDS-C: **0.773** (same person, different language, different concepts)
-- Between-subject LDS-C rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
-- Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — structure-level divergence shows a different pattern from concept-level
+- 被试内 DE-EN LDS：**0.773**（同一人，不同语言，不同概念）
+- 被试间 LDS 排序：**DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
+- 教材 LDS-K 排序：**ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — 结构层面呈现与概念层面不同的模式
 
 **🤖 模拟基线（300 条回答）**
-- Mean simulated LDS-C: **0.647** (SD=0.086)
-- **Human LDS-C (0.727) > Simulation LDS-C (0.647)**, p=0.05
+- 模拟 LDS 均值：**0.647**（标准差=0.086）
+- **人类 LDS (0.727) > 模拟 LDS (0.647)**，p=0.05
 - 确认跨语言差异超出了随机预期
 
-**🧪 Null Model (Structure vs Full Graphs)**
-- Full knowledge-graph LDS-K: **0.73** (mean across all pairs)
-- Structure-only (taxonomy) LDS-K: **0.77** (mean)
-- **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
-- Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
+**🧪 零模型（结构 vs 完整图）**
+- 完整知识图谱 LDS-K：**0.73**（所有语对均值）
+- 仅结构（分类）LDS-K：**0.77**（均值）
+- **所有语对的 Full < Structure** — 添加边关系并未放大分歧，反而缩小了分歧
+- 分类（共享概念组织）解释了大部分方差；语言特定关系呈现趋同
 
 > 完整方法论参见 [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md)，人类分析脚本参见 [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py)，模拟基线脚本参见 [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py)。
 
@@ -253,14 +253,14 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 模型基准测试
 
-19 models tested across 3 API platforms (Bailian, OpenRouter, LM Studio) on identical 20 gold labels (20 social + 20 math), F1 range 0.55–0.67 — best results shown below:
+在 3 个 API 平台（Bailian、OpenRouter、LM Studio）上测试了 19 个模型，使用相同的 20 个黄金标签（20 个社会 + 20 个数学），F1 范围 0.55–0.67——最佳结果如下：
 
 | 模型 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 速度 |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
-| **qwen-plus** | **Social** | **0.974** | **0.949** | **0.882** | 2-3s |
-| qwen-turbo | Math | 0.714 | 0.448 | 0.810 | 1s |
-| qwen3.7-max | Math | 0.980 | 0.551 | 0.778 | 2-3s |
-| glm-4.6 | Math | 0.951 | 0.595 | 0.689 | 10-20s |
+| **qwen-plus** | **社会** | **0.974** | **0.949** | **0.882** | 2-3s |
+| qwen-turbo | 数学 | 0.714 | 0.448 | 0.810 | 1s |
+| qwen3.7-max | 数学 | 0.980 | 0.551 | 0.778 | 2-3s |
+| glm-4.6 | 数学 | 0.951 | 0.595 | 0.689 | 10-20s |
 
 完整结果：[`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
 
@@ -290,35 +290,35 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 #
 ## 学术论文
 
-| # | Reference | Relevance |
+| # | 参考文献 | 相关性 |
 |---|-----------|-----------|
-| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Foundational — concept mapping theory underpinning CDS/HDS |
-| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilation theory — knowledge is structured, not listed |
-| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS curriculum coherence — Coverage Score inspiration |
-| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Cross-national textbook comparison methodology |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Linguistic relativity — research question context |
-| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Network analysis of cognitive/educational structures |
-| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Most directly relevant EKG pipeline methodology |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
-| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
-| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学和 Science.* | Curriculum coverage analysis methodology |
-| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | 基础性——支撑 CDS/HDS 的概念映射理论 |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | 同化理论——知识是结构化的，而非列表式的 |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS 课程一致性——覆盖率评分的灵感来源 |
+| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | 跨国教材比较方法论 |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | 语言相对论——研究问题背景 |
+| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | 认知/教育结构的网络分析 |
+| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | 最直接相关的 EKG 流程方法论 |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | 前驱关系推理——支持 HDS 指标 |
+| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | 跨国教材问题分析 |
+| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | 跨国课程结构数据 |
+| 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学和 Science.* | 课程覆盖率分析方法论 |
+| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer 架构——所用大语言模型的基础 |
 
 #
 ## 开源库
 
 | 库 | 用途 | 许可 |
 |---------|-------|---------|
-| [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
-| [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
-| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Figure generation (Fig 3-7) | PSF |
-| [numpy/numpy](https://github.com/numpy/numpy) | Numerical computation, similarity metrics | BSD-3 |
-| [scipy/scipy](https://github.com/scipy/scipy) | Statistical analysis, correlation tests | BSD-3 |
-| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Baseline models and evaluation | BSD-3 |
-| [Three.js](https://github.com/mrdoob/three.js) | 3D knowledge graph visualization (CognitiveSpace) | MIT |
-| [Flask](https://github.com/pallets/flask) | Workbench web application | BSD-3 |
-| [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistical data visualization | BSD-3 |
+| [openai/openai-python](https://github.com/openai/openai-python) | LLM API 客户端，用于概念提取 | MIT |
+| [networkx/networkx](https://github.com/networkx/networkx) | 图构建与分析（CDS, HDS） | BSD-3 |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | 图表生成（图 3-7） | PSF |
+| [numpy/numpy](https://github.com/numpy/numpy) | 数值计算，相似度指标 | BSD-3 |
+| [scipy/scipy](https://github.com/scipy/scipy) | 统计分析，相关性检验 | BSD-3 |
+| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | 基线模型与评估 | BSD-3 |
+| [Three.js](https://github.com/mrdoob/three.js) | 3D 知识图谱可视化（CognitiveSpace） | MIT |
+| [Flask](https://github.com/pallets/flask) | Workbench 网络应用 | BSD-3 |
+| [seaborn/seaborn](https://github.com/mwaskom/seaborn) | 统计数据可视化 | BSD-3 |
 
 #
 ## 课程标准（原始来源）
