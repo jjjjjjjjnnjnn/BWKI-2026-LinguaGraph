@@ -38,9 +38,19 @@ async function handleRequest(request) {
   const GSHEET_URL = 'https://script.google.com/macros/s/AKfycbztARwvcBXrdXUE_SAPvAep1rFlsqcAtuZEx9mds2Vcjv4nUf1VtrrZyRyRqoNYE9iU/exec'
 
   try {
-    // Get form data from the request
-    const formData = await request.formData()
-    const payload = formData.get('data')
+    // Extract payload from request (handles both form POST and JSON POST)
+    const contentType = request.headers.get('Content-Type') || '';
+    let payload;
+
+    if (contentType.includes('application/json')) {
+      // JSON POST from fetch/XMLHttpRequest
+      const body = await request.json();
+      payload = typeof body === 'string' ? body : JSON.stringify(body);
+    } else {
+      // Form POST from browser
+      const formData = await request.formData();
+      payload = formData.get('data');
+    }
 
     if (!payload) {
       return new Response(JSON.stringify({ success: false, error: 'No data field' }), {
@@ -57,12 +67,22 @@ async function handleRequest(request) {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: relay.toString(),
+      redirect: 'follow',
     })
 
     const gsText = await gsResponse.text()
+    const gsStatus = gsResponse.status
 
-    return new Response(gsText, {
-      headers: corsHeaders,
+    // Check if data was received (Apps Script returns HTML with "OK" or JSON with "success")
+    const isOk = gsText.includes('OK') || gsText.includes('"success":true') || gsText.includes('window.close')
+
+    return new Response(JSON.stringify({
+      relayed: true,
+      gs_status: gsStatus,
+      gs_ok: isOk,
+      gs_response_preview: gsText.substring(0, 200)
+    }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     })
 

@@ -462,22 +462,23 @@ function finishSurvey() {
   localStorage.setItem('linguagraph_response', JSON.stringify(data));
   localStorage.setItem('linguagraph_response_id', responseId);
 
-  // Submit to backend(s)
-  function postTo(url) {
+  // Submit to backend: only via Worker relay (bypasses GFW)
+  var ifr = document.createElement('iframe'); ifr.name = 'sf'; ifr.style.display = 'none';
+  document.body.appendChild(ifr);
+  if (WORKER_URL) {
     var f = document.createElement('form');
-    f.method = 'POST'; f.action = url; f.target = 'submit_frame';
+    f.method = 'POST'; f.action = WORKER_URL; f.target = 'sf';
     var i = document.createElement('input');
     i.type = 'hidden'; i.name = 'data'; i.value = JSON.stringify(data);
     f.appendChild(i); document.body.appendChild(f); f.submit();
-    setTimeout(function() { if (document.body.contains(f)) document.body.removeChild(f); }, 1000);
   }
-  if (ENDPOINT_URL || WORKER_URL) {
-    var iframe = document.createElement('iframe');
-    iframe.name = 'submit_frame'; iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    // Try Worker first (faster for China users), then Apps Script as fallback
-    if (WORKER_URL) postTo(WORKER_URL);
-    if (ENDPOINT_URL) postTo(ENDPOINT_URL);
+  // Fallback: direct to Apps Script (only works outside China)
+  if (ENDPOINT_URL && !WORKER_URL) {
+    var f2 = document.createElement('form');
+    f2.method = 'POST'; f2.action = ENDPOINT_URL; f2.target = 'sf';
+    var i2 = document.createElement('input');
+    i2.type = 'hidden'; i2.name = 'data'; i2.value = JSON.stringify(data);
+    f2.appendChild(i2); document.body.appendChild(f2); f2.submit();
   }
 
   document.getElementById('response-id').textContent = responseId;
