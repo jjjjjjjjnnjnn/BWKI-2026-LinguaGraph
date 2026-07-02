@@ -92,18 +92,19 @@ Fragen? Kontaktieren Sie den Forscher.
 | Date | Channel | Lang | Est. reach | New completes | Cumulative | Notes |
 |:----:|---------|:----:|:----------:|:-------------:|:----------:|-------|
 | 6/18 | LPA ZH questionnaire (independent) | ZH | — | 13 | 13 | 🆕 Archived — LPA data, not LDS-C |
-| 7/1 | Reddit r/SampleSize | EN | ~200 | 1 | 9 | ✅ Backend collected 3 DE |
-| 7/1 | LinguaGraph backend (auto) | DE | 3 | 3 | 12 | ✅ 3 DE from backend |
-| | ZH: WeChat | ZH | ~80 | | 12 | ⏳ Pending |
-| | DE: Schule/HSHL | DE | ~30 | | 12 | ⏳ Pending |
+| 7/1 | Reddit r/SampleSize | EN | ~200 | 0 | 16 | ✅ EN still 0 via backend |
+| 7/2 | LinguaGraph backend (auto) | DE+ZH | 5 | +5 | 16 | ✅ 3 DE + 2 ZH new valid |
+| 7/2 | Spam (ZH via backend) | ZH | 1 spam | 0 | 16 | ❌ 44s, all qqqqq — excluded |
+| | ZH: WeChat | ZH | ~80 | | 16 | ⏳ Pending |
+| | DE: Schule/HSHL | DE | ~30 | | 16 | ⏳ Pending |
 
 ## Milestones
 
-| N | Action | Evidence impact |
-|:--:|--------|-----------------|
-| 8 | Current pilot | Preliminary LDS-C estimates, high uncertainty |
-| ~15 | Data quality check | Assess extraction yield, response quality, bootstrapped CI width |
-| ~30 | Pre-registered target | First formal ΔLDS analysis, power analysis validation |
-| ~50+ | Extended sample | Saturated CI widths, subgroup analysis possible |
+| N | Status | Action | Evidence impact |
+|:--:|:------:|--------|-----------------|
+| 8 | ✅ | Pilot collected | Preliminary LDS-C estimates, high uncertainty |
+| 16 | 🔶 **Current** | Data quality check | 6 ZH + 8 DE + 2 EN. ZH and DE approaching thresholds. EN critical gap. |
+| ~20 | ⏳ | Mid-quality check | Assess extraction yield, response quality, language balance |
+| ~30 | 🔶 Target | Pre-registered analysis | First formal ΔLDS analysis, power analysis validation |
 
 > Note: "N=30" is a **milestone**, not a scientific threshold. The stopping criterion is statistical precision, not a fixed number.
