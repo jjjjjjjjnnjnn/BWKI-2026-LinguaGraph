@@ -91,12 +91,11 @@ Fragen? Kontaktieren Sie den Forscher.
 
 | Date | Channel | Lang | Est. reach | New completes | Cumulative | Notes |
 |:----:|---------|:----:|:----------:|:-------------:|:----------:|-------|
-| 7/1 | Reddit r/SampleSize | EN | ~200 | 1+ | 9+ | ✅ Live + backend active |
-| | ZH: WeChat | ZH | ~80 | | 9 | ⏳ Pending |
-| | DE: Schloss Heessen | DE | ~30 | | 9 | ⏳ LPA distributed |
-| | DE: HSHL mailing list | DE | ~100 | | 9 | ⏳ Pending |
-| | EN: r/linguistics | EN | ~500 | | 9 | 📋 Planned day 2 |
-| | EN: r/cogsci | EN | ~300 | | 9 | 📋 Planned day 3 |
+| 6/18 | LPA ZH questionnaire (independent) | ZH | — | 13 | 13 | 🆕 Archived — LPA data, not LDS-C |
+| 7/1 | Reddit r/SampleSize | EN | ~200 | 1 | 9 | ✅ Backend collected 3 DE |
+| 7/1 | LinguaGraph backend (auto) | DE | 3 | 3 | 12 | ✅ 3 DE from backend |
+| | ZH: WeChat | ZH | ~80 | | 12 | ⏳ Pending |
+| | DE: Schule/HSHL | DE | ~30 | | 12 | ⏳ Pending |
 
 ## Milestones
 
