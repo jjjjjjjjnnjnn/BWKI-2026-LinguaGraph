@@ -43,11 +43,14 @@ async function handleRequest(request) {
     let payload;
 
     if (contentType.includes('application/json')) {
-      // JSON POST from fetch/XMLHttpRequest
+      // JSON POST
       const body = await request.json();
       payload = typeof body === 'string' ? body : JSON.stringify(body);
+    } else if (contentType.includes('text/plain') || contentType.includes('application/x-www-form-urlencoded')) {
+      // no-cors fetch sends text/plain — read raw body
+      payload = await request.text();
     } else {
-      // Form POST from browser
+      // Form POST (multipart)
       const formData = await request.formData();
       payload = formData.get('data');
     }
@@ -76,13 +79,8 @@ async function handleRequest(request) {
     // Check if data was received (Apps Script returns HTML with "OK" or JSON with "success")
     const isOk = gsText.includes('OK') || gsText.includes('"success":true') || gsText.includes('window.close')
 
-    return new Response(JSON.stringify({
-      relayed: true,
-      gs_status: gsStatus,
-      gs_ok: isOk,
-      gs_response_preview: gsText.substring(0, 200)
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    return new Response('<html><body>OK</body></html>', {
+      headers: { ...corsHeaders, 'Content-Type': 'text/html' },
       status: 200,
     })
 

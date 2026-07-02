@@ -462,23 +462,17 @@ function finishSurvey() {
   localStorage.setItem('linguagraph_response', JSON.stringify(data));
   localStorage.setItem('linguagraph_response_id', responseId);
 
-  // Submit to backend: only via Worker relay (bypasses GFW)
-  var ifr = document.createElement('iframe'); ifr.name = 'sf'; ifr.style.display = 'none';
-  document.body.appendChild(ifr);
+  // Submit to backend: fire-and-forget via fetch + form (redundant for reliability)
+  var jsonData = JSON.stringify(data);
   if (WORKER_URL) {
-    var f = document.createElement('form');
-    f.method = 'POST'; f.action = WORKER_URL; f.target = 'sf';
-    var i = document.createElement('input');
-    i.type = 'hidden'; i.name = 'data'; i.value = JSON.stringify(data);
-    f.appendChild(i); document.body.appendChild(f); f.submit();
-  }
-  // Fallback: direct to Apps Script (only works outside China)
-  if (ENDPOINT_URL && !WORKER_URL) {
-    var f2 = document.createElement('form');
-    f2.method = 'POST'; f2.action = ENDPOINT_URL; f2.target = 'sf';
-    var i2 = document.createElement('input');
-    i2.type = 'hidden'; i2.name = 'data'; i2.value = JSON.stringify(data);
-    f2.appendChild(i2); document.body.appendChild(f2); f2.submit();
+    // Fetch (no-cors = guaranteed delivery, even if response unreadable)
+    try { fetch(WORKER_URL, { method: 'POST', mode: 'no-cors', body: jsonData }); } catch(e) {}
+    // Form POST (iframe, backup)
+    try {
+      var f = document.createElement('form'); f.method = 'POST'; f.action = WORKER_URL;
+      var i = document.createElement('input'); i.type = 'hidden'; i.name = 'data'; i.value = jsonData;
+      f.appendChild(i); document.body.appendChild(f); f.submit();
+    } catch(e) {}
   }
 
   document.getElementById('response-id').textContent = responseId;
