@@ -260,8 +260,11 @@ const T = {
 };
 
 // ═══════════════════════════════════════════════════════════
-// CONFIG — Paste your Google Apps Script URL here
+// CONFIG — Submission endpoints
 // ═══════════════════════════════════════════════════════════
+// Primary: Cloudflare Worker (for China users, deploy first)
+const WORKER_URL = '';
+// Fallback: Direct Google Apps Script
 const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbztARwvcBXrdXUE_SAPvAep1rFlsqcAtuZEx9mds2Vcjv4nUf1VtrrZyRyRqoNYE9iU/exec';
 
 // ═══════════════════════════════════════════════════════════
@@ -459,29 +462,22 @@ function finishSurvey() {
   localStorage.setItem('linguagraph_response', JSON.stringify(data));
   localStorage.setItem('linguagraph_response_id', responseId);
 
-  // Submit to backend if configured
-  if (ENDPOINT_URL) {
-    // Hidden iframe target to prevent page redirect
+  // Submit to backend(s)
+  function postTo(url) {
+    var f = document.createElement('form');
+    f.method = 'POST'; f.action = url; f.target = 'submit_frame';
+    var i = document.createElement('input');
+    i.type = 'hidden'; i.name = 'data'; i.value = JSON.stringify(data);
+    f.appendChild(i); document.body.appendChild(f); f.submit();
+    setTimeout(function() { if (document.body.contains(f)) document.body.removeChild(f); }, 1000);
+  }
+  if (ENDPOINT_URL || WORKER_URL) {
     var iframe = document.createElement('iframe');
-    iframe.name = 'submit_frame';
-    iframe.style.display = 'none';
+    iframe.name = 'submit_frame'; iframe.style.display = 'none';
     document.body.appendChild(iframe);
-    // Form POST to bypass CORS
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = ENDPOINT_URL;
-    form.target = 'submit_frame';
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'data';
-    input.value = JSON.stringify(data);
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-    // Clean up after submission
-    setTimeout(() => {
-      if (document.body.contains(form)) document.body.removeChild(form);
-    }, 1000);
+    // Try Worker first (faster for China users), then Apps Script as fallback
+    if (WORKER_URL) postTo(WORKER_URL);
+    if (ENDPOINT_URL) postTo(ENDPOINT_URL);
   }
 
   document.getElementById('response-id').textContent = responseId;
