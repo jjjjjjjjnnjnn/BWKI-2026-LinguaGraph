@@ -36,6 +36,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 RANDOM_SEED = 42
+USE_FUZZY = False  # set True via --fuzzy (slower, marginal gain)
+CANON_MAP: Dict[str, str] = {}  # gloss -> canonical_term, loaded via --canonical
 TOPICS = ["Freiheit", "Gerechtigkeit", "Verantwortung", "Heimat", "Erfolg"]
 PAIRS = [("ZH-EN", "zh", "en"), ("DE-EN", "de", "en"), ("ZH-DE", "zh", "de")]
 
@@ -51,6 +53,70 @@ def normalize(s: str) -> str:
     s = re.sub(r"[^a-z0-9 ]", "", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
+
+# ── Improved alignment (v2): synonym map + stemmer + token dedup ──
+# Word-level synonym canonicalization for the social-topic domain.
+# Applied BEFORE stemming so "duties" -> "responsibility" directly.
+SYNONYMS = {
+    # responsibility cluster
+    "duty": "responsibility", "duties": "responsibility", "obligation": "responsibility",
+    "obligations": "responsibility", "accountability": "responsibility",
+    # freedom cluster
+    "liberty": "freedom", "free": "freedom",
+    # home cluster
+    "homeland": "home", "hometown": "home", "dwelling": "home", "domicile": "home",
+    "house": "home", "residence": "home", "birthplace": "home",
+    # safety cluster
+    "security": "safety", "safe": "safety",
+    # justice cluster
+    "fairness": "justice", "fair": "justice",
+    # success cluster
+    "achievement": "success", "accomplishment": "success", "achieving": "success",
+    # goal cluster
+    "objective": "goal",
+    # rights cluster
+    "entitlement": "rights",
+}
+
+# Simple suffix-strip stemmer (no external deps). Applied AFTER synonym map.
+_STEM_RULES = [("ies", "y"), ("sses", "ss"), ("xes", "x"), ("es", ""), ("s", "")]
+
+
+def _stem(w: str) -> str:
+    if len(w) <= 3:
+        return w
+    for suf, repl in _STEM_RULES:
+        if w.endswith(suf) and len(w) > len(suf) + 2:
+            return w[: -len(suf)] + repl
+    for suf in ("ing", "ed", "ly"):
+        if w.endswith(suf) and len(w) > len(suf) + 3:
+            return w[: -len(suf)]
+    return w
+
+
+def canonical_key(s: str) -> str:
+    """Canonical matching key for a gloss: synonym-map -> stem -> dedup -> sort.
+    Handles slash-hedged glosses ('duty/obligation') via token dedup."""
+    s = s.lower().strip()
+    s = s.replace("/", " ")
+    tokens = re.findall(r"[a-z0-9]+", s)
+    canon = set()
+    for t in tokens:
+        t = SYNONYMS.get(t, t)
+        canon.add(_stem(t))
+    return " ".join(sorted(canon)) if canon else ""
+
+
+def aligns_with(a_key: str, b_key: str, threshold: float = 0.88) -> bool:
+    """Fuzzy fallback for near-identical canonical keys (e.g. typo variants).
+    Uses difflib SequenceMatcher ratio."""
+    if not a_key or not b_key:
+        return False
+    if a_key == b_key:
+        return True
+    from difflib import SequenceMatcher
+    return SequenceMatcher(None, a_key, b_key).ratio() >= threshold
 
 
 def latest_extraction_path() -> Path:
@@ -80,9 +146,10 @@ def response_concept_groups(record: dict) -> Dict[str, Set[str]]:
             if topic_label is None:
                 continue
         for c in t.get("concepts", []):
-            gloss = normalize(c.get("en", ""))
-            if gloss:
-                per_topic[topic_label].add(gloss)
+            en = c.get("en", "")
+            key = canonical_key(CANON_MAP.get(en, en))
+            if key:
+                per_topic[topic_label].add(key)
     pooled: Set[str] = set()
     for s in per_topic.values():
         pooled |= s
@@ -101,8 +168,24 @@ def aggregate_languages(records: List[dict]) -> Dict[str, Dict[str, Set[str]]]:
     return dict(agg)
 
 
-def jaccard(a: Set[str], b: Set[str]) -> float:
+def jaccard(a: Set[str], b: Set[str], use_fuzzy: bool = False) -> float:
+    """Jaccard over canonical keys. Optional fuzzy fallback for near-misses."""
+    a, b = set(a), set(b)
     inter = len(a & b)
+    if use_fuzzy or USE_FUZZY:
+        a_only = sorted(a - b)
+        b_only = sorted(b - a)
+        extra = 0
+        used: Set[str] = set()
+        for x in a_only:
+            for y in b_only:
+                if y in used:
+                    continue
+                if aligns_with(x, y):
+                    extra += 1
+                    used.add(y)
+                    break
+        inter += extra
     union = len(a | b)
     return inter / union if union else 0.0
 
@@ -135,7 +218,7 @@ def load_lds_k_nodes(path: Path) -> Dict[str, Set[str]]:
         for lang in ["zh", "en", "de"]:
             label = labels.get(lang)
             if label:
-                lang_nodes[lang].add(normalize(label))
+                lang_nodes[lang].add(canonical_key(label))
     return lang_nodes
 
 
@@ -334,9 +417,17 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="LDS-C computation")
     ap.add_argument("--input", type=str, default=None)
     ap.add_argument("--aligned", type=str, default=None)
+    ap.add_argument("--canonical", type=str, default=None,
+                    help="LLM gloss->canonical mapping JSON (from lds_c_canonicalize.py)")
     ap.add_argument("--iterations", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=RANDOM_SEED)
+    ap.add_argument("--fuzzy", action="store_true", help="Enable fuzzy matching (slower)")
     args = ap.parse_args()
+    global USE_FUZZY, CANON_MAP
+    USE_FUZZY = args.fuzzy
+    if args.canonical:
+        CANON_MAP = json.loads(Path(args.canonical).read_text(encoding="utf-8"))
+        print(f"  Canonical map: {len(CANON_MAP)} glosses loaded")
     random.seed(RANDOM_SEED)
 
     path = Path(args.input) if args.input else latest_extraction_path()
