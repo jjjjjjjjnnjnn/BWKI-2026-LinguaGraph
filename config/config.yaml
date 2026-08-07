@@ -52,6 +52,12 @@ domain:
     - de
 
   social_issues:
+    # NOTE: questionnaire_*.json 仅包含 4 个核心开放问题（q1-q4），
+    # 实际完整问卷（form_structure.csv）包含 5 个主题块：
+    # Erfolg (q3), Verantwortung (q5), Freiheit (q1), Zuhause/Home, Gerechtigkeit (q2)。
+    # q4 的问卷 JSON 中标记为"家庭"，但完整问卷中对应"家/Heimat-Zuhause"块。
+    # 论文（02_methodology.md）使用以下 5 个主题：
+    # Freiheit, Gerechtigkeit, Erfolg, Verantwortung, Heimat
     topics:
       - id: q1
         zh: 自由
@@ -69,6 +75,10 @@ domain:
         zh: 家庭
         de: Familie
         en: Family
+      - id: q5
+        zh: 责任
+        de: Verantwortung
+        en: Responsibility
 
 # === Graph Settings ===
 graph:

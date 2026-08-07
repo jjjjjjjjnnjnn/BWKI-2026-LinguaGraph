@@ -345,6 +345,11 @@ release/
 | Trilingual groups | 219 (100%) |
 | Unmatched concepts | 359 |
 | Total relations | 525 |
+
+**级别分布说明：以下级别分布统计全部 556 个概念节点。manifest.json 的 alignment.level_distribution 仅统计 219 个成功三语对齐的概念组——两个表使用相同的级别名称但描述不同的数据子集，不对应时可能产生数据矛盾的外观。**
+
+| 级别 | 数量 |
+|------|------|
 | Elementary (level 1) | 26 |
 | Middle (level 2) | 57 |
 | High (level 3) | 200 |

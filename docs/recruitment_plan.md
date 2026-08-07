@@ -4,6 +4,8 @@
 > **Current**: N=8 (4 ZH · 2 DE · 2 EN)
 > **Survey URL**: (deploy to GitHub Pages)
 > **Last updated**: 2026-07-01
+>
+> ⚠️ **数字待核对**：头部 Current N=8 与下方 campaign 累计及 freeze SSOT（11 eligible：6 DE + 5 ZH）不一致 → 见 `docs/planning/restart_plan.md` A0
 
 ---
 
@@ -95,7 +97,8 @@ Fragen? Kontaktieren Sie den Forscher.
 | 7/1 | Reddit r/SampleSize | EN | ~200 | 0 | 16 | ✅ EN still 0 via backend |
 | 7/2 | LinguaGraph backend (auto) | DE+ZH | 5 | +5 | 16 | ✅ 3 DE + 2 ZH new valid |
 | 7/2 | Spam (ZH via backend) | ZH | 1 spam | 0 | 16 | ❌ 44s, all qqqqq — excluded |
-| | ZH: WeChat | ZH | ~80 | | 16 | ⏳ Pending |
+| 7/2 | Cloudflare Worker 测试 (微信) | ZH | 1 test | 0 | 16 | ✅ Worker 链路通；低质量(随机字母) |
+| | ZH: WeChat | ZH | ~80 | | 16 | ⏳ 待发 |
 | | DE: Schule/HSHL | DE | ~30 | | 16 | ⏳ Pending |
 
 ## Milestones

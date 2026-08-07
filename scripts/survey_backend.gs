@@ -18,14 +18,16 @@ function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    // Parse incoming data (supports both form POST and JSON POST)
+    // Parse incoming data (form POST first, then JSON body)
     let data;
-    if (e.postData && e.postData.contents) {
-      data = JSON.parse(e.postData.contents);
-    } else if (e.parameter && e.parameter.data) {
+    if (e.parameter && e.parameter.data) {
+      // Form POST: data comes as form field
       data = JSON.parse(e.parameter.data);
+    } else if (e.postData && e.postData.contents) {
+      // Direct JSON POST
+      data = JSON.parse(e.postData.contents);
     } else {
-      throw new Error('No data received. Send as form field "data" or JSON body.');
+      throw new Error('No data received. Received keys: ' + JSON.stringify(Object.keys(e.parameter || {})));
     }
 
     // Build header row if empty

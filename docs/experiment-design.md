@@ -1,8 +1,11 @@
-# LinguaGraph 实验设计方案
+# [已过时] LinguaGraph 实验设计方案
 
+> **警告：此文件已过时。当前实验使用 5 个社会主题（Freiheit, Gerechtigkeit, Erfolg, Verantwortung, Heimat-Zuhause），与此处的旧主题列表（自由, 知识, 时间, 身份, 社会）完全不同。**
+> 请参考实际问卷数据（data/questionnaires/）和论文文档（docs/paper/）获取当前实验方案。
+>
 > 基于 CCKG (Cultural Commonsense Knowledge Graph, EACL 2026) 方法论借鉴
 
-## 1. 实验目标
+## 1. 实验目标（仍有效）
 
 验证核心假设：**不同语言是否会塑造不同的思维结构？**
 

@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 """
+[REDIRECT — 请使用 release.py]
+===================================
+此脚本与 release.py 功能重叠且非规范入口。规范入口为：
+    python scripts/release.py
+    python scripts/release.py --lds-only     # 仅 LDS
+    python scripts/release.py --skip-pipeline  # 跳过管线
+
+Pipeline 唯一源码见 scripts/math_graph_pipeline/。
+
+本文件保留用于兼容旧调用，新开发请使用 release.py。
+
 LinguaGraph — Full Pipeline A Runner
 ======================================
 After batch extraction completes, this script computes LDS for all
