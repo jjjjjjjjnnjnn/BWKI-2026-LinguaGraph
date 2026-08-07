@@ -71,18 +71,30 @@ Eine grobkörnige Codierung (Codebook v1: Legal/Institutional, Individual/Autono
 
 ### 4.5 Relationale Ebene (v3-Knoten+Kante)
 
-[Ergebnisse der Relationsextraktion — wird nach Abschluss ergänzt]
+Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahierten Konzepten erfasst (7 Relationstypen, pro Thema). Insgesamt 162 Kanten (DE 59, ZH 67, EN 36). Die v3-LDS kombiniert Knoten- und Kanten-Jaccard (frozen Formel):
+
+| Sprachpaar | LDS v3 | 95 %-CI | Node-Jaccard | Edge-Jaccard | LDS-K (v3) | ΔLDS | Split-Half-Boden |
+|:----------:|:------:|:-------:|:------------:|:------------:|:----------:|:----:|:----------------:|
+| ZH-EN | 0.977 | [0.962, 0.992] | 0.037 | 0.010 | 0.934 | +0.043 | 0.979 |
+| DE-EN | 0.966 | [0.949, 0.993] | 0.068 | **0.000** | 0.938 | +0.028 | 0.959 |
+| ZH-DE | 0.964 | [0.948, 0.980] | 0.064 | 0.008 | 0.519 | +0.445 | 0.958 |
+
+**Zentraler Befund**: Die Kantenstrukturen überlappen sprachübergreifend kaum (Edge-Jaccard ≈ 0, DE-EN exakt 0.000). Der Split-Half-Boden (0.958–0.979) entspricht der beobachteten v3-LDS (0.964–0.977) — auch auf relationaler Ebene ist die Divergenz vollständig durch Teilnehmervariabilität erklärbar. Der scheinbar große ΔLDS-Wert für ZH-DE (+0.445) ist ein Artefakt des Vergleichs zwischen spärlichen Menschengraphen und dichten, strukturell konvergenten Lehrbuchgraphen — nicht ein Beleg für sprachgetriebene Divergenz (der Split-Half-Boden von 0.958 für ZH-DE widerlegt dies).
+
+**Fazit relationale Ebene**: Die relationale Struktur bestätigt die Konzept- und Themenebene. Unter Between-Subject-Bedingungen (N=15) ist kein separierbares Sprachsignal nachweisbar — weder auf Knoten-, Kanten-, noch Kategorienebene.
 
 ### 4.6 Zusammenfassung und methodologische Reflexion
 
-Die erweiterte Humanvalidierung (N=15) liefert ein **ehrliches negatives Ergebnis** auf Konzept- und Themenebene:
+Die erweiterte Humanvalidierung (N=15) liefert über **drei Analyseebenen** hinweg ein konsistentes, ehrliches negatives Ergebnis:
 
-1. **LDS-C ist hoch (0.93–0.96), aber nicht sprachspezifisch**: Null-Modelle zeigen, dass die beobachtete Divergenz vollständig durch Teilnehmervariabilität erklärt wird. Das Vertauschen der Sprachlabels ändert nichts.
+1. **Konzeptebene**: LDS-C 0.93–0.96, nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94).
 
-2. **Die früheren N=8-Befunde (LDS-C 0.70–0.75, ΔLDS>0) werden nicht repliziert**: Sie stammen aus einer älteren Pipeline und sind mit dem erweiterten, QC-geprüften Datensatz und der standardisierten Extraktion nicht vereinbar.
+2. **Themenebene**: Kategorienverteilungen nicht signifikant verschieden (χ² p=0.52, Permutation p=0.35), aber konsistente Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial).
 
-3. **Die thematische Ebene zeigt Richtungstendenzen, aber keine Signifikanz**: Die kulturellen Rahmungsunterschiede (ZH rechtlich/kollektiv, DE autonom, EN konkret) sind plausibel, aber bei N=15 nicht statistisch bestätigbar.
+3. **Relationale Ebene (v3)**: LDS-C 0.96–0.98, Edge-Jaccard ≈ 0, Split-Half-Boden ≈ beobachtet → ebenfalls kein separierbares Sprachsignal.
 
-4. **Methodologische Lehre (Kernbeitrag dieser Revision)**: Ein Between-Subject-Design kann sprachgetriebene Divergenz nicht von individueller Variabilität trennen, wenn die Stichprobe klein ist. Zukünftige Studien benötigen (a) ein Within-Subject-Design (dieselbe Person antwortet in mehreren Sprachen), (b) größere Stichproben pro Sprachgruppe, oder (c) robustere Strukturmetriken (relationale Ebene, Zentralität), die weniger von individueller Konzeptwahl abhängen.
+4. **Die früheren N=8-Befunde (LDS-C 0.70–0.75, ΔLDS>0) werden nicht repliziert**: Sie stammen aus einer älteren Pipeline und sind mit dem erweiterten, QC-geprüften Datensatz und der standardisierten Extraktion nicht vereinbar.
 
-**Dieser negative Befund ist wissenschaftlich wertvoll**: Er falsifiziert die einfache Hypothese "Sprache → unterschiedliche Konzeptgraphen" auf Konzeptebene und präzisiert die Bedingungen, unter denen sprachliche Kognitionseffekte nachweisbar wären.
+5. **Methodologische Lehre (Kernbeitrag dieser Revision)**: Ein Between-Subject-Design kann sprachgetriebene Divergenz nicht von individueller Variabilität trennen, wenn die Stichprobe klein ist. Dies gilt unabhängig von der Analyseebene (Konzept, Kategorie, Relation). Zukünftige Studien benötigen (a) ein Within-Subject-Design, (b) größere Stichproben pro Sprachgruppe, oder (c) Metriken, die gegen individuelle Konzeptwahl robust sind.
+
+**Dieser negative Befund ist wissenschaftlich wertvoll**: Er falsifiziert die einfache Hypothese "Sprache → unterschiedliche Konzeptgraphen" auf allen drei Ebenen und präzisiert die Bedingungen, unter denen sprachliche Kognitionseffekte nachweisbar wären.
