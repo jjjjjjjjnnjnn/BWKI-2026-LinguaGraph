@@ -4,6 +4,46 @@
 
 ---
 
+## [2026-08-08] v0.11.0-d1-mechanism — D1 LLM-as-Subject 机制实验 + A4 语料深化
+
+### Overview
+
+在 v0.10 人类组间阴性结果的基础上，本版完成**机制级突破**：用 LLM-as-Subject 组内设计证明语言信号真实存在，并用混合效应模型分离机制。同时完成 A4 语料深化（Wikipedia 对齐修复 + 社会/制度模式相反）与 A7 核心图表。
+
+### A. D1 LLM-as-Subject 组内设计（核心）
+
+- **设计**（`docs/planning/d1_mechanism_design.md`）: 同一 LLM（deepseek-v4-flash）用 ZH/DE/EN 回答同 5 主题 = 组内设计构造上成立
+- **采集**（`scripts/lds_c_llm_subject.py`）: P1 语言主效应 + P2 框架解耦 + P3 自由联想 + P5 提示语解耦，k=10，220 units，0 空
+- **结果**（`docs/d1_mechanism_results.md`）: **LDS-C 0.93–0.96 ≫ 底 0.85–0.87 → 语言信号真实**（人类阴性是设计伪影）
+- **LMM**（`scripts/lds_c_llm_lmm.py`, scipy 实现）: **same_lang +0.038 (p<0.001) / same_frame +0.001 (p=0.90) → 代码层主导（M2），框架次级（M3）**
+- **主题分解**（`scripts/lds_c_llm_per_topic.py`）: Erfolg & Gerechtigkeit 语言信号+框架效应最强
+
+### B. A4 LDS-K 语料深化
+
+- **Wikipedia 对齐修复**（`scripts/lds_k_wiki_gloss.py`）: 96 个 ZH+DE 概念英文化 → 修正 LDS=1.0 未对齐伪影
+- **社会 vs 制度模式相反**（`scripts/lds_k_deepen.py`）: 数学 ZH-DE 0.52（趋同）vs 社会 Wikipedia ZH-DE 0.82（分歧）
+- **跨源空模型**（§3.6 首次实现）: 教材-vs-Wiki 域混淆；同域跨源 Wiki(zh)-vs-Human(zh)=0.94
+- **敏感性**全维度稳健（方向/对齐/阈值）
+- 结果文档 `docs/a4_ldsk_deepen_results.md`
+
+### C. A7 核心图表
+
+- `scripts/figures/fig_a7_core.py` — 5 图 + CSV（ΔLDS 三方对比、主题热图、空模型、机制、敏感性）
+
+### D. 论文整合
+
+- `03_results.md` — §3.8（A4 深化）+ §5（LLM-as-Subject）
+- `04_discussion.md` — §4.14（组间/组内对照方法学）
+- `05_conclusion.md` / `00_three_conclusions.md` / `01_abstract_introduction.md` — D1 + A4 同步
+- `lds_formal_definition.md` — §4 Wikipedia 负对照修正 + 证伪表更新
+
+### E. 交接
+
+- `docs/session_handoff_20260808.md` — 更新至 v0.8（完整证据链）
+- `docs/planning/restart_plan.md` — 执行进度更新（A4/A7/D1 完成）
+
+---
+
 ## [2026-08-08] v0.10.0-research-restart — 研究重启 + LDS-C 三层分析
 
 ### Overview
