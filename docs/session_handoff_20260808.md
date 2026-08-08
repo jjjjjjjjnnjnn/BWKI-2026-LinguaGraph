@@ -220,7 +220,10 @@
 | **D1 机制设计** | `docs/planning/d1_mechanism_design.md` |
 | **D1 机制结果** | `docs/d1_mechanism_results.md` |
 | **A4 语料深化结果** | `docs/a4_ldsk_deepen_results.md` |
+| **A3/C/D 深化结果** | `docs/a3_c_d_deepen_results.md` |
 | LDS 正式定义 | `docs/lds_formal_definition.md` |
+| **参赛审计（BWKI 规则比对）** | `docs/planning/bwki_submission_audit_20260808.md` |
+| **支持披露（合规红线）** | `docs/declaration_of_support.md` |
 | 项目治理 | `.claude/CLAUDE.md` |
 | 人类数据 SSOT | `freeze/freeze_survey_20260703/` + `freeze_survey_20260712/` |
 | 图表 | `outputs/figures/fig_a7_*.png`（gitignored，可重新生成） |
