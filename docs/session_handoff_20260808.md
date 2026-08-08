@@ -110,9 +110,13 @@
 - [x] 更新 `00_three_conclusions.md` / `01_abstract` / `05_conclusion`（N=15 一致）
 - [ ] 检查 manifest/数字口径对齐（A0 遗留: 556/557、219/247）
 
-### P0.5 — 研究方向决策（✅ 已出文档，待用户确认执行）
-- [x] `docs/planning/research_directions_20260808.md`：**D1 LLM-as-Subject 组内设计**（主推）——同一 LLM 用 ZH/DE/EN 回答同 5 主题 = 构造上组内设计，解决组间混淆。D2 嵌入空间 / D3 SWOW / D4 语法性别探针为互补。
-- [ ] **D1 执行**（W1–W2）：三语提示词 45 调用 → 概念提取 → LDS-C + 组内 Split-Half → ΔLDS 重算
+### P0.5 — 研究方向决策（✅ 已出文档 + D1 已完成，待论文整合）
+- [x] `docs/planning/research_directions_20260808.md`：**D1 LLM-as-Subject 组内设计**（主推）
+- [x] **D1 机制实验完成**（`docs/d1_mechanism_results.md`）：
+  - **核心结果**：LLM 组内设计语言信号真实（LDS-C 0.93–0.96 ≫ 底 0.85–0.87）→ 人类 N=15 阴性是设计伪影
+  - **LMM 机制判定**：`same_lang +0.038 (p<0.001)`, `same_frame +0.001 (p=0.90)` → **代码层主导（M2），框架次级（M3）**——早期 P2 表述已纠正
+  - 按主题：Erfolg & Gerechtigkeit 最强；ZH-DE 有结构层
+- [ ] **论文整合**：D1 结果 → 论文 §4/§5（LLM-as-subject 范式 + 机制分解 + 组间/组内对照）
 
 ### P1 — 研究深化（重启计划剩余）
 - [ ] **A4**: LDS-K 深化（按主题分解、敏感性、跨源空模型）— 复用 `scripts/figures/*`
