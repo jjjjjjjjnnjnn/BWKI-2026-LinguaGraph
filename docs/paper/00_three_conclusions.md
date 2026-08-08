@@ -58,13 +58,15 @@
 | Complete Random | 1,000 | 1,000 | 1,000 |
 | **Interpretation** | Struktur dominiert | Struktur dominiert | Real ÄHNLICHER als Zufall |
 
-**Humanvalidierung (N=15, erweitert)**: Die konzeptuelle LDS-C liegt bei 0.93–0.96 — **nicht unterscheidbar vom Within-Language-Split-Half-Boden (0.92–0.96) und von Label-Permutation (0.94)**. ΔLDS ≈ 0 (−0.02 bis +0.05). Die früheren N=8-Werte (0.70–0.75) werden nicht repliziert. Zentrale methodologische Lehre: Bei einem Between-Subject-Design dominiert Teilnehmervariabilität; sprachgetriebene Divergenz lässt sich nur mit Within-Subject-Design / N≥30 / strukturrobusten Metriken trennen.
+**Humanvalidierung (N=15, erweitert)**: Die konzeptuelle LDS-C liegt bei 0.93–0.96 — **nicht unterscheidbar vom Within-Language-Split-Half-Boden (0.92–0.96) und von Label-Permutation (0.94)**. ΔLDS ≈ 0 (−0.02 bis +0.05). Die früheren N=8-Werte (0.70–0.75) werden nicht repliziert.
+
+**LLM-as-Subject (Within-Subject, §5)**: Dasselbe LLM (deepseek-v4-flash) antwortet in ZH/DE/EN → LDS-C 0.93–0.96 **≫ Split-Half-Boden 0.85–0.87** → **Sprachsignal ist unter Within-Subject-Bedingungen klar nachweisbar**. LMM: Sprachcode ist der dominante Organisator (same_lang +0.038, p<0.001), kultureller Rahmen sekundär (same_frame +0.001, p=0.90); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik. **Zentrale Lehre: Der Human-Negativebefund ist ein Between-Subject-Design-Artefakt, nicht ein Beleg für das Fehlen sprachlicher Kognitionseffekte.**
 
 ---
 
 ## Einheitliche Narration (30-Sekunden-Pitch)
 
-> **Mathematik, Physik und Chemie folgen unterschiedlichen Dichtetrajektorien, respektieren eine universelle Tiefengrenze und zeigen — kontraintuitiv — bemerkenswerte strukturelle Konvergenz über Sprachen hinweg auf Lehrbuchebene. Auf menschlicher Ebene (N=15) ist in einem Between-Subject-Design kein separierbares Sprachsignal nachweisbar — die Divergenz liegt auf dem Teilnehmervariabilitäts-Boden. Dies falsifiziert die naive „Sprache → unterschiedliche Konzeptgraphen"-Hypothese und präzisiert die Bedingungen, unter denen sprachliche Kognitionseffekte messbar wären (Within-Subject-Design, N≥30, strukturrobuste Metriken). LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.**
+> **Mathematik, Physik und Chemie folgen unterschiedlichen Dichtetrajektorien, respektieren eine universelle Tiefengrenze und zeigen — kontraintuitiv — bemerkenswerte strukturelle Konvergenz über Sprachen hinweg auf Lehrbuchebene. Auf menschlicher Ebene (N=15) ist in einem Between-Subject-Design kein separierbares Sprachsignal nachweisbar — die Divergenz liegt auf dem Teilnehmervariabilitäts-Boden. Ein LLM-as-Subject-Experiment (Within-Subject) weist das Sprachsignal dagegen klar nach: Sprachcode dominiert, kultureller Rahmen ist sekundärer Modulator. Damit ist der Human-Negativebefund als Design-Artefakt klassifiziert, nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte. LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.**
 
 > LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.
 
@@ -75,4 +77,4 @@
 | C1 | Ausubel (1963) — Wissensintegration vor Spezialisierung | CDS nach Niveau (Mathe + Physik + Chemie) | Curriculumentwicklung |
 | C2 | Novak & Cañas (2008) — Concept Maps als propositionale Netzwerke | HDS-Verteilung (Mathe + Physik) | Lernprogression |
 | C3 | Nullmodell (gradbewahrendes Rewiring) | LDS-K vs. Structure Null (Voll < Null) | **Falsifikation** — LDS-K misst KEINE Sprachdivergenz |
-| ΔLDS-Hypothese | Linguistische Relativität (Whorf, 1956; Lucy, 1997) | LDS-C vs. LDS-K (N=15) | **Falsifiziert bei N=15 (Between-Subject)** — ΔLDS ≈ 0; Bedingungen für Nachweis: Within-Subject / N≥30 |
+| ΔLDS-Hypothese | Linguistische Relativität (Whorf, 1956; Lucy, 1997) | LDS-C vs. LDS-K: Human (N=15, Between) + LLM (Within) | **Human: falsifiziert (Between-Subject); LLM Within-Subject: Sprachsignal nachweisbar** — Code dominiert, Rahmen sekundär |

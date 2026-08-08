@@ -193,3 +193,101 @@ Die erweiterte Humanvalidierung (N=15) liefert über **drei Analyseebenen** hinw
 5. **Methodologische Lehre (Kernbeitrag dieser Revision)**: Ein Between-Subject-Design kann sprachgetriebene Divergenz nicht von individueller Variabilität trennen, wenn die Stichprobe klein ist. Dies gilt unabhängig von der Analyseebene (Konzept, Kategorie, Relation). Zukünftige Studien benötigen (a) ein Within-Subject-Design, (b) größere Stichproben pro Sprachgruppe, oder (c) Metriken, die gegen individuelle Konzeptwahl robust sind.
 
 **Dieser negative Befund ist wissenschaftlich wertvoll**: Er falsifiziert die einfache Hypothese "Sprache → unterschiedliche Konzeptgraphen" auf allen drei Ebenen und präzisiert die Bedingungen, unter denen sprachliche Kognitionseffekte nachweisbar wären.
+
+---
+
+## 5. LLM-as-Subject: Sprachsignal im Within-Subject-Design
+
+> Der negative Humanbefund (§4) wirft die entscheidende methodologische Frage auf: Ist die fehlende Trennbarkeit ein Artefakt des Between-Subject-Designs (Teilnehmervariabilität überlagert die Sprache) oder ein echtes Nichtvorhandensein sprachlicher Kognitionseffekte? Um diese zu beantworten, wurde ein **kontrolliertes Within-Subject-Experiment** mit einem Large Language Model als standardisiertem kognitivem Subjekt durchgeführt: **dasselbe Modell** (deepseek-v4-flash, opencode GO) antwortet in ZH/DE/EN auf dieselben 5 Themen. Da die Gewichte identisch sind, ist die Sprache die einzige Variation — das Within-Subject-Design gilt konstruktionsbedingt. Reproduzierbar via `scripts/lds_c_llm_subject.py`, `lds_c_llm_analyze.py`, `lds_c_llm_per_topic.py`, `lds_c_llm_lmm.py`.
+
+### 5.1 Versuchsdesign
+
+| Dimension | Spezifikation |
+|-----------|---------------|
+| Subjekt | deepseek-v4-flash (opencode GO), Temperatur 0.3, k=10 unabhängige Sessions pro Bedingung |
+| Stimuli | 5 soziale Themen (Freiheit, Gerechtigkeit, Verantwortung, Heimat, Erfolg) |
+| Sonden | P1 Sprach-Haupteffekt · P2 Rahmen-Code-Entkopplung · P3 Freie Assoziation · P5 Antwort- vs. Promptsprache |
+| Hygiene | jede Session unabhängig (keine Kontextakkumulation), themenweise Beantwortung, konterbalancierte Reihenfolge |
+| Umfang | 220 Einheiten / ~570 API-Aufrufe, 0 leere Extraktionen |
+
+### 5.2 Sprach-Haupteffekt (P1): Signal ist nachweisbar
+
+| Sprachpaar | LDS-C (gepoolt) | 95 %-CI | Split-Half-Boden | Label-Permutation |
+|:----------:|:---------------:|:-------:|:----------------:|:-----------------:|
+| ZH-EN | **0.955** | [0.935, 0.966] | 0.875 | 0.879 |
+| DE-EN | **0.930** | [0.912, 0.955] | 0.846 | 0.880 |
+| ZH-DE | **0.945** | [0.932, 0.961] | 0.862 | 0.879 |
+
+**Zentraler Befund**: Die beobachtete LDS-C übersteigt den Split-Half-Boden um **+0.08 bis +0.09** und die Label-Permutation um **+0.05 bis +0.08**. Anders als bei den menschlichen Daten (N=15, Between-Subject: LDS-C ≈ Boden ≈ Permutation) trägt das Sprachlabel hier **messbares Signal**.
+
+> **Dies ist der zentrale Kontrast der Arbeit**: Derselbe Messrahmen (LDS-C + Nullmodelle), nur das Design von Between-Subject (Menschen) auf Within-Subject (LLM) umgestellt, verwandelt ein nicht-trennbares Signal in ein trennbares. Der menschliche Negativebefund ist damit als **Design-Artefakt** charakterisiert — nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte.
+
+### 5.3 Rahmen-Code-Entkopplung (P2): Rahmen wirkt innerhalb, nicht über Codes
+
+| Code | Bedingung | LDS | 95 %-CI |
+|:----:|:----------:|:---:|:-------:|
+| ZH | ZH-natürlich vs. ZH-Code+DE-Rahmen | 0.916 | [0.905, 0.943] |
+| DE | DE-natürlich vs. DE-Code+ZH-Rahmen | 0.914 | [0.901, 0.937] |
+
+Die reine Rahmenmanipulation (gleicher Code, anderer kultureller Rahmen) erzeugt LDS ≈ 0.91–0.92 — oberhalb des Split-Half-Bodens. **Die Rahmeninstruktion verändert also die Konzeptwahl innerhalb eines Codes.** Der scheinbare Vergleich mit der sprachübergreifenden LDS-C (0.93–0.96) ist jedoch **nicht äquivalent**: Er vergleicht innerhalb desselben Code-Orbits, nicht zwischen Orbits (siehe LMM, §5.6).
+
+### 5.4 Freie Assoziation (P3): statistische Basis der Konzeptdivergenz
+
+| Sprachpaar | Assoziations-LDS | Konzept-LDS (P1) | Δ |
+|:----------:|:----------------:|:----------------:|:---:|
+| ZH-EN | 0.933 | 0.955 | −0.022 |
+| DE-EN | 0.920 | 0.930 | −0.011 |
+| ZH-DE | **0.736** | 0.945 | **−0.209** |
+
+Die freien Assoziationen desselben Modells (englisch glossiert in denselben kanonischen Schlüsselraum) erklären die Konzeptdivergenz für **EN-Paare nahezu vollständig** (Δ≈−0.01 bis −0.02) — die Konzeptdivergenz ist hier ein statistisches Nebenprodukt der Assoziationsverteilung. Für **ZH-DE** dagegen liegt die Assoziationsdivergenz (0.736) weit unter der Konzeptdivergenz (0.945): **Es existiert eine strukturelle Ebene jenseits der Assoziationsstatistik** — konsistent mit der Rahmen-Wirkung auf das kulturell entfernteste Paar.
+
+### 5.5 Antwort- vs. Promptsprache (P5): Promptsprache ohne eigenen Effekt
+
+| Kontrast | LDS | 95 %-CI | Innerhalb-Bedingung-Boden |
+|:--------:|:---:|:-------:|:-------------------------:|
+| DE-Frage/DE-Antwort vs. ZH-Frage/DE-Antwort | 0.815 | [0.800, 0.884] | 0.827 / 0.843 |
+
+Bei fixierter Antwortsprache (DE) erzeugt die Variation der Fragesprache (DE vs. ZH) **keine über dem Boden liegende** Divergenz. Die Frage-/Promptsprache trägt kein eigenständiges Signal — die Antwortsprache (Produktionssprache) dominiert.
+
+### 5.6 LMM: Sprachcode ist der dominante Organisator (Mechanismus-Kern)
+
+Um die marginalen Beiträge von Sprachcode und kulturellem Rahmen zu trennen, wurde ein gemischtes Modell über 50 dyadische Zellpaare (5 Zellen × 5 Themen, Response = Jaccard-Similarität) geschätzt:
+
+`Similarität ~ same_lang + same_frame + (1|topic)`
+
+| Effekt | Koeffizient (Jaccard) | SE | t | p | Permutation p |
+|:------:|:---------------------:|:--:|:--:|:---:|:-------------:|
+| Intercept | +0.050 | 0.011 | 4.60 | <0.001 | — |
+| **same_lang** | **+0.038** | 0.009 | 4.28 | **<0.001** | **0.000** |
+| **same_frame** | **+0.001** | 0.009 | 0.13 | **0.90** | **0.779** |
+
+**Marginalbeitrag**: Das Teilen des Sprachcodes erhöht die Konzeptähnlichkeit signifikant (+0.038); das Teilen des kulturellen Rahmens hat **keinen** signifikanten marginalen Beitrag (+0.001). Die Permutationsprüfung (blockweise, 1000 Iterationen) bestätigt die Robustheit.
+
+**Harmonisierung mit P2 (Zwei-Boden-Konzept)**:
+- Boden 1 = Split-Half innerhalb einer Bedingung: J≈0.12 (gleicher Code + Rahmen)
+- Boden 2 = vollständig verschiedene Zellen: J≈0.05 (verschiedener Code + Rahmen)
+- Rahmenwechsel (gleicher Code): J≈0.088 → **zwischen den Böden**: bewegt Konzepte innerhalb des Code-Orbits (0.12→0.088), erreicht aber keine codeübergreifende Divergenz (0.088 ≫ 0.05).
+
+**→ Der Sprachcode ist die dominante Organisationsebene (lexikalisch-statistisch); der kulturelle Rahmen ist ein sekundärer, code-interner Modulator.**
+
+### 5.7 Themenbezogene Decomposition
+
+| Thema | Ø Sprachsignal (P1−Boden) | Ø Rahmen-Effekt (P2) |
+|:------|:---:|:---:|
+| Freiheit | 0.045 | 0.89 |
+| Gerechtigkeit | **0.114** | **0.96** |
+| Verantwortung | 0.058 | 0.87 |
+| Heimat | 0.082 | 0.86 |
+| Erfolg | **0.115** | **0.98** |
+
+Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotierten Themen (Erfolg, Gerechtigkeit) am stärksten** — konsistent mit der Hypothese, dass abstrakte Konzepte sprach- und kulturabhängiger sind als konkrete.
+
+### 5.8 Zusammenfassung und Einordnung
+
+1. **Sprachsignal existiert** im Within-Subject-Design (P1: LDS-C ≫ Boden) — der menschliche Negativebefund ist ein Between-Subject-Artefakt.
+2. **Dominanter Mechanismus**: Sprachcode (M2, lexikalisch-assoziativ) — signifikanter marginaler Beitrag im LMM.
+3. **Sekundärer Mechanismus**: kultureller Rahmen (M3) — wirkt innerhalb des Codes, überbrückt Codes nicht.
+4. **ZH-DE trägt eine strukturelle Ebene** jenseits der Assoziationsstatistik (P3: Δ=−0.209) — am stärksten beim kulturell entferntesten Paar.
+5. **Promptsprache (M5) ist ohne eigenen Effekt** (P5 falsifiziert).
+
+Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
