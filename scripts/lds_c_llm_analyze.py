@@ -76,10 +76,21 @@ def unit_to_record(unit: dict) -> dict:
     }
 
 
-def unit_to_assoc_record(unit: dict) -> dict:
-    """Convert a P3 unit to a record; associations become 'concepts' with en=word."""
-    concepts = [{"en": w, "concept": w, "importance": 1.0}
-                for w in unit.get("associations", []) if w.strip()]
+def unit_to_assoc_record(unit: dict, gloss_map: Optional[Dict[str, str]] = None) -> dict:
+    """Convert a P3 unit to a record; associations become 'concepts'.
+
+    gloss_map maps source-language word -> English gloss (from the P3 glossing
+    post-pass). If provided, concepts use the English gloss as 'en' so the
+    association LDS is computed in the same canonical key space as concept
+    graphs (otherwise ZH associations have no Latin tokens and canonicalize
+    to empty keys)."""
+    concepts = []
+    for w in unit.get("associations", []):
+        w = w.strip()
+        if not w:
+            continue
+        en = (gloss_map or {}).get(w, w)
+        concepts.append({"en": en, "concept": w, "importance": 1.0})
     return {
         "response_id": unit["unit_id"],
         "language": unit["language"],
@@ -88,6 +99,20 @@ def unit_to_assoc_record(unit: dict) -> dict:
         "sample": unit.get("sample", 0),
         "topics": [{"topic": "ALL", "concepts": concepts}],
     }
+
+
+def load_assoc_gloss() -> Dict[str, str]:
+    """Load the P3 gloss map {word -> en} from the glossing post-pass."""
+    files = sorted(OUT_DIR.glob("assoc_gloss_*.json"))
+    if not files:
+        return {}
+    data = json.loads(files[-1].read_text(encoding="utf-8"))
+    m: Dict[str, str] = {}
+    for c in data.get("cells", []):
+        for w, en in c.get("glosses", {}).items():
+            m[w] = en
+    print(f"  Loaded {len(m)} association glosses from {files[-1].name}")
+    return m
 
 
 # ── P1: language main effect ────────────────────────────────────────
@@ -258,8 +283,19 @@ def main() -> None:
 
     p1_records = [unit_to_record(u) for u in units if u["probe"] == "P1"]
     p2_records = [unit_to_record(u) for u in units if u["probe"] in ("P1", "P2")]
-    p3_records = [unit_to_assoc_record(u) for u in units if u["probe"] == "P3"]
     p5_records = [unit_to_record(u) for u in units if u["probe"] == "P5"]
+    p3_units = [u for u in units if u["probe"] == "P3"]
+
+    # For M2 comparability, P3 associations must be glossed to English (canonical
+    # key space). If the glossing post-pass hasn't run yet, warn loudly.
+    gloss = load_assoc_gloss()
+    p3_records = [unit_to_assoc_record(u, gloss) for u in p3_units]
+    if p3_records and gloss:
+        unglossed = sum(1 for u in p3_units for w in u.get("associations", [])
+                        if w.strip() and w.strip() not in gloss)
+        if unglossed:
+            print(f"  WARN: {unglossed} association words have no gloss "
+                  f"(run scripts/lds_c_llm_gloss_assoc.py)")
 
     print(f"  P1 records: {len(p1_records)} | P2: {len(p2_records)} | "
           f"P3: {len(p3_records)} | P5: {len(p5_records)}")
