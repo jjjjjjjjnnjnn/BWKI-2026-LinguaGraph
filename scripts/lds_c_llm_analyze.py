@@ -83,7 +83,15 @@ def unit_to_assoc_record(unit: dict, gloss_map: Optional[Dict[str, str]] = None)
     post-pass). If provided, concepts use the English gloss as 'en' so the
     association LDS is computed in the same canonical key space as concept
     graphs (otherwise ZH associations have no Latin tokens and canonicalize
-    to empty keys)."""
+    to empty keys).
+
+    Uses the unit's real topic label: response_concept_groups() only accepts
+    canonical topic names (or names containing one) — "ALL" would be skipped,
+    producing empty sets and a degenerate LDS."""
+    topic = unit.get("topic", "ALL")
+    if topic not in TOPICS:
+        # tolerate label mismatch (e.g. English vs canonical)
+        topic = next((x for x in TOPICS if x.lower() in topic.lower()), "ALL")
     concepts = []
     for w in unit.get("associations", []):
         w = w.strip()
@@ -95,9 +103,9 @@ def unit_to_assoc_record(unit: dict, gloss_map: Optional[Dict[str, str]] = None)
         "response_id": unit["unit_id"],
         "language": unit["language"],
         "probe": "P3",
-        "topic": unit.get("topic"),
+        "topic": topic,
         "sample": unit.get("sample", 0),
-        "topics": [{"topic": "ALL", "concepts": concepts}],
+        "topics": [{"topic": topic, "concepts": concepts}],
     }
 
 
@@ -123,23 +131,22 @@ def analyze_p1(records: List[dict]) -> dict:
 
     agg = aggregate_languages(records)
     pairwise = compute_pairwise(agg)
-    lds_pooled = {pair: pairwise[pair]["ALL"] for pair in PAIRS if pair in pairwise}
+    lds_pooled = {pair: pairwise[pair]["ALL"] for pair, _, _ in PAIRS if pair in pairwise}
 
     ci = bootstrap_ci(records, n_iter=1000)
     floors = within_language_split_half(records, n_iter=200)
     perm = label_permutation_null(records, n_iter=500)
 
     out = {"n": {lang: len(reps) for lang, reps in by_lang.items()}}
-    for pair in PAIRS:
-        la, lb = pair.split("-")
+    for pair, la, lb in PAIRS:
         if la in by_lang and lb in by_lang:
             out[pair] = {
                 "lds_c_pooled": round(lds_pooled.get(pair, float("nan")), 4),
                 "ci": ci.get(pair, {}),
                 "split_half_floor": floors.get(pair, None),
-                "label_perm_mean": round(perm.get(pair, {}).get("mean", float("nan")), 4)
+                "label_perm_mean": round(perm.get(pair, {}).get("perm_mean", float("nan")), 4)
                     if pair in perm else None,
-                "label_perm_p_lt": perm.get(pair, {}).get("p_lt", None),
+                "label_perm_std": perm.get(pair, {}).get("perm_std", None),
             }
     out["interpretation"] = (
         "LDS-C ~ split-half floor => language carries no separable signal "
@@ -212,7 +219,7 @@ def analyze_p3(assoc_records: List[dict], p1_lds: dict) -> dict:
 
     agg = aggregate_languages(assoc_records)
     pairwise = compute_pairwise(agg)
-    assoc_lds = {pair: round(pairwise[pair]["ALL"], 4) for pair in PAIRS if pair in pairwise}
+    assoc_lds = {pair: round(pairwise[pair]["ALL"], 4) for pair, _, _ in PAIRS if pair in pairwise}
 
     # within-language association split-half (association sampling noise floor)
     floors = within_language_split_half(assoc_records, n_iter=200)
@@ -220,7 +227,7 @@ def analyze_p3(assoc_records: List[dict], p1_lds: dict) -> dict:
     out = {"n": {lang: len(reps) for lang, reps in by_lang.items()},
            "assoc_lds_pooled": assoc_lds,
            "assoc_split_half_floor": floors}
-    for pair in PAIRS:
+    for pair, _, _ in PAIRS:
         if pair in assoc_lds and pair in p1_lds:
             out[pair] = {
                 "assoc_lds": assoc_lds[pair],
@@ -235,6 +242,26 @@ def analyze_p3(assoc_records: List[dict], p1_lds: dict) -> dict:
 
 
 # ── P5: answer-vs-prompt language ───────────────────────────────────
+def _split_half_floor(records: List[dict], code: str, n_iter: int = 200) -> float:
+    """Within-condition noise floor: split a condition's samples into two halves,
+    aggregate each, LDS between them, averaged. Reuses the same logic as
+    within_language_split_half but for a single condition pool."""
+    import random
+    rng = random.Random(RANDOM_SEED + 5)
+    vals = []
+    for _ in range(n_iter):
+        reps = records[:]
+        if len(reps) < 2:
+            return float("nan")
+        rng.shuffle(reps)
+        half = len(reps) // 2
+        aa = aggregate_languages(reps[:half])
+        ab = aggregate_languages(reps[half:])
+        vals.append(lds_concept(aa.get(code, {}).get("ALL", set()),
+                                ab.get(code, {}).get("ALL", set())))
+    return round(statistics.mean(vals), 4) if vals else float("nan")
+
+
 def analyze_p5(records: List[dict]) -> dict:
     """Fix answer language (de), vary prompt language (zh vs de). If LDS > floor,
     the prompt/question language influences concept structure even when the
@@ -260,14 +287,19 @@ def analyze_p5(records: List[dict]) -> dict:
         vals.append(lds_concept(aa.get("de", {}).get("ALL", set()),
                                 ab.get("de", {}).get("ALL", set())))
     vals.sort()
+    # within-condition noise floors (splitting each condition's own samples)
+    floor_deq = _split_half_floor(deq_dea, "de")
+    floor_zhq = _split_half_floor(zhq_dea, "de")
     return {
         "n": {"deq_dea": len(deq_dea), "zhq_dea": len(zhq_dea)},
         "lds_prompt_de_vs_zh_answering_de": round(lds, 4),
         "ci_95": [round(vals[int(0.025 * len(vals))], 4),
                   round(vals[int(0.975 * len(vals))], 4)],
+        "within_cond_floor_deq": floor_deq,
+        "within_cond_floor_zhq": floor_zhq,
         "interpretation": (
-            "> split-half floor => question language shapes concepts even when "
-            "answer language is fixed (M5); ~0 => answer language dominates."
+            "> within-condition floor => question language shapes concepts even "
+            "when answer language is fixed (M5); ~floor => answer language dominates."
         ),
     }
 
@@ -311,7 +343,7 @@ def main() -> None:
         result["P2_frame_code_decoupling"] = analyze_p2(p2_records)
 
     p1_lds = {pair: result["P1_language_main_effect"][pair]["lds_c_pooled"]
-              for pair in PAIRS if pair in result.get("P1_language_main_effect", {})
+              for pair, _, _ in PAIRS if pair in result.get("P1_language_main_effect", {})
               and "lds_c_pooled" in result["P1_language_main_effect"][pair]}
 
     if p3_records and p1_lds:
@@ -327,7 +359,7 @@ def main() -> None:
     print(f"\n  Saved: {out_path}")
     print("\n=== P1 ===")
     if "P1_language_main_effect" in result:
-        for pair in PAIRS:
+        for pair, _, _ in PAIRS:
             if pair in result["P1_language_main_effect"]:
                 print(f"  {pair}: {json.dumps(result['P1_language_main_effect'][pair], ensure_ascii=False)}")
     print("\n=== P2 ===")
@@ -336,7 +368,7 @@ def main() -> None:
             print(f"  {k}: {json.dumps(v, ensure_ascii=False)}")
     print("\n=== P3 ===")
     if "P3_free_association_M2" in result:
-        for pair in PAIRS:
+        for pair, _, _ in PAIRS:
             if pair in result["P3_free_association_M2"]:
                 print(f"  {pair}: {json.dumps(result['P3_free_association_M2'][pair], ensure_ascii=False)}")
     print("\n=== P5 ===")
