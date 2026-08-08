@@ -94,11 +94,14 @@
 
 | 文件 | 状态 |
 |------|------|
-| `docs/paper/03_results.md` | 现有结果章节（含**过时的 N=8 主张**，与 N=15 分析矛盾） |
-| `docs/paper/03_results_human_v2.md` | **新修订 §4**（N=15 三层分析 + 诚实阴性 + 方法学反思）✅ 待合并 |
-| `docs/paper/04_discussion.md` | 现有讨论（F11/F12 等需修订） |
-| `docs/paper/04_discussion_revision.md` | **修订指引**（F11/F12 + 受影响小节的新措辞）✅ 待应用 |
-| 其余章节 (00,01,02,05,06,07) | 未受本轮影响 |
+| `docs/paper/03_results.md` | ✅ N=15 整合（§4 替换，c2ba9dc）+ **§5 LLM-as-Subject 新增**（5ad5a94） |
+| `docs/paper/03_results_human_v2.md` | 已合并进 03_results.md §4（保留作修订来源） |
+| `docs/paper/04_discussion.md` | ✅ F11/F12 修订 + **§4.14 LLM 方法学讨论新增** |
+| `docs/paper/04_discussion_revision.md` | 已应用（保留作指引） |
+| `docs/paper/05_conclusion.md` | ✅ N=15 + D1（贡献#5、未来工作、结语） |
+| `docs/paper/00_three_conclusions.md` | ✅ N=15 + D1 叙事/证据链 |
+| `docs/paper/01_abstract_introduction.md` | ✅ N=15 + D1 摘要/贡献 |
+| 其余章节 (02,06,07) | 未受本轮影响 |
 
 ---
 
@@ -116,7 +119,7 @@
   - **核心结果**：LLM 组内设计语言信号真实（LDS-C 0.93–0.96 ≫ 底 0.85–0.87）→ 人类 N=15 阴性是设计伪影
   - **LMM 机制判定**：`same_lang +0.038 (p<0.001)`, `same_frame +0.001 (p=0.90)` → **代码层主导（M2），框架次级（M3）**——早期 P2 表述已纠正
   - 按主题：Erfolg & Gerechtigkeit 最强；ZH-DE 有结构层
-- [ ] **论文整合**：D1 结果 → 论文 §4/§5（LLM-as-subject 范式 + 机制分解 + 组间/组内对照）
+- [x] **论文整合 D1**（commit 5ad5a94）：03_results §5 + 04_discussion §4.14 + 05/00/01 同步"代码层主导"叙事
 
 ### P1 — 研究深化（重启计划剩余）
 - [ ] **A4**: LDS-K 深化（按主题分解、敏感性、跨源空模型）— 复用 `scripts/figures/*`
