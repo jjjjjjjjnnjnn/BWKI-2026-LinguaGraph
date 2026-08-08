@@ -1,0 +1,126 @@
+{
+ "design": "d1_mechanism",
+ "generated_at": "2026-08-09T00:10:51.133219",
+ "P1_language_main_effect": {
+  "n": {
+   "zh": 10,
+   "de": 10,
+   "en": 10
+  },
+  "ZH-EN": {
+   "lds_c_pooled": 0.9552,
+   "ci": {
+    "lds_c_mean": 0.9511,
+    "ci_lower": 0.9348,
+    "ci_upper": 0.9663,
+    "std": 0.0085,
+    "n_boot": 1000
+   },
+   "split_half_floor": 0.8745,
+   "label_perm_mean": 0.8786,
+   "label_perm_std": 0.0154,
+   "label_perm_p": 0.0
+  },
+  "DE-EN": {
+   "lds_c_pooled": 0.93,
+   "ci": {
+    "lds_c_mean": 0.9327,
+    "ci_lower": 0.9122,
+    "ci_upper": 0.9547,
+    "std": 0.0108,
+    "n_boot": 1000
+   },
+   "split_half_floor": 0.8456,
+   "label_perm_mean": 0.8797,
+   "label_perm_std": 0.0155,
+   "label_perm_p": 0.0
+  },
+  "ZH-DE": {
+   "lds_c_pooled": 0.9446,
+   "ci": {
+    "lds_c_mean": 0.9449,
+    "ci_lower": 0.9314,
+    "ci_upper": 0.9605,
+    "std": 0.0078,
+    "n_boot": 1000
+   },
+   "split_half_floor": 0.8618,
+   "label_perm_mean": 0.8787,
+   "label_perm_std": 0.0158,
+   "label_perm_p": 0.0
+  },
+  "interpretation": "LDS-C ~ split-half floor => language carries no separable signal (participant-equivalent variability); LDS-C >> floor => language effect."
+ },
+ "P2_frame_code_decoupling": {
+  "zh": {
+   "code": "zh",
+   "frame_cross": "de",
+   "n_natural": 10,
+   "n_crossed": 10,
+   "lds_natural_vs_crossframe": 0.916,
+   "ci_95": [
+    0.9051,
+    0.9429
+   ]
+  },
+  "de": {
+   "code": "de",
+   "frame_cross": "zh",
+   "n_natural": 10,
+   "n_crossed": 10,
+   "lds_natural_vs_crossframe": 0.9139,
+   "ci_95": [
+    0.9009,
+    0.937
+   ]
+  },
+  "interpretation": "natural-vs-cross-frame LDS >> within-lang split-half floor => cultural frame drives concept divergence independently of language code (M3)."
+ },
+ "P3_free_association_M2": {
+  "n": {
+   "zh": 50,
+   "de": 50,
+   "en": 50
+  },
+  "assoc_lds_pooled": {
+   "ZH-EN": 0.9329,
+   "DE-EN": 0.9195,
+   "ZH-DE": 0.7357
+  },
+  "assoc_split_half_floor": {
+   "ZH-EN": 0.375,
+   "DE-EN": 0.4111,
+   "ZH-DE": 0.3556
+  },
+  "ZH-EN": {
+   "assoc_lds": 0.9329,
+   "concept_lds_p1": 0.9552,
+   "delta": -0.0223
+  },
+  "DE-EN": {
+   "assoc_lds": 0.9195,
+   "concept_lds_p1": 0.93,
+   "delta": -0.0105
+  },
+  "ZH-DE": {
+   "assoc_lds": 0.7357,
+   "concept_lds_p1": 0.9446,
+   "delta": -0.2089
+  },
+  "interpretation": "assoc_lds ~ concept_lds => concept divergence is association-statistics driven (M2); concept_lds >> assoc_lds => structural layer beyond statistics."
+ },
+ "P5_answer_vs_prompt": {
+  "n": {
+   "deq_dea": 10,
+   "zhq_dea": 10
+  },
+  "lds_prompt_de_vs_zh_answering_de": 0.8153,
+  "ci_95": [
+   0.8,
+   0.8836
+  ],
+  "within_cond_floor_deq": 0.8266,
+  "within_cond_floor_zhq": 0.8432,
+  "interpretation": "> within-condition floor => question language shapes concepts even when answer language is fixed (M5); ~floor => answer language dominates."
+ }
+}

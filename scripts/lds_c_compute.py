@@ -22,6 +22,7 @@ Output: outputs/lds_c_results_<date>.json
 
 import argparse
 import json
+import math
 import random
 import re
 import statistics
@@ -38,11 +39,20 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 RANDOM_SEED = 42
 USE_FUZZY = False  # set True via --fuzzy (slower, marginal gain)
 CANON_MAP: Dict[str, str] = {}  # gloss -> canonical_term, loaded via --canonical
+# active seed; --seed overrides RANDOM_SEED so it actually takes effect (audit M3)
+_ACTIVE_SEED: int = RANDOM_SEED
 TOPICS = ["Freiheit", "Gerechtigkeit", "Verantwortung", "Heimat", "Erfolg"]
 PAIRS = [("ZH-EN", "zh", "en"), ("DE-EN", "de", "en"), ("ZH-DE", "zh", "de")]
 
 DEFAULT_ALIGNED = PROJECT_ROOT / "data" / "math_extractions" / "merged" / "aligned_data.json"
 DEFAULT_EXTRACTION = None  # resolved to latest in data/lds_c
+
+
+def set_active_seed(seed: int) -> None:
+    """Override the module-level seed used by all bootstrap/null functions."""
+    global _ACTIVE_SEED
+    _ACTIVE_SEED = seed
+    random.seed(seed)
 
 
 def normalize(s: str) -> str:
@@ -169,8 +179,16 @@ def aggregate_languages(records: List[dict]) -> Dict[str, Dict[str, Set[str]]]:
 
 
 def jaccard(a: Set[str], b: Set[str], use_fuzzy: bool = False) -> float:
-    """Jaccard over canonical keys. Optional fuzzy fallback for near-misses."""
+    """Jaccard over canonical keys. Optional fuzzy fallback for near-misses.
+
+    Empty-set convention: two empty sets are identical (J=1.0); one empty and
+    one non-empty set is an undefined comparison (returns NaN) so the caller
+    can detect the degenerate case instead of silently producing LDS=1.0."""
     a, b = set(a), set(b)
+    if not a and not b:
+        return 1.0
+    if not a or not b:
+        return float("nan")
     inter = len(a & b)
     if use_fuzzy or USE_FUZZY:
         a_only = sorted(a - b)
@@ -191,7 +209,10 @@ def jaccard(a: Set[str], b: Set[str], use_fuzzy: bool = False) -> float:
 
 
 def lds_concept(set_a: Set[str], set_b: Set[str]) -> float:
-    return round(1.0 - jaccard(set_a, set_b), 4)
+    j = jaccard(set_a, set_b)
+    if j != j:  # NaN: one side empty, the other not (degenerate comparison)
+        return float("nan")
+    return round(1.0 - j, 4)
 
 
 def compute_pairwise(agg: Dict[str, Dict[str, Set[str]]]) -> Dict[str, Dict[str, float]]:
@@ -234,7 +255,7 @@ def compute_lds_k_concept(lang_nodes: Dict[str, Set[str]]) -> Dict[str, float]:
 
 def bootstrap_ci(records: List[dict], n_iter: int = 1000) -> Dict[str, dict]:
     """Bootstrap pooled LDS-C CI by resampling participants with replacement."""
-    random.seed(RANDOM_SEED)
+    random.seed(_ACTIVE_SEED)
     by_lang: Dict[str, List[dict]] = defaultdict(list)
     for r in records:
         by_lang[r.get("language", "")].append(r)
@@ -258,8 +279,9 @@ def bootstrap_ci(records: List[dict], n_iter: int = 1000) -> Dict[str, dict]:
         if len(vals) < 2:
             continue
         vals.sort()
-        lo = vals[int(0.025 * len(vals))]
-        hi = vals[int(0.975 * len(vals))]
+        # audit M5: percentile index = ceil(p*n)-1 (so p=0.025,n=1000 -> idx 24)
+        lo = vals[max(0, math.ceil(0.025 * len(vals)) - 1)]
+        hi = vals[min(len(vals) - 1, math.ceil(0.975 * len(vals)) - 1)]
         ci[pair] = {
             "lds_c_mean": round(statistics.mean(vals), 4),
             "ci_lower": round(lo, 4),
@@ -278,7 +300,7 @@ def within_language_split_half(records: List[dict], n_iter: int = 100) -> Dict[s
     between the two aggregates. Average over iterations. This measures how much
     within-language participant variability inflates LDS (NOT a concept-set
     partition, which always yields LDS=1.0)."""
-    random.seed(RANDOM_SEED)
+    random.seed(_ACTIVE_SEED)
     by_lang: Dict[str, List[dict]] = defaultdict(list)
     for r in records:
         by_lang[r.get("language", "")].append(r)
@@ -308,10 +330,13 @@ def within_language_split_half(records: List[dict], n_iter: int = 100) -> Dict[s
     return floors
 
 
-def label_permutation_null(records: List[dict], n_iter: int = 200) -> Dict[str, dict]:
+def label_permutation_null(records: List[dict], n_iter: int = 200,
+                           observed: Optional[Dict[str, float]] = None) -> Dict[str, dict]:
     """Permute language labels across responses; if observed LDS differs from
-    permuted distribution, labels carry signal."""
-    random.seed(RANDOM_SEED)
+    permuted distribution, labels carry signal. Reports a formal two-sided
+    p-value: fraction of permutations at least as extreme as the observed LDS
+    (audit M2)."""
+    random.seed(_ACTIVE_SEED)
     langs = [r.get("language", "") for r in records]
     if not langs:
         return {}
@@ -329,9 +354,27 @@ def label_permutation_null(records: List[dict], n_iter: int = 200) -> Dict[str, 
         vals = [v for v in vals if v == v]
         if not vals:
             continue
+        mean = statistics.mean(vals)
+        std = statistics.stdev(vals) if len(vals) > 1 else 0.0
+        p_val = None
+        if observed is not None and pair in observed:
+            obs = observed[pair]
+            if obs != obs:  # observed is NaN: no meaningful test
+                p_val = None
+            elif std > 0:
+                # two-sided permutation p: proportion of perm LDS >= obs (upper tail)
+                # plus mirrored lower tail via symmetry around the perm mean
+                tail_hi = sum(1 for v in vals if v >= obs) / len(vals)
+                tail_lo = sum(1 for v in vals if v <= 2 * mean - obs) / len(vals)
+                p_val = round(min(1.0, 2 * min(tail_hi, tail_lo)), 4)
+            else:
+                # zero-variance null: observed equals the only possible value
+                # => labels carry no signal relative to the null
+                p_val = 1.0 if obs == mean else 0.0
         out[pair] = {
-            "perm_mean": round(statistics.mean(vals), 4),
-            "perm_std": round(statistics.stdev(vals), 4) if len(vals) > 1 else 0.0,
+            "perm_mean": round(mean, 4),
+            "perm_std": round(std, 4) if std > 0 else 0.0,
+            "perm_p_two_sided": p_val,
         }
     return out
 
@@ -344,7 +387,7 @@ def cohens_d_for_delta(delta_mean: float, delta_std: float, n_pairs: int) -> dic
 # ── Report ─────────────────────────────────────────────────
 
 def build_report(records: List[dict], extractions_path: Path, aligned_path: Path,
-                 iterations: int) -> dict:
+                 iterations: int, extract_meta: Optional[dict] = None) -> dict:
     agg = aggregate_languages(records)
     pairwise = compute_pairwise(agg)
 
@@ -357,7 +400,9 @@ def build_report(records: List[dict], extractions_path: Path, aligned_path: Path
 
     # Null models
     split_half = within_language_split_half(records, max(100, iterations // 10))
-    perm_null = label_permutation_null(records, max(200, iterations // 5))
+    observed_lds = {p: v.get("ALL") for p, v in pairwise.items()}
+    perm_null = label_permutation_null(records, max(200, iterations // 5),
+                                       observed=observed_lds)
 
     # ΔLDS (pooled LDS-C − LDS-K concept)
     delta = {}
@@ -372,9 +417,13 @@ def build_report(records: List[dict], extractions_path: Path, aligned_path: Path
     for r in records:
         sizes[r.get("language", "")] += 1
 
+    extract_meta = extract_meta or {}
     return {
         "generated_at": datetime.now().isoformat(),
-        "model": "deepseek-v4-flash@opencode",
+        # audit M4: propagate actual model/api_url from the extraction file
+        # instead of hardcoding, so lineage is truthful if a different model runs
+        "model": extract_meta.get("model", "deepseek-v4-flash@opencode"),
+        "api_url": extract_meta.get("api_url"),
         "extraction_source": str(extractions_path),
         "n_responses": len(records),
         "language_sizes": dict(sizes),
@@ -391,7 +440,7 @@ def build_report(records: List[dict], extractions_path: Path, aligned_path: Path
 
 def format_table(report: dict) -> str:
     lines = []
-    lines.append(f"{'Pair':8s} | {'LDS-C':7s} | {'95% CI':17s} | {'LDS-K':7s} | {'ΔLDS':7s} | {'d':6s} | {'split-half':10s}")
+    lines.append(f"{'Pair':8s} | {'LDS-C':7s} | {'95% CI':17s} | {'LDS-K':7s} | {'ΔLDS':7s} | {'|Δ|':6s} | {'split-half':10s}")
     lines.append("-" * 78)
     ci = report["bootstrap_ci"]
     delta = report["delta_lds"]
@@ -428,7 +477,7 @@ def main() -> None:
     if args.canonical:
         CANON_MAP = json.loads(Path(args.canonical).read_text(encoding="utf-8"))
         print(f"  Canonical map: {len(CANON_MAP)} glosses loaded")
-    random.seed(RANDOM_SEED)
+    set_active_seed(args.seed)  # audit M3: --seed now actually takes effect
 
     path = Path(args.input) if args.input else latest_extraction_path()
     aligned_path = Path(args.aligned) if args.aligned else DEFAULT_ALIGNED
@@ -439,14 +488,27 @@ def main() -> None:
     records = load_extractions(path)
     print(f"  Loaded {len(records)} responses")
 
-    report = build_report(records, path, aligned_path, args.iterations)
+    # audit M4: read extraction-file metadata for truthful lineage
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    extract_meta = {k: raw.get(k) for k in ("model", "api_url", "extracted_at")
+                    if raw.get(k) is not None}
+
+    report = build_report(records, path, aligned_path, args.iterations,
+                          extract_meta=extract_meta)
     print("\n" + format_table(report))
 
+    # audit M9: write to data/lds_c/ (tracked by git) as the canonical output,
+    # AND mirror to outputs/ for backward compatibility (outputs/ is gitignored).
+    name = f"lds_c_results_{datetime.now().strftime('%Y%m%d')}.json"
+    data_dir = PROJECT_ROOT / "data" / "lds_c"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    data_path = data_dir / name
+    data_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     out_dir = PROJECT_ROOT / "outputs"
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"lds_c_results_{datetime.now().strftime('%Y%m%d')}.json"
+    out_path = out_dir / name
     out_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\n  [OK] Saved to {out_path}")
+    print(f"\n  [OK] Saved to {data_path} (mirror: {out_path})")
 
 
 if __name__ == "__main__":

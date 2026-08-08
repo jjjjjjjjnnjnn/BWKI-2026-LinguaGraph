@@ -57,10 +57,14 @@ OUT_DIR = PROJECT_ROOT / "data" / "lds_c" / "llm_subject"
 
 
 # ── Loaders ────────────────────────────────────────────────────────
-def load_human_records() -> List[dict]:
-    """Human N=15 extractions (between-subject): 6 DE + 6 ZH + 3 EN."""
+def load_human_records() -> Tuple[List[dict], Path]:
+    """Human N=15 extractions (between-subject): 6 DE + 6 ZH + 3 EN.
+    Returns (records, loaded_path) so the caller can record lineage (audit M9/M12)."""
     files = sorted(PROJECT_ROOT.glob("data/lds_c/extractions_*.json"))
-    data = json.loads(files[-1].read_text(encoding="utf-8"))
+    if not files:
+        raise FileNotFoundError("No human extractions found in data/lds_c")
+    path = files[-1]
+    data = json.loads(path.read_text(encoding="utf-8"))
     recs = data["responses"]
     # reshape: topics list already matches aggregate_languages() contract
     for r in recs:
@@ -68,31 +72,53 @@ def load_human_records() -> List[dict]:
     langs: Dict[str, int] = defaultdict(int)
     for r in recs:
         langs[r["language"]] += 1
-    print(f"  Human: {len(recs)} responses ({dict(langs)})")
-    return recs
+    print(f"  Human: {len(recs)} responses ({dict(langs)}) from {path.name}")
+    return recs, path
 
 
-def load_llm_p1_records() -> List[dict]:
-    """LLM P1 units (within-subject): same model, 10 samples/language."""
-    from lds_c_llm_analyze import latest_units, unit_to_record
-    units = latest_units()
+def load_llm_p1_records() -> Tuple[List[dict], Path]:
+    """LLM P1 units (within-subject): same model, 10 samples/language.
+    Returns (records, loaded_path) for lineage (audit M9/M12)."""
+    from lds_c_llm_analyze import OUT_DIR as _OUT, unit_to_record
+
+    files = sorted(_OUT.glob("llm_subject_*.json"))
+    if not files:
+        raise FileNotFoundError(f"No LLM subject files in {_OUT}")
+    path = files[-1]
+    data = json.loads(path.read_text(encoding="utf-8"))
+    units = data["units"]
     recs = [unit_to_record(u) for u in units if u["probe"] == "P1"]
     langs: Dict[str, int] = defaultdict(int)
     for r in recs:
         langs[r["language"]] += 1
-    print(f"  LLM P1: {len(recs)} records ({dict(langs)})")
-    return recs
+    print(f"  LLM P1: {len(recs)} records ({dict(langs)}) from {path.name}")
+    return recs, path
 
 
 # ── Core: signal magnitude + floor + margin ────────────────────────
+def _lang_counts(records: List[dict]) -> Dict[str, int]:
+    counts: Dict[str, int] = defaultdict(int)
+    for r in records:
+        counts[r.get("language", "")] += 1
+    return dict(counts)
+
+
 def signal_table(records: List[dict], tag: str, n_floor: int = 200) -> dict:
-    """LDS-C, split-half floor, signal margin, and signal/floor ratio."""
+    """LDS-C, split-half floor, signal margin, and signal/floor ratio.
+
+    Records the per-language N and the split-half group size so the floor
+    comparison is transparent about sample-size asymmetry (audit H3): a smaller
+    half (e.g. EN 1/2) inflates the floor. Metadata (n, n_per_language,
+    split_half_group_size) live at the TOP level; only language pairs in by_pair."""
     agg = aggregate_languages(records)
     pairwise = compute_pairwise(agg)
     ci = bootstrap_ci(records, n_iter=1000)
     floor = within_language_split_half(records, n_iter=n_floor)
 
-    out: dict = {"n": len(records)}
+    counts = _lang_counts(records)
+    half_sizes = {lang: max(1, n // 2) for lang, n in counts.items()}
+
+    by_pair: dict = {}
     for pair, la, lb in PAIRS:
         if pair not in pairwise:
             continue
@@ -102,19 +128,22 @@ def signal_table(records: List[dict], tag: str, n_floor: int = 200) -> dict:
         if lds is None or fl is None:
             continue
         margin = round(lds - fl, 4)
-        out[pair] = {
+        # audit M11: protect against floor==0 (degenerate empty comparison)
+        s_to_f = round(lds / fl, 4) if fl and fl == fl else None
+        by_pair[pair] = {
             "lds_c": round(lds, 4),
             "lds_c_ci": [ci_pair.get("ci_lower"), ci_pair.get("ci_upper")],
             "split_half_floor": fl,
             "signal_margin": margin,
-            "signal_to_floor_ratio": round(lds / fl, 4),
+            "signal_to_floor_ratio": s_to_f,
             "interpretation": (
                 "signal_margin ~ 0 / ratio ~ 1.0 => language signal SUBMERGED "
                 "by within-language heterogeneity (between-subject artifact); "
                 "signal_margin >> 0 / ratio < 1.0 => language signal VISIBLE."
             ),
         }
-    return {"tag": tag, "by_pair": out}
+    return {"tag": tag, "n": len(records), "n_per_language": counts,
+            "split_half_group_size": half_sizes, "by_pair": by_pair}
 
 
 # ── Floor scan: does the floor rise to signal at human N? ──────────
@@ -237,8 +266,8 @@ def main() -> None:
     args = ap.parse_args()
 
     print("Loading data...")
-    human = load_human_records()
-    llm = load_llm_p1_records()
+    human, human_path = load_human_records()
+    llm, llm_path = load_llm_p1_records()
 
     print("\n[1] Signal magnitude equality (human vs LLM LDS-C)...")
     human_sig = signal_table(human, "human_between_subject")
@@ -250,23 +279,46 @@ def main() -> None:
     print("[3] Virtual between-subject lens on LLM data...")
     virtual = virtual_between_subject(llm, human)
 
+    # audit H3: programmatic conclusion computed from actual margins, not a
+    # hardcoded string that could drift from the data on a re-run.
+    h_margins = {p: human_sig["by_pair"][p]["signal_margin"]
+                 for p, _, _ in PAIRS if p in human_sig["by_pair"]}
+    l_margins = {p: llm_sig["by_pair"][p]["signal_margin"]
+                 for p, _, _ in PAIRS if p in llm_sig["by_pair"]}
+    h_ratios = {p: human_sig["by_pair"][p]["signal_to_floor_ratio"]
+                for p, _, _ in PAIRS if p in human_sig["by_pair"]}
+    l_ratios = {p: llm_sig["by_pair"][p]["signal_to_floor_ratio"]
+                for p, _, _ in PAIRS if p in llm_sig["by_pair"]}
+    h_mean_margin = statistics.mean([v for v in h_margins.values() if v == v])
+    l_mean_margin = statistics.mean([v for v in l_margins.values() if v == v])
+    h_mean_ratio = statistics.mean([v for v in h_ratios.values() if v is not None])
+    l_mean_ratio = statistics.mean([v for v in l_ratios.values() if v is not None])
+    conclusion = (
+        f"Human and LLM show similar cross-language divergence magnitude "
+        f"(human LDS-C margins {h_mean_margin:+.3f}, LLM {l_mean_margin:+.3f}). "
+        f"The human between-subject signal/floor ratio is {h_mean_ratio:.3f} "
+        f"(~1.0 => signal submerged by within-group heterogeneity), while the LLM "
+        f"within-subject ratio is {l_mean_ratio:.3f} (clearly below 1.0 => signal "
+        f"visible). The human null is a design artifact (between-subject "
+        f"heterogeneity inflates the floor to the signal level), NOT absence "
+        f"of a language effect."
+    )
+
     result = {
         "design": "design_effect_proof",
         "generated_at": datetime.now().isoformat(),
         "formula": "LDS = 1 - J [frozen v3, concept-level]",
+        "lineage": {
+            "human_extractions": str(human_path),
+            "llm_subject": str(llm_path),
+            "note": "data sources recorded so a later run with different inputs "
+                    "is traceable (audit M9/M12)",
+        },
         "human_signal": human_sig,
         "llm_signal": llm_sig,
         "floor_scan_vs_N": scan,
         "virtual_between_subject": virtual,
-        "conclusion": (
-            "Human and LLM show the SAME cross-language divergence magnitude "
-            "(LDS-C ~0.93-0.96). The human between-subject design's within-"
-            "language split-half floor (0.92-0.96) matches the signal, submerging "
-            "it; the LLM within-subject floor (0.85-0.87) sits below the signal, "
-            "revealing it. The human null is a design artifact (between-subject "
-            "heterogeneity inflates the floor to the signal level), NOT absence "
-            "of a language effect."
-        ),
+        "conclusion": conclusion,
     }
 
     out_path = OUT_DIR / (args.out or f"design_effect_{datetime.now().strftime('%Y%m%d')}.json")

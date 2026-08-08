@@ -28,6 +28,21 @@ def test_lds_concept_identity():
     assert lds_concept({"a"}, {"b"}) == 1.0
 
 
+def test_lds_concept_empty_convention():
+    """Two empty sets are identical (LDS=0); empty-vs-nonempty is NaN (degenerate),
+    NOT silently maximum divergence (audit C2)."""
+    assert lds_concept(set(), set()) == 0.0
+    v = lds_concept(set(), {"a"})
+    assert v != v  # NaN
+
+
+def test_jaccard_empty_convention():
+    from lds_c_compute import jaccard
+    assert jaccard(set(), set()) == 1.0
+    v = jaccard(set(), {"a"})
+    assert v != v  # NaN
+
+
 def test_signal_table_margins():
     """LDS-C below floor => negative margin (submerged); above => positive."""
     from lds_c_design_effect import signal_table
@@ -142,3 +157,97 @@ def test_decompose_nan_free():
     assert out["ZH-DE"]["j_node"] == 0.0
     assert out["ZH-DE"]["j_edge"] == 0.0
     assert out["ZH-DE"]["lds_v3"] == 1.0
+
+
+def test_lds_v3_empty_convention():
+    from lds_k_deepen import lds_v3
+    # both empty => identical (LDS 0), NOT max divergence (audit C2)
+    r = lds_v3(set(), set())
+    assert r["lds"] == 0.0 and r["j_node"] == 1.0
+    # one empty side => degenerate NaN, not silently 1.0
+    r = lds_v3(set(), {"a"})
+    assert r["lds"] != r["lds"]  # NaN
+
+
+# ── audit H1: LMM robustness ────────────────────────────────────────
+def test_lmm_core_basic_fit():
+    """LMM must fit dyad rows and return finite coefficients + PSD Hessian flag."""
+    from lds_c_llm_lmm import fit_lmm_core
+
+    rows = [
+        {"topic": "Freiheit", "cell_a": ("zh", "zh"), "cell_b": ("de", "de"),
+         "same_lang": 0, "same_frame": 0, "y": 0.05},
+        {"topic": "Freiheit", "cell_a": ("zh", "zh"), "cell_b": ("zh", "de"),
+         "same_lang": 1, "same_frame": 0, "y": 0.09},
+        {"topic": "Freiheit", "cell_a": ("de", "de"), "cell_b": ("zh", "de"),
+         "same_lang": 0, "same_frame": 1, "y": 0.06},
+        {"topic": "Gerechtigkeit", "cell_a": ("zh", "zh"), "cell_b": ("de", "de"),
+         "same_lang": 0, "same_frame": 0, "y": 0.04},
+        {"topic": "Gerechtigkeit", "cell_a": ("zh", "zh"), "cell_b": ("zh", "de"),
+         "same_lang": 1, "same_frame": 0, "y": 0.10},
+        {"topic": "Gerechtigkeit", "cell_a": ("de", "de"), "cell_b": ("zh", "de"),
+         "same_lang": 0, "same_frame": 1, "y": 0.05},
+    ]
+    res = fit_lmm_core(rows)
+    assert res["coef"][0] == res["coef"][0]  # finite intercept
+    assert res["se"] is not None
+
+
+def test_cell_cluster_bootstrap_runs():
+    """Bootstrap must run and, when enough dyads survive, produce finite SE.
+    With very small synthetic data some refits may fail (skipped) — the function
+    must not crash and must return a structure with the requested keys."""
+    from lds_c_llm_lmm import cell_cluster_bootstrap_se
+
+    rows = []
+    cells = [("zh", "zh"), ("de", "de"), ("en", "en"), ("zh", "de"), ("de", "zh")]
+    import itertools
+    pairs = list(itertools.combinations(cells, 2))
+    for t in ["Freiheit", "Gerechtigkeit", "Verantwortung", "Heimat", "Erfolg"]:
+        for a, b in pairs:
+            rows.append({"topic": t, "cell_a": a, "cell_b": b,
+                         "same_lang": 1 if a[0] == b[0] else 0,
+                         "same_frame": 1 if a[1] == b[1] else 0,
+                         "y": 0.05 if a[0] == b[0] else 0.03})
+    boot = cell_cluster_bootstrap_se(rows, cells, n_iter=30)
+    assert "same_lang" in boot and "same_frame" in boot
+    # either a valid SE or an honest NaN (with n_boot<2); must not crash
+    assert "se_boot" in boot["same_lang"]
+    assert "n_boot" in boot["same_lang"]
+
+
+def test_hessian_psd_check():
+    """PSD check must pass for an identity-like Hessian, fail for negative-definite."""
+    from lds_c_llm_lmm import is_positive_semidefinite
+    import numpy as np
+    assert is_positive_semidefinite(np.eye(3)) is True
+    assert is_positive_semidefinite(np.array([[1.0, 0.0], [0.0, -1.0]])) is False
+def test_label_permutation_p_value():
+    """Permutation p must be small when labels carry signal, and expose the
+    observed value is compared against the null (audit M2)."""
+    from lds_c_compute import label_permutation_null
+
+    # two languages with strongly different concept sets => labels carry signal
+    recs = []
+    for i in range(5):
+        recs.append({"language": "zh", "topics": [
+            {"topic": "Freiheit", "concepts": [{"en": f"zh concept {j}"} for j in range(6)]}]})
+        recs.append({"language": "de", "topics": [
+            {"topic": "Freiheit", "concepts": [{"en": f"de concept {j}"} for j in range(6)]}]})
+    # observed: fully disjoint languages -> LDS high; permuted would mix -> lower
+    observed = {"ZH-DE": 1.0}
+    perm = label_permutation_null(recs, n_iter=100, observed=observed)
+    assert "ZH-DE" in perm
+    p = perm["ZH-DE"]["perm_p_two_sided"]
+    assert p is not None and p < 0.05  # signal detected
+
+    # identical concept sets across languages => labels carry NO signal => p large
+    recs2 = []
+    for lang in ("zh", "de"):
+        for i in range(5):
+            recs2.append({"language": lang, "topics": [
+                {"topic": "Freiheit", "concepts": [{"en": "shared concept"}]}]})
+    observed2 = {"ZH-DE": 0.0}
+    perm2 = label_permutation_null(recs2, n_iter=100, observed=observed2)
+    p2 = perm2["ZH-DE"]["perm_p_two_sided"]
+    assert p2 is not None and p2 > 0.05

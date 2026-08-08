@@ -44,23 +44,31 @@ from typing import Dict, List, Optional, Tuple
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
-from lds_c_compute import canonical_key  # noqa: E402
+from lds_c_compute import canonical_key, PAIRS, TOPICS  # noqa: E402
 
 OUT_DIR = PROJECT_ROOT / "data" / "lds_c" / "lds_k_deep"
 WIKI_DIR = PROJECT_ROOT / "data" / "wikipedia_extractions"
 MATH_PATH = PROJECT_ROOT / "data" / "math_extractions" / "merged" / "aligned_data.json"
-TOPICS = ["Freiheit", "Gerechtigkeit", "Verantwortung", "Heimat", "Erfolg"]
 # Wikipedia extraction files use English topic slugs
 TOPIC_SLUG = {"Freiheit": "freedom", "Gerechtigkeit": "justice",
               "Verantwortung": "responsibility", "Heimat": "home", "Erfolg": "success"}
-PAIRS = [("ZH-EN", "zh", "en"), ("DE-EN", "de", "en"), ("ZH-DE", "zh", "de")]
 LANG_CODES = ["zh", "en", "de"]
 
 
 # ── Core LDS (frozen v3 formula) ────────────────────────────────────
 def lds_v3(nodes_a, nodes_b, edges_a=None, edges_b=None) -> dict:
-    """LDS = 1 - mean(J_node, J_edge); edge component optional (node-only if None)."""
+    """LDS = 1 - mean(J_node, J_edge); edge component optional (node-only if None).
+
+    Empty-set convention: two empty node sets are identical (LDS=0); one empty
+    side returns LDS=NaN (degenerate) so the caller can detect the alignment
+    artifact instead of silently reporting maximum divergence."""
     sa, sb = set(nodes_a), set(nodes_b)
+    if not sa and not sb:
+        return {"lds": 0.0, "j_node": 1.0,
+                "j_edge": None if edges_a is None else 1.0}
+    if not sa or not sb:
+        return {"lds": float("nan"), "j_node": 0.0,
+                "j_edge": None if edges_a is None else 0.0}
     j_node = len(sa & sb) / max(len(sa | sb), 1)
     if edges_a is not None and edges_b is not None:
         ea, eb = set(edges_a), set(edges_b)
@@ -120,7 +128,11 @@ def wiki_graphs(gloss: Dict[str, str], undirected: bool = False,
 
 # ── 2. Math LDS-K by level ──────────────────────────────────────────
 def math_by_level() -> Tuple[Dict[str, dict], Dict[str, str]]:
-    """Returns (level -> {lang: {nodes, edges}}, group_id -> level)."""
+    """Returns (level -> {lang: {nodes, edges}}, group_id -> level).
+
+    Edge attribution: an edge's level is taken from its source_group. Edges whose
+    endpoints span levels are attributed to the source level (documented below);
+    relations whose groups have no labels are counted and reported (audit M8)."""
     d = load_json(MATH_PATH)
     groups = d.get("aligned_groups", [])
     gid_level = {g["id"]: g.get("level", "unknown") for g in groups}
@@ -139,16 +151,27 @@ def math_by_level() -> Tuple[Dict[str, dict], Dict[str, str]]:
                 result[lv][lang]["nodes"].add(lab)
     # edges: relations mapped to level via source_group
     gid_labels = {g["id"]: g.get("labels", {}) for g in groups}
+    n_dropped = 0
+    n_cross_level = 0
     for r in d.get("relations", []):
         sg = r.get("source_group") or ""
         tg = r.get("target_group") or ""
         lv = gid_level.get(sg, "unknown")
         if sg in gid_labels and tg in gid_labels:
+            s_labels = gid_labels[sg]
+            t_labels = gid_labels[tg]
+            if gid_level.get(tg) != lv:
+                n_cross_level += 1  # spans levels; attributed to source level
             for lang in LANG_CODES:
-                s = gid_labels[sg].get(lang)
-                t = gid_labels[tg].get(lang)
+                s = s_labels.get(lang)
+                t = t_labels.get(lang)
                 if s and t:
                     result[lv][lang]["edges"].add((s, t))
+        else:
+            n_dropped += 1  # group without labels: edge silently skipped (audit M8)
+    if n_dropped:
+        print(f"  [M8] {n_dropped} relations dropped (group has no labels); "
+              f"{n_cross_level} cross-level edges attributed to source level.")
     return result, gid_level
 
 
@@ -274,7 +297,11 @@ def sensitivity_alignment(wiki: Dict[str, Dict[str, dict]],
                 s = gloss.get(r.get("source", ""), r.get("source", "")).strip().lower()
                 t_ = gloss.get(r.get("target", ""), r.get("target", "")).strip().lower()
                 if s and t_:
-                    edges.add((s, t_) if s < t_ else (t_, s))
+                    # audit M13: keep DIRECTED edges (same as the loose/canonical
+                    # branch) so alignment tightness is not confounded with edge
+                    # direction. Previously this branch undirected the edges,
+                    # mixing the two sensitivity axes.
+                    edges.add((s, t_))
         strict_pooled[lang] = {"nodes": nodes, "edges": edges}
     # pooled loose from wiki arg
     loose_pooled = {}
@@ -321,9 +348,12 @@ def sensitivity_threshold_wiki(wiki: Dict[str, Dict[str, dict]],
             for p, la, lb in PAIRS
         }
     # meaningful: threshold on LLM-as-subject P1 concepts (0-1 importance weights)
-    llm_path = OUT_DIR.parent / "llm_subject" / "llm_subject_20260808.json"
-    if llm_path.exists():
-        out["llm_subject"] = _threshold_llm(llm_path)
+    llm_files = sorted((OUT_DIR.parent / "llm_subject").glob("llm_subject_*.json"))
+    if llm_files:
+        out["llm_subject"] = _threshold_llm(llm_files[-1])
+    else:
+        print("  WARN: no llm_subject_*.json found; skipping meaningful "
+              "importance-threshold block (audit H2)")
     return out
 
 
@@ -354,12 +384,23 @@ def _threshold_llm(llm_path: Path) -> dict:
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # gloss tables: combined ZH+DE -> EN (lds_k_wiki_gloss.py output)
-    gloss_path = WIKI_DIR / "wiki_gloss_20260808.json"
-    if not gloss_path.exists():
-        # fall back to legacy zh-only file
-        gloss_path = WIKI_DIR / "zh_to_en_gloss_20260808.json"
-    gloss = load_json(gloss_path).get("glosses", {}) if gloss_path.exists() else {}
+    # gloss tables: combined ZH+DE -> EN (lds_k_wiki_gloss.py output).
+    # Use the LATEST gloss file (not a hardcoded date) so re-runs pick up new
+    # glosses; fail loudly if no gloss exists rather than silently degrade to
+    # empty keys (audit H2).
+    gloss_files = sorted(WIKI_DIR.glob("wiki_gloss_*.json"))
+    if not gloss_files:
+        gloss_files = sorted(WIKI_DIR.glob("zh_to_en_gloss_*.json"))
+    if not gloss_files:
+        raise FileNotFoundError(
+            "No gloss table found in %s (need wiki_gloss_*.json). "
+            "Run scripts/lds_k_wiki_gloss.py first — without it, ZH/DE concepts "
+            "collapse to empty canonical keys and wiki LDS degrades to the "
+            "LDS=1.0 alignment artifact this script is meant to fix." % WIKI_DIR)
+    gloss_path = gloss_files[-1]
+    gloss = load_json(gloss_path).get("glosses", {})
+    if not gloss:
+        raise RuntimeError("Gloss table %s is empty (audit H2)" % gloss_path)
     print(f"  Gloss table: {len(gloss)} entries from {gloss_path.name}")
 
     print("=" * 66)
@@ -428,7 +469,10 @@ def main() -> None:
                   f"(j_node={v['j_node']}, j_edge={v['j_edge']}) "
                   f"[math={v['n_nodes']['math']}, wiki={v['n_nodes']['wiki']}]")
     # domain-clean: Wikipedia vs human (zh)
-    human_path = PROJECT_ROOT / "data" / "lds_c" / "extractions_20260807.json"
+    human_files = sorted((PROJECT_ROOT / "data" / "lds_c").glob("extractions_*.json"))
+    if not human_files:
+        raise FileNotFoundError("No human extractions found (audit H2)")
+    human_path = human_files[-1]
     cs_h = cross_source_wiki_vs_human(wiki, human_path, gloss)
     print(f"    Wiki(zh) vs Human(zh) social: {json.dumps(cs_h, ensure_ascii=False)}")
 

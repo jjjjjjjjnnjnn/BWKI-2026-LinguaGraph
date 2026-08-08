@@ -52,8 +52,14 @@ def concept_freqs(records: List[dict]) -> Dict[str, Dict[str, Dict[str, int]]]:
         lang = r.get("language", "")
         for t in r.get("topics", []):
             tl = t.get("topic", "")
+            # audit M15: tolerate topic-label mismatches (mirror
+            # lds_c_compute.response_concept_groups) so a non-canonical label
+            # does not silently drop a topic and produce different driver counts
+            # than the LDS-C numbers.
             if tl not in TOPICS:
-                continue
+                tl = next((x for x in TOPICS if x.lower() in tl.lower()), None)
+                if tl is None:
+                    continue
             seen = set()
             for c in t.get("concepts", []):
                 en = c.get("en", "")
@@ -140,14 +146,18 @@ def relation_drivers(rel_records: List[dict], lang_a: str, lang_b: str,
 
 # ── Loaders ────────────────────────────────────────────────────────
 def load_llm_p1_records() -> List[dict]:
-    from lds_c_llm_analyze import latest_units, unit_to_record
-    units = latest_units()
+    from lds_c_llm_analyze import OUT_DIR as _OUT, unit_to_record
+    files = sorted(_OUT.glob("llm_subject_*.json"))
+    if not files:
+        raise FileNotFoundError("No LLM subject files found")
+    units = json.loads(files[-1].read_text(encoding="utf-8"))["units"]
     return [unit_to_record(u) for u in units if u["probe"] == "P1"]
 
 
 def load_human_records() -> List[dict]:
-    files = sorted(PROJECT_ROOT.glob("extractions_*.json")) if False else \
-        sorted(PROJECT_ROOT.glob("data/lds_c/extractions_*.json"))
+    files = sorted(PROJECT_ROOT.glob("data/lds_c/extractions_*.json"))
+    if not files:
+        raise FileNotFoundError("No human extractions found")
     data = json.loads(files[-1].read_text(encoding="utf-8"))
     recs = data["responses"]
     for r in recs:
@@ -157,6 +167,8 @@ def load_human_records() -> List[dict]:
 
 def load_human_relations() -> List[dict]:
     files = sorted(PROJECT_ROOT.glob("data/lds_c/relations_*.json"))
+    if not files:
+        raise FileNotFoundError("No human relations found")
     data = json.loads(files[-1].read_text(encoding="utf-8"))
     return data.get("responses", [])
 
@@ -195,6 +207,13 @@ def main() -> None:
         "design": "a5_divergence_drivers",
         "generated_at": datetime.now().isoformat(),
         "topics": TOPICS,
+        "lineage": {
+            "note": "loaders glob the latest data file; re-running extraction "
+                    "with a different model would change these inputs (audit M9/M12)",
+            "llm_p1": "latest llm_subject_*.json",
+            "human": "latest extractions_*.json",
+            "human_relations": "latest relations_*.json",
+        },
         "concept_drivers": {},
         "shared_concepts": {},
         "relation_drivers": {},

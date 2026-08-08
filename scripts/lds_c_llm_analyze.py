@@ -47,6 +47,21 @@ from lds_c_compute import (  # noqa: E402
 OUT_DIR = PROJECT_ROOT / "data" / "lds_c" / "llm_subject"
 
 
+# ── JSON sanitization ───────────────────────────────────────────────
+def sanitize_json(obj):
+    """Recursively replace NaN/Inf with None so the output is valid standard
+    JSON (audit M14: json.dumps allow_nan=True emits bare NaN tokens that
+    strict parsers reject)."""
+    import math
+    if isinstance(obj, float):
+        return None if not math.isfinite(obj) else obj
+    if isinstance(obj, dict):
+        return {k: sanitize_json(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [sanitize_json(v) for v in obj]
+    return obj
+
+
 # ── Load ────────────────────────────────────────────────────────────
 def latest_units() -> List[dict]:
     files = sorted(OUT_DIR.glob("llm_subject_*.json"))
@@ -135,7 +150,8 @@ def analyze_p1(records: List[dict]) -> dict:
 
     ci = bootstrap_ci(records, n_iter=1000)
     floors = within_language_split_half(records, n_iter=200)
-    perm = label_permutation_null(records, n_iter=500)
+    observed = {pair: lds_pooled[pair] for pair in lds_pooled}
+    perm = label_permutation_null(records, n_iter=500, observed=observed)
 
     out = {"n": {lang: len(reps) for lang, reps in by_lang.items()}}
     for pair, la, lb in PAIRS:
@@ -147,6 +163,7 @@ def analyze_p1(records: List[dict]) -> dict:
                 "label_perm_mean": round(perm.get(pair, {}).get("perm_mean", float("nan")), 4)
                     if pair in perm else None,
                 "label_perm_std": perm.get(pair, {}).get("perm_std", None),
+                "label_perm_p": perm.get(pair, {}).get("perm_p_two_sided", None),
             }
     out["interpretation"] = (
         "LDS-C ~ split-half floor => language carries no separable signal "
@@ -322,6 +339,14 @@ def main() -> None:
     # key space). If the glossing post-pass hasn't run yet, warn loudly.
     gloss = load_assoc_gloss()
     p3_records = [unit_to_assoc_record(u, gloss) for u in p3_units]
+    if p3_records and not gloss:
+        # gloss dict empty => ZH associations have no Latin tokens => canonical_key
+        # drops them => empty ZH set => degenerate assoc LDS. Must fail loudly, not
+        # silently skip the warning (audit H4).
+        raise RuntimeError(
+            "P3 units present but assoc gloss map is EMPTY: ZH associations would "
+            "collapse to empty keys (LDS=1.0 artifact). Run scripts/lds_c_llm_gloss_assoc.py "
+            "first.")
     if p3_records and gloss:
         unglossed = sum(1 for u in p3_units for w in u.get("associations", [])
                         if w.strip() and w.strip() not in gloss)
@@ -355,7 +380,8 @@ def main() -> None:
         result["P5_answer_vs_prompt"] = analyze_p5(p5_records)
 
     out_path = OUT_DIR / (args.out or f"analysis_{datetime.now().strftime('%Y%m%d')}.json")
-    out_path.write_text(json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8")
+    out_path.write_text(json.dumps(sanitize_json(result), ensure_ascii=False, indent=1),
+                        encoding="utf-8")
     print(f"\n  Saved: {out_path}")
     print("\n=== P1 ===")
     if "P1_language_main_effect" in result:

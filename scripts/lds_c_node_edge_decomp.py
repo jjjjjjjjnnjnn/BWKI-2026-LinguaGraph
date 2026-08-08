@@ -42,7 +42,7 @@ from typing import Dict
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
-from lds_c_compute import canonical_key  # noqa: E402
+from lds_c_compute import canonical_key, PAIRS  # noqa: E402
 from lds_k_deepen import (  # noqa: E402
     TOPIC_SLUG,
     LANG_CODES,
@@ -53,7 +53,6 @@ from lds_k_deepen import (  # noqa: E402
 )
 
 OUT_DIR = PROJECT_ROOT / "data" / "lds_c" / "lds_k_deep"
-PAIRS = [("ZH-EN", "zh", "en"), ("DE-EN", "de", "en"), ("ZH-DE", "zh", "de")]
 
 
 def load_wiki_gloss() -> Dict[str, str]:
@@ -99,7 +98,11 @@ def wiki_pooled(gloss: Dict[str, str]) -> Dict[str, dict]:
 
 
 def human_pooled() -> Dict[str, dict]:
-    """lang -> {nodes, edges} from 15 human responses' relation extractions."""
+    """lang -> {nodes, edges} from 15 human responses' relation extractions.
+
+    Edges use (src, tgt) BINARY tuples — matching scripts/lds_c_compute_v3.py and
+    the wiki/math graphs — so the edge component is comparable across sources
+    (audit M7)."""
     files = sorted((PROJECT_ROOT / "data" / "lds_c").glob("relations_*.json"))
     data = load_json(files[-1])
     out: Dict[str, dict] = {}
@@ -116,7 +119,7 @@ def human_pooled() -> Dict[str, dict]:
                 if tg:
                     nodes[lang].add(tg)
                 if s and tg:
-                    edges[lang].add((s, rel.get("type", ""), tg))
+                    edges[lang].add((s, tg))  # binary tuple, type dropped (audit M7)
     for lang in LANG_CODES:
         out[lang] = {"nodes": nodes.get(lang, set()), "edges": edges.get(lang, set())}
     return out
@@ -167,6 +170,16 @@ def main() -> None:
         "design": "node_edge_decomposition",
         "generated_at": datetime.now().isoformat(),
         "formula": "LDS v3 = 1 - mean(J_node, J_edge); edge_contribution = (J_node - J_edge)/2",
+        "lineage": {
+            "math": "data/math_extractions/merged/aligned_data.json",
+            "wiki": "data/wikipedia_extractions/*_{zh,en,de}.json + latest wiki_gloss_*.json",
+            "human": "latest data/lds_c/relations_*.json",
+            "note": "sources recorded for reproducibility (audit M9/M12)",
+        },
+        "edge_tuple_dimension": (
+            "ALL sources use BINARY (src, tgt) edge tuples (audit M7): human edges "
+            "match scripts/lds_c_compute_v3.py; wiki/math match lds_k_deepen.py. "
+            "J_edge values are therefore comparable across sources."),
         "math_institutional": decompose(math),
         "wiki_social": decompose(wiki),
         "human_cognitive": decompose(human),
