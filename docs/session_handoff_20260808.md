@@ -1,7 +1,7 @@
-# LinguaGraph — 完整项目状态交接文档（研究重启后 v0.8）
+# LinguaGraph — 完整项目状态交接文档（研究重启后 v0.9）
 
-> **生成时间**: 2026-08-08 | **版本**: v0.8（研究主线完整化：人类阴性 → LLM 阳性 → 机制分解 → 语料深化 → 图表）
-> **上一交接**: 本文件 v0.7（已被 v0.8 取代）
+> **生成时间**: 2026-08-08 | **版本**: v0.9（v0.8 + 设计效应证明 A3 + A5 分歧驱动者 + 节点/边分解 D）
+> **上一交接**: v0.8（已被 v0.9 取代）
 > **新 AI 加载顺序**: ① 本文件 → ② `docs/planning/restart_plan.md` → ③ `.claude/CLAUDE.md`（治理）
 
 ---
@@ -10,16 +10,19 @@
 
 **阶段**: Month 2「理论 + 分析」（8 月）。BWKI 提交截止 **2026-09-20/21**（约 6 周）。
 
-**研究主线（已完成，三层完整证据链）**:
+**研究主线（已完成，三层完整证据链 + 深化证明）**:
 
-> **"语言是否驱动认知概念结构分歧？"——是，但只在剥开制度知识强制统一之后可见。**
+> **"语言是否驱动认知概念结构分歧？"——是，但只在剥开制度知识强制统一之后可见；且人类组间阴性已被证明是设计伪影（信号幅度与 LLM 相同，差异在底噪）。**
 
 | 层 | 结果 | 一句话 |
 |----|------|--------|
 | 人类 N=15 组间 | 阴性（LDS-C ≈ 噪声底） | 组间设计测不出 → **设计伪影** |
 | **LLM 组内（D1）** | **阳性（LDS-C ≫ 底）** | 同一模型三语 → **语言信号真实存在** |
+| **设计效应证明（A3）** | **人类/LLM 信号幅度相同（0.93-0.96），底噪不同（0.92-0.96 vs 0.85-0.87）** | **人类阴性 = 组内个体异质性，非"无效应"、非"组间设计本身"** |
 | 语料深化（A4） | 社会 Wikipedia ZH-DE 0.82 vs 数学 0.52 | **制度知识抹平语言，文化概念暴露语言** |
 | 机制（LMM） | 代码层主导，框架次级 | 语言像轨道，文化框架是轨道内小车 |
+| **分歧驱动者（A5/C）** | ZH-DE 由框架负载概念驱动（DE 自主/规则 vs ZH 空间/应得） | **RQ4 已答** |
+| **节点/边分解（D）** | 反转是节点驱动；边贡献数学最大（0.074） | **制度收敛于概念选择，关系组织仍分歧** |
 
 **三大不可违反原则**（.claude/CLAUDE.md §1）: SSOT=manifest.json · Immutable Release · Validated Pipeline。
 
@@ -98,6 +101,38 @@
 | M4 采样方差 | 控制为底 | k=10 Split-Half |
 | M5 提示语条件化 | 证伪 | P5 0.815 < 组内底 |
 
+### 3.6 🔑 设计效应证明（A3，v0.9 新增）
+`scripts/lds_c_design_effect.py` → `design_effect_20260808.json`。把"人类阴性 = 设计伪影"从推断升级为**定量证明**：
+
+| 语言对 | 人类 LDS-C | 人类底 | 人类 s/f | LLM LDS-C | LLM 底 | LLM s/f |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ZH-EN | 0.963 | 0.958 | 1.005 | 0.955 | 0.875 | **1.092** |
+| DE-EN | 0.932 | 0.924 | 1.009 | 0.930 | 0.846 | **1.100** |
+| ZH-DE | 0.936 | 0.922 | 1.015 | 0.945 | 0.862 | **1.096** |
+
+1. **信号幅度相同**：人类与 LLM 的 LDS-C 均 0.93–0.96 → 人类阴性**不是"无语言效应"**。
+2. **差异在底噪**：人类组内个体异质性（0.92–0.96）≈ 信号 → 淹没；LLM 同权重采样（0.85–0.87）≪ 信号 → 可见。
+3. **非样本量效应**：LLM 在 N=3/语 仍有信号（margin +0.02–0.04），N=10 达 +0.08。
+4. **决定性对照（virtual between-subject lens）**：LLM 样本按人类组间管线 + 人类 N（6/语）重分析，**信号仍存活**（margin +0.06–0.07）→ 人类阴性既非"无效应"也非"组间设计本身"，而是**组内个体异质性**这一方差源。
+
+### 3.7 A5 分歧驱动者（RQ4 已答，v0.9 新增）
+`scripts/lds_c_divergence_drivers.py` → `divergence_drivers_20260808.json`。
+- ZH-DE 分歧由**框架负载文化概念**驱动：DE 侧 equal opportunity / freedom limit / goal own（自主/规则/目标），ZH 侧 physical space / boundary freedom / due treatment（空间/边界/应得）——与 §4.4 方向性趋势互相印证。
+- 共享概念极少（每语言对 20–27，跨 5 主题）→ 与 LDS-C ≈ 0.93–0.96 一致。
+- 关系驱动者（人类）：DE-only `responsibility→consequence`，ZH-only `success→goal` → 结构性分工同样存在。
+
+### 3.8 节点/边分解（D，v0.9 新增）
+`scripts/lds_c_node_edge_decomp.py` → `node_edge_decomp_20260808.json`。
+社会/制度反转（数学 ZH-DE 0.52 vs 社会 0.82）分解后：
+
+| 来源 | node-only LDS | 边贡献 |
+|:---|:---:|:---:|
+| 数学 | **0.444** | **0.074** |
+| Wikipedia 社会 | **0.800** | 0.019 |
+| 人类认知 | 0.915 | 0.038 |
+
+**反转是节点驱动的**（数学最趋同 vs 社会最分歧在概念选择层）；边分量不反转——数学边贡献**最大**（0.074）。**制度知识收敛于"教什么"（概念），"怎么连接"（关系）仍系统性分歧。** 修正 A4 §3.8 表述：0.075 是"边驱动的分歧"，非"边驱动的趋同"。
+
 ---
 
 ## 4. 已构建的脚本（全部可复现）
@@ -116,9 +151,12 @@
 | **`scripts/lds_c_llm_lmm.py`** | **混合效应模型** | scipy 实现（无需 statsmodels），50 dyadic pairs |
 | **`scripts/lds_k_wiki_gloss.py`** | **Wikipedia 英文化** | 96 ZH+DE 概念 |
 | **`scripts/lds_k_deepen.py`** | **A4 语料深化** | 主题分解+敏感性+跨源空模型 |
+| **`scripts/lds_c_design_effect.py`** | **设计效应证明（A3）** | 信号幅度相等 + 底噪 + N-scan + 虚拟组间 lens |
+| **`scripts/lds_c_divergence_drivers.py`** | **A5 分歧驱动者（RQ4）** | 概念/关系不对称 + 频次加权 |
+| **`scripts/lds_c_node_edge_decomp.py`** | **节点/边分解对称（D）** | 三来源反转分解，复用 lds_k_deepen |
 | **`scripts/figures/fig_a7_core.py`** | **A7 核心图表** | 5 图 + CSV |
 
-**复现顺序**：`lds_c_llm_subject.py` → `lds_c_llm_gloss_assoc.py` → `lds_c_llm_analyze.py` + `lds_c_llm_per_topic.py` + `lds_c_llm_lmm.py`；`lds_k_wiki_gloss.py` → `lds_k_deepen.py` → `fig_a7_core.py`。
+**复现顺序**：`lds_c_llm_subject.py` → `lds_c_llm_gloss_assoc.py` → `lds_c_llm_analyze.py` + `lds_c_llm_per_topic.py` + `lds_c_llm_lmm.py`；`lds_k_wiki_gloss.py` → `lds_k_deepen.py`；**深化**：`lds_c_design_effect.py` + `lds_c_divergence_drivers.py` + `lds_c_node_edge_decomp.py` → `fig_a7_core.py`。
 
 ---
 
@@ -140,12 +178,12 @@
 
 | 文件 | 状态 |
 |------|------|
-| `docs/paper/03_results.md` | ✅ §4 N=15 + **§5 LLM-as-Subject + §3.8 A4 深化** |
-| `docs/paper/04_discussion.md` | ✅ F11/F12 + §4.14 LLM 方法学 |
+| `docs/paper/03_results.md` | ✅ §4 N=15 + **§5 LLM-as-Subject + §3.8 A4 + §5.9 A3/C/D 深化** |
+| `docs/paper/04_discussion.md` | ✅ F11/F12 + §4.14 LLM 方法学 + 设计伪影精确化 + 节点/边解读 |
 | `docs/paper/05_conclusion.md` | ✅ N=15 + D1 + Wikipedia 修正 |
 | `docs/paper/00_three_conclusions.md` | ✅ N=15 + D1 叙事 |
 | `docs/paper/01_abstract_introduction.md` | ✅ N=15 + D1 摘要 |
-| `docs/lds_formal_definition.md` | ✅ §4 Wikipedia 负对照修正 + 证伪表更新 |
+| `docs/lds_formal_definition.md` | ✅ §4 Wikipedia 负对照 + §6 证伪表 + **§6.2 设计效应 + §6.3 节点/边分解** |
 | 其余章节 (02,06,07) | 未受影响 |
 
 ---
@@ -155,14 +193,16 @@
 ### P0 — 提交前必做（9 月中旬）
 - [ ] **manifest 数字口径对齐**（A0 遗留: 556/557、219/247）— 唯一遗留的治理项
 - [ ] **A6 模拟基线调和**（0.647 vs 0.667）— 论文 §4.8 已标注"方法上不再成立"，可标注为历史
-- [ ] **A5 可解释性**（top 分歧概念/关系）— 可选深化
 - [ ] 最终 Release 打包 + 视频演讲（BWKI 评分项）
 
-### P1 — 已完成（本会话）
+### P1 — 已完成（本会话 v0.9）
 - [x] **D1 LLM-as-Subject 组内设计**（采集+分析+LMM+主题分解）
 - [x] **A4 LDS-K 深化**（主题分解+敏感性+跨源空模型）
 - [x] **A7 核心图表**（ΔLDS、主题热图、空模型、机制、敏感性）
-- [x] **论文整合**（D1 + A4 全部写入）
+- [x] **A3 设计效应证明**（信号幅度相等 + 底噪 + N-scan + 虚拟组间 lens）
+- [x] **A5 分歧驱动者（RQ4）**（ZH-DE 框架负载概念 + 关系驱动者）
+- [x] **D 节点/边分解**（反转是节点驱动，边不反转）
+- [x] **论文整合**（D1 + A4 + A3 + A5 + D 全部写入）
 
 ### P2 — 未来研究（讨论部分 Future Work）
 - [ ] 组内设计 Human 新数据（D1 提供设计蓝图）

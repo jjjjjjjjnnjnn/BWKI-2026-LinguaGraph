@@ -251,6 +251,36 @@ These null models are designed to **threaten** the interpretation, not support i
 
 This strengthens the conclusion that LDS-K measures structural convergence, not divergence. The ZH-DE pair is genuinely special — Chinese and German mathematics textbooks converge to a degree that within-language textbook random splits do not.
 
+### 6.2 Design-Effect Proof (Added 2026-08-08, LLM-as-Subject extension)
+
+The human N=15 between-subject null (§6 row 2) raises the question: is it "no language effect" or a design artifact? A within-subject design using a multilingual LLM as a controlled subject resolves this, and a follow-up decomposition (`scripts/lds_c_design_effect.py`) makes the artifact quantitative:
+
+| Observation | Human (between, N=15) | LLM (within, k=10) |
+|------------|:---:|:---:|
+| LDS-C (pooled, all pairs) | 0.93–0.96 | 0.93–0.96 |
+| Within-language split-half floor | 0.92–0.96 | 0.85–0.87 |
+| signal/floor ratio | **≈ 1.00 (submerged)** | **≈ 1.09–1.10 (visible)** |
+
+**Interpretation**:
+1. **The cross-language divergence magnitude is identical** in humans and the LLM (LDS-C 0.93–0.96 both) — the human null is NOT "language has no effect".
+2. The difference is the **noise floor**: human within-language participant heterogeneity (0.92–0.96) matches the signal, submerging it; LLM sampling of the same weights is homogeneous (0.85–0.87), revealing it.
+3. **Not a sample-size effect**: the LLM signal survives even at N=3 per language (margin +0.02–0.04); it is not an N≥10 artifact.
+4. **Decisive control**: analyzing the LLM samples with the *exact human between-subject pipeline* at human N (=6/language) still detects the signal (margin +0.06–0.07) — so neither "no effect" nor "between-subject design per se" explains the null. The decisive variance source is **individual heterogeneity within a language group**, which a within-subject design (or a homogeneous subject like an LLM) eliminates.
+
+**Falsification framing**: the claim "human between-subject null ⇒ no language-driven cognitive divergence" is **falsified** by the design-effect proof: the same metric, same prompts, same extraction produce the null under between-subject human data and a positive under within-subject controlled data, and the signal magnitude is equal.
+
+### 6.3 Node/Edge Decomposition of the Reversal (Added 2026-08-08)
+
+The social/institutional ZH-DE reversal (§4) is decomposed into node vs edge components (`scripts/lds_c_node_edge_decomp.py`):
+
+| Source | Pair | node-only LDS | edge contribution |
+|:---|:---:|:---:|:---:|
+| Math (institutional) | ZH-DE | 0.444 | **0.074** |
+| Wikipedia social | ZH-DE | **0.800** | 0.019 |
+| Human cognitive | ZH-DE | 0.915 | 0.038 |
+
+**Interpretation**: The reversal (math convergent vs social divergent for ZH-DE) is **node-driven** (concept choice), not edge-driven: institutional knowledge converges on *which* concepts are taught (J_node 0.556) while relational organization (J_edge 0.407) still diverges substantially. The edge contribution is *largest* in math — i.e., within an institutionally convergent domain, the relation structure is the residual divergent component. This separates "concept selection" from "relational structure" as distinct mechanisms, consistent with the M2 (lexical-associative) dominance in the LLM within-subject analysis (§5.6).
+
 ---
 
 ## 7. Statistical Appendix

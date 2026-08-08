@@ -4,6 +4,40 @@
 
 ---
 
+## [2026-08-08] v0.12.0-design-effect — 设计效应证明 + A5 分歧驱动者 + 节点/边分解
+
+### Overview
+
+在 v0.11 D1 机制实验基础上，本版把"人类阴性 = 设计伪影"从推断升级为**定量证明**，并补上论文遗留的 RQ4（分歧驱动者）与跨域结构分解。全部为纯分析深化（零新 API 调用）。
+
+### A. 设计效应证明（`scripts/lds_c_design_effect.py` → `design_effect_20260808.json`）
+
+- **信号幅度相同**: 人类 LDS-C（0.93–0.96）≈ LLM LDS-C（0.93–0.96）→ 人类阴性不是"无语言效应"
+- **底噪不同**: 人类 split-half 0.92–0.96 ≈ 信号（s/f≈1.00，淹没）；LLM 0.85–0.87（s/f≈1.09–1.10，可见）
+- **非样本量效应**: LLM 在 N=3/语 仍有信号（margin +0.02–0.04）
+- **虚拟组间 lens（决定性）**: LLM 按人类组间管线 + N=6/语 重分析信号仍存活（+0.06–0.07）→ 人类阴性 = **组内个体异质性**，非"无效应"、非"组间设计本身"
+
+### B. A5 分歧驱动者（RQ4 已答，`scripts/lds_c_divergence_drivers.py`）
+
+- ZH-DE 由**框架负载文化概念**驱动: DE（equal opportunity / freedom limit / goal own）vs ZH（physical space / boundary freedom / due treatment）
+- 关系驱动者: DE `responsibility→consequence` vs ZH `success→goal`
+- 共享概念极少（20–27/语言对）→ 与 LDS-C ≈ 0.93–0.96 一致
+
+### C. 节点/边分解对称（`scripts/lds_c_node_edge_decomp.py` → `node_edge_decomp_20260808.json`）
+
+- 社会/制度反转（数学 ZH-DE 0.52 vs 社会 0.82）**节点驱动**: 数学 node-only 0.444 vs 社会 0.800
+- **边分量不反转**: 数学 edge+ 0.074（最大）vs 社会 0.019 → 制度收敛于概念选择，关系组织仍系统性分歧
+- 修正 A4 §3.8 表述: 0.075 是"边驱动的分歧"非"边驱动的趋同"
+
+### D. 论文整合
+
+- `03_results.md` 新增 **§5.9**（设计效应 + 驱动者 + 节点/边分解）
+- `04_discussion.md` §4.14 新增设计伪影精确化 + 节点/边解读
+- `lds_formal_definition.md` 新增 **§6.2 设计效应证明 + §6.3 节点/边分解**
+- 结果文档 `docs/a3_c_d_deepen_results.md`；交接 v0.9
+
+---
+
 ## [2026-08-08] v0.11.0-d1-mechanism — D1 LLM-as-Subject 机制实验 + A4 语料深化
 
 ### Overview

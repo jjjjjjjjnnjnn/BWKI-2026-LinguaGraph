@@ -312,3 +312,52 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 5. **Promptsprache (M5) ist ohne eigenen Effekt** (P5 falsifiziert).
 
 Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
+
+### 5.9 Design-Effekt-Beweis, Divergenztreiber und Knoten/Kanten-Dekomposition
+
+> Reproduzierbar via `scripts/lds_c_design_effect.py`, `lds_c_divergence_drivers.py`, `lds_c_node_edge_decomp.py`; Ergebnisse in `data/lds_c/llm_subject/design_effect_*.json`, `data/lds_c/divergence_drivers_*.json`, `data/lds_c/lds_k_deep/node_edge_decomp_*.json`.
+
+**5.9.1 Design-Effekt-Beweis: gleiche Signalamplitude, unterschiedliche Bodenlinie.**
+
+Der Vergleich von Mensch (Between-Subject, N=15) und LLM (Within-Subject, k=10) auf identischem Messrahmen zeigt:
+
+| Sprachpaar | LDS-C Mensch | Boden Mensch | s/f Mensch | LDS-C LLM | Boden LLM | s/f LLM |
+|:----------:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ZH-EN | 0.963 | 0.958 | **1.005** | 0.955 | 0.875 | **1.092** |
+| DE-EN | 0.932 | 0.924 | **1.009** | 0.930 | 0.846 | **1.100** |
+| ZH-DE | 0.936 | 0.922 | **1.015** | 0.945 | 0.862 | **1.096** |
+
+Die **Signalamplitude (LDS-C) ist bei Mensch und LLM nahezu identisch (0.93–0.96)**. Der entscheidende Unterschied liegt in der **Bodenlinie** (Within-Language Split-Half): Bei Menschen überlagert die Variabilität *innerhalb* einer Sprachgruppe (0.92–0.96) die Divergenz *zwischen* den Gruppen (Signal/Boden ≈ 1.00 → Signal **untergegangen**); beim LLM liegt der Boden (0.85–0.87) deutlich unter dem Signal (Signal/Boden ≈ 1.09–1.10 → Signal **sichtbar**).
+
+Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist also **kein Stichprobeneffekt**, sondern Folge der Varianzstruktur: menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
+
+**5.9.2 Virtuelle Between-Subject-Linse (entscheidender Kontrollvergleich).**
+
+Werden die LLM-Stichproben als "virtuelle Teilnehmer" mit exakt der menschlichen Between-Subject-Pipeline bei menschlicher N (=6 pro Sprache) analysiert, **überlebt das Sprachsignal** (Marge ZH-EN +0.064, DE-EN +0.073, ZH-DE +0.070). D. h. **weder "keine Sprachwirkung" noch "Between-Subject-Design an sich" erklärt die menschliche Null** — entscheidend ist die **individuelle Heterogenität innerhalb einer Sprachgruppe**, die nur ein Within-Subject-Design (oder ein homogenes Subjekt wie ein LLM) eliminiert. Dies präzisiert die Methodenlehre aus §4.6: nicht das Design als solches, sondern die in das Design eingebrachte Varianzquelle entscheidet über die Nachweisbarkeit.
+
+**5.9.3 Divergenztreiber (RQ4): Rahmengeladene Konzepte treiben ZH-DE.**
+
+Eine Asymmetrie-Analyse über Konzepte (nur in einer Sprache auftretende Konzepte, nach Erwähnungshäufigkeit gewichtet) identifiziert die Treiber der Sprachdivergenz. Für ZH-DE (LLM-P1):
+
+| Thema | Konzept | Richtung | Häufigkeit |
+|:------|:--------|:--------:|:---:|
+| Gerechtigkeit | equal opportunity | DE-only | 7 |
+| Freiheit | freedom limit of | DE-only | 6 |
+| Heimat | physical space | ZH-only | 6 |
+| Erfolg | goal own | DE-only | 6 |
+| Freiheit | boundary freedom of | ZH-only | 4 |
+| Gerechtigkeit | due treatment | ZH-only | 4 |
+
+Die Treiber sind **rahmengeladene Kulturkonzepte**: DE tendiert zu Autonomie/Regel/Ziel (equal opportunity, freedom limit, goal own), ZH zu Raum/Grenze/Anspruch (physical space, boundary freedom, due treatment) — konsistent mit den Richtungstendenzen der Themenanalyse (§4.4: DE autonom, ZH rechtlich-institutionell). Geteilte Konzepte sind extrem selten (20–27 über 5 Themen), im Einklang mit LDS-C ≈ 0.93–0.96. Auf Relationsebene (menschlich): DE-only `responsibility → consequence` (freq 3), ZH-only `success → goal` (freq 2) — die strukturelle Arbeitsteilung ist auch relational sichtbar.
+
+**5.9.4 Knoten/Kanten-Dekomposition: Die Reversion ist knotengetrieben.**
+
+Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am divergentesten in sozialen Wikipedia) wird in Knoten- und Kantenkomponente zerlegt (frozen v3):
+
+| Quelle | Paar | LDS v3 | J_node | J_edge | node-only | Kantenbeitrag |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Mathematik | ZH-DE | 0.519 | 0.556 | 0.407 | **0.444** | **0.074** |
+| Wikipedia sozial | ZH-DE | 0.819 | 0.200 | 0.162 | **0.800** | 0.019 |
+| Mensch kognitiv | ZH-DE | 0.954 | 0.085 | 0.008 | 0.915 | 0.038 |
+
+Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert primär in der **Konzeptwahl (Knoten)**; die **Beziehungsorganisation (Kanten)** bleibt über alle Quellen hinweg systemisch divergent. Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
