@@ -169,8 +169,8 @@
 ## 5. 剩余工作清单（按优先级，9/20 截止）
 
 ### P0 — 合规与提交（红线）
-- [ ] **新建 `docs/declaration_of_support.md`**：披露 AI 模型（deepseek）、AI 辅助工具（Claude Code）、数据集来源、人员、算力 → 并入论文附录
-- [ ] **更新 `docs/CONTRIBUTORS.md`**：补 API 模型与辅助工具
+- [x] **新建 `docs/declaration_of_support.md`**：披露 AI 模型（deepseek）、AI 辅助工具（Claude Code）、数据集来源、人员、算力 → 并入论文附录（2026-08-08 ✅）
+- [x] **更新 `docs/CONTRIBUTORS.md`**：补 API 模型与辅助工具（2026-08-08 ✅）
 - [ ] **论文组装 PDF**：标题页 + 目录 + 参考文献 + 支持披露附录（德文）
 - [ ] **重写视频脚本**（含 LLM-as-Subject + 设计效应证明）→ **录制 2–4 分钟**
 
