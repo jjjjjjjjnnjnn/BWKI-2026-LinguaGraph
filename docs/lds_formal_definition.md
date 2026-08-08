@@ -74,7 +74,9 @@ LDS requires cross-language node alignment: concept \(v_i \in V_a\) mapped to \(
 1. Textbook knowledge is constrained by universal mathematical truth
 2. Human expression is influenced by language-specific framing, cultural metaphors, and individual cognitive styles
 
-**Status**: ❌ Not yet computed (requires N ≥ 30 human data; currently N = 8).
+**Status**: ✅ Computed (2026-08-08). Human N=15 between-subject: LDS-C 0.93–0.96 ≈ noise floor (null — design artifact, see §6.2). LLM-as-Subject within-subject (D1): LDS-C 0.93–0.96 ≫ floor 0.85–0.87 (signal present). See `docs/session_handoff_20260808.md`.
+
+> **Presence-only metric (audit M16)**: LDS-C counts concept *presence* (union-deduplicated) — a concept mentioned once or ten times contributes equally to the Jaccard. Frequency weighting is NOT part of the frozen metric; it is only used in the divergence-driver analysis (`lds_c_divergence_drivers.py`). This is a deliberate design choice: LDS-C measures structural divergence of the expressed concept *set*, not salience.
 
 ### 2.3 ΔLDS (Delta LDS)
 
@@ -244,6 +246,8 @@ These null models are designed to **threaten** the interpretation, not support i
 | **Monolingual control** | LDS between two halves of same language (separate "textbooks") | **High** — directly tests if cross-lang > same-lang variation | Same-lang LDS = 0.96-0.97. Cross-lang ZH-DE (0.52) far lower → **genuine convergence** |
 | **Language-label permutation** | Randomly reassign language labels at group level | **Medium** — tests if label assignments carry signal | Permuted LDS (0.67-0.87) differs from Full LDS (0.52-0.94) → label assignments DO carry signal |
 
+> **注（层级差异）**: §6.1 的 Language-label permutation 是**分组级**置换（重新分配语言标签到响应/组），与 §3.4 的 Node-Permuted Null（**组内**置换对齐组标签，不改变图）是**不同层级**的空模型，结论因此不同——前者保留图结构、破坏语言-响应对应；后者不改变图本身。二者不矛盾。
+
 **Interpretation**: The within-language baseline (LDS ≈ 0.97) represents the metric's noise floor — even within the same language, randomly splitting a graph produces substantial divergence. Against this baseline:
 - ZH-DE LDS = 0.52 → **far below noise floor** (strong evidence for structural convergence)
 - ZH-EN LDS = 0.93 → **near noise floor** (typical divergence)
@@ -340,9 +344,14 @@ Interpretation thresholds:
 | 0.5–0.8 | Medium |
 | 0.8+ | Large |
 
-For the pilot human data (N=8, human LDS=0.727 vs simulation LDS=0.647):
-- Observed d ≈ 0.8 (large effect)
-- Required N for 80% power (α=0.05): ~15 per group
+For the LLM within-subject signal (D1: LDS-C 0.93–0.96 vs floor 0.85–0.87, margin ≈ +0.08):
+- Between-subject human study: the within-language floor (0.92–0.96) already equals
+  the cross-language signal → a between-subject design has **negligible power to
+  separate language from participant heterogeneity** (this is the design-effect
+  proof, §6.2). The LLM signal survives a between-subject lens only because LLM
+  samples are homogeneous.
+- Within-subject design (required): N ≈ 10 matched samples per language detects
+  the +0.08 margin at high power (the D1 k=10 design does so; permutation p<0.01).
 
 ### 7.3 Multiple Comparison Correction
 
@@ -373,18 +382,14 @@ To test whether LDS findings are robust to methodological choices:
 
 ### 7.5 Power Analysis for Human Study
 
-Based on pilot data (N=8):
+Based on the D1 within-subject signal (2026-08-08; supersedes the N=8 pilot):
 
-| Comparison | Effect (d) | N for 80% power (α=0.05) |
-|-----------|:----------:|:------------------------:|
-| Human LDS vs Simulation LDS | ~0.8 | 15 per group |
-| DE-ZH vs ZH-EN (between) | ~0.5 | 33 per group |
-| Within-subject DE-EN | ~1.2 | 10 participants |
+| Design | Effect | N needed (80% power, α=0.05) |
+|--------|:------:|:------------------------------:|
+| Between-subject human (language × participant confounded) | margin +0.08 but floor ≈ signal | **Infeasible** (floor already equals signal; §6.2) |
+| Within-subject (matched, e.g. bilinguals or repeated) | margin +0.08, floor 0.85–0.87 | ≈ 10 samples/language (D1 k=10 achieves p<0.01) |
 
-**Recommended**: N = 30 (10 per language group) provides:
-- 86% power for the primary ΔLDS > 0 test
-- 64% power for between-pair comparisons
-- >95% power for within-subject DE-EN comparisons
+**Recommendation**: Any human follow-up must use a **within-subject design** (bilinguals answering both languages, or repeated measures); the D1 LLM experiment provides the expected effect direction and magnitude. See `docs/session_handoff_20260808.md` §3.6 for the design-effect proof.
 
 ### 7.6 Statistical Reporting Template
 

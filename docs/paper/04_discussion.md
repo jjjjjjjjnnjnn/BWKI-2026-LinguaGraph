@@ -17,7 +17,7 @@ Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur A
 | F9 | Coverage-Scores variieren drastisch zwischen Bildungssystemen (12,7–95,4 %) | Lehrplandesign-Philosophie treibt Unterschiede |
 | F10 | China zeigt nahezu perfekte Übereinstimmung (95,4 %); NRW am niedrigsten (12,7 %) | Zentralisiertes vs. föderales Systemmerkmal |
 | **F11** | **Falsifiziert (N=15):** LDS-C auf Konzeptebene (0.93–0.96) ist nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94). Keine konsistente sprachspezifische Rangordnung. | Nullmodell-Suite (Within-Lang Split-Half, Label-Permutation) |
-| **F12** | **Überarbeitet (N=15):** Der Unterschied zur Simulationsbasislinie (0.647) ist ein Artefakt der Extraktions-/Alignierungsmethode (höhere LDS-Skala), nicht ein Beleg für sprachliche Kognition. LDS-C ≈ Within-Language-Null → **kein** über Zufall hinausgehendes Sprachsignal. | LDS-C ≈ Split-Half-Boden; ΔLDS ≈ 0 (−0.02 bis +0.05) |
+| **F12** | **Überarbeitet (N=15):** Der Unterschied zur Simulationsbasislinie (0.647) ist ein Artefakt der Extraktions-/Alignierungsmethode (höhere LDS-Skala), nicht ein Beleg für sprachliche Kognition. LDS-C ≈ Within-Language-Null → **kein** über Zufall hinausgehendes Sprachsignal. | LDS-C ≈ Split-Half-Boden; ΔLDS ≈ 0 (−0.05 bis +0.05) |
 
 ### 4.2 Interpretation des CDS-Gipfels
 
@@ -48,7 +48,7 @@ Die theoretische Implikation ist bedeutsam: Während mathematische Wahrheit univ
 
 Dies bedeutet, dass der Korpusanalyse-Ansatz (LDS-K) per se keine sprachrelativistischen Effekte auf die Wissensorganisation messen kann. Er misst in erster Linie **strukturelle Konvergenz**, die von der universellen Logik mathematischer Voraussetzungen angetrieben wird. Um ein genuines Sprachsignal zu isolieren, müssen wir zur kognitiven Ebene übergehen — dem Vergleich, wie Menschen ihr Wissen in ihrer Muttersprache ausdrücken — erfasst durch ΔLDS = LDS-C − LDS-K.
 
-Die erweiterte Humanvalidierung (N=15, F11) liefert jedoch ein negatives Ergebnis für diese Verschiebung: Die menschlichen LDS-C-Werte (Konzeptebene ZH-EN=0,961, DE-EN=0,933, ZH-DE=0,934) liegen **nahe der Within-Language-Null** (Split-Half-Boden 0,92–0,96) und sind von Label-Permutation nicht unterscheidbar (0,94). ΔLDS ≈ 0 (−0,02 bis +0,05), nicht > 0. Damit wird die naive Hypothese „Sprache → unterschiedliche Konzeptgraphen" auf allen drei Analyseebenen (Konzept, Kategorie, Relation) falsifiziert.
+Die erweiterte Humanvalidierung (N=15, F11) liefert jedoch ein negatives Ergebnis für diese Verschiebung: Die menschlichen LDS-C-Werte (Konzeptebene ZH-EN=0,963, DE-EN=0,932, ZH-DE=0,936) liegen **nahe der Within-Language-Null** (Split-Half-Boden 0,92–0,96) und sind von Label-Permutation nicht unterscheidbar (0,94). ΔLDS ≈ 0 (−0,05 bis +0,05), nicht > 0. Damit wird die naive Hypothese „Sprache → unterschiedliche Konzeptgraphen" auf allen drei Analyseebenen (Konzept, Kategorie, Relation) falsifiziert.
 
 ### 4.4 Disziplinübergreifende Validierung
 

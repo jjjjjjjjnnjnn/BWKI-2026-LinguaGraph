@@ -58,7 +58,7 @@
 | Complete Random | 1,000 | 1,000 | 1,000 |
 | **Interpretation** | Struktur dominiert | Struktur dominiert | Real ÄHNLICHER als Zufall |
 
-**Humanvalidierung (N=15, erweitert)**: Die konzeptuelle LDS-C liegt bei 0.93–0.96 — **nicht unterscheidbar vom Within-Language-Split-Half-Boden (0.92–0.96) und von Label-Permutation (0.94)**. ΔLDS ≈ 0 (−0.02 bis +0.05). Die früheren N=8-Werte (0.70–0.75) werden nicht repliziert.
+**Humanvalidierung (N=15, erweitert)**: Die konzeptuelle LDS-C liegt bei 0.93–0.96 — **nicht unterscheidbar vom Within-Language-Split-Half-Boden (0.92–0.96) und von Label-Permutation (0.94)**. ΔLDS ≈ 0 (−0.05 bis +0.05). Die früheren N=8-Werte (0.70–0.75) werden nicht repliziert.
 
 **LLM-as-Subject (Within-Subject, §5)**: Dasselbe LLM (deepseek-v4-flash) antwortet in ZH/DE/EN → LDS-C 0.93–0.96 **≫ Split-Half-Boden 0.85–0.87** → **Sprachsignal ist unter Within-Subject-Bedingungen klar nachweisbar**. LMM: Sprachcode ist der dominante Organisator (same_lang +0.038, p<0.001), kultureller Rahmen sekundär (same_frame +0.001, p=0.90); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik. **Zentrale Lehre: Der Human-Negativebefund ist ein Between-Subject-Design-Artefakt, nicht ein Beleg für das Fehlen sprachlicher Kognitionseffekte.**
 

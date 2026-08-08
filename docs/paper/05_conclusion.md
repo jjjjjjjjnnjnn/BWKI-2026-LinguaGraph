@@ -31,7 +31,7 @@ Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache
 
 1. **LDS allein ist unzureichend** — die Nullmodell-Suite zeigt, dass LDS-K-Werte gegen mehrere Basislinien interpretiert werden müssen (Struktur-Null, sprachinterne Rauschschwelle, kompletter Zufall)
 2. **LDS-K zeigt strukturelle Konvergenz, nicht Divergenz** — alle drei Sprachpaare zeigen LDS-K-Werte auf oder unterhalb ihrer sprachinternen Rauschschwellen
-3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen** — die erweiterte N=15-Analyse zeigt jedoch **ΔLDS ≈ 0** (−0.02 bis +0.05) und ein LDS-C auf dem Teilnehmervariabilitäts-Boden
+3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen** — die erweiterte N=15-Analyse zeigt jedoch **ΔLDS ≈ 0** (−0.05 bis +0.05) und ein LDS-C auf dem Teilnehmervariabilitäts-Boden
 4. **Die N=15-Humanvalidierung (6 DE · 6 ZH · 3 EN) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen** (Konzeptebene LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 ≈ Label-Permutation 0.94; Themenebene χ² p=0.52; Relationsebene Edge-Jaccard ≈ 0). Die früheren N=8-Pilotdaten (DE-ZH +0,232) werden nicht repliziert.
 5. **Das LLM-as-Subject-Experiment (Within-Subject, §5) weist das Sprachsignal nach** — und klassifiziert den Human-Negativebefund als Design-Artefakt: Derselbe LDS-C-Messrahmen liefert unter Within-Subject-Bedingungen LDS-C 0.93–0.96 ≫ Boden 0.85–0.87, mit Sprachcode als dominantem Organisator (LMM: same_lang +0.038, p<0.001; same_frame +0.001, p=0.90).
 

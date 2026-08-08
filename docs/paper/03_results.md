@@ -142,25 +142,27 @@ Aggregierte Konzeptmengen pro Sprachgruppe, LDS = 1 − Jaccard(kanonische Schl�
 
 | Sprachpaar | LDS-C (gepoolt) | 95 %-CI (Bootstrap) | LDS-K (Konzept) | ΔLDS |
 |:----------:|:---------------:|:-------------------:|:---------------:|:----:|
-| ZH-EN | 0.961 | [0.936, 0.985] | 0.977 | −0.016 |
-| DE-EN | 0.933 | [0.899, 0.986] | 0.977 | −0.044 |
-| ZH-DE | 0.934 | [0.908, 0.960] | 0.887 | +0.047 |
+| ZH-EN | 0.963 | [0.936, 0.985] | 0.977 | −0.014 |
+| DE-EN | 0.932 | [0.899, 0.986] | 0.977 | −0.045 |
+| ZH-DE | 0.936 | [0.908, 0.960] | 0.887 | +0.049 |
 
 **Wichtig**: Alle drei Sprachpaare zeigen LDS-C ≈ 0.93–0.96. Die Werte liegen **nahe der Zufallsverteilung** (siehe 4.3) und deutlich höher als die früheren N=8-Schätzungen (0.70–0.75), die mit einer älteren Pipeline berechnet wurden.
+
+**Hinweis zur ΔLDS-Definition (Berichtsformat)**: Die hier berichteten ΔLDS-Werte (konzeptuelle Ebene, −0.044 bis +0.047) verwenden die **konzeptuelle LDS-K** (nur Knoten) als Basis, sodass LDS-C und LDS-K auf derselben Skala verglichen werden (apples-to-apples). Die relationale v3-LDS-K (§4.5) ist mit den relationalen LDS-C-Werten zu vergleichen — beide ΔLDS-Formate sind in der Arbeit durchgängig nach Ebene getrennt und nicht miteinander vermischt. Die Titelaussage "ΔLDS ≈ 0 (−0.05 bis +0.05)" bezieht sich auf die konzeptuelle Ebene.
 
 ### 4.3 Null-Modell-Prüfung: Kein separierbares Sprachsignal
 
 Zwei Null-Modelle testen, ob die beobachtete LDS-C auf Sprache zurückgeht oder auf Teilnehmervariabilität:
 
-| Sprachpaar | LDS-C (beobachtet) | Within-Lang Split-Half (Boden) | Label-Permutation |
-|:----------:|:------------------:|:------------------------------:|:-----------------:|
-| ZH-EN | 0.961 | 0.958 | 0.940 |
-| DE-EN | 0.933 | 0.923 | 0.938 |
-| ZH-DE | 0.934 | 0.922 | 0.935 |
+| Sprachpaar | LDS-C (beobachtet) | Within-Lang Split-Half (Boden) | Label-Permutation | Perm-p |
+|:----------:|:------------------:|:------------------------------:|:-----------------:|:------:|
+| ZH-EN | 0.963 | 0.958 | 0.940 | 0.08 |
+| DE-EN | 0.932 | 0.923 | 0.938 | 1.00 |
+| ZH-DE | 0.936 | 0.922 | 0.935 | 1.00 |
 
 **Zentraler Befund**:
 1. **Within-Language-Split-Half** (Teilnehmervariabilität innerhalb einer Sprache): 0.92–0.96 ≈ beobachtete LDS-C. Die Variabilität **innerhalb** einer Sprachgruppe ist genauso groß wie die Divergenz **zwischen** den Gruppen.
-2. **Label-Permutation** (Permutation der Sprachlabels): 0.94–0.94 ≈ beobachtete LDS-C. Das Vertauschen der Sprachzugehörigkeit ändert die LDS-C nicht — **die Sprachlabels tragen kein messbares Signal**.
+2. **Label-Permutation** (Permutation der Sprachlabels): 0.94–0.94 ≈ beobachtete LDS-C. Der formale Permutationstest (500 Iterationen, zweiseitig) liefert **p = 0.08 / 1.00 / 1.00** — die Sprachlabels tragen **kein messbares Signal** (kein p-Wert unterhalb konventioneller Schwellen).
 
 **Interpretation**: Auf Konzeptebene ist die LDS-C von Teilnehmervariabilität dominiert. Das Between-Subject-Design (jede Person antwortet nur in einer Sprache) vermischt sprachgetriebene Divergenz mit individueller Variabilität. Bei N=15 (6/6/3) dominiert die letztere. **Die Hypothese ΔLDS > 0 wird auf Konzeptebene nicht bestätigt.**
 
@@ -233,13 +235,13 @@ Die erweiterte Humanvalidierung (N=15) liefert über **drei Analyseebenen** hinw
 
 ### 5.2 Sprach-Haupteffekt (P1): Signal ist nachweisbar
 
-| Sprachpaar | LDS-C (gepoolt) | 95 %-CI | Split-Half-Boden | Label-Permutation |
-|:----------:|:---------------:|:-------:|:----------------:|:-----------------:|
-| ZH-EN | **0.955** | [0.935, 0.966] | 0.875 | 0.879 |
-| DE-EN | **0.930** | [0.912, 0.955] | 0.846 | 0.880 |
-| ZH-DE | **0.945** | [0.932, 0.961] | 0.862 | 0.879 |
+| Sprachpaar | LDS-C (gepoolt) | 95 %-CI | Split-Half-Boden | Label-Permutation | **Perm-p** |
+|:----------:|:---------------:|:-------:|:----------------:|:-----------------:|:---------:|
+| ZH-EN | **0.955** | [0.935, 0.966] | 0.875 | 0.879 | **<0.01** |
+| DE-EN | **0.930** | [0.912, 0.955] | 0.846 | 0.880 | **<0.01** |
+| ZH-DE | **0.945** | [0.932, 0.961] | 0.862 | 0.879 | **<0.01** |
 
-**Zentraler Befund**: Die beobachtete LDS-C übersteigt den Split-Half-Boden um **+0.08 bis +0.09** und die Label-Permutation um **+0.05 bis +0.08**. Anders als bei den menschlichen Daten (N=15, Between-Subject: LDS-C ≈ Boden ≈ Permutation) trägt das Sprachlabel hier **messbares Signal**.
+**Zentraler Befund**: Die beobachtete LDS-C übersteigt den Split-Half-Boden um **+0.08 bis +0.09** und die Label-Permutation um **+0.05 bis +0.08**. Ein formaler Permutationstest (500 Iterationen; zweiseitig; Anteil der Permutationen mit LDS ≥ beobachtetem LDS) liefert für alle drei Sprachpaare **p < 0.01** (keine der 500 Permutationen erreichte die beobachtete LDS-C). Anders als bei den menschlichen Daten (N=15, Between-Subject: LDS-C ≈ Boden ≈ Permutation, p = 0.08/1.0/1.0) trägt das Sprachlabel hier **messbares Signal**.
 
 > **Dies ist der zentrale Kontrast der Arbeit**: Derselbe Messrahmen (LDS-C + Nullmodelle), nur das Design von Between-Subject (Menschen) auf Within-Subject (LLM) umgestellt, verwandelt ein nicht-trennbares Signal in ein trennbares. Der menschliche Negativebefund ist damit als **Design-Artefakt** charakterisiert — nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte.
 
@@ -276,13 +278,13 @@ Um die marginalen Beiträge von Sprachcode und kulturellem Rahmen zu trennen, wu
 
 `Similarität ~ same_lang + same_frame + (1|topic)`
 
-| Effekt | Koeffizient (Jaccard) | SE | t | p | Permutation p |
-|:------:|:---------------------:|:--:|:--:|:---:|:-------------:|
-| Intercept | +0.050 | 0.011 | 4.60 | <0.001 | — |
-| **same_lang** | **+0.038** | 0.009 | 4.28 | **<0.001** | **0.000** |
-| **same_frame** | **+0.001** | 0.009 | 0.13 | **0.90** | **0.779** |
+| Effekt | Koeffizient (Jaccard) | SE | t | p | Permutation p | **Bootstrap p** |
+|:------:|:---------------------:|:--:|:--:|:---:|:-------------:|:--------------:|
+| Intercept | +0.050 | 0.011 | 4.60 | <0.001 | — | — |
+| **same_lang** | **+0.038** | 0.009 | 4.28 | **<0.001** | **0.000** | **<0.01** |
+| **same_frame** | **+0.001** | 0.009 | 0.13 | **0.90** | **0.779** | **0.82** |
 
-**Marginalbeitrag**: Das Teilen des Sprachcodes erhöht die Konzeptähnlichkeit signifikant (+0.038); das Teilen des kulturellen Rahmens hat **keinen** signifikanten marginalen Beitrag (+0.001). Die Permutationsprüfung (blockweise, 1000 Iterationen) bestätigt die Robustheit.
+**Marginalbeitrag**: Das Teilen des Sprachcodes erhöht die Konzeptähnlichkeit signifikant (+0.038); das Teilen des kulturellen Rahmens hat **keinen** signifikanten marginalen Beitrag (+0.001). Die Permutationsprüfung (blockweise, 1000 Iterationen) bestätigt die Robustheit. Zusätzlich wurde ein **Cell-Cluster-Bootstrap** (1000 Iterationen, Resampling der 5 Zellen unter Beibehaltung der Dyaden innerhalb der Zelle) durchgeführt, um der Nicht-Unabhängigkeit der Dyaden (jede Zelle erscheint in 4 Dyaden) Rechnung zu tragen: same_lang bleibt signifikant (p<0.01), same_frame nicht-signifikant (p=0.82) — die Kernsaussage ist gegenüber dieser konservativeren Inferenz **robust**.
 
 **Harmonisierung mit P2 (Zwei-Boden-Konzept)**:
 - Boden 1 = Split-Half innerhalb einer Bedingung: J≈0.12 (gleicher Code + Rahmen)
@@ -328,6 +330,8 @@ Der Vergleich von Mensch (Between-Subject, N=15) und LLM (Within-Subject, k=10) 
 | ZH-DE | 0.936 | 0.922 | **1.015** | 0.945 | 0.862 | **1.096** |
 
 Die **Signalamplitude (LDS-C) ist bei Mensch und LLM nahezu identisch (0.93–0.96)**. Der entscheidende Unterschied liegt in der **Bodenlinie** (Within-Language Split-Half): Bei Menschen überlagert die Variabilität *innerhalb* einer Sprachgruppe (0.92–0.96) die Divergenz *zwischen* den Gruppen (Signal/Boden ≈ 1.00 → Signal **untergegangen**); beim LLM liegt der Boden (0.85–0.87) deutlich unter dem Signal (Signal/Boden ≈ 1.09–1.10 → Signal **sichtbar**).
+
+> **Hinweis zur Stichprobengröße (Sample-Size-Kontrolle)**: Die menschlichen Bodenwerte in der Tabelle beruhen auf Halb-Splits mit 3/3 (DE/ZH) bzw. 1/2 (EN) Teilnehmenden; die LLM-Bodenwerte auf 5/5 Stichproben. Ein N-abgestimmter Floor-Scan (§5.9.1, N=6 → 3+3 Halb-Splits, analog zur menschlichen Aufteilung) ergibt für das LLM weiterhin einen Boden von 0.854–0.885 — weit unter dem menschlichen Boden (0.922–0.958, Differenz 0.05–0.07). Die Schlussfolgerung ist daher **nicht** durch unterschiedliche Stichprobengrößen verursacht.
 
 Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist also **kein Stichprobeneffekt**, sondern Folge der Varianzstruktur: menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
 

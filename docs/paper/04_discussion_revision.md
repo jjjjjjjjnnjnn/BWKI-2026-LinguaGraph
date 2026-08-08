@@ -25,7 +25,7 @@
 
 **Bisher**: "Menschliche LDS-C-Werte (DE-ZH=0,751, DE-EN=0,727, ZH-EN=0,704) unterscheiden sich bedeutsam von den LDS-K-Werten … ΔLDS-Berechnung wartet auf N≥30."
 
-**Neu**: LDS-C (N=15) = 0.96/0.93/0.93. Die Null-Modelle (Split-Half, Label-Permutation) zeigen: **das beobachtete LDS-C ist nicht von Zufallsvariabilität unterscheidbar**. Die frühere Rangordnung (DE-ZH > DE-EN > ZH-EN) wird nicht repliziert. ΔLDS ≈ 0 (−0.02 bis +0.05), nicht > 0.
+**Neu**: LDS-C (N=15) = 0.96/0.93/0.93. Die Null-Modelle (Split-Half, Label-Permutation) zeigen: **das beobachtete LDS-C ist nicht von Zufallsvariabilität unterscheidbar**. Die frühere Rangordnung (DE-ZH > DE-EN > ZH-EN) wird nicht repliziert. ΔLDS ≈ 0 (−0.05 bis +0.05), nicht > 0.
 
 ### §4.8 Menschlich vs. Simulation
 

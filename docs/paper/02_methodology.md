@@ -129,15 +129,20 @@ Diese deterministische Positionierung garantiert, dass jedes Konzept bei jedem L
 
 ### 2.7 Linguistic Divergence Score (LDS)
 
-Der Linguistic Divergence Score quantifiziert die strukturelle Divergenz zwischen zwei sprachspezifischen kognitiven Graphen:
+Der Linguistic Divergence Score quantifiziert die **strukturelle Divergenz** zwischen zwei sprachspezifischen kognitiven Graphen. Die hier verwendete **frozen v3-Formel** kombiniert Knoten- und Kantenkomponente:
 
 ```
-LDS(A, B) = 1 - |ConceptSet(A) ∩ ConceptSet(B)| / |ConceptSet(A) ∪ ConceptSet(B)|
+LDS_v3(A, B) = 1 - mean( J(node_set_A, node_set_B), J(edge_set_A, edge_set_B) )
 ```
 
-wobei A und B zwei Sprachversionen desselben Textes sind.
+wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und A, B zwei Sprachversionen desselben Inhalts (Textbuchkapitel, Fragebogenantwort oder Wikipedia-Artikel) bezeichnen. Ein LDS von 0 bedeutet identische Knoten- **und** Kantenstruktur; ein LDS nahe 1 maximale Divergenz. Die drei Sprachpaare ZH-EN, ZH-DE, DE-EN werden auf **drei Analyseebenen** berechnet: Konzeptebene (nur Knoten), relationale Ebene (Knoten + Kante, v3) und Kategorienebene (6-Klassen-Codebook).
 
-Ein LDS von 0 bedeutet identische Konzeptstruktur, ein LDS nahe 1 maximale Divergenz. Die Metrik wird auf drei Sprachebenen berechnet: ZH-EN, ZH-DE, DE-EN.
+**Varianten**:
+- **LDS-K** (Knowledge): Strukturelle Divergenz institutionellen Wissens (Lehrbuch-Konzeptgraphen).
+- **LDS-C** (Cognitive): Divergenz spontaner kognitiver Ausdrucksweise (menschliche oder LLM-Konzeptgraphen).
+- **ΔLDS** = LDS-C − LDS-K: der zusätzliche, durch kognitive Ausdrucksweise eingeführte Anteil jenseits der Lehrbuchstruktur.
+
+**Null-Modell-Rahmen**: Um Struktureffekte von Spracheffekten zu trennen, werden drei Null-Modelle eingesetzt (Details in `docs/lds_formal_definition.md` §3): (1) **Within-Language Split-Half** — Aufteilung einer Sprache in zwei Hälften → Bodenniveau der Teilnehmervariabilität; (2) **Label-Permutation** — Permutation der Sprachlabels → formales p-Wert für das getragene Sprachsignal; (3) **Cross-Source Null** — Textbuch vs. Wikipedia derselben Sprache → Trennung von Quell- und Spracheffekt. Alle LDS-Berechnungen verwenden die frozen v3-Formel; die Ergebnisse der Human- und LLM-Analyse (§4, §5) stützen sich auf denselben Rahmen.
 
 ### 2.8 LLM-Extraktionsqualität
 
@@ -183,12 +188,13 @@ CS(G_{textbook}, G_{curriculum}) = \frac{|V_{textbook} \cap V_{curriculum}|}{|V_
 
 Der Coverage Score misst den Anteil der vom Lehrplan geforderten Konzepte, die im Lehrbuchgraph abgedeckt sind. Die Berechnung erfolgt pro Bildungsstufe und sprachspezifisch.
 
-Aktuelle Ergebnisse für die mathematischen Lehrpläne:
+Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scripts/compute_all_coverage_v2.py`):
 
 | Lehrplan | Gesamt-Coverage | Höchste Stufe | Niedrigste Stufe |
 |----------|:--------------:|:-------------:|:----------------:|
-| NRW (DE) | 34,1 % | Stufe 7-8 (50,0 %) | Grundkurs 12-13 (30,8 %) |
-| UK (England) | 85,5 % | KS4 (90,0 %) | KS1 Y1 (53,3 %) |
-| US NGSS | 55,6 % | — | — |
+| China (CN) | **95,4 %** | Grundstufe 1–2 (100 %) | Mittelstufe 7–9 (91,7 %) |
+| England (UK) | 37,3 % | KS2 Y6 (43,9 %) | KS4 (28,3 %) |
+| Vereinigte Staaten (US) | 17,2 % | alle Stufen (17,9 %) | — |
+| NRW (DE) | **12,7 %** | Grundschule 1–4 (höchste) | Sekundarstufe II (niedrigste) |
 
-Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während englische Lehrbücher den nationalen Lehrplan zu 85 % abdecken, liegt die Abdeckung für NRW bei nur 34 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
+Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während chinesische Lehrbücher den nationalen Lehrplan nahezu vollständig abdecken (95,4 %), liegt die Abdeckung für NRW bei nur 12,7 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
