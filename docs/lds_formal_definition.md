@@ -173,18 +173,23 @@ If intra-language source divergence ≈ inter-language textbook divergence, then
 
 Extract concept graphs from ZH/EN/DE Wikipedia articles on 5 social topics (Freedom, Justice, Responsibility, Home, Success) using the same LLM (qwen-plus) and the same extraction prompt.
 
-### 4.2 Result
+### 4.2 Result (revised 2026-08-08)
 
-**All topics LDS = 1.0000** (zero node overlap, zero edge overlap) across all 3 language pairs.
+**Early (unaligned) analysis reported LDS = 1.0000** — this was an **alignment artifact**: Chinese concepts (e.g. 自由) reduce to empty keys under `canonical_key` (Latin-only), so ZH contributed nothing to the intersection.
 
-### 4.3 Interpretation
+**After glossing 96 unique ZH+DE concepts to English** (`scripts/lds_k_wiki_gloss.py`) and aligning all three languages in the same canonical key space, real LDS values emerge:
 
-This is a **methodology control**, not a null model failure. The same LLM with the same prompt extracts conceptually identical structures from different-language Wikipedia articles about the same topic — which is correct behavior (the underlying Wikipedia content IS structurally similar).
+| Quelle | ZH-EN | DE-EN | ZH-DE |
+|:------|:-----:|:-----:|:-----:|
+| Wikipedia (sozial, aligniert) | 0.698 | 0.723 | **0.819** |
+| Mathematik-Lehrbücher (zum Vergleich) | 0.934 | 0.938 | **0.519** |
 
-This confirms:
-1. LDS correctly scores 1.0 when graphs are genuinely structurally different
-2. The ~1.0 Wikipedia LDS reflects **zero node overlap** between extracted concept sets — meaning the Wikipedia articles in different languages mention **entirely different concepts**, even for the same topic
-3. This validates that our textbook LDS values (0.52-0.94) reflect **genuine structural differences** in how knowledge is organized, not LLM extraction artifacts
+### 4.3 Interpretation (revised)
+
+1. The earlier LDS=1.0 was **not** evidence of structural difference — it was a zero-alignment artifact (Latin-only canonical keys dropped all Chinese concepts).
+2. The aligned values reveal a **reversed pattern vs. institutional knowledge**: in the social domain ZH-DE is the **most divergent** pair (0.82), whereas in mathematics it is the most convergent (0.52).
+3. This supports the interpretation that **institutional knowledge (universal logic) masks language effects, while social/cultural concepts let language structure through** — consistent with the LLM-as-Subject within-subject finding.
+4. The textbook LDS values (0.52–0.94) remain genuine: the cross-source comparison (textbook-math vs. wiki-social, LDS=1.0) is confounded by domain (math ⊥ social), not by language.
 
 ---
 
@@ -224,10 +229,10 @@ Each condition, if met, would **falsify** the corresponding claim:
 | Claim | Falsification Condition | Test |
 |-------|------------------------|------|
 | LDS-K measures language divergence | Structure Null ≥ Full LDS | ✅ Tested → **Falsified** |
-| LDS-C > LDS-K | LDS-C ≤ LDS-K (ΔLDS ≤ 0) | ⏳ Pending N ≥ 30 |
-| Wikipedia LDS < 1.0 | Same-model extraction produces different structures | ✅ Tested → **Confirmed** (LDS = 1.0) |
+| LDS-C > LDS-K | LDS-C ≤ LDS-K (ΔLDS ≤ 0) | ⏳ Human N=15 (between): not detected; LLM within-subject: signal present |
+| Wikipedia LDS < 1.0 | Aligned social concepts show real structure | ✅ Tested → **Confirmed after alignment** (ZH-EN 0.70, DE-EN 0.72, ZH-DE 0.82); earlier 1.0 was an alignment artifact |
 | LDS is robust to model choice | Different models produce different LDS ranking | ⚠️ Partially tested (data quality issues) |
-| LDS is robust to source | Intra-source LDS ≈ Inter-source LDS | ❌ Not yet tested |
+| LDS is robust to source | Intra-source LDS ≈ Inter-source LDS | ⚠️ Tested → source is a strong driver (wiki-vs-human = 0.94, domain-clean), but language effect independent (LLM within-subject) |
 
 ### 6.1 Adversarial Null Models (Added per Reviewer Feedback)
 

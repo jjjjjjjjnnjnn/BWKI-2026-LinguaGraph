@@ -37,7 +37,7 @@ Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache
 
 Die zentrale methodologische Lehre: **Between-Subject-Designs können sprachgetriebene Divergenz nicht von individueller Variabilität trennen; ein Within-Subject-Design ist hierfür erforderlich.**
 
-Der 19-Modell-Benchmark (F1-Bereich 0,55–0,67) und die Wikipedia-Negativkontrolle (LDS=1,0) bestätigen, dass diese Beobachtungen keine Artefakte der Extraktionsmethodik sind.
+Der 19-Modell-Benchmark (F1-Bereich 0,55–0,67) und die Wikipedia-Negativkontrolle (nach Alignierung der sozialen Konzepte: reale LDS-Werte statt Artefakt 1,00 — siehe §3.8) bestätigen, dass diese Beobachtungen keine Artefakte der Extraktionsmethodik sind.
 
 ### 5.4 Beiträge
 
