@@ -4,6 +4,47 @@
 
 ---
 
+## [2026-08-08] v0.10.0-research-restart — 研究重启 + LDS-C 三层分析
+
+### Overview
+
+停摆约一个月后研究重启（Month 2 理论+分析）。完成人类数据（N=15）的完整 LDS-C 三层分析，系统性得到**一致的阴性结果**（无语言信号），诚实更新论文主张。
+
+### A. 数据治理
+
+- **commit 人类数据 SSOT**: `freeze/freeze_survey_20260703/`（11）+ `freeze_survey_20260712/`（4）→ 共 15 合格（6DE/6ZH/3EN）
+- **清理归档** 942 个过时/重复文件至 `_archive/20260807_cleanup/`（零删除）
+- **新数据批次**: 问卷星导出 4 条（1ZH+3EN）经 QC 纳入
+
+### B. LDS-C 分析管线（deepseek-v4-flash @ opencode GO）
+
+- `scripts/lds_c_extract.py` — 概念提取（15/15，含英文 gloss）
+- `scripts/lds_c_compute.py` — 概念级 LDS-C + 空模型（split-half/标签置换）+ Bootstrap
+- `scripts/lds_c_thematic.py` — 6 类 Codebook 主题分析
+- `scripts/lds_c_extract_relations.py` + `lds_c_compute_v3.py` — 关系提取 + v3（节点+边）
+
+### C. 核心科研结果（三层一致阴性）
+
+| 层面 | 结果 | 判定 |
+|------|------|------|
+| 概念级 LDS-C | 0.93-0.96 | 无语言信号（split-half 底 0.92-0.96 ≈ 观测） |
+| 主题级类别分布 | χ² p=0.52 | 不显著（有方向趋势：ZH 法理/DE 自主/EN 具体） |
+| 关系级 v3 | 0.96-0.98 | 无语言信号（edge-J≈0） |
+
+**结论**: N=15 组间设计下无可分离语言信号；旧论文 N=8 主张（LDS-C 0.70-0.75, ΔLDS>0）不被复制。核心方法学教训 = 组间设计无法分离语言效应与个体差异（需组内设计）。
+
+### D. 论文修订
+
+- `docs/paper/03_results_human_v2.md` — 新 §4（N=15 诚实结果，待合并）
+- `docs/paper/04_discussion_revision.md` — F11/F12 修订指引
+
+### E. 交接
+
+- `docs/session_handoff_20260808.md` — 完整交接文档
+- `docs/planning/restart_plan.md` — 执行进度标注
+
+---
+
 ## [2026-06-19] v0.9.1-pre-human-validation — RC Stabilization
 
 ### Overview
