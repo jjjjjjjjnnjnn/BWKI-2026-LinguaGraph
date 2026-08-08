@@ -31,8 +31,8 @@ Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache
 
 1. **LDS allein ist unzureichend** — die Nullmodell-Suite zeigt, dass LDS-K-Werte gegen mehrere Basislinien interpretiert werden müssen (Struktur-Null, sprachinterne Rauschschwelle, kompletter Zufall)
 2. **LDS-K zeigt strukturelle Konvergenz, nicht Divergenz** — alle drei Sprachpaare zeigen LDS-K-Werte auf oder unterhalb ihrer sprachinternen Rauschschwellen
-3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen**, erfordert aber N ≥ 30 menschliche Daten für statistische Validierung
-4. **Pilotdaten (N=8) zeigen heterogenes ΔLDS**: nur DE-ZH (+0,232) unterstützt die ΔLDS > 0-Hypothese; ZH-EN (−0,230) und DE-EN (−0,211) tun dies nicht. Die Erklärung für dieses Muster ist noch nicht bekannt und erfordert weitere Untersuchung.
+3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen** — die erweiterte N=15-Analyse zeigt jedoch **ΔLDS ≈ 0** (−0.02 bis +0.05) und ein LDS-C auf dem Teilnehmervariabilitäts-Boden
+4. **Die N=15-Humanvalidierung (6 DE · 6 ZH · 3 EN) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen** (Konzeptebene LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 ≈ Label-Permutation 0.94; Themenebene χ² p=0.52; Relationsebene Edge-Jaccard ≈ 0). Die früheren N=8-Pilotdaten (DE-ZH +0,232) werden nicht repliziert. Die zentrale methodologische Lehre: Between-Subject-Designs können sprachgetriebene Divergenz nicht von individueller Variabilität trennen — nötig sind Within-Subject-Designs, N≥30 oder strukturrobuste Metriken.
 
 Der 19-Modell-Benchmark (F1-Bereich 0,55–0,67) und die Wikipedia-Negativkontrolle (LDS=1,0) bestätigen, dass diese Beobachtungen keine Artefakte der Extraktionsmethodik sind.
 
@@ -52,15 +52,17 @@ Wir stellen LinguaGraph vor, ein Framework, das:
 Die Studie hat fünf wesentliche Einschränkungen:
 
 1. **Extraktionsqualität variiert nach Domäne**: Soziale Konzeptextraktion erreicht ZH F1=0,974, DE F1=0,949, EN F1=0,882 (72 Goldlabels im sozialen Bereich; 92 insgesamt inkl. Mathematik). Die mathematische Domänenextraktion ist niedriger (DE F1=0,506, 20 Goldlabels), was domänenspezifische Variation bestätigt.
-2. **Stichprobengröße der menschlichen Validierung**: Die Humanstudie (N=8) zeigt konsistenzübergreifende Muster, erfordert aber größere Stichproben für populationsbezogene Schlussfolgerungen. Die ΔLDS-Berechnung wartet auf N ≥ 30.
+2. **Stichprobengröße und Design der menschlichen Validierung**: Die erweiterte Humanstudie (N=15, 6 DE · 6 ZH · 3 EN) in einem Between-Subject-Design zeigt, dass Teilnehmervariabilität die LDS-C dominiert — sprachgetriebene Divergenz ist von individueller Variabilität nicht trennbar. Eine populationsbezogene Aussage erfordert ein Within-Subject-Design oder N ≥ 30 pro Sprachgruppe.
 3. **Umfang des Nullmodells**: Das graderhaltende Nullmodell ist konservativ — es testet Kantenanordnung jenseits der Gradstruktur, aber nicht, ob die Gradstruktur selbst sprachbeeinflusst ist.
 4. **Lehrplanvergleich**: Der Coverage Score verwendet keyword-basiertes Matching; zukünftige Versionen sollten semantische Alignierung integrieren.
 5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
 
 ### 5.6 Zukünftige Arbeit
 
+- **Within-Subject-Humanstudie** (dieselbe Person antwortet in mehreren Sprachen) zur Trennung von Sprach- und Teilnehmereffekten — die zentrale methodologische Lehre aus der N=15-Analyse
 - **Mehrsprachig feinabgestimmte Modelle** für sprachübergreifende Konzeptextraktion mit höherem F1
-- **ΔLDS-Berechnung** mit N ≥ 30 menschlichen Daten zur Isolierung des Sprachsignals
+- **Thematische Richtungstendenzen als testbare Hypothesen** (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) in einem Within-Subject-Design
+- **Strukturrobuste Metriken** zur Konzeptwahl-unabhängigen Divergenzmessung
 - **Zusätzliche Disziplinen** (Biologie, Geschichte) zur Testung der „früh integrieren, spät divergieren"-Hypothese über Wissenstypen hinweg
 - **Semantischer Coverage Score** mittels embedding-basierten Konzeptabgleichs
 - **Hierarchische Nullmodelle** zur Trennung von Gradstruktureffekten von Kantenanordnungseffekten
@@ -68,4 +70,4 @@ Die Studie hat fünf wesentliche Einschränkungen:
 
 ### Abschlusserklärung
 
-> **Wissen in der Bildung folgt einer nichtlinearen strukturellen Organisation, die in ihrer frühzeitigen Integration universell und in ihrer Divergenzrate disziplinabhängig ist. Sprachübergreifende Strukturbeziehungen sind heterogen: Lehrbuchstrukturen konvergieren in unterschiedlichem Maße über Sprachpaare hinweg, wobei ZH-DE wesentlich stärkere Konvergenz zeigt als ZH-EN oder DE-EN relativ zu sprachinternen Basislinien. Das LinguaGraph-Framework macht diese unsichtbaren strukturellen Muster sichtbar, messbar und vergleichbar — und bietet eine methodologische Grundlage zur Untersuchung, wann, warum und in welchem Ausmaß sprachspezifische Wissensorganisation existiert. Die Frage, ob ein echtes Sprachsignal im kognitiven Ausdruck existiert, bleibt offen und erwartet die Erhebung und Analyse von N ≥ 30 menschlichen Antworten.**
+> **Wissen in der Bildung folgt einer nichtlinearen strukturellen Organisation, die in ihrer frühzeitigen Integration universell und in ihrer Divergenzrate disziplinabhängig ist. Sprachübergreifende Strukturbeziehungen sind heterogen: Lehrbuchstrukturen konvergieren in unterschiedlichem Maße über Sprachpaare hinweg, wobei ZH-DE wesentlich stärkere Konvergenz zeigt als ZH-EN oder DE-EN relativ zu sprachinternen Basislinien. Die erweiterte Humanvalidierung (N=15) zeigt, dass auf Ebene menschlicher Konzeptäußerungen kein von Teilnehmervariabilität separierbares Sprachsignal nachweisbar ist — was die naive „Sprache → unterschiedliche Konzeptgraphen"-Hypothese falsifiziert und die Bedingungen (Within-Subject-Design, N≥30, strukturrobuste Metriken) präzisiert, unter denen sprachliche Kognitionseffekte messbar wären. Das LinguaGraph-Framework macht diese unsichtbaren strukturellen Muster sichtbar, messbar und vergleichbar — und bietet eine methodologische Grundlage zur Untersuchung, wann, warum und in welchem Ausmaß sprachspezifische Wissensorganisation existiert.**

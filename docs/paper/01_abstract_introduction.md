@@ -22,13 +22,13 @@ Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt,
 **Zentrale Beiträge**:
 - Linguistic Divergence Score (LDS) als neuartige Metrik für sprachübergreifende Strukturanalyse — inklusive **LDS-K (Wissen)** , **LDS-C (Kognition)** und **ΔLDS = LDS-C − LDS-K**
 - **Null Model Suite**: Falsifikation der Annahme, dass LDS-K sprachgetriebene Divergenz misst — tatsächlich dominieren Gradverteilungsstrukturen, und Lehrbuchwissen konvergiert sprachübergreifend
-- Kernbeitrag verschiebt sich zu **ΔLDS** (menschliche Kognition minus Lehrbuchstruktur), der den sprachspezifischen Anteil isoliert
+- Kernbeitrag verschiebt sich zu **ΔLDS** (menschliche Kognition minus Lehrbuchstruktur), der den sprachspezifischen Anteil isoliert — die N=15-Analyse zeigt ΔLDS ≈ 0 unter Between-Subject-Bedingungen und spezifiziert, wann ΔLDS > 0 nachweisbar wäre
 - Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg (556 Konzepte, 4 Nullmodelle, 19-Modell-Benchmark)
 - CognitiveSpace: skalierbare 3D-Visualisierung mit 574 Konzepten aus 68 Lehrbüchern
 - Vollständige Pipeline: Textextraktion → Graphkonstruktion → Alignierung → Analyse → Visualisierung
-- **Humanvalidierung**: Erste empirische Bestätigung von LDS-C anhand von N=8 Probanden (90 Antworten) mit konsistenter Rangfolge (DE–ZH > DE–EN > ZH–EN)
+- **Humanvalidierung**: Erweiterte, QC-geprüfte LDS-C-Analyse an N=15 Probanden (6 DE · 6 ZH · 3 EN) über drei Ebenen (Konzept, Kategorie, Relation) — **ehrliches negatives Ergebnis**: LDS-C (0.93–0.96) ist von Teilnehmervariabilität nicht unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94); die früheren N=8-Befunde (0.70–0.75) werden nicht repliziert
 
-Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Null Model Suite falsifiziert die Annahme sprachgetriebener Lehrbuchdivergenz und etabliert ΔLDS als Kernmetrik. Eine Humanstudie (N=8) validiert LDS-C erstmals auf individueller kognitiver Ebene.
+Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Null Model Suite falsifiziert die Annahme sprachgetriebener Lehrbuchdivergenz und etabliert ΔLDS als Kernmetrik. Die erweiterte Humanvalidierung (N=15) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen und präzisiert die methodologischen Voraussetzungen (Within-Subject-Design, N≥30, strukturrobuste Metriken), unter denen sprachliche Kognitionseffekte nachweisbar wären.
 
 ---
 

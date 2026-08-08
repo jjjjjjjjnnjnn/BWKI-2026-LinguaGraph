@@ -1,7 +1,7 @@
 # LinguaGraph — Results: CognitiveSpace Knowledge Graph
 
 > **Language**: German
-> **Status**: Draft v1 — based on completed CognitiveSpace data
+> **Status**: Draft v2 — §4 (Humanvalidierung) überarbeitet auf N=15 (ersetzt N=8; siehe `03_results_human_v2.md`)
 
 ---
 
@@ -102,92 +102,94 @@ Die Interpretation: LDS-K wird von der **Gradverteilungsstruktur** dominiert (ei
 
 ## 4. Humanvalidierung: Kognitive Graphen mehrsprachiger Probanden
 
-> Dieser Abschnitt präsentiert LDS-C Ergebnisse basierend auf **echten Probandendaten** (N=8, 90 extrahierte Antworten) im sozialen Themenbereich.
+> Dieser Abschnitt präsentiert LDS-C Ergebnisse auf Basis der **erweiterten, QC-geprüften Stichprobe (N=15: 6 DE · 6 ZH · 3 EN)**, extrahiert mit `deepseek-v4-flash` (opencode GO). Alle Ergebnisse sind reproduzierbar (Skripte `scripts/lds_c_extract.py`, `lds_c_compute.py`, `lds_c_thematic.py`).
 
 ### 4.1 Versuchsdesign und Datengrundlage
 
-Die Humanstudie folgt einem gemischten Within-Subject- + Between-Subject-Design:
-
 | Dimension | Spezifikation |
 |-----------|---------------|
-| Teilnehmer | N=8 (4 ZH-Muttersprachler, 2 DE, 2 EN) |
-| Stimuli | 5 soziale Themen × 3 Sprachen |
-| Extraktionsmodell | qwen-plus (F1=0,939 validiert) |
-| Erfolgreich extrahiert | 90/101 Antworten (89,1 %) |
-| Durchschnittliche Konzepte pro Antwort | 3,2 (Spanne: 1–12) |
+| Teilnehmer | N=15 (6 DE, 6 ZH, 3 EN bilingual-ZH) |
+| Stimuli | 5 soziale Themen (Freiheit, Gerechtigkeit, Verantwortung, Heimat, Erfolg) |
+| Datenquelle | Freeze-SSOT `freeze_survey_20260703` + `freeze_survey_20260712` (QC-geprüft, 4/4 in zweitem Batch) |
+| Extraktionsmodell | deepseek-v4-flash (opencode GO), Temperatur 0.3 |
+| Extrahierte Antworten | 15/15 (100 %), pro Antwort 5–6 Konzepte je Thema mit engl. Gloss |
+| Konzept-Alignierung | Englischer Gloss → kanonischer Schlüssel (Synonym-Karte + Stemmer) |
 
-**Teilnehmer nach Sprachgruppe**:
-- **ZH-Gruppe**: S001, S004, S007 — ausschließlich Chinesisch
-- **DE-Gruppe**: S002, S005, S008 — Deutsch + Englisch (bilingual)
-- **EN-Gruppe**: S003, S006 — ausschließlich Englisch
+### 4.2 Konzeptebene LDS-C (zwischen den Sprachgruppen)
 
-### 4.2 Within-Subject LDS (DE-EN)
+Aggregierte Konzeptmengen pro Sprachgruppe, LDS = 1 − Jaccard(kanonische Schlüssel).
 
-Die drei bilingualen Teilnehmer (DE-Muttersprachler) beantworteten dieselben Fragen auf Deutsch und Englisch, was einen direkten Within-Subject-Vergleich ermöglicht:
+| Sprachpaar | LDS-C (gepoolt) | 95 %-CI (Bootstrap) | LDS-K (Konzept) | ΔLDS |
+|:----------:|:---------------:|:-------------------:|:---------------:|:----:|
+| ZH-EN | 0.961 | [0.936, 0.985] | 0.977 | −0.016 |
+| DE-EN | 0.933 | [0.899, 0.986] | 0.977 | −0.044 |
+| ZH-DE | 0.934 | [0.908, 0.960] | 0.887 | +0.047 |
 
-| Proband | Thema | LDS | GED-Ähnlichkeit | Node-Jaccard |
-|---------|-------|:---:|:----------------:|:------------:|
-| S002 | Freiheit | **0,917** | 0,250 | 0,000 |
-| S002 | Zuhause | 0,667 | 1,000 | 0,000 |
-| S002 | Verantwortung | 0,778 | 0,667 | 0,000 |
-| S005 | Freiheit | 0,833 | 0,500 | 0,000 |
-| S005 | Zuhause | 0,667 | 0,500 | 0,500 |
-| S008 | Zuhause | 0,778 | 0,333 | 0,333 |
-| **Mittelwert** | | **0,773** | 0,542 | 0,139 |
+**Wichtig**: Alle drei Sprachpaare zeigen LDS-C ≈ 0.93–0.96. Die Werte liegen **nahe der Zufallsverteilung** (siehe 4.3) und deutlich höher als die früheren N=8-Schätzungen (0.70–0.75), die mit einer älteren Pipeline berechnet wurden.
 
-**Beobachtung**: Die Within-Subject LDS-Werte sind hoch (M=0,773), was bedeutet, dass dieselbe Person zu demselben Thema in verschiedenen Sprachen systematisch unterschiedliche Konzepte nennt. Der Node-Jaccard von 0,000 für Freiheit und Verantwortung bei S002 zeigt, dass DE- und EN-Antworten **kein einziges gemeinsames Konzept** teilen — ein starker Beleg für sprachliche Kognitionseffekte.
+### 4.3 Null-Modell-Prüfung: Kein separierbares Sprachsignal
 
-### 4.3 Between-Subject LDS (Sprachengruppen)
+Zwei Null-Modelle testen, ob die beobachtete LDS-C auf Sprache zurückgeht oder auf Teilnehmervariabilität:
 
-Durch Aggregation aller Antworten einer Sprachgruppe entstehen Gruppen-graphen, die den sprachspezifischen "kollektiven kognitiven Raum" repräsentieren:
+| Sprachpaar | LDS-C (beobachtet) | Within-Lang Split-Half (Boden) | Label-Permutation |
+|:----------:|:------------------:|:------------------------------:|:-----------------:|
+| ZH-EN | 0.961 | 0.958 | 0.940 |
+| DE-EN | 0.933 | 0.923 | 0.938 |
+| ZH-DE | 0.934 | 0.922 | 0.935 |
 
-| Sprachpaar | Freiheit | Gerechtigkeit | Erfolg | Verantwortung | Zuhause | **Mittel** |
-|:----------:|:--------:|:-------------:|:------:|:-------------:|:-------:|:----------:|
-| DE–ZH | 0,939 | 0,880 | 0,647 | 0,600 | 0,689 | **0,751** |
-| DE–EN | 0,933 | 0,667 | 0,741 | 0,648 | 0,648 | **0,727** |
-| ZH–EN | 0,662 | 0,917 | 0,710 | 0,648 | 0,583 | **0,704** |
-| **Mittel** | **0,845** | **0,821** | **0,699** | **0,632** | **0,640** | **0,727** |
+**Zentraler Befund**:
+1. **Within-Language-Split-Half** (Teilnehmervariabilität innerhalb einer Sprache): 0.92–0.96 ≈ beobachtete LDS-C. Die Variabilität **innerhalb** einer Sprachgruppe ist genauso groß wie die Divergenz **zwischen** den Gruppen.
+2. **Label-Permutation** (Permutation der Sprachlabels): 0.94–0.94 ≈ beobachtete LDS-C. Das Vertauschen der Sprachzugehörigkeit ändert die LDS-C nicht — **die Sprachlabels tragen kein messbares Signal**.
 
-### 4.4 Vergleich mit Textbook-LDS-K
+**Interpretation**: Auf Konzeptebene ist die LDS-C von Teilnehmervariabilität dominiert. Das Between-Subject-Design (jede Person antwortet nur in einer Sprache) vermischt sprachgetriebene Divergenz mit individueller Variabilität. Bei N=15 (6/6/3) dominiert die letztere. **Die Hypothese ΔLDS > 0 wird auf Konzeptebene nicht bestätigt.**
 
-Der Vergleich zwischen Human-LDS-C und Textbook-LDS-K zeigt ein aufschlussreiches Muster:
+### 4.4 Thematische Analyse (6-Kategorien-Codebook)
 
-| Sprachpaar | Human LDS-C (Between) | Textbook LDS-K | Differenz | Interpretation |
-|:----------:|:---------------------:|:--------------:|:---------:|----------------|
-| DE–ZH | **0,751** | **0,519** | **+0,232** | Kognitive Divergenz > Strukturkonvergenz |
-| DE–EN | 0,727 | 0,938 | −0,211 | Kognitive Divergenz < Textbuchdivergenz |
-| ZH–EN | 0,704 | 0,934 | −0,230 | Kognitive Divergenz < Textbuchdivergenz |
+Eine grobkörnige Codierung (Codebook v1: Legal/Institutional, Individual/Autonomy, Material/Concrete, Social/Relational, Moral/Abstract, Emotional/Affective; LLM-Klassifikation, n=335 Konzepte) vergleicht die Verteilungen der Themenkategorien:
 
-**Zwei zentrale Befunde**:
+| Kategorie | DE | EN | ZH |
+|-----------|:--:|:--:|:--:|
+| Legal/Institutional | 0.05 | 0.10 | **0.12** |
+| Individual/Autonomy | **0.27** | 0.21 | 0.25 |
+| Material/Concrete | 0.11 | 0.12 | 0.09 |
+| Social/Relational | 0.15 | **0.21** | 0.15 |
+| Moral/Abstract | 0.17 | 0.15 | **0.24** |
+| Emotional/Affective | **0.14** | 0.10 | 0.11 |
 
-1. **DE–ZH ist der Schlüsselfall**: Die höchste kognitive Divergenz (LDS-C=0,751) trifft auf die geringste Textbuchdivergenz (LDS-K=0,519). Dies ist konsistent mit der ΔLDS-Hypothese: der sprachliche Einfluss auf die Kognition (DE↔ZH) ist größer als der auf die institutionelle Wissensorganisation.
+| Test | Ergebnis |
+|------|----------|
+| Chi-Quadrat | χ²=9.14, p=0.519 (n.s.), Cramér's V=0.117 |
+| Permutationstest | p=0.354 (5000 Iterationen) |
+| Shannon-Entropie | DE 2.68 · EN 2.74 · ZH 2.64 |
 
-2. **DE–EN und ZH–EN zeigen das umgekehrte Muster**: Textbookstrukturen divergieren stark (0,938, 0,934), während die kognitive Divergenz moderat ausfällt (0,727, 0,704). Dies bestätigt, dass LDS-K und LDS-C unterschiedliche Phänomene messen.
+**Befund**: Die Kategorienverteilungen unterscheiden sich **nicht signifikant** zwischen den Sprachen. Es zeigen sich jedoch **konsistente Richtungstendenzen**, die mit einer kulturellen Rahmungshypothese übereinstimmen: ZH rahmt Freiheit häufiger rechtlich-institutionell (Freiheit: 0.24 vs. DE 0.09 / EN 0.07), ZH stärker moralisch-abstrakt (0.24), DE stärker individuell-autonom (0.27) und affektiv (0.14). Diese Tendenzen sind bei N=15 nicht statistisch bestätigbar.
 
-Die Rangfolge der kognitiven Divergenz (DE–ZH > DE–EN > ZH–EN) bleibt konsistent, während die Rangfolge der Textbuchdivergenz grundlegend anders ist (DE–EN > ZH–EN > ZH-DE). Dies zeigt, dass LDS-K und LDS-C komplementäre, aber nicht austauschbare Metriken sind.
+### 4.5 Relationale Ebene (v3-Knoten+Kante)
 
-### 4.5 Robuste Extraktionsqualität
+Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahierten Konzepten erfasst (7 Relationstypen, pro Thema). Insgesamt 162 Kanten (DE 59, ZH 67, EN 36). Die v3-LDS kombiniert Knoten- und Kanten-Jaccard (frozen Formel):
 
-Die Extraktion der Probandentexte erfolgte mit dem validierten qwen-plus-Modell:
+| Sprachpaar | LDS v3 | 95 %-CI | Node-Jaccard | Edge-Jaccard | LDS-K (v3) | ΔLDS | Split-Half-Boden |
+|:----------:|:------:|:-------:|:------------:|:------------:|:----------:|:----:|:----------------:|
+| ZH-EN | 0.977 | [0.962, 0.992] | 0.037 | 0.010 | 0.934 | +0.043 | 0.979 |
+| DE-EN | 0.966 | [0.949, 0.993] | 0.068 | **0.000** | 0.938 | +0.028 | 0.959 |
+| ZH-DE | 0.964 | [0.948, 0.980] | 0.064 | 0.008 | 0.519 | +0.445 | 0.958 |
 
-| Metrik | Wert |
-|--------|:----:|
-| Goldstandard | 92 annotierte Antworten |
-| Gesamt-F1 | **0,939** |
-| ZH F1 | 0,974 |
-| DE F1 | 0,949 |
-| EN F1 | 0,882 |
+**Zentraler Befund**: Die Kantenstrukturen überlappen sprachübergreifend kaum (Edge-Jaccard ≈ 0, DE-EN exakt 0.000). Der Split-Half-Boden (0.958–0.979) entspricht der beobachteten v3-LDS (0.964–0.977) — auch auf relationaler Ebene ist die Divergenz vollständig durch Teilnehmervariabilität erklärbar. Der scheinbar große ΔLDS-Wert für ZH-DE (+0.445) ist ein Artefakt des Vergleichs zwischen spärlichen Menschengraphen und dichten, strukturell konvergenten Lehrbuchgraphen — nicht ein Beleg für sprachgetriebene Divergenz (der Split-Half-Boden von 0.958 für ZH-DE widerlegt dies).
 
-Die hohe Extraktionsqualität stellt sicher, dass die beobachteten LDS-Unterschiede auf genuine kognitive Divergenz zurückgehen und nicht auf Extraktionsrauschen.
+**Fazit relationale Ebene**: Die relationale Struktur bestätigt die Konzept- und Themenebene. Unter Between-Subject-Bedingungen (N=15) ist kein separierbares Sprachsignal nachweisbar — weder auf Knoten-, Kanten-, noch Kategorienebene.
 
-### 4.6 Zusammenfassung
+### 4.6 Zusammenfassung und methodologische Reflexion
 
-Die Humanvalidierung zeigt drei Kernbefunde:
+Die erweiterte Humanvalidierung (N=15) liefert über **drei Analyseebenen** hinweg ein konsistentes, ehrliches negatives Ergebnis:
 
-1. **Kognitive sprachliche Divergenz ist messbar**: Within-Subject LDS (M=0,773) und Between-Subject LDS (M=0,727) sind substanziell und zeigen eine konsistente Rangfolge (DE–ZH > DE–EN > ZH–EN).
+1. **Konzeptebene**: LDS-C 0.93–0.96, nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94).
 
-2. **LDS-C und LDS-K messen unterschiedliche Phänomene**: Während die Textbuchstruktur sprachübergreifend konvergiert (Null Model Befund), zeigt die menschliche Kognition eine sprachspezifische Divergenz. Der DE–ZH Fall ist besonders aufschlussreich: höchste kognitive Divergenz bei geringster Textbuchdivergenz.
+2. **Themenebene**: Kategorienverteilungen nicht signifikant verschieden (χ² p=0.52, Permutation p=0.35), aber konsistente Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial).
 
-3. **Themenvariation ist substanziell**: Abstrakte Konzepte (Freiheit, Gerechtigkeit) zeigen höhere Divergenz als konkrete (Zuhause). Dies bestätigt die Hypothese, dass abstrakte, politisch-philosophische Konzepte stärkeren sprachlichen Einfluss auf die Kognition zeigen.
+3. **Relationale Ebene (v3)**: LDS-C 0.96–0.98, Edge-Jaccard ≈ 0, Split-Half-Boden ≈ beobachtet → ebenfalls kein separierbares Sprachsignal.
 
-Die Ergebnisse validieren LDS-C als Maß für sprachübergreifende kognitive Strukturunterschiede und etablieren **ΔLDS = LDS-C − LDS-K** als zentrale Metrik für die Isolierung des sprachspezifischen Signals.
+4. **Die früheren N=8-Befunde (LDS-C 0.70–0.75, ΔLDS>0) werden nicht repliziert**: Sie stammen aus einer älteren Pipeline und sind mit dem erweiterten, QC-geprüften Datensatz und der standardisierten Extraktion nicht vereinbar.
+
+5. **Methodologische Lehre (Kernbeitrag dieser Revision)**: Ein Between-Subject-Design kann sprachgetriebene Divergenz nicht von individueller Variabilität trennen, wenn die Stichprobe klein ist. Dies gilt unabhängig von der Analyseebene (Konzept, Kategorie, Relation). Zukünftige Studien benötigen (a) ein Within-Subject-Design, (b) größere Stichproben pro Sprachgruppe, oder (c) Metriken, die gegen individuelle Konzeptwahl robust sind.
+
+**Dieser negative Befund ist wissenschaftlich wertvoll**: Er falsifiziert die einfache Hypothese "Sprache → unterschiedliche Konzeptgraphen" auf allen drei Ebenen und präzisiert die Bedingungen, unter denen sprachliche Kognitionseffekte nachweisbar wären.

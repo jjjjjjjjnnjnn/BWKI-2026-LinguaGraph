@@ -2,7 +2,7 @@
 
 ### 4.1 Zusammenfassung der Ergebnisse
 
-Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur Analyse, wie mathematisches Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Bildungsstufen (Grundschule bis Universität) und zuletzt auch Disziplinen (Mathematik vs. Physik) hinweg organisiert ist. Elf zentrale Befunde ergaben sich:
+Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur Analyse, wie mathematisches Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Bildungsstufen (Grundschule bis Universität) und zuletzt auch Disziplinen (Mathematik vs. Physik) hinweg organisiert ist. Elf zentrale Befunde ergaben sich (F11 und F12 wurden auf Basis der erweiterten N=15-Humanvalidierung revidiert):
 
 | # | Befund | Evidenz |
 |---|--------|----------|
@@ -16,8 +16,8 @@ Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur A
 | F8 | Chemie-CDS erreicht ebenfalls Spitze in der Mittelstufe (0,042) | Konsistent mit „Integriere früh, trenne spät“-Muster |
 | F9 | Coverage-Scores variieren drastisch zwischen Bildungssystemen (12,7–95,4 %) | Lehrplandesign-Philosophie treibt Unterschiede |
 | F10 | China zeigt nahezu perfekte Übereinstimmung (95,4 %); NRW am niedrigsten (12,7 %) | Zentralisiertes vs. föderales Systemmerkmal |
-| **F11** | **Menschliche LDS-Rangordnung ist konsistent: DE-ZH > DE-EN > ZH-EN** | **Konsistent auf Individuen- und Lehrbuchebene** |
-| **F12** | **Menschliches LDS (0,727) übertrifft Simulationsbasislinie (0,647, p=0,05)** | **Divergenz ist keine zufällige Variation** |
+| **F11** | **Falsifiziert (N=15):** LDS-C auf Konzeptebene (0.93–0.96) ist nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94). Keine konsistente sprachspezifische Rangordnung. | Nullmodell-Suite (Within-Lang Split-Half, Label-Permutation) |
+| **F12** | **Überarbeitet (N=15):** Der Unterschied zur Simulationsbasislinie (0.647) ist ein Artefakt der Extraktions-/Alignierungsmethode (höhere LDS-Skala), nicht ein Beleg für sprachliche Kognition. LDS-C ≈ Within-Language-Null → **kein** über Zufall hinausgehendes Sprachsignal. | LDS-C ≈ Split-Half-Boden; ΔLDS ≈ 0 (−0.02 bis +0.05) |
 
 ### 4.2 Interpretation des CDS-Gipfels
 
@@ -48,7 +48,7 @@ Die theoretische Implikation ist bedeutsam: Während mathematische Wahrheit univ
 
 Dies bedeutet, dass der Korpusanalyse-Ansatz (LDS-K) per se keine sprachrelativistischen Effekte auf die Wissensorganisation messen kann. Er misst in erster Linie **strukturelle Konvergenz**, die von der universellen Logik mathematischer Voraussetzungen angetrieben wird. Um ein genuines Sprachsignal zu isolieren, müssen wir zur kognitiven Ebene übergehen — dem Vergleich, wie Menschen ihr Wissen in ihrer Muttersprache ausdrücken — erfasst durch ΔLDS = LDS-C − LDS-K.
 
-Die Piloten-Menschendaten (N=8, F11) liefern erste Unterstützung für diese Verschiebung. Die menschlichen LDS-C-Werte (DE-ZH=0,751, DE-EN=0,727, ZH-EN=0,704) unterscheiden sich bedeutsam von den LDS-K-Werten und zeigen eine konsistente Rangordnung. Die ΔLDS-Berechnung wartet auf N≥30 Menschendaten, stellt jedoch den zentralen wissenschaftlichen Beitrag des Rahmenwerks dar.
+Die erweiterte Humanvalidierung (N=15, F11) liefert jedoch ein negatives Ergebnis für diese Verschiebung: Die menschlichen LDS-C-Werte (Konzeptebene ZH-EN=0,961, DE-EN=0,933, ZH-DE=0,934) liegen **nahe der Within-Language-Null** (Split-Half-Boden 0,92–0,96) und sind von Label-Permutation nicht unterscheidbar (0,94). ΔLDS ≈ 0 (−0,02 bis +0,05), nicht > 0. Damit wird die naive Hypothese „Sprache → unterschiedliche Konzeptgraphen" auf allen drei Analyseebenen (Konzept, Kategorie, Relation) falsifiziert.
 
 ### 4.4 Disziplinübergreifende Validierung
 
@@ -99,26 +99,22 @@ Diese Herausforderung — die Trennung von Messungseffekten und echten strukture
 
 ### 4.7 Extraktionszuverlässigkeit und Fehleranalyse
 
-Ein potenzielles Bedenken bei jeder LLM-basierten Analyse ist, ob Messfehler die berichteten Ergebnisse verursachen könnten. Unsere Extraktionsvalidierung anhand von 92 Goldstandard-Annotationen (ZH F1=0,974, DE F1=0,949, EN F1=0,882) deutet darauf hin, dass die Extraktionsqualität insgesamt hoch ist. Die Fehleranalyse zeigt, dass 29 % der Extraktionsfehler bei sehr kurzen Antworten (1–2 Wörter) auftreten, bei denen eine leere Extraktion tatsächlich angemessen ist. Bei den verbleibenden Fehlern handelt es sich überwiegend um partielle Auslassungen — 1–2 Konzepte aus einer Liste von 3–4 fehlen — und nicht um systematische Fehlleitungen.
+Ein potenzielles Bedenken bei jeder LLM-basierten Analyse ist, ob Messfehler die berichteten Ergebnisse verursachen könnten. Unsere Extraktionsvalidierung anhand von 92 Goldstandard-Annotationen (ZH F1=0,974, DE F1=0,949, EN F1=0,882) deutet darauf hin, dass die Extraktionsqualität des früheren primären Extraktionsmodells (qwen-plus) insgesamt hoch ist. Die Fehleranalyse zeigt, dass 29 % der Extraktionsfehler bei sehr kurzen Antworten (1–2 Wörter) auftreten, bei denen eine leere Extraktion tatsächlich angemessen ist. Bei den verbleibenden Fehlern handelt es sich überwiegend um partielle Auslassungen — 1–2 Konzepte aus einer Liste von 3–4 fehlen — und nicht um systematische Fehlleitungen.
+
+**Hinweis zur N=15-Erweiterung**: Die erweiterte Humanvalidierung (§4) wurde mit `deepseek-v4-flash` (opencode GO) extrahiert; eine erneute F1-Validierung gegen die Goldstandards steht aus. Der 19-Modell-Benchmark (§4.9) zeigt jedoch, dass Konzeptextraktionsqualität über Modellfamilien hinweg eine Eigenschaft der Aufgabe ist (F1-Bereich 0,55–0,67), sodass eine modellinduzierte Skalenverschiebung der LDS-C zwar möglich, eine systematische Verzerrung der Null-Relation (beobachtet ≈ Split-Half) aber unwahrscheinlich ist.
 
 Diese Fehlerverteilung bedeutet, dass die strukturellen Metriken (CDS, HDS, LDS, Coverage-Score) robust gegenüber Extraktionsrauschen sind: Partielle Auslassungen reduzieren die Konzeptanzahlen leicht, verzerren jedoch nicht systematisch die Graphentopologie oder die sprachübergreifenden Vergleiche. Wir halten es daher für unwahrscheinlich, dass die berichteten Befunde Artefakte der Extraktionsmethodik sind.
 
-### 4.8 Robustheitsprüfung: Rechnerische Basislinie
+### 4.8 Robustheitsprüfung: Rechnerische Basislinie — methodisch revidiert
 
-Um zu überprüfen, ob die beobachteten menschlichen LDS-Werte echte strukturelle Unterschiede und nicht zufällige Konzeptvariation widerspiegeln, berechneten wir eine **rechnerische Basislinie** anhand von 300 simulierten Antworten (20 pro Bedingung × 5 Themen × 3 Sprachen). Die Simulation verwendete eine personenbasierte Antwortgenerierung mit deterministischer Konzeptextraktion, was eine LDS-Verteilung ergab, die die Nullenwartung unter sprachspezifischer Schlüsselwortvariation darstellt.
+Zur Kontrolle, ob die beobachteten LDS-Werte echte strukturelle Unterschiede und nicht zufällige Konzeptvariation widerspiegeln, wurde ursprünglich eine **rechnerische Basislinie** aus 300 simulierten Antworten (20 pro Bedingung × 5 Themen × 3 Sprachen) berechnet. Die frühere Version dieser Analyse (N=8, qwen-plus-Extraktion) ergab einen scheinbaren Unterschied zwischen menschlichem LDS (0,727) und Simulation (0,647, p=0,05).
 
-Die Ergebnisse bestätigen systematische Divergenz:
+**Diese Vergleich ist mit der N=15-Erweiterung nicht mehr haltbar**, aus zwei Gründen:
 
-| Metrik | Simulation | Menschlich (Zwischen) | Differenz |
-|--------|:----------:|:---------------:|:----------:|
-| Mittleres LDS | 0,647 | 0,727 | +0,080 * |
-| DE–ZH | 0,646 | 0,751 | +0,105 |
-| DE–EN | 0,655 | 0,727 | +0,072 |
-| ZH–EN | 0,640 | 0,704 | +0,064 |
+1. **Skalenverschiebung**: Die neue, standardisierte Extraktion (deepseek-v4-flash) verschiebt LDS-C auf eine andere Skala (0,93–0,96); ein direkter Vergleich mit der alten Simulationsverteilung mischt zwei unterschiedliche Messverfahren.
+2. **Null-Test-Ergebnis**: Die korrekte Kontrolle ist nicht der Vergleich zweier Absolutwerte, sondern die Lage der beobachteten LDS-C relativ zur Within-Language-Null (Split-Half 0,92–0,96; Label-Permutation 0,94). Beobachtete LDS-C liegt **auf** diesem Boden → vollständig durch Teilnehmervariabilität erklärbar.
 
-*t-Test für unabhängige Stichproben: t(28) = 2,05, p = 0,050
-
-**Das menschliche LDS übersteigt das Simulations-LDS für alle drei Sprachpaare**, wobei die Lücke für DE–ZH am größten (+0,105) und für ZH–EN am kleinsten (+0,064) ist. Dieses Muster spiegelt die in den menschlichen Daten beobachtete Rangordnung wider und liefert konvergierende Evidenz dafür, dass sprachübergreifende strukturelle Divergenz ein genuines Phänomen ist, das durch Bildung und Kultur verstärkt wird, und kein Artefakt sprachspezifischer Vokabularverteilungen.
+Ein aussagekräftiger Mensch-vs-Simulation-Vergleich erfordert **dieselbe Extraktions-/Alignierungsmethode** für beide Bedingungen. Dies ist eine Aufgabe für zukünftige Arbeit (nicht mehr eine Stütze der ΔLDS > 0-Hypothese).
 
 ### 4.9 Robustheitsprüfung: Modellübergreifende Extraktionskonsistenz
 
@@ -149,7 +145,7 @@ Wir identifizieren sechs Hauptbedrohungen für die Validität der berichteten Er
 
 **Auswahlverzerrung der Lehrpläne**. Lehrplandokumente variieren in ihrer Granularität (NRW: 299 Konzepte, UK: 397, US: 2.124, CN: 87). Höhere Granularität senkt mechanisch die Coverage-Scores. Unsere stufenweise Analyse kontrolliert dies teilweise.
 
-**Begrenzte Stichprobengröße (Pilot-Menschendaten)**. Die ΔLDS-Analyse beruht auf N=8 Teilnehmenden. Die Pilotdaten sollten als Machbarkeitsnachweis und nicht als Bestätigung interpretiert werden. Das heterogene ΔLDS-Muster (DE-ZH +0,232, ZH-EN −0,230, DE-EN −0,211) könnte sich mit steigendem N qualitativ ändern.
+**Begrenzte Stichprobengröße und Between-Subject-Design (Pilot-Menschendaten)**. Die ΔLDS-Analyse beruht auf N=15 Teilnehmenden (6 DE, 6 ZH, 3 EN) in einem Between-Subject-Design. Die Nullmodell-Suite zeigt, dass bei dieser Stichprobengröße die Teilnehmervariabilität die Sprachgruppe dominiert: sprachgetriebene Divergenz kann nicht von individueller Variabilität getrennt werden. Dies ist die zentrale methodologische Lehre — nicht ein temporärer Mangel, sondern eine Grenze des Designs selbst.
 
 **Reichweite des Nullmodells**. Die grad-erhaltende Struktur-Null testet die Kantenanordnung über die Gradstruktur hinaus, jedoch nicht, ob die Gradstruktur selbst sprachbeeinflusst ist. Ein zukünftiges hierarchisches Nullmodell könnte diese Frage angehen.
 
@@ -179,11 +175,11 @@ Mehrere Einschränkungen sollten anerkannt werden:
 
 **Extraktionsmethodik**. Während unsere Goldstandard-Validierung eine insgesamt hohe Qualität belegt (F1=0,939), wurden die sozialwissenschaftlichen Golddaten mittels halbautomatischen Schlüsselwortabgleichs mit anschließender manueller Überprüfung validiert. Im Goldstandard selbst könnten einige Fehler verbleiben.
 
-**Stichprobengröße der menschlichen Validierung**. Die menschliche Validierungsstudie (N=8 Teilnehmende, 90 extrahierte Antworten) ermöglicht eine erste ebnenübergreifende Validierung, ist jedoch in ihrer statistischen Aussagekraft begrenzt. Die Rangordnungskonsistenz (DE–ZH > DE–EN > ZH–EN) ist ermutigend, doch eine größere Stichprobe wäre erforderlich, um eine Generalisierbarkeit auf Populationsebene zu etablieren. Darüber hinaus war die innersubjektive Analyse auf DE-EN-Vergleiche beschränkt (keine ZH-DE- oder ZH-EN-Innersubjektdaten), was unsere Fähigkeit einschränkt, Spracheffekte von Teilnehmereffekten auf individueller Ebene zu trennen.
+**Stichprobengröße und Design der menschlichen Validierung**. Die erweiterte Humanstudie (N=15, 6 DE · 6 ZH · 3 EN) bestätigt die frühere Einschränkung und verschärft sie: Bei N=15 in einem **Between-Subject-Design** dominiert Teilnehmervariabilität die messbare LDS-C vollständig (Split-Half-Boden ≈ beobachtete LDS-C ≈ Label-Permutation). Dies ist kein Stichprobenfehler, sondern eine **strukturelle Grenze des Designs**: Da jede Person nur in einer Sprache antwortet, können sprachgetriebene Divergenz und individuelle Variabilität nicht getrennt werden. Die zentrale methodologische Lehre: Zukünftige Studien benötigen (a) ein Within-Subject-Design, (b) größere Stichproben pro Sprachgruppe (N≥30), oder (c) Metriken, die gegen individuelle Konzeptwahl robust sind. Die thematischen Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) bieten eine testbare Hypothese für ein Within-Subject-Design.
 
 **Interpretation des Nullmodells**. Während die graderhaltende Struktur-Null zeigt, dass LDS-K von strukturellen Faktoren und nicht von der Sprache dominiert wird, bewahrt der Doppelkantentausch-Algorithmus die exakte Gradsequenz jedes Graphen. Dies ist eine konservative Null: Sie testet, ob sprachspezifische Kantenanordnungen über die Gradstruktur hinaus Informationen hinzufügen, testet jedoch nicht, ob die Gradstruktur selbst sprachbeeinflusst sein könnte. Ein zukünftiges hierarchisches Nullmodell könnte diese geschichtete Frage angehen.
 
-**Kantenfreie Graphen in menschlichen Daten**. Die qwen-plus-Extraktion erzeugte eine rein konzeptbasierte Ausgabe (keine Relationen) für menschliche Antworten, was bedeutet, dass der LDS für menschliche Daten in erster Linie durch die Node-Jaccard-Ähnlichkeit bestimmt wird. Die vollständige 3-Komponenten-LDS-Formel (GED + Node-Jaccard + Edge-Jaccard) konnte nicht angewendet werden, und zukünftige Arbeiten sollten Relationsannotationen für menschliche Antworten sammeln, um einen vollständigen Strukturvergleich zu ermöglichen.
+**Kantenfreie Graphen in früheren menschlichen Daten**. Die frühere qwen-plus-Extraktion erzeugte eine rein konzeptbasierte Ausgabe (keine Relationen) für menschliche Antworten. In der N=15-Erweiterung wurde dies behoben: Eine Relationsextraktion (7 Typen, `scripts/lds_c_extract_relations.py`) lieferte 162 Kanten (DE 59, ZH 67, EN 36), sodass die vollständige v3-LDS-Formel (Node- + Edge-Jaccard) angewendet werden konnte. Das Ergebnis bestätigt die Konzeptebene: Edge-Jaccard ≈ 0 und Split-Half-Boden ≈ beobachtete v3-LDS — kein separierbares Sprachsignal. Die Kantenzahl pro Antwort bleibt jedoch spärlich, sodass Kantenaussagen auf Gruppenebene robust, auf individueller Ebene aber eingeschränkt interpretierbar sind.
 
 **Kausalität**. Unsere Analyse ist korrelativ. Wir messen strukturelle Unterschiede zwischen Systemen, können diese jedoch nicht unabhängig voneinander auf Lehrplangestaltung, Lehrbuchtradition oder Bildungsphilosophie zurückführen.
 
@@ -199,4 +195,4 @@ Trotz dieser Einschränkungen haben die vorliegenden Ergebnisse Implikationen f�
 
 **Für KI in der Bildung**: Die automatisierte Pipeline zeigt, dass die groß angelegte, sprachübergreifende Konstruktion von Wissensgraphen aus Lehrbüchern mit aktuellen LLMs machbar ist. Dies eröffnet die Möglichkeit einer Lehrplanebenen-Wissensanalyse in einem Umfang, den die manuelle Inhaltsanalyse nicht erreichen kann.
 
-**Für die Erforschung des linguistischen Relativitätsprinzips**: Unsere Daten stützen keine einheitliche „Sprache formt Wissen“-Behauptung. Stattdessen zeigen sie, dass sprachübergreifende strukturelle Beziehungen heterogen sind — einige Sprachpaare konvergieren erheblich (ZH-DE), während andere auf Rauschniveau liegen (ZH-EN, DE-EN). Das LinguaGraph-Rahmenwerk stellt Werkzeuge zur Messung dieser Heterogenität bereit, jedoch bleibt die Frage, ob ein genuines Sprachsignal im kognitiven Ausdruck existiert, offen — in Erwartung der Erhebung und Analyse menschlicher Antwortdaten mit ausreichenden Stichprobengrößen.
+**Für die Erforschung des linguistischen Relativitätsprinzips**: Unsere Daten stützen keine einheitliche „Sprache formt Wissen“-Behauptung. Stattdessen zeigen sie, dass sprachübergreifende strukturelle Beziehungen heterogen sind — einige Sprachpaare konvergieren erheblich (ZH-DE), während andere auf Rauschniveau liegen (ZH-EN, DE-EN). Die erweiterte Humanvalidierung (N=15) erlaubt nun eine präzisere Antwort: Auf der Ebene menschlicher Konzeptäußerungen ist bei dieser Stichprobe **kein separierbares Sprachsignal** nachweisbar — LDS-C liegt auf dem Split-Half-Boden und ist von Label-Permutation ununterscheidbar. Dies falsifiziert die einfache Hypothese „Sprache → unterschiedliche Konzeptgraphen" und präzisiert zugleich, unter welchen Bedingungen ein Sprachsignal nachweisbar wäre (Within-Subject-Design, N≥30, strukturrobuste Metriken). Das LinguaGraph-Rahmenwerk stellt die Werkzeuge bereit, um diese Heterogenität zu messen; die Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) bleiben als testbare Hypothesen für zukünftige Studien erhalten.
