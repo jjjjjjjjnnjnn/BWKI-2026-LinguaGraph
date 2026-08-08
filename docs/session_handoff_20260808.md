@@ -104,11 +104,15 @@
 
 ## 7. 待办事项（按优先级）
 
-### P0 — 论文整合（提交必需）
-- [ ] 将 `03_results_human_v2.md` 合并进 `03_results.md`（替换旧 §4）
-- [ ] 按 `04_discussion_revision.md` 修订 `04_discussion.md`
-- [ ] 更新 `00_three_conclusions.md`（若含人类结果主张）
+### P0 — 论文整合（提交必需）✅ 已完成 (c2ba9dc)
+- [x] 将 `03_results_human_v2.md` 合并进 `03_results.md`（替换旧 §4）
+- [x] 按 `04_discussion_revision.md` 修订 `04_discussion.md`（F11/F12、§4.8、§4.12）
+- [x] 更新 `00_three_conclusions.md` / `01_abstract` / `05_conclusion`（N=15 一致）
 - [ ] 检查 manifest/数字口径对齐（A0 遗留: 556/557、219/247）
+
+### P0.5 — 研究方向决策（✅ 已出文档，待用户确认执行）
+- [x] `docs/planning/research_directions_20260808.md`：**D1 LLM-as-Subject 组内设计**（主推）——同一 LLM 用 ZH/DE/EN 回答同 5 主题 = 构造上组内设计，解决组间混淆。D2 嵌入空间 / D3 SWOW / D4 语法性别探针为互补。
+- [ ] **D1 执行**（W1–W2）：三语提示词 45 调用 → 概念提取 → LDS-C + 组内 Split-Half → ΔLDS 重算
 
 ### P1 — 研究深化（重启计划剩余）
 - [ ] **A4**: LDS-K 深化（按主题分解、敏感性、跨源空模型）— 复用 `scripts/figures/*`
@@ -117,7 +121,7 @@
 - [ ] **A7**: 核心图表（ΔLDS、主题热图、空模型对比）
 
 ### P2 — 未来研究（讨论部分作为 Future Work）
-- [ ] 组内设计新数据（分离语言效应）——解决组间混淆的终极方案
+- [ ] 组内设计新数据（分离语言效应）——**已被 D1（LLM 组内）部分解决**
 - [ ] EN 补量至 10 / 或换非推理模型重跑语义规范化
 
 ### P3 — 提交组装（9 月中旬）
