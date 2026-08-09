@@ -406,10 +406,13 @@ def save_out(out_path: Path, records: List[dict]) -> None:
 
 
 def main() -> None:
-    global MODEL
+    global MODEL, API_URL
     ap = argparse.ArgumentParser(description="D1 LLM-as-subject data collection")
     ap.add_argument("--model", type=str, default=MODEL,
                     help="model id to use as subject (default: deepseek-v4-flash)")
+    ap.add_argument("--api-url", type=str, default=API_URL,
+                    help="OpenAI-compatible base URL (default: zen/go/v1; "
+                         "free tier: https://opencode.ai/zen/v1)")
     ap.add_argument("--k", type=int, default=10, help="resamples per condition")
     ap.add_argument("--probes", type=str, default="P1,P2,P3,P5",
                     help="comma-separated probes to run")
@@ -419,6 +422,7 @@ def main() -> None:
     args = ap.parse_args()
 
     MODEL = args.model
+    API_URL = args.api_url
 
     probes = {p.strip() for p in args.probes.split(",")}
     do_p1, do_p2, do_p3, do_p5 = ("P1" in probes, "P2" in probes,
