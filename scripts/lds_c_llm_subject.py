@@ -480,6 +480,8 @@ def main() -> None:
             print("  [WARN] output unreadable, starting fresh")
 
     t0 = time.time()
+    consecutive_empty = 0
+    ABORT_AFTER = int(os.environ.get("LDS_ABORT_AFTER", 3))
     for idx, unit in enumerate(plan, 1):
         uid = unit["unit_id"]
         if uid in done:
@@ -497,6 +499,17 @@ def main() -> None:
               f"(extract: {rec.get('meta', {}).get('extract', {}).get('note', '')})")
         done[uid] = rec
         save_out(out_path, list(done.values()))
+        if ok:
+            consecutive_empty = 0
+        else:
+            consecutive_empty += 1
+            if consecutive_empty >= ABORT_AFTER:
+                # every call already retried 3x inside run_p1p2p5; N consecutive
+                # EMPTY units = model is unusable as a subject -> abort, let the
+                # batch driver move on to the next model.
+                print(f"\n  ABORT {MODEL}: {consecutive_empty} consecutive EMPTY units "
+                      f"after per-call retries -> skipping this model")
+                sys.exit(2)
         time.sleep(0.3)
 
     elapsed = time.time() - t0
