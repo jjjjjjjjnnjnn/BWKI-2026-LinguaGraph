@@ -118,7 +118,7 @@ def domain_data() -> dict:
 
 def multi_data() -> dict:
     """Multi-model replication summary (ZH-DE margins + direction consistency)."""
-    d = load_latest("multi_model_replication_20260809.json", LLM_OUT)
+    d = load_latest("multi_model_replication_*.json", LLM_OUT)
     margins = d["comparison"]["per_pair"]["ZH-DE"]["margin"]
     dc = d["comparison"]["direction_consistency"]
     return {
