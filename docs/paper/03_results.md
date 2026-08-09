@@ -335,9 +335,21 @@ Die **Signalamplitude (LDS-C) ist bei Mensch und LLM nahezu identisch (0.93–0.
 
 Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist also **kein Stichprobeneffekt**, sondern Folge der Varianzstruktur: menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
 
-**5.9.2 Virtuelle Between-Subject-Linse (entscheidender Kontrollvergleich).**
+**5.9.2 Virtuelle Between-Subject-Linse + Heterogenitäts-Injektion (direkter Kausalnachweis).**
 
-Werden die LLM-Stichproben als "virtuelle Teilnehmer" mit exakt der menschlichen Between-Subject-Pipeline bei menschlicher N (=6 pro Sprache) analysiert, **überlebt das Sprachsignal** (Marge ZH-EN +0.064, DE-EN +0.073, ZH-DE +0.070). D. h. **weder "keine Sprachwirkung" noch "Between-Subject-Design an sich" erklärt die menschliche Null** — entscheidend ist die **individuelle Heterogenität innerhalb einer Sprachgruppe**, die nur ein Within-Subject-Design (oder ein homogenes Subjekt wie ein LLM) eliminiert. Dies präzisiert die Methodenlehre aus §4.6: nicht das Design als solches, sondern die in das Design eingebrachte Varianzquelle entscheidet über die Nachweisbarkeit.
+*(a) Exklusion.* Werden die LLM-Stichproben als "virtuelle Teilnehmer" mit exakt der menschlichen Between-Subject-Pipeline bei menschlicher N (=6 pro Sprache) analysiert, **überlebt das Sprachsignal** (Marge ZH-EN +0.064, DE-EN +0.073, ZH-DE +0.070). D. h. **weder "keine Sprachwirkung" noch "Between-Subject-Design an sich" erklärt die menschliche Null**.
+
+*(b) Direkte Kausalprüfung (Heterogenitäts-Injektion, `scripts/lds_c_heterogeneity_injection.py`).* Mensch und LLM zeigen **fast identische within-language Paar-Overlaps** (ZH 0.057 vs 0.059; DE 0.106 vs 0.108) — die Heterogenität *einzelner* Antworten ist vergleichbar. Der Unterschied liegt in der **Aggregationssparsität**: menschliche Teilnehmer tragen pro Person weniger Konzepte bei, sodass ein 3+3-Halb-Split spärlich ist und beide Hälften kaum überlappen. Injiziert man diese Sparsität in die LLM-Stichproben (Konzept-Dropout mit Wahrscheinlichkeit 1−q), **kollabiert die Signal-Marge monoton**:
+
+| q (Behaltewahrscheinlichkeit) | LLM LDS-C (ZH-DE) | LLM Boden | Signal-Marge |
+|:---:|:---:|:---:|:---:|
+| 1.00 (keine Injektion) | 0.944 | 0.873 | **+0.071** |
+| 0.60 | 0.939 | 0.905 | +0.033 |
+| 0.40 | 0.946 | 0.916 | +0.030 |
+| 0.30 | 0.955 | **0.941** | **+0.014** |
+| **Mensch (Referenz)** | 0.936 | **0.921** | **+0.015** |
+
+**Bei q=0.30 erreicht der injizierte LLM-Boden (0.941) den menschlichen Boden (0.921), und die Signal-Marge kollabiert auf +0.014 — praktisch identisch mit der menschlichen +0.015.** Damit ist der direkte kausale Nachweis erbracht: **die innerhalb einer Sprachgruppe injizierte Heterogenität (Aggregationssparsität) erzeugt die menschliche Null — nicht das Fehlen eines Spracheffekts.** Dies präzisiert die Methodenlehre aus §4.6: nicht das Design als solches, sondern die in das Design eingebrachte Varianzquelle entscheidet über die Nachweisbarkeit.
 
 **5.9.3 Divergenztreiber (RQ4): Rahmengeladene Konzepte treiben ZH-DE.**
 

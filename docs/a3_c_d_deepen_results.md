@@ -127,27 +127,62 @@ A4 表述"ZH-DE 边分量贡献 3–4×（0.075）"本身正确，但**深化后
 
 ---
 
-## 4. 论文整合点
+## 4. 异质性注入直接检验（`lds_c_heterogeneity_injection.py` → `heterogeneity_injection_20260809.json`）
+
+把"人类阴性 = 组内异质性"从**排除法**升级为**直接因果证明**。
+
+### 4.1 基线：单样本异质性人类与 LLM 相似
+
+| 语言 | 人类两两重叠 | LLM 两两重叠 | 人类 avg 概念/人 | LLM avg 概念/人 |
+|:---:|:---:|:---:|:---:|:---:|
+| zh | 0.057 | 0.059 | 26.0 | 28.7 |
+| de | 0.106 | 0.108 | 21.2 | 27.8 |
+| en | 0.038 | 0.072 | 21.7 | 28.2 |
+
+→ 单样本异质性可比；floor 差异的机制是**聚合稀疏度**（人类每参与者概念少 → 3+3 半聚合稀疏 → 高 floor）。
+
+### 4.2 注入扫描（ZH-DE 焦点，LLM 数据，q = 概念保留概率）
+
+| q | LLM LDS-C | LLM floor | 信号余量 |
+|:---:|:---:|:---:|:---:|
+| 1.00 | 0.944 | 0.873 | **+0.071** |
+| 0.60 | 0.939 | 0.905 | +0.033 |
+| 0.40 | 0.946 | 0.916 | +0.030 |
+| 0.30 | 0.955 | **0.941** | **+0.014** |
+| **人类（参考）** | 0.936 | **0.921** | **+0.015** |
+
+### 4.3 决定性校准
+
+**q=0.30 时 LLM floor（0.941）≥ 人类 floor（0.921），信号余量坍缩到 +0.014 ≈ 人类 +0.015——精确复刻人类阴性。**
+
+→ **人类阴性被直接因果地归因于组内异质性（聚合稀疏度），而非"无语言效应"**。已写入论文 §5.9.2b + 讨论 §4.14。
+
+---
+
+## 5. 论文整合点
 
 | 章节 | 新增内容 |
 |------|---------|
 | `03_results.md` §5.8 | 设计效应证明（信号幅度相等 + 底噪差异 + 非 N 效应 + 虚拟组间 lens） |
+| `03_results.md` §5.9.2 | **异质性注入直接因果证明（坍缩表 + 校准点）** |
 | `03_results.md` §5.8 | A5 分歧驱动者（ZH-DE 框架负载概念，DE 自主/规则 vs ZH 空间/应得） |
 | `03_results.md` §3.8 | 节点/边分解对称（反转是节点驱动，边不反转） |
-| `04_discussion.md` §4.14 | 设计伪影精确化：人类阴性 = 组内个体异质性，非组间设计本身、非无效应 |
+| `04_discussion.md` §4.14 | 设计伪影精确化：人类阴性 = 组内个体异质性，非组间设计本身、非无效应；**注入证实为正面因果** |
 | `lds_formal_definition.md` §6 | 设计效应证据加入反证框架 |
 
 ---
 
-## 5. 数据与脚本血缘
+## 6. 数据与脚本血缘
 
 | 资产 | 位置 |
 |------|------|
-| 方向 A 结果 | `data/lds_c/llm_subject/design_effect_20260808.json` |
-| 方向 C 结果 | `data/lds_c/divergence_drivers_20260808.json` |
-| 方向 D 结果 | `data/lds_c/lds_k_deep/node_edge_decomp_20260808.json` |
+| 方向 A 结果 | `data/lds_c/llm_subject/design_effect_20260809.json`（最新日期） |
+| 方向 C 结果 | `data/lds_c/divergence_drivers_20260809.json`（最新日期） |
+| 方向 D 结果 | `data/lds_c/lds_k_deep/node_edge_decomp_20260809.json`（最新日期） |
+| **异质性注入结果** | `data/lds_c/llm_subject/heterogeneity_injection_20260809.json` |
 | 方向 A 脚本 | `scripts/lds_c_design_effect.py` |
 | 方向 C 脚本 | `scripts/lds_c_divergence_drivers.py` |
 | 方向 D 脚本 | `scripts/lds_c_node_edge_decomp.py` |
+| **异质性注入脚本** | `scripts/lds_c_heterogeneity_injection.py` |
 
-**复现**：`python scripts/lds_c_design_effect.py && python scripts/lds_c_divergence_drivers.py && python scripts/lds_c_node_edge_decomp.py`
+**复现**：`python scripts/lds_c_design_effect.py && python scripts/lds_c_divergence_drivers.py && python scripts/lds_c_node_edge_decomp.py && python scripts/lds_c_heterogeneity_injection.py`

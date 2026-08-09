@@ -222,6 +222,64 @@ def test_hessian_psd_check():
     import numpy as np
     assert is_positive_semidefinite(np.eye(3)) is True
     assert is_positive_semidefinite(np.array([[1.0, 0.0], [0.0, -1.0]])) is False
+
+
+# ── Deep-dive A: heterogeneity injection ────────────────────────────
+def test_inject_dropout_preserves_language():
+    """Dropout must keep the language label and topic structure; q=1.0 no-op."""
+    from lds_c_heterogeneity_injection import inject_dropout
+    import random
+    recs = [
+        {"language": "zh", "topics": [
+            {"topic": "Freiheit", "concepts": [{"en": f"c{i}"} for i in range(6)]}]},
+    ]
+    rng = random.Random(1)
+    out = inject_dropout(recs, q=1.0, rng=rng)
+    assert out[0]["language"] == "zh"
+    assert len(out[0]["topics"]) == 1
+    assert len(out[0]["topics"][0]["concepts"]) == 6  # q=1 keeps all
+    # q=0.0 would drop all -> but the guard keeps 1 concept (never empty)
+    rng2 = random.Random(2)
+    out0 = inject_dropout(recs, q=0.0, rng=rng2)
+    assert 1 <= len(out0[0]["topics"][0]["concepts"]) <= 6
+
+
+def test_between_subject_stats_margin():
+    """With heterogeneous language-specific data, margin should be positive;
+    with identical concepts across languages, margin near zero."""
+    from lds_c_heterogeneity_injection import between_subject_stats
+    import random
+
+    # language-specific concepts => clear signal
+    recs = []
+    for lang, tag in [("zh", "zh"), ("de", "de")]:
+        for i in range(8):
+            recs.append({"language": lang, "topics": [
+                {"topic": "Freiheit", "concepts": [{"en": f"{tag} concept {j}"} for j in range(5)]}]})
+    rng = random.Random(1)
+    s = between_subject_stats(recs, N=6, n_iter=50, rng=rng)
+    assert "ZH-DE" in s
+    assert s["ZH-DE"]["signal_margin"] > 0.0
+
+    # identical concepts across languages => no signal
+    recs2 = []
+    for lang in ["zh", "de"]:
+        for i in range(8):
+            recs2.append({"language": lang, "topics": [
+                {"topic": "Freiheit", "concepts": [{"en": "shared concept"}]}]})
+    rng2 = random.Random(2)
+    s2 = between_subject_stats(recs2, N=6, n_iter=50, rng=rng2)
+    assert abs(s2["ZH-DE"]["signal_margin"]) < 0.1
+
+
+def test_mean_pairwise_overlap():
+    from lds_c_heterogeneity_injection import mean_pairwise_overlap
+    # identical sets => overlap 1.0
+    assert mean_pairwise_overlap([{"a", "b"}, {"a", "b"}]) == 1.0
+    # disjoint => 0.0
+    assert mean_pairwise_overlap([{"a"}, {"b"}]) == 0.0
+    # fewer than 2 => None
+    assert mean_pairwise_overlap([{"a"}]) is None
 def test_label_permutation_p_value():
     """Permutation p must be small when labels carry signal, and expose the
     observed value is compared against the null (audit M2)."""
