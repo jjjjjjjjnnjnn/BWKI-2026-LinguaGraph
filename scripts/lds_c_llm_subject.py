@@ -122,16 +122,29 @@ ASSOC_PROMPT = (
 )
 
 
-def load_env_key() -> str:
+def _env_get(name: str) -> str:
     env_path = PROJECT_ROOT / ".env"
     if env_path.exists():
         for line in env_path.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line and "=" in line and not line.startswith("#"):
                 k, v = line.split("=", 1)
-                if k.strip() == "OPENAI_API_KEY":
+                if k.strip() == name:
                     return v.strip()
-    return os.environ.get("OPENAI_API_KEY", "")
+    return os.environ.get(name, "")
+
+
+def load_env_key() -> str:
+    """Key for the classic paid gateway (zen/go)."""
+    return _env_get("OPENAI_API_KEY")
+
+
+def load_key_for_url(url: str) -> str:
+    """Pick the API key by gateway: OpenRouter uses OPENROUTER_API_KEY,
+    everything else (opencode zen) uses OPENAI_API_KEY."""
+    if "openrouter" in url.lower():
+        return _env_get("OPENROUTER_API_KEY")
+    return _env_get("OPENAI_API_KEY")
 
 
 def _parse_json(raw: str) -> Optional[dict]:
@@ -428,9 +441,9 @@ def main() -> None:
     do_p1, do_p2, do_p3, do_p5 = ("P1" in probes, "P2" in probes,
                                   "P3" in probes, "P5" in probes)
 
-    key = load_env_key()
+    key = load_key_for_url(API_URL)
     if not key:
-        print("ERROR: OPENAI_API_KEY not found in .env")
+        print("ERROR: API key not found in .env for this gateway")
         sys.exit(1)
 
     plan = build_plan(do_p1, do_p2, do_p3, do_p5, args.k)
