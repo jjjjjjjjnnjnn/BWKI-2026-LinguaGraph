@@ -309,3 +309,95 @@ def test_label_permutation_p_value():
     perm2 = label_permutation_null(recs2, n_iter=100, observed=observed2)
     p2 = perm2["ZH-DE"]["perm_p_two_sided"]
     assert p2 is not None and p2 > 0.05
+
+
+# ── Multi-model replication harness (2026-08-09) ────────────────────
+def _synth_units(model_seed: int, n_zh: int = 8, n_de: int = 8) -> list:
+    """Synthetic subject units: a 'model' with language-specific concepts.
+    Concepts in the same language are shared across samples (low within-lang
+    noise); the two languages differ (signal). Deterministic per seed."""
+    zh_concepts = [{"concept": f"zh-{model_seed}-{i}", "en": f"zh-c{i}", "importance": 1.0}
+                   for i in range(6)]
+    de_concepts = [{"concept": f"de-{model_seed}-{i}", "en": f"de-c{i}", "importance": 1.0}
+                   for i in range(6)]
+    units = []
+    for s in range(n_zh):
+        units.append({"unit_id": f"P1_zh_s{s:02d}", "probe": "P1", "language": "zh",
+                      "concepts": {"Freiheit": zh_concepts}})
+    for s in range(n_de):
+        units.append({"unit_id": f"P1_de_s{s:02d}", "probe": "P1", "language": "de",
+                      "concepts": {"Freiheit": de_concepts}})
+    return units
+
+
+def test_harness_imports_and_jaccard():
+    from lds_c_multi_model import jaccard
+    assert jaccard(["a", "b"], ["b", "c"]) == pytest.approx(1 / 3)
+    assert jaccard(["a"], ["a"]) == 1.0
+    assert jaccard([], []) == 1.0
+    assert jaccard([], ["a"]) == 0.0
+
+
+def test_direction_consistency_finds_shared_direction():
+    """If 3 independent 'models' all mark the same concept as zh-only in
+    ZH-DE, direction_consistency must report it consistent (>=3)."""
+    from lds_c_multi_model import direction_consistency
+
+    # Build 3 models where 'zh-signal' appears ONLY in zh and 'de-signal'
+    # ONLY in de, for topic Freiheit.
+    def build(with_zh_only: bool, with_de_only: bool) -> dict:
+        zh_c = [{"concept": "a", "en": "shared", "importance": 1.0},
+                {"concept": "b", "en": "zh-signal", "importance": 1.0}] if with_zh_only \
+            else [{"concept": "a", "en": "shared", "importance": 1.0}]
+        de_c = [{"concept": "a", "en": "shared", "importance": 1.0},
+                {"concept": "c", "en": "de-signal", "importance": 1.0}] if with_de_only \
+            else [{"concept": "a", "en": "shared", "importance": 1.0}]
+        units = []
+        for s in range(6):
+            units.append({"unit_id": f"P1_zh_s{s}", "probe": "P1", "language": "zh",
+                          "concepts": {"Freiheit": zh_c}})
+            units.append({"unit_id": f"P1_de_s{s}", "probe": "P1", "language": "de",
+                          "concepts": {"Freiheit": de_c}})
+            units.append({"unit_id": f"P1_en_s{s}", "probe": "P1", "language": "en",
+                          "concepts": {"Freiheit": [{"concept": "a", "en": "shared",
+                                                     "importance": 1.0}]}})
+        return {"units": units}
+
+    models = {f"m{i}": build(True, True) for i in range(3)}
+    dc = direction_consistency(models, min_models=3)
+    assert dc["n_consistent_total"] >= 2
+    # canonical_key reorders tokens alphabetically: "zh-signal" -> "signal zh"
+    assert "Freiheit:signal zh" in dc["zh_only_consistent"]
+    assert "Freiheit:de signal" in dc["de_only_consistent"]
+    assert dc["n_models"] == 3
+
+
+def test_direction_consistency_no_false_positive_when_inconsistent():
+    """If models disagree on direction, no concept should be reported consistent."""
+    from lds_c_multi_model import direction_consistency
+
+    def build(side: str) -> dict:
+        zh_c = [{"concept": "a", "en": "shared", "importance": 1.0}]
+        de_c = [{"concept": "a", "en": "shared", "importance": 1.0}]
+        # put 'contested' on opposite sides in different models
+        if side == "zh":
+            zh_c.append({"concept": "b", "en": "contested", "importance": 1.0})
+        else:
+            de_c.append({"concept": "b", "en": "contested", "importance": 1.0})
+        units = []
+        for s in range(6):
+            units.append({"unit_id": f"P1_zh_s{s}", "probe": "P1", "language": "zh",
+                          "concepts": {"Freiheit": zh_c}})
+            units.append({"unit_id": f"P1_de_s{s}", "probe": "P1", "language": "de",
+                          "concepts": {"Freiheit": de_c}})
+            units.append({"unit_id": f"P1_en_s{s}", "probe": "P1", "language": "en",
+                          "concepts": {"Freiheit": [{"concept": "a", "en": "shared",
+                                                     "importance": 1.0}]}})
+        return {"units": units}
+
+    models = {"m1": build("zh"), "m2": build("de"), "m3": build("de")}
+    dc = direction_consistency(models, min_models=3)
+    # 2/3 say de-only < 3 => contested must NOT be reported consistent.
+    # canonical_key("contested") -> "contest".
+    assert "Freiheit:contest" not in dc["de_only_consistent"]
+    assert "Freiheit:contest" not in dc["zh_only_consistent"]

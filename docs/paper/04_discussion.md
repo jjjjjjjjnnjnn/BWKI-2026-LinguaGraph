@@ -210,3 +210,22 @@ Das LLM-as-Subject-Experiment (§5) liefert den methodologischen Schlüssel zur 
 4. **Präzisierung des Design-Artefakts (Design-Effekt-Beweis, §5.9.1–5.9.2)**: Der Vergleich auf identischem Messrahmen zeigt eine **gleiche Signalamplitude** bei Mensch und LLM (LDS-C jeweils 0.93–0.96); die menschliche Null ist **nicht** auf "keine Sprachwirkung" und **nicht** auf "Between-Subject-Design an sich" zurückzuführen (eine virtuelle Between-Subject-Analyse der LLM-Daten bei menschlicher N überlebt das Signal). Entscheidend ist die **individuelle Heterogenität innerhalb einer Sprachgruppe**: Sie hebt die Bodenlinie (0.92–0.96) auf das Signalniveau. Eine **direkte Kausalprüfung** (§5.9.2b, Heterogenitäts-Injektion) bestätigt dies: injiziert man die menschliche Aggregationssparsität in die LLM-Stichproben, kollabiert die Signal-Marge von +0.071 auf +0.014 — praktisch identisch mit der menschlichen +0.015. Damit ist die heterogenitätsbedingte Natur der menschlichen Null nicht nur eine Exklusions-, sondern eine **positive Kausalaussage**. Dies hat eine direkte Designimplikation — Between-Subject-Studien zum Sprachrelativismus benötigen entweder ausreichende N pro Gruppe, um die Heterogenität zu schlagen, oder ein Within-Subject-Design, das die Varianzquelle eliminiert.
 
 5. **Strukturelle vs. lexikalische Divergenz (Knoten/Kanten, §5.9.4)**: Die soziale/institutionelle Umkehr ist **knotengetrieben** (Konzeptwahl), der Kantenbeitrag in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert im *Was* (Konzepte), nicht im *Wie* (Beziehungen) — die relationale Organisation bleibt über alle Quellen systemisch divergent. Dies trennt den Mechanismus "Konzeptwahl" von "Beziehungsstruktur" und stützt die M2-Dominanz (§5.6) auf der Korpusseite: die Divergenz entsteht primär auf der assoziativ-lexikalischen Ebene, nicht auf der relationalen.
+
+### 4.15 Modellübergreifende Replikation: Die Divergenz ist eine allgemeine Eigenschaft mehrsprachiger LLMs
+
+Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung auf ein einzelnes Modell (deepseek-v4-flash). Eine Replikation des identischen P1-Protokolls (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) auf drei weiteren, unabhängig entwickelten Modellen — deepseek-v4-pro (gleiche Familie), glm-5.2 (Zhipu) und kimi-k2.6 (Moonshot) — schließt diese Lücke:
+
+| Modell | Anbieter | Marge ZH-DE (LDS-C − Boden) | Permutation p |
+|--------|----------|:---:|:---:|
+| deepseek-v4-flash | DeepSeek | +0.083 | <0.01 |
+| deepseek-v4-pro | DeepSeek | +0.075 | <0.01 |
+| glm-5.2 | Zhipu | +0.155 | <0.01 |
+| kimi-k2.6 | Moonshot | +0.135 | <0.01 |
+
+**Befund 1 — Signale replizieren (4/4)**: Alle vier Modelle zeigen LDS-C deutlich über dem jeweiligen Within-Language-Boden, alle 12 Sprachpaare p<0.01. Die sprachübergreifende Wertedivergenz ist demnach **kein Einzelmodell-Artefakt**, sondern eine messbare Eigenschaft mehrsprachiger LLMs unterschiedlicher Anbieter.
+
+**Befund 2 — Divergenzmagnitude variiert modellabhängig**: glm-5.2 und kimi-k2.6 zeigen etwa die doppelte Marge (+0.135 bis +0.158) gegenüber der DeepSeek-Familie (+0.065 bis +0.084). Für die Anwendung als KI-Validierungswerkzeug bedeutet dies eine **Rangordnung der sprachübergreifenden Drift-Sensitivität** über Modelle — ein operativer Output des Divergenzberichts.
+
+**Befund 3 — Die Kulturrichtung repliziert**: Eine Voten-Analyse über die ZH-DE-Divergenztreiber (≥3/4 Modelle markieren dasselbe Konzept als nur-in-DE bzw. nur-in-ZH) identifiziert **47 richtungskonsistente Konzepte**, davon 12 in allen vier Modellen einhellig: DE-seitig Autonomie/Regeln/Ziel (equal opportunity, freedom limit, decision, goal own, arbitrariness, safety, development personal), ZH-seitig Beziehung/Anspruch/Harmonie (deserved treatment, the weak, discipline self, indulgence, growth). Die in §5.8 berichtete Richtungstendenz (DE autonom, ZH raum-/anspruchsbezogen) ist damit **über unabhängige Anbieter robust** — sie reflektiert die Struktur mehrsprachiger Trainingsdaten, nicht eine Modelleigenheit.
+
+**Ehrliche Abgrenzung**: Die Replikation umfasst ausschließlich über den verwendeten API-Gateway erreichbare Modelle (Anbieter mit Sitz in China); westliche Referenzmodelle (gpt-5.6-luna, grok-4.5) waren über diesen Zugang nicht ansprechbar (HTTP 403/503). Eine Ausweitung auf weitere Modellfamilien und eine Schwellenwertdefinition für "kritische" Divergenz bleibt Aufgabe zukünftiger Arbeit.

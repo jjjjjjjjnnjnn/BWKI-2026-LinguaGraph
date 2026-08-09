@@ -118,10 +118,52 @@ def analyze_model(model: str, units: List[dict], path: Path) -> dict:
         "n_per_language": counts,
         "by_pair": by_pair,
         "drivers_zh_de_top": drivers_zh_de[:TOP_DRIVERS],
+        "drivers_zh_de_n": len(drivers_zh_de),
         "drivers_zh_de_direction": {
             "de_only": sum(1 for d in drivers_zh_de if d.get("lang") == "de"),
             "zh_only": sum(1 for d in drivers_zh_de if d.get("lang") == "zh"),
         },
+    }
+
+
+def direction_consistency(models: Dict[str, dict], min_models: int = 3) -> dict:
+    """Cross-model agreement on the ZH-DE divergence DIRECTION.
+
+    For every ZH-DE driver concept, count how many models mark it DE-only vs
+    ZH-only. A concept is "direction-consistent" if >= min_models agree on the
+    same side. The top-10 Jaccard is too strict (frequency rank varies by model);
+    this vote-based measure captures that the DIRECTION of specific recurring
+    concepts is stable across independent providers.
+    """
+    from collections import Counter, defaultdict
+
+    de_votes: Dict[tuple, Counter] = defaultdict(Counter)
+    zh_votes: Dict[tuple, Counter] = defaultdict(Counter)
+    for model, info in models.items():
+        recs = p1_records(info["units"])
+        if any(lang_counts(recs).get(l, 0) < MIN_UNITS_PER_LANG for l in ("zh", "de", "en")):
+            continue
+        freqs = concept_freqs(recs)
+        for d in concept_drivers(freqs, "zh", "de"):
+            key = (d["topic"], d["key"])
+            if d.get("lang") == "de":
+                de_votes[key][model] += 1
+            elif d.get("lang") == "zh":
+                zh_votes[key][model] += 1
+    consistent_de = {f"{t}:{k}": len(ms) for (t, k), ms in de_votes.items() if len(ms) >= min_models}
+    consistent_zh = {f"{t}:{k}": len(ms) for (t, k), ms in zh_votes.items() if len(ms) >= min_models}
+    return {
+        "min_models": min_models,
+        "n_models": len(models),
+        "de_only_consistent": dict(sorted(consistent_de.items(), key=lambda x: -x[1])),
+        "zh_only_consistent": dict(sorted(consistent_zh.items(), key=lambda x: -x[1])),
+        "n_consistent_total": len(consistent_de) + len(consistent_zh),
+        "readme": (
+            "concepts where >=min_models independently mark the SAME direction "
+            "(DE-only or ZH-only) in the ZH-DE divergence. High agreement => the "
+            "cultural direction (DE autonomy/rules, ZH relational/space) is a "
+            "robust property across providers, not a single-model artifact."
+        ),
     }
 
 
@@ -180,6 +222,8 @@ def main() -> None:
             "n_model_drivers": len(mkeys),
         }
 
+    comparison["direction_consistency"] = direction_consistency(models)
+
     out = {
         "generated_at": datetime.now().isoformat(),
         "design": "multi_model_replication_P1",
@@ -212,6 +256,15 @@ def main() -> None:
         print("=== ZH-DE driver consistency vs baseline ===\n")
         for model, d in comparison["driver_consistency_vs_baseline"].items():
             print(f"  {model:<18} {d}")
+
+    dc = comparison.get("direction_consistency", {})
+    n_models = dc.get("n_models", "?")
+    print(f"\n=== ZH-DE direction consistency (>= {dc.get('min_models','?')}/{n_models} models) ===\n")
+    print(f"  {dc.get('n_consistent_total', 0)} concepts with consistent direction")
+    de_c = list(dc.get("de_only_consistent", {}))[:6]
+    zh_c = list(dc.get("zh_only_consistent", {}))[:6]
+    print(f"  DE-only examples: {de_c}")
+    print(f"  ZH-only examples: {zh_c}")
 
     print("\n=== ZH-DE top-5 drivers per model (cultural pattern) ===\n")
     for model, r in results.items():
