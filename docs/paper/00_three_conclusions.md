@@ -64,11 +64,15 @@
 
 ---
 
-## Einheitliche Narration (30-Sekunden-Pitch)
+## Einheitliche Narration (30-Sekunden-Pitch, AI-Audit-Framing)
 
-> **Mathematik, Physik und Chemie folgen unterschiedlichen Dichtetrajektorien, respektieren eine universelle Tiefengrenze und zeigen — kontraintuitiv — bemerkenswerte strukturelle Konvergenz über Sprachen hinweg auf Lehrbuchebene. Auf menschlicher Ebene (N=15) ist in einem Between-Subject-Design kein separierbares Sprachsignal nachweisbar — die Divergenz liegt auf dem Teilnehmervariabilitäts-Boden. Ein LLM-as-Subject-Experiment (Within-Subject) weist das Sprachsignal dagegen klar nach: Sprachcode dominiert, kultureller Rahmen ist sekundärer Modulator. Damit ist der Human-Negativebefund als Design-Artefakt klassifiziert, nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte. LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.**
+> **Mehrsprachige KI-Systeme werden überwiegend mit englischen Daten trainiert — ob sie wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) sprachübergreifend konsistent verstehen, ist ein blinder Fleck gängiger KI-Evaluation. LinguaGraph macht dieses Modellverhalten prüfbar: Das LLM-as-Subject-Experiment (Within-Subject) weist ein statistisch signifikantes, kulturell gemustertes Sprachsignal nach (LDS-C 0.93–0.96 ≫ Boden 0.85–0.87, Permutationstest p<0.01; DE: Autonomie/Regeln, ZH: Raum/Anspruch). Der Domänen-Kontrollbefund (institutionelles Wissen konvergiert, kulturelle Konzepte divergieren) belegt, dass das Signal kultureller Natur ist, nicht methodisch bedingt. Der Output ist ein interpretierbarer Divergenzbericht pro Modell und Sprachpaar — für Entwickler (Vorabprüfung), Regulierer (Transparenz gemäß EU AI Act) und Forscher (kulturelle Werte in KI).**
 
-> LinguaGraph macht diese unsichtbaren Strukturmuster sichtbar, messbar und vergleichbar über 3 Disziplinen, 3 Sprachen und 4 Bildungssysteme hinweg.
+> LinguaGraph macht unsichtbare sprachliche Strukturmuster in KI-Systemen sichtbar, messbar und vergleichbar.
+
+## Akademische Version (für Begutachtungsunterlagen)
+
+> **Mathematik, Physik und Chemie folgen unterschiedlichen Dichtetrajektorien, respektieren eine universelle Tiefengrenze und zeigen — kontraintuitiv — bemerkenswerte strukturelle Konvergenz über Sprachen hinweg auf Lehrbuchebene. Auf menschlicher Ebene (N=15) ist in einem Between-Subject-Design kein separierbares Sprachsignal nachweisbar. Ein LLM-as-Subject-Experiment (Within-Subject) weist das Sprachsignal dagegen klar nach: Sprachcode dominiert, kultureller Rahmen ist sekundärer Modulator. Damit ist der Human-Negativebefund als Design-Artefakt klassifiziert, nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte.**
 
 ## Theorie → Evidenz-Kette
 

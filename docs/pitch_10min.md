@@ -1,5 +1,7 @@
 # LinguaGraph — 10-Minute Presentation
 
+> ⚠️ **LEGACY / SUPERSEDED (2026-08-09)**: 本份是旧"教材课程分析"框架的深讲版本。当前提交叙事已改为 **AI 价值观一致性审计**框架——见 `docs/pitch_3min.md`（当前 3 分钟版）+ `docs/video_script.md`（视频 v2）。本份的教材内容保留价值：作为新叙事的 **领域对照控制证据**（制度知识趋同 vs 文化概念分歧）。决赛深讲 deck 将基于新框架重建。
+>
 > For conference talks, jury presentations, or deep-dive sessions
 
 ---

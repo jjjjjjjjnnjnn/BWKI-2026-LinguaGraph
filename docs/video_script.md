@@ -1,116 +1,110 @@
-# LinguaGraph BWKI Demo Video Script
+# LinguaGraph — BWKI Video Pitch Script (v2, AI-Audit-Framing)
 
-**Duration:** 3-5 minutes
+**Duration:** ~3 Minuten (BWKI-Vorgabe: 2–4 Minuten)
 **Format:** Screen recording + narration
-**Language:** German (BWKI requirement)
+**Language:** German (narration) + English (subtitles)
+**Stand:** 2026-08-09 | ersetzt v1 (Textbuch-Rahmen, überholt)
+
+> **Narrativer Kern (v2):** LinguaGraph ist ein **Audit-Werkzeug für mehrsprachige KI**: Es misst, ob ein KI-Modell abstrakte, wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) in verschiedenen Sprachen konsistent versteht — und lokalisiert, welche Konzept-Bestandteile genau divergieren. Das LLM selbst ist der vermessene Proband (LLM-as-Subject, Within-Subject-Design).
 
 ---
 
-## 0:00-0:30 — Personal Story (Personalismo)
+## 0:00–0:25 — Hook: Dasselbe Wort, verschiedene Karte (直观钩子)
 
-**Visual:** Student sitting at desk, bilingual books visible
+**Visual:** Side-by-side zwei Konzeptgraphen für dasselbe Wort — links „Freiheit" (DE), rechts „自由" (ZH). Verschiedene Hub-Konzepte werden hervorgehoben.
 
 **Narration (DE):**
-"Ich bin chinesischer Schüler in Deutschland. Jeden Tag erlebe ich, wie meine beiden Sprachen — Chinesisch und Deutsch — mein Denken beeinflussen. Wenn ich auf Chinesisch über 'Erfolg' nachdenke, denke ich an 'Familie' und 'Anstrengung'. Wenn ich auf Deutsch darüber nachdenke, denke ich an 'Leistung' und 'Karriere'. Das hat mich gefragt: Verändert Sprache tatsächlich unsere kognitive Struktur?"
+„Fragen wir ein deutsches KI-Modell: Was gehört zur Freiheit? Es antwortet: Autonomie, Regeln, eigene Ziele. Fragen wir dasselbe Modell auf Chinesisch nach 自由: Es antwortet mit Raum, Grenzen, dem, was einem zusteht. Dasselbe Wort — aber eine andere kognitive Landkarte. Genau solche Unterschiede macht LinguaGraph messbar."
 
 **Narration (EN subtitle):**
-"I am a Chinese student in Germany. Every day I experience how my two languages — Chinese and German — influence my thinking. When I think about 'success' in Chinese, I think of 'family' and 'effort'. When I think in German, I think of 'performance' and 'career'. This made me ask: Does language actually change our cognitive structure?"
+"Ask a German AI model: what belongs to freedom? It answers: autonomy, rules, one's own goals. Ask the same model in Chinese: it answers with space, boundaries, what one deserves. The same word — but a different cognitive map. LinguaGraph makes exactly such differences measurable."
 
 ---
 
-## 0:30-1:00 — Research Question
+## 0:25–0:55 — Problem: Der blinde Fleck der mehrsprachigen KI (问题)
 
-**Visual:** Animated text: "Does language shape how we think?"
+**Visual:** Weltkarte mit Sprachfiltern; eine „Lücke" im englisch dominierten Trainingskorpus; Schlagwort „EU AI Act".
 
 **Narration (DE):**
-"Mein Forschungsprojekt LinguaGraph untersucht genau diese Frage. Wir verwenden KI, um kognitive Landkarten in drei Sprachen zu erstellen — Chinesisch, Englisch und Deutsch — und messen die strukturellen Unterschiede mit einem neuen Metric: der Linguistic Divergence Score (LDS)."
+„KI-Systeme werden heute für Milliarden von Menschen in Dutzenden Sprachen bereitgestellt. Aber sie sind überwiegend mit englischen Daten trainiert. Versteht ein Modell ‚Gerechtigkeit' in einem Kreditentscheidungs-System auf Deutsch und Chinesisch gleich? Wenn nicht, erhalten Nutzer je nach Sprache unterschiedliche Behandlung. Gängige KI-Evaluation misst aber nur die Aufgabenerfüllung — nicht, ob die Wertkonzepte des Modells sprachübergreifend konsistent sind. Das ist ein blinder Fleck."
 
 **Narration (EN subtitle):**
-"My research project LinguaGraph investigates exactly this question. We use AI to create cognitive maps in three languages — Chinese, English, and German — and measure structural differences with a new metric: the Linguistic Divergence Score (LDS)."
+"AI systems are deployed to billions of people in dozens of languages, but they are trained mostly on English data. Does a model understand 'justice' in a loan-decision system the same way in German and Chinese? If not, users get inconsistent treatment depending on language. But standard AI evaluation measures task performance — not whether the model's value concepts are consistent across languages. That is a blind spot."
 
 ---
 
-## 1:00-2:00 — Method + Demo
+## 0:55–1:40 — Methode: Das LLM als kontrollierter Proband (方法)
 
-**Visual:** Cognitive City 3D visualization running
+**Visual:** Drei Panel: dasselbe Modell-Icon antwortet auf DE / ZH / EN zu denselben 5 Themen; Konzeptgraphen werden extrahiert; LDS-Gleichung (1 − mean(J_node, J_edge)).
 
 **Narration (DE):**
-"Sehen Sie sich diese drei Städte an. Jede Stadt repräsentiert eine Sprache. Die Gebäude sind Konzepte — je höher, desto zentraler. Die Straßen sind Beziehungen zwischen Konzepten. Die Brücken verbinden äquivalente Konzepte über Sprachgrenzen hinweg.
+„Wie misst man etwas Unsichtbares wie die Konzeptstruktur eines Modells? Kernidee: Man fragt die KI selbst. Wir machen das LLM zum kontrollierten Versuchsprobanden: Dasselbe Modell, dieselben fünf Themen — Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg — nur die Sprache ändert sich. Weil es dasselbe Modell ist, ist Sprache die einzige Variable.
 
-Wenn wir 'Erfolg' betrachten:
-- Die chinesische Stadt betont 'Anstrengung' und 'Familie'
-- Die englische Stadt betont 'Achievement' und 'Opportunity'  
-- Die deutsche Stadt betont 'Leistung' und 'Karriere'
+Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue Metrik, der Linguistic Divergence Score (LDS), misst die strukturelle Divergenz — über gemeinsame Konzepte und Relationen. Und wir können nicht nur eine Zahl ausgeben, sondern benennen, welche Konzept-Bestandteile genau divergieren."
 
-Der Linguistic Divergence Score (LDS) misst, wie unterschiedlich diese Strukturen sind. Für Lehrbuchwissen liegen die Werte zwischen 0.52 (ZH-DE) und 0.94 (DE-EN)."
-
-**Visual:** Zoom into each city, highlight different buildings
+**Narration (EN subtitle):**
+"How do you measure something invisible like a model's concept structure? Key idea: ask the AI itself. We turn the LLM into a controlled experimental subject: the same model, the same five topics — justice, freedom, responsibility, home, success — only the language changes. Because it is the same model, language is the only variable. We extract a concept graph per language, and our new metric, the Linguistic Divergence Score (LDS), measures structural divergence — over shared concepts and relations. And we can go beyond a single number: we can name exactly which concept components diverge."
 
 ---
 
-## 2:00-3:00 — Results
+## 1:40–2:25 — Befunde: Sprachsignal ist real und kulturell gemustert (发现)
 
-**Visual:** LDS comparison chart + concept ranking
+**Visual:** LDS-C vs. Split-Half-Boden-Balken (0.93–0.96 vs. 0.85–0.87); Permutationstest p<0.01; Treiberliste DE-Only vs. ZH-Only; Domänen-Asymmetrie-Balken (institutionell 0.44 vs. sozial 0.80).
 
 **Narration (DE):**
-"Meine Analyse von 68 Mathematiklehrbüchern zeigt:
+„Auf einem aktuellen mehrsprachigen Modell ist das Sprachsignal klar und statistisch signifikant — Permutationstest p < 0.01. Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch.
 
-| Sprachpaar | LDS-K |
-|:----------:|:-----:|
-| ZH-EN | 0.934 |
-| DE-EN | 0.938 |
-| ZH-DE | 0.519 |
+Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
-Überraschenderweise konvergieren chinesische und deutsche Lehrbücher (0.519), während ZH-EN und DE-EN nahe dem Rauschniveau liegen. Curriculum-Tradition ist der Haupttreiber, nicht Sprachfamilie."
+**Narration (EN subtitle):**
+"On a state-of-the-art multilingual model, the language signal is clear and statistically significant — permutation test p < 0.01. And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement.
+
+The decisive control finding: institutional knowledge — for instance mathematics — converges across languages. Cultural concepts, by contrast, diverge clearly. Our instrument finds exactly what it should find: convergence where convergence is expected, divergence where divergence is expected. Even the relations between concepts are organized language-specifically."
 
 ---
 
-## 3:00-3:30 — Implications
+## 2:25–2:50 — Anwendung: Ein neues Werkzeug zur KI-Prüfung (应用)
 
-**Visual:** Application scenarios
+**Visual:** Drei Nutzer: Entwickler, Regulierer, Forscher; ein „Divergenzbericht" pro Modell und Sprachpaar.
 
 **Narration (DE):**
-"Die Implikationen sind vielfältig:
-1. Bildung: Zweisprachige Schüler könnten verschiedene kognitive Frameworks nutzen
-2. Internationale Kommunikation: 'Erfolg' bedeutet nicht dasselbe in jeder Kultur
-3. KI-Entwicklung: Sprachmodelle sollten kulturelle Unterschiede berücksichtigen"
+„Damit ist LinguaGraph eine neue Art von KI-Prüfung. Ein Entwickler kann vor dem Einsatz eines mehrsprachigen Modells prüfen: Driftet mein Modell bei wertbeladenen Begriffen zwischen Sprachen — und wo genau? Für Regulierer liefert es Transparenz, wie der EU AI Act sie für den Einsatz von KI verlangt. Der Output ist interpretierbar — kein Black-Box-Score, sondern eine Liste der konkreten Konzept-Bestandteile, die divergieren."
+
+**Narration (EN subtitle):**
+"This makes LinguaGraph a new kind of AI audit. A developer can check a multilingual model before deployment: does my model drift on value-laden terms between languages — and where exactly? For regulators, it provides the transparency that frameworks like the EU AI Act require. The output is interpretable — not a black-box score, but a list of the concrete concept components that diverge."
 
 ---
 
-## 3:30-4:00 — Future Work + Closing
+## 2:50–3:10 — Schluss (收尾)
 
-**Visual:** Questionnaire preview + future roadmap
+**Visual:** „LinguaGraph" + ein Wort: „Sichtbar." + Danke.
 
 **Narration (DE):**
-"Als nächstes führen wir eine experimentelle Studie mit 30 Muttersprachlern durch, um zu validieren, dass unsere KI-Messungen echte kognitive Unterschiede widerspiegeln.
+„LinguaGraph verwandelt eine philosophische Frage — formt Sprache unser Denken? — in eine messbare Ingenieursfrage für die KI-Systeme, von denen wir alle abhängen. Und der erste Befund lautet: Ja, sie driften. Jetzt können wir sehen, wo — und damit ist der erste Schritt zur Korrektur getan."
 
-Mein Ziel ist es zu zeigen: Sprache ist nicht nur ein Werkzeug zum Kommunizieren — sie formt tatsächlich unsere Denkweise."
-
-**Visual:** LinguaGraph logo + "Thank you"
+**Narration (EN subtitle):**
+"LinguaGraph turns a philosophical question — does language shape our thinking? — into a measurable engineering question for the AI systems we all depend on. And the first finding is: yes, they drift. Now we can see where — and that is the first step toward correcting it."
 
 ---
 
 ## Recording Checklist
 
-- [ ] Screen recording of Cognitive City (localhost:8080)
-- [ ] Zoom into each city (ZH/EN/DE)
-- [ ] Show LDS bars updating
-- [ ] Show concept ranking chart
-- [ ] Narration in German (with English subtitles)
-- [ ] Total duration: 3-5 minutes
-- [ ] Export: 1080p, H.264
+- [ ] Side-by-side Konzeptgraphen „Freiheit" (DE) vs „自由" (ZH) mit Hub-Hervorhebung
+- [ ] Weltkarte / Sprach-Split + „EU AI Act"-Einblendung
+- [ ] Drei-Sprachen-Panel: dasselbe Modell → 5 Themen
+- [ ] LDS-Formel (1 − mean(J_node, J_edge)) + Balken LDS-C vs. Boden (0.93–0.96 / 0.85–0.87)
+- [ ] Treiberliste (DE-only vs ZH-only) aus `divergence_drivers_20260809.json`
+- [ ] Domänen-Asymmetrie (institutionell 0.44 vs sozial 0.80)
+- [ ] Divergenzbericht-Mockup (Entwickler/Regulierer/Forscher)
+- [ ] Deutsche Narration + englische Untertitel
+- [ ] Total: ~3 Min (Vorgabe 2–4) · Export 1080p, H.264
 
-## Technical Setup
+## Fakten-Check für die Aufnahme
 
-```bash
-# Start visualization
-cd C:\Users\rongj\Desktop\linguagraph
-python -m http.server 8080 --directory visualization
-
-# Open browser
-# http://localhost:8080
-
-# Record with OBS or similar
-# Window capture: Chrome/Firefox
-# Audio: Microphone for narration
-```
+| Behauptung | Quelle |
+|------------|--------|
+| LDS-C 0.93–0.96, Boden 0.85–0.87 (LLM) | `data/lds_c/llm_subject/design_effect_20260809.json` |
+| Permutationstest p < 0.01 | `03_results.md` §5.2 |
+| DE: Autonomie/Regeln; ZH: Raum/Anspruch | `divergence_drivers_20260809.json` |
+| Institutionell konvergiert (node-only 0.444) vs sozial divergiert (0.800) | `node_edge_decomp_20260809.json` |
+| Ethik: „Korrektur" = Messung+Kalibrierung, nicht Übertreibung | Formulierung im Skript ehrlich gehalten |

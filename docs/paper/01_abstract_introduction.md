@@ -19,6 +19,8 @@ Die Methodik basiert auf zwei komplementären Pipelines:
 
 Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt, die die Wissensexpansion von der Kernmathematik zur Hochschulmathematik sichtbar macht — mit interaktiven Sprachfiltern (ZH/EN/DE).
 
+**Anwendungsszenario — Prüfung mehrsprachiger KI-Systeme**: Da LLMs überwiegend mit englischen Daten trainiert werden, ist bislang unklar, ob ihre Wertkonzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) sprachübergreifend konsistent sind — ein blinder Fleck gängiger KI-Evaluation, die nur Aufgabenerfüllung misst. LinguaGraph macht genau dieses Modellverhalten prüfbar: Das LLM-as-Subject-Experiment (Within-Subject) quantifiziert, **ob und wo** ein mehrsprachiges Modell wertbeladene Konzepte sprachabhängig strukturiert, und benennt die konkret divergierenden Konzept-Bestandteile. Der Output ist ein interpretierbarer Divergenzbericht pro Modell und Sprachpaar.
+
 **Zentrale Beiträge**:
 - Linguistic Divergence Score (LDS) als neuartige Metrik für sprachübergreifende Strukturanalyse — inklusive **LDS-K (Wissen)** , **LDS-C (Kognition)** und **ΔLDS = LDS-C − LDS-K**
 - **Null Model Suite**: Falsifikation der Annahme, dass LDS-K sprachgetriebene Divergenz misst — tatsächlich dominieren Gradverteilungsstrukturen, und Lehrbuchwissen konvergiert sprachübergreifend
@@ -28,6 +30,7 @@ Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt,
 - Vollständige Pipeline: Textextraktion → Graphkonstruktion → Alignierung → Analyse → Visualisierung
 - **Humanvalidierung**: Erweiterte, QC-geprüfte LDS-C-Analyse an N=15 Probanden (6 DE · 6 ZH · 3 EN) über drei Ebenen (Konzept, Kategorie, Relation) — **ehrliches negatives Ergebnis unter Between-Subject**: LDS-C (0.93–0.96) ist von Teilnehmervariabilität nicht unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94); die früheren N=8-Befunde (0.70–0.75) werden nicht repliziert
 - **LLM-as-Subject (Within-Subject)**: Dasselbe LLM antwortet in ZH/DE/EN auf dieselben 5 Themen → **Sprachsignal ist nachweisbar** (LDS-C 0.93–0.96 ≫ Boden 0.85–0.87); LMM identifiziert den **Sprachcode als dominanten Organisator** (same_lang +0.038, p<0.001; same_frame +0.001, p=0.90); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik
+- **Anwendungsfall — KI-Validierung**: Divergenzbericht pro Modell und Sprachpaar (LDS-C + konkret divergierende Konzeptbestandteile + Domänen-Asymmetrie) — für Entwickler (Vorabprüfung mehrsprachiger Modelle), Regulierer (Transparenz gemäß EU AI Act) und Forscher (kulturelle Werte in KI)
 
 Die Arbeit demonstriert, dass LLM-gestützte Graphanalyse ein vielversprechendes Werkzeug zur Untersuchung sprachlicher Einflüsse auf die Wissensorganisation darstellt — mit Implikationen für die bilinguale Bildung und die KI-Forschung. Eine Null Model Suite falsifiziert die Annahme sprachgetriebener Lehrbuchdivergenz und etabliert ΔLDS als Kernmetrik. Die erweiterte Humanvalidierung (N=15) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen; ein LLM-as-Subject-Experiment (Within-Subject) weist das Sprachsignal dagegen klar nach und klassifiziert den Human-Negativebefund als **Design-Artefakt** — mit dem Sprachcode als dominanter Organisationsebene und dem kulturellen Rahmen als sekundärem, code-internem Modulator.
 
@@ -44,6 +47,8 @@ Diese subjektive Beobachtung wirft eine tiefere Frage auf: **Unterscheiden sich 
 Die *linguistische Relativitätstheorie* (Sapir-Whorf-Hypothese) postuliert genau das: Sprache beeinflusst das Denken. In den letzten zwei Jahrzehnten wurde dies empirisch für Farbwahrnehmung (Winawer et al., 2007), Raumkonzepte (Levinson, 1996) und Zeitwahrnehmung (Boroditsky, 2001) belegt. Doch für **abstrakte, komplexe Wissensdomänen** wie Mathematik blieb diese Frage weitgehend unerforscht.
 
 Hier setzt LinguaGraph an.
+
+Die Relevanz dieser Frage reicht heute über die Sprachwissenschaft hinaus: Moderne KI-Systeme werden in Dutzenden Sprachen eingesetzt, aber überwiegend mit englischen Daten trainiert. Wenn ein Modell „Gerechtigkeit" in einem Kreditentscheidungs-System sprachabhängig anders strukturiert, erhalten Nutzer je nach Sprache inkonsistente Behandlung. Die Prüfung dieser sprachübergreifenden Konsistenz ist ein offenes Problem der KI-Validierung — gängige Evaluation misst Aufgabenerfüllung, nicht die Konzeptstruktur des Modells. Genau dafür stellt LinguaGraph ein quantitatives Werkzeug bereit.
 
 ### 1.2 Forschungsfrage
 
@@ -68,6 +73,8 @@ Diese Arbeit leistet folgende Beiträge:
 3. **CognitiveSpace** — Eine skalierbare 3D-Visualisierung, die Wissensstrukturen als konzentrische Kugelschalen darstellt. Vier Bildungsstufen (Grundschule bis Universität) sind farblich codiert und interaktiv filterbar nach Sprache.
 
 4. **End-to-End-Pipeline** — Ein vollständiges System von der Lehrbuchtextextraktion über die sprachübergreifende Konzeptalignierung bis zur Graphanalyse und 3D-Visualisierung. Die Pipeline ist reproduzierbar und auf beliebige Wissensdomänen übertragbar.
+
+5. **KI-Validierungsinstrument** — Anwendung des Frameworks als Audit-Werkzeug für mehrsprachige KI: Quantifizierung, ob und wo ein Modell wertbeladene Konzepte sprachabhängig strukturiert, mit interpretierbarem Divergenzbericht (LDS-C, divergierende Konzeptbestandteile, Domänen-Asymmetrie) für Entwickler, Regulierer und Forscher.
 
 ### 1.4 Gliederung
 

@@ -1,5 +1,7 @@
 # LinguaGraph — BWKI Demo Script (5 分钟)
 
+> ⚠️ **LEGACY / SUPERSEDED (2026-08-09)**: 本份是旧"Cognitive City / 教材"框架的答辩脚本。当前提交叙事已改为 **AI 价值观一致性审计**框架——见 `docs/video_script.md`（视频 v2，当前提交用）+ `docs/pitch_3min.md`。
+>
 > **目的:** 创意展示 / 决赛答辩口述脚本
 > **时长:** 5 分钟（严格控制）
 > **语言:** 英语为主，括号内为中文提示
