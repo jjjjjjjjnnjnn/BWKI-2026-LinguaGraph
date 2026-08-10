@@ -68,9 +68,9 @@
 
 ## 6. 局限与待办
 
-- **OpenRouter 免费模型（10 个）**：因 `free-models-per-day` 每日配额耗尽，今日仅 0–3 good 单元（gpt-oss/nemotron-550b/gemma/laguna-xs 等，多为西方来源）——空单元已清理，**待每日配额重置后按顺序重试**
-- ling-tiny-free 仅 12/30（zh10+de2，de/en 配额失败）——已清理待重试
-- longcat-2.0-free 采集中
+- **OpenRouter 免费配额不足以完成完整 P1**（实测）：`free-models-per-day` 每日约 50–100 次请求（每日 ~08:30 重置），完整 P1 需 180 次 → 单日连一个模型都完成不了。gpt-oss 两天累计 9 good zh 单元（跨日 resume 约 3–4 天/模型）。**结论**：OpenRouter 免费层适合**跨日累积**或用**付费/credits**跑完整 P1；单日免费无法支撑全量复制。
+- **已清理**：所有 OpenRouter 文件的空单元已清除（保留 good），跨日 resume 逻辑就绪
+- ling-tiny-free 仅 12/30（zh10+de2）——已清理待重试
 - 方向一致性是描述性投票度量，非因果解释
 
 ## 7. 复现
