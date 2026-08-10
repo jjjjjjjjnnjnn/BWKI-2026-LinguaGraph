@@ -19,7 +19,7 @@ Pipeline B (Lehrbuch-Wissensgraph):
 Lehrbuchkorpus → MIMO Extraktion → Alignierung → CognitiveSpace 3D
 ```
 
-Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 574 Konzepte, 3538 Relationen.
+Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 556 Konzepte, 525 Relationen.
 
 ### 2.2 Lehrbuchkorpus (Pipeline B)
 
@@ -67,7 +67,7 @@ Die Roh-Extraktionen durchlaufen einen mehrstufigen Fusionsprozess:
 "极限" → "Grenzwert" (Limit)
 ```
 
-**Step 2 — Deduplizierung**: Konzepte mit identischer ID oder nachgewiesener Synonymie werden fusioniert. Nach der Deduplizierung verbleiben **574 eindeutige Konzepte**.
+**Step 2 — Deduplizierung**: Konzepte mit identischer ID oder nachgewiesener Synonymie werden fusioniert. Nach der Deduplizierung verbleiben **556 eindeutige Konzepte**.
 
 **Step 3 — Relationsextraktion**: Aus den extrahierten Abhängigkeiten wird ein gerichteter Graph konstruiert. Zusätzlich zu den 525 direkt extrahierten Relationen werden ~3000 transitive Inferenzen zur Sicherstellung der Konnektivität hinzugefügt.
 
@@ -89,7 +89,7 @@ Die Alignierung wird durch zwei Strategien erreicht:
 1. **Explizite Abbildung**: Lehrbücher, die dasselbe mathematische Konzept behandeln, werden über Kapitelverweise gemappt (z. B. Stewart Kapitel 2 ↔ Forster Kapitel 4 ↔ Renjiao选修2-2).
 2. **Semantische Inferenz**: Konzepte mit übereinstimmenden Nachbarschaftsbeziehungen im Graphen werden als äquivalent betrachtet.
 
-Ergebnis: **247 von 574 Konzepten (43 %) sind dreisprachig vollständig abgedeckt**, 88 sind nur im Chinesischen vorhanden (15 %), der Rest in zwei von drei Sprachen.
+Ergebnis: **219 von 556 Konzeptgruppen (39 %) sind dreisprachig vollständig abgedeckt**, 88 sind nur im Chinesischen vorhanden (15 %), der Rest in zwei von drei Sprachen.
 
 ### 2.6 CognitiveSpace 3D-Visualisierung
 
@@ -99,10 +99,10 @@ Die Visualisierung erfolgt als **interaktiver 3D-Graph** mittels der Bibliothek 
 
 | Stufe | Konzepte | Radius |
 |-------|----------|--------|
-| Grundschule (小学) | 37 | r = 0–50 |
-| Mittelschule (初中) | 46 | r = 60–120 |
-| Oberstufe (高中) | 193 | r = 140–230 |
-| Universität (大学) | 298 | r = 250–320 |
+| Grundschule (小学) | 26 | r = 0–50 |
+| Mittelschule (初中) | 57 | r = 60–120 |
+| Oberstufe (高中) | 200 | r = 140–230 |
+| Universität (大学) | 273 | r = 250–320 |
 
 **Deterministische Positionierung**: Die Position jedes Knotens wird per deterministischer Hash-Funktion aus seiner ID berechnet:
 

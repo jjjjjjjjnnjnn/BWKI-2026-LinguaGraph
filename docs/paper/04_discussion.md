@@ -171,7 +171,7 @@ ZH-DE (0,519) liegt im Bereich der „partiellen Konvergenz“ — deutlich unte
 
 Mehrere Einschränkungen sollten anerkannt werden:
 
-**Umfang der Daten**. Der Mathematik-Korpus (68 Lehrbücher, 574 Konzepte) ist umfassend. Der Physik-Korpus (366 Konzepte) und der Chemie-Korpus (220 Konzepte) ermöglichen eine disziplinübergreifende Validierung, bleiben aber kleiner. Die Lehrplangraphen decken zwar vier Systeme ab (NRW, UK, US, China), verwenden jedoch unterschiedliche Abgleichsmethoden, die die Vergleichbarkeit beeinträchtigen können.
+**Umfang der Daten**. Der Mathematik-Korpus (68 Lehrbücher, 556 Konzepte) ist umfassend. Der Physik-Korpus (366 Konzepte) und der Chemie-Korpus (220 Konzepte) ermöglichen eine disziplinübergreifende Validierung, bleiben aber kleiner. Die Lehrplangraphen decken zwar vier Systeme ab (NRW, UK, US, China), verwenden jedoch unterschiedliche Abgleichsmethoden, die die Vergleichbarkeit beeinträchtigen können.
 
 **Extraktionsmethodik**. Während unsere Goldstandard-Validierung eine insgesamt hohe Qualität belegt (F1=0,939), wurden die sozialwissenschaftlichen Golddaten mittels halbautomatischen Schlüsselwortabgleichs mit anschließender manueller Überprüfung validiert. Im Goldstandard selbst könnten einige Fehler verbleiben.
 

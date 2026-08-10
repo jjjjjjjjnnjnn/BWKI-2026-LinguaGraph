@@ -15,7 +15,7 @@ Die Methodik basiert auf zwei komplementären Pipelines:
 
 1. **LinguaGraph Pipeline**: Extraktion von Konzepten aus Probandentexten (ZH/DE/EN), Konstruktion kognitiver Graphen und Berechnung des *Linguistic Divergence Score* (LDS) — eines neuartigen metrischen Maßes für strukturelle Divergenz zwischen Sprachen.
 
-2. **CognitiveSpace Pipeline**: Automatisierte Extraktion eines mathematischen Wissensgraphen aus 68 Lehrbüchern (45 CH, 20 EN, 10 DE) mit **574 Konzepten und 3538 Relationen** über vier Bildungsstufen (Grundschule bis Universität). Die sprachübergreifende Alignierung erzielt 247 dreisprachig abgedeckte Konzepte (43 %) bei null strukturellen Konflikten.
+2. **CognitiveSpace Pipeline**: Automatisierte Extraktion eines mathematischen Wissensgraphen aus 68 Lehrbüchern (39 ZH, 18 EN, 11 DE) mit **556 Konzepten und 525 Relationen** über vier Bildungsstufen (Grundschule bis Universität). Die sprachübergreifende Alignierung erzielt 219 dreisprachig abgedeckte Konzeptgruppen (39 %) bei null strukturellen Konflikten.
 
 Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt, die die Wissensexpansion von der Kernmathematik zur Hochschulmathematik sichtbar macht — mit interaktiven Sprachfiltern (ZH/EN/DE).
 
@@ -26,7 +26,7 @@ Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt,
 - **Null Model Suite**: Falsifikation der Annahme, dass LDS-K sprachgetriebene Divergenz misst — tatsächlich dominieren Gradverteilungsstrukturen, und Lehrbuchwissen konvergiert sprachübergreifend
 - Kernbeitrag verschiebt sich zu **ΔLDS** (menschliche Kognition minus Lehrbuchstruktur), der den sprachspezifischen Anteil isoliert — die N=15-Analyse zeigt ΔLDS ≈ 0 unter Between-Subject-Bedingungen und spezifiziert, wann ΔLDS > 0 nachweisbar wäre
 - Erster systematischer Vergleich mathematischer Wissensstrukturen über ZH/EN/DE hinweg (556 Konzepte, 4 Nullmodelle, 19-Modell-Benchmark)
-- CognitiveSpace: skalierbare 3D-Visualisierung mit 574 Konzepten aus 68 Lehrbüchern
+- CognitiveSpace: skalierbare 3D-Visualisierung mit 556 Konzepten aus 68 Lehrbüchern
 - Vollständige Pipeline: Textextraktion → Graphkonstruktion → Alignierung → Analyse → Visualisierung
 - **Humanvalidierung**: Erweiterte, QC-geprüfte LDS-C-Analyse an N=15 Probanden (6 DE · 6 ZH · 3 EN) über drei Ebenen (Konzept, Kategorie, Relation) — **ehrliches negatives Ergebnis unter Between-Subject**: LDS-C (0.93–0.96) ist von Teilnehmervariabilität nicht unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94); die früheren N=8-Befunde (0.70–0.75) werden nicht repliziert
 - **LLM-as-Subject (Within-Subject)**: Dasselbe LLM antwortet in ZH/DE/EN auf dieselben 5 Themen → **Sprachsignal ist nachweisbar** (LDS-C 0.93–0.96 ≫ Boden 0.85–0.87); LMM identifiziert den **Sprachcode als dominanten Organisator** (same_lang +0.038, p<0.001; same_frame +0.001, p=0.90); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik; eine **modellübergreifende Replikation** (47 eindeutige Modelle, überwiegend chinesische Anbieter plus ein US-Modell) zeigt: alle 51 ZH-DE-Sprachpaare signifikant (p<0.05), aber 8/153 Sprachpaaren (alle englisch-bezogen) nicht; die Kulturrichtung (DE Autonomie/Regeln vs. ZH Raum/Anspruch) übersteigt ein frequenz-angepasstes Zufalls-Nullmodell bei allen Schwellen (p<0.001), am stärksten bei hoher Übereinstimmung (204 Konzepte mit ≥10 Stimmen vs. 129 zufällig erwartet)
@@ -68,7 +68,7 @@ Diese Arbeit leistet folgende Beiträge:
 
 1. **Linguistic Divergence Score (LDS)** — Eine neuartige graphentheoretische Metrik, die die strukturelle Divergenz zwischen sprachspezifischen Wissensgraphen quantifiziert. LDS = 1 — GraphSimilarity, wobei Ähnlichkeit über gemeinsame Konzepte und Relationen gemessen wird.
 
-2. **Erster systematischer Vergleich mathematischer Wissensstrukturen** über ZH/EN/DE hinweg — basierend auf 68 Lehrbüchern, 574 extrahierten Konzepten und 3538 Relationen.
+2. **Erster systematischer Vergleich mathematischer Wissensstrukturen** über ZH/EN/DE hinweg — basierend auf 68 Lehrbüchern, 556 extrahierten Konzepten und 525 Relationen.
 
 3. **CognitiveSpace** — Eine skalierbare 3D-Visualisierung, die Wissensstrukturen als konzentrische Kugelschalen darstellt. Vier Bildungsstufen (Grundschule bis Universität) sind farblich codiert und interaktiv filterbar nach Sprache.
 

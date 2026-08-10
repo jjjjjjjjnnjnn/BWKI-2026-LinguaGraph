@@ -13,9 +13,9 @@ Die Extraktion und Fusion der 68 Lehrbücher ergibt einen Wissensgraphen mit fol
 
 | Metrik | Wert |
 |--------|------|
-| Gesamtkonzepte | 574 (557 eindeutig + 17 alignierte Gruppen) |
-| Gesamtrelationen | 3538 (525 direkt + ~3000 inferiert) |
-| Lehrbuchquellen | 68 (45 ZH + 20 EN + 10 DE) |
+| Gesamtkonzepte | 556 (eindeutige Konzepte) |
+| Gesamtrelationen | 525 (direkte Relationen) |
+| Lehrbuchquellen | 68 (39 ZH + 18 EN + 11 DE) |
 | Bildungsstufen | 4 (Grundschule → Universität) |
 | Dichte | 0,0015 |
 | Isolierte Knoten | 2 (< 0,5 %) |
@@ -26,10 +26,10 @@ Die Konzepte verteilen sich erwartungsgemäß über die vier Bildungsstufen, wob
 
 | Stufe | Konzepte | Anteil | Charakteristik |
 |-------|----------|--------|----------------|
-| Grundschule | 37 | 6,4 % | Grundlegende Arithmetik, einfache Geometrie |
-| Mittelschule | 46 | 8,0 % | Algebra, Gleichungen, Funktionen |
-| Oberstufe | 193 | 33,6 % | Analysis, Wahrscheinlichkeit, Vektoren |
-| Universität | 298 | 51,9 % | Höhere Analysis, Lineare Algebra, DGLS |
+| Grundschule | 26 | 4,7 % | Grundlegende Arithmetik, einfache Geometrie |
+| Mittelschule | 57 | 10,3 % | Algebra, Gleichungen, Funktionen |
+| Oberstufe | 200 | 36,0 % | Analysis, Wahrscheinlichkeit, Vektoren |
+| Universität | 273 | 49,1 % | Höhere Analysis, Lineare Algebra, DGLS |
 
 Diese Verteilung spiegelt die zunehmende Spezialisierung und den wachsenden Begriffsumfang in höheren Bildungsstufen wider.
 
@@ -39,11 +39,11 @@ Die Alignierung zeigt eine substanzielle dreisprachige Überschneidung:
 
 | Abdeckung | Konzepte | Anteil |
 |-----------|----------|--------|
-| ZH + EN + DE | 247 | 43,0 % |
-| ZH + EN | 342 | 59,6 % |
-| ZH + DE | 331 | 57,7 % |
-| EN + DE | 297 | 51,7 % |
-| Nur ZH | 88 | 15,3 % |
+| ZH + EN + DE (dreisprachige Gruppen) | **219** | 39,4 % |
+| Sprachspezifisch (nicht abgedeckt) | **359** | 64,6 % |
+| — davon nur ZH | 120 | 21,6 % |
+| — davon nur DE | 94 | 16,9 % |
+| — davon nur EN | 145 | 26,1 % |
 | Nur EN | 50 | 8,7 % |
 | Nur DE | 44 | 7,7 % |
 
@@ -53,7 +53,7 @@ Die relativ hohe exklusive ZH-Abdeckung (15,3 %) ist auf die spezifischeren chin
 
 Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
-1. **Konnektivität**: Der Graph ist nahezu vollständig verbunden. Nur 2 von 574 Knoten (<0,5 %) sind isoliert, was auf eine hohe Qualität der Relationsextraktion hindeutet.
+1. **Konnektivität**: Der Graph ist nahezu vollständig verbunden. Nur 2 von 556 Knoten (<0,5 %) sind isoliert, was auf eine hohe Qualität der Relationsextraktion hindeutet.
 
 2. **Hierarchische Struktur**: Grundschulkonzepte haben einen hohen Zentralitätsgrad und dienen als Anker für zahlreiche Oberstufen- und Universitätskonzepte. Dies bestätigt das erwartete "Knowledge Core → Expansion"-Muster.
 
@@ -72,8 +72,8 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 
 ### 3.6 CognitiveSpace-Screenshot
 
-[Abbildung: CognitiveSpace-3D-Visualisierung — 574 Konzepte in konzentrischen Kugelschalen,
-vier farbcodierte Bildungsstufen, sichtbare 3538 Relationen als blaue Verbindungslinien]
+[Abbildung: CognitiveSpace-3D-Visualisierung — 556 Konzepte in konzentrischen Kugelschalen,
+vier farbcodierte Bildungsstufen, sichtbare 525 Relationen als blaue Verbindungslinien]
 
 ### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
 

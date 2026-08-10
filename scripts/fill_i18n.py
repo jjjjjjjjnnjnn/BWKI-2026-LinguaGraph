@@ -399,7 +399,7 @@ if __name__ == "__main__":
 
     # Write updated data back
     new_json = json.dumps(data, ensure_ascii=False, indent=2)
-    new_block = f"// CognitiveSpace — Embedded visualization data\n// 574 concepts, 3538 links\n// 68 textbooks: 45 ZH + 20 EN + 10 DE\nconst COGNITIVE_DATA = {new_json};"
+    new_block = f"// CognitiveSpace — Embedded visualization data\n// 556 concepts, 525 links\n// 68 textbooks: 39 ZH + 18 EN + 11 DE\nconst COGNITIVE_DATA = {new_json};"
 
     data_path.write_text(new_block, encoding="utf-8")
     print(f"\nWritten to: {data_path}")
