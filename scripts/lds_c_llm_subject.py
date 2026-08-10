@@ -466,18 +466,29 @@ def main() -> None:
     out_path = OUT_DIR / (args.out or
                           f"llm_subject_{model_tag}_{datetime.now().strftime('%Y%m%d')}.json")
 
-    # Resume: merge existing units
+    # Resume: merge GOOD units from ALL date files of this model (cross-day
+    # resume — the filename date-rolls daily, so yesterday's good units must be
+    # picked up). Only units with extracted concepts are kept, so previously
+    # empty (e.g. quota-failed) units are retried automatically instead of
+    # being silently skipped.
     done: Dict[str, dict] = {}
-    if out_path.exists():
+    for f in sorted(OUT_DIR.glob(f"llm_subject_{model_tag}_*.json")):
         try:
-            prev = json.loads(out_path.read_text(encoding="utf-8"))
-            for u in prev.get("units", []):
-                if u.get("unit_id"):
-                    done[u["unit_id"]] = u
-            print(f"  Resume: {len(done)} units already done; "
-                  f"{len(prev.get('units', [])) - len(done)} empty will retry")
+            data = json.loads(f.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
-            print("  [WARN] output unreadable, starting fresh")
+            print(f"  [WARN] unreadable {f.name}, skipping")
+            continue
+        for u in data.get("units", []):
+            if not u.get("unit_id"):
+                continue
+            if u.get("probe") == "P3":
+                is_good = bool(u.get("associations"))
+            else:
+                is_good = any(c for c in u.get("concepts", {}).values())
+            if is_good:
+                done[u["unit_id"]] = u
+    print(f"  Resume: {len(done)} good units merged from {model_tag} "
+          f"files (empty units will be retried)")
 
     t0 = time.time()
     consecutive_empty = 0
