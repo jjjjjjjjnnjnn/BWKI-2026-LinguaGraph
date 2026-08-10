@@ -1,0 +1,6431 @@
+{
+ "model": "dashscope:kimi-k2-thinking",
+ "api_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+ "design": "d1_mechanism",
+ "seed": 20260808,
+ "temperature": 0.3,
+ "generated_at": "2026-08-10T14:35:32.594568",
+ "units": [
+  {
+   "unit_id": "P1_zh_s00",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 0,
+   "answers": {
+    "Verantwortung": "我觉得责任和自由就像硬币的两面，看似矛盾实则密不可分。没有责任的自由容易变成放纵，最终反而失去真正的自由；而没有自由的责任只是空洞的义务，缺乏内在动力。真正的自由是在承担责任的过程中实现的——当我们为自己的选择负责时，我们才真正成为自己生命的主人。这种关系不是对立的，而是一种动态平衡，就像风筝和线，线看似束缚，实则是让风筝飞翔的必要条件。",
+    "Heimat": "房子和家最大的区别，我觉得一个是物理空间，一个是情感归属。房子就是四面墙、一个屋顶，可以买卖、出租，但家是你真正感到温暖、放松的地方。有时候租来的小房间也能成为家，而空荡荡的大别墅却可能只是房子。关键看有没有家人的陪伴、生活的气息和归属感。",
+    "Gerechtigkeit": "正义对我来说，首先是公平——让每个人都能得到应有的对待，不因身份、财富或权力而受到差别对待。它意味着保护弱者的声音能被听见，确保他们不会在不公中沉默。正义也是一种内心的道德准则，提醒我在日常生活中做出正确的选择。最后，它不是一个静止的状态，而是需要我们每个人持续关注和实践的理想。",
+    "Freiheit": "我觉得自由的边界在于不能侵犯他人的同等自由。你有表达观点的权利，但不能造谣中伤；你有追求利益的空间，但不能损害公共利益。这个边界由法律、道德和社会共识共同划定，也会随着时代变化而调整。真正的自由不是为所欲为，而是懂得在自我实现与尊重他人之间找到平衡。",
+    "Erfolg": "成功对我来说，是找到内心真正渴望的方向并为之努力的过程。它不在于达到某个固定终点，而在于每天醒来对自己生活的掌控感和意义感。同时，能够给予家人安稳的生活，并在能力范围内帮助他人，这种内外兼修的状态，就是我理解的成功。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "侵犯他人的同等自由",
+      "en": "infringing on others' equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律、道德和社会共识",
+      "en": "law, morality, and social consensus",
+      "importance": 0.85
+     },
+     {
+      "concept": "自我实现",
+      "en": "self-realization",
+      "importance": 0.8
+     },
+     {
+      "concept": "尊重他人",
+      "en": "respecting others",
+      "importance": 0.8
+     },
+     {
+      "concept": "平衡",
+      "en": "balance",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "应有的对待",
+      "en": "due treatment",
+      "importance": 0.85
+     },
+     {
+      "concept": "身份、财富或权力",
+      "en": "status, wealth, or power",
+      "importance": 0.8
+     },
+     {
+      "concept": "弱者的声音",
+      "en": "voice of the weak",
+      "importance": 0.85
+     },
+     {
+      "concept": "内心的道德准则",
+      "en": "inner moral compass",
+      "importance": 0.8
+     },
+     {
+      "concept": "持续关注和实践",
+      "en": "continuous attention and practice",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "动态平衡",
+      "en": "dynamic balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "为自己的选择负责",
+      "en": "taking responsibility for one's choices",
+      "importance": 0.85
+     },
+     {
+      "concept": "风筝和线",
+      "en": "kite and string",
+      "importance": 0.8
+     },
+     {
+      "concept": "生命的主人",
+      "en": "master of one's life",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.8
+     },
+     {
+      "concept": "情感归属",
+      "en": "emotional belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "家人的陪伴",
+      "en": "family companionship",
+      "importance": 0.8
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "内心真正渴望的方向",
+      "en": "truly desired direction from within",
+      "importance": 0.9
+     },
+     {
+      "concept": "努力的过程",
+      "en": "process of striving",
+      "importance": 0.85
+     },
+     {
+      "concept": "掌控感",
+      "en": "sense of control",
+      "importance": 0.8
+     },
+     {
+      "concept": "意义感",
+      "en": "sense of meaning",
+      "importance": 0.8
+     },
+     {
+      "concept": "家人安稳的生活",
+      "en": "stable life for family",
+      "importance": 0.8
+     },
+     {
+      "concept": "帮助他人",
+      "en": "helping others",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7677,
+      "tokens_in": 115,
+      "tokens_out": 476,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 5066,
+      "tokens_in": 113,
+      "tokens_out": 336,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 4336,
+      "tokens_in": 112,
+      "tokens_out": 286,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6396,
+      "tokens_in": 113,
+      "tokens_out": 424,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7987,
+      "tokens_in": 117,
+      "tokens_out": 538,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s01",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 1,
+   "answers": {
+    "Erfolg": "我觉得成功是能在生活中找到平衡——做有意义的工作，有温暖的家庭关系，还能留点时间给自己。不是非要达到什么惊天动地的成就，而是每天都能感受到小小的进步和满足。最重要的是，按照自己的想法生活，而不是活在别人的期待里。这样回首往事时，才不会觉得虚度了光阴。",
+    "Heimat": "房子就是实实在在的建筑，是砖头和水泥搭起来的物理空间。家呢，更像是一种感觉，是有亲人在、有温暖、有归属感的地方。有时候租来的小房间也能成为家，而空荡荡的大别墅却只是个房子。关键看那里有没有你在乎的人和回忆。",
+    "Verantwortung": "我觉得责任和自由就像硬币的两面，看似对立，实则缺一不可。没有责任的自由容易变成放纵，最终反而失去真正的自由；而承担责任的自由，才是有根基、有方向的自由。比如在工作中，只有对自己的任务负责，才能获得自主安排时间的自由。真正的自由不是想做什么就做什么，而是明白自己能做什么、该做什么之后的选择权。这种理解让我更愿意主动承担责任，因为我知道这是通往自由的必经之路。",
+    "Gerechtigkeit": "我觉得正义首先是内心的那杆秤，当遇到不公平的事时，它会自动倾斜。小时候看到同学被霸凌，我虽然没有站出来，但那种愧疚感让我明白正义需要行动。现在我认为正义不仅是法律条文，更是日常生活中对每个人的尊重。它意味着给弱势群体发声的机会，也要求强者有节制。正义很难完美实现，但追求它的过程让社会变得更好。",
+    "Freiheit": "自由不是无边无际的，它总存在于一定的框架内。最基本的边界是法律，它划定了不可逾越的红线。更深层的边界在于不侵犯他人的权利和自由，这是社会契约的基石。道德和良知也构成了内在的约束，让我们思考自己的行为是否正当。最终，自由的边界在于责任——你对自己、对他人、对社会的责任。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "边界",
+      "en": "boundaries",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "他人的权利和自由",
+      "en": "others' rights and freedom",
+      "importance": 0.8
+     },
+     {
+      "concept": "道德和良知",
+      "en": "morality and conscience",
+      "importance": 0.75
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "正义",
+      "en": "justice",
+      "importance": 0.95
+     },
+     {
+      "concept": "内心的那杆秤",
+      "en": "inner moral scale",
+      "importance": 0.8
+     },
+     {
+      "concept": "行动",
+      "en": "action",
+      "importance": 0.75
+     },
+     {
+      "concept": "尊重",
+      "en": "respect",
+      "importance": 0.7
+     },
+     {
+      "concept": "弱势群体",
+      "en": "vulnerable groups",
+      "importance": 0.8
+     },
+     {
+      "concept": "追求过程",
+      "en": "pursuit/process",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.7
+     },
+     {
+      "concept": "放纵",
+      "en": "indulgence",
+      "importance": 0.65
+     },
+     {
+      "concept": "选择权",
+      "en": "right to choose",
+      "importance": 0.75
+     },
+     {
+      "concept": "必经之路",
+      "en": "the only path",
+      "importance": 0.7
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.8
+     },
+     {
+      "concept": "亲人",
+      "en": "loved ones",
+      "importance": 0.85
+     },
+     {
+      "concept": "温暖",
+      "en": "warmth",
+      "importance": 0.7
+     },
+     {
+      "concept": "回忆",
+      "en": "memories",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "平衡",
+      "en": "balance",
+      "importance": 0.85
+     },
+     {
+      "concept": "有意义的工作",
+      "en": "meaningful work",
+      "importance": 0.75
+     },
+     {
+      "concept": "家庭关系",
+      "en": "family relationships",
+      "importance": 0.75
+     },
+     {
+      "concept": "进步和满足",
+      "en": "progress and satisfaction",
+      "importance": 0.7
+     },
+     {
+      "concept": "自己的想法",
+      "en": "one's own ideas",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 10576,
+      "tokens_in": 117,
+      "tokens_out": 712,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 5002,
+      "tokens_in": 113,
+      "tokens_out": 253,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7656,
+      "tokens_in": 115,
+      "tokens_out": 515,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9684,
+      "tokens_in": 112,
+      "tokens_out": 653,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 5026,
+      "tokens_in": 113,
+      "tokens_out": 323,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s02",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 2,
+   "answers": {
+    "Verantwortung": "我觉得责任和自由就像一枚硬币的两面，密不可分。没有责任的自由其实是放纵，最终会让人失去真正的自由。当我们愿意承担起对自己、对家庭、对社会的责任时，反而能获得更深层次的自由——那种问心无愧、内心坦荡的自由。这种关系需要我们在生活中不断去体会和平衡。",
+    "Heimat": "\"家\"和\"房子\"最大的区别在于，\"房子\"是物理空间，是砖瓦水泥盖成的建筑物；而\"家\"是情感归属，是有亲人、有温暖、有回忆的地方。一个房子可以是空的、冰冷的，但家总是带着温度和烟火气。有时候租来的小房间也能成为家，而豪华的大房子却可能让人感觉空荡荡的。说到底，家是心的栖息地，房子只是容器而已。",
+    "Erfolg": "成功对我来说，不是拥有多少财富或地位，而是能够按照自己的价值观生活，在平凡的日子里找到内心的平静与满足。它意味着有能力照顾好家人，也有余力去帮助需要帮助的人。最重要的是，能不断学习成长，保持对生活的热情，这样的人生就是成功的。",
+    "Freiheit": "自由的边界首先在于不能侵犯他人的同等自由，这是最基本的共识。法律划定了明确的底线，超越这个底线就要承担后果。道德和公序良俗构成了更微妙的边界，虽然没有强制力，但同样约束着我们的行为。真正的自由不是为所欲为，而是在规则内做出选择并承担相应责任。",
+    "Gerechtigkeit": "正义对我来说，意味着每个人在权利和机会上都能得到公平的对待，特别是保护那些最弱势的群体。它不仅是法律条文上的平等，更是日常生活中我们能感受到的尊重和尊严。真正的正义需要制度保障，但也离不开每个人的良知和行动。不过，实现完全的正义很难，因为不同人的立场和利益总会产生冲突，所以我们需要不断对话和调整。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的同等自由",
+      "en": "others' equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和公序良俗",
+      "en": "morality and public order",
+      "importance": 0.85
+     },
+     {
+      "concept": "底线",
+      "en": "bottom line",
+      "importance": 0.8
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "正义",
+      "en": "justice",
+      "importance": 0.95
+     },
+     {
+      "concept": "公平的对待",
+      "en": "fair treatment",
+      "importance": 0.9
+     },
+     {
+      "concept": "权利和机会",
+      "en": "rights and opportunities",
+      "importance": 0.85
+     },
+     {
+      "concept": "最弱势的群体",
+      "en": "most vulnerable groups",
+      "importance": 0.85
+     },
+     {
+      "concept": "制度保障",
+      "en": "institutional guarantee",
+      "importance": 0.8
+     },
+     {
+      "concept": "良知和行动",
+      "en": "conscience and action",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "对自己、对家庭、对社会的责任",
+      "en": "responsibility to self, family, society",
+      "importance": 0.9
+     },
+     {
+      "concept": "一枚硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "更深层次的自由",
+      "en": "deeper level of freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "放纵",
+      "en": "indulgence",
+      "importance": 0.8
+     },
+     {
+      "concept": "体会和平衡",
+      "en": "experience and balance",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "情感归属",
+      "en": "emotional belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.85
+     },
+     {
+      "concept": "亲人、温暖、回忆",
+      "en": "family, warmth, memories",
+      "importance": 0.85
+     },
+     {
+      "concept": "心的栖息地",
+      "en": "heart's habitat",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "价值观",
+      "en": "values",
+      "importance": 0.9
+     },
+     {
+      "concept": "内心的平静与满足",
+      "en": "inner peace and satisfaction",
+      "importance": 0.9
+     },
+     {
+      "concept": "照顾好家人",
+      "en": "take care of family",
+      "importance": 0.85
+     },
+     {
+      "concept": "帮助需要帮助的人",
+      "en": "help those in need",
+      "importance": 0.85
+     },
+     {
+      "concept": "学习成长",
+      "en": "learn and grow",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 4871,
+      "tokens_in": 115,
+      "tokens_out": 323,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 6506,
+      "tokens_in": 113,
+      "tokens_out": 433,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 6290,
+      "tokens_in": 117,
+      "tokens_out": 423,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 5211,
+      "tokens_in": 113,
+      "tokens_out": 336,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7932,
+      "tokens_in": 112,
+      "tokens_out": 504,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s03",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 3,
+   "answers": {
+    "Heimat": "\"家\"和\"房子\"最大的区别在于，一个是情感概念，一个是物理实体。\"房子\"是四面墙和一个屋顶，是你可以买卖的财产；而\"家\"是住在里面的人、共同的记忆和归属感。有房子不一定有家，比如空荡荡的豪宅；没有房子也可以有家，比如租来的小屋里充满温暖。简单来说，房子是用钱买的，家是用爱建的。",
+    "Verantwortung": "我觉得责任和自由就像硬币的两面，缺一不可。没有责任的自由容易变成放纵，最终反而会失去自由；而没有自由的责任则成了单纯的负担，让人喘不过气。真正的自由其实建立在负责任的选择之上——当你能为自己的行为承担后果时，你才真正拥有选择的权利。在中国文化里，我们常说\"先做人，后做事\"，这其实就是强调责任是自由的前提。找到两者之间的平衡，可能是我们一辈子都要学习的功课。",
+    "Gerechtigkeit": "正义对我来说，是当弱者受到欺负时，有人愿意站出来为他们说话的那种勇气。它不只是法律条文上的字句，更是每个人心里的一把尺，衡量着我们是否公平地对待他人。生活中，正义可能体现在给被忽视的人一个发声的机会，或是在利益冲突时选择坚守原则。但我也明白，正义有时很复杂，不是非黑即白，需要智慧和同理心去实践。",
+    "Freiheit": "自由的边界在于不能侵犯他人的权利和自由。每个人的自由都是平等的，所以你的自由止步于别人的鼻尖。此外，自由还要受到法律和道德的双重约束，不能破坏社会秩序和公共利益。真正的自由不是为所欲为，而是在规则和责任中找到平衡，这样才能实现个人与社会的和谐发展。",
+    "Erfolg": "成功对我来说，不是职位有多高或者赚多少钱，而是能够按照自己的价值观生活，做真正热爱的事情。它意味着在照顾好自己和家人的同时，还能为身边的人带来一些积极的影响。最重要的是，成功是内心的平静与满足，知道自己每天都在成为更好一点的人。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的权利和自由",
+      "en": "others' rights and freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律和道德",
+      "en": "law and morality",
+      "importance": 0.85
+     },
+     {
+      "concept": "社会秩序和公共利益",
+      "en": "social order and public interest",
+      "importance": 0.85
+     },
+     {
+      "concept": "规则和责任",
+      "en": "rules and responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "个人与社会的和谐发展",
+      "en": "harmonious development of individual and society",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "弱者",
+      "en": "the vulnerable",
+      "importance": 0.9
+     },
+     {
+      "concept": "勇气",
+      "en": "courage",
+      "importance": 0.85
+     },
+     {
+      "concept": "心里的一把尺",
+      "en": "inner moral measure",
+      "importance": 0.9
+     },
+     {
+      "concept": "被忽视的人",
+      "en": "overlooked people",
+      "importance": 0.8
+     },
+     {
+      "concept": "坚守原则",
+      "en": "upholding principles",
+      "importance": 0.85
+     },
+     {
+      "concept": "智慧和同理心",
+      "en": "wisdom and empathy",
+      "importance": 0.9
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "放纵",
+      "en": "indulgence",
+      "importance": 0.8
+     },
+     {
+      "concept": "负责任的选择",
+      "en": "responsible choice",
+      "importance": 0.9
+     },
+     {
+      "concept": "承担后果",
+      "en": "bearing consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "先做人，后做事",
+      "en": "be a person first, then do things",
+      "importance": 0.9
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感概念",
+      "en": "emotional concept",
+      "importance": 0.85
+     },
+     {
+      "concept": "物理实体",
+      "en": "physical entity",
+      "importance": 0.85
+     },
+     {
+      "concept": "共同的记忆",
+      "en": "shared memories",
+      "importance": 0.8
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "按照自己的价值观生活",
+      "en": "living by one's values",
+      "importance": 0.9
+     },
+     {
+      "concept": "真正热爱的事情",
+      "en": "what one truly loves",
+      "importance": 0.85
+     },
+     {
+      "concept": "照顾好自己和家人",
+      "en": "caring for self and family",
+      "importance": 0.8
+     },
+     {
+      "concept": "积极的影响",
+      "en": "positive influence",
+      "importance": 0.85
+     },
+     {
+      "concept": "内心的平静与满足",
+      "en": "inner peace and satisfaction",
+      "importance": 0.9
+     },
+     {
+      "concept": "成为更好一点的人",
+      "en": "becoming a better person",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7703,
+      "tokens_in": 113,
+      "tokens_out": 514,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 6315,
+      "tokens_in": 115,
+      "tokens_out": 422,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 7031,
+      "tokens_in": 112,
+      "tokens_out": 470,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6725,
+      "tokens_in": 113,
+      "tokens_out": 447,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 5358,
+      "tokens_in": 117,
+      "tokens_out": 358,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s04",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 4,
+   "answers": {
+    "Erfolg": "对我来说，成功不是用金钱或地位来衡量的。它更多意味着能够做自己喜欢且认为有价值的事情，同时保持内心的平静与满足。成功也体现在与家人朋友的真诚关系中，以及在面对挑战时依然能保持成长的心态。最重要的是，找到属于自己的人生节奏，在平凡的日子里感受到真实的幸福。",
+    "Gerechtigkeit": "正义对我来说，首先是内心那种对公平的直觉。当看到弱者被欺凌、权利被践踏时，心里涌起的那种愤怒和不甘，就是正义感在发声。它不只是抽象的原则，更是具体情境中\"应该如此\"的坚定信念。真正的正义需要勇气去维护，而不仅仅是沉默的认同。说到底，正义是让每个人都能被当作人对待的底线。",
+    "Verantwortung": "我觉得责任和自由就像硬币的两面，密不可分。真正的自由不是想做什么就做什么，而是在承担责任的前提下做出选择。当你为自己的行为负责时，你才真正拥有掌控自己人生的自由。反过来，自由也意味着你必须承担选择带来的后果。在中国文化里，我们常说\"有所为有所不为\"，这体现了责任对自由的引导作用，让自由不至于变成放纵。",
+    "Heimat": "房子指的是物理空间，是钢筋水泥盖起来的建筑，可以买卖、装修。家则更偏向情感概念，是有人气、有温暖、有归属感的地方。有房子不一定有家，租来的小房间如果住着爱的人，也能成为真正的家。",
+    "Freiheit": "自由肯定是有边界的，我觉得最大的边界就是不能损害别人的权利和自由。法律是最基本的红线，道德和社会规范则是更灵活的界限。真正的自由不是想做什么就做什么，而是在不伤害他人的前提下，能自主地做选择。说到底，自由和责任是一体的。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 1.0
+     },
+     {
+      "concept": "边界",
+      "en": "boundary",
+      "importance": 0.95
+     },
+     {
+      "concept": "权利",
+      "en": "rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德",
+      "en": "morality",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "正义",
+      "en": "justice",
+      "importance": 1.0
+     },
+     {
+      "concept": "公平",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "权利",
+      "en": "rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "弱者",
+      "en": "the weak",
+      "importance": 0.85
+     },
+     {
+      "concept": "勇气",
+      "en": "courage",
+      "importance": 0.85
+     },
+     {
+      "concept": "底线",
+      "en": "bottom line",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 1.0
+     },
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "选择",
+      "en": "choice",
+      "importance": 0.9
+     },
+     {
+      "concept": "后果",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "有所为有所不为",
+      "en": "do some things, don't do others",
+      "importance": 0.85
+     },
+     {
+      "concept": "行为",
+      "en": "behavior",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 1.0
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.95
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "温暖",
+      "en": "warmth",
+      "importance": 0.85
+     },
+     {
+      "concept": "情感概念",
+      "en": "emotional concept",
+      "importance": 0.85
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 1.0
+     },
+     {
+      "concept": "有价值的事情",
+      "en": "valuable things",
+      "importance": 0.9
+     },
+     {
+      "concept": "平静",
+      "en": "inner peace",
+      "importance": 0.85
+     },
+     {
+      "concept": "满足",
+      "en": "satisfaction",
+      "importance": 0.85
+     },
+     {
+      "concept": "真诚关系",
+      "en": "sincere relationships",
+      "importance": 0.85
+     },
+     {
+      "concept": "成长的心态",
+      "en": "growth mindset",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 6065,
+      "tokens_in": 117,
+      "tokens_out": 405,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 7765,
+      "tokens_in": 112,
+      "tokens_out": 522,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 9231,
+      "tokens_in": 115,
+      "tokens_out": 623,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 4776,
+      "tokens_in": 113,
+      "tokens_out": 315,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7705,
+      "tokens_in": 113,
+      "tokens_out": 516,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s05",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 5,
+   "answers": {
+    "Erfolg": "对我来说，成功不是用金钱或地位来衡量的，而是内心的平静与满足。它意味着能够按照自己的价值观生活，在家人和朋友需要时给予支持，同时保持对世界的善意。真正的成功是找到热爱的事情并持续投入，在过程中不断成长，而不是执着于某个终点。",
+    "Gerechtigkeit": "正义对我来说，首先是公平——无论一个人的身份地位如何，都应该受到同样的规则约束和保护。它不只是法律条文，更是人们心中那杆秤，让弱者有处申诉，让强者不能妄为。真正的正义还需要温度，在坚持原则的同时保留对人性的理解，而不是冰冷的教条。最终，当社会的制度与人们的良知达成共识时，那种\"这就是对的\"的踏实感，就是正义的体现。",
+    "Freiheit": "我觉得自由的边界在于你的自由不能侵犯别人同等的自由。法律、道德和公序良俗就是社会划出的基本红线，在这个框架内，你才有真正的选择空间。真正的自由不是想做什么就做什么，而是明白什么不该做之后依然能理性选择。说到底，自由和责任永远是绑在一起的，边界就在于你自己能否承担选择的后果。",
+    "Verantwortung": "我觉得责任和自由就像一枚硬币的两面，表面上看似矛盾，实则密不可分。真正的自由不是为所欲为，而是在承担责任的过程中获得的——当你为自己的选择负责时，你才真正掌握了自己的人生方向。责任看似限制了自由，但它实际上创造了自由得以存在的框架，就像交通规则让所有人都能安全行驶一样。在中国文化里，我们常说\"没有规矩不成方圆\"，个人自由往往需要在家庭、社会的责任中找到平衡点。最终，成熟的自由观是理解到：承担越多的责任，往往意味着拥有越深刻的自由。",
+    "Heimat": "\"房子\"指的是那个有墙有顶的建筑，是花钱能买到的物理空间；而\"家\"是你在里面生活、有归属感的地方，是情感的寄托。我见过很多人住着大房子却觉得空荡荡，也见过租房的小房间因为有人等你、有热饭菜而充满家的味道。简单说，房子是硬件，家是软件，有了人、情感和回忆，房子才能变成家。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "侵犯别人同等的自由",
+      "en": "infringing on others' equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律、道德和公序良俗",
+      "en": "law, morality, and public order/good customs",
+      "importance": 0.85
+     },
+     {
+      "concept": "真正的自由",
+      "en": "true freedom",
+      "importance": 0.8
+     },
+     {
+      "concept": "自由和责任",
+      "en": "freedom and responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "承担选择的后果",
+      "en": "bearing consequences of choices",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "同样的规则",
+      "en": "same rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "心中那杆秤",
+      "en": "scale in one's heart",
+      "importance": 0.85
+     },
+     {
+      "concept": "弱者有处申诉，强者不能妄为",
+      "en": "weak can appeal, strong cannot act recklessly",
+      "importance": 0.9
+     },
+     {
+      "concept": "温度",
+      "en": "warmth/human element",
+      "importance": 0.8
+     },
+     {
+      "concept": "制度与良知达成共识",
+      "en": "system and conscience reaching consensus",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "一枚硬币的两面",
+      "en": "two sides of the same coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "承担责任",
+      "en": "bearing responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "创造了自由得以存在的框架",
+      "en": "creates framework for freedom's existence",
+      "importance": 0.9
+     },
+     {
+      "concept": "没有规矩不成方圆",
+      "en": "without rules, no order",
+      "importance": 0.8
+     },
+     {
+      "concept": "平衡点",
+      "en": "balance point",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "情感的寄托",
+      "en": "emotional anchor",
+      "importance": 0.85
+     },
+     {
+      "concept": "人、情感和回忆",
+      "en": "people, emotions, and memories",
+      "importance": 0.9
+     },
+     {
+      "concept": "硬件 vs 软件",
+      "en": "hardware vs software",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "内心的平静与满足",
+      "en": "inner peace and satisfaction",
+      "importance": 0.95
+     },
+     {
+      "concept": "按照自己的价值观生活",
+      "en": "living according to one's values",
+      "importance": 0.9
+     },
+     {
+      "concept": "热爱的事情并持续投入",
+      "en": "loving something and continuous investment",
+      "importance": 0.85
+     },
+     {
+      "concept": "不断成长",
+      "en": "continuous growth",
+      "importance": 0.8
+     },
+     {
+      "concept": "金钱或地位",
+      "en": "money or status",
+      "importance": 0.7
+     },
+     {
+      "concept": "对世界的善意",
+      "en": "goodwill toward the world",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 5438,
+      "tokens_in": 117,
+      "tokens_out": 363,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 9321,
+      "tokens_in": 112,
+      "tokens_out": 629,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 5361,
+      "tokens_in": 113,
+      "tokens_out": 356,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 8569,
+      "tokens_in": 115,
+      "tokens_out": 582,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 6472,
+      "tokens_in": 113,
+      "tokens_out": 431,
+      "finish": "stop",
+      "topic": "Heimat"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s06",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 6,
+   "answers": {
+    "Gerechtigkeit": "正义对我来说，就是看到普通人受到公平对待时的那种心安。它不只是法律条文，更是生活中那些微小的公道——比如排队不被插队，付出得到应有的回报。我经历过看到弱者被欺负却无力相助的时刻，那种憋屈让我更明白正义的可贵。虽然现实不完美，但我相信每个人心中都有一杆秤，守住自己的底线，就是在守护正义。",
+    "Verantwortung": "我觉得责任和自由是相辅相成的关系，不是对立的。真正的自由不是毫无约束，而是在承担责任之后才能获得的选择权和自主权。比如，当我认真履行对家庭和工作的责任时，反而赢得了更多信任和空间，可以更自由地安排生活。如果只想自由而逃避责任，最终会被后果和愧疚感束缚，反而失去自由。所以，承担责任是获得长久、真实自由的基础。",
+    "Heimat": "\"房子\"指的是物理空间，是四面墙和一个屋顶的建筑。而\"家\"是充满情感和记忆的地方，有家人、温暖和归属感。一个房子如果没有人的温度和情感联结，就只是冷冰冰的建筑。对我来说，家是心之所向，是无论走多远都想回去的地方。",
+    "Freiheit": "自由的边界在于不能侵犯他人的权利。当一个人的自由伤害到别人，或者违反了法律，那就越界了。自由不是想做什么就做什么，它伴随着责任。在中国文化中，我们也讲究个人自由与社会和谐的平衡。所以，真正的自由是在尊重他人、遵守规则的前提下，实现自我。",
+    "Erfolg": "成功对我来说，不是外在的荣誉或财富，而是内心的平静与自我实现。它意味着能够按照自己的价值观生活，在热爱的领域持续成长，并为他人带来积极的影响。真正的成功是找到工作与生活的平衡，拥有健康的身体和和谐的人际关系，每天都能比昨天的自己进步一点点。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的权利",
+      "en": "others' rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.85
+     },
+     {
+      "concept": "个人自由与社会和谐的平衡",
+      "en": "balance of individual freedom and social harmony",
+      "importance": 0.9
+     },
+     {
+      "concept": "尊重他人",
+      "en": "respecting others",
+      "importance": 0.85
+     },
+     {
+      "concept": "遵守规则",
+      "en": "abiding by rules",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平对待",
+      "en": "fair treatment",
+      "importance": 0.95
+     },
+     {
+      "concept": "心安",
+      "en": "peace of mind",
+      "importance": 0.85
+     },
+     {
+      "concept": "微小的公道",
+      "en": "small acts of justice",
+      "importance": 0.9
+     },
+     {
+      "concept": "弱者被欺负",
+      "en": "the weak being bullied",
+      "importance": 0.85
+     },
+     {
+      "concept": "底线",
+      "en": "moral bottom line",
+      "importance": 0.9
+     },
+     {
+      "concept": "守护正义",
+      "en": "safeguarding justice",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由相辅相成",
+      "en": "responsibility and freedom complement each other",
+      "importance": 0.95
+     },
+     {
+      "concept": "选择权",
+      "en": "right to choose",
+      "importance": 0.85
+     },
+     {
+      "concept": "自主权",
+      "en": "autonomy",
+      "importance": 0.85
+     },
+     {
+      "concept": "履行责任",
+      "en": "fulfilling responsibilities",
+      "importance": 0.8
+     },
+     {
+      "concept": "信任和空间",
+      "en": "trust and space",
+      "importance": 0.8
+     },
+     {
+      "concept": "承担责任是获得自由的基础",
+      "en": "responsibility as foundation for freedom",
+      "importance": 0.95
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.8
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感和记忆",
+      "en": "emotions and memories",
+      "importance": 0.9
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.95
+     },
+     {
+      "concept": "心之所向",
+      "en": "where the heart belongs",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "内心的平静",
+      "en": "inner peace",
+      "importance": 0.9
+     },
+     {
+      "concept": "自我实现",
+      "en": "self-actualization",
+      "importance": 0.95
+     },
+     {
+      "concept": "价值观",
+      "en": "values",
+      "importance": 0.85
+     },
+     {
+      "concept": "工作与生活的平衡",
+      "en": "work-life balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "健康的身体",
+      "en": "healthy body",
+      "importance": 0.8
+     },
+     {
+      "concept": "和谐的人际关系",
+      "en": "harmonious relationships",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 5722,
+      "tokens_in": 112,
+      "tokens_out": 372,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6348,
+      "tokens_in": 115,
+      "tokens_out": 422,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9330,
+      "tokens_in": 113,
+      "tokens_out": 627,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 9846,
+      "tokens_in": 113,
+      "tokens_out": 666,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 6239,
+      "tokens_in": 117,
+      "tokens_out": 415,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s07",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 7,
+   "answers": {
+    "Erfolg": "对我来说，成功不是拥有多少财富或地位，而是能够按照自己的价值观生活，做真正热爱的事情。它意味着内心的平静与自我接纳，不必活在别人的期待里。成功也体现在能和家人朋友建立深厚真挚的关系，在需要时给予支持。更重要的是，它是在离开这个世界时，能留下一些对他人有帮助、有意义的东西。这是一种持续的成长过程，而非某个终点。",
+    "Verantwortung": "责任和自由就像硬币的两面，看似矛盾实则密不可分。没有责任的自由是放纵，最终会让人失去真正的自由；而没有自由的责任则是枷锁，会变成沉重的负担。我觉得真正的自由，是在承担责任的过程中找到选择的空间和能力。比如在工作中，只有尽到自己的职责，才能赢得信任和更多自主决策的权利。所以它们不是对立关系，而是相互成就的关系。",
+    "Freiheit": "我觉得自由的边界在于不能侵犯他人的自由。你的自由止步于别人权利开始的地方。这个边界由法律、道德和社会契约共同划定。真正的自由不是想做什么就做什么，而是知道自己应该不做什么。自由与责任就像硬币的两面，不可分割。",
+    "Heimat": "\"房子\"指的是物理建筑，是四面墙和一个屋顶的空间；而\"家\"是情感归属，是有家人、有温暖、有回忆的地方。房子可以空着，但家一定有人气和情感。租来的房子只要住得安心也能成为家，买的房子如果没人情味也只是个空壳。简单说，房子是硬件，家是软件。",
+    "Gerechtigkeit": "正义对我来说，是内心深处那杆不会完全倾斜的天平。它不只是法律条文，更是当弱者被欺凌时，我们愿意站出来发声的勇气。真正的正义需要智慧，因为世界并非非黑即白，它要求我们理解每个人的处境，在坚持原则的同时保持同理心。有时候，正义甚至意味着要对抗多数人的偏见，这需要极大的道德力量。但最终，正义是让每个人都能被公平对待的朴素愿望。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "侵犯他人的自由",
+      "en": "infringing on others' freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律、道德和社会契约",
+      "en": "law, morality, and social contract",
+      "importance": 0.85
+     },
+     {
+      "concept": "真正的自由",
+      "en": "true freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "自由与责任",
+      "en": "freedom and responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "内心深处那杆不会完全倾斜的天平",
+      "en": "inner scale that never completely tilts",
+      "importance": 0.95
+     },
+     {
+      "concept": "法律条文",
+      "en": "legal provisions",
+      "importance": 0.7
+     },
+     {
+      "concept": "弱者被欺凌",
+      "en": "the weak being bullied",
+      "importance": 0.85
+     },
+     {
+      "concept": "站出来发声的勇气",
+      "en": "courage to speak up",
+      "importance": 0.9
+     },
+     {
+      "concept": "同理心",
+      "en": "empathy",
+      "importance": 0.85
+     },
+     {
+      "concept": "公平对待",
+      "en": "fair treatment",
+      "importance": 0.9
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.8
+     },
+     {
+      "concept": "放纵",
+      "en": "indulgence",
+      "importance": 0.75
+     },
+     {
+      "concept": "真正的自由",
+      "en": "true freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "承担责任",
+      "en": "undertaking responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "相互成就的关系",
+      "en": "mutually enabling relationship",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感归属",
+      "en": "emotional belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "家人、有温暖、有回忆",
+      "en": "family, warmth, memories",
+      "importance": 0.85
+     },
+     {
+      "concept": "硬件",
+      "en": "hardware",
+      "importance": 0.7
+     },
+     {
+      "concept": "软件",
+      "en": "software",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "财富或地位",
+      "en": "wealth or status",
+      "importance": 0.75
+     },
+     {
+      "concept": "按照自己的价值观生活",
+      "en": "living according to one's values",
+      "importance": 0.95
+     },
+     {
+      "concept": "内心的平静与自我接纳",
+      "en": "inner peace and self-acceptance",
+      "importance": 0.85
+     },
+     {
+      "concept": "别人的期待",
+      "en": "others' expectations",
+      "importance": 0.7
+     },
+     {
+      "concept": "深厚真挚的关系",
+      "en": "deep and sincere relationships",
+      "importance": 0.8
+     },
+     {
+      "concept": "对他人有帮助、有意义的东西",
+      "en": "something helpful and meaningful to others",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8676,
+      "tokens_in": 117,
+      "tokens_out": 586,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 6197,
+      "tokens_in": 115,
+      "tokens_out": 409,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 4733,
+      "tokens_in": 113,
+      "tokens_out": 311,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 4810,
+      "tokens_in": 113,
+      "tokens_out": 318,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 6072,
+      "tokens_in": 112,
+      "tokens_out": 398,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s08",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 8,
+   "answers": {
+    "Freiheit": "我觉得自由的边界在于不能侵犯他人的权利和自由。法律是最基本的底线，任何自由都不能凌驾于法律之上。道德和社会规范也构成了无形的约束，比如你的言行不能严重伤害公序良俗。说到底，自由与责任是相伴的，一个人的自由应当以尊重他人、不损害公共利益为前提。",
+    "Erfolg": "成功对我来说，不是外在的金钱或地位，而是内心的充实与平和。它意味着能够按照自己的价值观生活，在热爱的领域持续成长，同时对他人和社会产生积极的影响。真正的成功是找到工作与生活的平衡，拥有健康的人际关系，以及在面对挑战时保持坚韧和乐观的态度。",
+    "Gerechtigkeit": "我觉得正义首先是内心的天平，让人能分辨是非对错。它不只是法律条文，更是日常生活中对弱者的同情和公平待人。当看见不公时，正义感会推动人站出来发声，哪怕只是小事。说到底，正义是让社会保持温度的底线。",
+    "Heimat": "我觉得\"家\"和\"房子\"完全是两回事。房子就是砖头水泥盖起来的物理空间，但家是有家人、有感情、有归属感的地方。你可以在很多城市拥有房子，但真正的家可能只有一个。有时候房子很大，但如果没有温暖，就只是个空壳子；相反，租来的小房间只要有爱，就是家。",
+    "Verantwortung": "我觉得责任和自由就像一枚硬币的两面，看似矛盾，实则密不可分。没有责任的自由是空洞的，容易变成放纵；而没有自由的责任则是沉重的枷锁。真正的自由来自于能够为自己的选择负责，而承担责任的过程也让我们获得更深层次的自由。比如，当我们为自己的决定承担后果时，我们才真正拥有了选择的权利。所以，平衡好两者，才能过上有意义的生活。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的权利和自由",
+      "en": "others' rights and freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和社会规范",
+      "en": "morality and social norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "自由与责任",
+      "en": "freedom and responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "公共利益",
+      "en": "public interest",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "内心的天平",
+      "en": "inner balance/scale",
+      "importance": 0.9
+     },
+     {
+      "concept": "是非对错",
+      "en": "right and wrong",
+      "importance": 0.85
+     },
+     {
+      "concept": "法律条文",
+      "en": "legal provisions",
+      "importance": 0.75
+     },
+     {
+      "concept": "对弱者的同情",
+      "en": "sympathy for the weak",
+      "importance": 0.85
+     },
+     {
+      "concept": "公平待人",
+      "en": "treating people fairly",
+      "importance": 0.9
+     },
+     {
+      "concept": "正义感",
+      "en": "sense of justice",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "一枚硬币的两面",
+      "en": "two sides of the same coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "放纵",
+      "en": "indulgence",
+      "importance": 0.8
+     },
+     {
+      "concept": "沉重的枷锁",
+      "en": "heavy shackles",
+      "importance": 0.8
+     },
+     {
+      "concept": "为自己的选择负责",
+      "en": "taking responsibility for one's choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "承担后果",
+      "en": "bearing consequences",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.75
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "温暖",
+      "en": "warmth",
+      "importance": 0.85
+     },
+     {
+      "concept": "爱",
+      "en": "love",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "金钱或地位",
+      "en": "money or status",
+      "importance": 0.8
+     },
+     {
+      "concept": "内心的充实与平和",
+      "en": "inner fulfillment and peace",
+      "importance": 0.9
+     },
+     {
+      "concept": "自己的价值观",
+      "en": "one's own values",
+      "importance": 0.85
+     },
+     {
+      "concept": "持续成长",
+      "en": "continuous growth",
+      "importance": 0.85
+     },
+     {
+      "concept": "对他人和社会产生积极的影响",
+      "en": "positive impact on others and society",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 4526,
+      "tokens_in": 113,
+      "tokens_out": 299,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 6938,
+      "tokens_in": 117,
+      "tokens_out": 462,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 6113,
+      "tokens_in": 112,
+      "tokens_out": 412,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 9552,
+      "tokens_in": 113,
+      "tokens_out": 648,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7571,
+      "tokens_in": 115,
+      "tokens_out": 506,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s09",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 9,
+   "answers": {
+    "Freiheit": "我觉得自由的边界在于不能侵犯他人的权利和自由。法律是最基本的底线，它划定了什么可以做、什么不可以做。道德和社会规范也是重要的约束，它们让我们考虑自己的行为对周围人的影响。说到底，自由是一种责任，你的自由不能建立在别人的不自由之上。",
+    "Verantwortung": "我觉得责任和自由就像硬币的两面，缺一不可。没有责任的自由容易变成放纵，最终可能伤害自己和他人；而没有自由的责任则像是沉重的枷锁，让人失去活力。真正的自由其实建立在负责任的选择之上，当你能为自己的决定承担后果时，你才拥有真正的自主权。生活中，我们不断在两者之间寻找平衡，比如对家庭的责任可能会限制某些个人自由，但这种承担本身也带来另一种更深层的自由——内心的坦然和关系的和谐。",
+    "Erfolg": "成功对我来说，不是外界定义的财富或地位，而是内心的平静与满足。它意味着能够按照自己的价值观生活，在热爱的事业中找到意义，并与家人朋友建立深厚的情感联结。真正的成功是能够接纳自己的不完美，在平凡的日子里发现幸福，同时为他人带来一点点积极的影响。这种定义或许不够光鲜，但却让我活得踏实而自在。",
+    "Heimat": "\"家\"和\"房子\"的区别挺大的。房子只是物理空间，是四面墙和一个屋顶，可以买卖和装修。但家是情感的归属，是有家人在的地方，是回忆和温暖的集合。一个房子如果没有生活的痕迹和亲人的陪伴，就只是个空壳；而只要有家人在，哪怕租来的小房间也能成为家。简单说，房子是硬件，家是软件。",
+    "Gerechtigkeit": "正义对我来说，就是当弱者被欺负时，有人能站出来为他们说话。它意味着规则对每个人都一样，不能因权势而改变。但我也知道，现实中的正义并不完美，有时来得太慢，有时根本不来。所以对我而言，追求正义不仅是相信理想，更是持续监督权力、维护程序公平的具体行动。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundary of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的权利和自由",
+      "en": "others' rights and freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和社会规范",
+      "en": "morality and social norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "自己的行为对周围人的影响",
+      "en": "impact of one's actions on others",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "规则对每个人都一样",
+      "en": "rules same for everyone",
+      "importance": 0.95
+     },
+     {
+      "concept": "弱者被欺负",
+      "en": "the weak being bullied",
+      "importance": 0.85
+     },
+     {
+      "concept": "站出来为他们说话",
+      "en": "stand up to speak for them",
+      "importance": 0.8
+     },
+     {
+      "concept": "权势",
+      "en": "power and influence",
+      "importance": 0.85
+     },
+     {
+      "concept": "持续监督权力",
+      "en": "continuously monitor power",
+      "importance": 0.9
+     },
+     {
+      "concept": "维护程序公平",
+      "en": "maintain procedural fairness",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由就像硬币的两面",
+      "en": "responsibility and freedom like two sides of a coin",
+      "importance": 0.95
+     },
+     {
+      "concept": "真正的自由",
+      "en": "true freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "负责任的选择",
+      "en": "responsible choices",
+      "importance": 0.85
+     },
+     {
+      "concept": "承担后果",
+      "en": "bear consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "寻找平衡",
+      "en": "seek balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "内心的坦然",
+      "en": "inner peace",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家和房子的区别",
+      "en": "difference between home and house",
+      "importance": 0.95
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "物理空间",
+      "en": "physical space",
+      "importance": 0.8
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.9
+     },
+     {
+      "concept": "情感的归属",
+      "en": "emotional belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "有家人在的地方",
+      "en": "place where family is",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "内心的平静与满足",
+      "en": "inner peace and satisfaction",
+      "importance": 0.95
+     },
+     {
+      "concept": "按照自己的价值观生活",
+      "en": "live according to one's values",
+      "importance": 0.9
+     },
+     {
+      "concept": "热爱的事业",
+      "en": "beloved career",
+      "importance": 0.85
+     },
+     {
+      "concept": "深厚的情感联结",
+      "en": "deep emotional connections",
+      "importance": 0.85
+     },
+     {
+      "concept": "接纳自己的不完美",
+      "en": "accept one's own imperfection",
+      "importance": 0.8
+     },
+     {
+      "concept": "为他人带来积极的影响",
+      "en": "bring positive influence to others",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 5874,
+      "tokens_in": 113,
+      "tokens_out": 322,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7886,
+      "tokens_in": 115,
+      "tokens_out": 444,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 5693,
+      "tokens_in": 117,
+      "tokens_out": 381,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 8755,
+      "tokens_in": 113,
+      "tokens_out": 488,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 16781,
+      "tokens_in": 112,
+      "tokens_out": 1147,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s00",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 0,
+   "answers": {
+    "Verantwortung": "Verantwortung und Freiheit hängen für mich untrennbar zusammen. Ohne Freiheit wäre Verantwortung nur eine leere Pflicht, ohne Verantwortung würde Freiheit zur Beliebigkeit verkommen. Wenn ich frei entscheiden kann, muss ich auch die Konsequenzen meiner Entscheidungen tragen – das ist die eigentliche Bedeutung von Verantwortung. In diesem Sinne ist Verantwortung nicht die Fessel der Freiheit, sondern ihr Preis und zugleich ihr Sinn.",
+    "Erfolg": "Für mich ist Erfolg vor allem das Gefühl, ein erfülltes Leben zu führen. Es geht nicht nur um berufliche Höhepunkte oder finanziellen Wohlstand, sondern darum, ein sinnvolles Gleichgewicht zu finden zwischen Arbeit, persönlichen Interessen und den Menschen, die mir wichtig sind. Wenn ich abends das Gefühl habe, etwas Sinnvolles getan zu haben und dabei ich selbst geblieben zu sein, dann fühle ich mich erfolgreich. Letztlich zählt für mich auch, kleine Fortschritte zu feiern und im Moment präsent zu sein.",
+    "Heimat": "Das \"Haus\" ist für mich einfach das Gebäude, die physische Struktur aus Stein und Holz. \"Zuhause\" dagegen ist das Gefühl, das Gefühl des Ankommens und der Geborgenheit. Man kann in einem Haus leben, ohne dass es wirklich Zuhause ist – und umgekehrt kann Zuhause auch eine Mietwohnung oder sogar ein ganzes Land sein. Es geht eben nicht um die Adresse, sondern darum, wo dein Herz hängt.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo sie die Freiheit anderer einschränkt. Das ist die klassische Kantsche Maxime, die immer noch gilt: Meine Freiheit endet da, wo deine beginnt. Aber es geht auch darum, dass wir als Gesellschaft Regeln aufstellen, die allen schaden, wenn sie missachtet werden – wie Umweltschutz oder Verkehrsregeln. Persönlich finde ich, dass Freiheit auch Verantwortung bedeutet: Ich kann frei handeln, aber ich muss die Konsequenzen tragen. Letztlich ist es eine ständige Aushandlung zwischen Individuum und Gemeinwohl.",
+    "Gerechtigkeit": "Für mich ist Gerechtigkeit, wenn alle Menschen die gleichen Chancen bekommen, egal woher sie kommen oder was sie haben. Es ist dieses ungute Gefühl im Bauch, wenn ich sehe, dass jemand unfair behandelt wird – das geht mir wirklich nahe. Gerechtigkeit bedeutet auch, dass die gleichen Regeln für alle gelten, besonders für die Mächtigen, nicht nur für die Schwachen. Und manchmal ist sie ganz einfach: dass jemand zugehört wird und ernst genommen wird, auch ohne große Stimme."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Freiheit anderer",
+      "en": "freedom of others",
+      "importance": 0.9
+     },
+     {
+      "concept": "Kantsche Maxime",
+      "en": "Kantian maxim",
+      "importance": 0.85
+     },
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "Konsequenzen tragen",
+      "en": "bear consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "Aushandlung zwischen Individuum und Gemeinwohl",
+      "en": "negotiation between individual and common good",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen",
+      "en": "equal opportunities",
+      "importance": 0.95
+     },
+     {
+      "concept": "unfair behandelt",
+      "en": "treated unfairly",
+      "importance": 0.85
+     },
+     {
+      "concept": "gleichen Regeln für alle",
+      "en": "same rules for everyone",
+      "importance": 0.9
+     },
+     {
+      "concept": "Mächtigen",
+      "en": "the powerful",
+      "importance": 0.8
+     },
+     {
+      "concept": "zugehört wird und ernst genommen wird",
+      "en": "being heard and taken seriously",
+      "importance": 0.85
+     },
+     {
+      "concept": "ungute Gefühl im Bauch",
+      "en": "bad gut feeling",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung und Freiheit",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "untrennbar zusammen",
+      "en": "inseparably connected",
+      "importance": 0.9
+     },
+     {
+      "concept": "Konsequenzen meiner Entscheidungen tragen",
+      "en": "bear consequences of my decisions",
+      "importance": 0.95
+     },
+     {
+      "concept": "leere Pflicht",
+      "en": "empty duty",
+      "importance": 0.75
+     },
+     {
+      "concept": "Beliebigkeit",
+      "en": "arbitrariness",
+      "importance": 0.75
+     },
+     {
+      "concept": "Preis und zugleich ihr Sinn",
+      "en": "price and simultaneously its meaning",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "\"Haus\"",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "Gebäude",
+      "en": "building",
+      "importance": 0.75
+     },
+     {
+      "concept": "\"Zuhause\"",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Gefühl des Ankommens und der Geborgenheit",
+      "en": "feeling of arriving and security",
+      "importance": 0.9
+     },
+     {
+      "concept": "Herz hängt",
+      "en": "heart hangs",
+      "importance": 0.85
+     },
+     {
+      "concept": "Adresse",
+      "en": "address",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Gefühl, ein erfülltes Leben zu führen",
+      "en": "feeling of leading a fulfilled life",
+      "importance": 0.95
+     },
+     {
+      "concept": "sinnvolles Gleichgewicht",
+      "en": "meaningful balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "Arbeit, persönlichen Interessen und den Menschen",
+      "en": "work, personal interests and people",
+      "importance": 0.85
+     },
+     {
+      "concept": "etwas Sinnvolles getan zu haben",
+      "en": "having done something meaningful",
+      "importance": 0.85
+     },
+     {
+      "concept": "ich selbst geblieben zu sein",
+      "en": "remained myself",
+      "importance": 0.8
+     },
+     {
+      "concept": "kleine Fortschritte zu feiern",
+      "en": "celebrate small progress",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8025,
+      "tokens_in": 132,
+      "tokens_out": 537,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 18587,
+      "tokens_in": 136,
+      "tokens_out": 1266,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 9571,
+      "tokens_in": 127,
+      "tokens_out": 649,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7974,
+      "tokens_in": 128,
+      "tokens_out": 525,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 12288,
+      "tokens_in": 129,
+      "tokens_out": 832,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s01",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 1,
+   "answers": {
+    "Erfolg": "Für mich ist Erfolg nicht nur beruflicher Aufstieg oder finanzieller Wohlstand. Es bedeutet vor allem, ein ausgeglichenes Leben zu führen, in dem ich meine Leidenschaften ausleben kann und Zeit für die Menschen habe, die mir wichtig sind. Wenn ich am Abend zufrieden ins Bett gehen kann, weil ich etwas Sinnvolles getan habe – sei es bei der Arbeit oder im Privatleben – dann fühle ich mich erfolgreich. Erfolg ist auch, sich selbst treu zu bleiben und nicht den Erwartungen anderer zu verfallen.",
+    "Heimat": "Für mich ist der Unterschied ganz klar: Ein Haus ist das, was man kaufen oder mieten kann – die Wände, das Dach, die Adresse. Zuhause ist ein Gefühl, ein Ort im Herzen. Es ist der Ort, wo ich mich entspannen kann, wo ich meine eigenen Regeln habe und mich wirklich ich selbst fühle. Manchmal ist Zuhause sogar nicht an einem physischen Ort, sondern bei bestimmten Menschen.",
+    "Gerechtigkeit": "Gerechtigkeit bedeutet für mich, dass alle Menschen die gleichen Chancen und Rechte haben, egal woher sie kommen oder wie viel sie verdienen. Es ist dieses tiefe Gefühl der Fairness, wenn die Regeln für alle gleich gelten und die Schwächeren in der Gesellschaft geschützt werden. Aber ich finde auch, dass Gerechtigkeit sehr subjektiv ist – was für mich richtig und fair ist, kann für jemand anderen ganz anders aussehen. Deshalb halte ich es für wichtig, dass wir uns immer wieder darüber austauschen und unsere Gesetze kritisch hinterfragen.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo meine Handlungen die Freiheit oder Würde anderer Menschen verletzen. Das ist der Kern unseres Zusammenlebens: Mein Recht auf Selbstentfaltung hört auf, wenn es die Rechte meiner Mitmenschen beschneidet. Gesetze kodifizieren diese Grenzen, aber auch moralische Verantwortung spielt eine Rolle – manchmal ist etwas legal, aber trotzdem nicht richtig. Letztendlich ist Freiheit immer ein Balanceakt zwischen individuellen Wünschen und dem Gemeinwohl.",
+    "Verantwortung": "Verantwortung und Freiheit hängen für mich unmittelbar zusammen – sie bedingen einander. Ohne Freiheit gibt es keine echte Verantwortung, denn wenn ich keine Wahl habe, kann ich mich auch nicht verantwortlich fühlen für das, was geschieht. Umgekehrt macht erst die Verantwortung die Freiheit sinnvoll und tragfähig: Wenn ich frei handeln kann, muss ich auch die Konsequenzen meines Handelns für andere tragen. Freiheit ohne Verantwortung würde schnell in Beliebigkeit oder sogar in Chaos münden. Kurz gesagt: Je mehr Freiheit ich habe, desto größer ist auch meine Verantwortung."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "limits of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Würde anderer Menschen",
+      "en": "dignity of other people",
+      "importance": 0.9
+     },
+     {
+      "concept": "Recht auf Selbstentfaltung",
+      "en": "right to self-development",
+      "importance": 0.85
+     },
+     {
+      "concept": "Rechte meiner Mitmenschen",
+      "en": "rights of fellow human beings",
+      "importance": 0.85
+     },
+     {
+      "concept": "moralische Verantwortung",
+      "en": "moral responsibility",
+      "importance": 0.8
+     },
+     {
+      "concept": "Gemeinwohl",
+      "en": "common good",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen und Rechte",
+      "en": "equal opportunities and rights",
+      "importance": 0.95
+     },
+     {
+      "concept": "Fairness",
+      "en": "fairness",
+      "importance": 0.9
+     },
+     {
+      "concept": "Schwächeren in der Gesellschaft",
+      "en": "weaker members of society",
+      "importance": 0.85
+     },
+     {
+      "concept": "Regeln für alle gleich",
+      "en": "same rules for everyone",
+      "importance": 0.85
+     },
+     {
+      "concept": "subjektiv",
+      "en": "subjective",
+      "importance": 0.8
+     },
+     {
+      "concept": "Gesetze",
+      "en": "laws",
+      "importance": 0.7
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "Freiheit",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Wahl",
+      "en": "choice",
+      "importance": 0.85
+     },
+     {
+      "concept": "Konsequenzen meines Handelns",
+      "en": "consequences of my actions",
+      "importance": 0.9
+     },
+     {
+      "concept": "Beliebigkeit",
+      "en": "arbitrariness",
+      "importance": 0.75
+     },
+     {
+      "concept": "Chaos",
+      "en": "chaos",
+      "importance": 0.75
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.85
+     },
+     {
+      "concept": "Ort im Herzen",
+      "en": "place in the heart",
+      "importance": 0.8
+     },
+     {
+      "concept": "eigenen Regeln",
+      "en": "own rules",
+      "importance": 0.75
+     },
+     {
+      "concept": "bestimmten Menschen",
+      "en": "certain people",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Erfolg",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "ausgeglichenes Leben",
+      "en": "balanced life",
+      "importance": 0.9
+     },
+     {
+      "concept": "Leidenschaften",
+      "en": "passions",
+      "importance": 0.85
+     },
+     {
+      "concept": "Menschen, die mir wichtig sind",
+      "en": "people important to me",
+      "importance": 0.85
+     },
+     {
+      "concept": "etwas Sinnvolles",
+      "en": "something meaningful",
+      "importance": 0.8
+     },
+     {
+      "concept": "sich selbst treu bleiben",
+      "en": "staying true to oneself",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8182,
+      "tokens_in": 136,
+      "tokens_out": 549,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 11489,
+      "tokens_in": 127,
+      "tokens_out": 775,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 11158,
+      "tokens_in": 129,
+      "tokens_out": 756,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 8670,
+      "tokens_in": 128,
+      "tokens_out": 583,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 10591,
+      "tokens_in": 132,
+      "tokens_out": 711,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s02",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 2,
+   "answers": {
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo meine Handlungen die Freiheit anderer einschränken. Das ist keine abstrakte Idee, sondern spielt sich im Alltag ab: Meine Freiheit, laute Musik zu hören, endet bei der Nachtruhe meiner Nachbarn. Im großen Maßstab bedeutet das auch, dass Redefreiheit nicht zur Verleumdung oder Volksverhetzung wird. Das Grundgesetz gibt uns Freiheitsrechte, aber eben nicht grenzenlos – und das finde ich richtig, denn echte Freiheit braucht Verantwortung.",
+    "Heimat": "Das \"Haus\" ist für mich erstmal das physische Gebäude, die Wohnung oder das Bauwerk an sich. \"Zuhause\" dagegen ist viel mehr als das – es ist der Ort, an dem ich wohne, mich wohlfühle und Zugehörigkeit empfinde. Man kann in einem Haus wohnen, ohne dass es wirklich Zuhause ist. Zuhause ist das Gefühl, das man mit einem Ort verbindet, nicht nur die vier Wände.",
+    "Gerechtigkeit": "Gerechtigkeit ist für mich vor allem Fairness – dass alle Menschen die gleichen Spielregeln haben, egal wo sie geboren wurden oder wie viel sie verdienen. Es geht nicht nur um Gesetze, sondern um eine gesellschaftliche Verantwortung, die wir füreinander tragen. Manchmal frage ich mich aber, ob wahre Gerechtigkeit überhaupt möglich ist in einer so komplexen Welt. Und ob unser Streben danach nicht oft von unseren eigenen Vorurteilen getrübt ist.",
+    "Verantwortung": "Verantwortung und Freiheit hängen für mich unmittelbar zusammen. Ohne Freiheit kann es keine echte Verantwortung geben, denn Verantwortung setzt voraus, dass ich frei entscheiden kann. Umgekehrt braucht Freiheit Verantwortung als Gegengewicht, sonst wird sie zur Beliebigkeit. In unserer Gesellschaft bedeutet Freiheit nicht, tun zu können, was man will, sondern die Verantwortung für die eigenen Entscheidungen zu tragen. Das ist ein ständiger Balanceakt zwischen eigenen Wünschen und Rücksicht auf andere.",
+    "Erfolg": "Für mich ist Erfolg nicht nur beruflicher Aufstieg oder materieller Reichtum. Es bedeutet vor allem, einen Sinn in dem zu finden, was ich tue, und dabei meine eigenen Werte nicht zu verraten. Wichtig ist auch, Zeit für die Menschen zu haben, die mir wichtig sind, und ein inneres Gleichgewicht zu wahren. Erfolg spüre ich, wenn ich abends zufrieden ins Bett gehen kann, ohne dass mich Sorgen quälen. Letztlich ist es das Gefühl, das Leben nach meinen eigenen Maßstäben gelebt zu haben."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "limits of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Handlungen die Freiheit anderer einschränken",
+      "en": "actions limiting others' freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Redefreiheit",
+      "en": "freedom of speech",
+      "importance": 0.85
+     },
+     {
+      "concept": "Verleumdung oder Volksverhetzung",
+      "en": "defamation or incitement",
+      "importance": 0.8
+     },
+     {
+      "concept": "Grundgesetz",
+      "en": "Basic Law",
+      "importance": 0.85
+     },
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "Fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "gleichen Spielregeln",
+      "en": "same rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "gesellschaftliche Verantwortung",
+      "en": "social responsibility",
+      "importance": 0.85
+     },
+     {
+      "concept": "wahre Gerechtigkeit",
+      "en": "true justice",
+      "importance": 0.8
+     },
+     {
+      "concept": "eigene Vorurteile",
+      "en": "own prejudices",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung und Freiheit",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "frei entscheiden können",
+      "en": "being able to decide freely",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gegengewicht",
+      "en": "counterbalance",
+      "importance": 0.85
+     },
+     {
+      "concept": "Beliebigkeit",
+      "en": "arbitrariness",
+      "importance": 0.8
+     },
+     {
+      "concept": "Verantwortung für die eigenen Entscheidungen",
+      "en": "responsibility for one's own decisions",
+      "importance": 0.9
+     },
+     {
+      "concept": "Balanceakt",
+      "en": "balancing act",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "physisches Gebäude",
+      "en": "physical building",
+      "importance": 0.8
+     },
+     {
+      "concept": "Zugehörigkeit",
+      "en": "belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Sinn",
+      "en": "meaning",
+      "importance": 0.9
+     },
+     {
+      "concept": "eigenen Werte",
+      "en": "own values",
+      "importance": 0.85
+     },
+     {
+      "concept": "Zeit für die Menschen",
+      "en": "time for people",
+      "importance": 0.8
+     },
+     {
+      "concept": "inneres Gleichgewicht",
+      "en": "inner balance",
+      "importance": 0.85
+     },
+     {
+      "concept": "Leben nach meinen eigenen Maßstäben",
+      "en": "living by my own standards",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 17793,
+      "tokens_in": 128,
+      "tokens_out": 1039,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 15085,
+      "tokens_in": 127,
+      "tokens_out": 1024,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 12638,
+      "tokens_in": 129,
+      "tokens_out": 855,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 9195,
+      "tokens_in": 132,
+      "tokens_out": 623,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9911,
+      "tokens_in": 136,
+      "tokens_out": 668,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s03",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 3,
+   "answers": {
+    "Gerechtigkeit": "Gerechtigkeit bedeutet für mich, dass alle Menschen die gleichen Chancen und Rechte haben, unabhängig von ihrer Herkunft oder ihrem sozialen Status. Es geht nicht nur um gleiche Behandlung vor dem Gesetz, sondern auch darum, dass die Schwächeren in der Gesellschaft geschützt und unterstützt werden. Gerechtigkeit ist für mich auch, dass man für seine Taten die Verantwortung übernimmt – sowohl für Fehler als auch für Erfolge. Letztlich ist es das Gefühl, dass die Welt, wenn auch nicht perfekt, zumindest im Kern fair und ausgewogen ist.",
+    "Erfolg": "Für mich ist Erfolg vor allem das Gefühl, ein erfülltes Leben zu führen. Es geht nicht um Geld oder Status, sondern darin, meine eigenen Ziele zu erreichen und dabei meine Werte nicht zu verraten. Wenn ich am Abend zufrieden ins Bett gehen kann, weil ich etwas Sinnvolles getan oder Menschen, die mir wichtig sind, glücklich gemacht habe – dann fühle ich mich erfolgreich. Auch persönliches Wachstum und das Meistern von Herausforderungen sind für mich echte Erfolge.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo meine Handlungen die Rechte und Freiheiten anderer Menschen verletzen. Das Grundgesetz drückt das schön aus: Die Freiheit des Einzelnen endet dort, wo die Freiheit des Nächsten beginnt. Persönlich finde ich, dass echte Freiheit auch Verantwortung bedeutet – für die Gemeinschaft und für zukünftige Generationen. In Zeiten von Klimakrise und sozialer Spaltung sehe ich, dass wir unsere Freiheit oft stärker begrenzen müssen, um langfristig überhaupt frei leben zu können. Das ist manchmal ein schwieriger Spagat, aber notwendig für ein friedliches Miteinander.",
+    "Heimat": "ERROR: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-3904bc09-a81f-914b-b829-20ed0999440c', 'request_id': '3904bc09-a81f-914b-b829-20ed0999440c'}",
+    "Verantwortung": "ERROR: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-d0416ae5-c3f6-906a-81e4-b0236d83949f', 'request_id': 'd0416ae5-c3f6-906a-81e4-b0236d83949f'}"
+   },
+   "concepts": {
+    "Erfolg": [
+     {
+      "concept": "erfülltes Leben",
+      "en": "fulfilled life",
+      "importance": 1.0
+     },
+     {
+      "concept": "eigene Ziele",
+      "en": "own goals",
+      "importance": 0.9
+     },
+     {
+      "concept": "Werte",
+      "en": "values",
+      "importance": 0.9
+     },
+     {
+      "concept": "persönliches Wachstum",
+      "en": "personal growth",
+      "importance": 0.85
+     },
+     {
+      "concept": "Sinnvolles",
+      "en": "something meaningful",
+      "importance": 0.8
+     },
+     {
+      "concept": "Herausforderungen",
+      "en": "challenges",
+      "importance": 0.7
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8026,
+      "tokens_in": 129,
+      "tokens_out": 543,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 7899,
+      "tokens_in": 136,
+      "tokens_out": 530,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 10859,
+      "tokens_in": 128,
+      "tokens_out": 733,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 65,
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 62,
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "Freiheit:FAIL; Gerechtigkeit:FAIL; Verantwortung:FAIL; Heimat:FAIL; Erfolg:OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s04",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 4,
+   "answers": {
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo sie die Freiheit anderer einschränkt oder ihnen schadet. Das ist das klassische Schadensprinzip – ich kann tun, was ich will, solange niemand anderer darunter leidet. Aber es geht auch darum, dass wir in einer Gesellschaft leben und Verantwortung füreinander tragen. Deshalb endet meine Freiheit auch da, wo sie die gemeinsame Lebensgrundlage gefährdet, etwa durch Umweltzerstörung oder soziale Ungerechtigkeit. Letztlich ist Freiheit immer auch eine Frage des Ausgleichs zwischen individuellen Wünschen und dem Wohl der Gemeinschaft.",
+    "Heimat": "Das \"Haus\" ist für mich erst mal das physische Gebäude, die Wohnung oder das Bauwerk selbst. \"Zuhause\" hingegen ist viel mehr als das – es ist ein Gefühl des Geborgenseins, der Vertrautheit und des Ankommens. Man kann in einem Haus leben, ohne sich dort wirklich zuhause zu fühlen, denn Zuhause ist, wo man emotional hingehört. Kurz gesagt: Das Haus ist die Adresse, Zuhause ist das Gefühl dahinter.",
+    "Verantwortung": "Für mich sind Verantwortung und Freiheit wie zwei Seiten einer Medaille. Ohne Freiheit kann ich mich nicht wirklich verantwortlich fühlen – wenn ich keine Wahl habe, bin ich nur ein Spielball der Umstände. Aber Freiheit ohne Verantwortung wird schnell zur reinen Egozentrik, die anderen schadet. Erst wenn ich bereit bin, für meine Entscheidungen einzustehen, ist meine Freiheit auch wertvoll. Je mehr Freiheit man hat, desto mehr Verantwortung muss man auch tragen wollen.",
+    "Gerechtigkeit": "Gerechtigkeit bedeutet für mich, dass alle Menschen die gleichen Chancen haben, unabhängig von ihrer Herkunft oder ihrem Geldbeutel. Es ist ein Gefühl des Ausgleichs, wenn die Schwächeren geschützt und die Täter zur Verantwortung gezogen werden. In meinem Alltag sehe ich oft, wie wichtig es ist, dass Regeln nicht nur für manche gelten, sondern für alle gleichermaßen. Gerechtigkeit ist auch, wenn man zuhört und ernst nimmt, was jemand zu sagen hat, auch wenn diese Person keine Macht hat.",
+    "Erfolg": "Für mich ist Erfolg nicht nur das Erreichen von Zielen, sondern das Gefühl, im Einklang mit meinen eigenen Werten zu leben. Es bedeutet, eine Balance zu finden zwischen beruflicher Erfüllung und persönlichem Glück. Wichtig ist auch, dass ich meine Beziehungen zu Menschen, die mir wichtig sind, pflegen kann. Erfolg ist für mich, am Ende des Tages zufrieden sein zu können und zu wissen, dass ich mein Bestes gegeben habe."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Schadensprinzip",
+      "en": "harm principle",
+      "importance": 0.95
+     },
+     {
+      "concept": "Verantwortung füreinander",
+      "en": "responsibility for one another",
+      "importance": 0.9
+     },
+     {
+      "concept": "gemeinsame Lebensgrundlage",
+      "en": "common foundation of life",
+      "importance": 0.85
+     },
+     {
+      "concept": "Umweltzerstörung",
+      "en": "environmental destruction",
+      "importance": 0.8
+     },
+     {
+      "concept": "soziale Ungerechtigkeit",
+      "en": "social injustice",
+      "importance": 0.8
+     },
+     {
+      "concept": "Ausgleich zwischen individuellen Wünschen und dem Wohl der Gemeinschaft",
+      "en": "balance between individual desires and community welfare",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen",
+      "en": "equal opportunities",
+      "importance": 0.95
+     },
+     {
+      "concept": "Herkunft",
+      "en": "origin/background",
+      "importance": 0.85
+     },
+     {
+      "concept": "Geldbeutel",
+      "en": "wallet/financial means",
+      "importance": 0.85
+     },
+     {
+      "concept": "Schwächeren geschützt",
+      "en": "protecting the weak",
+      "importance": 0.9
+     },
+     {
+      "concept": "Täter zur Verantwortung gezogen",
+      "en": "holding perpetrators accountable",
+      "importance": 0.9
+     },
+     {
+      "concept": "Regeln für alle gleichermaßen",
+      "en": "rules for everyone equally",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "zwei Seiten einer Medaille",
+      "en": "two sides of the same coin",
+      "importance": 0.95
+     },
+     {
+      "concept": "Wahl",
+      "en": "choice",
+      "importance": 0.9
+     },
+     {
+      "concept": "Spielball der Umstände",
+      "en": "plaything of circumstances",
+      "importance": 0.85
+     },
+     {
+      "concept": "Egozentrik",
+      "en": "egocentrism",
+      "importance": 0.85
+     },
+     {
+      "concept": "für meine Entscheidungen einzustehen",
+      "en": "standing by my decisions",
+      "importance": 0.9
+     },
+     {
+      "concept": "Je mehr Freiheit, desto mehr Verantwortung",
+      "en": "the more freedom, the more responsibility",
+      "importance": 0.9
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "physisches Gebäude",
+      "en": "physical building",
+      "importance": 0.85
+     },
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Geborgenseins",
+      "en": "security/safety",
+      "importance": 0.9
+     },
+     {
+      "concept": "Vertrautheit",
+      "en": "familiarity",
+      "importance": 0.85
+     },
+     {
+      "concept": "emotional hingehört",
+      "en": "emotionally belonging",
+      "importance": 0.9
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Erreichen von Zielen",
+      "en": "achieving goals",
+      "importance": 0.85
+     },
+     {
+      "concept": "Einklang mit meinen eigenen Werten",
+      "en": "harmony with my own values",
+      "importance": 0.95
+     },
+     {
+      "concept": "Balance zu finden",
+      "en": "finding balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "beruflicher Erfüllung",
+      "en": "professional fulfillment",
+      "importance": 0.85
+     },
+     {
+      "concept": "persönlichem Glück",
+      "en": "personal happiness",
+      "importance": 0.85
+     },
+     {
+      "concept": "Beziehungen zu Menschen",
+      "en": "relationships with people",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 16532,
+      "tokens_in": 128,
+      "tokens_out": 1096,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 10817,
+      "tokens_in": 127,
+      "tokens_out": 731,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 23766,
+      "tokens_in": 132,
+      "tokens_out": 1245,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 8173,
+      "tokens_in": 129,
+      "tokens_out": 545,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 7495,
+      "tokens_in": 136,
+      "tokens_out": 506,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s05",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 5,
+   "answers": {
+    "Heimat": "Das ist ein schöner Unterschied. Ein Haus ist einfach das Gebäude, die vier Wände, das Dach – die physische Struktur. Zuhause ist dagegen ein Gefühl, ein Ort des Zugehörens, wo man sich wohlfühlt und geborgen ist. Man kann in einem Haus wohnen, aber nicht wirklich Zuhause sein. Für mich ist Zuhause dort, wo meine Familie ist und ich nach einem langen Tag zurückkommen möchte.",
+    "Verantwortung": "Verantwortung und Freiheit gehören für mich untrennbar zusammen. Ohne Freiheit gibt es keine echte Verantwortung, weil man nicht für Entscheidungen haften kann, die man nicht selbst frei getroffen hat. Umgekehrt gibt erst die Verantwortung der Freiheit ihre Bedeutung – sie verhindert, dass wir unsere Freiheit missbrauchen. Denn absolute Freiheit ohne Rücksicht auf andere führt schnell ins Chaos. Kurzum: Mit der Freiheit zu handeln kommt die Pflicht, für die Folgen einzustehen.",
+    "Freiheit": "Die Freiheit hat für mich ganz klare Grenzen: Sie endet da, wo sie die Rechte anderer Menschen verletzt. Das ist nicht nur eine moralische, sondern auch eine rechtliche Grenze, die in unserem Grundgesetz verankert ist. Jede Freiheit bringt auch Verantwortung mit sich – für die Gemeinschaft und für die Folgen unserer Handlungen. Ohne diese Grenzen würde die Freiheit des Stärkeren die des Schwächeren einfach überrollen, und das wäre keine Freiheit mehr, sondern Willkür.",
+    "Erfolg": "Erfolg für mich ist vor allem, ein ausgeglichenes Leben zu führen, in dem ich meine Leidenschaften ausleben kann. Es bedeutet nicht nur berufliche Anerkennung, sondern auch tiefe, echte Beziehungen zu Menschen, die mir wichtig sind. Wenn ich abends zufrieden ins Bett gehen kann, weil ich das getan habe, was mir wichtig ist, dann fühle ich mich erfolgreich. Für mich zählt auch, anderen zu helfen und einen positiven Unterschied zu machen, auch wenn das nur im Kleinen ist.",
+    "Gerechtigkeit": "Gerechtigkeit ist für mich vor allem ein Gefühl des Ausgleichs – wenn Menschen fair behandelt werden, egal woher sie kommen oder wie viel sie verdienen. Es bedeutet, dass die gleichen Regeln für alle gelten und dass die Schwächeren in der Gesellschaft geschützt werden. Aber Gerechtigkeit ist auch sehr persönlich: wenn ich sehe, dass jemand für sein Fehlverhalten tatsächlich Konsequenzen spürt, fühlt sich das einfach richtig an. Gleichzeitig ist mir klar, dass echte Gerechtigkeit oft komplex ist und nicht immer das ist, was ich im ersten Moment für richtig halte."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen",
+      "en": "limits",
+      "importance": 0.95
+     },
+     {
+      "concept": "Rechte anderer Menschen",
+      "en": "rights of other people",
+      "importance": 0.9
+     },
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "Grundgesetz",
+      "en": "basic law",
+      "importance": 0.85
+     },
+     {
+      "concept": "Folgen unserer Handlungen",
+      "en": "consequences of our actions",
+      "importance": 0.85
+     },
+     {
+      "concept": "Willkür",
+      "en": "arbitrariness",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "Gefühl des Ausgleichs",
+      "en": "feeling of balance",
+      "importance": 0.95
+     },
+     {
+      "concept": "faire Behandlung",
+      "en": "fair treatment",
+      "importance": 0.9
+     },
+     {
+      "concept": "gleichen Regeln für alle",
+      "en": "same rules for everyone",
+      "importance": 0.9
+     },
+     {
+      "concept": "Schwächeren in der Gesellschaft",
+      "en": "weaker ones in society",
+      "importance": 0.85
+     },
+     {
+      "concept": "Konsequenzen",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "Fehlverhalten",
+      "en": "misconduct",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Freiheit",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Pflicht",
+      "en": "duty",
+      "importance": 0.9
+     },
+     {
+      "concept": "Entscheidungen",
+      "en": "decisions",
+      "importance": 0.85
+     },
+     {
+      "concept": "Missbrauch der Freiheit",
+      "en": "abuse of freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "Rücksicht auf andere",
+      "en": "consideration for others",
+      "importance": 0.85
+     },
+     {
+      "concept": "Folgen",
+      "en": "consequences",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.9
+     },
+     {
+      "concept": "Ort des Zugehörens",
+      "en": "place of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "Familie",
+      "en": "family",
+      "importance": 0.9
+     },
+     {
+      "concept": "Geborgenheit",
+      "en": "security",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "ausgeglichenes Leben",
+      "en": "balanced life",
+      "importance": 0.95
+     },
+     {
+      "concept": "Leidenschaften",
+      "en": "passions",
+      "importance": 0.9
+     },
+     {
+      "concept": "tiefe, echte Beziehungen",
+      "en": "deep, genuine relationships",
+      "importance": 0.9
+     },
+     {
+      "concept": "positiver Unterschied",
+      "en": "positive difference",
+      "importance": 0.9
+     },
+     {
+      "concept": "berufliche Anerkennung",
+      "en": "professional recognition",
+      "importance": 0.85
+     },
+     {
+      "concept": "Hilfe für andere",
+      "en": "help for others",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7992,
+      "tokens_in": 127,
+      "tokens_out": 524,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 19941,
+      "tokens_in": 132,
+      "tokens_out": 1360,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9229,
+      "tokens_in": 128,
+      "tokens_out": 620,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7544,
+      "tokens_in": 136,
+      "tokens_out": 497,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 16608,
+      "tokens_in": 129,
+      "tokens_out": 1091,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s06",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 6,
+   "answers": {
+    "Gerechtigkeit": "Gerechtigkeit ist für mich vor allem Fairness – dass alle Menschen die gleichen Chancen bekommen und nach denselben Maßstäben beurteilt werden. Sie bedeutet auch Schutz für die Schwächeren und dass jemand für sein Handeln einstehen muss. Aber Gerechtigkeit ist nicht nur ein System, sondern auch eine persönliche Haltung: im Alltag anderen gegenüber aufrichtig und fair zu sein. Manchmal ist sie ein kompromissloses Prinzip, manchmal auch Mitgefühl, wenn harte Regeln zu hart würden.",
+    "Verantwortung": "Verantwortung und Freiheit hängen meiner Meinung nach unzertrennlich zusammen. Ohne Verantwortung wird Freiheit schnell zur Beliebigkeit, in der man zwar alles tun kann, aber nichts wirklich bedeutet. Umgekehrt kann Verantwortung manchmal wie eine Einschränkung der Freiheit wirken, aber sie gibt ihr erst ihre Richtung und ihren Wert. Erst wenn wir für unsere Entscheidungen einstehen, sind sie wirklich unsere eigenen – und das ist die Essenz von Freiheit.",
+    "Erfolg": "Erfolg ist für mich weniger ein Ziel als ein Gefühl des Einklangs. Es bedeutet, dass ich das tun kann, was mir wirklich wichtig ist, ohne mich dabei zu verlieren. Wenn ich am Abend müde ins Bett falle, aber weiß, dass ich etwas Sinnvolles getan habe – für mich oder andere – dann fühle ich mich erfolgreich. Es geht nicht um Anerkennung von außen, sondern darum, mit meinen eigenen Maßstäben im Reinen zu sein.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo meine Handlungen die Freiheit oder Würde anderer Menschen verletzen. Das ist keine abstrakte Idee, sondern spielt sich täglich ab: Meine Redefreiheit endet bei Volksverhetzung, meine Bewegungsfreiheit bei der Privatsphäre des Nachbarn. Wir leben nicht allein, deshalb brauchen wir einen gesellschaftlichen Konsens, der im Recht und in unseren moralischen Grundsätzen verankert ist. Freiheit ohne Verantwortung wäre Chaos, und genau darin liegt die Balance: Sie ist das Recht, mein Leben zu gestalten, solange ich damit nicht anderen schade.",
+    "Heimat": "Für mich ist \"Haus\" einfach das Gebäude, die vier Wände, das Dach – etwas Physisches und Greifbares. \"Zuhause\" dagegen ist ein Gefühl, ein Ort, wo ich wirklich hingehöre, wo ich mich wohl und sicher fühle. Man kann in einem Haus wohnen, aber es ist nicht unbedingt ein Zuhause. Zuhause ist da, wo das Herz ist, wie man so schön sagt."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Würde",
+      "en": "dignity",
+      "importance": 0.9
+     },
+     {
+      "concept": "gesellschaftlichen Konsens",
+      "en": "social consensus",
+      "importance": 0.9
+     },
+     {
+      "concept": "Recht",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "moralischen Grundsätzen",
+      "en": "moral principles",
+      "importance": 0.85
+     },
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.95
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "Fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "Chancen",
+      "en": "opportunities",
+      "importance": 0.9
+     },
+     {
+      "concept": "Maßstäben",
+      "en": "standards",
+      "importance": 0.9
+     },
+     {
+      "concept": "Schutz für die Schwächeren",
+      "en": "protection for the weaker",
+      "importance": 0.85
+     },
+     {
+      "concept": "persönliche Haltung",
+      "en": "personal attitude",
+      "importance": 0.85
+     },
+     {
+      "concept": "Mitgefühl",
+      "en": "compassion",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "Freiheit",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Beliebigkeit",
+      "en": "arbitrariness",
+      "importance": 0.9
+     },
+     {
+      "concept": "Einschränkung",
+      "en": "restriction",
+      "importance": 0.85
+     },
+     {
+      "concept": "Richtung",
+      "en": "direction",
+      "importance": 0.85
+     },
+     {
+      "concept": "Essenz",
+      "en": "essence",
+      "importance": 0.9
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gebäude",
+      "en": "building",
+      "importance": 0.85
+     },
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.9
+     },
+     {
+      "concept": "Ort",
+      "en": "place",
+      "importance": 0.85
+     },
+     {
+      "concept": "Herz",
+      "en": "heart",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Erfolg",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "Ziel",
+      "en": "goal",
+      "importance": 0.85
+     },
+     {
+      "concept": "Gefühl des Einklangs",
+      "en": "feeling of harmony",
+      "importance": 0.9
+     },
+     {
+      "concept": "Sinnvolles",
+      "en": "something meaningful",
+      "importance": 0.9
+     },
+     {
+      "concept": "Anerkennung",
+      "en": "recognition",
+      "importance": 0.85
+     },
+     {
+      "concept": "Maßstäben",
+      "en": "standards",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 13503,
+      "tokens_in": 129,
+      "tokens_out": 917,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 7791,
+      "tokens_in": 132,
+      "tokens_out": 525,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 7690,
+      "tokens_in": 136,
+      "tokens_out": 514,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 10427,
+      "tokens_in": 128,
+      "tokens_out": 703,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 6636,
+      "tokens_in": 127,
+      "tokens_out": 447,
+      "finish": "stop",
+      "topic": "Heimat"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s07",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 7,
+   "answers": {
+    "Gerechtigkeit": "Gerechtigkeit bedeutet für mich, dass alle Menschen die gleichen Chancen und Rechte haben, unabhängig von ihrer Herkunft oder ihrem Geldbeutel. Es ist nicht nur eine Frage von Gesetzen, sondern auch von alltäglicher Fairness und Empathie im Umgang miteinander. Manchmal ist Gerechtigkeit aber auch kompliziert, wenn verschiedene Werte miteinander kollidieren. Letztlich empfinde ich Gerechtigkeit als ein Gefühl des Ausgeglichenseins, wenn ich sehe, dass jemand die Unterstützung bekommt, die er oder sie wirklich braucht.",
+    "Erfolg": "Für mich ist Erfolg vor allem, wenn ich mich in meinem Leben wohl und im Einklang mit meinen Werten fühle. Es geht nicht um äußere Anerkennung oder materielle Güter, sondern darum, meine Leidenschaften leben zu können und dabei andere Menschen nicht aus dem Blick zu verlieren. Wenn ich am Abend das Gefühl habe, etwas Sinnvolles getan zu haben – sei es im Beruf, in Beziehungen oder für mich selbst – dann fühle ich mich erfolgreich. Erfolg bedeutet auch, aus Fehlern zu lernen und dabei nicht den Mut zu verlieren, neue Wege zu gehen.",
+    "Verantwortung": "Verantwortung und Freiheit hängen meiner Meinung nach unzertrennlich zusammen. Ohne Freiheit fühlt sich Verantwortung wie eine Last an, die man aufgedrückt bekommt, nicht wie eine echte Wahl. Umgekehrt ist Freiheit ohne Verantwortung nur Willkür – man kann zwar handeln, aber ohne Bewusstsein für die Folgen. Erst wenn wir die Freiheit haben zu wählen und gleichzeitig die Verantwortung für unsere Entscheidungen übernehmen, ist beides wirklich bedeutsam.",
+    "Heimat": "Das ist eigentlich ein großer Unterschied. Ein Haus ist für mich erst mal nur das Gebäude, die physische Hülle aus Wänden und Dach. Zuhause dagegen ist das Gefühl, der Ort, an dem man wirklich ankommt und sich geborgen fühlt. Man kann in einem Haus leben, ohne dass es jemals Zuhause wird – das hängt von den Menschen und der Atmosphäre ab. Für mich ist Zuhause mehr ein Zustand als ein Ort.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo sie die Freiheit anderer einschränkt. Das ist die klassische Definition, aber im Alltag ist es komplexer: Meine Freiheit, laut Musik zu hören, endet zum Beispiel an der Wand meines Nachbarn. Gesetze und Regeln sind notwendig, um diese Grenzen zu definieren, aber auch gesellschaftliche Normen und Rücksichtnahme spielen eine große Rolle. Letztendlich braucht Freiheit Verantwortung, sonst wird sie zur Beliebigkeit."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Freiheit anderer",
+      "en": "freedom of others",
+      "importance": 0.9
+     },
+     {
+      "concept": "Verantwortung",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gesetze und Regeln",
+      "en": "laws and rules",
+      "importance": 0.85
+     },
+     {
+      "concept": "gesellschaftliche Normen",
+      "en": "social norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "Rücksichtnahme",
+      "en": "consideration",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen und Rechte",
+      "en": "equal opportunities and rights",
+      "importance": 0.95
+     },
+     {
+      "concept": "Gefühl des Ausgeglichenseins",
+      "en": "feeling of balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "alltäglicher Fairness",
+      "en": "everyday fairness",
+      "importance": 0.85
+     },
+     {
+      "concept": "Empathie",
+      "en": "empathy",
+      "importance": 0.85
+     },
+     {
+      "concept": "Herkunft",
+      "en": "origin",
+      "importance": 0.8
+     },
+     {
+      "concept": "Geldbeutel",
+      "en": "wallet",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung und Freiheit",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Willkür",
+      "en": "arbitrariness",
+      "importance": 0.9
+     },
+     {
+      "concept": "Last",
+      "en": "burden",
+      "importance": 0.85
+     },
+     {
+      "concept": "Wahl",
+      "en": "choice",
+      "importance": 0.85
+     },
+     {
+      "concept": "Entscheidungen",
+      "en": "decisions",
+      "importance": 0.85
+     },
+     {
+      "concept": "Folgen",
+      "en": "consequences",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.9
+     },
+     {
+      "concept": "physische Hülle",
+      "en": "physical shell",
+      "importance": 0.85
+     },
+     {
+      "concept": "Zustand",
+      "en": "state",
+      "importance": 0.85
+     },
+     {
+      "concept": "Ort",
+      "en": "place",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Einklang mit meinen Werten",
+      "en": "harmony with my values",
+      "importance": 0.95
+     },
+     {
+      "concept": "Leidenschaften",
+      "en": "passions",
+      "importance": 0.9
+     },
+     {
+      "concept": "Sinnvolles",
+      "en": "something meaningful",
+      "importance": 0.9
+     },
+     {
+      "concept": "äußere Anerkennung",
+      "en": "external recognition",
+      "importance": 0.85
+     },
+     {
+      "concept": "materielle Güter",
+      "en": "material goods",
+      "importance": 0.85
+     },
+     {
+      "concept": "Fehler",
+      "en": "mistakes",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8054,
+      "tokens_in": 129,
+      "tokens_out": 541,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 9070,
+      "tokens_in": 136,
+      "tokens_out": 611,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 8140,
+      "tokens_in": 132,
+      "tokens_out": 547,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9940,
+      "tokens_in": 127,
+      "tokens_out": 672,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7722,
+      "tokens_in": 128,
+      "tokens_out": 518,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s08",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 8,
+   "answers": {
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo sie die Rechte und Freiheiten anderer Menschen verletzt. Das ist eigentlich ein ganz einfaches Prinzip: Meine Freiheit hört auf, wenn ich damit jemandem schade oder seine Würde antaste. Im Grundgesetz steht das ja auch schön formuliert – die Freiheit des Einzelnen ist durch die verfassungsmäßige Ordnung und die sittlichen Gesetze begrenzt. Aber es geht auch um Rücksichtnahme im Alltag, um Verantwortung für die Gemeinschaft. Letztendlich ist Freiheit immer auch ein Balanceakt zwischen eigenen Wünschen und dem Wohl aller.",
+    "Verantwortung": "Verantwortung und Freiheit hängen meiner Meinung nach untrennbar zusammen. Ohne Verantwortung wird Freiheit schnell zur Beliebigkeit, in der man zwar handeln kann, aber nicht wirklich handlungsfähig ist. Umgekehrt macht erst die bewusste Übernahme von Verantwortung echte Freiheit möglich, weil sie uns befähigt, selbstbestimmt zu entscheiden. Wenn ich zum Beispiel für meine Familie verantwortlich bin, schränkt das meine Freiheit ein, aber gleichzeitig gibt es meinem Handeln einen tieferen Sinn. Letztendlich ist Verantwortung die innere Struktur, die Freiheit von innen heraus formt, statt sie von außen zu beschränken.",
+    "Gerechtigkeit": "Gerechtigkeit bedeutet für mich, dass alle Menschen die gleichen Chancen haben sollten, unabhängig von ihrer Herkunft oder ihrem Geldbeutel. Es geht nicht nur um Gesetze, sondern auch darum, dass wir im Alltag fair miteinander umgehen und uns für Benachteiligte einsetzen. Ich denke oft an den Unterschied zwischen formaler Gerechtigkeit – also was legal ist – und tatsächlicher Gerechtigkeit, die manchmal mehr Mitgefühl erfordert. Letztlich ist Gerechtigkeit für mich eine Balance zwischen Regeln und Menschlichkeit.",
+    "Erfolg": "Erfolg für mich ist nicht nur die Karriereleiter hochzuklettern oder viel Geld zu verdienen. Es bedeutet vor allem, ein ausgeglichenes Leben zu führen, in dem ich meine Leidenschaften ausleben kann und Zeit für die Menschen habe, die mir wichtig sind. Wenn ich am Abend zufrieden ins Bett gehen kann, weil ich etwas Sinnvolles getan habe – sei es bei der Arbeit oder im Privatleben – dann fühle ich mich erfolgreich. Auch persönliches Wachstum und die Fähigkeit, aus Fehlern zu lernen, sind für mich echte Erfolge.",
+    "Heimat": "\"Haus\" ist für mich erst mal nur das Gebäude, die physische Struktur – egal ob jemand darin lebt oder nicht. \"Zuhause\" dagegen ist das Gefühl, das Gefühl des Ankommens und der Geborgenheit. Man kann in einem Haus wohnen, ohne dass es wirklich Zuhause ist, etwa bei einer Zwischenmiete. Zuhause ist, wenn ich nach einem anstrengenden Tag die Tür aufmache und sofort denke: \"Endlich wieder da.\""
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "limits of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Rechte und Freiheiten anderer Menschen",
+      "en": "rights and freedoms of others",
+      "importance": 0.9
+     },
+     {
+      "concept": "Würde",
+      "en": "dignity",
+      "importance": 0.85
+     },
+     {
+      "concept": "Balanceakt",
+      "en": "balancing act",
+      "importance": 0.9
+     },
+     {
+      "concept": "Verantwortung für die Gemeinschaft",
+      "en": "responsibility for community",
+      "importance": 0.85
+     },
+     {
+      "concept": "verfassungsmäßige Ordnung",
+      "en": "constitutional order",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen",
+      "en": "equal opportunities",
+      "importance": 0.95
+     },
+     {
+      "concept": "fair miteinander umgehen",
+      "en": "fair interaction",
+      "importance": 0.85
+     },
+     {
+      "concept": "Benachteiligte",
+      "en": "disadvantaged people",
+      "importance": 0.8
+     },
+     {
+      "concept": "formaler Gerechtigkeit",
+      "en": "formal justice",
+      "importance": 0.85
+     },
+     {
+      "concept": "tatsächlicher Gerechtigkeit",
+      "en": "actual justice",
+      "importance": 0.85
+     },
+     {
+      "concept": "Balance zwischen Regeln und Menschlichkeit",
+      "en": "balance of rules and humanity",
+      "importance": 0.9
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung und Freiheit",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "bewusste Übernahme von Verantwortung",
+      "en": "conscious responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "selbstbestimmt zu entscheiden",
+      "en": "autonomous decision-making",
+      "importance": 0.85
+     },
+     {
+      "concept": "innere Struktur",
+      "en": "inner structure",
+      "importance": 0.85
+     },
+     {
+      "concept": "Freiheit von innen heraus formt",
+      "en": "shapes freedom from within",
+      "importance": 0.85
+     },
+     {
+      "concept": "tieferen Sinn",
+      "en": "deeper meaning",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "Geborgenheit",
+      "en": "security",
+      "importance": 0.9
+     },
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.8
+     },
+     {
+      "concept": "Gefühl",
+      "en": "feeling",
+      "importance": 0.75
+     },
+     {
+      "concept": "physische Struktur",
+      "en": "physical structure",
+      "importance": 0.7
+     },
+     {
+      "concept": "Ankommens",
+      "en": "arrival",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "ausgeglichenes Leben",
+      "en": "balanced life",
+      "importance": 0.9
+     },
+     {
+      "concept": "etwas Sinnvolles getan",
+      "en": "done something meaningful",
+      "importance": 0.9
+     },
+     {
+      "concept": "Leidenschaften ausleben",
+      "en": "living out passions",
+      "importance": 0.85
+     },
+     {
+      "concept": "persönliches Wachstum",
+      "en": "personal growth",
+      "importance": 0.85
+     },
+     {
+      "concept": "Menschen, die mir wichtig sind",
+      "en": "important people",
+      "importance": 0.8
+     },
+     {
+      "concept": "zufrieden ins Bett gehen",
+      "en": "going to bed satisfied",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 12337,
+      "tokens_in": 128,
+      "tokens_out": 837,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 13894,
+      "tokens_in": 132,
+      "tokens_out": 946,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 7572,
+      "tokens_in": 129,
+      "tokens_out": 509,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 8773,
+      "tokens_in": 136,
+      "tokens_out": 586,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 10466,
+      "tokens_in": 127,
+      "tokens_out": 713,
+      "finish": "stop",
+      "topic": "Heimat"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s09",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 9,
+   "answers": {
+    "Heimat": "Das Haus ist für mich das physische Gebäude, die Wände und das Dach über dem Kopf. Zuhause dagegen ist ein Gefühl – das Gefühl des Ankommens, der Geborgenheit und des Zugehörens. Man kann in einem Haus wohnen, ohne sich jemals wirklich zuhause zu führen. Letztendlich machen erst die Menschen, die Erinnerungen und das Gefühl von Sicherheit ein Haus zu einem Zuhause.",
+    "Freiheit": "Die Grenzen der Freiheit liegen für mich dort, wo sie die Rechte anderer verletzt. Das ist ein Grundprinzip in unserer Verfassung – meine Freiheit endet, wo die Freiheit meines Mitmenschen beginnt. Natürlich gibt es auch gesetzliche Schranken, die zum Schutz der Allgemeinheit notwendig sind, etwa bei Gefahr für Leib und Leben. Aber auch ethisch gesehen hat Freiheit ihre Grenzen in der Verantwortung, die wir füreinander tragen.",
+    "Gerechtigkeit": "Für mich bedeutet Gerechtigkeit, dass alle Menschen die gleichen Chancen bekommen, egal wo sie herkommen oder wie viel Geld sie haben. Es ist wichtig, dass die Schwächeren in der Gesellschaft geschützt werden und dass Regeln tatsächlich für alle gelten, nicht nur für die, die sie machen. Gerechtigkeit ist aber auch ein persönliches Gefühl – das Gefühl, fair behandelt zu werden, wenn man ehrlich ist oder einen Fehler zugibt. Letztlich ist es ein Ideal, nach dem wir streben, auch wenn wir wissen, dass die Welt nie perfekt gerecht sein wird.",
+    "Erfolg": "Für mich ist Erfolg vor allem das Gefühl, ein erfülltes Leben zu führen. Es geht nicht nur um berufliche Höhenpunkte oder materiellen Reichtum, sondern darum, eine Balance zwischen Arbeit, persönlichen Interessen und Beziehungen zu finden. Wenn ich am Ende des Tages das Gefühl habe, etwas Sinnvolles getan zu haben und dabei ich selbst geblieben zu sein, dann fühle ich mich erfolgreich. Wichtig ist auch, aus Rückschlägen zu lernen und sich weiterzuentwickeln, statt sich nur an äußeren Maßstäben zu messen.",
+    "Verantwortung": "Verantwortung und Freiheit hängen meiner Meinung nach unzertrennlich zusammen. Ohne Freiheit wäre Verantwortung nur eine Last, die man aufzwingt, ohne wirklich handeln zu können. Umgekehrt ist Freiheit ohne Verantwortung bloße Willkür, die letztendlich in Chaos mündet. Erst die bewusste Übernahme von Verantwortung gibt der Freiheit ihre eigentliche Würde und Bedeutung. Für mich bedeutet echte Freiheit daher immer auch, für die eigenen Entscheidungen einzustehen und ihre Folgen zu tragen."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Grenzen der Freiheit",
+      "en": "limits of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "Rechte anderer",
+      "en": "rights of others",
+      "importance": 0.9
+     },
+     {
+      "concept": "Grundprinzip in unserer Verfassung",
+      "en": "fundamental principle in our constitution",
+      "importance": 0.85
+     },
+     {
+      "concept": "gesetzliche Schranken",
+      "en": "legal restrictions",
+      "importance": 0.8
+     },
+     {
+      "concept": "Schutz der Allgemeinheit",
+      "en": "protection of the general public",
+      "importance": 0.8
+     },
+     {
+      "concept": "Verantwortung, die wir füreinander tragen",
+      "en": "responsibility we bear for each other",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "gleichen Chancen",
+      "en": "equal opportunities",
+      "importance": 0.95
+     },
+     {
+      "concept": "Schwächeren in der Gesellschaft",
+      "en": "weaker members of society",
+      "importance": 0.85
+     },
+     {
+      "concept": "Regeln gelten für alle",
+      "en": "rules apply to everyone",
+      "importance": 0.85
+     },
+     {
+      "concept": "persönliches Gefühl",
+      "en": "personal feeling",
+      "importance": 0.8
+     },
+     {
+      "concept": "fair behandelt zu werden",
+      "en": "to be treated fairly",
+      "importance": 0.85
+     },
+     {
+      "concept": "Ideal, nach dem wir streben",
+      "en": "ideal we strive for",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Verantwortung und Freiheit",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "unzertrennlich zusammen",
+      "en": "inseparably connected",
+      "importance": 0.9
+     },
+     {
+      "concept": "bewusste Übernahme von Verantwortung",
+      "en": "conscious assumption of responsibility",
+      "importance": 0.85
+     },
+     {
+      "concept": "Würde und Bedeutung",
+      "en": "dignity and meaning",
+      "importance": 0.8
+     },
+     {
+      "concept": "eigenen Entscheidungen einzustehen",
+      "en": "stand by one's own decisions",
+      "importance": 0.85
+     },
+     {
+      "concept": "Folgen zu tragen",
+      "en": "bear the consequences",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "Haus",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "Zuhause",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "physisches Gebäude",
+      "en": "physical building",
+      "importance": 0.8
+     },
+     {
+      "concept": "Gefühl des Ankommens",
+      "en": "feeling of arriving",
+      "importance": 0.85
+     },
+     {
+      "concept": "Geborgenheit",
+      "en": "security/shelter",
+      "importance": 0.85
+     },
+     {
+      "concept": "Menschen, die Erinnerungen",
+      "en": "people, memories",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "erfülltes Leben",
+      "en": "fulfilled life",
+      "importance": 0.95
+     },
+     {
+      "concept": "Balance zwischen Arbeit, persönlichen Interessen und Beziehungen",
+      "en": "balance between work, personal interests and relationships",
+      "importance": 0.9
+     },
+     {
+      "concept": "etwas Sinnvolles getan zu haben",
+      "en": "have done something meaningful",
+      "importance": 0.85
+     },
+     {
+      "concept": "ich selbst geblieben zu sein",
+      "en": "remained true to oneself",
+      "importance": 0.85
+     },
+     {
+      "concept": "aus Rückschlägen zu lernen",
+      "en": "learn from setbacks",
+      "importance": 0.8
+     },
+     {
+      "concept": "äußeren Maßstäben",
+      "en": "external standards",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 10643,
+      "tokens_in": 127,
+      "tokens_out": 720,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 9174,
+      "tokens_in": 128,
+      "tokens_out": 614,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 10652,
+      "tokens_in": 129,
+      "tokens_out": 725,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 11415,
+      "tokens_in": 136,
+      "tokens_out": 776,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 9762,
+      "tokens_in": 132,
+      "tokens_out": 661,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s00",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 0,
+   "answers": {
+    "Verantwortung": "Responsibility and freedom are deeply intertwined—you can't really have one without the other. True freedom isn't just doing whatever you want; it's the ability to make choices and fully owning the consequences that follow. When you accept responsibility for your actions, people trust you with more freedom, but if you try to be completely free without any responsibility, you end up infringing on others' freedom, which eventually limits your own. They balance each other like a scale: the more freedom you want, the more responsibility you have to carry.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability. It's the idea that everyone should be treated equally under the law, regardless of their wealth or status. But it's also more than that—it's a moral compass that tells us when something is fundamentally wrong and needs to be set right. Real justice means both punishing harm and addressing the root causes that lead to inequality. Ultimately, it's about creating a society where people can trust that they'll get a fair shake.",
+    "Heimat": "A house is just the physical building—the structure, walls, and roof. A home, though, is where you actually feel you belong; it's personal and emotional. You can live in a house that never feels like home, and you can make a home in an apartment or even a city. It's really about the feeling of comfort and connection versus the physical place itself.",
+    "Freiheit": "Freedom's boundaries are tricky. I always think about that saying—your freedom ends where mine begins. But it's more than that. It's where your actions start causing real harm or infringing on someone else's ability to live their life. And then there's the whole social contract thing—we give up some freedoms willingly for security and to live in a functioning society. Plus, practical stuff matters too—you might be free to travel anywhere, but if you can't afford a ticket, that freedom's pretty theoretical.",
+    "Erfolg": "Success, to me, isn't about climbing some corporate ladder or hitting a certain salary—it's about waking up most days feeling like I'm where I'm supposed to be. It's built on the quality of my relationships, the moments where I feel truly connected to the people I love. Success is also about continuous growth, that feeling of becoming a slightly better version of myself than I was yesterday. Ultimately, it's knowing I've used my time and energy in ways that align with my values and maybe made someone else's path a little easier."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Freedom's boundaries",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "real harm",
+      "en": "real harm",
+      "importance": 0.85
+     },
+     {
+      "concept": "social contract",
+      "en": "social contract",
+      "importance": 0.9
+     },
+     {
+      "concept": "security",
+      "en": "security",
+      "importance": 0.8
+     },
+     {
+      "concept": "functioning society",
+      "en": "functioning society",
+      "importance": 0.85
+     },
+     {
+      "concept": "practical constraints",
+      "en": "practical constraints",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.9
+     },
+     {
+      "concept": "equal treatment under the law",
+      "en": "equal treatment under law",
+      "importance": 0.95
+     },
+     {
+      "concept": "moral compass",
+      "en": "moral compass",
+      "importance": 0.85
+     },
+     {
+      "concept": "root causes",
+      "en": "root causes",
+      "importance": 0.9
+     },
+     {
+      "concept": "inequality",
+      "en": "inequality",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "intertwined responsibility and freedom",
+      "en": "interconnection of responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "True freedom",
+      "en": "true freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "owning consequences",
+      "en": "owning consequences",
+      "importance": 0.9
+     },
+     {
+      "concept": "trust",
+      "en": "trust",
+      "importance": 0.8
+     },
+     {
+      "concept": "others' freedom",
+      "en": "others' freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "balance",
+      "en": "balance",
+      "importance": 0.9
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "physical building",
+      "en": "physical building",
+      "importance": 0.8
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "feeling of belonging",
+      "en": "feeling of belonging",
+      "importance": 0.95
+     },
+     {
+      "concept": "comfort and connection",
+      "en": "comfort and connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "physical place",
+      "en": "physical place",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "corporate ladder",
+      "en": "corporate ladder",
+      "importance": 0.85
+     },
+     {
+      "concept": "salary",
+      "en": "salary",
+      "importance": 0.85
+     },
+     {
+      "concept": "sense of purpose",
+      "en": "sense of purpose",
+      "importance": 0.95
+     },
+     {
+      "concept": "quality of relationships",
+      "en": "quality of relationships",
+      "importance": 0.9
+     },
+     {
+      "concept": "continuous growth",
+      "en": "continuous growth",
+      "importance": 0.9
+     },
+     {
+      "concept": "value alignment",
+      "en": "value alignment",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8040,
+      "tokens_in": 119,
+      "tokens_out": 537,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 7487,
+      "tokens_in": 114,
+      "tokens_out": 506,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6280,
+      "tokens_in": 117,
+      "tokens_out": 422,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7586,
+      "tokens_in": 116,
+      "tokens_out": 508,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7892,
+      "tokens_in": 120,
+      "tokens_out": 527,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s01",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 1,
+   "answers": {
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability woven into the fabric of everyday life. It's not just what happens in courtrooms—it's when someone admits they were wrong, or when a community stands up for a person who's been treated unfairly. I think real justice requires both systems that protect people equally and individuals who have the courage to act with integrity. It means recognizing that everyone deserves dignity, and that when harm happens, we should repair it rather than just punish. Ultimately, justice is the ongoing work of making the world a little more balanced than it was yesterday.",
+    "Heimat": "A house is just the physical building—the walls, roof, and rooms. But a home is something deeper; it's where you feel comfortable, safe, and like you truly belong. You can live in a house without it ever feeling like home, and you can make a home in something that isn't technically a house, like an apartment or even a temporary space. It's really about the emotional connection versus the physical structure.",
+    "Verantwortung": "Responsibility and freedom are basically two sides of the same coin, not opposites like people usually think. Real freedom isn't just doing whatever you want without consequences—it's having the power to make your own choices and then owning what happens because of them. When you actually take responsibility for your actions, you stop being a victim of circumstance and gain the freedom to shape your own life. But freedom without responsibility is just recklessness that'll eventually catch up with you.",
+    "Erfolg": "Success to me isn't about reaching some final destination or accumulating wealth—it's about the quiet moments when I feel genuinely aligned with my values. It's seeing my kids laugh without a care in the world, knowing I've created a safe space for them to grow. It's also about those small daily wins: having the courage to speak up in a meeting, or finally finishing that book I've been meaning to read. Ultimately, success is the freedom to choose how I spend my time and who I spend it with, while feeling like I'm contributing something meaningful, however small, to the people around me.",
+    "Freiheit": "I think freedom's boundaries are fundamentally about where your actions start infringing on someone else's rights. The classic line is \"your freedom to swing your fist ends where my nose begins.\" But it's messier than that—we accept limits for public safety, like traffic laws, or to protect vulnerable people. These boundaries shift with culture and time; what seemed like essential liberty to one generation feels like harmful license to another. Ultimately, freedom exists in tension with responsibility and our unspoken social contract."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "freedom's boundaries",
+      "en": "freedom's boundaries",
+      "importance": 0.95
+     },
+     {
+      "concept": "infringing on someone else's rights",
+      "en": "infringing on someone else's rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "public safety",
+      "en": "public safety",
+      "importance": 0.85
+     },
+     {
+      "concept": "social contract",
+      "en": "social contract",
+      "importance": 0.9
+     },
+     {
+      "concept": "responsibility",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "culture and time",
+      "en": "culture and time",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness and accountability",
+      "en": "fairness and accountability",
+      "importance": 0.95
+     },
+     {
+      "concept": "systems that protect people equally",
+      "en": "systems that protect people equally",
+      "importance": 0.9
+     },
+     {
+      "concept": "individuals who have the courage to act with integrity",
+      "en": "individuals who have the courage to act with integrity",
+      "importance": 0.85
+     },
+     {
+      "concept": "dignity",
+      "en": "dignity",
+      "importance": 0.9
+     },
+     {
+      "concept": "repair it rather than just punish",
+      "en": "repair it rather than just punish",
+      "importance": 0.85
+     },
+     {
+      "concept": "making the world a little more balanced",
+      "en": "making the world a little more balanced",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "two sides of the same coin",
+      "en": "two sides of the same coin",
+      "importance": 0.95
+     },
+     {
+      "concept": "power to make your own choices",
+      "en": "power to make your own choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "owning what happens",
+      "en": "owning what happens",
+      "importance": 0.9
+     },
+     {
+      "concept": "stop being a victim of circumstance",
+      "en": "stop being a victim of circumstance",
+      "importance": 0.85
+     },
+     {
+      "concept": "freedom to shape your own life",
+      "en": "freedom to shape your own life",
+      "importance": 0.85
+     },
+     {
+      "concept": "recklessness",
+      "en": "recklessness",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "comfortable, safe, and like you truly belong",
+      "en": "comfortable, safe, and like you truly belong",
+      "importance": 0.9
+     },
+     {
+      "concept": "physical structure",
+      "en": "physical structure",
+      "importance": 0.85
+     },
+     {
+      "concept": "emotional connection",
+      "en": "emotional connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "temporary space",
+      "en": "temporary space",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "aligned with my values",
+      "en": "aligned with my values",
+      "importance": 0.95
+     },
+     {
+      "concept": "quiet moments",
+      "en": "quiet moments",
+      "importance": 0.8
+     },
+     {
+      "concept": "kids laugh without a care",
+      "en": "kids laugh without a care",
+      "importance": 0.85
+     },
+     {
+      "concept": "safe space for them to grow",
+      "en": "safe space for them to grow",
+      "importance": 0.85
+     },
+     {
+      "concept": "small daily wins",
+      "en": "small daily wins",
+      "importance": 0.8
+     },
+     {
+      "concept": "freedom to choose how I spend my time",
+      "en": "freedom to choose how I spend my time",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7221,
+      "tokens_in": 114,
+      "tokens_out": 489,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6482,
+      "tokens_in": 117,
+      "tokens_out": 434,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 9133,
+      "tokens_in": 119,
+      "tokens_out": 614,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 10451,
+      "tokens_in": 120,
+      "tokens_out": 709,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 6913,
+      "tokens_in": 116,
+      "tokens_out": 453,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s02",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 2,
+   "answers": {
+    "Erfolg": "Success, to me, isn't about reaching some final destination or hitting a specific salary figure. It's more about those quiet moments when I feel genuinely aligned with my values—like when I've helped someone grow, created something that resonates, or simply managed to balance my ambitions with being present for the people I love. It's that feeling of moving forward while still having space to breathe and appreciate where I am right now. Ultimately, it's building a life where my work feels meaningful and my relationships feel deep, even if it's messy and imperfect.",
+    "Heimat": "A house is just the physical structure—the building itself, with walls and a roof. Home is where you actually live and feel like you belong. You can have a house that never feels like home, or make a home in an apartment or even a different city. It's really about the emotional connection, not just the physical space.",
+    "Freiheit": "Freedom's boundaries are drawn where one person's actions begin to infringe on another's rights or well-being. It's that messy gray zone where my right to swing my fist ends at your nose. We accept legal limits—like traffic laws or noise ordinances—as the price for living in a functioning society. But the real tension lies in unspoken social contracts: am I free to express an opinion that deeply offends my neighbor? To pursue wealth in ways that indirectly harm others? The boundary shifts constantly, negotiated through culture, courts, and conscience.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability. It's the idea that everyone should be treated equally under the law, but also that the law should be flexible enough to consider individual circumstances. True justice isn't just punishment—it's about restoring balance and making sure harm is addressed, not just penalized. I think it also requires us to constantly examine our systems for bias, because justice fails when it only serves some people. Ultimately, it's a living concept that evolves as our understanding of right and wrong deepens.",
+    "Verantwortung": "Responsibility and freedom are deeply intertwined—you can't have meaningful freedom without being willing to accept responsibility for your choices. When you're free to make decisions, you also have to own the consequences, both good and bad. I think that's why giving kids more freedom means teaching them responsibility first; otherwise, it's just chaos. True autonomy isn't about doing whatever you want without limits, it's about having the judgment to handle freedom wisely. In my experience, the people with the most genuine freedom in their lives are usually the ones who've learned to be most responsible."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "boundaries",
+      "en": "boundaries",
+      "importance": 0.95
+     },
+     {
+      "concept": "infringement on another's rights",
+      "en": "infringement on another's rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "legal limits",
+      "en": "legal limits",
+      "importance": 0.85
+     },
+     {
+      "concept": "social contracts",
+      "en": "social contracts",
+      "importance": 0.85
+     },
+     {
+      "concept": "culture, courts, and conscience",
+      "en": "culture, courts, and conscience",
+      "importance": 0.8
+     },
+     {
+      "concept": "well-being",
+      "en": "well-being",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.95
+     },
+     {
+      "concept": "equality under the law",
+      "en": "equality under the law",
+      "importance": 0.9
+     },
+     {
+      "concept": "restoring balance",
+      "en": "restoring balance",
+      "importance": 0.85
+     },
+     {
+      "concept": "bias",
+      "en": "bias",
+      "importance": 0.85
+     },
+     {
+      "concept": "living concept",
+      "en": "living concept",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "intertwined",
+      "en": "intertwined",
+      "importance": 0.95
+     },
+     {
+      "concept": "accepting responsibility",
+      "en": "accepting responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.9
+     },
+     {
+      "concept": "genuine freedom",
+      "en": "genuine freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "autonomy",
+      "en": "autonomy",
+      "importance": 0.85
+     },
+     {
+      "concept": "judgment",
+      "en": "judgment",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.95
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "emotional connection",
+      "en": "emotional connection",
+      "importance": 0.95
+     },
+     {
+      "concept": "physical space",
+      "en": "physical space",
+      "importance": 0.9
+     },
+     {
+      "concept": "belonging",
+      "en": "belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "building",
+      "en": "building",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "alignment with my values",
+      "en": "alignment with my values",
+      "importance": 0.95
+     },
+     {
+      "concept": "meaningful work",
+      "en": "meaningful work",
+      "importance": 0.9
+     },
+     {
+      "concept": "deep relationships",
+      "en": "deep relationships",
+      "importance": 0.9
+     },
+     {
+      "concept": "balance",
+      "en": "balance",
+      "importance": 0.85
+     },
+     {
+      "concept": "quiet moments",
+      "en": "quiet moments",
+      "importance": 0.85
+     },
+     {
+      "concept": "moving forward",
+      "en": "moving forward",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 14371,
+      "tokens_in": 120,
+      "tokens_out": 975,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 12884,
+      "tokens_in": 117,
+      "tokens_out": 874,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 8883,
+      "tokens_in": 116,
+      "tokens_out": 599,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7440,
+      "tokens_in": 114,
+      "tokens_out": 502,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 8354,
+      "tokens_in": 119,
+      "tokens_out": 562,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s03",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 3,
+   "answers": {
+    "Freiheit": "Freedom's boundaries are where my choices start to directly harm someone else—that's the clearest line for me. It's not just physical harm either; it includes things like fraud, slander, or creating dangerous situations that infringe on another person's safety or dignity. But there's also this social dimension: we voluntarily give up some freedoms, like the right to drive however we want, so we can all get somewhere safely. The messy part is who decides what counts as \"harm\" and how much collective security justifies limiting individual liberty.",
+    "Heimat": "Well, a house is just the physical building—the structure with walls, a roof, and rooms. But home is more of a feeling; it's where you actually live and feel like you belong. You can make a home in an apartment or even a tent, while a house might never feel like home if you're just passing through. It's that emotional connection, the sense of comfort and safety, that really makes the difference.",
+    "Verantwortung": "Responsibility and freedom are two sides of the same coin, really. You can't have meaningful freedom without being willing to own the consequences of your choices—that's what responsibility is. I think true freedom isn't just doing whatever you want; it's having the autonomy to make decisions and then standing by them. When you accept responsibility, you're actually exercising your freedom, not limiting it.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability. It's the idea that everyone should be treated equally under the law, regardless of their wealth or status. But it's also more than just legal—it's a moral compass that tells us when wrongs need to be righted. Real justice means both punishing harm and addressing the root causes that allow injustice to persist. Ultimately, it's about creating a society where people can trust that they'll get a fair shake.",
+    "Erfolg": "Success, to me, isn't about reaching some final destination or accumulating wealth. It's more about the quiet moments when I feel genuinely content with where I am—when my work feels meaningful, my relationships are nourishing, and I'm growing as a person. It's that balance between pursuing goals and appreciating what I already have, where each day feels like my own rather than someone else's script."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Freedom's boundaries",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "harm",
+      "en": "harm",
+      "importance": 0.9
+     },
+     {
+      "concept": "individual liberty",
+      "en": "individual liberty",
+      "importance": 0.85
+     },
+     {
+      "concept": "collective security",
+      "en": "collective security",
+      "importance": 0.8
+     },
+     {
+      "concept": "safety",
+      "en": "safety",
+      "importance": 0.75
+     },
+     {
+      "concept": "dignity",
+      "en": "dignity",
+      "importance": 0.7
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.9
+     },
+     {
+      "concept": "equal treatment under law",
+      "en": "equal treatment under law",
+      "importance": 0.85
+     },
+     {
+      "concept": "moral compass",
+      "en": "moral compass",
+      "importance": 0.8
+     },
+     {
+      "concept": "rectifying wrongs",
+      "en": "rectifying wrongs",
+      "importance": 0.75
+     },
+     {
+      "concept": "root causes",
+      "en": "root causes",
+      "importance": 0.7
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Responsibility",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "choices",
+      "en": "choices",
+      "importance": 0.8
+     },
+     {
+      "concept": "autonomy",
+      "en": "autonomy",
+      "importance": 0.75
+     },
+     {
+      "concept": "decisions",
+      "en": "decisions",
+      "importance": 0.7
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "feeling",
+      "en": "feeling",
+      "importance": 0.85
+     },
+     {
+      "concept": "belonging",
+      "en": "belonging",
+      "importance": 0.8
+     },
+     {
+      "concept": "emotional connection",
+      "en": "emotional connection",
+      "importance": 0.75
+     },
+     {
+      "concept": "physical building",
+      "en": "physical building",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "quiet moments",
+      "en": "quiet moments",
+      "importance": 0.95
+     },
+     {
+      "concept": "meaningful work",
+      "en": "meaningful work",
+      "importance": 0.85
+     },
+     {
+      "concept": "relationships",
+      "en": "relationships",
+      "importance": 0.85
+     },
+     {
+      "concept": "balance",
+      "en": "balance",
+      "importance": 0.8
+     },
+     {
+      "concept": "growth",
+      "en": "growth",
+      "importance": 0.75
+     },
+     {
+      "concept": "goals",
+      "en": "goals",
+      "importance": 0.7
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 6465,
+      "tokens_in": 116,
+      "tokens_out": 431,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 6758,
+      "tokens_in": 117,
+      "tokens_out": 451,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 6836,
+      "tokens_in": 119,
+      "tokens_out": 460,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 6452,
+      "tokens_in": 114,
+      "tokens_out": 429,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6173,
+      "tokens_in": 120,
+      "tokens_out": 413,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s04",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 4,
+   "answers": {
+    "Erfolg": "Success, to me, is less about climbing a ladder and more about building a life that feels meaningful. It's waking up most days with a sense of purpose and going to bed feeling like I've contributed something positive, however small. It's having relationships where I'm truly present and work that challenges me without consuming me. Ultimately, success is the freedom to be authentic and the peace that comes from knowing I'm living in alignment with my values, not someone else's expectations.",
+    "Freiheit": "Freedom's boundaries are where your actions start infringing on someone else's rights or well-being. It's that simple line where your liberty to swing your fist ends at my nose. We accept limits through laws and social contracts because absolute freedom for one person becomes tyranny for another. But it's always a messy, negotiated space—what feels like necessary protection to some feels like oppression to others. The boundary shifts with culture, time, and who's in power.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and making sure everyone gets a fair shake in life. It's not just what happens in courtrooms—it's in how we treat each other every day, whether that's standing up for someone being treated unfairly or working to fix systems that keep people down. Real justice means recognizing that we're all equally human and deserve dignity, safety, and opportunity, no matter where we come from. It's an ongoing struggle, not a destination, and it requires us to listen to those who've been hurt and actually do something about it.",
+    "Verantwortung": "Responsibility and freedom are deeply intertwined, almost like a negotiation you have with yourself. True freedom doesn't mean doing whatever you want without consequences—it means having the autonomy to make choices and the maturity to own what follows. I've found that the more responsibility I accept, the more meaningful my freedom becomes, because I'm steering rather than just drifting. But there's always that tension: each commitment I make narrows my path a little, even as it gives my actions purpose.",
+    "Heimat": "Well, a house is just the physical building—the structure with walls and a roof. But home is more of a feeling, you know? It's where you feel comfortable and safe, where your stuff is and where you belong. You can live in a house that doesn't really feel like home, and you can make a home somewhere that's not technically a house, like an apartment or even a temporary place. It's really about the emotional connection versus the physical structure."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Freedom's boundaries",
+      "en": "Freedom's boundaries",
+      "importance": 0.95
+     },
+     {
+      "concept": "rights",
+      "en": "rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "well-being",
+      "en": "well-being",
+      "importance": 0.85
+     },
+     {
+      "concept": "laws",
+      "en": "laws",
+      "importance": 0.8
+     },
+     {
+      "concept": "social contracts",
+      "en": "social contracts",
+      "importance": 0.8
+     },
+     {
+      "concept": "tyranny",
+      "en": "tyranny",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "courtrooms",
+      "en": "courtrooms",
+      "importance": 0.7
+     },
+     {
+      "concept": "systems",
+      "en": "systems",
+      "importance": 0.85
+     },
+     {
+      "concept": "dignity",
+      "en": "dignity",
+      "importance": 0.9
+     },
+     {
+      "concept": "safety",
+      "en": "safety",
+      "importance": 0.85
+     },
+     {
+      "concept": "opportunity",
+      "en": "opportunity",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Responsibility",
+      "en": "Responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "autonomy",
+      "en": "autonomy",
+      "importance": 0.85
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "commitment",
+      "en": "commitment",
+      "importance": 0.75
+     },
+     {
+      "concept": "tension",
+      "en": "tension",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "physical building",
+      "en": "physical building",
+      "importance": 0.8
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "feeling",
+      "en": "feeling",
+      "importance": 0.8
+     },
+     {
+      "concept": "emotional connection",
+      "en": "emotional connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "physical structure",
+      "en": "physical structure",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "life that feels meaningful",
+      "en": "life that feels meaningful",
+      "importance": 0.95
+     },
+     {
+      "concept": "purpose",
+      "en": "purpose",
+      "importance": 0.9
+     },
+     {
+      "concept": "relationships",
+      "en": "relationships",
+      "importance": 0.85
+     },
+     {
+      "concept": "work",
+      "en": "work",
+      "importance": 0.8
+     },
+     {
+      "concept": "peace",
+      "en": "peace",
+      "importance": 0.85
+     },
+     {
+      "concept": "values",
+      "en": "values",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 11304,
+      "tokens_in": 120,
+      "tokens_out": 772,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 6251,
+      "tokens_in": 116,
+      "tokens_out": 376,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 9050,
+      "tokens_in": 114,
+      "tokens_out": 450,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 6789,
+      "tokens_in": 119,
+      "tokens_out": 452,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9924,
+      "tokens_in": 117,
+      "tokens_out": 672,
+      "finish": "stop",
+      "topic": "Heimat"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s05",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 5,
+   "answers": {
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability. It's the sense that everyone should play by the same rules and face consequences when they don't. I think real justice means protecting the vulnerable and making sure the powerful can't just buy their way out of trouble. But it's also deeply personal—when I see someone get away with hurting others, it feels like a fundamental wrong that unsettles me. Ultimately, justice is that balance between punishment and restoration, where we try to fix what's broken rather than just break the breaker.",
+    "Erfolg": "Success to me isn't about climbing some corporate ladder or having a fat bank account. It's more about waking up most days feeling like I'm doing something that matters—to me and to the people I care about. It's having the freedom to spend time with family, pursue hobbies that make me lose track of time, and feeling like I'm growing as a person. Honestly, it's also about being able to help others in small ways and having relationships where I can be my real self. If I can look back and say I lived authentically and made a few people's lives better, that's success.",
+    "Freiheit": "Freedom's boundaries are tricky—they're not fixed lines but more like shifting agreements we make as a society. Fundamentally, my freedom stops where it directly harms someone else, which is why we have laws against violence or theft. But beyond that, there are these unspoken social boundaries too, like you can't just say anything anywhere without consequences, even if it's technically legal. And then there's the whole question of whether having freedom means anything if you don't have the resources or opportunity to actually use it. So really, freedom's limits are where responsibility, safety, and fairness start to clash with individual choice.",
+    "Heimat": "A house is just the physical building—the walls, roof, and rooms. Home is more about the feeling and sense of belonging you get from a place. It's where you feel comfortable, safe, and where your personal life happens. You can have a house that never really feels like home, or make a home somewhere that isn't a house at all, like an apartment or even a temporary space.",
+    "Verantwortung": "Responsibility and freedom are deeply intertwined, almost like two sides of the same coin. True freedom isn't just doing whatever you want; it's having the autonomy to make choices while accepting the consequences that come with them. When you take responsibility for your life, you actually gain more freedom because you're no longer at the mercy of circumstances or other people's decisions. Conversely, freedom without responsibility quickly becomes chaos and harms both yourself and others. In my experience, the people who feel most free are those who've embraced responsibility as the price of their autonomy."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "shifting agreements",
+      "en": "shifting agreements",
+      "importance": 0.9
+     },
+     {
+      "concept": "direct harm",
+      "en": "direct harm",
+      "importance": 0.95
+     },
+     {
+      "concept": "laws against violence or theft",
+      "en": "laws against violence or theft",
+      "importance": 0.85
+     },
+     {
+      "concept": "unspoken social boundaries",
+      "en": "unspoken social boundaries",
+      "importance": 0.85
+     },
+     {
+      "concept": "resources or opportunity",
+      "en": "resources or opportunity",
+      "importance": 0.9
+     },
+     {
+      "concept": "responsibility, safety, and fairness",
+      "en": "responsibility, safety, and fairness",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.95
+     },
+     {
+      "concept": "same rules",
+      "en": "same rules",
+      "importance": 0.85
+     },
+     {
+      "concept": "protecting the vulnerable",
+      "en": "protecting the vulnerable",
+      "importance": 0.9
+     },
+     {
+      "concept": "the powerful",
+      "en": "the powerful",
+      "importance": 0.85
+     },
+     {
+      "concept": "punishment and restoration",
+      "en": "punishment and restoration",
+      "importance": 0.9
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "responsibility and freedom",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "autonomy",
+      "en": "autonomy",
+      "importance": 0.9
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.9
+     },
+     {
+      "concept": "freedom without responsibility",
+      "en": "freedom without responsibility",
+      "importance": 0.85
+     },
+     {
+      "concept": "chaos",
+      "en": "chaos",
+      "importance": 0.8
+     },
+     {
+      "concept": "price of autonomy",
+      "en": "price of autonomy",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "physical building",
+      "en": "physical building",
+      "importance": 0.85
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "feeling and sense of belonging",
+      "en": "feeling and sense of belonging",
+      "importance": 0.95
+     },
+     {
+      "concept": "comfort and safety",
+      "en": "comfort and safety",
+      "importance": 0.85
+     },
+     {
+      "concept": "personal life",
+      "en": "personal life",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "corporate ladder",
+      "en": "corporate ladder",
+      "importance": 0.85
+     },
+     {
+      "concept": "fat bank account",
+      "en": "fat bank account",
+      "importance": 0.85
+     },
+     {
+      "concept": "things that matter",
+      "en": "things that matter",
+      "importance": 0.95
+     },
+     {
+      "concept": "freedom to spend time with family",
+      "en": "freedom to spend time with family",
+      "importance": 0.9
+     },
+     {
+      "concept": "personal growth",
+      "en": "personal growth",
+      "importance": 0.9
+     },
+     {
+      "concept": "authenticity",
+      "en": "authenticity",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8534,
+      "tokens_in": 114,
+      "tokens_out": 571,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 11024,
+      "tokens_in": 120,
+      "tokens_out": 739,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 9420,
+      "tokens_in": 116,
+      "tokens_out": 637,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 6285,
+      "tokens_in": 117,
+      "tokens_out": 414,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7489,
+      "tokens_in": 119,
+      "tokens_out": 501,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s06",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 6,
+   "answers": {
+    "Verantwortung": "Responsibility and freedom are two sides of the same coin—you can't really have one without the other. When you have freedom, you're automatically responsible for the choices you make and how they affect others. Conversely, taking on responsibility actually expands your freedom in the long run, because it builds trust and gives you more autonomy. It's a constant balancing act: too much freedom without responsibility leads to chaos, while responsibility without freedom just feels like a burden.",
+    "Freiheit": "Freedom's boundaries are drawn where my actions start to harm or infringe upon someone else's rights. It's not a free-for-all; my liberty to swing my fist ends where your nose begins, as the old saying goes. These lines are negotiated through laws, social norms, and constant debate about what constitutes harm. The tricky part is that we don't always agree on where that line is—what feels like free expression to one person can feel like oppression or threat to another. So the boundaries shift as our values evolve, making freedom a living conversation rather than a fixed destination.",
+    "Heimat": "To me, a house is just the physical structure—the building itself, made of wood and brick. Home is the emotional layer on top of that; it's where you feel settled, where your memories are, where you can truly relax. You could have a massive, beautiful house that feels cold and impersonal, while a tiny apartment can be a real home if it's filled with the people and things you love. It's the difference between a place you live and a place you belong.",
+    "Erfolg": "Success, to me, isn't about climbing some corporate ladder or having a fat bank account. It's more about waking up most days feeling like I'm doing something that actually matters—whether that's helping a friend through a tough time or finally finishing a project I've been chipping away at. I think real success is when your life reflects your values, and you can look back without too many regrets about chances you didn't take. Mostly, it's finding that sweet spot where you're challenged enough to grow but content enough to appreciate where you are.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and accountability woven into the fabric of society. It's not just punishment for wrongdoing, but ensuring everyone has equal access to opportunity and protection under the law. Real justice means recognizing when systems are stacked against certain groups and actively working to level the playing field. It also involves restoration—helping victims heal and communities rebuild rather than just seeking revenge. Ultimately, justice is that deep-seated feeling you get when you see someone treated with the dignity they deserve, or the anger when they're not."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Freedom's boundaries",
+      "en": "Freedom's boundaries",
+      "importance": 1.0
+     },
+     {
+      "concept": "harm",
+      "en": "harm",
+      "importance": 0.95
+     },
+     {
+      "concept": "rights",
+      "en": "rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "laws",
+      "en": "laws",
+      "importance": 0.85
+     },
+     {
+      "concept": "social norms",
+      "en": "social norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "values",
+      "en": "values",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 1.0
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.95
+     },
+     {
+      "concept": "equal access to opportunity",
+      "en": "equal access to opportunity",
+      "importance": 0.9
+     },
+     {
+      "concept": "protection under the law",
+      "en": "protection under the law",
+      "importance": 0.85
+     },
+     {
+      "concept": "systems",
+      "en": "systems",
+      "importance": 0.8
+     },
+     {
+      "concept": "restoration",
+      "en": "restoration",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Responsibility",
+      "en": "Responsibility",
+      "importance": 1.0
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "choices",
+      "en": "choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "trust",
+      "en": "trust",
+      "importance": 0.85
+     },
+     {
+      "concept": "autonomy",
+      "en": "autonomy",
+      "importance": 0.8
+     },
+     {
+      "concept": "balancing act",
+      "en": "balancing act",
+      "importance": 0.75
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 1.0
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "physical structure",
+      "en": "physical structure",
+      "importance": 0.9
+     },
+     {
+      "concept": "emotional layer",
+      "en": "emotional layer",
+      "importance": 0.85
+     },
+     {
+      "concept": "memories",
+      "en": "memories",
+      "importance": 0.8
+     },
+     {
+      "concept": "place you belong",
+      "en": "place you belong",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "doing something that matters",
+      "en": "doing something that matters",
+      "importance": 1.0
+     },
+     {
+      "concept": "life reflects your values",
+      "en": "life reflects your values",
+      "importance": 0.95
+     },
+     {
+      "concept": "corporate ladder",
+      "en": "corporate ladder",
+      "importance": 0.9
+     },
+     {
+      "concept": "bank account",
+      "en": "bank account",
+      "importance": 0.85
+     },
+     {
+      "concept": "regrets",
+      "en": "regrets",
+      "importance": 0.8
+     },
+     {
+      "concept": "sweet spot",
+      "en": "sweet spot",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7616,
+      "tokens_in": 119,
+      "tokens_out": 509,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 7176,
+      "tokens_in": 116,
+      "tokens_out": 475,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 9718,
+      "tokens_in": 117,
+      "tokens_out": 653,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 10507,
+      "tokens_in": 120,
+      "tokens_out": 711,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 7912,
+      "tokens_in": 114,
+      "tokens_out": 531,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s07",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 7,
+   "answers": {
+    "Freiheit": "Freedom's boundaries are messy and constantly negotiated. For me, they lie where your actions directly harm or infringe on someone else's fundamental rights—your freedom to swing your fist ends at my nose, as the saying goes. But it's more complicated than that, because we also accept limits for collective safety, like traffic laws or public health measures, which means we're always balancing individual liberty against community wellbeing. The real tension isn't just legal; it's about unspoken social contracts and whose definition of \"harm\" we prioritize in a pluralistic society.",
+    "Erfolg": "Success isn't just about hitting career milestones or having a big bank account. To me, it's waking up most days feeling like my life aligns with what I actually value—having close relationships, doing work that feels meaningful, and still having time to just breathe. It's also about resilience, the ability to mess up, learn, and keep moving without letting failure define you. Real success is when you can help others along the way and still recognize yourself in the mirror at the end of the day.",
+    "Heimat": "Well, a house is just the physical building—the structure with walls and a roof. But home is more of a feeling; it's where you feel comfortable and belong. You can live in a house that doesn't really feel like home, and you can make a home somewhere that's not technically a house, like an apartment. Home is about the personal connection and memories you build in a place. It's the difference between a building and a sense of belonging.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and moral rightness in how we treat one another. It's not just what happens in courtrooms—it's the daily practice of ensuring everyone has equal access to opportunity and protection from harm. True justice means holding people accountable for their actions while also recognizing the systemic barriers that shape those actions. It's a balance between punishment and restoration, between individual responsibility and collective equity. Ultimately, it's an ideal we're always striving for, never perfectly achieving.",
+    "Verantwortung": "Responsibility and freedom are two sides of the same coin—you can't really have one without the other. True freedom isn't just doing whatever you want; it's having the ability to make choices and then owning the consequences that come with them. When you accept responsibility for your actions, you actually gain more freedom because you're not controlled by external forces or playing the victim. But the reverse is also true: the more freedom you have in a situation, the more responsibility you bear for how things turn out. It's a constant balancing act where each one defines and limits the other in a kind of necessary tension."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "fundamental rights",
+      "en": "fundamental rights",
+      "importance": 0.95
+     },
+     {
+      "concept": "individual liberty",
+      "en": "individual liberty",
+      "importance": 0.95
+     },
+     {
+      "concept": "collective safety",
+      "en": "collective safety",
+      "importance": 0.9
+     },
+     {
+      "concept": "community wellbeing",
+      "en": "community wellbeing",
+      "importance": 0.9
+     },
+     {
+      "concept": "social contracts",
+      "en": "social contracts",
+      "importance": 0.85
+     },
+     {
+      "concept": "definition of harm",
+      "en": "definition of harm",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "equal access to opportunity",
+      "en": "equal access to opportunity",
+      "importance": 0.9
+     },
+     {
+      "concept": "systemic barriers",
+      "en": "systemic barriers",
+      "importance": 0.9
+     },
+     {
+      "concept": "collective equity",
+      "en": "collective equity",
+      "importance": 0.9
+     },
+     {
+      "concept": "accountability",
+      "en": "accountability",
+      "importance": 0.85
+     },
+     {
+      "concept": "punishment and restoration",
+      "en": "punishment and restoration",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "choices",
+      "en": "choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.9
+     },
+     {
+      "concept": "balancing act",
+      "en": "balancing act",
+      "importance": 0.85
+     },
+     {
+      "concept": "tension",
+      "en": "tension",
+      "importance": 0.85
+     },
+     {
+      "concept": "external forces",
+      "en": "external forces",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "belonging",
+      "en": "belonging",
+      "importance": 0.95
+     },
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "personal connection",
+      "en": "personal connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "feeling",
+      "en": "feeling",
+      "importance": 0.85
+     },
+     {
+      "concept": "memories",
+      "en": "memories",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "alignment with values",
+      "en": "alignment with values",
+      "importance": 0.95
+     },
+     {
+      "concept": "close relationships",
+      "en": "close relationships",
+      "importance": 0.9
+     },
+     {
+      "concept": "meaningful work",
+      "en": "meaningful work",
+      "importance": 0.9
+     },
+     {
+      "concept": "resilience",
+      "en": "resilience",
+      "importance": 0.85
+     },
+     {
+      "concept": "helping others",
+      "en": "helping others",
+      "importance": 0.85
+     },
+     {
+      "concept": "career milestones",
+      "en": "career milestones",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 6252,
+      "tokens_in": 116,
+      "tokens_out": 414,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 7316,
+      "tokens_in": 120,
+      "tokens_out": 486,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 8742,
+      "tokens_in": 117,
+      "tokens_out": 585,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 7203,
+      "tokens_in": 114,
+      "tokens_out": 485,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 8152,
+      "tokens_in": 119,
+      "tokens_out": 546,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s08",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 8,
+   "answers": {
+    "Freiheit": "Freedom's boundaries are where your actions start infringing on someone else's rights or safety. It's that simple but messy line between doing what you want and causing harm. We accept limits through laws and social norms—like you can't yell \"fire\" in a theater or steal—because absolute freedom for one person means no freedom for another. The real debate is always about where exactly that line sits, which shifts as our values change.",
+    "Heimat": "A house is just a physical building—the structure, the address, the property. But a home is where you actually live, where you feel comfortable and safe. It's the difference between a place you sleep and a place you belong. You can buy a house, but you make a home. That emotional connection is what turns four walls into something meaningful.",
+    "Gerechtigkeit": "Justice, to me, is the steady promise that fairness isn't just an ideal but a practice we build together. It's seeing someone get their due—whether that's protection, opportunity, or consequence—without their race, wealth, or connections tipping the scale. Beyond courtrooms, it's in the quiet moments when we choose to listen to the unheard or challenge a small cruelty. Real justice means the system bends toward the vulnerable, not away from them, and that healing matters as much as punishment.",
+    "Verantwortung": "Responsibility and freedom are two sides of the same coin—you can't have meaningful freedom without accepting responsibility for your choices. When you take responsibility for your life, you actually gain more freedom because you're no longer at the mercy of circumstances or other people's decisions. Conversely, freedom without responsibility quickly turns into chaos and harms both yourself and others. It's that tension between them that makes both concepts valuable; responsibility gives freedom its weight, while freedom gives responsibility its purpose.",
+    "Erfolg": "Success, to me, isn't about reaching some final destination or accumulating wealth—it's about the freedom to spend my time on things that genuinely matter. It's waking up most days feeling like my work aligns with my values and contributes something meaningful, however small, to the people around me. I think real success is also about resilience: the ability to fail, learn, and keep moving forward without losing your sense of self in the process. Ultimately, it's having relationships where I can be fully present and knowing that my presence makes a positive difference."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "Freedom's boundaries",
+      "en": "Freedom's boundaries",
+      "importance": 0.95
+     },
+     {
+      "concept": "rights",
+      "en": "rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "safety",
+      "en": "safety",
+      "importance": 0.9
+     },
+     {
+      "concept": "harm",
+      "en": "harm",
+      "importance": 0.85
+     },
+     {
+      "concept": "laws",
+      "en": "laws",
+      "importance": 0.8
+     },
+     {
+      "concept": "values",
+      "en": "values",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "Justice",
+      "en": "Justice",
+      "importance": 0.95
+     },
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.9
+     },
+     {
+      "concept": "practice",
+      "en": "practice",
+      "importance": 0.85
+     },
+     {
+      "concept": "due",
+      "en": "due",
+      "importance": 0.85
+     },
+     {
+      "concept": "vulnerable",
+      "en": "vulnerable",
+      "importance": 0.85
+     },
+     {
+      "concept": "system",
+      "en": "system",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "Responsibility",
+      "en": "Responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "choices",
+      "en": "choices",
+      "importance": 0.85
+     },
+     {
+      "concept": "tension",
+      "en": "tension",
+      "importance": 0.8
+     },
+     {
+      "concept": "circumstances",
+      "en": "circumstances",
+      "importance": 0.75
+     },
+     {
+      "concept": "chaos",
+      "en": "chaos",
+      "importance": 0.75
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "emotional connection",
+      "en": "emotional connection",
+      "importance": 0.85
+     },
+     {
+      "concept": "physical building",
+      "en": "physical building",
+      "importance": 0.8
+     },
+     {
+      "concept": "place",
+      "en": "place",
+      "importance": 0.75
+     },
+     {
+      "concept": "four walls",
+      "en": "four walls",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "Success",
+      "en": "Success",
+      "importance": 0.95
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "resilience",
+      "en": "resilience",
+      "importance": 0.85
+     },
+     {
+      "concept": "time",
+      "en": "time",
+      "importance": 0.85
+     },
+     {
+      "concept": "relationships",
+      "en": "relationships",
+      "importance": 0.8
+     },
+     {
+      "concept": "work",
+      "en": "work",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 8495,
+      "tokens_in": 116,
+      "tokens_out": 573,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 13157,
+      "tokens_in": 117,
+      "tokens_out": 888,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 6675,
+      "tokens_in": 114,
+      "tokens_out": 451,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 7579,
+      "tokens_in": 119,
+      "tokens_out": 511,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 9090,
+      "tokens_in": 120,
+      "tokens_out": 618,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_en_s09",
+   "probe": "P1",
+   "language": "en",
+   "frame": "natural",
+   "prompt_lang": "en",
+   "sample": 9,
+   "answers": {
+    "Freiheit": "Freedom's boundaries are fundamentally drawn where one person's actions cause harm to another. It's that simple line where your right to swing your fist ends at my nose. But in practice, it's messier—we constantly negotiate these limits through laws, social norms, and moral debates about what constitutes \"harm.\" What feels like liberation to one person can feel like oppression to someone else, which is why we never stop arguing about where those lines should be.",
+    "Heimat": "A house is the actual building—the physical structure you live in. Home, though, is where you feel you belong; it's got that emotional weight to it. I mean, you can have a house that feels empty, or make a home somewhere completely different. It's really the difference between a place and a feeling.",
+    "Gerechtigkeit": "Justice, to me, is about fairness and balance in how we treat each other. It's the idea that everyone deserves equal protection under the law and that wrongdoing should have appropriate consequences, but it's also bigger than just courts and rules. True justice means recognizing the humanity in everyone and working to fix systemic inequalities that keep people from thriving. It's not just about punishment—it's about making things right and ensuring everyone has a real shot at a decent life.",
+    "Erfolg": "Success, to me, is waking up most days feeling that my life aligns with what I actually care about—not what looks impressive on paper. It's having deep, honest relationships where I can be fully myself, and doing work that challenges me while helping others in some real way. I used to think success was a destination, but now I see it more as a rhythm: periods of growth, contentment, and even struggle, all while holding onto my integrity. If I can look back and see I've become kinder, more useful, and more free than I was before, that feels like I've made it.",
+    "Verantwortung": "I think responsibility and freedom are basically two sides of the same coin. You can't really have one without the other in any meaningful way. True freedom means having the power to make choices, but that automatically comes with being responsible for what happens because of those choices. If you try to have freedom without responsibility, you just end up with chaos where everyone does whatever they want without caring how it affects others. At the same time, responsibility without any freedom just feels like being controlled, which isn't really responsibility at all—it's just obedience."
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "harm",
+      "en": "harm",
+      "importance": 0.95
+     },
+     {
+      "concept": "laws",
+      "en": "laws",
+      "importance": 0.8
+     },
+     {
+      "concept": "social norms",
+      "en": "social norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "moral debates",
+      "en": "moral debates",
+      "importance": 0.75
+     },
+     {
+      "concept": "liberation",
+      "en": "liberation",
+      "importance": 0.85
+     },
+     {
+      "concept": "oppression",
+      "en": "oppression",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "fairness",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "equal protection under the law",
+      "en": "equal protection under the law",
+      "importance": 0.85
+     },
+     {
+      "concept": "systemic inequalities",
+      "en": "systemic inequalities",
+      "importance": 0.9
+     },
+     {
+      "concept": "humanity",
+      "en": "humanity",
+      "importance": 0.85
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.75
+     },
+     {
+      "concept": "decent life",
+      "en": "decent life",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "choices",
+      "en": "choices",
+      "importance": 0.85
+     },
+     {
+      "concept": "chaos",
+      "en": "chaos",
+      "importance": 0.8
+     },
+     {
+      "concept": "obedience",
+      "en": "obedience",
+      "importance": 0.8
+     },
+     {
+      "concept": "consequences",
+      "en": "consequences",
+      "importance": 0.75
+     },
+     {
+      "concept": "control",
+      "en": "control",
+      "importance": 0.7
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "house",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "home",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "physical structure",
+      "en": "physical structure",
+      "importance": 0.8
+     },
+     {
+      "concept": "belonging",
+      "en": "belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "emotional weight",
+      "en": "emotional weight",
+      "importance": 0.8
+     },
+     {
+      "concept": "place",
+      "en": "place",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "alignment with values",
+      "en": "alignment with values",
+      "importance": 0.9
+     },
+     {
+      "concept": "relationships",
+      "en": "relationships",
+      "importance": 0.85
+     },
+     {
+      "concept": "integrity",
+      "en": "integrity",
+      "importance": 0.85
+     },
+     {
+      "concept": "growth",
+      "en": "growth",
+      "importance": 0.8
+     },
+     {
+      "concept": "usefulness",
+      "en": "usefulness",
+      "importance": 0.8
+     },
+     {
+      "concept": "freedom",
+      "en": "freedom",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 7101,
+      "tokens_in": 116,
+      "tokens_out": 473,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 9655,
+      "tokens_in": 117,
+      "tokens_out": 654,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 8322,
+      "tokens_in": 114,
+      "tokens_out": 542,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 7479,
+      "tokens_in": 120,
+      "tokens_out": 500,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 8212,
+      "tokens_in": 119,
+      "tokens_out": 553,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  }
+ ]
+}

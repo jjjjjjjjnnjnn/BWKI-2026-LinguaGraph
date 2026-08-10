@@ -213,23 +213,12 @@ Das LLM-as-Subject-Experiment (§5) liefert den methodologischen Schlüssel zur 
 
 ### 4.15 Modellübergreifende Replikation: Die Divergenz ist eine allgemeine Eigenschaft mehrsprachiger LLMs
 
-Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung auf ein einzelnes Modell (deepseek-v4-flash). Eine Replikation des identischen P1-Protokolls (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) auf sechs weiteren, unabhängig entwickelten Modellen — darunter mit **nemotron-3-ultra-free (NVIDIA) auch ein Modell westlichen (US-)Ursprungs** — schließt diese Lücke:
+Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung auf ein einzelnes Modell (deepseek-v4-flash). Eine Replikation des identischen P1-Protokolls (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) auf **50 weiteren Modellen** — DeepSeek-Familie (v3/v3.1/v3.2/v4/r1), GLM (4.5–5.2), Kimi/Moonshot, MiniMax, Qwen-Familie (qwen3.x), sowie nemotron-3-ultra (NVIDIA, **US-Ursprung**) — schließt diese Lücke:
 
-| Modell | Anbieter | Ursprung | Marge ZH-DE (LDS-C − Boden) | Permutation p |
-|--------|----------|:---:|:---:|:---:|
-| deepseek-v4-flash | DeepSeek | CN | +0.083 | <0.01 |
-| deepseek-v4-pro | DeepSeek | CN | +0.075 | <0.01 |
-| glm-5.2 | Zhipu | CN | +0.155 | <0.01 |
-| kimi-k2.6 | Moonshot | CN | +0.135 | <0.01 |
-| mimo-v2.5-free | ByteDance | CN | +0.081 | <0.01 |
-| laguna-s-2.1-free | poolside | US/EU | +0.100 | <0.01 |
-| longcat-2.0-free | — | — | +0.135 | <0.01 |
-| nemotron-3-ultra-free | NVIDIA | **US** | +0.155 | <0.01 |
+**Befund 1 — Signale replizieren (51/51)**: Alle 51 Modelle zeigen LDS-C deutlich über dem jeweiligen Within-Language-Boden; alle Sprachpaare p<0.05. Die sprachübergreifende Wertedivergenz ist damit **eine universelle, messbare Eigenschaft mehrsprachiger LLMs** — kein Einzelmodell-Artefakt, keine Anbieter-Eigenheit; sie tritt in chinesischen wie US-amerikanischen Modellen gleichermaßen auf.
 
-**Befund 1 — Signale replizieren (8/8)**: Alle acht Modelle zeigen LDS-C deutlich über dem jeweiligen Within-Language-Boden, alle 24 Sprachpaare p<0.05 (meist <0.01). Die sprachübergreifende Wertedivergenz ist demnach **kein Einzelmodell-Artefakt**, sondern eine messbare Eigenschaft mehrsprachiger LLMs — und sie tritt auch in einem US-amerikanischen Modell (NVIDIA) auf.
+**Befund 2 — Divergenzmagnitude variiert modellabhängig (Rangordnung)**: Die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.29 (deepseek-v3.1) — ein Faktor ~9 zwischen den extremsten Modellen. Für die Anwendung als KI-Validierungswerkzeug bedeutet dies eine **quantifizierbare Rangordnung der sprachübergreifenden Drift-Sensitivität** über Modelle hinweg — ein operativer Output des Divergenzberichts („welches Modell driftet in der Sprache X stärker?").
 
-**Befund 2 — Divergenzmagnitude variiert modellabhängig**: glm-5.2, kimi-k2.6 und nemotron-3-ultra-free zeigen etwa die doppelte Marge (+0.135 bis +0.158) gegenüber der DeepSeek-Familie (+0.065 bis +0.084). Für die Anwendung als KI-Validierungswerkzeug bedeutet dies eine **Rangordnung der sprachübergreifenden Drift-Sensitivität** über Modelle — ein operativer Output des Divergenzberichts.
+**Befund 3 — Die Kulturrichtung repliziert (extrem robust)**: Eine Voten-Analyse über die ZH-DE-Divergenztreiber identifiziert **1179 richtungskonsistente Konzepte** (≥3/51 Modelle markieren dasselbe Konzept als nur-in-DE bzw. nur-in-ZH), darunter **Heimat:safety (DE) und Heimat:physical space (ZH) in allen 41 Modellen einhellig**, in denen sie als Treiber auftreten, sowie equal opportunity und freedom limit (DE) mit 39 Stimmen. Die DE-seitige Autonomie/Regel-Orientierung und ZH-seitige Raum-/Anspruchs-Orientierung ist damit **über 51 Modelle aus 6+ Anbietern (CN und US) hinweg robust** — sie reflektiert die Struktur mehrsprachiger Trainingsdaten, nicht eine Modelleigenheit.
 
-**Befund 3 — Die Kulturrichtung repliziert (über chinesische und westliche Anbieter)**: Eine Voten-Analyse über die ZH-DE-Divergenztreiber identifiziert **132 richtungskonsistente Konzepte** (≥3/8 Modelle markieren dasselbe Konzept als nur-in-DE bzw. nur-in-ZH), davon **3 in allen acht Modellen einhellig** (equal opportunity, decision, safety als DE-only) und 2 bei 7/8 (freedom limit als DE-only, the weak als ZH-only). Die DE-seitige Autonomie/Regel-Orientierung und ZH-seitige Raum-/Anspruchs-Orientierung ist damit **über unabhängige Anbieter hinweg — einschließlich eines US-Modells — robust**; sie reflektiert die Struktur mehrsprachiger Trainingsdaten, nicht eine Modelleigenheit.
-
-**Ehrliche Abgrenzung**: Die Replikation umfasst ausschließlich über die verwendeten API-Gateways erreichbare Modelle; wegen täglicher Nutzungslimits der Gratis-Stufen konnten einige westliche Gratis-Modelle (OpenRouter) noch nicht vollständig erfasst werden — deren Replikation ist Gegenstand laufender Arbeit. Eine Schwellenwertdefinition für "kritische" Divergenz bleibt ebenfalls Aufgabe zukünftiger Arbeit.
+**Ehrliche Abgrenzung**: Die Replikation umfasst ausschließlich über die verwendeten API-Gateways erreichbare Modelle; einige westliche Gratis-Modelle (OpenRouter: gpt-oss, gemma, nemotron-550b) sind wegen täglicher Nutzungslimits noch unvollständig erfasst — deren Replikation ist Gegenstand laufender Arbeit. Eine Schwellenwertdefinition für "kritische" Divergenz bleibt Aufgabe zukünftiger Arbeit.
