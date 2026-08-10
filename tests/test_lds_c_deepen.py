@@ -430,3 +430,41 @@ def test_load_canonical_units_selects_baseline():
                     if any(c for c in u.get("concepts", {}).values()))
     for l in ("zh", "de", "en"):
         assert langs.get(l, 0) >= 5
+
+
+def test_design_effect_ratio_interpretation_is_correct():
+    """Regression for audit C9: signal visible iff signal/floor ratio > 1.0
+    (LDS-C above floor), NOT < 1.0. The old interpretation string was reversed."""
+    from lds_c_design_effect import signal_table
+
+    # records where LDS-C is clearly above floor => ratio > 1 => VISIBLE
+    recs = []
+    for lang in ("zh", "de", "en"):
+        for i in range(6):
+            # identical within-language concepts (low floor), language-specific
+            # across languages (high signal)
+            tag = "zh-c" if lang == "zh" else "de-c" if lang == "de" else "en-c"
+            recs.append({"language": lang, "topics": [
+                {"topic": "Freiheit", "concepts": [{"en": f"{tag}-{j}"} for j in range(4)]}]})
+    res = signal_table(recs, tag="synthetic", n_floor=20)
+    interp = None
+    for pair, b in res["by_pair"].items():
+        interp = b["interpretation"]
+        break
+    assert interp is not None
+    assert "ratio > 1.0 => language signal VISIBLE" in interp
+    assert "ratio < 1.0 => language signal VISIBLE" not in interp
+
+
+def test_extract_prompt_formats_with_answers():
+    """Regression for P2-3: the subject script's EXTRACT_PROMPT must .format()
+    cleanly with the answers block (JSON braces escaped), or cross-extraction
+    silently returns nothing."""
+    from lds_c_llm_subject import EXTRACT_PROMPT
+
+    try:
+        prompt = EXTRACT_PROMPT.format(answers="Topic 1 (Freiheit): text")
+    except Exception as e:  # noqa: BLE001
+        assert False, f"EXTRACT_PROMPT.format raised: {e}"
+    assert "{answers}" not in prompt
+    assert "Freiheit" in prompt or "Topic 1" in prompt
