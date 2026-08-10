@@ -426,6 +426,11 @@ def main() -> None:
     ap.add_argument("--api-url", type=str, default=API_URL,
                     help="OpenAI-compatible base URL (default: zen/go/v1; "
                          "free tier: https://opencode.ai/zen/v1)")
+    ap.add_argument("--api-key-env", type=str, default=None,
+                    help=".env variable name holding the API key (default: "
+                         "auto by URL — OPENAI_API_KEY for zen, "
+                         "OPENROUTER_API_KEY for OpenRouter). Lets you point a "
+                         "second account's key, e.g. --api-key-env OPENROUTER_API_KEY2")
     ap.add_argument("--k", type=int, default=10, help="resamples per condition")
     ap.add_argument("--probes", type=str, default="P1,P2,P3,P5",
                     help="comma-separated probes to run")
@@ -441,7 +446,7 @@ def main() -> None:
     do_p1, do_p2, do_p3, do_p5 = ("P1" in probes, "P2" in probes,
                                   "P3" in probes, "P5" in probes)
 
-    key = load_key_for_url(API_URL)
+    key = _env_get(args.api_key_env) if args.api_key_env else load_key_for_url(API_URL)
     if not key:
         print("ERROR: API key not found in .env for this gateway")
         sys.exit(1)
