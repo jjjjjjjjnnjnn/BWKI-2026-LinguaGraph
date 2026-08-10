@@ -1,0 +1,58 @@
+{
+ "design": "cross_extraction_sensitivity",
+ "extractor": "qwen-max",
+ "n_samples": 6,
+ "cross": {
+  "ZH-EN": {
+   "lds_c": 0.0,
+   "lds_c_ci": [
+    0.0,
+    0.0
+   ],
+   "split_half_floor": 0.0,
+   "signal_margin": 0.0,
+   "signal_to_floor_ratio": null,
+   "interpretation": "signal_margin ~ 0 / ratio ~ 1.0 => language signal SUBMERGED by within-language heterogeneity (between-subject artifact); signal_margin >> 0 / ratio > 1.0 => language signal VISIBLE (LDS-C clearly above the within-language floor)."
+  },
+  "DE-EN": {
+   "lds_c": 0.0,
+   "lds_c_ci": [
+    0.0,
+    0.0
+   ],
+   "split_half_floor": 0.0,
+   "signal_margin": 0.0,
+   "signal_to_floor_ratio": null,
+   "interpretation": "signal_margin ~ 0 / ratio ~ 1.0 => language signal SUBMERGED by within-language heterogeneity (between-subject artifact); signal_margin >> 0 / ratio > 1.0 => language signal VISIBLE (LDS-C clearly above the within-language floor)."
+  },
+  "ZH-DE": {
+   "lds_c": 0.0,
+   "lds_c_ci": [
+    0.0,
+    0.0
+   ],
+   "split_half_floor": 0.0,
+   "signal_margin": 0.0,
+   "signal_to_floor_ratio": null,
+   "interpretation": "signal_margin ~ 0 / ratio ~ 1.0 => language signal SUBMERGED by within-language heterogeneity (between-subject artifact); signal_margin >> 0 / ratio > 1.0 => language signal VISIBLE (LDS-C clearly above the within-language floor)."
+  }
+ },
+ "self_reference": {
+  "ZH-EN": {
+   "lds_c": 0.9552,
+   "floor": 0.8745,
+   "margin": 0.0807
+  },
+  "DE-EN": {
+   "lds_c": 0.93,
+   "floor": 0.8456,
+   "margin": 0.0844
+  },
+  "ZH-DE": {
+   "lds_c": 0.9446,
+   "floor": 0.8618,
+   "margin": 0.0828
+  }
+ },
+ "note": "If cross LDS-C >> cross floor (positive margin) similar to self, the divergence is in the ANSWERS, not the subject's extraction."
+}
