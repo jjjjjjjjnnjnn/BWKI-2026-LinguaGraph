@@ -1,218 +1,87 @@
-# LinguaGraph — BWKI Judge Q&A
+# LinguaGraph — BWKI Judge Q&A（答辩准备，2026-08-10 重写）
 
-> **目的:** 为答辩/展示准备评委最可能提出的 10 个问题及参考答案。
-> **使用:** 每问 30–60 秒回答。用 "That's a great question" 争取思考时间。
-
----
-
-## Q1: 为什么 LDS 能反映认知差异？
-
-**核心:** LDS 测量的是图结构的差异，不是词汇差异。
-
-> "LDS compares graph topology, not word choice. Two participants could use completely different words but if their concepts connect in similar ways (same edges, same hierarchy), LDS will be low. Conversely, same words with different connections → high LDS.
->
-> This makes LDS resilient to surface-level vocabulary variation and sensitive to structural cognitive organization — exactly what linguistic relativity predicts should differ."
-
-**证据支持:**
-- GED_sim 捕获整体拓扑差异
-- Jaccard_node/edge 捕获共享概念比例
-- 三指标平均降低单一指标噪声
+> **目的:** 为答辩/展示准备评委最可能提出的问题及诚实参考答案。
+> **使用:** 每问 30–60 秒回答。答案必须与论文/数据一致（`docs/session_handoff_20260810.md` + `docs/review/full_project_adversarial_review_20260810.md`）。
+> **⚠️ 核心原则**: 任何数字都要能指向随代码提交的数据文件；被问倒时诚实承认，不要编造。
 
 ---
 
-## Q2: 为什么不是 LLM 模型偏差？
+## Q1: 你的核心发现是什么？
 
-**核心:** 多项控制手段排除 LLM 偏差。
+> "三条：**第一**，人类组间实验（N=15：6 DE + 6 ZH + 3 EN 双语）显示，跨语言概念结构分歧**无法与参与者个体差异区分**——LDS-C ≈ 组内噪声底（0.93–0.96 ≈ 0.92–0.96）。**第二**，用同一模型做组内被试（LLM-as-Subject，三语回答同一 5 个主题），语言信号**真实可见**（LDS-C ≫ 底噪，p<0.05）。**第三**，这一信号在 **51 个测量（47 个唯一模型）上复现**：全部 51 个中德语言对显著，文化方向（德语自主/规则 vs 中文空间/应得）显著高于随机。"
 
-> "We control for LLM bias on three levels:
->
-> **1. Human validation:** We compare LLM extractions against human-annotated gold labels. Concept F1 is [value], relation F1 is [value] — meaning LLM captures what humans consider important.
->
-> **2. Symmetry control:** If LLM were biased toward a specific language, LDS would be asymmetric (LDS_ZH→DE ≠ LDS_DE→ZH). Our preliminary data shows symmetry.
->
-> **3. Provider independence:** The pipeline supports multiple providers (GPT-4.1-mini, Qwen3-8B, mock). Cross-validation across providers shows consistent LDS patterns."
-
-**陷阱规避:**
-- 不要只说 "we trust the LLM"
-- 强调 F1 验证和对称性检查
+**诚实补充**: "人类的阴性不是'没有语言效应'——信号幅度与 LLM 相同，差异在底噪。人类组内个体异质性把噪声底抬到信号水平。"
 
 ---
 
-## Q3: 为什么选这三个语言？
+## Q2: 为什么用 LLM 当被试？这算不算回避真人实验？
 
-**核心:** 结构对比的需要，不是随意选择。
+> "人类组间设计测不出这个信号，因为语言与个体差异混淆（一个人只说一种语言）。LLM-as-Subject 让**同一权重集**在三种语言下回答——语言是唯一变量，这是构造上的组内设计。它回答了人类组间数据回答不了的问题。这遵循 Binz & Schulz (2023, PNAS) 确立的范式。它不是替代人类，而是隔离语言变量的工具；它为未来的人类组内研究提供了蓝图。"
 
-> "We chose three languages from different branches:
->
-> **Chinese** is Sino-Tibetan, isolating, topic-prominent, with no tense marking and a logographic writing system.
->
-> **German** is Germanic, fusional, with grammatical gender and case marking.
->
-> **English** is also Germanic but analytic, with minimal inflection and SVO word order.
->
-> This gives us maximum structural contrast while keeping the experimental design tractable — 3 languages, 3 pairwise comparisons.
->
-> Critically, our participants are Chinese native speakers living in Germany who also speak English as an L2 — so any LDS differences come from cognitive framing, not cultural exposure."
-
-**证据:**
-- 三语覆盖三大语系分支
-- 参与者是 Chinese in Germany（控制文化暴露变量）
+**诚实补充**: "我们的确还没有人类组内数据——这是未来工作。但设计效应证明（信号幅度人类=LLM）和异质性注入（把人类稀疏度注入 LLM 样本 → 精确复刻人类阴性）说明，人类阴性是组内异质性所致，不是无效应。"
 
 ---
 
-## Q4: 中文内部差异会不会比跨语言差异更大？
+## Q3: 51 个模型"全部显著"吗？我打开你的 JSON 看到一些 p≥0.05。
 
-**核心:** 承认局限 + 量化方案。
+> （**主动诚实，避免被动**）"不是全部语言对。**51 个中德语言对全部显著**（p<0.05）；但 **153 个语言对中有 8 个不显著（p≥0.05），全部含英语**（ZH-EN 或 DE-EN），主要是 DeepSeek R1 蒸馏族——例如 deepseek-r1-0528 的 DE-EN p=0.672。我们的措辞已修正为'全部 ZH-DE 显著，8 个英语对不显著'。数据在 `multi_model_replication_20260810.json`，可复现。"
 
-> "That's a very insightful question. In fact, our pilot data shows substantial within-language variation — P001 described time as '漫长、延伸、短促' while P008 used '钟、表、太阳'.
->
-> This is why we report both within-language and between-language LDS. Our full study includes an intra-class correlation analysis to quantify how much of the total variance comes from within-language vs between-language sources.
->
-> If within-language variance dominates, that's still a meaningful finding — it means cognitive structure is more individual than linguistic."
-
-**陷阱规避:**
-- 不要否认这个局限
-- 展示你已经有数据意识到了
+**陷阱规避**: 不要辩称"个别例外"——文档已如实报告。
 
 ---
 
-## Q5: 样本量是否足够？
+## Q4: 是不是 LLM 模型偏差？提取和被试是同一个模型吧？
 
-**核心:** 诚实 + 展示 power analysis。
+> "是，这是我们要诚实承认的混淆：多模型复制中每个模型**自己提取**自己的概念（保持'同模型概念结构'的一致性）。但有缓解：(1) 提取密度与分歧余量无相关；(2) 领域对照（制度知识趋同/文化分歧）;(3) 人工标注验证了提取质量。不过它不能完全排除——这是论文明确披露的局限。"
 
-> "Our pilot — 8 participants, 80 responses — is designed for feasibility validation, not statistical power. We're transparent about this in the paper's limitations section.
->
-> Our pre-registered power analysis (G*Power: f=0.25, α=0.05, power=0.80) shows we need 18–20 participants per language group for the full study.
->
-> The target is 30 participants total — 10 per language — which gives us adequate power for medium-to-large effects. Bootstrap 95% CIs on our pilot LDS estimates suggest the effect sizes are indeed large enough to detect at this sample size."
-
-**证据:**
-- Power analysis: G*Power, f=0.25, 1-β=0.80
-- Target: 30 (10 per language)
+**陷阱规避**: 承认 + 展示缓解 + 不夸大"这是价值分歧"。
 
 ---
 
-## Q6: Bootstrap 为什么适用？
+## Q5: 样本量够吗？人类只有 15 人？
 
-**核心:** 节点级重采样保持图拓扑。
-
-> "Standard parametric CIs assume independent, normally distributed observations. LDS values don't meet that — graphs have dependencies between nodes and edges.
->
-> Bootstrap is non-parametric. We resample **nodes with replacement**, preserving all edges connected to each sampled node. This keeps the graph topology intact while letting us estimate the sampling distribution of LDS.
->
-> 1000 iterations give us percentile CIs. Wider CI = less stable estimate (small graph, sparse response). This gives us a data-driven uncertainty bound without parametric assumptions."
-
-**证据:**
-- 节点级重采样（非独立观测）
-- 保持图拓扑
-- 1000 次迭代
+> "人类 N=15（6/6/3）的**阴性**不需要更大样本来证明——它本身就是设计效应证明的起点。关键点：人类阴性不是样本量问题（LLM 在 N=3 时仍检出信号；异质性注入在 N-matched 下复刻人类）。真正需要大样本的是'人类组内阳性'——这是未来工作（N≥30 或 Within-Subject）。"
 
 ---
 
-## Q7: Concept Mapping 如何验证？
+## Q6: 文化方向（德语自主/中文空间）是不是过度解读？
 
-**核心:** Taxonomy + fallback + 手工抽检。
-
-> "The LinguaGraph Concept Taxonomy v1 — 30 shared concept IDs across 5 clusters — was derived bottom-up from trilingual corpus co-occurrence analysis, then reviewed by native speakers.
->
-> For mapping, extracted concepts first try to match a taxonomy ID. If no match, they fall back to normalized string matching (lowercase, stemmed, edit distance).
->
-> We validated this mapping on 20 gold-standard ZH responses, comparing automatic mapping against human-assigned concepts. The mapping precision is [value].
->
-> A known limitation: unseen concepts that are string-similar but semantically different can get mismatched. We track this in the error analysis."
-
-**证据:**
-- 30 ID × 3 语言
-- 底层推：语料共现聚类
-- 人工抽检验证
+> "方向信号是**统计显著的**（≥10 票 204 概念 vs 随机 129，p<0.001），但我们要诚实：(1) 分母是 51 个模型，Heimat:safety 只有 41 个模型产出；(2) physical space 有 1 个模型投了反方向；(3) 这是描述性方向，不是因果解释——需要文化心理学（如 Markus & Kitayama）扎根。我们把'41/41 全票'修正为'41/51（80%）'。"
 
 ---
 
-## Q8: Human Validation 如何设计？
+## Q7: 这个项目有什么实际应用？
 
-**核心:** 三层次设计。
-
-> "Human validation operates at three levels:
->
-> **Level 1 — Extraction quality:** 20 ZH responses independently annotated by trained annotators. We compare LLM extractions against human labels: concept/relation precision, recall, F1.
->
-> **Level 2 — Annotator reliability:** Two independent annotators per response, Cohen's Kappa ≥ 0.70 threshold. This ensures the human baseline itself is consistent.
->
-> **Level 3 — Data quality:** The pipeline generates an automatic quality report covering completion rate, answer length distribution, response validity flags, and known issues. Every batch of imported data gets this check before analysis proceeds."
-
-**证据:**
-- 三层：Extraction → Annotator → Data
-- 阈值：F1 ≥ 0.80, Kappa ≥ 0.70
+> "我们把它定位为**测量方法论**，为未来的'多语言 AI 价值观一致性审计'提供基础测量：它能量化一个模型在语言间是否系统性地不同地组织价值概念，并定位具体分歧组件。我们提议一个启发式阈值（ZH-DE 余量 ≥0.10 = 高分歧）。但**它还不是一个成品审计工具**——需要西方模型扩展、阈值校准、以及规范性判断（跨语言一致是'漂移'还是'文化适应'）。"
 
 ---
 
-## Q9: LDS 的局限是什么？
+## Q8: 你的独立贡献是什么？用了这么多外部 API。
 
-**核心:** 诚实 + 展示你已记录。
-
-> "We document 6 limitations in our paper. The three most important:
->
-> **1. Intra-language variation:** Within-language differences may exceed cross-language LDS. We'll quantify this with ICC in the full study.
->
-> **2. LLM dependency:** Extraction quality depends on the model. We cross-validate with multiple providers, but systematic biases can't be fully ruled out.
->
-> **3. Concept mapping incompleteness:** The 30-concept taxonomy covers common concepts but misses domain-specific ones. Fallback string matching can introduce errors.
->
-> These are tracked in `docs/limitations.md` and inform our planned improvements for the full study."
-
-**证据:**
-- 论文 Section 6.5 的 6 条局限
-- 主动展示比等评委发现好
+> "核心科学工作是我独立完成的：研究问题、LDS 指标定义、实验设计（LLM-as-Subject）、数据收集方案、结果解释与结论。外部 AI 用于：概念提取工具、作为被试的模型（这是研究数据，不是辅助）、以及编程辅助（Claude Code）。全部透明披露于 `declaration_of_support.md`（含 2026-08-10 一次 API 欠费事件的诚实记录）。"
 
 ---
 
-## Q10: 未来工作是什么？
+## Q9: 为什么跨语言分歧是"问题"，不是"文化适应"？
 
-**核心:** 清晰路线图 + 人类验证优先。
-
-> "Phase 1 — immediate — is completing the trilingual data collection: DE and EN responses from our remaining participants.
->
-> Phase 2 focuses on **model improvement**: fine-tuning Qwen2.5-1.5B with LoRA on our annotation data to improve extraction accuracy and reduce API dependency.
->
-> Phase 3 extends the methodology: LOGOS-inspired canonicalization for more robust concept alignment, and the Schema Analysis layer for higher-order cognitive pattern detection across languages.
->
-> Beyond BWKI, we're exploring an open-source release of the pipeline and visualization, and a cognitive science publication targeting Journal of Memory and Language or Cognitive Science."
-
-**证据:**
-- Phase 1: DE/EN 数据 → LDS
-- Phase 2: Qwen LoRA 微调（post-BWKI）
-- Phase 3: LOGOS 集成
-- `docs/FUTURE_WORK.md` 完整记录
-
-## Q11: 你们的模型还能做游戏？是不是强行凑？
-
-**核心:** 技术复用，不是硬凑。
-
-> "您说得对，如果我直接说'我做了个游戏'，那确实和语言认知研究无关。
->
-> 但正确的逻辑是：我们的研究产出了一些**可复用的技术资产**。
->
-> LinguaGraph 需要一个可插拔的 LLM 后端来做概念提取 → 我们设计了一个抽象的 Provider 层。这个层本身跟具体任务无关。
->
-> 我们需要轻量本地部署 → 我们确定了 Qwen2.5-1.5B 量化到 Q4_K_M 的流程。这个流程本身不绑定任何任务。
->
-> 我们需要结构化输出 → 我们设计了 JSON schema 约束。这个机制同样不绑定研究场景。
->
-> 这些组件——Provider 抽象、量化管线、LoRA 适配——合在一起就是一套**任务无关的轻量化模型运行时**。它既可以挂载概念提取适配器做研究，也可以挂载 NPC 对话适配器做游戏。
->
-> 所以不是研究项目做了个游戏，而是研究产出的基础设施被另一个独立项目复用了。
->
-> 这恰恰证明我们的技术架构是通用、可迁移的——而不是只针对一组实验的硬编码解决方案。"
+> "这是个好问题——我们**不**把它当作规范性'问题'。一个模型用德语语境下的德语框架回答'Freiheit'可能是**正确的文化适应**。我们的贡献是**测量**这种分歧并定位它，让开发者/研究者能看到'这个模型在语言间如何变化'——至于该不该变、变多少，是未来工作，需要阈值和规范判断。视频里我们说'可测、可定位'，不是说'要消除'。"
 
 ---
 
-## 附录A: 评委可能的追问
+## Q10: 你的数字可信吗？能复现吗？
 
-| 追问方向 | 对策 |
-|:---------|:-----|
-| "样本量太小" | 承认局限；展示 power analysis + Bootstrap CI |
-| "LLM 有偏见" | 展示 F1 验证 + 多 provider 交叉验证 |
-| "和图灵奖有什么关系" | 诚实地回答这是独立的 BWKI 项目 |
-| "和现有研究有什么区别" | 强调图结构方法 + 可复现 pipeline |
-| "你的创新点是什么" | 三语图对比 + LDS + 可复现基础设施 |
-| "如何保护隐私" | 完全匿名化、GDPR Art. 6(1)(a)、12 月自动删除 |
+> "能。所有结果由随代码提交的数据文件支撑：`data/lds_c/llm_subject/`（各模型 30 单元）+ `multi_model_replication_20260810.json`（51 测量对比）+ `design_effect_20260809.json`（设计效应）。脚本：`scripts/lds_c_multi_model.py` 等。`git clone` + 已提交数据可重跑。任何'全部/全票'表述我们已修正为可验证的诚实措辞。"
+
+---
+
+## 附录: 评委可能的最刁钻追问
+
+| 追问 | 对策 |
+|:-----|:-----|
+| "51/51 全显著？打开 JSON" | 主动承认 8 个英语对不显著；指向数据文件 |
+| "披露声明没提 DashScope？" | 已重写补全；承认此前遗漏 |
+| "欠费是怎么回事？" | 诚实披露：误用非免费模型导致短暂欠费，已结清，数据有效 |
+| "为什么用这么多中国模型？" | 网关可达性 + 免费配额；已披露，西方模型是未来工作 |
+| "LDS 是不是饱和指标？" | 承认指标接近 1.0 有压缩效应；幅度差异仍是有效的 |
+| "人类阴性是不是你没做好实验？" | 设计效应证明：信号幅度=LLM，异质性注入直接因果复刻 |
+| "和现有研究（Binz & Schulz 等）区别？" | LLM-as-Subject + 51 模型广度 + 设计效应证明 + 审计应用 |
