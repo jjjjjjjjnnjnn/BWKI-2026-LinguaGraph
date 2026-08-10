@@ -378,6 +378,8 @@ Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am d
 
 Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert primär in der **Konzeptwahl (Knoten)**; die **Beziehungsorganisation (Kanten)** bleibt über alle Quellen hinweg systemisch divergent. Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
 
+> **Einschränkung (P2-Recheck)**: Die Mathematik-Knoten sind Alignierungs-Labels und damit teils Alignierungsprodukte, nicht unabhängig extrahierte Konzepte; zudem enthält das `de`-Label-Feld im Alignierungs-Datensatz teils chinesische Texte (110/150 Stichprobe), was den mathematischen J_node künstlich erhöht. Die "institutionelle Konvergenz" ist daher nur eingeschränkt als Beleg unabhängiger sprachübergreifender Konvergenz lesbar (Details: `docs/p2_methodology_rechecks.md`).
+
 **5.10 Modellübergreifende Replikation (51 Messungen, 47 eindeutige Modelle).**
 
 > Reproduzierbar via `scripts/lds_c_multi_model.py`; Ergebnisse in `data/lds_c/llm_subject/multi_model_replication_*.json`.
