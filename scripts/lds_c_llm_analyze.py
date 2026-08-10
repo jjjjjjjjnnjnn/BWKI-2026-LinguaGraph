@@ -63,13 +63,51 @@ def sanitize_json(obj):
 
 
 # ── Load ────────────────────────────────────────────────────────────
-def latest_units() -> List[dict]:
+BASELINE_MODEL = "deepseek-v4-flash"
+
+
+def load_canonical_units(model: str = BASELINE_MODEL, min_per_lang: int = 5
+                         ) -> tuple:
+    """Select a model's canonical subject file by CONTENT (the JSON 'model'
+    field), not by lexicographic file order.
+
+    The directory now holds 75+ subject files from many providers; the
+    lexicographically-last file can be a 3-unit aborted run, so loading
+    files[-1] silently produced garbage (audit C9). This picks the file whose
+    model field matches and that has >= min_per_lang good P1 records in ALL
+    three languages, and FAILS LOUDLY otherwise.
+
+    Returns (all_units, path).
+    """
     files = sorted(OUT_DIR.glob("llm_subject_*.json"))
     if not files:
         raise FileNotFoundError(f"No collection files in {OUT_DIR}")
-    data = json.loads(files[-1].read_text(encoding="utf-8"))
-    units = data.get("units", [])
-    print(f"  Loaded {len(units)} units from {files[-1].name}")
+    candidates = []
+    for f in files:
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if data.get("model") != model:
+            continue
+        units = data.get("units", [])
+        good_p1 = [u for u in units if u.get("probe") == "P1"
+                   and any(c for c in u.get("concepts", {}).values())]
+        langs = Counter(u.get("language", "") for u in good_p1)
+        if all(langs.get(l, 0) >= min_per_lang for l in ("zh", "de", "en")):
+            candidates.append((len(good_p1), f, units))
+    if not candidates:
+        raise RuntimeError(
+            f"No valid subject file with model={model!r} and >= {min_per_lang} "
+            f"good P1 records per language in {OUT_DIR}")
+    candidates.sort(key=lambda x: -x[0])
+    n, f, units = candidates[0]
+    print(f"  Canonical {model}: {n} good P1 from {f.name}")
+    return units, f
+
+
+def latest_units() -> List[dict]:
+    units, _ = load_canonical_units()
     print(f"  Probes: {dict(Counter(u['probe'] for u in units))}")
     return units
 

@@ -146,11 +146,8 @@ def relation_drivers(rel_records: List[dict], lang_a: str, lang_b: str,
 
 # ── Loaders ────────────────────────────────────────────────────────
 def load_llm_p1_records() -> List[dict]:
-    from lds_c_llm_analyze import OUT_DIR as _OUT, unit_to_record
-    files = sorted(_OUT.glob("llm_subject_*.json"))
-    if not files:
-        raise FileNotFoundError("No LLM subject files found")
-    units = json.loads(files[-1].read_text(encoding="utf-8"))["units"]
+    from lds_c_llm_analyze import load_canonical_units, unit_to_record
+    units, _ = load_canonical_units()
     return [unit_to_record(u) for u in units if u["probe"] == "P1"]
 
 

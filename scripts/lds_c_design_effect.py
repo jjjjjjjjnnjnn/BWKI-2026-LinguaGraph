@@ -77,16 +77,12 @@ def load_human_records() -> Tuple[List[dict], Path]:
 
 
 def load_llm_p1_records() -> Tuple[List[dict], Path]:
-    """LLM P1 units (within-subject): same model, 10 samples/language.
-    Returns (records, loaded_path) for lineage (audit M9/M12)."""
-    from lds_c_llm_analyze import OUT_DIR as _OUT, unit_to_record
+    """LLM P1 units (within-subject): the canonical baseline model's file,
+    selected by content (model field) and validated (audit C9: no more
+    files[-1] which silently loaded a 3-unit aborted run)."""
+    from lds_c_llm_analyze import load_canonical_units, unit_to_record
 
-    files = sorted(_OUT.glob("llm_subject_*.json"))
-    if not files:
-        raise FileNotFoundError(f"No LLM subject files in {_OUT}")
-    path = files[-1]
-    data = json.loads(path.read_text(encoding="utf-8"))
-    units = data["units"]
+    units, path = load_canonical_units()
     recs = [unit_to_record(u) for u in units if u["probe"] == "P1"]
     langs: Dict[str, int] = defaultdict(int)
     for r in recs:
@@ -139,7 +135,8 @@ def signal_table(records: List[dict], tag: str, n_floor: int = 200) -> dict:
             "interpretation": (
                 "signal_margin ~ 0 / ratio ~ 1.0 => language signal SUBMERGED "
                 "by within-language heterogeneity (between-subject artifact); "
-                "signal_margin >> 0 / ratio < 1.0 => language signal VISIBLE."
+                "signal_margin >> 0 / ratio > 1.0 => language signal VISIBLE "
+                "(LDS-C clearly above the within-language floor)."
             ),
         }
     return {"tag": tag, "n": len(records), "n_per_language": counts,
@@ -298,7 +295,7 @@ def main() -> None:
         f"(human LDS-C margins {h_mean_margin:+.3f}, LLM {l_mean_margin:+.3f}). "
         f"The human between-subject signal/floor ratio is {h_mean_ratio:.3f} "
         f"(~1.0 => signal submerged by within-group heterogeneity), while the LLM "
-        f"within-subject ratio is {l_mean_ratio:.3f} (clearly below 1.0 => signal "
+        f"within-subject ratio is {l_mean_ratio:.3f} (clearly above 1.0 => signal "
         f"visible). The human null is a design artifact (between-subject "
         f"heterogeneity inflates the floor to the signal level), NOT absence "
         f"of a language effect."
