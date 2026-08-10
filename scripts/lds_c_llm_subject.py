@@ -42,6 +42,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 API_URL = "https://opencode.ai/zen/go/v1"
 MODEL = "deepseek-v4-flash"
+MODEL_ID = MODEL  # may be provider-scoped (e.g. "dashscope:glm-5.2") when --provider given
 OUT_DIR = PROJECT_ROOT / "data" / "lds_c" / "llm_subject"
 RANDOM_SEED = 20260808
 
@@ -140,10 +141,14 @@ def load_env_key() -> str:
 
 
 def load_key_for_url(url: str) -> str:
-    """Pick the API key by gateway: OpenRouter uses OPENROUTER_API_KEY,
-    everything else (opencode zen) uses OPENAI_API_KEY."""
-    if "openrouter" in url.lower():
+    """Pick the API key by gateway: OpenRouter -> OPENROUTER_API_KEY,
+    DashScope/Qwen -> DASHSCOPE_API_KEY, everything else (opencode zen) ->
+    OPENAI_API_KEY."""
+    u = url.lower()
+    if "openrouter" in u:
         return _env_get("OPENROUTER_API_KEY")
+    if "dashscope" in u or "aliyuncs" in u:
+        return _env_get("DASHSCOPE_API_KEY")
     return _env_get("OPENAI_API_KEY")
 
 
@@ -411,7 +416,7 @@ def run_p3(client, unit: dict) -> dict:
 # ── Save / resume ───────────────────────────────────────────────────
 def save_out(out_path: Path, records: List[dict]) -> None:
     out_path.write_text(json.dumps({
-        "model": MODEL, "api_url": API_URL, "design": "d1_mechanism",
+        "model": MODEL_ID, "api_url": API_URL, "design": "d1_mechanism",
         "seed": RANDOM_SEED, "temperature": 0.3,
         "generated_at": datetime.now().isoformat(),
         "units": records,
@@ -419,10 +424,15 @@ def save_out(out_path: Path, records: List[dict]) -> None:
 
 
 def main() -> None:
-    global MODEL, API_URL
+    global MODEL, API_URL, MODEL_ID
     ap = argparse.ArgumentParser(description="D1 LLM-as-subject data collection")
     ap.add_argument("--model", type=str, default=MODEL,
                     help="model id to use as subject (default: deepseek-v4-flash)")
+    ap.add_argument("--provider", type=str, default="",
+                    help="provider tag (e.g. dashscope). Namespaces the output "
+                         "file and the stored model id (e.g. 'dashscope:glm-5.2') "
+                         "so the SAME model from a different host is kept "
+                         "distinct and can be re-tested independently")
     ap.add_argument("--api-url", type=str, default=API_URL,
                     help="OpenAI-compatible base URL (default: zen/go/v1; "
                          "free tier: https://opencode.ai/zen/v1)")
@@ -441,6 +451,7 @@ def main() -> None:
 
     MODEL = args.model
     API_URL = args.api_url
+    MODEL_ID = f"{args.provider}:{MODEL}" if args.provider else MODEL
 
     probes = {p.strip() for p in args.probes.split(",")}
     do_p1, do_p2, do_p3, do_p5 = ("P1" in probes, "P2" in probes,
@@ -468,16 +479,18 @@ def main() -> None:
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     model_tag = MODEL.replace("/", "_").replace(":", "_")
+    file_prefix = f"llm_subject_{args.provider}_{model_tag}" if args.provider \
+        else f"llm_subject_{model_tag}"
     out_path = OUT_DIR / (args.out or
-                          f"llm_subject_{model_tag}_{datetime.now().strftime('%Y%m%d')}.json")
+                          f"{file_prefix}_{datetime.now().strftime('%Y%m%d')}.json")
 
-    # Resume: merge GOOD units from ALL date files of this model (cross-day
-    # resume — the filename date-rolls daily, so yesterday's good units must be
-    # picked up). Only units with extracted concepts are kept, so previously
-    # empty (e.g. quota-failed) units are retried automatically instead of
-    # being silently skipped.
+    # Resume: merge GOOD units from ALL date files of this provider/model
+    # (cross-day resume — the filename date-rolls daily). Provider-scoped so
+    # e.g. "dashscope:glm-5.2" never merges zen-collected "glm-5.2" units.
+    # Only units with extracted concepts are kept, so previously empty (e.g.
+    # quota-failed) units are retried automatically instead of being skipped.
     done: Dict[str, dict] = {}
-    for f in sorted(OUT_DIR.glob(f"llm_subject_{model_tag}_*.json")):
+    for f in sorted(OUT_DIR.glob(f"{file_prefix}_*.json")):
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
