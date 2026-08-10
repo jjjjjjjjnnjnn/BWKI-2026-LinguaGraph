@@ -377,3 +377,13 @@ Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am d
 | Mensch kognitiv | ZH-DE | 0.954 | 0.085 | 0.008 | 0.915 | 0.038 |
 
 Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert primär in der **Konzeptwahl (Knoten)**; die **Beziehungsorganisation (Kanten)** bleibt über alle Quellen hinweg systemisch divergent. Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
+
+**5.10 Modellübergreifende Replikation (51 Messungen, 47 eindeutige Modelle).**
+
+> Reproduzierbar via `scripts/lds_c_multi_model.py`; Ergebnisse in `data/lds_c/llm_subject/multi_model_replication_*.json`.
+
+Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **42 DashScope- und 8 zen/OpenRouter-Modelle** angewendet → **51 Messungen**, davon **47 eindeutige Modell-Identitäten** (4 Modelle auf zwei Hosts gemessen). Die Familien: Qwen (20), DeepSeek (12), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside, longcat und **nemotron-3-ultra (NVIDIA, US-Ursprung)**. **~88 % der Modelle stammen von chinesischen Anbietern.**
+
+**Signal — breit repliziert, aber nicht ausnahmslos**: Alle **51 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.29 (deepseek-v3.1). Von den **153 Sprachpaar-Tests sind 8 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten, und es wurde keine Mehrfachtest-Korrektur vorgenommen.
+
+**Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (p<0.001): ≥3: 1056 vs. 823±10; ≥10: **204 vs. 129±4**; ≥20: 50 vs. 8±2. Die stärksten Konzepte (Heimat:safety 41 DE-Stimmen; Heimat:physical space 41 ZH + 1 abweichende DE-Stimme; equal opportunity 39) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 41 von 51 Modellen Heimat:safety als einseitigen Treiber).

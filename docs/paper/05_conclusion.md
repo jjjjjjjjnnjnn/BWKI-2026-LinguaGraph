@@ -83,7 +83,7 @@ Der Output ist ein **interpretierbarer Divergenzbericht** pro Modell und Sprachp
 | **Regulierer** | Transparenz- und Dokumentationspflichten (z. B. EU AI Act) | Nachweis sprachabhängiger Modellstrukturierung |
 | **Forscher** | Studie kultureller Werte in KI | Quantitative, interpretierbare Divergenzmessung |
 
-**Ehrliche Abgrenzung**: Die vorliegende Arbeit ist ein **Proof-of-Concept** an einem einzelnen Modell (deepseek-v4-flash). Eine produktive Anwendung als Audit-Instrument erfordert die Erweiterung auf weitere Modelle, Konzepte und Sprachen sowie die Definition eines Schwellenwerts für „kritische" Divergenz — genau dies ist Gegenstand der zukünftigen Arbeit (§5.6).
+**Ehrliche Abgrenzung**: Die Arbeit ist ein **Messverfahren** (Methodik) mit **breiter, aber begrenzter Evidenz**: Das Within-Subject-Experiment zeigt ein robustes Sprachsignal im Basismodell (deepseek-v4-flash), und die modellübergreifende Replikation (§5.10) bestätigt es in 51 Messungen (47 eindeutige Modelle, ~88 % chinesische Anbieter, ein US-Modell; alle ZH-DE-Paare signifikant, 8 englisch-haltige Paare nicht; Kulturrichtung über Zufallsniveau). Die Arbeit ist jedoch **kein fertiges Audit-Instrument**: Eine produktive Anwendung erfordert die Definition eines Schwellenwerts für „kritische" Divergenz, die Erweiterung auf westliche Modelle und weitere Konzepte/Sprachen sowie die normative Klärung, ob sprachspezifische Rahmung als „Drift" oder als kulturadäquate Anpassung zu werten ist — dies ist Gegenstand zukünftiger Arbeit (§5.6).
 
 ### Abschlusserklärung
 

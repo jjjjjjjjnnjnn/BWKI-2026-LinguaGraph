@@ -52,12 +52,12 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 **Visual:** LDS-C vs. Split-Half-Boden-Balken (0.93–0.96 vs. 0.85–0.87); Permutationstest p<0.01; Treiberliste DE-Only vs. ZH-Only; Domänen-Asymmetrie-Balken (institutionell 0.44 vs. sozial 0.80).
 
 **Narration (DE):**
-„Auf einem aktuellen mehrsprachigen Modell ist das Sprachsignal klar und statistisch signifikant — Permutationstest p < 0.01. Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch.
+„Wir haben das Experiment auf mehr als 50 Modelle verschiedener Anbieter ausgeweitet — auch auf ein US-amerikanisches Modell. In allen 51 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
 Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
 **Narration (EN subtitle):**
-"On a state-of-the-art multilingual model, the language signal is clear and statistically significant — permutation test p < 0.01. And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement.
+"We extended the experiment to more than 50 models from different providers — including one US model. Across all 51 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.
 
 The decisive control finding: institutional knowledge — for instance mathematics — converges across languages. Cultural concepts, by contrast, diverge clearly. Our instrument finds exactly what it should find: convergence where convergence is expected, divergence where divergence is expected. Even the relations between concepts are organized language-specifically."
 
@@ -80,7 +80,7 @@ The decisive control finding: institutional knowledge — for instance mathemati
 **Visual:** „LinguaGraph" + ein Wort: „Sichtbar." + Danke.
 
 **Narration (DE):**
-„LinguaGraph verwandelt eine philosophische Frage — formt Sprache unser Denken? — in eine messbare Ingenieursfrage für die KI-Systeme, von denen wir alle abhängen. Und der erste Befund lautet: Ja, sie driften. Jetzt können wir sehen, wo — und damit ist der erste Schritt zur Korrektur getan."
+„LinguaGraph verwandelt eine philosophische Frage — formt Sprache unser Denken? — in eine messbare Ingenieursfrage für die KI-Systeme, von denen wir alle abhängen. Und der Befund ist: Ja, sie driften — messbar über Dutzende Modelle hinweg, in einer klar erkennbaren kulturellen Richtung. Jetzt können wir sehen, wo — das ist der erste Schritt zu einer verlässlichen Prüfung mehrsprachiger KI."
 
 **Narration (EN subtitle):**
 "LinguaGraph turns a philosophical question — does language shape our thinking? — into a measurable engineering question for the AI systems we all depend on. And the first finding is: yes, they drift. Now we can see where — and that is the first step toward correcting it."
@@ -103,8 +103,9 @@ The decisive control finding: institutional knowledge — for instance mathemati
 
 | Behauptung | Quelle |
 |------------|--------|
-| LDS-C 0.93–0.96, Boden 0.85–0.87 (LLM) | `data/lds_c/llm_subject/design_effect_20260809.json` |
-| Permutationstest p < 0.01 | `03_results.md` §5.2 |
+| 51 Messungen, 47 eindeutige Modelle; alle ZH-DE-Paare p<0.05; 8/153 nicht-signifikante englisch-haltige Paare | `data/lds_c/llm_subject/multi_model_replication_20260810.json` |
+| Kulturrichtung über Zufallsniveau (≥10 Stimmen 204 vs 129, p<0.001) | `multi_model_replication_20260810.json` |
+| LDS-C 0.93–0.96, Boden 0.85–0.87 (Basismodell) | `data/lds_c/llm_subject/design_effect_20260809.json` |
 | DE: Autonomie/Regeln; ZH: Raum/Anspruch | `divergence_drivers_20260809.json` |
 | Institutionell konvergiert (node-only 0.444) vs sozial divergiert (0.800) | `node_edge_decomp_20260809.json` |
-| Ethik: „Korrektur" = Messung+Kalibrierung, nicht Übertreibung | Formulierung im Skript ehrlich gehalten |
+| Ethik: Messung = Basis für Audit, nicht fertiges "Korrektur"-Instrument | Formulierung im Skript ehrlich gehalten |

@@ -51,7 +51,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 ## 6. Kritische Einschätzung — Grenzen und nächste Schritte
 
 **Ehrliche Grenzen**:
-- **Proof-of-Concept an einem Modell** (deepseek-v4-flash): Eine produktive Anwendung als Audit-Instrument erfordert die Erweiterung auf weitere Modelle.
+- **Beweisumfang**: Das Sprachsignal ist im Basismodell und in einer **51-Messungs-Replikation** (47 eindeutige Modelle, alle ZH-DE-Paare signifikant, Kulturrichtung über Zufallsniveau) nachgewiesen — allerdings mit ~88 % chinesischen Anbietern und einigen nicht-signifikanten englisch-haltigen Paaren. Eine produktive Anwendung als Audit-Instrument erfordert die Erweiterung auf westliche Modelle, weitere Konzepte/Sprachen und einen Schwellenwert.
 - **5 Konzepte, 3 Sprachen**: Die Breite der Wertekonzepte ist begrenzt; weitere Konzepte und Sprachen (z. B. Französisch, Japanisch) stehen aus.
 - **Kein Schwellenwert** für "kritische" Divergenz definiert — was ein Audit als Handlungsempfehlung bräuchte.
 - **Interpretation der Richtung**: Die Divergenztreiber (DE: Autonomie; ZH: Raum/Anspruch) sind deskriptiv; ihre kulturelle Deutung ist Hypothese, keine kausale Erklärung.
