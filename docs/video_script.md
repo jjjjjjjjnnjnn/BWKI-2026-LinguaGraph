@@ -93,8 +93,9 @@ The decisive control finding: institutional knowledge — for instance mathemati
 - [ ] Weltkarte / Sprach-Split + „EU AI Act"-Einblendung
 - [ ] Drei-Sprachen-Panel: dasselbe Modell → 5 Themen
 - [ ] LDS-Formel (1 − mean(J_node, J_edge)) + Balken LDS-C vs. Boden (0.93–0.96 / 0.85–0.87)
+- [ ] **51-Messungs-Replikation**: Balken der ZH-DE-Margen (top-8 Modelle, 0.03–0.29) + "51 Messungen, 47 Modelle"
 - [ ] Treiberliste (DE-only vs ZH-only) aus `divergence_drivers_20260809.json`
-- [ ] Domänen-Asymmetrie (institutionell 0.44 vs sozial 0.80)
+- [ ] **Kontrollbefund (P2-Recheck)**: Domänen-Vergleich ist alignierungsabhängig → im Video nicht als harter "Kontrollbeweis" präsentieren; stattdessen die Nullmodell-Statistik der Kulturrichtung (≥10 Stimmen 204 vs 129, p<0.001)
 - [ ] Divergenzbericht-Mockup (Entwickler/Regulierer/Forscher)
 - [ ] Deutsche Narration + englische Untertitel
 - [ ] Total: ~3 Min (Vorgabe 2–4) · Export 1080p, H.264

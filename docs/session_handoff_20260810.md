@@ -141,10 +141,16 @@
 
 **P3（收尾）✅**: release.py 验证通过；69 pytest 全过（+loader/空模型/ratio/提取提示词回归测试）；工作树干净。
 
-**⚠️ 遗留（提交前仍须处理）**:
-- **结果章引用 §3.8 领域不对称处**需与 P2-1 降级一致（已加 caveat，但 §3.8 主文本仍用 0.444/0.800 作"内容驱动"证据——需同步措辞或标注）
-- manifest 与 release/ 一致性已由 release.py 保证
-- 视频录制（8/14-28）
+**遗留项处理（2026-08-10）✅**:
+- §3.8 领域不对称已与 P2-1 降级同步（reframe 为"对齐标签一致性"，00_three/05_conclusion 同改）
+- 文献扎根完成（讨论 §4.16：Markus & Kitayama 自我构念 + Hofstede 个人主义/集体主义解释 DE-自主/ZH-空间方向——解释性假设，非因果）
+- PDF 组装完成：`docs/submission/LinguaGraph_BWKI2026.pdf`（29 页，fpdf2+simsun，标题页+正文+披露附录；格式朴素，pandoc 可用后可选重做）
+- 视频脚本录制清单更新（含 51 模型可视化 + 移除已降级的 Domänen-Asymmetrie）
+
+**⚠️ 用户物理动作（非 AI 可代）**:
+- **视频录制**（2-4 分钟，脚本 v2 就绪，8/14-28 窗口）
+- **平台填写**（plattform_antworten 草稿已备）
+- PDF 格式增强（可选，若装 pandoc）
 
 ---
 
