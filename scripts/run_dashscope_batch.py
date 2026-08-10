@@ -17,30 +17,33 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-WORKERS = 8
+WORKERS = 6  # was 8; 8-parallel may have contributed to the account block
 K = 10
 
-# Viable chat models from the 2026-08-10 parallel smoke test (zh answer +
-# gloss extraction OK). Prefixed (provider/model) variants and qwen-turbo are
-# excluded (API 400 / weak extraction).
+# ONLY models with free quota (user's 137-model free list, 2026-08-10).
+# Chat-capable subjects only (excluded: image/vl/mt/math/coder/ocr/gui/
+# analysis/audio; and anything NOT on the free list would charge the account).
 MODELS = [
-    # DeepSeek
-    "deepseek-r1", "deepseek-v3", "deepseek-v3.1", "deepseek-v3.2",
-    "deepseek-v4-flash", "deepseek-v4-pro",
-    # GLM
-    "glm-4.7", "glm-5", "glm-5.1", "glm-5.2", "glm-5.2-fast-preview",
-    # Kimi
-    "kimi-k2-thinking", "kimi-k2.5", "kimi-k2.6",
+    # DeepSeek (all on free list)
+    "deepseek-v3", "deepseek-v3.1", "deepseek-v3.2", "deepseek-v4-flash",
+    "deepseek-v4-pro", "deepseek-r1", "deepseek-r1-0528",
+    "deepseek-r1-distill-qwen-7b", "deepseek-r1-distill-qwen-14b",
+    "deepseek-r1-distill-qwen-32b",
+    # GLM (all on free list)
+    "glm-4.5", "glm-4.5-air", "glm-4.6", "glm-4.7", "glm-5", "glm-5.1", "glm-5.2",
+    # Kimi / Moonshot
+    "kimi-k2.5", "kimi-k2.6", "kimi-k2.7-code", "kimi-k2-thinking",
+    "Moonshot-Kimi-K2-Instruct",
     # MiniMax
     "MiniMax-M2.1", "MiniMax-M2.5",
     # Qwen
-    "qwen-max", "qwen-plus", "qwen-flash",
-    "qwen3-max", "qwen3.5-flash", "qwen3.5-plus", "qwen3.6-flash", "qwen3.6-plus",
-    "qwen3.7-flash", "qwen3.7-plus", "qwen3.7-max", "qwen3.8-max",
-    "qwen3-235b-a22b",
+    "qwen-max", "qwen-plus", "qwen-turbo", "qwen-flash",
+    "qwen3-max", "qwen3.5-plus", "qwen3.5-flash", "qwen3.6-plus", "qwen3.6-flash",
+    "qwen3.7-plus", "qwen3.7-flash", "qwen3.7-max", "qwen3.8-max",
+    "qwen3-8b", "qwen3-14b", "qwen3-32b", "qwen3-30b-a3b", "qwen3-235b-a22b",
     "qwen3.5-27b", "qwen3.5-35b-a3b", "qwen3.5-122b-a10b", "qwen3.5-397b-a17b",
-    # Distills
-    "deepseek-r1-distill-qwen-32b",
+    "qwen3.6-27b", "qwen3.6-35b-a3b",
+    "qwq-plus",
 ]
 
 
