@@ -67,8 +67,12 @@ def size_match(graph, la, lb, ks, n_iter=200, seed=20260810):
 
 
 def main() -> None:
+    # load wiki gloss (ZH/DE -> English) needed by wiki_graphs
+    from lds_c_node_edge_decomp import load_wiki_gloss
+    gloss = load_wiki_gloss()
+
     math = math_pooled()  # lang -> {nodes, edges} (aligned labels)
-    wiki = wiki_pooled()  # lang -> {nodes, edges} (independent extraction)
+    wiki = wiki_pooled(gloss)  # lang -> {nodes, edges} (independent extraction)
 
     print("=== Node counts per language ===")
     for name, g in [("math (aligned)", math), ("wiki (independent)", wiki)]:
