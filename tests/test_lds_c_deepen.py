@@ -338,20 +338,15 @@ def test_harness_imports_and_jaccard():
     assert jaccard([], ["a"]) == 0.0
 
 
-def test_direction_consistency_finds_shared_direction():
-    """If 3 independent 'models' all mark the same concept as zh-only in
-    ZH-DE, direction_consistency must report it consistent (>=3)."""
-    from lds_c_multi_model import direction_consistency
-
-    # Build 3 models where 'zh-signal' appears ONLY in zh and 'de-signal'
-    # ONLY in de, for topic Freiheit.
-    def build(with_zh_only: bool, with_de_only: bool) -> dict:
+def _dc_models(n_models: int = 12) -> dict:
+    """n synthetic models; each marks 'de-signal' DE-only and 'zh-signal'
+    ZH-only (Freiheit), plus a shared concept. Enough models to reach the
+    report threshold (>=10)."""
+    def build() -> dict:
         zh_c = [{"concept": "a", "en": "shared", "importance": 1.0},
-                {"concept": "b", "en": "zh-signal", "importance": 1.0}] if with_zh_only \
-            else [{"concept": "a", "en": "shared", "importance": 1.0}]
+                {"concept": "b", "en": "zh-signal", "importance": 1.0}]
         de_c = [{"concept": "a", "en": "shared", "importance": 1.0},
-                {"concept": "c", "en": "de-signal", "importance": 1.0}] if with_de_only \
-            else [{"concept": "a", "en": "shared", "importance": 1.0}]
+                {"concept": "c", "en": "de-signal", "importance": 1.0}]
         units = []
         for s in range(6):
             units.append({"unit_id": f"P1_zh_s{s}", "probe": "P1", "language": "zh",
@@ -362,24 +357,37 @@ def test_direction_consistency_finds_shared_direction():
                           "concepts": {"Freiheit": [{"concept": "a", "en": "shared",
                                                      "importance": 1.0}]}})
         return {"units": units}
-
-    models = {f"m{i}": build(True, True) for i in range(3)}
-    dc = direction_consistency(models, min_models=3)
-    assert dc["n_consistent_total"] >= 2
-    # canonical_key reorders tokens alphabetically: "zh-signal" -> "signal zh"
-    assert "Freiheit:signal zh" in dc["zh_only_consistent"]
-    assert "Freiheit:de signal" in dc["de_only_consistent"]
-    assert dc["n_models"] == 3
+    return {f"m{i}": build() for i in range(n_models)}
 
 
-def test_direction_consistency_no_false_positive_when_inconsistent():
-    """If models disagree on direction, no concept should be reported consistent."""
+def test_direction_consistency_finds_shared_direction():
+    """If 12 independent 'models' all mark the same concept zh-only / de-only,
+    direction_consistency reports it in the >=10-vote strong lists."""
     from lds_c_multi_model import direction_consistency
 
+    dc = direction_consistency(_dc_models(12), min_models=3)
+    assert dc["n_models_voting"] == 12
+    assert dc["n_consistent_at_report_threshold"] >= 2
+    # canonical_key reorders tokens: "zh-signal" -> "signal zh"
+    de_keys = {k for k, _ in dc.get("de_only_strong", [])}
+    zh_keys = {k for k, _ in dc.get("zh_only_strong", [])}
+    assert "Freiheit:de signal" in de_keys
+    assert "Freiheit:signal zh" in zh_keys
+    # the null model must be computed and the observed >=10 count exceed it
+    ovn = dc["observed_vs_null"]["10"]
+    assert ovn["observed"] >= 2
+    assert ovn["p_null_ge_observed"] < 0.05
+
+
+def test_direction_consistency_null_model_in_noise():
+    """A null model (random direction) must NOT report a strong directional
+    concept where models disagree — and the observed-vs-null machinery works."""
+    from lds_c_multi_model import direction_consistency
+
+    # 12 models that disagree: 6 mark 'contested' zh-only, 6 de-only -> max 6 < 10
     def build(side: str) -> dict:
         zh_c = [{"concept": "a", "en": "shared", "importance": 1.0}]
         de_c = [{"concept": "a", "en": "shared", "importance": 1.0}]
-        # put 'contested' on opposite sides in different models
         if side == "zh":
             zh_c.append({"concept": "b", "en": "contested", "importance": 1.0})
         else:
@@ -395,9 +403,30 @@ def test_direction_consistency_no_false_positive_when_inconsistent():
                                                      "importance": 1.0}]}})
         return {"units": units}
 
-    models = {"m1": build("zh"), "m2": build("de"), "m3": build("de")}
+    models = {f"m{i}": build("zh" if i % 2 == 0 else "de") for i in range(12)}
     dc = direction_consistency(models, min_models=3)
-    # 2/3 say de-only < 3 => contested must NOT be reported consistent.
-    # canonical_key("contested") -> "contest".
-    assert "Freiheit:contest" not in dc["de_only_consistent"]
-    assert "Freiheit:contest" not in dc["zh_only_consistent"]
+    de_keys = {k for k, _ in dc.get("de_only_strong", [])}
+    zh_keys = {k for k, _ in dc.get("zh_only_strong", [])}
+    assert "Freiheit:contest" not in de_keys
+    assert "Freiheit:contest" not in zh_keys
+    # observed-vs-null table exists for all thresholds
+    for t in ("3", "5", "10", "20"):
+        assert t in dc["observed_vs_null"]
+        assert dc["observed_vs_null"][t]["null_mean"] >= 0
+
+
+def test_load_canonical_units_selects_baseline():
+    """The canonical loader must select deepseek-v4-flash by content and
+    validate P1 coverage (audit C9), not the lexicographically-last file."""
+    from lds_c_llm_analyze import load_canonical_units
+
+    units, path = load_canonical_units()
+    assert units, "no units"
+    assert path.name == "llm_subject_20260808.json"
+    p1 = [u for u in units if u.get("probe") == "P1"]
+    assert len(p1) >= 30
+    from collections import Counter
+    langs = Counter(u.get("language", "") for u in p1
+                    if any(c for c in u.get("concepts", {}).values()))
+    for l in ("zh", "de", "en"):
+        assert langs.get(l, 0) >= 5

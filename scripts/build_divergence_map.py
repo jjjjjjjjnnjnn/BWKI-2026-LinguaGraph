@@ -129,9 +129,9 @@ def multi_data() -> dict:
     return {
         "margins_zhde": dict(top),
         "n_models_total": n_total,
-        "n_consistent": dc["n_consistent_total"],
-        "n_models": dc["n_models"],
-        "min_models": dc["min_models"],
+        "n_consistent": dc.get("n_consistent_at_report_threshold", 0),
+        "report_threshold": dc.get("report_threshold", 10),
+        "n_models": dc.get("n_models_voting", n_total),
     }
 
 
@@ -253,7 +253,7 @@ const T = {
     c2sub:"For every language pair, the cross-language difference (blue) sits clearly above the model's own within-language noise floor (grey). A permutation test says p<0.01.",
     c2btitle:"It is not one AI's quirk — four independent AIs all drift",
     c2bsub:"We ran the same probe on four independently-built models (DeepSeek, Zhipu, Moonshot). Every single one shows the Chinese↔German gap clearly above its own noise floor — and the cultural direction is the same.",
-    multiStatsN:"{N} models measured", multiStatsC:"{C} concepts share the same cultural direction", multiStatsTop:"top 8 by drift shown",
+    multiStatsN:"{N} models measured", multiStatsC:"{C} concepts agree on the same cultural direction (≥{T} models)", multiStatsTop:"top 8 by drift shown",
     c3title:"Where the cultures diverge (Chinese ↔ German)",
     c3sub:"Same word, different map. These concepts appear in only one language's framing of the topic.",
     c4title:"The control: it is culture, not method",
@@ -274,7 +274,7 @@ const T = {
     c2sub:"Für jedes Sprachpaar liegt der sprachübergreifende Unterschied (blau) klar über dem sprachinternen Rauschboden des Modells (grau). Permutationstest p<0.01.",
     c2btitle:"Kein Einzelmodell-Zufall — vier unabhängige KIs driftieren",
     c2bsub:"Wir haben dieselbe Sonde auf vier unabhängig entwickelte Modelle (DeepSeek, Zhipu, Moonshot) angewendet. Jedes zeigt die chinesisch-deutsche Kluft klar über seinem eigenen Rauschboden — und die Kulturrichtung ist dieselbe.",
-    multiStatsN:"{N} Modelle gemessen", multiStatsC:"{C} Konzepte mit derselben Kulturrichtung", multiStatsTop:"die 8 stärksten gezeigt",
+    multiStatsN:"{N} Modelle gemessen", multiStatsC:"{C} Konzepte mit derselben Kulturrichtung (≥{T} Modelle)", multiStatsTop:"die 8 stärksten gezeigt",
     c3title:"Wo die Kulturen divergieren (Chinesisch ↔ Deutsch)",
     c3sub:"Dasselbe Wort, andere Landkarte. Diese Konzepte erscheinen nur in der Rahmung einer Sprache.",
     c4title:"Die Kontrolle: Es ist Kultur, nicht Methode",
@@ -295,7 +295,7 @@ const T = {
     c2sub:"对每个语言对，跨语言差异（蓝色）都明显高于模型自身的组内噪声底（灰色）。置换检验 p&lt;0.01。",
     c2btitle:"不是某个 AI 的怪癖——四个独立 AI 都漂移",
     c2bsub:"我们把同样的探针用于四个独立开发的模型（DeepSeek、智谱、Moonshot）。每一个都在中文↔德语的差距上清晰高于自身噪声底——且文化方向一致。",
-    multiStatsN:"已测量 {N} 个模型", multiStatsC:"{C} 个概念保持相同文化方向", multiStatsTop:"显示漂移最大的 8 个",
+    multiStatsN:"已测量 {N} 个模型", multiStatsC:"{C} 个概念在 ≥{T} 个模型上保持相同文化方向", multiStatsTop:"显示漂移最大的 8 个",
     c3title:"文化分歧在哪里（中文 ↔ 德语）",
     c3sub:"同一个词，不同的概念地图。这些概念只出现在一种语言对该主题的框定中。",
     c4title:"对照实验：是文化，不是方法",
@@ -381,7 +381,7 @@ function renderMulti(){
   }
   document.getElementById('multivis').innerHTML = h;
   document.getElementById('multistats').innerHTML =
-    `<div class="lbl">${tr('multiStatsN').replace('{N}', m.n_models_total)} — ${tr('multiStatsC').replace('{C}', m.n_consistent)} — ${tr('multiStatsTop')}</div>`;
+    `<div class="lbl">${tr('multiStatsN').replace('{N}', m.n_models_total)} — ${tr('multiStatsC').replace('{C}', m.n_consistent).replace('{T}', m.report_threshold)} — ${tr('multiStatsTop')}</div>`;
 }
 
 function renderDrivers(){

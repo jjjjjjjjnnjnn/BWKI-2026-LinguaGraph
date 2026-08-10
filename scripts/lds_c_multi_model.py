@@ -126,23 +126,36 @@ def analyze_model(model: str, units: List[dict], path: Path) -> dict:
     }
 
 
-def direction_consistency(models: Dict[str, dict], min_models: int = 3) -> dict:
-    """Cross-model agreement on the ZH-DE divergence DIRECTION.
+THRESHOLDS = [3, 5, 10, 20]
+REPORT_THRESHOLD = 10  # above the random-agreement noise band (audit C2)
+
+
+def direction_consistency(models: Dict[str, dict], min_models: int = 3,
+                          n_null: int = 200) -> dict:
+    """Cross-model agreement on the ZH-DE divergence DIRECTION, WITH a null
+    model (audit C2).
 
     For every ZH-DE driver concept, count how many models mark it DE-only vs
-    ZH-only. A concept is "direction-consistent" if >= min_models agree on the
-    same side. The top-10 Jaccard is too strict (frequency rank varies by model);
-    this vote-based measure captures that the DIRECTION of specific recurring
-    concepts is stable across independent providers.
+    ZH-only. A concept is "direction-consistent" at threshold t if
+    max(de_votes, zh_votes) >= t.
+
+    Null model: fix each concept's total appearance frequency, assign every
+    vote's direction at random (p=0.5), and count how many concepts would pass
+    threshold t by chance. The >=3 count lies inside that noise band, so the
+    reported headline uses >= REPORT_THRESHOLD votes where the observed count
+    clearly exceeds the null.
     """
+    import random
     from collections import Counter, defaultdict
 
     de_votes: Dict[tuple, Counter] = defaultdict(Counter)
     zh_votes: Dict[tuple, Counter] = defaultdict(Counter)
+    voting_models = []
     for model, info in models.items():
         recs = p1_records(info["units"])
         if any(lang_counts(recs).get(l, 0) < MIN_UNITS_PER_LANG for l in ("zh", "de", "en")):
             continue
+        voting_models.append(model)
         freqs = concept_freqs(recs)
         for d in concept_drivers(freqs, "zh", "de"):
             key = (d["topic"], d["key"])
@@ -150,19 +163,76 @@ def direction_consistency(models: Dict[str, dict], min_models: int = 3) -> dict:
                 de_votes[key][model] += 1
             elif d.get("lang") == "zh":
                 zh_votes[key][model] += 1
-    consistent_de = {f"{t}:{k}": len(ms) for (t, k), ms in de_votes.items() if len(ms) >= min_models}
-    consistent_zh = {f"{t}:{k}": len(ms) for (t, k), ms in zh_votes.items() if len(ms) >= min_models}
+
+    # Convert to PLAIN dicts (materialized) to eliminate any defaultdict
+    # creation-during-iteration risk in the steps below.
+    de_votes = {k: dict(v) for k, v in de_votes.items()}
+    zh_votes = {k: dict(v) for k, v in zh_votes.items()}
+    totals = {k: (len(de_votes.get(k, {})), len(zh_votes.get(k, {})))
+              for k in set(de_votes) | set(zh_votes)}
+
+    def count_consistent(assign):
+        return {t: sum(1 for (d, z) in assign.values() if max(d, z) >= t)
+                for t in THRESHOLDS}
+
+    observed = count_consistent(totals)
+
+    # Null: random side for each vote, fixed total per concept
+    rng = random.Random(20260810)
+    null_draws = {t: [] for t in THRESHOLDS}
+    for _ in range(n_null):
+        draw = {}
+        for key, (d, z) in totals.items():
+            n = d + z
+            d_rand = sum(1 for _ in range(n) if rng.random() < 0.5)
+            draw[key] = (d_rand, n - d_rand)
+        c = count_consistent(draw)
+        for t in THRESHOLDS:
+            null_draws[t].append(c[t])
+    obs_vs_null = {}
+    for t in THRESHOLDS:
+        arr = sorted(null_draws[t])
+        mean = sum(arr) / len(arr)
+        sd = (sum((x - mean) ** 2 for x in arr) / len(arr)) ** 0.5
+        p_ge = sum(1 for x in arr if x >= observed[t]) / len(arr)
+        obs_vs_null[str(t)] = {
+            "observed": observed[t], "null_mean": round(mean, 1),
+            "null_sd": round(sd, 1), "p_null_ge_observed": round(p_ge, 3),
+        }
+
+    # Concepts with >= REPORT_THRESHOLD votes on a side, as (de, zh) counts
+    # (may overlap: a concept with both de>=10 and zh>=10 appears in both).
+    # The REPORT count below is the UNIQUE max-based count (204, not 207).
+    # NB: use .get() on the defaultdicts so a missing side does not create a
+    # key while iterating (RuntimeError).
+    top_de = sorted(
+        ((f"{t}:{k}", (len(de_votes[(t, k)]), len(zh_votes.get((t, k), {}))))
+         for (t, k) in list(de_votes)
+         if len(de_votes[(t, k)]) >= REPORT_THRESHOLD),
+        key=lambda x: -max(x[1]))
+    top_zh = sorted(
+        ((f"{t}:{k}", (len(de_votes.get((t, k), {})), len(zh_votes[(t, k)])))
+         for (t, k) in list(zh_votes)
+         if len(zh_votes[(t, k)]) >= REPORT_THRESHOLD),
+        key=lambda x: -max(x[1]))
+
     return {
-        "min_models": min_models,
-        "n_models": len(models),
-        "de_only_consistent": dict(sorted(consistent_de.items(), key=lambda x: -x[1])),
-        "zh_only_consistent": dict(sorted(consistent_zh.items(), key=lambda x: -x[1])),
-        "n_consistent_total": len(consistent_de) + len(consistent_zh),
+        "report_threshold": REPORT_THRESHOLD,
+        "n_models_voting": len(voting_models),
+        "n_models_unique": len({m.split(":")[-1] for m in voting_models}),
+        "n_concepts_drivers": len(totals),
+        "observed_vs_null": obs_vs_null,
+        "de_only_strong": top_de[:TOP_DRIVERS],
+        "zh_only_strong": top_zh[:TOP_DRIVERS],
+        "n_consistent_at_report_threshold": sum(
+            1 for (d, z) in totals.values() if max(d, z) >= REPORT_THRESHOLD),
         "readme": (
-            "concepts where >=min_models independently mark the SAME direction "
-            "(DE-only or ZH-only) in the ZH-DE divergence. High agreement => the "
-            "cultural direction (DE autonomy/rules, ZH relational/space) is a "
-            "robust property across providers, not a single-model artifact."
+            "Direction-consistent concepts at threshold t = max(DE-only, ZH-only) "
+            "votes. Null model fixes per-concept appearance frequency and assigns "
+            "direction at random (p=0.5); the >=3 count lies inside that noise "
+            "band (audit C2), so the report threshold is >=10 votes where the "
+            "observed count exceeds the null. n_consistent_at_report_threshold is "
+            "the UNIQUE concept count (max-based), not the sum of the de/zh lists."
         ),
     }
 
@@ -258,13 +328,19 @@ def main() -> None:
             print(f"  {model:<18} {d}")
 
     dc = comparison.get("direction_consistency", {})
-    n_models = dc.get("n_models", "?")
-    print(f"\n=== ZH-DE direction consistency (>= {dc.get('min_models','?')}/{n_models} models) ===\n")
-    print(f"  {dc.get('n_consistent_total', 0)} concepts with consistent direction")
-    de_c = list(dc.get("de_only_consistent", {}))[:6]
-    zh_c = list(dc.get("zh_only_consistent", {}))[:6]
-    print(f"  DE-only examples: {de_c}")
-    print(f"  ZH-only examples: {zh_c}")
+    nv = dc.get("n_models_voting", "?")
+    print(f"\n=== ZH-DE direction consistency (>= {dc.get('report_threshold','?')} "
+          f"votes; {nv} voting models) ===\n")
+    print(f"  {dc.get('n_consistent_at_report_threshold', 0)} concepts consistent at threshold")
+    ovn = dc.get("observed_vs_null", {})
+    for t in THRESHOLDS:
+        r = ovn.get(str(t), {})
+        print(f"  t>={t}: observed {r.get('observed')} vs null "
+              f"{r.get('null_mean')}±{r.get('null_sd')} (p_null_ge={r.get('p_null_ge_observed')})")
+    de_c = dc.get("de_only_strong", [])[:6]
+    zh_c = dc.get("zh_only_strong", [])[:6]
+    print(f"  Strongest DE (concept, (de,zh) votes): {de_c}")
+    print(f"  Strongest ZH (concept, (de,zh) votes): {zh_c}")
 
     print("\n=== ZH-DE top-5 drivers per model (cultural pattern) ===\n")
     for model, r in results.items():
