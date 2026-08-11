@@ -3,13 +3,14 @@
 > **管线**: `scripts/lds_c_llm_subject.py`（--model + --api-url 参数化）· `scripts/lds_c_multi_model.py`（复制 harness）
 > **数据**: `data/lds_c/llm_subject/llm_subject_{provider}_{model}_{date}.json`（各 30 单元）+ `multi_model_replication_20260809.json`（中间版）· **权威数据**: `multi_model_replication_20260810.json`（51 模型，方向一致性已按空模型修正）
 > **状态**: 纯 API 深化（新数据），全部可复现 | **承诺**: 复用冻结纯函数（signal_table / label_permutation_null / concept_drivers），零改动冻结管线
-> **更新**: v4（**51 个完整模型**：8 zen/OpenRouter + 42 DashScope + gpt-oss 部分）——v1 为 4 模型
+> **更新**: v4（**51 个完整模型**：8 zen/OpenRouter + 43 DashScope + gpt-oss 部分）——v1 为 4 模型
+> **⚠️ 数据文件注记（2026-08-11 审查发现）**: 权威文件 `multi_model_replication_20260810.json` 的 `direction_consistency.readme` 声称 ">=3 count lies inside that noise band"——**与其自身 `observed_vs_null["3"]`（1056 vs 823±9.5，p=0.0，~24 SD）矛盾**，系审计 C2 修正前过期措辞。以数据 + 本文档 §0 为准：**≥3 票（1056 vs 823）与 ≥10 票（204 vs 129）均显著**。
 
 ---
 
 ## 0. 一句话结论
 
-**跨语言价值观分歧是"多语言 LLM 的普遍属性"（ZH-DE 51/51 显著），但强度与方向是模型特异的**：51 个测量（47 个唯一模型，88% 中国提供方 + 1 个 NVIDIA 美国）在相同协议下，**全部 ZH-DE 对显著**（p<0.05），但 **8/153 个语言对（全含英语）不显著**（主要 DeepSeek R1 族）；文化方向（DE 自主/规则 vs ZH 空间/应得）在 **≥10 票阈值超过随机空模型**（204 vs 129±4，p<0.001），且 **≥3 票同样显著**（1056 vs 823±10，p<0.001；早期"1179"为双计数，已弃用）。这是**测量方法论 + 广度证据**，不是"所有模型所有语言对都强烈分歧"的普遍定律。
+**跨语言价值观分歧是"多语言 LLM 的普遍属性"（ZH-DE 51/51 显著），但强度与方向是模型特异的**：51 个测量（47 个唯一模型，~88% 中国提供方 + 2 个西方模型 NVIDIA nemotron-3-ultra · Poolside laguna-s-2.1）在相同协议下，**全部 ZH-DE 对显著**（p<0.05），但 **8/153 个语言对（全含英语）不显著**（主要 DeepSeek R1 族）；文化方向（DE 自主/规则 vs ZH 空间/应得）在 **≥10 票阈值超过随机空模型**（204 vs 129±4，p<0.001），且 **≥3 票同样显著**（1056 vs 823±10，p<0.001；早期"1179"为双计数，已弃用）。这是**测量方法论 + 广度证据**，不是"所有模型所有语言对都强烈分歧"的普遍定律。
 
 ## 2. 信号复制：51 测量，ZH-DE 全显著，英语对部分不显著
 

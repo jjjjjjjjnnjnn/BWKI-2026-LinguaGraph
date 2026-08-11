@@ -58,7 +58,7 @@
 |--------|------|-------------|------|------|
 | opencode zen/go | `https://opencode.ai/zen/go/v1` | `OPENAI_API_KEY` | 付费 | ✅ 已用 |
 | opencode zen/v1 | `https://opencode.ai/zen/v1` | 同上 | 免费（日限） | ✅ 已用 |
-| OpenRouter | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` + `OPENROUTER_API_KEY2` | 免费（日限 ~50-100 次，~08:30 重置） | 🔄 gpt-oss 17/30 跨日累积 |
+| OpenRouter | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` + `OPENROUTER_API_KEY2` | 免费（日限 ~50-100 次，~08:30 重置） | 🔄 gpt-oss ~21/30（zh10+de10，**en 全缺**，跨日累积停滞） |
 | **DashScope/千问** | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `DASHSCOPE_API_KEY` | **137 模型各 1M 免费 token** | ✅ 已用 42 |
 
 **⚠️ 教训（欠费事件）**: 2026-08-10 曾因用非免费额度模型导致 DashScope 账号欠费封锁。**此后只用用户确认的 137 免费清单模型**（`scripts/run_dashscope_batch.py` 已过滤）。**DashScope 免费清单 = 用户 2026-08-10 提供的 137 个模型列表**，勿用清单外模型。
@@ -152,9 +152,11 @@
 - **平台填写**（plattform_antworten 草稿已备）
 - PDF 格式增强（可选，若装 pandoc）
 
-**⚠️ OpenRouter 状态（2026-08-11 更新）**: 编排器轮询 250 次（~20 小时）OpenRouter 免费配额**未释放**（`free-models-per-day` 持续受限）——西方模型跨日累积实质停滞，gpt-oss 停在 17/30。**不要重启编排器**（浪费轮询；配额若恢复需人工触发）。该缺口已在论文 §8.15/§5.10 诚实披露为未来工作，不阻塞提交。
+**⚠️ OpenRouter 状态（2026-08-11 更新）**: 编排器轮询 250 次（~20 小时）OpenRouter 免费配额**未释放**（`free-models-per-day` 持续受限）——西方模型跨日累积实质停滞，gpt-oss 停在 ~21/30（en 全缺）。**不要重启编排器**（浪费轮询；配额若恢复需人工触发）。该缺口已在论文 §8.15/§5.10 诚实披露为未来工作，不阻塞提交。**量化披露**：51 有效测量中西方来源模型仅 2 个（NVIDIA nemotron-3-ultra-550b · Poolside laguna-s-2.1）——"跨中西方"表述以论文 §8.15 为准（"~88% 中方，西方面板 2/51"）。
 
 **🆕 R&D 全生命周期审查（2026-08-11）**: `docs/review/rnd_project_review_20260811.md`（六维度评估 + 先进性扫描 + 结构整理）。执行：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`；**物理（§6）+ LPA（§7）整合进论文，PDF 30 页**；CHANGELOG v0.13.0。**✅ 已跟进**：① SOTA 定位表 `docs/sota_positioning_20260811.md`（arXiv 实时查新完成）② 论文章节重编号完成（讨论 §8/结论 §9）③ API 鲁棒性测试（+15 测试，共 84）④ chemistry 侧流闭环（§6.7）。**遗留**：⑤ 方法论章 §2 与 related_work §2 同名（已知）。
+
+**🆕 研究层批判性审查 + 未来方向（2026-08-11）**: `docs/review/research_forward_review_20260811.md`（三轮审查之一，聚焦方法学/证据强度/可复现）。核心发现：① 数据文件 readme 与数据自相矛盾（≥3 显著，见 multimodel doc 注记）② 西方模型实际 2/51（gpt-oss en 全缺）③ 英文空结果（8/153，6/8 为 R1 族）无机制解释 → 7 条未来方向（R1 人类组内检验 / R2 英文空结果机制 / R3 k+对齐鲁棒性 / R4 全交叉 frame / R5 gpt-oss 补全 / R6 文化定量校准 / R7 主题×模型全表）。
 
 ---
 
