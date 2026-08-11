@@ -77,13 +77,11 @@
 
 ---
 
-## 6. 论文 related_work 落点建议（可选后续）
+## 6. 论文 related_work 落点（✅ 已执行 2026-08-11）
 
-将以下 3 句（德文草稿）插入 `docs/paper/02_related_work.md`（§2.5 Research Gap 附近），使论文直接对照 SOTA：
+新增 **§2.5「Multilinguale Wertausrichtung von LLMs」** 线索（`docs/paper/02_related_work.md`）：对照 WorldValuesBench [20]、Xu et al. [21]、Agarwal et al. [22]、Farid et al. [23]、MET [24]，明确"现有工作测选择/评分/准确率，LinguaGraph 测结构组织（LDS 节点+边）——互补且此前未测"；原 Forschungslücke 重编号为 §2.6 并加第 5 条缺口。文献表 [20]-[24] 完整引用（arXiv 标题经实时核验）。
 
-> "Während bestehende multilinguale Wert- und Moral-Benchmarks (WorldValuesBench, 2024; One Model, Many Morals, 2025; MET, 2026) die *Auswahl* von Werten über Sprachen hinweg messen, erfasst LinguaGraph mit dem LDS die *strukturelle Organisation* von Wertkonzepten (Knoten + Kanten) — ein komplementäres, bisher ungemessenes Maß."
-
-（执行与否由用户决定；本文档提供依据。）
+> 原建议句已作为新线索的核心论点整合（非孤立插入）：*"Während bestehende multilinguale Wert- und Moral-Benchmarks (WorldValuesBench, 2024; One Model, Many Morals, 2025; MET, 2026) die Auswahl von Werten über Sprachen hinweg messen, erfasst LinguaGraph mit dem LDS die strukturelle Organisation von Wertkonzepten (Knoten + Kanten) — ein komplementäres, bisher ungemessenes Maß."*
 
 ---
 
