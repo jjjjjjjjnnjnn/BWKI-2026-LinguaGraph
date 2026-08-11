@@ -102,7 +102,7 @@
 
 1. **文献扎根**（任务 8）：51 模型的 DE-自主/ZH-空间 模式 ↔ Markus & Kitayama / Hofstede → 论文可解释小节
 2. **OpenRouter 西方模型**（gpt-oss 17/30 等）：跨日累积完成（需 ~2-3 天）
-3. **论文数字一致性**：`04_discussion.md` §4.15 已是 51 模型版；`03_results.md` 结果章待同步 51 模型引用
+3. **论文数字一致性**：`04_discussion.md` §8.15 已是 51 模型版；`03_results.md` 结果章待同步 51 模型引用
 4. **提交工程**：视频录制（最大剩余项）、PDF 组装
 5. **任务清单**：#5 PDF（pending）、#8 文献扎根（pending）、其余完成
 
@@ -143,7 +143,7 @@
 
 **遗留项处理（2026-08-10）✅**:
 - §3.8 领域不对称已与 P2-1 降级同步（reframe 为"对齐标签一致性"，00_three/05_conclusion 同改）
-- 文献扎根完成（讨论 §4.16：Markus & Kitayama 自我构念 + Hofstede 个人主义/集体主义解释 DE-自主/ZH-空间方向——解释性假设，非因果）
+- 文献扎根完成（讨论 §8.16：Markus & Kitayama 自我构念 + Hofstede 个人主义/集体主义解释 DE-自主/ZH-空间方向——解释性假设，非因果）
 - PDF 组装完成：`docs/submission/LinguaGraph_BWKI2026.pdf`（29 页，fpdf2+simsun，标题页+正文+披露附录；格式朴素，pandoc 可用后可选重做）
 - 视频脚本录制清单更新（含 51 模型可视化 + 移除已降级的 Domänen-Asymmetrie）
 
@@ -152,9 +152,9 @@
 - **平台填写**（plattform_antworten 草稿已备）
 - PDF 格式增强（可选，若装 pandoc）
 
-**⚠️ OpenRouter 状态（2026-08-11 更新）**: 编排器轮询 250 次（~20 小时）OpenRouter 免费配额**未释放**（`free-models-per-day` 持续受限）——西方模型跨日累积实质停滞，gpt-oss 停在 17/30。**不要重启编排器**（浪费轮询；配额若恢复需人工触发）。该缺口已在论文 §4.15/§5.10 诚实披露为未来工作，不阻塞提交。
+**⚠️ OpenRouter 状态（2026-08-11 更新）**: 编排器轮询 250 次（~20 小时）OpenRouter 免费配额**未释放**（`free-models-per-day` 持续受限）——西方模型跨日累积实质停滞，gpt-oss 停在 17/30。**不要重启编排器**（浪费轮询；配额若恢复需人工触发）。该缺口已在论文 §8.15/§5.10 诚实披露为未来工作，不阻塞提交。
 
-**🆕 R&D 全生命周期审查（2026-08-11）**: `docs/review/rnd_project_review_20260811.md`（六维度评估 + 先进性扫描 + 结构整理）。执行：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`；**物理（§6）+ LPA（§7）整合进论文，PDF 30 页**；CHANGELOG v0.13.0。**遗留建议**：① 补 SOTA 定位表（文献矩阵 6 周断档，需联网查新）② 论文章节重编号（讨论 §4/结论 §5 与结果 §4/§5 冲突，既有问题）③ API 鲁棒性测试 ④ chemistry 侧流闭环或明确 out-of-scope。
+**🆕 R&D 全生命周期审查（2026-08-11）**: `docs/review/rnd_project_review_20260811.md`（六维度评估 + 先进性扫描 + 结构整理）。执行：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`；**物理（§6）+ LPA（§7）整合进论文，PDF 30 页**；CHANGELOG v0.13.0。**✅ 已跟进**：① SOTA 定位表 `docs/sota_positioning_20260811.md`（arXiv 实时查新完成）② 论文章节重编号完成（讨论 §8/结论 §9，消除与结果 §4/§5 冲突）。**遗留**：③ API 鲁棒性测试 ④ chemistry 侧流闭环或明确 out-of-scope ⑤ 方法论章 §2 与 related_work §2 同名（已知）。
 
 ---
 

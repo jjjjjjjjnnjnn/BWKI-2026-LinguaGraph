@@ -179,7 +179,7 @@
 | 文件 | 状态 |
 |------|------|
 | `docs/paper/03_results.md` | ✅ §4 N=15 + **§5 LLM-as-Subject + §3.8 A4 + §5.9 A3/C/D 深化** |
-| `docs/paper/04_discussion.md` | ✅ F11/F12 + §4.14 LLM 方法学 + 设计伪影精确化 + 节点/边解读 |
+| `docs/paper/04_discussion.md` | ✅ F11/F12 + §8.14 LLM 方法学 + 设计伪影精确化 + 节点/边解读 |
 | `docs/paper/05_conclusion.md` | ✅ N=15 + D1 + Wikipedia 修正 |
 | `docs/paper/00_three_conclusions.md` | ✅ N=15 + D1 叙事 |
 | `docs/paper/01_abstract_introduction.md` | ✅ N=15 + D1 摘要 |
@@ -192,7 +192,7 @@
 
 ### P0 — 提交前必做（9 月中旬）
 - [ ] **manifest 数字口径对齐**（A0 遗留: 556/557、219/247）— 唯一遗留的治理项
-- [ ] **A6 模拟基线调和**（0.647 vs 0.667）— 论文 §4.8 已标注"方法上不再成立"，可标注为历史
+- [ ] **A6 模拟基线调和**（0.647 vs 0.667）— 论文 §8.8 已标注"方法上不再成立"，可标注为历史
 - [ ] 最终 Release 打包 + 视频演讲（BWKI 评分项）
 
 ### P1 — 已完成（本会话 v0.9）

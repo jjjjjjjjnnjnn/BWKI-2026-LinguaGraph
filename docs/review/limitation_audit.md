@@ -11,13 +11,13 @@
 |-----------|--------|----------|------------|
 | Mathematics corpus (574 concepts, 68 textbooks) is comprehensive; physics (366) and chemistry (220) are smaller | Cross-disciplinary comparisons may be affected by corpus size differences | **Medium** | All metrics normalize by graph size (CDS density, HDS proportions) |
 | ZH textbooks (45) outnumber EN (20) and DE (10) by a wide margin | ZH concepts may be over-represented in merged graphs | **Low** | Per-language subgraphs are compared separately; merged graph is only used for global statistics |
-| Textbook selection biases: ZH uses standardized Renjiao series; DE uses Gymnasium-track only | Results may not generalize to other textbook traditions within each language | **Medium** | Acknowledged in Discussion §4.8; future work should sample multiple publishers per language |
+| Textbook selection biases: ZH uses standardized Renjiao series; DE uses Gymnasium-track only | Results may not generalize to other textbook traditions within each language | **Medium** | Acknowledged in Discussion §8.8; future work should sample multiple publishers per language |
 
 ### 1.2 Human Validation Data
 
 | Limitation | Impact | Severity | Mitigation |
 |-----------|--------|----------|------------|
-| N=8 participants (4 ZH, 2 DE, 2 EN) | Statistical power is limited; population-level conclusions cannot be drawn | **High** | Explicitly noted in Discussion §4.8; results presented as validation of direction, not effect size |
+| N=8 participants (4 ZH, 2 DE, 2 EN) | Statistical power is limited; population-level conclusions cannot be drawn | **High** | Explicitly noted in Discussion §8.8; results presented as validation of direction, not effect size |
 | Within-subject comparisons limited to DE-EN only | ZH cross-language comparisons must rely on between-subject design, confounding individual differences | **High** | Noted in Limitations; future work should recruit ZH bilingual participants |
 | 11/101 responses not extracted (89.1% coverage) | Missing data may bias topic-level LDS estimates for certain participants | **Low** | Coverage is high; missing extractions affect <11% of responses |
 | Recruitment via convenience sampling (WeChat, university) | Sample may not be representative of general population | **Medium** | Typical for pilot studies; acknowledged in limitations |

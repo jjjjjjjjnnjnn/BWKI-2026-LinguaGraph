@@ -1,6 +1,6 @@
-## 4. Diskussion
+## 8. Diskussion
 
-### 4.1 Zusammenfassung der Ergebnisse
+### 8.1 Zusammenfassung der Ergebnisse
 
 Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur Analyse, wie mathematisches Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Bildungsstufen (Grundschule bis Universität) und zuletzt auch Disziplinen (Mathematik vs. Physik) hinweg organisiert ist. Elf zentrale Befunde ergaben sich (F11 und F12 wurden auf Basis der erweiterten N=15-Humanvalidierung revidiert):
 
@@ -19,7 +19,7 @@ Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur A
 | **F11** | **Falsifiziert (N=15):** LDS-C auf Konzeptebene (0.93–0.96) ist nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94). Keine konsistente sprachspezifische Rangordnung. | Nullmodell-Suite (Within-Lang Split-Half, Label-Permutation) |
 | **F12** | **Überarbeitet (N=15):** Der Unterschied zur Simulationsbasislinie (0.647) ist ein Artefakt der Extraktions-/Alignierungsmethode (höhere LDS-Skala), nicht ein Beleg für sprachliche Kognition. LDS-C ≈ Within-Language-Null → **kein** über Zufall hinausgehendes Sprachsignal. | LDS-C ≈ Split-Half-Boden; ΔLDS ≈ 0 (−0.05 bis +0.05) |
 
-### 4.2 Interpretation des CDS-Gipfels
+### 8.2 Interpretation des CDS-Gipfels
 
 Der Befund, dass der Concept Density Score seinen Höhepunkt in der Mittelstufe erreicht (F1) und nicht in der Grund- oder Hochschule, bedarf einer sorgfältigen Interpretation. Eine naive Erwartung könnte lauten, dass „höher entwickeltes Wissen dichter vernetzt ist.“ Die Daten widersprechen dem: Der Mathematiklehrplan der Mittelstufe fungiert als **Wissensdichteknotenpunkt**, an dem grundlegende Arithmetik, einfache Algebra, Geometrie und Wahrscheinlichkeitskonzepte eng miteinander verbunden sind. Dieses Muster ist konsistent mit Ausubels Assimilationstheorie [12], die vorhersagt, dass Wissensstrukturen in Phasen der Konsolidierung vor der Aufspaltung in Spezialisierungen eine maximale Integration erreichen.
 
@@ -27,7 +27,7 @@ Der anschließende 3,7-fache Abfall von der Mittel- zur Oberstufe (F2) fällt mi
 
 Die Robustheit dieses Befundes über drei Sprachen hinweg (ZH, EN, DE) deutet darauf hin, dass es sich nicht um ein Artefakt einer bestimmten Lehrbuchtradition handelt. Vielmehr könnte es eine universelle Eigenschaft der mathematischen Lehrplangestaltung widerspiegeln — oder zumindest eine Konvergenz über drei unterschiedliche Bildungssysteme hinweg.
 
-### 4.3 Sprachübergreifende strukturelle Divergenz: Eine Nullmodell-Kritik
+### 8.3 Sprachübergreifende strukturelle Divergenz: Eine Nullmodell-Kritik
 
 Die LDS-K-Ergebnisse (F4) zeigen eine erhebliche Variation zwischen den Sprachpaaren: ZH-EN=0,934, DE-EN=0,938, ZH-DE=0,519. Der ZH-DE-Wert sticht hervor — chinesische und deutsche Lehrbuchwissensstrukturen sind beträchtlich ähnlicher (niedrigerer LDS-K) als jede von beiden im Vergleich zum Englischen. Dies stellt unmittelbar die naive Erwartung in Frage, dass typologisch entfernte Sprachen (ZH-DE) die größte Divergenz aufweisen würden.
 
@@ -50,13 +50,13 @@ Dies bedeutet, dass der Korpusanalyse-Ansatz (LDS-K) per se keine sprachrelativi
 
 Die erweiterte Humanvalidierung (N=15, F11) liefert jedoch ein negatives Ergebnis für diese Verschiebung: Die menschlichen LDS-C-Werte (Konzeptebene ZH-EN=0,963, DE-EN=0,932, ZH-DE=0,936) liegen **nahe der Within-Language-Null** (Split-Half-Boden 0,92–0,96) und sind von Label-Permutation nicht unterscheidbar (0,94). ΔLDS ≈ 0 (−0,05 bis +0,05), nicht > 0. Damit wird die naive Hypothese „Sprache → unterschiedliche Konzeptgraphen" auf allen drei Analyseebenen (Konzept, Kategorie, Relation) falsifiziert.
 
-### 4.4 Disziplinübergreifende Validierung
+### 8.4 Disziplinübergreifende Validierung
 
 Die Hinzunahme der Physik (F6, F7) bestätigt, dass die CDS- und HDS-Metriken echte strukturelle Eigenschaften der Wissensorganisation erfassen und nicht lediglich Artefakte des Mathematik-Korpus darstellen. Die kontrastierenden Muster — Mathematik gipfelt in der Mittelstufe, Physik in der Grundschule — zeigen, dass **Wissensorganisation disziplinabhängig ist**, wobei beide demselben „Integriere früh, trenne spät“-Muster folgen, jedoch auf unterschiedlichen Bildungsstufen.
 
 Dieser Befund hat Implikationen für die Lehrplangestaltung. Wenn Mathematik- und Physikstudierende grundlegend unterschiedliche Wissensdichtetrajektorien durchlaufen, dann sind pädagogische Strategien, die für eine Disziplin wirken, möglicherweise nicht auf die andere übertragbar. Der Mathematikunterricht könnte frühe Integration betonen; der Physikunterricht könnte akzeptieren, dass Integration auf fortgeschrittenem Niveau ein natürlicher Bestandteil des Lernverlaufs ist.
 
-### 4.5 Die Lehrplanebene
+### 8.5 Die Lehrplanebene
 
 Die Integration von Lehrplanstandards (Kernlehrplan NRW, UK National Curriculum, US NGSS/CCSS) in das Wissensgraphen-Rahmenwerk offenbart einen systematischen Befund: **Die Übereinstimmung zwischen Lehrbuch und Lehrplan variiert dramatisch zwischen den Bildungssystemen**:
 
@@ -69,7 +69,7 @@ Die Integration von Lehrplanstandards (Kernlehrplan NRW, UK National Curriculum,
 
 Der Coverage-Score misst die **Lehrplan-→Lehrbuch-**Übereinstimmung: Findet sich zu jedem Lehrplankonzept ein entsprechendes Konzept im Lehrbuchgraph? Die dramatische Spanne — von 12,7 % (NRW) bis 95,4 % (CN) — spiegelt grundlegende Unterschiede in der Bildungsgovernance wider: Zentrale Systeme erzeugen enge Ausrichtung; föderale Systeme mit studiengangspezifischen Vorgaben erzeugen von Natur aus niedrigere messbare Übereinstimmung.
 
-### 4.6 Warum erzeugen Bildungssysteme unterschiedliche Wissensstrukturen?
+### 8.6 Warum erzeugen Bildungssysteme unterschiedliche Wissensstrukturen?
 
 Die erhebliche systemübergreifende Variation der Coverage-Scores (12,7–95,4 %) wirft eine über die Messung hinausgehende Frage auf: **Was erklärt diese Unterschiede?** Wir betrachten drei konkurrierende Erklärungsansätze.
 
@@ -97,15 +97,15 @@ Die drei Erklärungen schließen sich nicht gegenseitig aus. Die Lehrplangranula
 
 Diese Herausforderung — die Trennung von Messungseffekten und echten strukturellen Unterschieden — ist selbst ein Beitrag: Sie zeigt, dass systemübergreifende Bildungsvergleiche eine sorgfältige Beachtung der Struktur des Referenzstandards erfordern, nicht nur des Lehrbuchgraphen.
 
-### 4.7 Extraktionszuverlässigkeit und Fehleranalyse
+### 8.7 Extraktionszuverlässigkeit und Fehleranalyse
 
 Ein potenzielles Bedenken bei jeder LLM-basierten Analyse ist, ob Messfehler die berichteten Ergebnisse verursachen könnten. Unsere Extraktionsvalidierung anhand von 92 Goldstandard-Annotationen (ZH F1=0,974, DE F1=0,949, EN F1=0,882) deutet darauf hin, dass die Extraktionsqualität des früheren primären Extraktionsmodells (qwen-plus) insgesamt hoch ist. Die Fehleranalyse zeigt, dass 29 % der Extraktionsfehler bei sehr kurzen Antworten (1–2 Wörter) auftreten, bei denen eine leere Extraktion tatsächlich angemessen ist. Bei den verbleibenden Fehlern handelt es sich überwiegend um partielle Auslassungen — 1–2 Konzepte aus einer Liste von 3–4 fehlen — und nicht um systematische Fehlleitungen.
 
-**Hinweis zur N=15-Erweiterung**: Die erweiterte Humanvalidierung (§4) wurde mit `deepseek-v4-flash` (opencode GO) extrahiert; eine erneute F1-Validierung gegen die Goldstandards steht aus. Der 19-Modell-Benchmark (§4.9) zeigt jedoch, dass Konzeptextraktionsqualität über Modellfamilien hinweg eine Eigenschaft der Aufgabe ist (F1-Bereich 0,55–0,67), sodass eine modellinduzierte Skalenverschiebung der LDS-C zwar möglich, eine systematische Verzerrung der Null-Relation (beobachtet ≈ Split-Half) aber unwahrscheinlich ist.
+**Hinweis zur N=15-Erweiterung**: Die erweiterte Humanvalidierung (§4) wurde mit `deepseek-v4-flash` (opencode GO) extrahiert; eine erneute F1-Validierung gegen die Goldstandards steht aus. Der 19-Modell-Benchmark (§8.9) zeigt jedoch, dass Konzeptextraktionsqualität über Modellfamilien hinweg eine Eigenschaft der Aufgabe ist (F1-Bereich 0,55–0,67), sodass eine modellinduzierte Skalenverschiebung der LDS-C zwar möglich, eine systematische Verzerrung der Null-Relation (beobachtet ≈ Split-Half) aber unwahrscheinlich ist.
 
 Diese Fehlerverteilung bedeutet, dass die strukturellen Metriken (CDS, HDS, LDS, Coverage-Score) robust gegenüber Extraktionsrauschen sind: Partielle Auslassungen reduzieren die Konzeptanzahlen leicht, verzerren jedoch nicht systematisch die Graphentopologie oder die sprachübergreifenden Vergleiche. Wir halten es daher für unwahrscheinlich, dass die berichteten Befunde Artefakte der Extraktionsmethodik sind.
 
-### 4.8 Robustheitsprüfung: Rechnerische Basislinie — methodisch revidiert
+### 8.8 Robustheitsprüfung: Rechnerische Basislinie — methodisch revidiert
 
 Zur Kontrolle, ob die beobachteten LDS-Werte echte strukturelle Unterschiede und nicht zufällige Konzeptvariation widerspiegeln, wurde ursprünglich eine **rechnerische Basislinie** aus 300 simulierten Antworten (20 pro Bedingung × 5 Themen × 3 Sprachen) berechnet. Die frühere Version dieser Analyse (N=8, qwen-plus-Extraktion) ergab einen scheinbaren Unterschied zwischen menschlichem LDS (0,727) und Simulation (0,647, p=0,05).
 
@@ -116,7 +116,7 @@ Zur Kontrolle, ob die beobachteten LDS-Werte echte strukturelle Unterschiede und
 
 Ein aussagekräftiger Mensch-vs-Simulation-Vergleich erfordert **dieselbe Extraktions-/Alignierungsmethode** für beide Bedingungen. Dies ist eine Aufgabe für zukünftige Arbeit (nicht mehr eine Stütze der ΔLDS > 0-Hypothese).
 
-### 4.9 Robustheitsprüfung: Modellübergreifende Extraktionskonsistenz
+### 8.9 Robustheitsprüfung: Modellübergreifende Extraktionskonsistenz
 
 Um zu überprüfen, ob die LDS-Ergebnisse nicht von einem einzelnen Extraktionsmodell getrieben werden, führten wir einen **19-Modell-Benchmark** über drei API-Plattformen durch (DashScope, DeepSeek API, OpenCode GO). Alle Modelle extrahierten Konzepte aus denselben N≥50 Goldstandard-Items:
 
@@ -133,7 +133,7 @@ Um zu überprüfen, ob die LDS-Ergebnisse nicht von einem einzelnen Extraktionsm
 
 Ein sekundärer Befund: 186 zusätzliche DashScope-Modelle (Text, Vision, Sprache) erzeugten alle F1=0,0, was bestätigt, dass diese andere Prompting-Strategien erfordern. GPT-4o und GPT-4o-mini waren aufgrund von Guthabenbeschränkungen während des Benchmarks nicht mehr verfügbar.
 
-### 4.10 Threats to Validity
+### 8.10 Threats to Validity
 
 Wir identifizieren sechs Hauptbedrohungen für die Validität der berichteten Ergebnisse.
 
@@ -149,7 +149,7 @@ Wir identifizieren sechs Hauptbedrohungen für die Validität der berichteten Er
 
 **Reichweite des Nullmodells**. Die grad-erhaltende Struktur-Null testet die Kantenanordnung über die Gradstruktur hinaus, jedoch nicht, ob die Gradstruktur selbst sprachbeeinflusst ist. Ein zukünftiges hierarchisches Nullmodell könnte diese Frage angehen.
 
-### 4.11 LDS-Interpretationsrahmen
+### 8.11 LDS-Interpretationsrahmen
 
 Anstatt willkürliche Schwellenwerte für LDS-Werte festzulegen, verankern wir die Interpretation an der Nullmodell-Suite:
 
@@ -167,7 +167,7 @@ In diesem Rahmen:
 
 ZH-DE (0,519) liegt im Bereich der „partiellen Konvergenz“ — deutlich unter den Nullenwartungen. ZH-EN (0,934) und DE-EN (0,938) liegen im Bereich „nahe am Rauschboden“ — nicht unterscheidbar von zwei zufälligen Hälften desselben sprachlichen Lehrbuchgraphen. Hierbei handelt es sich in erster Linie um Beobachtungen und nicht um Erklärungen; der Mechanismus, der die Heterogenität zwischen den Paaren antreibt, erfordert weitere Untersuchungen.
 
-### 4.12 Einschränkungen
+### 8.12 Einschränkungen
 
 Mehrere Einschränkungen sollten anerkannt werden:
 
@@ -185,9 +185,9 @@ Mehrere Einschränkungen sollten anerkannt werden:
 
 **Generalisierbarkeit**. Mathematik, Physik und Chemie könnten strukturelle Eigenschaften teilen, die in geistes- oder sozialwissenschaftlichen Disziplinen nicht vorhanden sind. Die Erweiterung auf zusätzliche Domänen ist eine Priorität.
 
-**LDS-Interpretation**. Der LDS-Interpretationsrahmen (Abschnitt 4.11) verankert numerische Werte an Nullmodell-Baselines, jedoch sind die Schwellenwerte (0,90, 0,50) deskriptiv statt inferenziell. Mit zunehmenden menschlichen Daten sollten Bootstrap-Konfidenzintervalle diese deskriptiven Schwellenwerte für Hypothesentests ersetzen.
+**LDS-Interpretation**. Der LDS-Interpretationsrahmen (Abschnitt 8.11) verankert numerische Werte an Nullmodell-Baselines, jedoch sind die Schwellenwerte (0,90, 0,50) deskriptiv statt inferenziell. Mit zunehmenden menschlichen Daten sollten Bootstrap-Konfidenzintervalle diese deskriptiven Schwellenwerte für Hypothesentests ersetzen.
 
-### 4.13 Implikationen
+### 8.13 Implikationen
 
 Trotz dieser Einschränkungen haben die vorliegenden Ergebnisse Implikationen für drei Fachgemeinschaften:
 
@@ -197,7 +197,7 @@ Trotz dieser Einschränkungen haben die vorliegenden Ergebnisse Implikationen f�
 
 **Für die Erforschung des linguistischen Relativitätsprinzips**: Unsere Daten stützen keine einheitliche „Sprache formt Wissen“-Behauptung. Stattdessen zeigen sie, dass sprachübergreifende strukturelle Beziehungen heterogen sind — einige Sprachpaare konvergieren erheblich (ZH-DE), während andere auf Rauschniveau liegen (ZH-EN, DE-EN). Die erweiterte Humanvalidierung (N=15) erlaubt eine präzise Antwort auf der Ebene menschlicher Konzeptäußerungen: In einem Between-Subject-Design ist bei dieser Stichprobe **kein separierbares Sprachsignal** nachweisbar. Das LLM-as-Subject-Experiment (§5) zeigt jedoch, dass dies ein **Design-Artefakt** ist: Unter Within-Subject-Bedingungen ist das Sprachsignal klar nachweisbar (LDS-C 0.93–0.96 ≫ Boden 0.85–0.87), mit dem Sprachcode als dominanter Organisationsebene. Dies falsifiziert die einfache Hypothese „Sprache → unterschiedliche Konzeptgraphen" nur für das Between-Subject-Design, nicht für die Existenz sprachlicher Kognitionseffekte überhaupt. Die Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) bleiben als testbare Hypothesen für Within-Subject-Studien erhalten.
 
-### 4.14 LLM-as-Subject: Methodologische Einordnung des Within-Subject-Befunds
+### 8.14 LLM-as-Subject: Methodologische Einordnung des Within-Subject-Befunds
 
 Das LLM-as-Subject-Experiment (§5) liefert den methodologischen Schlüssel zur Interpretation des negativen Humanbefunds:
 
@@ -211,7 +211,7 @@ Das LLM-as-Subject-Experiment (§5) liefert den methodologischen Schlüssel zur 
 
 5. **Strukturelle vs. lexikalische Divergenz (Knoten/Kanten, §5.9.4)**: Die soziale/institutionelle Umkehr ist **knotengetrieben** (Konzeptwahl), der Kantenbeitrag in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert im *Was* (Konzepte), nicht im *Wie* (Beziehungen) — die relationale Organisation bleibt über alle Quellen systemisch divergent. Dies trennt den Mechanismus "Konzeptwahl" von "Beziehungsstruktur" und stützt die M2-Dominanz (§5.6) auf der Korpusseite: die Divergenz entsteht primär auf der assoziativ-lexikalischen Ebene, nicht auf der relationalen. **Einschränkung (P2-Recheck)**: Die Mathematik-Knoten sind Alignierungs-Labels (nicht unabhängig extrahierte Konzepte), das `de`-Label-Feld enthält teils chinesische Texte, und ein Size-Matching auf die Wikipedia-Größe kehrt das Muster um (bei k=15–35 ist der Wikipedia-J_node höher) — der mathematische J_node (0.556) ist damit teilweise ein Darstellungs-/Größen-Artefakt, nicht ein Beleg unabhängiger sprachübergreifender Konvergenz (Details: `docs/p2_methodology_rechecks.md`).
 
-### 4.15 Modellübergreifende Replikation: Die Divergenz ist eine breit replizierbare, modellabhängige Eigenschaft
+### 8.15 Modellübergreifende Replikation: Die Divergenz ist eine breit replizierbare, modellabhängige Eigenschaft
 
 Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung auf ein einzelnes Modell (deepseek-v4-flash). Eine Replikation des identischen P1-Protokolls (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) auf **50 weiteren Modellen** (47 eindeutige Modell-Identitäten; 42 über DashScope, 8 über zen/OpenRouter) — DeepSeek-, GLM-, Kimi-, MiniMax- und Qwen-Familien sowie nemotron-3-ultra (NVIDIA, **US-Ursprung**) — erweitert die Evidenz:
 
@@ -223,7 +223,7 @@ Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung
 
 **Ehrliche Abgrenzung**: Die Replikation umfasst 47 eindeutige Modell-Identitäten; 4 Modelle wurden auf zwei Hosts gemessen (zen + DashScope), was die Effektivität der "51" verringert; **~88 % der Modelle stammen von chinesischen Anbietern** — der westliche Anteil ist auf ein NVIDIA-Modell begrenzt, da OpenRouter-Gratismodelle (gpt-oss, gemma) wegen täglicher Nutzungslimits unvollständig blieben. Die Divergenz ist als **Messgröße** (nicht als normatives "Problem") zu interpretieren: Ein Modell, das Wertkonzepte in der Zielsprache kulturadäquat rahmt, ist nicht notwendigerweise fehlerhaft. Als **Vorschlag für einen operativen Schwellenwert** ("hohe sprachübergreifende Divergenz") dient die ZH-DE-Marge (LDS-C − Boden) ≥ 0.10 — bezogen auf die beobachtete Spanne von +0.03 bis +0.29 über 51 Messungen trennt dieser Wert die hoch-divergenten Modelle (glm-5.2, kimi-k2.6, deepseek-v3.x, nemotron) von den niedrig-divergenten (deepseek-v4-flash/pro, r1-Distill). Dies ist eine **heuristische** Festlegung für die Anwendung, keine validierte Validitätsgrenze; eine kalibrierte Schwelle bleibt zukünftiger Arbeit überlassen.
 
-### 4.16 Kulturell-psychologische Einordnung der Divergenzrichtung
+### 8.16 Kulturell-psychologische Einordnung der Divergenzrichtung
 
 Die beobachtete Divergenzrichtung — DE-seitig Autonomie/Regeln/Ziel (equal opportunity, freedom limit, decision, goal, safety), ZH-seitig Raum/Boundary/Anspruch/Harmonie (physical space, boundary, deserved treatment, the weak, indulgence) — ist **konsistent mit etablierten kulturell-psychologischen Rahmen**:
 

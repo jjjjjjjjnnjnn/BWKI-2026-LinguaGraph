@@ -68,7 +68,7 @@
 ### D. 论文整合
 
 - `03_results.md` 新增 **§5.9**（设计效应 + 驱动者 + 节点/边分解）
-- `04_discussion.md` §4.14 新增设计伪影精确化 + 节点/边解读
+- `04_discussion.md` §8.14 新增设计伪影精确化 + 节点/边解读
 - `lds_formal_definition.md` 新增 **§6.2 设计效应证明 + §6.3 节点/边分解**
 - 结果文档 `docs/a3_c_d_deepen_results.md`；交接 v0.9
 
@@ -103,7 +103,7 @@
 ### D. 论文整合
 
 - `03_results.md` — §3.8（A4 深化）+ §5（LLM-as-Subject）
-- `04_discussion.md` — §4.14（组间/组内对照方法学）
+- `04_discussion.md` — §8.14（组间/组内对照方法学）
 - `05_conclusion.md` / `00_three_conclusions.md` / `01_abstract_introduction.md` — D1 + A4 同步
 - `lds_formal_definition.md` — §4 Wikipedia 负对照修正 + 证伪表更新
 

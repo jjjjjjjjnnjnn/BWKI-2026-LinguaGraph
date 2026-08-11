@@ -1,6 +1,6 @@
-## 5. Schlussfolgerung
+## 9. Schlussfolgerung
 
-### 5.1 Zusammenfassung der Beobachtungen
+### 9.1 Zusammenfassung der Beobachtungen
 
 Diese Studie stellt LinguaGraph vor, ein wissensgraphbasiertes Framework zur Messung, wie Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Disziplinen (Mathematik, Physik, Chemie) und Bildungssysteme (NRW, UK, US, China) organisiert ist. Das konsistente strukturelle Muster über alle drei Disziplinen hinweg ist:
 
@@ -16,7 +16,7 @@ Die sprachübergreifende LDS-Analyse zeigt ein differenzierteres Bild. Anstelle 
 
 Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beeinflusst", sondern dass **verschiedene Sprachpaare systematisch unterschiedliche Grade struktureller Konvergenz aufweisen**, wobei ZH-DE ein Muster zeigt, das Standard-Nullmodelle (grad-erhaltende Randomisierung, sprachinterne Split-Half) nicht erklären können. Diese Heterogenität — nicht Uniformität — ist die primäre Beobachtung, die unser Framework ermöglicht.
 
-### 5.2 Drei Dimensionen der Struktur
+### 9.2 Drei Dimensionen der Struktur
 
 | Dimension | Erkenntnis | Grenze |
 |-----------|-----------|--------|
@@ -25,7 +25,7 @@ Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beei
 | **Divergenz (LDS-K)** | Heterogen: ZH-DE konvergiert (0,52); ZH-EN und DE-EN auf Rauschniveau (0,93–0,94) | Sprachinterne Rauschschwelle: ~0,97 |
 | **Abdeckung (CS)** | Lehrbuch-Lehrplan-Abgleich variiert nach Governance-Modell | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% |
 
-### 5.3 Wissenschaftlicher Kernbeitrag: Ein Framework zur Messung sprachübergreifender Strukturheterogenität
+### 9.3 Wissenschaftlicher Kernbeitrag: Ein Framework zur Messung sprachübergreifender Strukturheterogenität
 
 Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache und Kognition, sondern vielmehr ein **methodologisches Framework**, das heterogene sprachübergreifende Strukturbeziehungen sichtbar und quantifizierbar macht. Im Einzelnen:
 
@@ -39,7 +39,7 @@ Die zentrale methodologische Lehre: **Between-Subject-Designs können sprachgetr
 
 Der 19-Modell-Benchmark (F1-Bereich 0,55–0,67) und die Wikipedia-Negativkontrolle (nach Alignierung der sozialen Konzepte: reale LDS-Werte statt Artefakt 1,00 — siehe §3.8) bestätigen, dass diese Beobachtungen keine Artefakte der Extraktionsmethodik sind.
 
-### 5.4 Beiträge
+### 9.4 Beiträge
 
 Wir stellen LinguaGraph vor, ein Framework, das:
 
@@ -50,7 +50,7 @@ Wir stellen LinguaGraph vor, ein Framework, das:
 5. **Lehrplanabgleich** über vier Bildungssysteme integriert (NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4%)
 6. **19 mehrsprachige LLMs** für Konzeptextraktion benchmarkt (F1-Bereich 0,55–0,67) und so die modellübergreifende Robustheit bestätigt
 
-### 5.5 Einschränkungen
+### 9.5 Einschränkungen
 
 Die Studie hat fünf wesentliche Einschränkungen:
 
@@ -60,7 +60,7 @@ Die Studie hat fünf wesentliche Einschränkungen:
 4. **Lehrplanvergleich**: Der Coverage Score verwendet keyword-basiertes Matching; zukünftige Versionen sollten semantische Alignierung integrieren.
 5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
 
-### 5.6 Zukünftige Arbeit
+### 9.6 Zukünftige Arbeit
 
 - **Within-Subject-Humanstudie** (dieselbe Person antwortet in mehreren Sprachen) zur Trennung von Sprach- und Teilnehmereffekten — das LLM-as-Subject-Experiment (§5) liefert hierfür eine Blaupause: erwartete Effektrichtung (Sprachcode dominant, abstrakte Themen am stärksten) und Design-Vorgaben (k=10 Wiederholungen, Split-Half-Boden als Referenz)
 - **Mehrsprachig feinabgestimmte Modelle** für sprachübergreifende Konzeptextraktion mit höherem F1
@@ -71,7 +71,7 @@ Die Studie hat fünf wesentliche Einschränkungen:
 - **Hierarchische Nullmodelle** zur Trennung von Gradstruktureffekten von Kantenanordnungseffekten
 - **CognitiveSpace-Visualisierung** zur interaktiven Erkundung sprachübergreifender Strukturunterschiede
 
-### 5.7 Anwendung: Prüfung mehrsprachiger KI-Systeme
+### 9.7 Anwendung: Prüfung mehrsprachiger KI-Systeme
 
 Über den akademischen Beitrag hinaus etabliert LinguaGraph ein **Audit-Werkzeug für mehrsprachige KI-Systeme**. Die Motivation ist konkret: LLMs werden heute in Dutzenden Sprachen bereitgestellt, aber überwiegend mit englischen Daten trainiert. Das LLM-as-Subject-Experiment zeigt, dass ein solches Modell wertbeladene abstrakte Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) **sprachabhängig** strukturiert — mit statistisch signifikantem Sprachsignal (Permutationstest p<0.01) und **kulturell gemusterten Divergenztreibern** (DE: Autonomie/Regeln; ZH: Raum/Anspruch). Der Domänen-Vergleich (soziale Konzepte divergieren stärker als institutionelle Labels) ist hierfür **indikativ**, aber wegen der Alignierungsabhängigkeit der Mathematik-Knoten nicht als eigenständiger Beweis zu werten (P2-Recheck; Details: `docs/p2_methodology_rechecks.md`).
 
@@ -83,7 +83,7 @@ Der Output ist ein **interpretierbarer Divergenzbericht** pro Modell und Sprachp
 | **Regulierer** | Transparenz- und Dokumentationspflichten (z. B. EU AI Act) | Nachweis sprachabhängiger Modellstrukturierung |
 | **Forscher** | Studie kultureller Werte in KI | Quantitative, interpretierbare Divergenzmessung |
 
-**Ehrliche Abgrenzung**: Die Arbeit ist ein **Messverfahren** (Methodik) mit **breiter, aber begrenzter Evidenz**: Das Within-Subject-Experiment zeigt ein robustes Sprachsignal im Basismodell (deepseek-v4-flash), und die modellübergreifende Replikation (§5.10) bestätigt es in 51 Messungen (47 eindeutige Modelle, ~88 % chinesische Anbieter, ein US-Modell; alle ZH-DE-Paare signifikant, 8 englisch-haltige Paare nicht; Kulturrichtung über Zufallsniveau). Die Arbeit ist jedoch **kein fertiges Audit-Instrument**: Eine produktive Anwendung erfordert die Definition eines Schwellenwerts für „kritische" Divergenz, die Erweiterung auf westliche Modelle und weitere Konzepte/Sprachen sowie die normative Klärung, ob sprachspezifische Rahmung als „Drift" oder als kulturadäquate Anpassung zu werten ist — dies ist Gegenstand zukünftiger Arbeit (§5.6).
+**Ehrliche Abgrenzung**: Die Arbeit ist ein **Messverfahren** (Methodik) mit **breiter, aber begrenzter Evidenz**: Das Within-Subject-Experiment zeigt ein robustes Sprachsignal im Basismodell (deepseek-v4-flash), und die modellübergreifende Replikation (§5.10) bestätigt es in 51 Messungen (47 eindeutige Modelle, ~88 % chinesische Anbieter, ein US-Modell; alle ZH-DE-Paare signifikant, 8 englisch-haltige Paare nicht; Kulturrichtung über Zufallsniveau). Die Arbeit ist jedoch **kein fertiges Audit-Instrument**: Eine produktive Anwendung erfordert die Definition eines Schwellenwerts für „kritische" Divergenz, die Erweiterung auf westliche Modelle und weitere Konzepte/Sprachen sowie die normative Klärung, ob sprachspezifische Rahmung als „Drift" oder als kulturadäquate Anpassung zu werten ist — dies ist Gegenstand zukünftiger Arbeit (§9.6).
 
 ### Abschlusserklärung
 
