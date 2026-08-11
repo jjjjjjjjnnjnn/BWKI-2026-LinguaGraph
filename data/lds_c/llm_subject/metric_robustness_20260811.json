@@ -1,0 +1,2795 @@
+{
+ "design": "r3_metric_robustness",
+ "generated_at": "2026-08-11T15:47:27.210344",
+ "part_a_k_sensitivity": {
+  "k_sweep": [
+   3,
+   5,
+   6
+  ],
+  "aggregate": {
+   "3": {
+    "n": 51,
+    "n_positive": 51,
+    "median_zhde_margin": 0.1509,
+    "min_zhde": 0.0413,
+    "max_zhde": 0.3737,
+    "pair_order_zhde_vs_en": {
+     "ZH-DE>EN": 26,
+     "EN>ZH-DE": 25,
+     "tie": 0
+    }
+   },
+   "5": {
+    "n": 51,
+    "n_positive": 51,
+    "median_zhde_margin": 0.1329,
+    "min_zhde": 0.0384,
+    "max_zhde": 0.3031,
+    "pair_order_zhde_vs_en": {
+     "ZH-DE>EN": 21,
+     "EN>ZH-DE": 30,
+     "tie": 0
+    }
+   },
+   "6": {
+    "n": 51,
+    "n_positive": 51,
+    "median_zhde_margin": 0.122,
+    "min_zhde": 0.0334,
+    "max_zhde": 0.2871,
+    "pair_order_zhde_vs_en": {
+     "ZH-DE>EN": 23,
+     "EN>ZH-DE": 27,
+     "tie": 1
+    }
+   }
+  },
+  "per_model": {
+   "dashscope:MiniMax-M2.1": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8491,
+      "floor": 0.688,
+      "margin": 0.1611
+     },
+     "DE-EN": {
+      "lds": 0.8431,
+      "floor": 0.661,
+      "margin": 0.1821
+     },
+     "ZH-DE": {
+      "lds": 0.871,
+      "floor": 0.7069,
+      "margin": 0.1641
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8776,
+      "floor": 0.7208,
+      "margin": 0.1568
+     },
+     "DE-EN": {
+      "lds": 0.8368,
+      "floor": 0.7149,
+      "margin": 0.1219
+     },
+     "ZH-DE": {
+      "lds": 0.895,
+      "floor": 0.7606,
+      "margin": 0.1344
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.872,
+      "floor": 0.7504,
+      "margin": 0.1216
+     },
+     "DE-EN": {
+      "lds": 0.8462,
+      "floor": 0.743,
+      "margin": 0.1032
+     },
+     "ZH-DE": {
+      "lds": 0.8983,
+      "floor": 0.7721,
+      "margin": 0.1262
+     }
+    }
+   },
+   "dashscope:MiniMax-M2.5": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8678,
+      "floor": 0.6835,
+      "margin": 0.1843
+     },
+     "DE-EN": {
+      "lds": 0.8447,
+      "floor": 0.6781,
+      "margin": 0.1666
+     },
+     "ZH-DE": {
+      "lds": 0.9023,
+      "floor": 0.6996,
+      "margin": 0.2027
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8955,
+      "floor": 0.7329,
+      "margin": 0.1626
+     },
+     "DE-EN": {
+      "lds": 0.8289,
+      "floor": 0.7093,
+      "margin": 0.1196
+     },
+     "ZH-DE": {
+      "lds": 0.8957,
+      "floor": 0.731,
+      "margin": 0.1647
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9025,
+      "floor": 0.7599,
+      "margin": 0.1426
+     },
+     "DE-EN": {
+      "lds": 0.8487,
+      "floor": 0.738,
+      "margin": 0.1107
+     },
+     "ZH-DE": {
+      "lds": 0.9147,
+      "floor": 0.7561,
+      "margin": 0.1586
+     }
+    }
+   },
+   "dashscope:Moonshot-Kimi-K2-Instruct": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9437,
+      "floor": 0.8061,
+      "margin": 0.1376
+     },
+     "DE-EN": {
+      "lds": 0.925,
+      "floor": 0.8339,
+      "margin": 0.0911
+     },
+     "ZH-DE": {
+      "lds": 0.9471,
+      "floor": 0.8402,
+      "margin": 0.1069
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9559,
+      "floor": 0.8156,
+      "margin": 0.1403
+     },
+     "DE-EN": {
+      "lds": 0.9278,
+      "floor": 0.8365,
+      "margin": 0.0913
+     },
+     "ZH-DE": {
+      "lds": 0.959,
+      "floor": 0.8502,
+      "margin": 0.1088
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9535,
+      "floor": 0.8183,
+      "margin": 0.1352
+     },
+     "DE-EN": {
+      "lds": 0.9351,
+      "floor": 0.8337,
+      "margin": 0.1014
+     },
+     "ZH-DE": {
+      "lds": 0.9569,
+      "floor": 0.8519,
+      "margin": 0.105
+     }
+    }
+   },
+   "dashscope:deepseek-r1": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.925,
+      "floor": 0.8534,
+      "margin": 0.0716
+     },
+     "DE-EN": {
+      "lds": 0.8831,
+      "floor": 0.8353,
+      "margin": 0.0478
+     },
+     "ZH-DE": {
+      "lds": 0.8993,
+      "floor": 0.8408,
+      "margin": 0.0585
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9365,
+      "floor": 0.875,
+      "margin": 0.0615
+     },
+     "DE-EN": {
+      "lds": 0.8942,
+      "floor": 0.8538,
+      "margin": 0.0404
+     },
+     "ZH-DE": {
+      "lds": 0.9331,
+      "floor": 0.8871,
+      "margin": 0.046
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9347,
+      "floor": 0.8788,
+      "margin": 0.0559
+     },
+     "DE-EN": {
+      "lds": 0.8935,
+      "floor": 0.8503,
+      "margin": 0.0432
+     },
+     "ZH-DE": {
+      "lds": 0.9371,
+      "floor": 0.8882,
+      "margin": 0.0489
+     }
+    }
+   },
+   "dashscope:deepseek-r1-0528": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9371,
+      "floor": 0.8721,
+      "margin": 0.065
+     },
+     "DE-EN": {
+      "lds": 0.8671,
+      "floor": 0.7942,
+      "margin": 0.0729
+     },
+     "ZH-DE": {
+      "lds": 0.8944,
+      "floor": 0.8434,
+      "margin": 0.051
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9218,
+      "floor": 0.8692,
+      "margin": 0.0526
+     },
+     "DE-EN": {
+      "lds": 0.8664,
+      "floor": 0.828,
+      "margin": 0.0384
+     },
+     "ZH-DE": {
+      "lds": 0.918,
+      "floor": 0.8701,
+      "margin": 0.0479
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.929,
+      "floor": 0.8788,
+      "margin": 0.0502
+     },
+     "DE-EN": {
+      "lds": 0.8786,
+      "floor": 0.838,
+      "margin": 0.0406
+     },
+     "ZH-DE": {
+      "lds": 0.9114,
+      "floor": 0.878,
+      "margin": 0.0334
+     }
+    }
+   },
+   "dashscope:deepseek-r1-distill-qwen-14b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8696,
+      "floor": 0.7378,
+      "margin": 0.1318
+     },
+     "DE-EN": {
+      "lds": 0.8968,
+      "floor": 0.7774,
+      "margin": 0.1194
+     },
+     "ZH-DE": {
+      "lds": 0.9257,
+      "floor": 0.7981,
+      "margin": 0.1276
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8381,
+      "floor": 0.7545,
+      "margin": 0.0836
+     },
+     "DE-EN": {
+      "lds": 0.8866,
+      "floor": 0.7994,
+      "margin": 0.0872
+     },
+     "ZH-DE": {
+      "lds": 0.9262,
+      "floor": 0.8216,
+      "margin": 0.1046
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8517,
+      "floor": 0.7716,
+      "margin": 0.0801
+     },
+     "DE-EN": {
+      "lds": 0.8968,
+      "floor": 0.8032,
+      "margin": 0.0936
+     },
+     "ZH-DE": {
+      "lds": 0.9379,
+      "floor": 0.8313,
+      "margin": 0.1066
+     }
+    }
+   },
+   "dashscope:deepseek-r1-distill-qwen-32b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8468,
+      "floor": 0.7862,
+      "margin": 0.0606
+     },
+     "DE-EN": {
+      "lds": 0.8151,
+      "floor": 0.7729,
+      "margin": 0.0422
+     },
+     "ZH-DE": {
+      "lds": 0.8788,
+      "floor": 0.8223,
+      "margin": 0.0565
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8417,
+      "floor": 0.8082,
+      "margin": 0.0335
+     },
+     "DE-EN": {
+      "lds": 0.8548,
+      "floor": 0.8151,
+      "margin": 0.0397
+     },
+     "ZH-DE": {
+      "lds": 0.8968,
+      "floor": 0.829,
+      "margin": 0.0678
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8522,
+      "floor": 0.8122,
+      "margin": 0.04
+     },
+     "DE-EN": {
+      "lds": 0.8491,
+      "floor": 0.8183,
+      "margin": 0.0308
+     },
+     "ZH-DE": {
+      "lds": 0.9032,
+      "floor": 0.8385,
+      "margin": 0.0647
+     }
+    }
+   },
+   "dashscope:deepseek-r1-distill-qwen-7b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9194,
+      "floor": 0.8329,
+      "margin": 0.0865
+     },
+     "DE-EN": {
+      "lds": 0.8889,
+      "floor": 0.8622,
+      "margin": 0.0267
+     },
+     "ZH-DE": {
+      "lds": 0.9023,
+      "floor": 0.8392,
+      "margin": 0.0631
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8996,
+      "floor": 0.8639,
+      "margin": 0.0357
+     },
+     "DE-EN": {
+      "lds": 0.8898,
+      "floor": 0.8867,
+      "margin": 0.0031
+     },
+     "ZH-DE": {
+      "lds": 0.9137,
+      "floor": 0.8753,
+      "margin": 0.0384
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8943,
+      "floor": 0.8591,
+      "margin": 0.0352
+     },
+     "DE-EN": {
+      "lds": 0.9021,
+      "floor": 0.886,
+      "margin": 0.0161
+     },
+     "ZH-DE": {
+      "lds": 0.9132,
+      "floor": 0.8781,
+      "margin": 0.0351
+     }
+    }
+   },
+   "dashscope:deepseek-v3": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9286,
+      "floor": 0.7791,
+      "margin": 0.1495
+     },
+     "DE-EN": {
+      "lds": 0.8846,
+      "floor": 0.7137,
+      "margin": 0.1709
+     },
+     "ZH-DE": {
+      "lds": 0.9504,
+      "floor": 0.729,
+      "margin": 0.2214
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9449,
+      "floor": 0.8032,
+      "margin": 0.1417
+     },
+     "DE-EN": {
+      "lds": 0.891,
+      "floor": 0.719,
+      "margin": 0.172
+     },
+     "ZH-DE": {
+      "lds": 0.9542,
+      "floor": 0.7212,
+      "margin": 0.233
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9457,
+      "floor": 0.8049,
+      "margin": 0.1408
+     },
+     "DE-EN": {
+      "lds": 0.8915,
+      "floor": 0.7154,
+      "margin": 0.1761
+     },
+     "ZH-DE": {
+      "lds": 0.9551,
+      "floor": 0.7194,
+      "margin": 0.2357
+     }
+    }
+   },
+   "dashscope:deepseek-v3.1": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9079,
+      "floor": 0.5665,
+      "margin": 0.3414
+     },
+     "DE-EN": {
+      "lds": 0.8816,
+      "floor": 0.5749,
+      "margin": 0.3067
+     },
+     "ZH-DE": {
+      "lds": 0.92,
+      "floor": 0.6189,
+      "margin": 0.3011
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9184,
+      "floor": 0.5783,
+      "margin": 0.3401
+     },
+     "DE-EN": {
+      "lds": 0.8529,
+      "floor": 0.5612,
+      "margin": 0.2917
+     },
+     "ZH-DE": {
+      "lds": 0.9459,
+      "floor": 0.6428,
+      "margin": 0.3031
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9267,
+      "floor": 0.6453,
+      "margin": 0.2814
+     },
+     "DE-EN": {
+      "lds": 0.8353,
+      "floor": 0.6159,
+      "margin": 0.2194
+     },
+     "ZH-DE": {
+      "lds": 0.9343,
+      "floor": 0.6472,
+      "margin": 0.2871
+     }
+    }
+   },
+   "dashscope:deepseek-v3.2": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.907,
+      "floor": 0.6848,
+      "margin": 0.2222
+     },
+     "DE-EN": {
+      "lds": 0.8926,
+      "floor": 0.6637,
+      "margin": 0.2289
+     },
+     "ZH-DE": {
+      "lds": 0.9416,
+      "floor": 0.7584,
+      "margin": 0.1832
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9421,
+      "floor": 0.7453,
+      "margin": 0.1968
+     },
+     "DE-EN": {
+      "lds": 0.8995,
+      "floor": 0.714,
+      "margin": 0.1855
+     },
+     "ZH-DE": {
+      "lds": 0.9526,
+      "floor": 0.7852,
+      "margin": 0.1674
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9449,
+      "floor": 0.7407,
+      "margin": 0.2042
+     },
+     "DE-EN": {
+      "lds": 0.9016,
+      "floor": 0.7141,
+      "margin": 0.1875
+     },
+     "ZH-DE": {
+      "lds": 0.9505,
+      "floor": 0.7808,
+      "margin": 0.1697
+     }
+    }
+   },
+   "dashscope:deepseek-v4-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9083,
+      "floor": 0.7762,
+      "margin": 0.1321
+     },
+     "DE-EN": {
+      "lds": 0.9259,
+      "floor": 0.7722,
+      "margin": 0.1537
+     },
+     "ZH-DE": {
+      "lds": 0.9242,
+      "floor": 0.7539,
+      "margin": 0.1703
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8929,
+      "floor": 0.7894,
+      "margin": 0.1035
+     },
+     "DE-EN": {
+      "lds": 0.919,
+      "floor": 0.7849,
+      "margin": 0.1341
+     },
+     "ZH-DE": {
+      "lds": 0.9234,
+      "floor": 0.7813,
+      "margin": 0.1421
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.903,
+      "floor": 0.7765,
+      "margin": 0.1265
+     },
+     "DE-EN": {
+      "lds": 0.9181,
+      "floor": 0.7855,
+      "margin": 0.1326
+     },
+     "ZH-DE": {
+      "lds": 0.9327,
+      "floor": 0.772,
+      "margin": 0.1607
+     }
+    }
+   },
+   "dashscope:deepseek-v4-pro": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9216,
+      "floor": 0.8246,
+      "margin": 0.097
+     },
+     "DE-EN": {
+      "lds": 0.9073,
+      "floor": 0.8159,
+      "margin": 0.0914
+     },
+     "ZH-DE": {
+      "lds": 0.9078,
+      "floor": 0.7925,
+      "margin": 0.1153
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9101,
+      "floor": 0.8101,
+      "margin": 0.1
+     },
+     "DE-EN": {
+      "lds": 0.9026,
+      "floor": 0.8187,
+      "margin": 0.0839
+     },
+     "ZH-DE": {
+      "lds": 0.8933,
+      "floor": 0.7851,
+      "margin": 0.1082
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9219,
+      "floor": 0.8121,
+      "margin": 0.1098
+     },
+     "DE-EN": {
+      "lds": 0.9068,
+      "floor": 0.8021,
+      "margin": 0.1047
+     },
+     "ZH-DE": {
+      "lds": 0.8958,
+      "floor": 0.7864,
+      "margin": 0.1094
+     }
+    }
+   },
+   "dashscope:glm-4.6": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.927,
+      "floor": 0.793,
+      "margin": 0.134
+     },
+     "DE-EN": {
+      "lds": 0.84,
+      "floor": 0.7531,
+      "margin": 0.0869
+     },
+     "ZH-DE": {
+      "lds": 0.9371,
+      "floor": 0.7678,
+      "margin": 0.1693
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9209,
+      "floor": 0.804,
+      "margin": 0.1169
+     },
+     "DE-EN": {
+      "lds": 0.8384,
+      "floor": 0.7797,
+      "margin": 0.0587
+     },
+     "ZH-DE": {
+      "lds": 0.948,
+      "floor": 0.799,
+      "margin": 0.149
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9281,
+      "floor": 0.8116,
+      "margin": 0.1165
+     },
+     "DE-EN": {
+      "lds": 0.8303,
+      "floor": 0.7783,
+      "margin": 0.052
+     },
+     "ZH-DE": {
+      "lds": 0.9465,
+      "floor": 0.7988,
+      "margin": 0.1477
+     }
+    }
+   },
+   "dashscope:glm-4.7": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.7952,
+      "floor": 0.6867,
+      "margin": 0.1085
+     },
+     "DE-EN": {
+      "lds": 0.8333,
+      "floor": 0.7203,
+      "margin": 0.113
+     },
+     "ZH-DE": {
+      "lds": 0.8481,
+      "floor": 0.6889,
+      "margin": 0.1592
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8588,
+      "floor": 0.7318,
+      "margin": 0.127
+     },
+     "DE-EN": {
+      "lds": 0.8304,
+      "floor": 0.7377,
+      "margin": 0.0927
+     },
+     "ZH-DE": {
+      "lds": 0.8623,
+      "floor": 0.7153,
+      "margin": 0.147
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8451,
+      "floor": 0.7183,
+      "margin": 0.1268
+     },
+     "DE-EN": {
+      "lds": 0.8019,
+      "floor": 0.7521,
+      "margin": 0.0498
+     },
+     "ZH-DE": {
+      "lds": 0.8462,
+      "floor": 0.7185,
+      "margin": 0.1277
+     }
+    }
+   },
+   "dashscope:glm-5": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8533,
+      "floor": 0.624,
+      "margin": 0.2293
+     },
+     "DE-EN": {
+      "lds": 0.7869,
+      "floor": 0.5295,
+      "margin": 0.2574
+     },
+     "ZH-DE": {
+      "lds": 0.7838,
+      "floor": 0.5922,
+      "margin": 0.1916
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8581,
+      "floor": 0.6534,
+      "margin": 0.2047
+     },
+     "DE-EN": {
+      "lds": 0.8203,
+      "floor": 0.5953,
+      "margin": 0.225
+     },
+     "ZH-DE": {
+      "lds": 0.8642,
+      "floor": 0.6459,
+      "margin": 0.2183
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8711,
+      "floor": 0.6784,
+      "margin": 0.1927
+     },
+     "DE-EN": {
+      "lds": 0.8383,
+      "floor": 0.6382,
+      "margin": 0.2001
+     },
+     "ZH-DE": {
+      "lds": 0.8719,
+      "floor": 0.6782,
+      "margin": 0.1937
+     }
+    }
+   },
+   "dashscope:glm-5.1": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8673,
+      "floor": 0.6762,
+      "margin": 0.1911
+     },
+     "DE-EN": {
+      "lds": 0.8085,
+      "floor": 0.6398,
+      "margin": 0.1687
+     },
+     "ZH-DE": {
+      "lds": 0.9016,
+      "floor": 0.7,
+      "margin": 0.2016
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8942,
+      "floor": 0.7156,
+      "margin": 0.1786
+     },
+     "DE-EN": {
+      "lds": 0.8462,
+      "floor": 0.6869,
+      "margin": 0.1593
+     },
+     "ZH-DE": {
+      "lds": 0.9107,
+      "floor": 0.7452,
+      "margin": 0.1655
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8852,
+      "floor": 0.7149,
+      "margin": 0.1703
+     },
+     "DE-EN": {
+      "lds": 0.8519,
+      "floor": 0.6947,
+      "margin": 0.1572
+     },
+     "ZH-DE": {
+      "lds": 0.8863,
+      "floor": 0.7452,
+      "margin": 0.1411
+     }
+    }
+   },
+   "dashscope:glm-5.2": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9021,
+      "floor": 0.7848,
+      "margin": 0.1173
+     },
+     "DE-EN": {
+      "lds": 0.8595,
+      "floor": 0.7647,
+      "margin": 0.0948
+     },
+     "ZH-DE": {
+      "lds": 0.8994,
+      "floor": 0.8263,
+      "margin": 0.0731
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9228,
+      "floor": 0.7818,
+      "margin": 0.141
+     },
+     "DE-EN": {
+      "lds": 0.8788,
+      "floor": 0.7749,
+      "margin": 0.1039
+     },
+     "ZH-DE": {
+      "lds": 0.9176,
+      "floor": 0.8079,
+      "margin": 0.1097
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9243,
+      "floor": 0.7889,
+      "margin": 0.1354
+     },
+     "DE-EN": {
+      "lds": 0.8778,
+      "floor": 0.7764,
+      "margin": 0.1014
+     },
+     "ZH-DE": {
+      "lds": 0.9198,
+      "floor": 0.8042,
+      "margin": 0.1156
+     }
+    }
+   },
+   "dashscope:glm-5.2-fast-preview": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8879,
+      "floor": 0.7267,
+      "margin": 0.1612
+     },
+     "DE-EN": {
+      "lds": 0.8471,
+      "floor": 0.6305,
+      "margin": 0.2166
+     },
+     "ZH-DE": {
+      "lds": 0.8761,
+      "floor": 0.6803,
+      "margin": 0.1958
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9207,
+      "floor": 0.7419,
+      "margin": 0.1788
+     },
+     "DE-EN": {
+      "lds": 0.8743,
+      "floor": 0.6857,
+      "margin": 0.1886
+     },
+     "ZH-DE": {
+      "lds": 0.9185,
+      "floor": 0.7512,
+      "margin": 0.1673
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9197,
+      "floor": 0.7382,
+      "margin": 0.1815
+     },
+     "DE-EN": {
+      "lds": 0.872,
+      "floor": 0.6766,
+      "margin": 0.1954
+     },
+     "ZH-DE": {
+      "lds": 0.9263,
+      "floor": 0.7513,
+      "margin": 0.175
+     }
+    }
+   },
+   "dashscope:kimi-k2-thinking": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9281,
+      "floor": 0.8147,
+      "margin": 0.1134
+     },
+     "DE-EN": {
+      "lds": 0.9195,
+      "floor": 0.8018,
+      "margin": 0.1177
+     },
+     "ZH-DE": {
+      "lds": 0.9133,
+      "floor": 0.814,
+      "margin": 0.0993
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9216,
+      "floor": 0.8138,
+      "margin": 0.1078
+     },
+     "DE-EN": {
+      "lds": 0.9191,
+      "floor": 0.8257,
+      "margin": 0.0934
+     },
+     "ZH-DE": {
+      "lds": 0.9414,
+      "floor": 0.8476,
+      "margin": 0.0938
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9335,
+      "floor": 0.8165,
+      "margin": 0.117
+     },
+     "DE-EN": {
+      "lds": 0.9152,
+      "floor": 0.8299,
+      "margin": 0.0853
+     },
+     "ZH-DE": {
+      "lds": 0.9496,
+      "floor": 0.859,
+      "margin": 0.0906
+     }
+    }
+   },
+   "dashscope:kimi-k2.5": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9281,
+      "floor": 0.7836,
+      "margin": 0.1445
+     },
+     "DE-EN": {
+      "lds": 0.9,
+      "floor": 0.7702,
+      "margin": 0.1298
+     },
+     "ZH-DE": {
+      "lds": 0.9313,
+      "floor": 0.7797,
+      "margin": 0.1516
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9366,
+      "floor": 0.7735,
+      "margin": 0.1631
+     },
+     "DE-EN": {
+      "lds": 0.8922,
+      "floor": 0.7618,
+      "margin": 0.1304
+     },
+     "ZH-DE": {
+      "lds": 0.9343,
+      "floor": 0.8153,
+      "margin": 0.119
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9403,
+      "floor": 0.7834,
+      "margin": 0.1569
+     },
+     "DE-EN": {
+      "lds": 0.9078,
+      "floor": 0.7718,
+      "margin": 0.136
+     },
+     "ZH-DE": {
+      "lds": 0.9448,
+      "floor": 0.8228,
+      "margin": 0.122
+     }
+    }
+   },
+   "dashscope:kimi-k2.6": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9155,
+      "floor": 0.775,
+      "margin": 0.1405
+     },
+     "DE-EN": {
+      "lds": 0.9091,
+      "floor": 0.7718,
+      "margin": 0.1373
+     },
+     "ZH-DE": {
+      "lds": 0.9704,
+      "floor": 0.8076,
+      "margin": 0.1628
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9146,
+      "floor": 0.7766,
+      "margin": 0.138
+     },
+     "DE-EN": {
+      "lds": 0.9069,
+      "floor": 0.7726,
+      "margin": 0.1343
+     },
+     "ZH-DE": {
+      "lds": 0.9472,
+      "floor": 0.8095,
+      "margin": 0.1377
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9164,
+      "floor": 0.7935,
+      "margin": 0.1229
+     },
+     "DE-EN": {
+      "lds": 0.9199,
+      "floor": 0.7832,
+      "margin": 0.1367
+     },
+     "ZH-DE": {
+      "lds": 0.956,
+      "floor": 0.8294,
+      "margin": 0.1266
+     }
+    }
+   },
+   "dashscope:kimi-k2.7-code": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9018,
+      "floor": 0.7283,
+      "margin": 0.1735
+     },
+     "DE-EN": {
+      "lds": 0.9182,
+      "floor": 0.718,
+      "margin": 0.2002
+     },
+     "ZH-DE": {
+      "lds": 0.9123,
+      "floor": 0.7557,
+      "margin": 0.1566
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9224,
+      "floor": 0.749,
+      "margin": 0.1734
+     },
+     "DE-EN": {
+      "lds": 0.9196,
+      "floor": 0.7643,
+      "margin": 0.1553
+     },
+     "ZH-DE": {
+      "lds": 0.9289,
+      "floor": 0.796,
+      "margin": 0.1329
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.922,
+      "floor": 0.7769,
+      "margin": 0.1451
+     },
+     "DE-EN": {
+      "lds": 0.9207,
+      "floor": 0.7879,
+      "margin": 0.1328
+     },
+     "ZH-DE": {
+      "lds": 0.9238,
+      "floor": 0.8026,
+      "margin": 0.1212
+     }
+    }
+   },
+   "dashscope:qwen-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9759,
+      "floor": 0.7657,
+      "margin": 0.2102
+     },
+     "DE-EN": {
+      "lds": 0.949,
+      "floor": 0.8428,
+      "margin": 0.1062
+     },
+     "ZH-DE": {
+      "lds": 0.981,
+      "floor": 0.8494,
+      "margin": 0.1316
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9812,
+      "floor": 0.8354,
+      "margin": 0.1458
+     },
+     "DE-EN": {
+      "lds": 0.9553,
+      "floor": 0.8872,
+      "margin": 0.0681
+     },
+     "ZH-DE": {
+      "lds": 0.9864,
+      "floor": 0.8767,
+      "margin": 0.1097
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.982,
+      "floor": 0.8499,
+      "margin": 0.1321
+     },
+     "DE-EN": {
+      "lds": 0.9549,
+      "floor": 0.9017,
+      "margin": 0.0532
+     },
+     "ZH-DE": {
+      "lds": 0.9881,
+      "floor": 0.8832,
+      "margin": 0.1049
+     }
+    }
+   },
+   "dashscope:qwen-max": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8983,
+      "floor": 0.7752,
+      "margin": 0.1231
+     },
+     "DE-EN": {
+      "lds": 0.9302,
+      "floor": 0.7833,
+      "margin": 0.1469
+     },
+     "ZH-DE": {
+      "lds": 0.9324,
+      "floor": 0.7537,
+      "margin": 0.1787
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9319,
+      "floor": 0.8165,
+      "margin": 0.1154
+     },
+     "DE-EN": {
+      "lds": 0.9516,
+      "floor": 0.8223,
+      "margin": 0.1293
+     },
+     "ZH-DE": {
+      "lds": 0.9578,
+      "floor": 0.8295,
+      "margin": 0.1283
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9331,
+      "floor": 0.8191,
+      "margin": 0.114
+     },
+     "DE-EN": {
+      "lds": 0.9488,
+      "floor": 0.8266,
+      "margin": 0.1222
+     },
+     "ZH-DE": {
+      "lds": 0.9582,
+      "floor": 0.8309,
+      "margin": 0.1273
+     }
+    }
+   },
+   "dashscope:qwen-plus": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9842,
+      "floor": 0.8272,
+      "margin": 0.157
+     },
+     "DE-EN": {
+      "lds": 0.9688,
+      "floor": 0.7922,
+      "margin": 0.1766
+     },
+     "ZH-DE": {
+      "lds": 0.9903,
+      "floor": 0.8624,
+      "margin": 0.1279
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9849,
+      "floor": 0.8345,
+      "margin": 0.1504
+     },
+     "DE-EN": {
+      "lds": 0.9705,
+      "floor": 0.8323,
+      "margin": 0.1382
+     },
+     "ZH-DE": {
+      "lds": 0.992,
+      "floor": 0.8915,
+      "margin": 0.1005
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9853,
+      "floor": 0.8511,
+      "margin": 0.1342
+     },
+     "DE-EN": {
+      "lds": 0.9705,
+      "floor": 0.8349,
+      "margin": 0.1356
+     },
+     "ZH-DE": {
+      "lds": 0.9934,
+      "floor": 0.8905,
+      "margin": 0.1029
+     }
+    }
+   },
+   "dashscope:qwen-turbo": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8889,
+      "floor": 0.5383,
+      "margin": 0.3506
+     },
+     "DE-EN": {
+      "lds": 0.8519,
+      "floor": 0.5437,
+      "margin": 0.3082
+     },
+     "ZH-DE": {
+      "lds": 0.8676,
+      "floor": 0.4939,
+      "margin": 0.3737
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9075,
+      "floor": 0.653,
+      "margin": 0.2545
+     },
+     "DE-EN": {
+      "lds": 0.895,
+      "floor": 0.657,
+      "margin": 0.238
+     },
+     "ZH-DE": {
+      "lds": 0.8699,
+      "floor": 0.6234,
+      "margin": 0.2465
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9,
+      "floor": 0.6532,
+      "margin": 0.2468
+     },
+     "DE-EN": {
+      "lds": 0.8815,
+      "floor": 0.6563,
+      "margin": 0.2252
+     },
+     "ZH-DE": {
+      "lds": 0.8693,
+      "floor": 0.6225,
+      "margin": 0.2468
+     }
+    }
+   },
+   "dashscope:qwen3-235b-a22b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9448,
+      "floor": 0.8499,
+      "margin": 0.0949
+     },
+     "DE-EN": {
+      "lds": 0.9028,
+      "floor": 0.7934,
+      "margin": 0.1094
+     },
+     "ZH-DE": {
+      "lds": 0.9191,
+      "floor": 0.828,
+      "margin": 0.0911
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9529,
+      "floor": 0.8921,
+      "margin": 0.0608
+     },
+     "DE-EN": {
+      "lds": 0.9051,
+      "floor": 0.8311,
+      "margin": 0.074
+     },
+     "ZH-DE": {
+      "lds": 0.9408,
+      "floor": 0.8536,
+      "margin": 0.0872
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9527,
+      "floor": 0.8945,
+      "margin": 0.0582
+     },
+     "DE-EN": {
+      "lds": 0.9091,
+      "floor": 0.8443,
+      "margin": 0.0648
+     },
+     "ZH-DE": {
+      "lds": 0.9483,
+      "floor": 0.8654,
+      "margin": 0.0829
+     }
+    }
+   },
+   "dashscope:qwen3-max": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.831,
+      "floor": 0.621,
+      "margin": 0.21
+     },
+     "DE-EN": {
+      "lds": 0.8406,
+      "floor": 0.5824,
+      "margin": 0.2582
+     },
+     "ZH-DE": {
+      "lds": 0.8795,
+      "floor": 0.5931,
+      "margin": 0.2864
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8592,
+      "floor": 0.6093,
+      "margin": 0.2499
+     },
+     "DE-EN": {
+      "lds": 0.8531,
+      "floor": 0.6053,
+      "margin": 0.2478
+     },
+     "ZH-DE": {
+      "lds": 0.8982,
+      "floor": 0.6365,
+      "margin": 0.2617
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8634,
+      "floor": 0.6291,
+      "margin": 0.2343
+     },
+     "DE-EN": {
+      "lds": 0.8538,
+      "floor": 0.6068,
+      "margin": 0.247
+     },
+     "ZH-DE": {
+      "lds": 0.9005,
+      "floor": 0.661,
+      "margin": 0.2395
+     }
+    }
+   },
+   "dashscope:qwen3.5-122b-a10b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8767,
+      "floor": 0.8214,
+      "margin": 0.0553
+     },
+     "DE-EN": {
+      "lds": 0.8857,
+      "floor": 0.82,
+      "margin": 0.0657
+     },
+     "ZH-DE": {
+      "lds": 0.9079,
+      "floor": 0.808,
+      "margin": 0.0999
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9163,
+      "floor": 0.8179,
+      "margin": 0.0984
+     },
+     "DE-EN": {
+      "lds": 0.895,
+      "floor": 0.798,
+      "margin": 0.097
+     },
+     "ZH-DE": {
+      "lds": 0.9084,
+      "floor": 0.8172,
+      "margin": 0.0912
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9161,
+      "floor": 0.8227,
+      "margin": 0.0934
+     },
+     "DE-EN": {
+      "lds": 0.9003,
+      "floor": 0.8136,
+      "margin": 0.0867
+     },
+     "ZH-DE": {
+      "lds": 0.9091,
+      "floor": 0.8162,
+      "margin": 0.0929
+     }
+    }
+   },
+   "dashscope:qwen3.5-27b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9244,
+      "floor": 0.839,
+      "margin": 0.0854
+     },
+     "DE-EN": {
+      "lds": 0.9277,
+      "floor": 0.8131,
+      "margin": 0.1146
+     },
+     "ZH-DE": {
+      "lds": 0.9177,
+      "floor": 0.8051,
+      "margin": 0.1126
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9303,
+      "floor": 0.8185,
+      "margin": 0.1118
+     },
+     "DE-EN": {
+      "lds": 0.934,
+      "floor": 0.8298,
+      "margin": 0.1042
+     },
+     "ZH-DE": {
+      "lds": 0.9382,
+      "floor": 0.8012,
+      "margin": 0.137
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9391,
+      "floor": 0.8114,
+      "margin": 0.1277
+     },
+     "DE-EN": {
+      "lds": 0.9403,
+      "floor": 0.8298,
+      "margin": 0.1105
+     },
+     "ZH-DE": {
+      "lds": 0.921,
+      "floor": 0.8039,
+      "margin": 0.1171
+     }
+    }
+   },
+   "dashscope:qwen3.5-35b-a3b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9096,
+      "floor": 0.839,
+      "margin": 0.0706
+     },
+     "DE-EN": {
+      "lds": 0.9058,
+      "floor": 0.8548,
+      "margin": 0.051
+     },
+     "ZH-DE": {
+      "lds": 0.9249,
+      "floor": 0.8029,
+      "margin": 0.122
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9357,
+      "floor": 0.8762,
+      "margin": 0.0595
+     },
+     "DE-EN": {
+      "lds": 0.9182,
+      "floor": 0.8678,
+      "margin": 0.0504
+     },
+     "ZH-DE": {
+      "lds": 0.9228,
+      "floor": 0.8407,
+      "margin": 0.0821
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9444,
+      "floor": 0.8713,
+      "margin": 0.0731
+     },
+     "DE-EN": {
+      "lds": 0.9257,
+      "floor": 0.8684,
+      "margin": 0.0573
+     },
+     "ZH-DE": {
+      "lds": 0.9335,
+      "floor": 0.8319,
+      "margin": 0.1016
+     }
+    }
+   },
+   "dashscope:qwen3.5-397b-a17b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9159,
+      "floor": 0.6792,
+      "margin": 0.2367
+     },
+     "DE-EN": {
+      "lds": 0.84,
+      "floor": 0.6763,
+      "margin": 0.1637
+     },
+     "ZH-DE": {
+      "lds": 0.9077,
+      "floor": 0.7398,
+      "margin": 0.1679
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9194,
+      "floor": 0.7518,
+      "margin": 0.1676
+     },
+     "DE-EN": {
+      "lds": 0.8639,
+      "floor": 0.7263,
+      "margin": 0.1376
+     },
+     "ZH-DE": {
+      "lds": 0.9414,
+      "floor": 0.7843,
+      "margin": 0.1571
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9189,
+      "floor": 0.7354,
+      "margin": 0.1835
+     },
+     "DE-EN": {
+      "lds": 0.8718,
+      "floor": 0.7024,
+      "margin": 0.1694
+     },
+     "ZH-DE": {
+      "lds": 0.9484,
+      "floor": 0.7654,
+      "margin": 0.183
+     }
+    }
+   },
+   "dashscope:qwen3.5-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9112,
+      "floor": 0.8413,
+      "margin": 0.0699
+     },
+     "DE-EN": {
+      "lds": 0.8844,
+      "floor": 0.8074,
+      "margin": 0.077
+     },
+     "ZH-DE": {
+      "lds": 0.9193,
+      "floor": 0.8045,
+      "margin": 0.1148
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9116,
+      "floor": 0.8379,
+      "margin": 0.0737
+     },
+     "DE-EN": {
+      "lds": 0.9143,
+      "floor": 0.8343,
+      "margin": 0.08
+     },
+     "ZH-DE": {
+      "lds": 0.9199,
+      "floor": 0.8205,
+      "margin": 0.0994
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9146,
+      "floor": 0.8401,
+      "margin": 0.0745
+     },
+     "DE-EN": {
+      "lds": 0.9101,
+      "floor": 0.8336,
+      "margin": 0.0765
+     },
+     "ZH-DE": {
+      "lds": 0.9174,
+      "floor": 0.8219,
+      "margin": 0.0955
+     }
+    }
+   },
+   "dashscope:qwen3.5-plus": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9333,
+      "floor": 0.7521,
+      "margin": 0.1812
+     },
+     "DE-EN": {
+      "lds": 0.9057,
+      "floor": 0.7282,
+      "margin": 0.1775
+     },
+     "ZH-DE": {
+      "lds": 0.9343,
+      "floor": 0.7581,
+      "margin": 0.1762
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9361,
+      "floor": 0.7498,
+      "margin": 0.1863
+     },
+     "DE-EN": {
+      "lds": 0.8542,
+      "floor": 0.7426,
+      "margin": 0.1116
+     },
+     "ZH-DE": {
+      "lds": 0.9315,
+      "floor": 0.7706,
+      "margin": 0.1609
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9141,
+      "floor": 0.7444,
+      "margin": 0.1697
+     },
+     "DE-EN": {
+      "lds": 0.8553,
+      "floor": 0.7267,
+      "margin": 0.1286
+     },
+     "ZH-DE": {
+      "lds": 0.9291,
+      "floor": 0.7523,
+      "margin": 0.1768
+     }
+    }
+   },
+   "dashscope:qwen3.6-27b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9543,
+      "floor": 0.8449,
+      "margin": 0.1094
+     },
+     "DE-EN": {
+      "lds": 0.9379,
+      "floor": 0.8052,
+      "margin": 0.1327
+     },
+     "ZH-DE": {
+      "lds": 0.9412,
+      "floor": 0.8015,
+      "margin": 0.1397
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9474,
+      "floor": 0.8707,
+      "margin": 0.0767
+     },
+     "DE-EN": {
+      "lds": 0.9311,
+      "floor": 0.8314,
+      "margin": 0.0997
+     },
+     "ZH-DE": {
+      "lds": 0.926,
+      "floor": 0.8163,
+      "margin": 0.1097
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9541,
+      "floor": 0.8725,
+      "margin": 0.0816
+     },
+     "DE-EN": {
+      "lds": 0.9348,
+      "floor": 0.8375,
+      "margin": 0.0973
+     },
+     "ZH-DE": {
+      "lds": 0.9332,
+      "floor": 0.8209,
+      "margin": 0.1123
+     }
+    }
+   },
+   "dashscope:qwen3.6-35b-a3b": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9375,
+      "floor": 0.8809,
+      "margin": 0.0566
+     },
+     "DE-EN": {
+      "lds": 0.9143,
+      "floor": 0.8749,
+      "margin": 0.0394
+     },
+     "ZH-DE": {
+      "lds": 0.9211,
+      "floor": 0.8409,
+      "margin": 0.0802
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9371,
+      "floor": 0.8631,
+      "margin": 0.074
+     },
+     "DE-EN": {
+      "lds": 0.9337,
+      "floor": 0.8485,
+      "margin": 0.0852
+     },
+     "ZH-DE": {
+      "lds": 0.929,
+      "floor": 0.8473,
+      "margin": 0.0817
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9392,
+      "floor": 0.8735,
+      "margin": 0.0657
+     },
+     "DE-EN": {
+      "lds": 0.9386,
+      "floor": 0.8628,
+      "margin": 0.0758
+     },
+     "ZH-DE": {
+      "lds": 0.9367,
+      "floor": 0.8526,
+      "margin": 0.0841
+     }
+    }
+   },
+   "dashscope:qwen3.6-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9171,
+      "floor": 0.8702,
+      "margin": 0.0469
+     },
+     "DE-EN": {
+      "lds": 0.9442,
+      "floor": 0.8848,
+      "margin": 0.0594
+     },
+     "ZH-DE": {
+      "lds": 0.9263,
+      "floor": 0.885,
+      "margin": 0.0413
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9377,
+      "floor": 0.8815,
+      "margin": 0.0562
+     },
+     "DE-EN": {
+      "lds": 0.937,
+      "floor": 0.8963,
+      "margin": 0.0407
+     },
+     "ZH-DE": {
+      "lds": 0.9404,
+      "floor": 0.8897,
+      "margin": 0.0507
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9408,
+      "floor": 0.8853,
+      "margin": 0.0555
+     },
+     "DE-EN": {
+      "lds": 0.9343,
+      "floor": 0.8961,
+      "margin": 0.0382
+     },
+     "ZH-DE": {
+      "lds": 0.9482,
+      "floor": 0.896,
+      "margin": 0.0522
+     }
+    }
+   },
+   "dashscope:qwen3.6-plus": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9381,
+      "floor": 0.8283,
+      "margin": 0.1098
+     },
+     "DE-EN": {
+      "lds": 0.9511,
+      "floor": 0.8122,
+      "margin": 0.1389
+     },
+     "ZH-DE": {
+      "lds": 0.9477,
+      "floor": 0.7841,
+      "margin": 0.1636
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9524,
+      "floor": 0.8453,
+      "margin": 0.1071
+     },
+     "DE-EN": {
+      "lds": 0.9521,
+      "floor": 0.8222,
+      "margin": 0.1299
+     },
+     "ZH-DE": {
+      "lds": 0.9597,
+      "floor": 0.7914,
+      "margin": 0.1683
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.955,
+      "floor": 0.8577,
+      "margin": 0.0973
+     },
+     "DE-EN": {
+      "lds": 0.9532,
+      "floor": 0.8218,
+      "margin": 0.1314
+     },
+     "ZH-DE": {
+      "lds": 0.958,
+      "floor": 0.7992,
+      "margin": 0.1588
+     }
+    }
+   },
+   "dashscope:qwen3.7-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9312,
+      "floor": 0.8896,
+      "margin": 0.0416
+     },
+     "DE-EN": {
+      "lds": 0.9361,
+      "floor": 0.892,
+      "margin": 0.0441
+     },
+     "ZH-DE": {
+      "lds": 0.9455,
+      "floor": 0.8808,
+      "margin": 0.0647
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9412,
+      "floor": 0.8824,
+      "margin": 0.0588
+     },
+     "DE-EN": {
+      "lds": 0.9348,
+      "floor": 0.8984,
+      "margin": 0.0364
+     },
+     "ZH-DE": {
+      "lds": 0.9505,
+      "floor": 0.8804,
+      "margin": 0.0701
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9464,
+      "floor": 0.8838,
+      "margin": 0.0626
+     },
+     "DE-EN": {
+      "lds": 0.9338,
+      "floor": 0.8963,
+      "margin": 0.0375
+     },
+     "ZH-DE": {
+      "lds": 0.9546,
+      "floor": 0.8842,
+      "margin": 0.0704
+     }
+    }
+   },
+   "dashscope:qwen3.7-max": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9167,
+      "floor": 0.7638,
+      "margin": 0.1529
+     },
+     "DE-EN": {
+      "lds": 0.9112,
+      "floor": 0.7951,
+      "margin": 0.1161
+     },
+     "ZH-DE": {
+      "lds": 0.9408,
+      "floor": 0.7855,
+      "margin": 0.1553
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.93,
+      "floor": 0.7479,
+      "margin": 0.1821
+     },
+     "DE-EN": {
+      "lds": 0.9098,
+      "floor": 0.7677,
+      "margin": 0.1421
+     },
+     "ZH-DE": {
+      "lds": 0.9498,
+      "floor": 0.7782,
+      "margin": 0.1716
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9358,
+      "floor": 0.7439,
+      "margin": 0.1919
+     },
+     "DE-EN": {
+      "lds": 0.9175,
+      "floor": 0.7744,
+      "margin": 0.1431
+     },
+     "ZH-DE": {
+      "lds": 0.9519,
+      "floor": 0.7706,
+      "margin": 0.1813
+     }
+    }
+   },
+   "dashscope:qwen3.7-plus": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9141,
+      "floor": 0.7981,
+      "margin": 0.116
+     },
+     "DE-EN": {
+      "lds": 0.9226,
+      "floor": 0.7961,
+      "margin": 0.1265
+     },
+     "ZH-DE": {
+      "lds": 0.9427,
+      "floor": 0.772,
+      "margin": 0.1707
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9422,
+      "floor": 0.8129,
+      "margin": 0.1293
+     },
+     "DE-EN": {
+      "lds": 0.9225,
+      "floor": 0.7982,
+      "margin": 0.1243
+     },
+     "ZH-DE": {
+      "lds": 0.9604,
+      "floor": 0.7841,
+      "margin": 0.1763
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9356,
+      "floor": 0.8239,
+      "margin": 0.1117
+     },
+     "DE-EN": {
+      "lds": 0.9207,
+      "floor": 0.8091,
+      "margin": 0.1116
+     },
+     "ZH-DE": {
+      "lds": 0.9493,
+      "floor": 0.7969,
+      "margin": 0.1524
+     }
+    }
+   },
+   "dashscope:qwen3.8-max": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8824,
+      "floor": 0.7422,
+      "margin": 0.1402
+     },
+     "DE-EN": {
+      "lds": 0.8734,
+      "floor": 0.6355,
+      "margin": 0.2379
+     },
+     "ZH-DE": {
+      "lds": 0.9266,
+      "floor": 0.6784,
+      "margin": 0.2482
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9212,
+      "floor": 0.7491,
+      "margin": 0.1721
+     },
+     "DE-EN": {
+      "lds": 0.8795,
+      "floor": 0.683,
+      "margin": 0.1965
+     },
+     "ZH-DE": {
+      "lds": 0.9265,
+      "floor": 0.7086,
+      "margin": 0.2179
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9016,
+      "floor": 0.7698,
+      "margin": 0.1318
+     },
+     "DE-EN": {
+      "lds": 0.8846,
+      "floor": 0.6921,
+      "margin": 0.1925
+     },
+     "ZH-DE": {
+      "lds": 0.9246,
+      "floor": 0.7167,
+      "margin": 0.2079
+     }
+    }
+   },
+   "deepseek-v4-flash": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9471,
+      "floor": 0.8586,
+      "margin": 0.0885
+     },
+     "DE-EN": {
+      "lds": 0.9341,
+      "floor": 0.8274,
+      "margin": 0.1067
+     },
+     "ZH-DE": {
+      "lds": 0.9244,
+      "floor": 0.8435,
+      "margin": 0.0809
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9577,
+      "floor": 0.8638,
+      "margin": 0.0939
+     },
+     "DE-EN": {
+      "lds": 0.9418,
+      "floor": 0.8332,
+      "margin": 0.1086
+     },
+     "ZH-DE": {
+      "lds": 0.9355,
+      "floor": 0.8614,
+      "margin": 0.0741
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9552,
+      "floor": 0.8746,
+      "margin": 0.0806
+     },
+     "DE-EN": {
+      "lds": 0.93,
+      "floor": 0.8456,
+      "margin": 0.0844
+     },
+     "ZH-DE": {
+      "lds": 0.9446,
+      "floor": 0.862,
+      "margin": 0.0826
+     }
+    }
+   },
+   "deepseek-v4-pro": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.903,
+      "floor": 0.8272,
+      "margin": 0.0758
+     },
+     "DE-EN": {
+      "lds": 0.9136,
+      "floor": 0.8247,
+      "margin": 0.0889
+     },
+     "ZH-DE": {
+      "lds": 0.906,
+      "floor": 0.8154,
+      "margin": 0.0906
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9078,
+      "floor": 0.8385,
+      "margin": 0.0693
+     },
+     "DE-EN": {
+      "lds": 0.9004,
+      "floor": 0.8256,
+      "margin": 0.0748
+     },
+     "ZH-DE": {
+      "lds": 0.8906,
+      "floor": 0.8214,
+      "margin": 0.0692
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9066,
+      "floor": 0.8427,
+      "margin": 0.0639
+     },
+     "DE-EN": {
+      "lds": 0.9015,
+      "floor": 0.829,
+      "margin": 0.0725
+     },
+     "ZH-DE": {
+      "lds": 0.9012,
+      "floor": 0.8259,
+      "margin": 0.0753
+     }
+    }
+   },
+   "glm-5.2": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9134,
+      "floor": 0.7574,
+      "margin": 0.156
+     },
+     "DE-EN": {
+      "lds": 0.8839,
+      "floor": 0.6923,
+      "margin": 0.1916
+     },
+     "ZH-DE": {
+      "lds": 0.9055,
+      "floor": 0.7186,
+      "margin": 0.1869
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9265,
+      "floor": 0.7787,
+      "margin": 0.1478
+     },
+     "DE-EN": {
+      "lds": 0.8821,
+      "floor": 0.7224,
+      "margin": 0.1597
+     },
+     "ZH-DE": {
+      "lds": 0.925,
+      "floor": 0.7534,
+      "margin": 0.1716
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9296,
+      "floor": 0.7796,
+      "margin": 0.15
+     },
+     "DE-EN": {
+      "lds": 0.874,
+      "floor": 0.7373,
+      "margin": 0.1367
+     },
+     "ZH-DE": {
+      "lds": 0.9268,
+      "floor": 0.7711,
+      "margin": 0.1557
+     }
+    }
+   },
+   "kimi-k2.6": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.94,
+      "floor": 0.7992,
+      "margin": 0.1408
+     },
+     "DE-EN": {
+      "lds": 0.8614,
+      "floor": 0.7468,
+      "margin": 0.1146
+     },
+     "ZH-DE": {
+      "lds": 0.9343,
+      "floor": 0.7834,
+      "margin": 0.1509
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9423,
+      "floor": 0.7925,
+      "margin": 0.1498
+     },
+     "DE-EN": {
+      "lds": 0.8678,
+      "floor": 0.7334,
+      "margin": 0.1344
+     },
+     "ZH-DE": {
+      "lds": 0.9398,
+      "floor": 0.8008,
+      "margin": 0.139
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9465,
+      "floor": 0.7884,
+      "margin": 0.1581
+     },
+     "DE-EN": {
+      "lds": 0.8843,
+      "floor": 0.7372,
+      "margin": 0.1471
+     },
+     "ZH-DE": {
+      "lds": 0.9481,
+      "floor": 0.8134,
+      "margin": 0.1347
+     }
+    }
+   },
+   "laguna-s-2.1-free": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8741,
+      "floor": 0.731,
+      "margin": 0.1431
+     },
+     "DE-EN": {
+      "lds": 0.8593,
+      "floor": 0.7494,
+      "margin": 0.1099
+     },
+     "ZH-DE": {
+      "lds": 0.9041,
+      "floor": 0.7594,
+      "margin": 0.1447
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9173,
+      "floor": 0.7755,
+      "margin": 0.1418
+     },
+     "DE-EN": {
+      "lds": 0.9004,
+      "floor": 0.7731,
+      "margin": 0.1273
+     },
+     "ZH-DE": {
+      "lds": 0.9154,
+      "floor": 0.8033,
+      "margin": 0.1121
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9228,
+      "floor": 0.7919,
+      "margin": 0.1309
+     },
+     "DE-EN": {
+      "lds": 0.9026,
+      "floor": 0.792,
+      "margin": 0.1106
+     },
+     "ZH-DE": {
+      "lds": 0.9247,
+      "floor": 0.8252,
+      "margin": 0.0995
+     }
+    }
+   },
+   "longcat-2.0-free": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8438,
+      "floor": 0.6838,
+      "margin": 0.16
+     },
+     "DE-EN": {
+      "lds": 0.8938,
+      "floor": 0.6989,
+      "margin": 0.1949
+     },
+     "ZH-DE": {
+      "lds": 0.8947,
+      "floor": 0.7453,
+      "margin": 0.1494
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8617,
+      "floor": 0.7098,
+      "margin": 0.1519
+     },
+     "DE-EN": {
+      "lds": 0.8873,
+      "floor": 0.7361,
+      "margin": 0.1512
+     },
+     "ZH-DE": {
+      "lds": 0.8986,
+      "floor": 0.7522,
+      "margin": 0.1464
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8664,
+      "floor": 0.7283,
+      "margin": 0.1381
+     },
+     "DE-EN": {
+      "lds": 0.8889,
+      "floor": 0.7182,
+      "margin": 0.1707
+     },
+     "ZH-DE": {
+      "lds": 0.8876,
+      "floor": 0.7472,
+      "margin": 0.1404
+     }
+    }
+   },
+   "mimo-v2.5-free": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.8814,
+      "floor": 0.7482,
+      "margin": 0.1332
+     },
+     "DE-EN": {
+      "lds": 0.8679,
+      "floor": 0.7049,
+      "margin": 0.163
+     },
+     "ZH-DE": {
+      "lds": 0.8727,
+      "floor": 0.7296,
+      "margin": 0.1431
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.8756,
+      "floor": 0.7635,
+      "margin": 0.1121
+     },
+     "DE-EN": {
+      "lds": 0.8485,
+      "floor": 0.7611,
+      "margin": 0.0874
+     },
+     "ZH-DE": {
+      "lds": 0.8795,
+      "floor": 0.8056,
+      "margin": 0.0739
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.8764,
+      "floor": 0.7828,
+      "margin": 0.0936
+     },
+     "DE-EN": {
+      "lds": 0.8388,
+      "floor": 0.7863,
+      "margin": 0.0525
+     },
+     "ZH-DE": {
+      "lds": 0.8841,
+      "floor": 0.8046,
+      "margin": 0.0795
+     }
+    }
+   },
+   "nemotron-3-ultra-free": {
+    "3": {
+     "ZH-EN": {
+      "lds": 0.9384,
+      "floor": 0.797,
+      "margin": 0.1414
+     },
+     "DE-EN": {
+      "lds": 0.8783,
+      "floor": 0.7564,
+      "margin": 0.1219
+     },
+     "ZH-DE": {
+      "lds": 0.8929,
+      "floor": 0.7133,
+      "margin": 0.1796
+     }
+    },
+    "5": {
+     "ZH-EN": {
+      "lds": 0.9573,
+      "floor": 0.8351,
+      "margin": 0.1222
+     },
+     "DE-EN": {
+      "lds": 0.9156,
+      "floor": 0.787,
+      "margin": 0.1286
+     },
+     "ZH-DE": {
+      "lds": 0.9383,
+      "floor": 0.7561,
+      "margin": 0.1822
+     }
+    },
+    "6": {
+     "ZH-EN": {
+      "lds": 0.9547,
+      "floor": 0.8544,
+      "margin": 0.1003
+     },
+     "DE-EN": {
+      "lds": 0.9101,
+      "floor": 0.8025,
+      "margin": 0.1076
+     },
+     "ZH-DE": {
+      "lds": 0.9428,
+      "floor": 0.7875,
+      "margin": 0.1553
+     }
+    }
+   }
+  }
+ },
+ "part_b_fuzzy_alignment": {
+  "pairs": {
+   "ZH-EN": {
+    "nA": 147,
+    "nB": 147,
+    "strict_J": 0.097,
+    "strict_lds": 0.903,
+    "fuzzy_matched": 85,
+    "fuzzy_J": 0.4067,
+    "fuzzy_lds": 0.5933
+   },
+   "DE-EN": {
+    "nA": 170,
+    "nB": 147,
+    "strict_J": 0.0819,
+    "strict_lds": 0.9181,
+    "fuzzy_matched": 106,
+    "fuzzy_J": 0.5024,
+    "fuzzy_lds": 0.4976
+   },
+   "ZH-DE": {
+    "nA": 147,
+    "nB": 170,
+    "strict_J": 0.0673,
+    "strict_lds": 0.9327,
+    "fuzzy_matched": 87,
+    "fuzzy_J": 0.3783,
+    "fuzzy_lds": 0.6217
+   }
+  },
+  "driver_asymmetry": {
+   "nA_de": 170,
+   "nB_zh": 147,
+   "strict_de_only": 150,
+   "strict_zh_only": 127,
+   "fuzzy_de_only": 44,
+   "fuzzy_zh_only": 33,
+   "strict_dir_de_over_zh": 23,
+   "fuzzy_dir_de_over_zh": 11
+  }
+ }
+}
