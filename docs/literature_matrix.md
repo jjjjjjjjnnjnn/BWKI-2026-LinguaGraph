@@ -1,8 +1,9 @@
 # LinguaGraph — Literature Matrix
 
 > Generated: 2026-06-22
+> **Updated: 2026-08-11** — Area 6 added (multilingual LLM value/cultural alignment SOTA) via real-time arXiv scan (`docs/sota_positioning_20260811.md`)
 > Sources: arXiv, Semantic Scholar, Google Scholar
-> Structure: 5 priority areas × 5-10 papers each
+> Structure: 5 priority areas × 5-10 papers each (+ Area 6 for the LLM-as-Subject line)
 
 ---
 
@@ -60,6 +61,25 @@
 | 3 | Ausubel's Assimilation Theory of Meaningful Learning | 1963/2000 | Ausubel | — | **Foundational** — knowledge is structured, not listed |
 | 4 | Knowledge Space Theory (KST) | 1985–present | Doignon, Falmagne | Springer | Theory of prerequisite knowledge structures |
 
+## Area 6: Multilingual LLM Value & Cultural Alignment (2026-08-11)
+
+> Added 2026-08-11 via real-time arXiv scan — covers the **LLM-as-Subject line (LDS-C value divergence)**, the current core narrative. Key observation: existing work measures value *selection* (prediction / rating / accuracy / representation direction); **none measures concept-graph structure divergence** — that is LinguaGraph's complementary gap. Titles verified via arXiv API.
+
+| # | Paper | Year | Authors | arXiv | Relevance to LinguaGraph |
+|---|-------|------|---------|-------|--------------------------|
+| 1 | WorldValuesBench: A Large-Scale Benchmark for Multi-Cultural Value Awareness | 2024 | Zhao, Mondal, Tandon et al. | 2404.16308 | Largest value-rating benchmark (World Values Survey); measures *selection*, not structure |
+| 2 | Exploring Multilingual Concepts of Human Value in LLMs | 2024 | Xu, Dong, Guo et al. | 2402.18120 | Value concepts as linear directions, 16 langs — closest mechanism-level work |
+| 3 | Ethical Reasoning and Moral Value Alignment of LLMs Depend on the Language we Prompt them in | 2024 | Agarwal, Tanmay, Khandelwal et al. | 2404.18460 | Prompt-language changes moral judgement — supports language-as-variable design |
+| 4 | One Model, Many Morals: Cross-Linguistic Misalignments in Moral Reasoning | 2025 | Farid, Lin, Chen et al. | 2509.21443 | Bench translation (5 langs) reveals cross-lingual moral misalignment |
+| 5 | Under the Shadow of Babel: How Language Shapes Reasoning in LLMs | 2025 | Wang, Zhang, Gao et al. | 2506.16151 | BICAUSE bilingual causal reasoning — linguistic-relativity test in LLMs |
+| 6 | MET: Theory-Grounded and Culture-Aware Multilingual Moral Reasoning | 2026 | Lee, Kwon, Zhang et al. | 2607.11736 | Theory-grounded multilingual moral benchmark + alignment (2026-07) |
+| 7 | CuMA: Aligning LLMs with Sparse Cultural Values via Demographic-Aware Mixture of Adapters | 2026 | Sun, Wang, Tan et al. | 2601.04885 | Alignment *training*, not measurement |
+| 8 | CCD-Bench: Probing Cultural Conflict in LLM Decision-Making | 2025 | Rahman, Salam | 2510.03553 | Cultural conflict probing |
+| 9 | LKValues: Aligning LLMs with Sri Lankan Societal Values | 2026 | — | 2607.20410 | Regional value alignment |
+| 10 | BengaliMoralBench: Auditing Moral Reasoning within Bengali Contexts | 2025 | — | 2511.03180 | Language-specific moral benchmark |
+
+> **SOTA 定位结论**（详见 `docs/sota_positioning_20260811.md`）：这 10 篇全部测"选择/评分/准确率/表示方向"；LinguaGraph 是唯一测"价值概念图结构分歧（LDS 节点+边）"的工作——互补、可辩护、未被他者覆盖。
+
 ---
 
 ## Core Papers by Direct Relevance to LinguaGraph
@@ -84,6 +104,16 @@
 10. **Novak (1998/2010)** — Book-length concept mapping theory
 11. **OECD PISA/TIMSS** — Curriculum comparison frameworks
 12. Various cross-lingual KG alignment papers (2016–2023)
+
+### Tier 1b: LLM value-alignment SOTA (LLM-as-Subject line, added 2026-08-11)
+
+13. **Zhao et al. (2024)** — WorldValuesBench → largest cultural value-rating benchmark
+14. **Xu et al. (2024)** — Value concepts as linear directions in 16 languages → closest mechanism work
+15. **Agarwal et al. (2024)** — Ethical reasoning depends on prompt language → supports language-as-variable
+16. **Farid et al. (2025)** — One Model, Many Morals → cross-linguistic moral misalignment
+17. **Lee et al. (2026)** — MET culture-aware multilingual moral reasoning → newest SOTA
+
+> 这些是 related_work §2.5 的 [20]-[24] 引用源；LinguaGraph 的差异化 = 结构（LDS）vs 选择（benchmark rating/accuracy）。
 
 ---
 
@@ -186,5 +216,40 @@
   author={Doignon, Jean-Paul and Falmagne, Jean-Claude},
   year={1985},
   publisher={Springer}
+}
+
+@article{zhao2024worldvaluesbench,
+  title={WorldValuesBench: A Large-Scale Benchmark Dataset for Multi-Cultural Value Awareness of Language Models},
+  author={Zhao, Wenlong and Mondal, Debanjan and Tandon, Niket and others},
+  journal={arXiv preprint arXiv:2404.16308},
+  year={2024}
+}
+
+@article{xu2024multilingual,
+  title={Exploring Multilingual Concepts of Human Value in Large Language Models: Is Value Alignment Consistent, Transferable and Controllable across Languages?},
+  author={Xu, Shaoyang and Dong, Weilong and Guo, Zishan and others},
+  journal={arXiv preprint arXiv:2402.18120},
+  year={2024}
+}
+
+@article{agarwal2024ethical,
+  title={Ethical Reasoning and Moral Value Alignment of LLMs Depend on the Language we Prompt them in},
+  author={Agarwal, Utkarsh and Tanmay, Kumar and Khandelwal, Aditi and others},
+  journal={arXiv preprint arXiv:2404.18460},
+  year={2024}
+}
+
+@article{farid2025onemodel,
+  title={One Model, Many Morals: Uncovering Cross-Linguistic Misalignments in Computational Moral Reasoning},
+  author={Farid, Sualeha and Lin, Jayden and Chen, Zean and others},
+  journal={arXiv preprint arXiv:2509.21443},
+  year={2025}
+}
+
+@article{lee2026met,
+  title={MET: Theory-Grounded and Culture-Aware Multilingual Moral Reasoning},
+  author={Lee, Ayoung and Kwon, Ryan and Zhang, Yunxiang and others},
+  journal={arXiv preprint arXiv:2607.11736},
+  year={2026}
 }
 ```
