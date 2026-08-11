@@ -154,7 +154,7 @@
 
 **⚠️ OpenRouter 状态（2026-08-11 更新）**: 编排器轮询 250 次（~20 小时）OpenRouter 免费配额**未释放**（`free-models-per-day` 持续受限）——西方模型跨日累积实质停滞，gpt-oss 停在 17/30。**不要重启编排器**（浪费轮询；配额若恢复需人工触发）。该缺口已在论文 §8.15/§5.10 诚实披露为未来工作，不阻塞提交。
 
-**🆕 R&D 全生命周期审查（2026-08-11）**: `docs/review/rnd_project_review_20260811.md`（六维度评估 + 先进性扫描 + 结构整理）。执行：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`；**物理（§6）+ LPA（§7）整合进论文，PDF 30 页**；CHANGELOG v0.13.0。**✅ 已跟进**：① SOTA 定位表 `docs/sota_positioning_20260811.md`（arXiv 实时查新完成）② 论文章节重编号完成（讨论 §8/结论 §9，消除与结果 §4/§5 冲突）。**遗留**：③ API 鲁棒性测试 ④ chemistry 侧流闭环或明确 out-of-scope ⑤ 方法论章 §2 与 related_work §2 同名（已知）。
+**🆕 R&D 全生命周期审查（2026-08-11）**: `docs/review/rnd_project_review_20260811.md`（六维度评估 + 先进性扫描 + 结构整理）。执行：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`；**物理（§6）+ LPA（§7）整合进论文，PDF 30 页**；CHANGELOG v0.13.0。**✅ 已跟进**：① SOTA 定位表 `docs/sota_positioning_20260811.md`（arXiv 实时查新完成）② 论文章节重编号完成（讨论 §8/结论 §9）③ API 鲁棒性测试（+15 测试，共 84）④ chemistry 侧流闭环（§6.7）。**遗留**：⑤ 方法论章 §2 与 related_work §2 同名（已知）。
 
 ---
 

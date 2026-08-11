@@ -147,6 +147,7 @@ H1 falsified、N=15 人类阴性诚实报告、P2 复核（C8 领域对照反转
 ### 7.4 保留不动（审慎判断）
 
 - **数据 JSON**（不可变证据，被冻结脚本/loader 引用——如 `extractions_20260807.json` 被 `lds_c_compute.py` 引用，归档即破坏管线）
+- **CDS/HDS 数据来源注**：物理/化学章的 CDS/HDS 表来自 `outputs/{physics,chemistry}_comparison.json`（data.js 旧管线原始图，Math 574/3538），而 §6.6 库存表用 SSOT manifest（556/525，对齐图）——两种视图并存，属 CDS 线的既有张力（未重跑管线，重跑会牵连物理章数字）
 - README 引用的文档（handoff_multi_subject、pilot_quality_report、recruitment_*、reddit_*）
 - `docs/related_work.md`（外部项目定位）vs `docs/paper/02_related_work.md`（论文章节）——**用途不同，非重复**
 - `references/`（139 文献）· `freeze/`（SSOT）· `release/`（不可变）· `_deploy/` · `cognitive-space/` · `workbench/`
@@ -160,7 +161,7 @@ H1 falsified、N=15 人类阴性诚实报告、P2 复核（C8 领域对照反转
 | 1 | **✅ SOTA 定位表已产出**（`docs/sota_positioning_20260811.md`，arXiv 实时查新）；可选后续：论文 related_work 插入 §6 建议句 + 刷新文献矩阵 | P1 | 已解决 + 可选后续 |
 | 2 | **✅ 论文章节重编号已完成**（讨论 §4→**§8**、结论 §5→**§9**，消除与结果 §4/§5 冲突；12 个跨文件引用同步）。**已知遗留**：方法论章 §2 与 related_work §2 仍同名（整章级联重编号超出范围） | P2 | 已解决 + 1 已知项 |
 | 3 | **API 鲁棒性测试**（压力/故障注入：配额耗尽、resume 一致性） | P2 | 测试 |
-| 4 | **chemistry 侧流闭环或明确 out-of-scope**（220 概念，未整合） | P2 | 决策 |
+| 4 | **✅ chemistry 侧流已闭环**（§6.7 Chemie CDS/HDS 小节：220 概念/215 关系，F8 细化，与 F6/F7 一致） | P2 | 已解决 |
 | 5 | CHANGELOG 补 v0.13.0（本审查 + 51 模型 + P0-P3 + PDF） | P2 | 文档（见 §7.1 后执行） |
 | 6 | 视频录制（2-4 分钟，脚本 v2 就绪） | P0（用户） | 物理动作 8/14-28 |
 | 7 | 平台填写（plattform_antworten 草稿已备） | P0（用户） | 物理动作 |

@@ -423,6 +423,43 @@ def save_out(out_path: Path, records: List[dict]) -> None:
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+def collect_good_units(out_dir: Path, file_prefix: str) -> Dict[str, dict]:
+    """Merge GOOD units from all date-rolled files of this provider/model.
+
+    Cross-day resume: the output filename date-rolls daily, so this globs
+    every matching ``{file_prefix}_*.json``. Only units with extracted content
+    are kept, so previously empty (e.g. quota-failed) units are retried by the
+    caller instead of being skipped. Returns a dict keyed by ``unit_id``
+    (later files win on duplicate ids).
+    """
+    done: Dict[str, dict] = {}
+    for f in sorted(out_dir.glob(f"{file_prefix}_*.json")):
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            print(f"  [WARN] unreadable {f.name}, skipping")
+            continue
+        for u in data.get("units", []):
+            if not u.get("unit_id"):
+                continue
+            if u.get("probe") == "P3":
+                is_good = bool(u.get("associations"))
+            else:
+                is_good = any(c for c in u.get("concepts", {}).values())
+            if is_good:
+                done[u["unit_id"]] = u
+    return done
+
+
+def update_consecutive_empty(consecutive_empty: int, ok: bool, abort_after: int) -> int:
+    """Return the updated consecutive-empty counter for the abort rule.
+
+    Reset to 0 on a good unit; increment on an empty one. The caller aborts
+    the model once the counter reaches ``abort_after`` (LDS_ABORT_AFTER).
+    """
+    return 0 if ok else consecutive_empty + 1
+
+
 def main() -> None:
     global MODEL, API_URL, MODEL_ID
     ap = argparse.ArgumentParser(description="D1 LLM-as-subject data collection")
@@ -489,22 +526,7 @@ def main() -> None:
     # e.g. "dashscope:glm-5.2" never merges zen-collected "glm-5.2" units.
     # Only units with extracted concepts are kept, so previously empty (e.g.
     # quota-failed) units are retried automatically instead of being skipped.
-    done: Dict[str, dict] = {}
-    for f in sorted(OUT_DIR.glob(f"{file_prefix}_*.json")):
-        try:
-            data = json.loads(f.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            print(f"  [WARN] unreadable {f.name}, skipping")
-            continue
-        for u in data.get("units", []):
-            if not u.get("unit_id"):
-                continue
-            if u.get("probe") == "P3":
-                is_good = bool(u.get("associations"))
-            else:
-                is_good = any(c for c in u.get("concepts", {}).values())
-            if is_good:
-                done[u["unit_id"]] = u
+    done = collect_good_units(OUT_DIR, file_prefix)
     print(f"  Resume: {len(done)} good units merged from {model_tag} "
           f"files (empty units will be retried)")
 
@@ -528,17 +550,14 @@ def main() -> None:
               f"(extract: {rec.get('meta', {}).get('extract', {}).get('note', '')})")
         done[uid] = rec
         save_out(out_path, list(done.values()))
-        if ok:
-            consecutive_empty = 0
-        else:
-            consecutive_empty += 1
-            if consecutive_empty >= ABORT_AFTER:
-                # every call already retried 3x inside run_p1p2p5; N consecutive
-                # EMPTY units = model is unusable as a subject -> abort, let the
-                # batch driver move on to the next model.
-                print(f"\n  ABORT {MODEL}: {consecutive_empty} consecutive EMPTY units "
-                      f"after per-call retries -> skipping this model")
-                sys.exit(2)
+        consecutive_empty = update_consecutive_empty(consecutive_empty, ok, ABORT_AFTER)
+        if consecutive_empty >= ABORT_AFTER:
+            # every call already retried 3x inside run_p1p2p5; N consecutive
+            # EMPTY units = model is unusable as a subject -> abort, let the
+            # batch driver move on to the next model.
+            print(f"\n  ABORT {MODEL}: {consecutive_empty} consecutive EMPTY units "
+                  f"after per-call retries -> skipping this model")
+            sys.exit(2)
         time.sleep(0.3)
 
     elapsed = time.time() - t0
