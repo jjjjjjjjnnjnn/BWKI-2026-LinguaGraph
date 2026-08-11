@@ -60,5 +60,5 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 |-------|:--------:|:---------:|:------:|
 | Mathe-Wissensgraph | 556 | 525 | Vollständig |
 | Physik-Wissensgraph | 366 | 383 | Vollständig |
-| NRW-Lehrplangraph | 41 | 147 | In Bearbeitung |
-| Chinesischer Lehrplangraph | 0 | 0 | Ausstehend |
+
+> Weitere Lehrplangraphen (z. B. NRW, chinesische Lehrpläne) liegen außerhalb des Fokus dieser Arbeit.

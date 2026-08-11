@@ -21,7 +21,7 @@
 | LLM 组内（D1） | 阳性（LDS-C ≫ 底） | 同一模型三语 → **语言信号真实存在** |
 | 设计效应证明（A3） | 人类/LLM 信号幅度相同，底噪不同 | 人类阴性 = 组内个体异质性（异质性注入直接因果证明，q=0.30 精确复刻） |
 | 语料深化（A4） | 社会 Wikipedia ZH-DE 0.82 vs 数学 0.52 | 制度知识抹平语言，文化概念暴露语言 |
-| **51 模型复制（🆕 2026-08-10）** | **51/51 模型全部 LDS-C ≫ floor、p<0.05；ZH-DE 余量 +0.033~+0.286；1179 方向一致概念；Heimat:safety/physical space 41/41 全票** | **跨语言价值观分歧 = 多语言 LLM 普遍属性（中西方皆然）** |
+| **51 模型复制（🆕 2026-08-10）** | **51/51 模型 ZH-DE LDS-C ≫ floor、p<0.05；8/153 英语对不显著；ZH-DE 余量 +0.033~+0.286；方向一致性 ≥10 票 204 vs 129±4（p<0.001）；Heimat:safety 41/51（80%）DE、physical space 41 ZH（1 反票）** | **跨语言价值观分歧 = 多语言 LLM 普遍属性（中西方皆然）** |
 
 **三大不可违反原则**（.claude/CLAUDE.md §1）: SSOT=manifest.json · Immutable Release · Validated Pipeline。
 
@@ -46,7 +46,7 @@
 | 完整模型 | **51**（8 zen/OpenRouter + 42 DashScope + gpt-oss 部分） |
 | 信号 | **51/51 LDS-C ≫ floor，所有语言对 p<0.05** |
 | ZH-DE 余量 | **+0.033（deepseek-r1-0528）~ +0.286（deepseek-v3.1）**，全为正 |
-| 方向一致性 | **1179 概念**（≥3/51），Heimat:safety（DE）与 physical space（ZH）**41/41 全票**，equal opportunity/freedom limit 39 票 DE |
+| 方向一致性 | **≥10 票 204 概念**（空模型 129±4，p<0.001；≥3 票 1056 vs 823 显著；"1179"为旧双计数已弃用）；Heimat:safety（DE）41/51=80%、physical space（ZH）41（1 反票），equal opportunity/freedom limit 39 票 DE |
 | 漂移排名 | 余量跨模型差 ~9 倍 → 审计"按模型排名"操作性输出 |
 
 ### 3.2 模型来源（跨中西方）

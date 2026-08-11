@@ -176,7 +176,7 @@ A4 表述"ZH-DE 边分量贡献 3–4×（0.075）"本身正确，但**深化后
 
 | 资产 | 位置 |
 |------|------|
-| 方向 A 结果 | `data/lds_c/llm_subject/design_effect_20260809.json`（最新日期） |
+| 方向 A 结果 | `data/lds_c/llm_subject/design_effect_20260810.json`（修正版：ratio 解读已修复） |
 | 方向 C 结果 | `data/lds_c/divergence_drivers_20260809.json`（最新日期） |
 | 方向 D 结果 | `data/lds_c/lds_k_deep/node_edge_decomp_20260809.json`（最新日期） |
 | **异质性注入结果** | `data/lds_c/llm_subject/heterogeneity_injection_20260809.json` |

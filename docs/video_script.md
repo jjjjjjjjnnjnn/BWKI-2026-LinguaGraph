@@ -106,7 +106,7 @@ The decisive control finding: institutional knowledge — for instance mathemati
 |------------|--------|
 | 51 Messungen, 47 eindeutige Modelle; alle ZH-DE-Paare p<0.05; 8/153 nicht-signifikante englisch-haltige Paare | `data/lds_c/llm_subject/multi_model_replication_20260810.json` |
 | Kulturrichtung über Zufallsniveau (≥10 Stimmen 204 vs 129, p<0.001) | `multi_model_replication_20260810.json` |
-| LDS-C 0.93–0.96, Boden 0.85–0.87 (Basismodell) | `data/lds_c/llm_subject/design_effect_20260809.json` |
+| LDS-C 0.93–0.96, Boden 0.85–0.87 (Basismodell) | `data/lds_c/llm_subject/design_effect_20260810.json` |
 | DE: Autonomie/Regeln; ZH: Raum/Anspruch | `divergence_drivers_20260809.json` |
 | Institutionell konvergiert (node-only 0.444) vs sozial divergiert (0.800) | `node_edge_decomp_20260809.json` |
 | Ethik: Messung = Basis für Audit, nicht fertiges "Korrektur"-Instrument | Formulierung im Skript ehrlich gehalten |

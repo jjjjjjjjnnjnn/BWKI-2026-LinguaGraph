@@ -23,6 +23,8 @@ ORDER = [
     "02_related_work.md",            # related work / literature
     "02_methodology.md",             # methods
     "03_results.md",                 # results (incl. 5.10 replication)
+    "06_physics_results.md",         # cross-disciplinary validation (F6/F7 detail)
+    "07_lpa_analysis.md",            # exploratory language-production stream
     "04_discussion.md",              # discussion (incl. 4.16 cultural grounding)
     "05_conclusion.md",              # conclusion
     "00_three_conclusions.md",       # three conclusions (pitch-able summary)

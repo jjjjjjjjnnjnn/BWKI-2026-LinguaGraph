@@ -70,7 +70,7 @@
 
 ## Q10: 你的数字可信吗？能复现吗？
 
-> "能。所有结果由随代码提交的数据文件支撑：`data/lds_c/llm_subject/`（各模型 30 单元）+ `multi_model_replication_20260810.json`（51 测量对比）+ `design_effect_20260809.json`（设计效应）。脚本：`scripts/lds_c_multi_model.py` 等。`git clone` + 已提交数据可重跑。任何'全部/全票'表述我们已修正为可验证的诚实措辞。"
+> "能。所有结果由随代码提交的数据文件支撑：`data/lds_c/llm_subject/`（各模型 30 单元）+ `multi_model_replication_20260810.json`（51 测量对比）+ `design_effect_20260810.json`（设计效应）。脚本：`scripts/lds_c_multi_model.py` 等。`git clone` + 已提交数据可重跑。任何'全部/全票'表述我们已修正为可验证的诚实措辞。"
 
 ---
 

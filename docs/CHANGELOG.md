@@ -4,6 +4,42 @@
 
 ---
 
+## [2026-08-11] v0.13.0-rnd-review — 51 模型复制收尾 + P0-P3 修复 + R&D 全生命周期审查 + 物理/LPA 整合
+
+### Overview
+
+在 v0.12.0 设计效应证明基础上：完成对抗性审查（4-agent）的 P0-P3 全部修复（数据说真话）、51 模型复制诚实化（204 vs 129 空模型对照）、PDF 组装（29 页），并执行 R&D 六维度全生命周期审查 + 项目结构整理。
+
+### A. 51 模型复制（权威数据 `multi_model_replication_20260810.json`）
+
+- 51 测量（47 唯一模型，88% 中方 + 1 NVIDIA 美）；**ZH-DE 51/51 显著**（p<0.05），8/153 英语对不显著
+- 方向一致性空模型：≥10 票 **204 vs 129±4**（p<0.001）、≥3 票 1056 vs 823（非噪声）；"1179"为旧双计数已弃用
+- Heimat:safety 41/51（80%）DE、physical space 41 ZH（1 反票）——诚实分母
+
+### B. P0-P3 对抗审查修复（审查报告 `docs/review/full_project_adversarial_review_20260810.md`）
+
+- P0: C1（51/51 措辞修正）、C2（空模型对照）、C3（诚实分母）、C6（披露重写三提供方+欠费）、C9（ratio 解读修复 + loader 校验）
+- P1: C4（SSOT 对账 556/525/219）、C5（结果章 §5.10）、H1 阈值
+- P2: C8（size-match 领域对照反转，诚实降级）、H2（异质性降级为一致性演示）、H3（交叉提取敏感性）
+- P3: release.py 验证 + 69 测试
+
+### C. PDF 组装与论文整合
+
+- `docs/submission/LinguaGraph_BWKI2026.pdf`（29 → **30 页**，fpdf2+simsun）
+- **物理章节**（366 概念/383 边，CDS/HDS 跨学科验证，F6/F7 细节）与 **LPA 章节**（探索性 N=6 试点）整合入 PDF ORDER（§6/§7）
+
+### D. R&D 全生命周期审查（`docs/review/rnd_project_review_20260811.md`）
+
+- 六维度评估：目标/先进性/过程/团队/质量合规/转化——总评偏研究型定位合理
+- 先进性扫描：文献矩阵 6 周未更新 + 缺 LLM 文化对齐 SOTA 对照（Gap，需联网补查新）
+- 结构整理：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`
+
+### 已归档（`_archive/20260811_rnd_review/`）
+
+03_results_human_v2 · 04_discussion_revision · session_handoff_20260702 · bwki_paper_outline(+_v2) · repo_restructure_plan · PROJECT_LOG
+
+---
+
 ## [2026-08-08] v0.12.0-design-effect — 设计效应证明 + A5 分歧驱动者 + 节点/边分解
 
 ### Overview

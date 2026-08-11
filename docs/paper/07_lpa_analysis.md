@@ -1,12 +1,12 @@
-## 3.4 Exploratorische Sprachproduktionsanalyse (LPA)
+## 7. Exploratorische Sprachproduktionsanalyse (LPA)
 
-### 3.4.1 Einordnung
+### 7.1 Einordnung
 
-Parallel zur strukturierten Wissensgraphenanalyse (LDS-K, §3.1–3.3) und der Konzeptanalyse menschlicher Probanden (LDS-C, §3.4) wurde ein dritter, unabhängiger Datenstrom erhoben: eine explorative Sprachproduktionsstudie. Zehn linguistische Aufgaben wurden an deutsche Muttersprachler verteilt (N=6 Pilot, N≥120 im Feld). Die Aufgaben umfassen freie Assoziation, zweisprachige Konzepterklärung, soziale Skripte, visuelle Beschreibung, Raumsprache (Bewegung + Statik), Zeitreferenz, Ereignisbeschreibung und Namensstrategien.
+Parallel zur strukturierten Wissensgraphenanalyse (LDS-K, §3) und der Konzeptanalyse menschlicher Probanden (LDS-C, §4) wurde ein dritter, unabhängiger Datenstrom erhoben: eine explorative Sprachproduktionsstudie. Zehn linguistische Aufgaben wurden an deutsche Muttersprachler verteilt (N=6 Pilot, N≥120 im Feld geplant). Die Aufgaben umfassen freie Assoziation, zweisprachige Konzepterklärung, soziale Skripte, visuelle Beschreibung, Raumsprache (Bewegung + Statik), Zeitreferenz, Ereignisbeschreibung und Namensstrategien.
 
 Die LPA ist als **exploratives Codierframework** konzipiert — nicht als validiertes psychometrisches Instrument. Das vollständige Codebook mit Definitionen, Inklusions-/Exklusionskriterien und Beispielen ist in `docs/lpa_codebook.md` dokumentiert (vgl. Krippendorff, 2018, zur inhaltsanalytischen Methodik).
 
-### 3.4.2 Codierdimensionen
+### 7.2 Codierdimensionen
 
 Vier Dimensionen wurden mit einem a priori definierten Kriterienkatalog codiert. Jedes Kriterium wird binär codiert (vorhanden/nicht vorhanden); es werden keine zusammengesetzten Scores gebildet.
 
@@ -18,7 +18,7 @@ Vier Dimensionen wurden mit einem a priori definierten Kriterienkatalog codiert.
 
 **D4 — Lexikalische Produktion (Aufgaben 1, 10):** Erfasst lexikalische Strategien — semantische Netzwerkstruktur (Collins & Loftus, 1975) und Neologismenbildung (Clark, 1993; Štekauer, 2005).
 
-### 3.4.3 Pilotergebnisse (N=6 DE)
+### 7.3 Pilotergebnisse (N=6 DE)
 
 **D1 Räumliche Granularität:** Kriterienerfüllung von 3/9 bis 9/9. DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*) — eine Kombination intrinsischer und relativer Referenzrahmen (vgl. Levinson, 2003). DE02 codierte nur ein Objekt ohne räumliche Relation. Die beobachtete intra-linguale Variation ist konsistent mit Slobin (2000).
 
@@ -28,7 +28,7 @@ Vier Dimensionen wurden mit einem a priori definierten Kriterienkatalog codiert.
 
 **D4 Lexikalische Produktion:** Assoziative Kategorien umfassten Messung, Institution, Zeitdruck und Kalender. Benennungsstrategien von funktional-präzise bis kreativ-neologistisch und bilingual hybrid (vgl. Štekauer, 2005).
 
-### 3.4.4 Methodische Anmerkungen
+### 7.4 Methodische Anmerkungen
 
 Diese Analyse ist explorativ. Vor systematischen cross-linguistischen Vergleichen:
 
@@ -36,7 +36,7 @@ Diese Analyse ist explorativ. Vor systematischen cross-linguistischen Vergleiche
 2. **Dimensionsanalyse:** Abhängig von Stichprobengröße und Verteilungseigenschaften wird exploratorische Faktorenanalyse oder PCA durchgeführt.
 3. **Cross-linguistische Erweiterung:** Äquivalente ZH/EN-Fragebögen erstellt.
 
-### 3.4.5 Methodologische Einordnung
+### 7.5 Methodologische Einordnung
 
 Die drei Evidenzströme befinden sich in unterschiedlichen Reifestadien:
 
