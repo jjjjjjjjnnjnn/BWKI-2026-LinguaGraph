@@ -40,6 +40,10 @@ Ein wachsender Forschungsstrang untersucht, ob Large Language Models (LLMs) mens
 
 Gemeinsam messen diese Arbeiten die **Auswahl** von Werten über Sprachen hinweg — durch Vorhersage, Klassifikation oder Rating. LinguaGraph ergänzt diese Perspektive um ein **strukturelles** Maß: Während bestehende multilinguale Wert- und Moral-Benchmarks (WorldValuesBench, 2024; One Model, Many Morals, 2025; MET, 2026) die *Auswahl* von Werten über Sprachen hinweg messen, erfasst LinguaGraph mit dem LDS die *strukturelle Organisation* von Wertkonzepten (Knoten + Kanten) — ein komplementäres, bisher ungemessenes Maß. Das LLM-as-Subject-Design (Within-Subject, §5) isoliert dabei die Sprache als einzige Variable; die Replikation über 51 Messungen (§5.10) zeigt, dass die strukturelle Divergenz von Wertkonzepten über Sprachpaare hinweg breit reproduzierbar und kulturell gerichtet ist (DE Autonomie/Regeln vs. ZH Raum/Anspruch). Keine der bestehenden Arbeiten misst diese strukturelle Divergenz systematisch.
 
+Dass englisch-haltige Paare schwächere Signale tragen (§5.10: alle 8 nicht-signifikanten Tests betreffen ZH-EN/DE-EN), ist mit der Englisch-Zentriertheit aktueller Modelle konsistent: MEXA evaluiert gezielt englisch-zentrierte LLMs über cross-linguale Alignierung [43]; im EN↔ZH-Transfer überwiegt negativer Transfer vom Englischen aufs Chinesische [44]; cross-linguale faktische Inkonsistenz ist ein dokumentierter Mechanismus multilingualer Modelle [45]. Englisch wirkt als Trainings-Hub mit generalisierteren, weniger differenzierten Konzeptrepräsentationen — schwächere EN-Paardivergenz ist damit theoretisch erwartbar, kein Gegenbefund.
+
+Zur Designfrage (Between- vs. Within-Subject, §4 vs. §5): Within-Subject-Designs erreichen bei gleicher Effektstärke mit deutlich kleineren Stichproben diagnostische Power als Between-Subject-Designs [40][41] — die menschliche N=15-Null unter Between-Subject ist daher auch power-analytisch erwartbar (s. §8.10), kein Beleg für Abwesenheit.
+
 Als Hintergrund — nicht als Evidenz dieser Studie — ist dokumentiert, dass KI-generierte Texte messbare linguistische Marker tragen: Fu und Yang (2025) vergleichen maschinell identifizierte vs. menschlich inferierte Prädiktoren [33]; RoBERTa-basierte Detektion erreicht 96,1 % Genauigkeit mit interpretierbaren stilistischen Unterschieden (LIME/SHAP) [34]; eine Großstudie über 27 LLMs × 10 Domänen systematisiert 284 interpretierbare Merkmale und deren domänenübergreifende Generalisierung [35]; ein Survey synthetisiert die verstreuten Befunde zu AIGT-vs-HWT-Merkmalen [36]. Diese Literatur stützt die allgemeine Beobachtung, dass KI-Texte systematische Stilmerkmale aufweisen — sie ersetzt keine eigene Messung im Chinesischen und wird hier nicht als Befund beansprucht.
 
 ### 2.6 Forschungslücke
@@ -135,3 +139,17 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 [38] Hofstede, G. (2001). Culture's Consequences: Comparing Values, Behaviors, Institutions and Organizations Across Nations (2nd ed.). Sage. (Original work published 1980.)
 
 [39] Nisbett, R. E. (2003). The Geography of Thought: How Asians and Westerners Think Differently … and Why. Free Press.
+
+[40] Bellemare, C., Bissonnette, L., & Kröger, S. (2014). Statistical power of within- and between-subjects designs in economic experiments. IZA Discussion Paper No. 8583. https://docs.iza.org/dp8583.pdf.
+
+[41] Seltman, H. J. (2018). Experimental Design and Analysis, Chapter 14: Within-Subjects Designs. Carnegie Mellon University. https://www.stat.cmu.edu/~hseltman/309/Book/chapter14.pdf.
+
+[42] Sukiennik, N., Gao, C., Xu, F., & Li, Y. (2025). An Evaluation of Cultural Value Alignment in LLM. arXiv:2504.08863.
+
+[43] Kargaran, A. H., Modarressi, A., Nikeghbal, N., Diesner, J., Yvon, F., & Schuetze, H. (2025). MEXA: Multilingual Evaluation of English-Centric LLMs via Cross-Lingual Alignment. Findings of ACL 2025, 27001–27023. https://aclanthology.org/2025.findings-acl.1385/.
+
+[44] Zhou, Y., & Matusevych, Y. (2025). Curse of bilinguality: Evaluating monolingual and bilingual language models on Chinese linguistic benchmarks. Proc. GEM 2025. https://aclanthology.org/2025.gem-1.58/.
+
+[45] Wang, M., Adel, H., Lange, L., Liu, Y., Nie, E., Strötgen, J., & Schuetze, H. (2025). Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models. Proc. ACL 2025, 5075–5094. https://aclanthology.org/2025.acl-long.253/.
+
+[46] Fluss, R., Faraggi, D., & Reiser, B. (2005). Estimation of the Youden Index and its Associated Cutoff Point. Biometrical Journal, 47(4), 458–472. https://doi.org/10.1002/bimj.200410135.

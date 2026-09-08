@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-09-08T21:41:39",
+  "source": "multi_model_replication_20260810.json",
+  "SW1_post_hoc_power": {
+    "designs": {
+      "d=0.2": {
+        "between_n6_vs_6": 0.061,
+        "within_paired_n15": 0.112,
+        "within_paired_n30": 0.185
+      },
+      "d=0.3": {
+        "between_n6_vs_6": 0.076,
+        "within_paired_n15": 0.192,
+        "within_paired_n30": 0.355
+      },
+      "d=0.5": {
+        "between_n6_vs_6": 0.123,
+        "within_paired_n15": 0.438,
+        "within_paired_n30": 0.754
+      },
+      "d=0.8": {
+        "between_n6_vs_6": 0.241,
+        "within_paired_n15": 0.821,
+        "within_paired_n30": 0.988
+      }
+    },
+    "note": "Post-hoc illustration (not a confirmatory claim): at small-to-medium standardized effects (d=0.2-0.5), a 6-vs-6 between-subject comparison has power 0.06-0.18, while a paired within-subject N=15 reaches 0.14-0.48. The human N=15 null is therefore expected under low power, not evidence of absence. Registered follow-up (R1) uses within-subject, N>=30/arm."
+  },
+  "SW2_provider_stratification": {
+    "CN-vendor": {
+      "n": 48,
+      "mean_margin_zh_de": 0.1297,
+      "sd_margin_zh_de": 0.0557,
+      "range_margin_zh_de": [
+        0.0332,
+        0.2857
+      ],
+      "sig_zh_de": "48/48"
+    },
+    "US-origin": {
+      "n": 2,
+      "mean_margin_zh_de": 0.1273,
+      "sd_margin_zh_de": 0.0392,
+      "range_margin_zh_de": [
+        0.0996,
+        0.1551
+      ],
+      "sig_zh_de": "2/2"
+    },
+    "note": "Complete-case set (n==30 units): 50 models + D1 baseline = 51 measurements. US-origin stratum is n<=2 -> underpowered by construction; reported for transparency, not as a vendor comparison. Supports the stated limitation (~94% CN-vendor) and the registered model-matrix extension.",
+    "complete_models": [
+      "dashscope:MiniMax-M2.1",
+      "dashscope:MiniMax-M2.5",
+      "dashscope:Moonshot-Kimi-K2-Instruct",
+      "dashscope:deepseek-r1",
+      "dashscope:deepseek-r1-0528",
+      "dashscope:deepseek-r1-distill-qwen-14b",
+      "dashscope:deepseek-r1-distill-qwen-32b",
+      "dashscope:deepseek-r1-distill-qwen-7b",
+      "dashscope:deepseek-v3",
+      "dashscope:deepseek-v3.1",
+      "dashscope:deepseek-v3.2",
+      "dashscope:deepseek-v4-flash",
+      "dashscope:deepseek-v4-pro",
+      "dashscope:glm-4.6",
+      "dashscope:glm-4.7",
+      "dashscope:glm-5",
+      "dashscope:glm-5.1",
+      "dashscope:glm-5.2",
+      "dashscope:glm-5.2-fast-preview",
+      "dashscope:kimi-k2-thinking",
+      "dashscope:kimi-k2.5",
+      "dashscope:kimi-k2.6",
+      "dashscope:kimi-k2.7-code",
+      "dashscope:qwen-flash",
+      "dashscope:qwen-plus",
+      "dashscope:qwen-turbo",
+      "dashscope:qwen3-235b-a22b",
+      "dashscope:qwen3-max",
+      "dashscope:qwen3.5-122b-a10b",
+      "dashscope:qwen3.5-27b",
+      "dashscope:qwen3.5-35b-a3b",
+      "dashscope:qwen3.5-397b-a17b",
+      "dashscope:qwen3.5-flash",
+      "dashscope:qwen3.5-plus",
+      "dashscope:qwen3.6-27b",
+      "dashscope:qwen3.6-35b-a3b",
+      "dashscope:qwen3.6-flash",
+      "dashscope:qwen3.6-plus",
+      "dashscope:qwen3.7-flash",
+      "dashscope:qwen3.7-max",
+      "dashscope:qwen3.7-plus",
+      "dashscope:qwen3.8-max",
+      "deepseek-v4-flash",
+      "deepseek-v4-pro",
+      "glm-5.2",
+      "kimi-k2.6",
+      "laguna-s-2.1-free",
+      "longcat-2.0-free",
+      "mimo-v2.5-free",
+      "nemotron-3-ultra-free"
+    ]
+  },
+  "SW4_youden_calibration": {
+    "n_models": 50,
+    "margin_span": [
+      0.0332,
+      0.2857
+    ],
+    "median_margin": 0.1222,
+    "youden_optimal_thresholds": [
+      0.1224
+    ],
+    "youden_J": 1.0,
+    "bootstrap_CI_95": [
+      0.1224,
+      0.1285
+    ],
+    "heuristic_0_10_in_CI": false,
+    "note": "Median-split classes ('high' vs 'low' divergence halves); Youden J maximizes TPR-FPR. Small-n illustration with bootstrap uncertainty, not a validated validity boundary."
+  }
+}
