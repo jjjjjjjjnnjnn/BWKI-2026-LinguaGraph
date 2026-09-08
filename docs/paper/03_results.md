@@ -1,7 +1,7 @@
 # LinguaGraph — Results: CognitiveSpace Knowledge Graph
 
 > **Language**: German
-> **Status**: Draft v2 — §4 (Humanvalidierung) überarbeitet auf N=15 (ersetzt N=8; Entwurfsnotiz archiviert unter `_archive/20260811_rnd_review/docs/paper/03_results_human_v2.md`)
+> **Status**: Final (v0.13.3) — §4 (Humanvalidierung) auf N=15 (ersetzt N=8; Entwurfsnotiz archiviert unter `_archive/20260811_rnd_review/docs/paper/03_results_human_v2.md`)
 
 ---
 

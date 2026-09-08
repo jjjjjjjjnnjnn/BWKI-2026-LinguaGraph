@@ -129,3 +129,9 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 [35] A Systematic Analysis of Linguistic Features in AI-Generated Text (27 LLMs × 10 domains, 284 features). (2026). arXiv:2606.04177.
 
 [36] Linguistic Characteristics of AI-Generated Text: A Survey. (2025). arXiv:2510.05136.
+
+[37] Markus, H. R., & Kitayama, S. (1991). Culture and the self: Implications for cognition, emotion, and motivation. Psychological Review, 98(2), 224–253.
+
+[38] Hofstede, G. (2001). Culture's Consequences: Comparing Values, Behaviors, Institutions and Organizations Across Nations (2nd ed.). Sage. (Original work published 1980.)
+
+[39] Nisbett, R. E. (2003). The Geography of Thought: How Asians and Westerners Think Differently … and Why. Free Press.

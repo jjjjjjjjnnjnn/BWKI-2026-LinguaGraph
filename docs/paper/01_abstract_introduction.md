@@ -1,7 +1,7 @@
 # LinguaGraph — BWKI 2026: Abstract and Introduction
 
 > **Language**: German (BWKI submission language)
-> **Status**: Draft v1
+> **Status**: Final (v0.13.3)
 
 ---
 
@@ -78,4 +78,4 @@ Diese Arbeit leistet folgende Beiträge:
 
 ### 1.4 Gliederung
 
-Die Arbeit ist wie folgt aufgebaut. Kapitel 2 gibt einen Überblick über verwandte Arbeiten aus Linguistik, KI-Forschung und Wissensgraphen. Kapitel 3 beschreibt die Methodik beider Pipelines. Kapitel 4 präsentiert die Ergebnisse — vom CognitiveSpace-Wissensgraphen über die LDS-Analyse bis zur Humanvalidierung (F1–F12). Kapitel 5 diskutiert die Ergebnisse und Limitationen. Kapitel 6 fasst die Arbeit zusammen.
+Die Arbeit ist wie folgt aufgebaut. Kapitel 2 gibt einen Überblick über verwandte Arbeiten aus Linguistik, KI-Forschung und Wissensgraphen. Kapitel 3 beschreibt die Methodik beider Pipelines. Kapitel 4 präsentiert die Ergebnisse — vom CognitiveSpace-Wissensgraphen über die LDS-Analyse bis zur Humanvalidierung (F1–F12). Kapitel 5 weist das Sprachsignal im LLM-as-Subject-Within-Subject-Design nach, Kapitel 6 validiert fächerübergreifend (Physik, Chemie) und exploriert die Sprachproduktion (LPA). Kapitel 8 diskutiert Ergebnisse, Limitationen und die methodologische Einordnung; Kapitel 9 fasst zusammen und formuliert die Audit-Anwendung.
