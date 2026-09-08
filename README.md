@@ -173,54 +173,17 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ## 🚀 Deploy Your Own
 
-The Research Portal is a **zero-build static site**. Deploy anywhere:
+The Research Portal is a **zero-build static site** published from `_deploy/` via GitHub Pages
+(`.github/workflows/deploy-cognitive-space.yml` on push to master):
 
-| Platform | Publish Directory |
-|----------|------------------|
-| **GitHub Pages** | Deployment bundle contents:
-_deploy/data.js
-_deploy/docs/annotation_guideline_v1.md
-_deploy/docs/annotation_guideline_v2.md
-_deploy/docs/ARCHITECTURE.md
-_deploy/docs/audit-report.md
-_deploy/docs/bwki-compliance-review.md
-_deploy/docs/bwki_paper_outline.md
-_deploy/docs/bwki_paper_outline_v2.md
-_deploy/docs/CHANGELOG.md
-_deploy/docs/cognitive_metrics_framework.md
-_deploy/docs/CONSOLIDATION_REPORT.md
-_deploy/docs/CONTRIBUTORS.md
-_deploy/docs/corpus-status.md
-_deploy/docs/coverage_score_definition.md
-_deploy/docs/creative_submission.md
-_deploy/docs/curriculum_layer_plan.md
-_deploy/docs/data_arrival_checklist.md
-_deploy/docs/data_expansion_task.md
-_deploy/docs/demo_script.md
-_deploy/docs/error_analysis.md
-_deploy/docs/evidence_milestones.md
-_deploy/docs/experiment-design.md
-_deploy/docs/experiment_conductor.md
-_deploy/docs/figure_plan.md
-_deploy/docs/gold_dataset_schema_v1.md
-_deploy/docs/handoff_multi_subject.md
-_deploy/docs/infrastructure_audit.md
-_deploy/docs/judge_qa.md
-_deploy/docs/limitations.md
-_deploy/docs/literature_matrix.md
-_deploy/docs/logos_integration.md
-_deploy/docs/mcl_definition.md
-_deploy/docs/methodology.md
-_deploy/docs/metrics_validation_report.md
-_deploy/docs/mimo_prompt.md
-_deploy/docs/model_strategy.md
-_deploy/docs/paper_results_skeleton.md
-_deploy/docs/pilot-study.md
-_deploy/docs/pilot_quality_report.md
-_deploy/docs/pitch_10min.md (auto) |
-| **Cloudflare Pages** |  |
-| **Vercel** |  |
-| **Local** | Open  |
+| Source | Deployed as | Notes |
+|--------|-------------|-------|
+| `cognitive-space/web/*` | `_deploy/` root | 3D visualization + `data.js` (via `scripts/release.py`) |
+| `cognitive-space/portal/` | `_deploy/portal/` | Research Portal (Finding E: N=15 narrative) |
+| `docs/` | `_deploy/docs/` | Paper + reviews (mirrored; see `docs/INDEX.md`) |
+| `README*.md` | `_deploy/README*.md` | Trilingual mirrors (via `sync_readmes.py`) |
+
+Local preview: open `cognitive-space/portal/index.html` or `cognitive-space/web/index.html` in a browser.
 
 
 ## 🚀 Quick Start
@@ -263,7 +226,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | qwen3.7-max | Math | 0.980 | 0.551 | 0.778 | 2-3s |
 | glm-4.6 | Math | 0.951 | 0.595 | 0.689 | 10-20s |
 
-Full results: [`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
+Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
 
 ---
 
@@ -271,17 +234,27 @@ Full results: [`research/findings/bailian_benchmark_complete.json`](research/fin
 
 ```
 ├── scripts/              # Analysis pipelines (batch extraction, evaluation, benchmark)
+│   ├── math_graph_pipeline/  # Canonical pipeline (SSOT: merge→align→export→validate)
+│   ├── release.py            # Unified release (gates→export→manifest→bundle)
+│   └── build_paper_pdf.py    # Paper assembly (docs/paper → submission PDF)
 ├── docs/
-│   ├── paper/            # Full research paper (abstract → conclusion)
+│   ├── INDEX.md          # Navigation for all 83 docs
+│   ├── paper/            # Full research paper (reading order: see ORDER in build_paper_pdf.py)
 │   ├── review/           # Quality audits & critical assessments
 │   ├── ethics/           # GDPR compliance & consent forms
-│   └── creative_submission.md  # BWKI competition submission
+│   └── submission/       # BWKI submission (PDF + platform answers + checklist)
+├── submission/
+│   ├── final/            # Final package (PDF + answers + disclosure + code guide)
+│   ├── pitch/            # Video pitch (script v2 + storyboard; recording separate)
+│   └── idea/             # Ideenanmeldung 28.06. (historical)
 ├── config/
 │   ├── expert_graphs/    # Knowledge graphs (JSON) — Math, Physics, Chemistry, Curricula
-│   └── concept_mapping.json    # 174 cross-lingual concept alignments
-├── cognitive-space/      # 3D knowledge graph visualization (Three.js)
-├── research/findings/    # Benchmark outputs, evaluation reports
-└── .gitignore            # API keys, DB, PII excluded
+│   └── cross_language_mapping.json  # 30 shared concept IDs (frozen)
+├── cognitive-space/      # 3D visualization (Three.js) + portal/
+├── research_lab/         # Sandboxed experiments (gitignored skills/)
+├── release/              # Immutable snapshot (manifest + data.js + checksums)
+├── freeze/               # Frozen survey samples (immutable)
+└── manifest.json         # SSOT numbers (556/525/219)
 ```
 
 ---

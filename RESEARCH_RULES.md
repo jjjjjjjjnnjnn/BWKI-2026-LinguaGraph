@@ -1,6 +1,8 @@
 # LinguaGraph Research Rules
 
-## 当前阶段: Evidence Production
+> Stand: v0.13.2 (2026-09-08) | SSOT: manifest.json (556 Konzepte / 525 Relationen / 219 Gruppen)
+
+## 当前阶段: Submission Finalization (Frist 20.09.2026)
 
 ## 禁止
 
@@ -29,14 +31,18 @@
 
 如果三个问题都是"否" → 停止执行。
 
-## 已验证发现
+## 已验证发现 (v0.13.2)
 
 | 指标 | 值 | 状态 |
 |------|-----|------|
-| LDS 排序 | success > responsibility > home > freedom | ✅ 稳定 |
+| LDS 排序 | N=15: kein Signal (Between); LLM-within: Signal +0.08–0.09 | ✅ revidiert (Pilot N=8 nicht repliziert) |
 | Jaccard (mapped) | 0.35-0.43 | ✅ 非零 |
-| 数据量 | 813 texts | ✅ 充足 |
-| 概念映射 | 100+ 映射 | ✅ 有效 |
+| 数据量 | 556 Konzepte / 525 Relationen / 68 Bücher (39/18/11) | ✅ SSOT manifest.json |
+| 概念映射 | 30 shared IDs (eingefroren) / 219 trilinguale Gruppen | ✅ 有效 |
+| F1 | Sozial 0.939; gewichtet gesamt 0.881 (n=92) | ✅ korrigiert |
+| 51-Modell-Replikation | 43 DashScope + 8 zen/OR; alle ZH-DE p<0.05 | ✅ |
+| Sim-Vergleich p=0.05 | **Zurückgezogen** (Skalendrift) | ❌ nicht verwenden |
+| §8.17 N=1 | **Entfernt** (→ _archive/20260908_qitian_removal/) | ❌ nicht verwenden |
 
 ## 下一步 (P0)
 
