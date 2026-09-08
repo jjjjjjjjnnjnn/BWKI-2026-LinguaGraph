@@ -30,9 +30,9 @@ All core scientific work — research questions, experimental design, the LDS me
 | **opencode GO**（`https://opencode.ai/zen/go/v1`） | deepseek-v4-flash | 基线被试（D1 主实验）· 概念/关系提取 · gloss 英文化 |
 | **opencode zen/v1**（`https://opencode.ai/zen/v1`） | deepseek-v4-flash、nemotron-3-ultra-free（NVIDIA）、mimo-v2.5-free、laguna-s-2.1-free、longcat-2.0-free 等 | 多模型复制被试 |
 | **OpenRouter**（`https://openrouter.ai/api/v1`，免费层） | gpt-oss-20b:free（部分收集）、nemotron/laguna/gemma 等免费模型 | 多模型复制被试（部分未完成） |
-| **阿里云 DashScope/千问**（`https://dashscope.aliyuncs.com/compatible-mode/v1`） | deepseek-v3/v3.1/v3.2/v4/r1 族、GLM-4.5~5.2、Kimi、MiniMax、Qwen3.x 等 **42 个模型** | 多模型复制被试 |
+| **阿里云 DashScope/千问**（`https://dashscope.aliyuncs.com/compatible-mode/v1`） | deepseek-v3/v3.1/v3.2/v4/r1 族、GLM-4.5~5.2、Kimi、MiniMax、Qwen3.x 等 **43 个模型** | 多模型复制被试 |
 
-**多模型复制实验（51 个测量）**: 2026-08-09/10，在完全相同的 P1 协议（3 语言 × k=10）下，对 42 个 DashScope 模型 + 8 个 zen/OpenRouter 模型运行 LLM-as-Subject，得到 51 个"跨语言概念分歧"测量。**所有模型均作为受控被试被测量**，其回答与提取构成了论文的数据主体（`data/lds_c/llm_subject/`）。这是研究数据，不是"辅助完成工作"。
+**多模型复制实验（51 个测量）**: 2026-08-09/10，在完全相同的 P1 协议（3 语言 × k=10）下，对 43 个 DashScope 模型 + 8 个 zen/OpenRouter 模型运行 LLM-as-Subject，得到 51 个"跨语言概念分歧"测量。**所有模型均作为受控被试被测量**，其回答与提取构成了论文的数据主体（`data/lds_c/llm_subject/`）。这是研究数据，不是"辅助完成工作"。
 
 ### 1.2 提取质量与 F1 数字（修正 v1 混用）
 

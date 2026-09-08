@@ -1,8 +1,8 @@
 # LinguaGraph — Antworten zur Projektdokumentation (BWKI 2026)
 
-> **Status**: Entwurf v1 (2026-08-09) | **Sprache**: Deutsch (BWKI-Einreichsprache)
-> **Zweck**: Antwortentwürfe für die Fragen in der Einreicheplattform (Idee, Methoden, Umsetzung, Ergebnisse, Fehlerquellen, kritische Einschätzung)
-> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` (verifiziert, Stand 2026-08-09) und der Arbeit `docs/paper/`.
+> **Status**: Final (2026-09-08, v0.13.2) | **Sprache**: Deutsch (BWKI-Einreichsprache)
+> **Zweck**: Antwortentwürfe für die Fragen in der Einreicheplattform (Idee, Methoden, Umsetzung, Ergebnisse, Fehlerquellen, kritische Einschätzung, Entwicklung, Offenlegung)
+> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` und der Arbeit `docs/paper/` (SSOT: `manifest.json` — 556 Konzepte / 525 Relationen / 219 Gruppen).
 > **Vollständige Unterstützungs-Offenlegung**: `docs/declaration_of_support.md`
 
 ---
@@ -28,7 +28,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 - **Extraktions-Pipeline**: LLM-basierte Konzept-/Relationsextraktion aus Probandentexten und Wikipedia-Korpora (soziale Konzepte) bzw. Mathematik-Lehrbüchern (institutionelle Kontroll-Domäne).
 - **Analyse-Pipeline**: `scripts/lds_c_*.py` — modulare, typisierte, dokumentierte Skripte mit reproduzierbarer Reihenfolge (§6 `docs/lds_formal_definition.md`).
 - **Reproduzierbarkeit**: Fixe Seeds, `--seed`-CLI, datierte JSON-Ergebnisse mit Nachvollziehbarkeitsblock (Eingabedateien, Modell, Parameter).
-- **Validierung**: 60+ pytest-Tests (Kernmetrik, Nullmodelle, LMM-Robustheit, leere-Menge-Konvention), leere-Menge-Konvention verhindert stille LDS=1.0-Artefakte.
+- **Validierung**: 84 pytest-Tests (Kernmetrik, Nullmodelle, LMM-Robustheit, leere-Menge-Konvention), leere-Menge-Konvention verhindert stille LDS=1.0-Artefakte.
 - **Konsistenz**: LDS-Formel v3 ist als Projekt-Source-of-Truth eingefroren; alle Zahlen stammen aus `manifest.json` / `data/lds_c/`.
 
 ## 4. Ergebnisse — Was wurde gefunden?
@@ -39,11 +39,11 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 | **Es ist kulturell gemustert, nicht zufällig** | ZH-DE-Divergenztreiber: DE betont Autonomie/Regeln/eigene Ziele, ZH Raum/Grenzen/Anspruch |
 | **Domänen-Asymmetrie (Kontrollbefund)** | Institutionelles Wissen (Mathematik) konvergiert sprachübergreifend (node-only 0.44); kulturelle Konzepte divergieren (0.80) → das Signal ist kultureller Natur, kein Messartefakt |
 | **Struktur, nicht nur Wortwahl** | Auch die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch (Kanten-Komponente divergiert systematisch) |
-| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der direkte Nachweis: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt das menschliche Negativergebnis (Signal-Marge +0.014 ≈ menschlich +0.015) |
+| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt das menschliche Negativergebnis (Signal-Marge +0.014 ≈ menschlich +0.015) |
 
 ## 5. Fehlerquellen — Was hat nicht funktioniert und warum?
 
-1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **direkt kausal** auf die aggregationsbedingte Sparsity zurückgeführt.
+1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **stark auf die aggregationsbedingte Sparsity als Mechanismus zurückgeführt** (Signal-Marge +0,014 ≈ menschlich +0,015; kausale Zuschreibung bleibt Hypothese, siehe Paper §8).
 2. **Alignment-Artefakt**: Chinesische Konzepte ohne lateinische Tokens (canonical_key) erzeugten leere Schlüssel → falsche Divergenz. Fix: Glossierung chinesischer Konzepte ins Englische vor der Alignierung, mit expliziter Fehlermeldung bei fehlenden Glosses.
 3. **Wikipedia-LDS=1.0-Artefakt**: Leere Mengen erzeugten still die maximale Divergenz. Fix: leere-Menge-Konvention (∅=∅ identisch; ∅ vs. nicht-leer = NaN, kein stilles Maximum) + Testabdeckung.
 4. **Modellabhängige Extraktionsqualität**: Die Extraktionsqualität variiert nach Domäne (soziale Konzepte F1≈0.94, deutsche Mathematik F1≈0.51). Dies betrifft die Lehrbuch-Kontrolldomäne, nicht das LLM-as-Subject-Kernexperiment.

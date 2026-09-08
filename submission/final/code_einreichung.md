@@ -1,6 +1,6 @@
 # LinguaGraph — Code-Einreichung (Lauffähiger Code, BWKI 2026)
 
-> **Stand**: 2026-08-09 | **Sprache**: Deutsch/Englisch | **Pipeline**: `scripts/lds_c_*.py`
+> **Stand**: 2026-09-08 (v0.13.2) | **Sprache**: Deutsch/Englisch | **Pipeline**: `scripts/lds_c_*.py` (+ kanonisch `scripts/math_graph_pipeline/`)
 > **Hinweis**: Der Code ist die reproduzierbare Analyse-Pipeline des LLM-as-Subject-Kernexperiments. Alle Ergebnisse in `data/lds_c/` sind durch diese Skripte erzeugbar.
 
 ---
@@ -11,7 +11,7 @@ Voraussetzung: Python 3.10+, `pip install -r requirements.txt`.
 
 **Schritt 0 — Tests (Kernvalidierung):**
 ```bash
-python -m pytest tests/ -v        # 60+ Tests: Kernmetrik, Nullmodelle, LMM, leere-Menge-Konvention
+python -m pytest tests/ -v        # 84 Tests: Kernmetrik, Nullmodelle, LMM, leere-Menge-Konvention
 ```
 
 **Schritt 1 — LLM-as-Subject-Daten erzeugen** (Netzwerk/API erforderlich; alternativ liegen die Ausgaben bereits unter `data/lds_c/`):
@@ -82,7 +82,7 @@ data/lds_c/           # Alle Ergebnisse (datierte JSON, reproduzierbar)
 data/lds_c/llm_subject/  # LLM-as-Subject-Einzel- und Aggregatdaten
 docs/paper/           # Wissenschaftliche Arbeit (DE)
 docs/submission/      # Einreichungs-Unterlagen (dieses Dokument + Checkliste)
-tests/                # 60+ pytest-Tests
+tests/                # 84 pytest-Tests
 ```
 
 **Wichtig für die Einreichung**: `participant_data/` (PII) und API-Schlüssel sind nicht Teil des Einreichungs-Codes. Die Einreichung enthält die anonymisierten Aggregate in `freeze/` und `data/lds_c/`.
