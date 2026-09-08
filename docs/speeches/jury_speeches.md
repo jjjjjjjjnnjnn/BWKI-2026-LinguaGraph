@@ -1,6 +1,11 @@
 # LinguaGraph — Jury Presentation Materials
 ## 30s / 3min / 10min Speech Scripts
 
+> **⚠️ LEGACY (Stand v0.13.2, 2026-09-08)**: Diese Reden enthalten die alte N=8-Erzählung
+> (LDS 0,70–0,75; Sim-Vergleich p=0,05; F1-Headline 0,939). Aktuell: N=15 Δ≈0 (Between),
+> Sim-Vergleich zurückgezogen, F1 gewichtet 0,881. Für den Pitch gilt
+> `docs/video_script.md` v2 + `submission/pitch/README.md` (Fakten-Check).
+
 > **Core Narrative**: Language shapes how we organize knowledge — and AI can measure it.
 > **Target Audience**: BWKI 2026 jury (science and technology competition)
 > **Language**: German (BWKI official language)
