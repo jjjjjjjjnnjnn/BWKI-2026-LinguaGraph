@@ -1,6 +1,7 @@
 # BWKI 2026 参赛要求记录 + 与 LinguaGraph 项目现状比对
 
 > **生成**: 2026-08-08 | **依据**: BWKI 官方 Teilnahmebedingungen（Tübingen AI Center，Stand 28.04.2023）+ 当前项目研究状态
+> **⚠️ Stand 08-08 — durch v0.13.x überholt**: declaration ✅ (`submission/final/declaration_of_support.md` + PDF-Anhang), PDF ✅ (`submission/final/LinguaGraph_BWKI2026.pdf`), pytest 84 ✅, Manifest-SSOT ✅, Video-Skript v2 ✅ (Aufnahme separat). Aktuell: `docs/submission/einreichung_checkliste.md` + `submission/final/feld_mapping.md`.
 > **目标**: 把官方评分标准与项目逐条对照，识别提交前必须补齐的合规缺口
 > **旧版文档**: `docs/bwki-compliance-review.md`（2026-06-17，创意提交阶段，研究完成度 15%——**已被本版取代**）
 > **提交截止**: 2026-09-20/21（约 6 周）
