@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Structural Analysis <em>Report</em></h1>
-<p>Automated analysis of the CognitiveSpace knowledge graph. Generated from 68 textbooks, 574 concepts, and 3538 relations across ZH/EN/DE.</p>
+<p>Automated analysis of the CognitiveSpace knowledge graph. Generated from 68 textbooks, 556 concepts, and 525 relations across ZH/EN/DE.</p>
 
 <div class="report-section" style="border-left-color:#4ade80">
     <strong style="color:#86efac">1. Corpus Composition</strong>
@@ -28,7 +28,7 @@
 <div class="report-section" style="border-left-color:#60a5fa">
     <strong style="color:#93c5fd">3. Cross-Language Alignment</strong>
     <p style="margin-top:.5rem">
-        Of 574 concepts, <strong>{{ stats.trilingual }}</strong> ({{ "%.1f"|format(stats.trilingual / stats.total_nodes * 100) }}%)
+        Of 556 concepts, <strong>{{ stats.trilingual }}</strong> ({{ "%.1f"|format(stats.trilingual / stats.total_nodes * 100) }}%)
         are fully aligned across all three languages. Chinese has the highest exclusive coverage
         (ZH-only concepts: {{ stats.lang_coverage.zh - stats.trilingual }}), primarily from elementary
         and middle school curricula that lack direct Western counterparts. English and German show
@@ -40,7 +40,7 @@
     <strong style="color:#c4b5fd">4. Structural Observations</strong>
     <p style="margin-top:.5rem">
         <strong>Connectivity:</strong> The graph is nearly fully connected (only 2 isolated nodes
-        out of 574, &lt;0.5%), indicating high-quality relation extraction.<br><br>
+        out of 556, &lt;0.5%), indicating high-quality relation extraction.<br><br>
         <strong>Hierarchy:</strong> Elementary concepts serve as structural anchors
         with high centrality. University concepts form a dense periphery with specialized
         sub-clusters.<br><br>

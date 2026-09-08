@@ -210,13 +210,13 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   <h1>How do different languages<br>and educational systems<br>organize the same knowledge?</h1>
   <p class="subtitle">A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num" style="color:var(--accent)">1,160+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--green)">4,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent)">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">1,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
     <div class="stat"><div class="stat-num" style="color:#22d3ee">3</div><div class="stat-label" data-i18n="stat_languages">Languages<br>ZH · EN · DE</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--orange)">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--pink)">4</div><div class="stat-label" data-i18n="stat_edu_systems">Education Systems<br>DE · UK · US · CN</div></div>
     <div class="stat"><div class="stat-num" style="color:var(--yellow)">19</div><div class="stat-label" data-i18n="stat_gold_labels">Models<span class="stats-sub">19-model benchmark</span></div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--green)">0.939</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1<br>qwen-plus</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)<br>qwen-plus</div></div>
   </div>
   <div class="ctas">
     <a href="#finding-a" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none">Explore Findings →</a>
@@ -258,7 +258,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="contrib-card">
       <div class="num">1</div>
       <h3 data-i18n="contrib1_title">A multilingual STEM knowledge graph</h3>
-      <p data-i18n="contrib1_desc">1,160+ concepts and 4,100+ relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (F1 = 0.939).</p>
+      <p data-i18n="contrib1_desc">1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).</p>
     </div>
     <div class="contrib-card">
       <div class="num">2</div>
@@ -288,8 +288,8 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 %%{init:{'theme':'dark','themeVariables':{'primaryColor':'#1e293b','primaryTextColor':'#e2e8f0','primaryBorderColor':'#2d3a50','lineColor':'#60a5fa','secondaryColor':'#111827','tertiaryColor':'#1a2332'}}}%%
 graph LR
     T1[180+ Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
-    MIMO --> KG[Knowledge Graph<br/>1,160+ Concepts · 4,100+ Relations]
-    GL[92 Gold Labels<br/>F1 = 0.939] -.->|Validate| KG
+    MIMO --> KG[Knowledge Graph<br/>1,140+ Concepts · 1,100+ Relations]
+      GL[92 Gold Labels<br/>F1 = 0.939 social / 0.881 weighted] -.->|Validate| KG
     KG --> CDS[CDS: Concept Density]
     KG --> HDS[HDS: Hierarchy Depth]
     KG --> LDS[LDS: Language Divergence]
@@ -435,14 +435,14 @@ graph LR
 </section>
 <section id="finding-e" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--purple)">
-    <h3><i class="bi bi-people" style="color:var(--purple)"></i> <span data-i18n="finding_e_title">Finding E: Human validation confirms language-driven cognitive divergence</span></h3>
-    <div class="lead" data-i18n="finding_e_sub">Real participants show the same cross-language pattern as aggregated corpora — but with smaller magnitude, confirming education amplifies language-specific organization.</div>
-    <p data-i18n="finding_e_body">We collected 101 open-ended responses from N=8 multilingual participants (ZH, DE, EN native speakers) across 5 social topics. Extraction via qwen-plus (F1=0.939 validated on 92 gold labels) achieved 89% coverage. Within-subject DE-EN LDS averaged 0.773, with bilingual participants using completely different concept sets in each language. Between-subject group LDS: DE–ZH 0.751, DE–EN 0.727, ZH–EN 0.704. The rank order matches the Wikipedia corpus exactly (DE–ZH > DE–EN > ZH–EN), while a computational baseline of 300 simulated responses yields significantly lower LDS (0.647, p=0.050).</p>
+    <h3><i class="bi bi-people" style="color:var(--purple)"></i> <span data-i18n="finding_e_title">Finding E: N=15 falsifies ΔLDS > 0 between-subject — language signal needs within-subject design</span></h3>
+    <div class="lead" data-i18n="finding_e_sub">Extended human study (N=15) lands on the split-half floor: between-subject designs cannot separate language from participant variance. LLM within-subject (§5) shows the signal clearly.</div>
+    <p data-i18n="finding_e_body">Extended study (6 DE · 6 ZH · 3 EN): concept-level LDS-C is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level ΔLDS ≈ 0 (−0.05…+0.05); relation-level Δ is not comparable across sparsity regimes. Pilot N=8 values (0.70–0.75) were not replicated and are reported for transparency only. The earlier human-vs-simulation comparison (p=0.05) is withdrawn (measurement-scale drift).</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.773</div><div class="ev-label" data-i18n="finding_e_ev1">🧑 Within-subject DE–EN</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.751</div><div class="ev-label" data-i18n="finding_e_ev2">🌍 Between DE–ZH</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.727</div><div class="ev-label" data-i18n="finding_e_ev3">🌍 Between DE–EN</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.704</div><div class="ev-label" data-i18n="finding_e_ev4">🌍 Between ZH–EN</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.93–0.96</div><div class="ev-label" data-i18n="finding_e_ev1">🧑 Human LDS-C (N=15)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.92–0.96</div><div class="ev-label" data-i18n="finding_e_ev2">🌍 Split-half floor</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">≈0</div><div class="ev-label" data-i18n="finding_e_ev3">🌍 Concept ΔLDS</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">+0.08–0.09</div><div class="ev-label" data-i18n="finding_e_ev4">🌍 LLM within-subject margin</div></div>
     </div>
     <div class="table-container" style="margin:16px 0;overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:.85rem">
@@ -457,21 +457,21 @@ graph LR
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Human (Within)</strong></td>
-            <td style="padding:8px 12px;text-align:center">—</td>
-            <td style="padding:8px 12px;text-align:center"><strong>0.773</strong></td>
-            <td style="padding:8px 12px;text-align:center">—</td>
-            <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
+            <td style="padding:8px 12px"><strong>Human N=15 (Between)</strong></td>
+            <td style="padding:8px 12px;text-align:center"><strong>0.93–0.96</strong></td>
+            <td style="padding:8px 12px;text-align:center">0.93–0.96</td>
+            <td style="padding:8px 12px;text-align:center">0.93–0.96</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--orange)">≈ floor</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Human (Between)</strong></td>
-            <td style="padding:8px 12px;text-align:center"><strong>0.751</strong></td>
-            <td style="padding:8px 12px;text-align:center">0.727</td>
-            <td style="padding:8px 12px;text-align:center">0.704</td>
-            <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
+            <td style="padding:8px 12px"><strong>LLM Within-Subject</strong></td>
+            <td style="padding:8px 12px;text-align:center"><strong>≫ floor (+0.08–0.09)</strong></td>
+            <td style="padding:8px 12px;text-align:center">≫ floor</td>
+            <td style="padding:8px 12px;text-align:center">≫ floor</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--green)">signal</td>
           </tr>
           <tr>
-            <td style="padding:8px 12px"><strong>Wikipedia Corpus</strong></td>
+            <td style="padding:8px 12px"><strong>Textbook LDS-K</strong></td>
             <td style="padding:8px 12px;text-align:center"><strong>0.519</strong></td>
             <td style="padding:8px 12px;text-align:center">0.938</td>
             <td style="padding:8px 12px;text-align:center">0.934</td>
@@ -482,23 +482,23 @@ graph LR
             <td style="padding:8px 12px;text-align:center">0.646</td>
             <td style="padding:8px 12px;text-align:center">0.655</td>
             <td style="padding:8px 12px;text-align:center">0.640</td>
-            <td style="padding:8px 12px;text-align:center;color:var(--orange)">flat</td>
+            <td style="padding:8px 12px;text-align:center;color:var(--orange)">withdrawn*</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
-      <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">Human LDS rank order (DE-ZH > DE-EN > ZH-EN) differs from textbook LDS-K — cognitive and institutional divergence are distinct phenomena.</span><br>
-      <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05). The DE-ZH case shows highest cognitive divergence (0.751) at lowest textbook divergence (0.519).</span>
+      <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">N=15 falsifies ΔLDS > 0 between-subject: human LDS-C ≈ split-half floor — between-subject designs cannot separate language from participant variance.</span><br>
+      <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Concept-level ΔLDS ≈ 0; LLM within-subject margin (+0.08–0.09) shows the signal exists — earlier simulation comparison withdrawn.</span>
     </p>
-    <div class="meta"><span class="tag tag-purple" data-i18n="finding_e_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_e_tag2">F11, F12</span> <span class="tag tag-green" data-i18n="finding_e_tag3">N=8 participants, 300 simulation</span></div>
+    <div class="meta"><span class="tag tag-purple" data-i18n="finding_e_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_e_tag2">F11, F12</span> <span class="tag tag-green" data-i18n="finding_e_tag3">N=15 participants, 300 simulation (exploratory)</span></div>
   </div>
 </section>
 
 <!-- ==================== COGNITIVESPACE ==================== -->
 <section id="cognitivespace" class="fade-in" style="text-align:center">
   <h2 class="section-title" data-i18n="section_cognitivespace">Interactive CognitiveSpace</h2>
-  <p class="section-sub" data-i18n="cognitivespace_sub">Explore 1,160+ concepts in an interactive 3D knowledge graph</p>
+  <p class="section-sub" data-i18n="cognitivespace_sub">Explore 1,140+ concepts in an interactive 3D knowledge graph</p>
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:24px">
     <div style="position:relative;padding-bottom:56.25%;background:var(--surface)">
@@ -508,7 +508,7 @@ graph LR
   <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="../index.html" target="_blank" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none"><i class="bi bi-boxes"></i> Open Full Screen</a>
-    <span style="padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text2)"><i class="bi bi-database"></i> 574 nodes · 3,538 links · 3 languages</span>
+    <span style="padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text2)"><i class="bi bi-database"></i> 556 nodes · 525 links · 3 languages</span>
   </div>
 </section>
 
@@ -615,7 +615,7 @@ graph LR
           <tbody>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong>Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939</td><td style="padding:8px 10px;text-align:center">72</td></tr>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong>Mathematics</strong></td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.857</td><td style="padding:8px 10px;text-align:center;color:var(--yellow)">0.506</td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.711</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.674</td><td style="padding:8px 10px;text-align:center">20</td></tr>
-            <tr style="border-top:1px solid var(--border);background:rgba(96,165,250,.06)"><td style="padding:8px 10px"><strong>All</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.939</td><td style="padding:8px 10px;text-align:center">92</td></tr>
+            <tr style="border-top:1px solid var(--border);background:rgba(96,165,250,.06)"><td style="padding:8px 10px"><strong>All (weighted)</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.951</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.842</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.844</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.881</td><td style="padding:8px 10px;text-align:center">92</td></tr>
           </tbody>
         </table>
       </div>
@@ -685,7 +685,7 @@ graph LR
       <i class="bi bi-database" style="font-size:2.2rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Datasets</h3>
       <p>All knowledge graphs, curriculum alignments, gold annotations and benchmark results.</p>
-      <div class="meta">1160+ concepts · 4100+ relations · 92 gold labels</div>
+      <div class="meta">1140+ concepts · 1100+ direct relations · 92 gold labels</div>
     </a>
     <a href="../docs/paper/01_abstract_introduction.md" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
@@ -889,7 +889,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Three structural metrics for knowledge organization',
     contrib3_title: 'Curriculum coverage analysis framework',
     contrib4_title: 'Empirical findings across 4 education systems',
-    contrib1_desc: '1,160+ concepts and 4,100+ relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (F1 = 0.939).',
+    contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings_title: 'Findings',
     section_findings: 'Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals',
@@ -904,8 +904,8 @@ const TRANSLATIONS = {
     fig4_caption: 'Fig 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Curriculum alignment varies dramatically by governance',
     finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). China shows near-perfect alignment under centralized curriculum; NRW and US reflect local adaptation.',
-    finding_e_title: 'Human data isolates the language signal',
-    finding_e_sub: 'Finding E — Human LDS-C (DE-ZH=0.751, DE-EN=0.727, ZH-EN=0.704) shows different rank order from LDS-K. The DE-ZH case is critical: highest cognitive divergence meets lowest textbook divergence, confirming ΔLDS isolates language effects.',
+    finding_e_title: 'N=15 falsifies delta-LDS between-subject',
+    finding_e_sub: 'Finding E — N=15 lands on the split-half floor (LDS-C 0.93–0.96 ≈ floor 0.92–0.96): between-subject designs cannot separate language from participant variance. LLM within-subject shows the signal (margin +0.08–0.09).',
     section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
     curr_nrw_title: 'NRW (Germany) — Local Adaptation Model',
     curr_nrw_desc: 'Coverage is lowest (12.7%). Per-track detailed specifications (Gymnasium, Gesamtschule, Realschule) produce fragmented alignment. German textbooks exercise significant autonomy from curriculum.',
@@ -934,7 +934,7 @@ const TRANSLATIONS = {
     openscience_contact: 'Get in Touch', openscience_contact_desc: 'Questions, feedback, collaborations',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: 'Interactive CognitiveSpace',
-    cognitivespace_sub: 'Explore 1,160+ concepts in an interactive 3D knowledge graph',
+    cognitivespace_sub: 'Explore 1,140+ concepts in an interactive 3D knowledge graph',
     curr_explanations_title: 'Three competing explanations',
     finding_a_body: 'Mathematics peaks at middle school (CDS = 0.271). Physics peaks at elementary school (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics.',
     finding_a_body2: 'This contradicts the natural assumption that "more advanced knowledge is more densely connected." Instead, curricula are designed to maximize connection density during foundational stages (early integration) before branching into specialization (later differentiation).',
@@ -979,16 +979,16 @@ const TRANSLATIONS = {
     finding_d_tag1: 'Metric: CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systems: DE, UK, US, CN',
-    finding_e_body: 'We collected 101 open-ended responses from N=8 multilingual participants (ZH, DE, EN native speakers) across 5 social topics. Extraction via qwen-plus (F1=0.939 validated on 92 gold labels) achieved 89% coverage. Within-subject DE-EN LDS averaged 0.773, with bilingual participants using completely different concept sets in each language. Between-subject group LDS: DE–ZH 0.751, DE–EN 0.727, ZH–EN 0.704. The rank order matches the Wikipedia corpus exactly (DE–ZH > DE–EN > ZH–EN), while a computational baseline of 300 simulated responses yields significantly lower LDS (0.647, p=0.050).',
-    finding_e_ev1: 'Within-subject DE-EN',
-    finding_e_ev2: 'Between DE-ZH',
-    finding_e_ev3: 'Between DE-EN',
-    finding_e_ev4: 'Between ZH-EN',
-    finding_e_f11: 'Human LDS rank order matches Wikipedia corpus (DE–ZH > DE–EN > ZH–EN), validating the metric at the individual cognitive level.',
-    finding_e_f12: 'Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05), confirming divergence is not random variation.',
+    finding_e_body: 'Extended study (6 DE, 6 ZH, 3 EN): concept-level LDS-C is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level delta-LDS is approximately 0. Pilot N=8 values were not replicated. The earlier simulation comparison (p=0.05) is withdrawn.',
+    finding_e_ev1: 'Human LDS-C (N=15)',
+    finding_e_ev2: 'Split-half floor',
+    finding_e_ev3: 'Concept delta-LDS',
+    finding_e_ev4: 'LLM within-subject margin',
+    finding_e_f11: 'N=15 falsifies delta-LDS greater than 0 between-subject: human LDS-C is approximately at split-half floor.',
+    finding_e_f12: 'Concept-level delta-LDS approx 0; LLM within-subject margin (+0.08–0.09) shows the signal exists — earlier simulation comparison withdrawn.',
     finding_e_tag1: 'Metric: LDS',
     finding_e_tag2: 'F11, F12',
-    finding_e_tag3: 'N=8 participants, 300 simulation',
+    finding_e_tag3: 'N=15 participants, 300 simulation (exploratory)',
     e_tbl_level: 'Level',
     e_tbl_order: 'Rank Order',
     e_tbl_within: 'Human (Within)',
@@ -1027,7 +1027,7 @@ const TRANSLATIONS = {
     paper_cite_title: 'Cite this work',
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
-    cognitivespace_meta: '574 nodes · 3,538 links · 3 languages',
+    cognitivespace_meta: '556 nodes · 525 links · 3 languages',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
     footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
@@ -1090,16 +1090,16 @@ const TRANSLATIONS = {
     finding_d_tag1: 'Metrik: CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systeme: DE, UK, US, CN',
-    finding_e_body: 'Wir sammelten 101 offene Antworten von N=8 mehrsprachigen Teilnehmern (ZH, DE, EN) zu 5 Sozialthemen. Extraktion via qwen-plus (F1=0,939) erreichte 89% Abdeckung. Innerhalb der Probanden DE-EN LDS im Mittel 0,773. Zwischen Gruppen: DE–ZH 0,751, DE–EN 0,727, ZH–EN 0,704.',
-    finding_e_ev1: 'Innerhalb DE-EN',
-    finding_e_ev2: 'Zwischen DE-ZH',
-    finding_e_ev3: 'Zwischen DE-EN',
-    finding_e_ev4: 'Zwischen ZH-EN',
-    finding_e_f11: 'Menschliche LDS-Reihenfolge (DE-ZH > DE-EN > ZH-EN) unterscheidet sich von Textbook-LDS-K — kognitive und institutionelle Divergenz sind unterschiedliche Phänomene.',
-    finding_e_f12: 'Menschliche LDS (0.727) übersteigt Simulationsbasislinie (0.647, p=0.05). DE-ZH: höchste kognitive Divergenz (0.751) bei niedrigster Textbuchdivergenz (0.519).',
+    finding_e_body: 'Erweiterte Studie (6 DE, 6 ZH, 3 EN): Konzept-LDS-C 0,93–0,96 — nicht unterscheidbar vom Within-Language-Split-Half-Boden (0,92–0,96) und Label-Permutation (0,94). Konzept-delta-LDS ≈ 0. Pilot N=8 nicht repliziert. Früherer Simulationsvergleich (p=0,05) zurückgezogen.',
+    finding_e_ev1: 'Human-LDS-C (N=15)',
+    finding_e_ev2: 'Split-Half-Boden',
+    finding_e_ev3: 'Konzept-delta-LDS',
+    finding_e_ev4: 'LLM-Within-Marge',
+    finding_e_f11: 'N=15 falsifiziert delta-LDS größer 0 between-subject: Human-LDS-C ≈ Split-Half-Boden.',
+    finding_e_f12: 'Konzept-delta-LDS ≈ 0; LLM-Within-Marge (+0,08–0,09) zeigt Signal — früherer Simulationsvergleich zurückgezogen.',
     finding_e_tag1: 'Metrik: LDS',
     finding_e_tag2: 'F11, F12',
-    finding_e_tag3: 'N=8 Teilnehmer, 300 Simulationen',
+    finding_e_tag3: 'N=15 Teilnehmer, 300 Simulationen (explorativ)',
     e_tbl_level: 'Ebene',
     e_tbl_order: 'Reihenfolge',
     e_tbl_within: 'Mensch (Innerhalb)',
@@ -1138,7 +1138,7 @@ const TRANSLATIONS = {
     paper_cite_title: 'Diese Arbeit zitieren',
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Filtern Sie nach Sprache oder Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
-    cognitivespace_meta: '574 Knoten · 3.538 Verbindungen · 3 Sprachen',
+    cognitivespace_meta: '556 Knoten · 525 Verbindungen · 3 Sprachen',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
     footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
@@ -1188,8 +1188,8 @@ const TRANSLATIONS = {
     fig4_caption: 'Abb. 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
     finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). China zeigt nahezu perfekte Abstimmung unter einem zentralisierten Lehrplan; NRW und USA spiegeln lokale Anpassung wider.',
-    finding_e_title: 'Humanvalidierung bestätigt sprachbedingte kognitive Divergenz',
-    finding_e_sub: 'Erkenntnis E — Echte Probanden zeigen dasselbe sprachübergreifende Muster wie aggregierte Korpora, jedoch mit geringerer Magnitude.',
+    finding_e_title: 'N=15 falsifiziert delta-LDS between-subject',
+    finding_e_sub: 'Erkenntnis E — N=15 landet auf dem Split-Half-Boden: Between-Subject-Designs trennen Sprache nicht von Teilnehmervarianz. LLM-Within-Subject zeigt das Signal.',
     section_curriculum: 'Lehrplananalyse', curriculum_sub: 'Wie vier Bildungssysteme ihre Lehrpläne mit Lehrbuchinhalten abgleichen',
     curr_nrw_title: 'NRW (Deutschland) — Spezialisierungsmodell',
     curr_nrw_desc: 'Niedrige Abdeckung (12,7%). Lehrkräfte haben erhebliche curriculare Freiheit — sie wählen aus dem Lehrplan aus, anstatt alles abzudecken. Spiegelbild einer Spezialisierungsphilosophie.',
@@ -1218,7 +1218,7 @@ const TRANSLATIONS = {
     openscience_contact: 'Kontakt', openscience_contact_desc: 'Fragen, Feedback, Kooperationen',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: 'Interaktiver CognitiveSpace',
-    cognitivespace_sub: 'Erkunden Sie 1.160+ Konzepte in einem interaktiven 3D-Wissensgraphen',
+    cognitivespace_sub: 'Erkunden Sie 1.140+ Konzepte in einem interaktiven 3D-Wissensgraphen',
     curr_explanations_title: 'Drei konkurrierende Erklärungen',
     contrib2_desc: 'CDS (Konzeptdichte), HDS (Hierarchietiefe) und LDS (Sprachabdrift) quantifizieren, wie Wissen ueber Sprachen und Disziplinen hinweg verbunden, angeordnet und strukturiert ist.',
     contrib3_desc: 'Der Coverage Score misst die Lehrplanabdeckung ueber vier Bildungssysteme (DE, UK, US, CN) und zeigt systematische Unterschiede.',
@@ -1253,7 +1253,7 @@ const TRANSLATIONS = {
     contrib2_title: '知识组织的三项结构指标',
     contrib3_title: '课程覆盖分析框架',
     contrib4_title: '跨四个教育体系的实证发现',
-    contrib1_desc: '1,160+ 个概念和 4,100+ 条关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（F1 = 0.939）。',
+    contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939；加权总体 0.881）。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings_title: '研究发现',
     section_findings: '关于知识如何在学科、语言、教育体系和个人之间组织的五项结构性发现',
@@ -1296,9 +1296,9 @@ const TRANSLATIONS = {
     openscience_contact: '联系我们', openscience_contact_desc: '问题、反馈、合作',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: '交互式 CognitiveSpace',
-    cognitivespace_sub: '在交互式 3D 知识图谱中探索 1,160+ 个概念',
+    cognitivespace_sub: '在交互式 3D 知识图谱中探索 1,140+ 个概念',
         finding_e_title: '人类验证确认语言驱动的认知差异',
-    finding_e_sub: '发现 E — 真实参与者显示出与聚合语料库相同的跨语言模式，但幅度更小，确认教育放大了语言特定的组织方式。',
+    finding_e_sub: '发现 E — N=15 落在 split-half 底线上：被试间设计无法分离语言与个体差异。LLM 被试内实验显示信号清晰。',
 curr_explanations_title: '三种竞争性解释',
     finding_a_body: '数学在初中达到峰值（CDS = 0.271）。物理在小学达到峰值（CDS = 0.222）。化学也在初中达到峰值（CDS = 0.042）。峰值之后，密度急剧下降——数学从初中到高中下降了 3.7 倍。',
     finding_a_body2: '这与更高级的知识连接更密集的自然假设相反。课程设计旨在基础阶段最大化连接密度（早期整合），然后在进入专业化后分化。',
@@ -1343,16 +1343,16 @@ curr_explanations_title: '三种竞争性解释',
     finding_d_tag1: '指标：CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: '体系：DE, UK, US, CN',
-    finding_e_body: '我们从 N=8 位多语参与者（ZH, DE, EN 母语者）中收集了 101 份开放式回答，涵盖 5 个社会议题。通过 qwen-plus 提取（F1=0.939，在 92 个黄金标签上验证）实现了 89% 的覆盖率。受试者内 DE-EN LDS 平均为 0.773，双语参与者在每种语言中使用完全不同的概念集。组间 LDS：DE–ZH 0.751，DE–EN 0.727，ZH–EN 0.704。排序与维基百科语料库完全一致（DE–ZH > DE–EN > ZH–EN），而 300 个仿真基线产生的 LDS 明显更低（0.647, p=0.050）。',
-    finding_e_ev1: '受试者内 DE-EN',
-    finding_e_ev2: '组间 DE-ZH',
-    finding_e_ev3: '组间 DE-EN',
-    finding_e_ev4: '组间 ZH-EN',
-    finding_e_f11: '人类 LDS 排序（DE-ZH > DE-EN > ZH-EN）与教材 LDS-K 不同——认知和制度分歧是不同的现象。',
-    finding_e_f12: '人类 LDS（0.727）超过仿真基线（0.647, p=0.05）。DE-ZH 情况最显著：最高认知分歧（0.751）伴随最低教材分歧（0.519）。',
+    finding_e_body: '扩展研究（6 德、6 中、3 英）：概念层 LDS-C 为 0.93–0.96——与语言内 split-half 底线（0.92–0.96）及标签置换（0.94）不可区分。概念层 delta-LDS 约为 0。N=8 试点未被复制。早期仿真比较（p=0.05）已撤回。',
+    finding_e_ev1: '人类 LDS-C（N=15）',
+    finding_e_ev2: 'split-half 底线',
+    finding_e_ev3: '概念 delta-LDS',
+    finding_e_ev4: 'LLM 被试内边际',
+    finding_e_f11: 'N=15 在被试间设计下证伪 delta-LDS 大于 0。',
+    finding_e_f12: '概念层 delta-LDS 约为 0；LLM 被试内边际（+0.08–0.09）显示信号存在——早期仿真比较已撤回。',
     finding_e_tag1: '指标：LDS',
     finding_e_tag2: 'F11, F12',
-    finding_e_tag3: 'N=8 参与者，300 仿真',
+    finding_e_tag3: 'N=15 参与者，300 仿真（探索性）',
     e_tbl_level: '级别',
     e_tbl_order: '排序',
     e_tbl_within: '人类（受试者内）',
@@ -1391,7 +1391,7 @@ curr_explanations_title: '三种竞争性解释',
     paper_cite_title: '引用本作品',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。按语言或学科筛选。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
-    cognitivespace_meta: '574 个节点 · 3,538 条链接 · 3 种语言',
+    cognitivespace_meta: '556 个节点 · 525 条链接 · 3 种语言',
     footer_brand: 'LinguaGraph',
     footer_desc: '跨语言知识结构分析框架',
     footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',

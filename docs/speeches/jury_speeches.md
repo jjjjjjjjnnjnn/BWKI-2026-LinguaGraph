@@ -34,7 +34,7 @@ Die Frage dahinter ist uralt — die Sapir-Whorf-Hypothese: Beeinflusst Sprache 
 
 "LinguaGraph besteht aus zwei Teilen:
 
-Erstens: Ein **AI-gestützter Wissensgraph** aus 68 Mathematik-Lehrbüchern — 45 aus China, 20 aus England/Amerika, 10 aus Deutschland. Eine KI extrahiert automatisch Konzepte wie 'Ableitung' oder 'Grenzwert' und ihre Beziehungen zueinander. Das Ergebnis: 574 Konzepte, 3.538 Relationen — dreisprachig, über vier Bildungsstufen hinweg, von der Grundschule bis zur Universität.
+Erstens: Ein **AI-gestützter Wissensgraph** aus 68 Mathematik-Lehrbüchern — 39 aus China, 18 aus England/Amerika, 11 aus Deutschland. Eine KI extrahiert automatisch Konzepte wie 'Ableitung' oder 'Grenzwert' und ihre Beziehungen zueinander. Das Ergebnis: 556 Konzepte, 525 direkte Relationen — dreisprachig, über vier Bildungsstufen hinweg, von der Grundschule bis zur Universität.
 
 Zweitens: Der **Language Drift Score (LDS)** — eine neuartige Metrik, die quantifiziert, wie stark sich Wissensstrukturen zwischen Sprachen unterscheiden."
 
@@ -104,7 +104,7 @@ Vielen Dank. Ich freue mich auf Ihre Fragen."
 - Drei Metriken: CDS (Dichte), HDS (Tiefe), LDS (Divergenz), CS (Coverage)
 
 ### Folie 5: Der Wissensgraph (60s)
-- 68 Lehrbücher, 574 Konzepte, 3.538 Relationen
+- 68 Lehrbücher, 556 Konzepte, 525 direkte Relationen
 - Vier Bildungsstufen (Grundschule → Universität)
 - Dreisprachige Kreuzvalidierung
 - Konzeptüberlappung: 43% in allen drei Sprachen abgedeckt

@@ -24,11 +24,11 @@
 | Metric | Value |
 |--------|-------|
 | Textbook corpus | 68 (45 ZH + 20 EN + 10 DE) |
-| Knowledge graph | 574 concepts · 3538 relations |
-| Trilingual alignment | 247 concepts (43%) |
+| Knowledge graph | 556 concepts · 525 direct relations (+~3000 transitive) |
+| Trilingual alignment | 219 groups (39.4%) |
 | Education levels | 4 (elementary → university) |
 | Structural conflicts | 0 |
-| Human validation | In preparation (N=30) |
+| Human validation | Extended N=15 (between-subject, ΔLDS ≈ 0) + LLM within-subject (signal +0.08–0.09) |
 
 ## 4. Deliverables
 

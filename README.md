@@ -43,11 +43,11 @@
   <img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/BWKI-2026-8A2BE2?style=flat-square" alt="BWKI 2026">
   <img src="https://img.shields.io/badge/gold_labels-92-success?style=flat-square" alt="92 Gold Labels">
-  <img src="https://img.shields.io/badge/concepts-1,160%2B-informational?style=flat-square" alt="1160+ Concepts">
+  <img src="https://img.shields.io/badge/concepts-1,140%2B-informational?style=flat-square" alt="1140+ Concepts">
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
+  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="Human Validation N=15">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
@@ -111,16 +111,16 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 |---|---------|----------|--------|
 | **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
 | **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
-| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 3,538 prerequisite relations | Mathematics is a shallow web, not a deep tree |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | 19-model benchmark, 3 API platforms, 20 labels | Knowledge-structure LDS diverges from surface-language expectations |
+| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 525 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | Direct computation on textbook graphs | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS is **topic-dependent**; **Null Model** confirms Full < Structure for all pairs | ~0.2 variation within pairs; Full LDS-K=0.73, Structure LDS-K=0.77 | Cross-language divergence varies by knowledge domain; taxonomy alone explains most variance |
 | **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 366 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
 | **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
-| **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | STEM density pattern is universal across subjects |
-| **F9** | **Coverage Score** varies dramatically across systems | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% | Educational system design fundamentally affects textbook alignment; China's centralized curriculum drives near-universal coverage |
-| **F10** | Coverage trajectories reveal **governance model** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Curriculum governance (centralized vs federal vs exam-driven) determines coverage trajectory |
-| **F11** | **Human LDS-C** rank order distinct from **LDS-K**; **ΔLDS** proposed as core metric | N=8 participants, 90 responses; 19-model benchmark | Surface (concept naming) ≠ structural (relation) divergence; gap itself is informative |
-| **F12** | Human LDS (**0.727**) exceeds simulation baseline (**0.647**, p=0.05) | 300 simulated responses, mock extraction | Divergence is genuine, not random variation |
+| **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | Consistent with, but not confirming, the cross-subject density pattern (small absolute gap 0.012, no test) |
+| **F9** | **Coverage Score** varies dramatically across systems | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% (keyword matching; granularity confound: CN 87 vs US 2124 vs NRW 299 curriculum concepts) | Measurement strong, governance attribution weak — CS gap is primarily a hypothesis (see F10) |
+| **F10** | Coverage trajectories suggest a **governance hypothesis** | UK exam-driven convergence; NRW specialization divergence; China centralized near-total alignment | Hypothesis only: centralized (CN MOE) vs federal (DE Länder/KMK) institutional context is documented (TIMSS 2023 Encyclopedia; OECD EAG 2025), but classroom-implementation chain is untested |
+| **F11** | **N=15 falsifies ΔLDS > 0 under between-subject design**; **ΔLDS** retained as metric for within-subject use | N=15 (6 DE · 6 ZH · 3 EN): LDS-C 0.93–0.96 ≈ split-half floor; pilot N=8 not replicated | Between-subject designs cannot separate language from participant variance; within-subject design required |
+| **F12** | Concept-level **ΔLDS ≈ 0** (−0.05…+0.05); relation-level Δ not comparable | N=15 + LLM within-subject (LDS-C ≫ floor +0.08–0.09) | Language signal exists within-subject (LLM), absent between-subject (human) — design artefact, not proof of no effect; earlier sim comparison withdrawn |
 
 ---
 
@@ -128,10 +128,12 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 | Subject | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 366 | 383 | 94 editions | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 18 editions | ZH/EN/DE | NRW 36% |
-| **Total** | **1,160+** | **4,100+** | **180+** | **3 languages** | **4 educational systems** |
+| **Total** | **1,140+** | **1,100+ direct** | **180+** | **3 languages** | **4 educational systems** |
+
+> SSOT: math-graph counts from `manifest.json` (556 nodes / 525 direct relations / 219 trilingual groups). Physics/chemistry counts from legacy pipelines (see `docs/review/rnd_project_review_20260811.md` §7).
 
 ---
 
@@ -143,20 +145,20 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
 | **Social concepts** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |
 | **Mathematics** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |
-| **All** | **0.974** | **0.949** | **0.882** | **0.939** | **92** |
+| **All (weighted)** | 0.951 | 0.842 | 0.844 | **0.881** | **92** |
+
+> Overall = weighted mean over domains ((72×0.939+20×0.674)/92≈0.881). The headline 0.939 applies to the social subset only.
 
 > Error analysis: 29% of errors are from very short responses (1-2 words); 40% from partial omissions. No systematic misdirection.
 
-**🧑 Human Validation Study (N=8)**
-- 101 responses from ZH/DE/EN native speakers across 5 social topics
-- Within-subject DE-EN LDS-C: **0.773** (same person, different language, different concepts)
-- Between-subject LDS-C rank order: **DE–ZH (0.751) > DE–EN (0.727) > ZH–EN (0.704)**
-- Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — structure-level divergence shows a different pattern from concept-level
+**🧑 Human Validation Study (N=15 extended; N=8 pilot not replicated)**
+- Extended study (6 DE · 6 ZH · 3 EN): concept-level LDS-C **0.93–0.96 ≈ within-language split-half floor (0.92–0.96) ≈ label permutation (0.94)** — no separable language signal under between-subject design; **ΔLDS ≈ 0** (−0.05…+0.05, concept level; relation-level Δ not comparable across sparsity regimes)
+- Pilot N=8 values (0.70–0.75, rank DE–ZH > DE–EN > ZH–EN) **not replicated** by N=15 — reported for transparency only
+- Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — but see Null Model: LDS-K does not measure language divergence
 
-**🤖 Simulation Baseline (300 responses)**
-- Mean simulated LDS-C: **0.647** (SD=0.086)
-- **Human LDS-C (0.727) > Simulation LDS-C (0.647)**, p=0.05
-- Confirms cross-language divergence exceeds random expectation
+**🤖 Simulation Baseline (300 responses, exploratory)**
+- Mean simulated LDS-C: **0.647** (mock keyword extraction — not comparable to qwen-plus extraction; descriptive only, no p-value)
+- The earlier human-vs-simulation comparison (p=0.05) is **withdrawn**: measurement-scale drift makes it invalid (see `docs/paper/04_discussion.md` §8.11–8.12)
 
 **🧪 Null Model (Structure vs Full Graphs)**
 - Full knowledge-graph LDS-K: **0.73** (mean across all pairs)
@@ -252,7 +254,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 Model Benchmark
 
-19 models tested across 3 API platforms (Bailian, OpenRouter, LM Studio) on identical 20 gold labels (20 social + 20 math), F1 range 0.55–0.67 — best results shown below:
+**51 measurements (47 unique models)** across DashScope (43) and zen/OpenRouter (8) on the identical P1 protocol (3 languages × k=10), plus the 19-model extraction benchmark (F1 range 0.55–0.67) — best extraction results shown below. Replication: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json); all 51 ZH–DE pairs significant (p<0.05), 8 English-involved pairs not (all EN-related, mostly R1/Distill).
 
 | Model | Domain | ZH F1 | DE F1 | EN F1 | Speed |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|

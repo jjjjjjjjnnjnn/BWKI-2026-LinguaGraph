@@ -122,7 +122,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 
 | Finding | Evidence |
 |---------|----------|
-| **F1:** CDS peaks at Middle school (0.271) | ZH/EN/DE independent verification, 574 concepts |
+| **F1:** CDS peaks at Middle school (0.271) | ZH/EN/DE independent verification, 556 concepts |
 | **F2:** Middle → High density drops 3.7× | 0.271 → 0.073 |
 | **F6:** Physics peaks at Elementary (0.222) | Same peak-and-decline pattern |
 | **F8:** Chemistry also peaks at Middle (0.042) | Universal STEM density pattern |

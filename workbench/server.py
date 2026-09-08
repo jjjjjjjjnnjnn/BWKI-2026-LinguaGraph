@@ -76,7 +76,7 @@ def serve_viz(job_id, filename):
 
 @app.route("/demo")
 def demo():
-    """Load the pre-computed CognitiveSpace with 574 concepts."""
+    """Load the pre-computed CognitiveSpace with 556 concepts."""
     return redirect("/cognitive-space/web/index.html")
 
 

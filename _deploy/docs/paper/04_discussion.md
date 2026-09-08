@@ -1,202 +1,236 @@
-## 4. Discussion
+## 8. Diskussion
 
-### 4.1 Summary of Findings
+### 8.1 Zusammenfassung der Ergebnisse
 
-This study introduced LinguaGraph, a knowledge graph-based framework for analyzing how mathematical knowledge is organized across languages (Chinese, German, English), education levels (elementary through university), and most recently, disciplines (mathematics versus physics). Seven findings emerged:
+Diese Studie führte LinguaGraph ein, ein wissensgraphbasiertes Rahmenwerk zur Analyse, wie mathematisches Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Bildungsstufen (Grundschule bis Universität) und zuletzt auch Disziplinen (Mathematik vs. Physik) hinweg organisiert ist. Zwölf zentrale Befunde ergaben sich (F11 und F12 wurden auf Basis der erweiterten N=15-Humanvalidierung revidiert):
 
-| # | Finding | Evidence |
-|---|---------|----------|
-| F1 | CDS peaks at Middle school (0.271), not Elementary | Non-monotonic density pattern |
-| F2 | 3.7× density drop from Middle to High school | CDS 0.271 → 0.073; concept count 4.2× increase |
-| F3 | HDS ≤ 8 (mean 0.40); 83% of concepts are roots | Mathematics is a shallow web, not a deep tree |
-| F4 | Textbook LDS-K varies widely (0.519 ZH-DE to 0.938 DE-EN) | Structure-dominated, not language-driven |
-| F5 | Null Model falsifies LDS-K as language metric: Full < Structure Null | Degree distribution dominates; ΔLDS is core |
-| F6 | Different disciplines exhibit different CDS patterns | Math peaks at Middle; Physics peaks at Elementary |
-| F7 | Physics has deeper prerequisite chains (HDS mean 0.85 vs 0.40) | Physics knowledge is more cumulative |
-| F8 | Chemistry CDS also peaks at Middle school (0.042) | Consistent with "integrate-early, diverge-late" pattern |
-| F9 | Coverage scores vary dramatically across education systems (12.7–95.4 %) | Curriculum design philosophy drives differences |
-| F10 | China shows near-perfect alignment (95.4%); NRW lowest (12.7%) | Centralized vs. federal system feature |
-| **F11** | **Human LDS rank order is consistent: DE-ZH > DE-EN > ZH-EN** | **Consistent across individual and textbook levels** |
-| **F12** | **Human LDS (0.727) exceeds simulation baseline (0.647, p=0.05)** | **Divergence is not random variation** |
+| # | Befund | Evidenz |
+|---|--------|----------|
+| F1 | CDS erreicht Spitze in der Mittelstufe (0,271), nicht in der Grundschule | Nicht-monotonisches Dichtemuster |
+| F2 | 3,7-facher Dichteabfall von der Mittel- zur Oberstufe | CDS 0,271 → 0,073; Konzeptanzahl 4,2-facher Anstieg |
+| F3 | HDS ≤ 8 (Mittelwert 0,40); 83 % der Konzepte sind Wurzeln | Mathematik ist ein flaches Netz, kein tiefer Baum |
+| F4 | Lehrbuch-LDS-K variiert stark (0,519 ZH-DE bis 0,938 DE-EN) | Strukturdominiert, nicht sprachgetrieben |
+| F5 | Nullmodell falsifiziert LDS-K als Sprachmetrik: Voll < Struktur-Null | Gradverteilung dominiert; ΔLDS ist zentral |
+| F6 | Verschiedene Disziplinen zeigen verschiedene CDS-Muster | Mathematik Spitze in Mittelstufe; Physik Spitze in Grundschule |
+| F7 | Physik weist tiefere Voraussetzungsketten auf (HDS-Mittel 0,85 vs. 0,40) | Physikalisches Wissen ist stärker kumulativ |
+| F8 | Chemie-CDS erreicht ebenfalls Spitze in der Mittelstufe (0,042) | Konsistent mit „Integriere früh, trenne spät“-Muster |
+| F9 | Coverage-Scores variieren drastisch zwischen Bildungssystemen (12,7–95,4 %) | Lehrplandesign-Philosophie treibt Unterschiede |
+| F10 | China zeigt nahezu perfekte Übereinstimmung (95,4 %); NRW am niedrigsten (12,7 %) | Zentralisiertes vs. föderales Systemmerkmal |
+| **F11** | **Falsifiziert (N=15):** LDS-C auf Konzeptebene (0.93–0.96) ist nicht von Teilnehmervariabilität unterscheidbar (Split-Half-Boden 0.92–0.96; Label-Permutation 0.94). Keine konsistente sprachspezifische Rangordnung. | Nullmodell-Suite (Within-Lang Split-Half, Label-Permutation) |
+| **F12** | **Überarbeitet (N=15):** Der Unterschied zur Simulationsbasislinie (0.647) ist ein Artefakt der Extraktions-/Alignierungsmethode (höhere LDS-Skala), nicht ein Beleg für sprachliche Kognition. LDS-C ≈ Within-Language-Null → **kein** über Zufall hinausgehendes Sprachsignal. | LDS-C ≈ Split-Half-Boden; ΔLDS ≈ 0 (−0.05 bis +0.05) |
 
-### 4.2 Interpretation of the CDS Peak
+### 8.2 Interpretation des CDS-Gipfels
 
-The finding that Concept Density Score peaks at Middle school (F1) rather than at Elementary or College warrants careful interpretation. A naive expectation might be that "more advanced knowledge is more densely connected." The data contradict this: the middle school mathematics curriculum acts as a **knowledge density hub**, where foundational arithmetic, introductory algebra, geometry, and probability concepts are tightly interconnected. This pattern is consistent with Ausubel's assimilation theory [12], which predicts that knowledge structures achieve maximum integration during periods of consolidation before branching into specialization.
+Der Befund, dass der Concept Density Score seinen Höhepunkt in der Mittelstufe erreicht (F1) und nicht in der Grund- oder Hochschule, bedarf einer sorgfältigen Interpretation. Eine naive Erwartung könnte lauten, dass „höher entwickeltes Wissen dichter vernetzt ist.“ Die Daten widersprechen dem: Der Mathematiklehrplan der Mittelstufe fungiert als **Wissensdichteknotenpunkt**, an dem grundlegende Arithmetik, einfache Algebra, Geometrie und Wahrscheinlichkeitskonzepte eng miteinander verbunden sind. Dieses Muster ist konsistent mit Ausubels Assimilationstheorie [12], die vorhersagt, dass Wissensstrukturen in Phasen der Konsolidierung vor der Aufspaltung in Spezialisierungen eine maximale Integration erreichen.
 
-The subsequent 3.7× drop from Middle to High school (F2) coincides with a 4.2× expansion in concept count, suggesting that the mathematics curriculum intentionally diversifies at this transition. This may reflect a pedagogical design principle: middle school provides an integrated foundation; high school introduces specialized subfields (calculus, vector geometry, statistics) that are taught in relative isolation before potential reintegration at the university level.
+Der anschließende 3,7-fache Abfall von der Mittel- zur Oberstufe (F2) fällt mit einer 4,2-fachen Ausweitung der Konzeptanzahl zusammen, was darauf hindeutet, dass der Mathematiklehrplan an diesem Übergang bewusst diversifiziert wird. Dies könnte ein pädagogisches Gestaltungsprinzip widerspiegeln: Die Mittelstufe vermittelt eine integrierte Grundlage; die Oberstufe führt spezialisierte Teilbereiche ein (Analysis, Vektorgeometrie, Statistik), die in relativer Isolation gelehrt werden, bevor eine mögliche Reintegration auf universitärem Niveau erfolgt.
 
-The robustness of this finding across three languages independently (ZH, EN, DE) suggests it is not an artifact of any particular textbook tradition. Rather, it may reflect a universal property of mathematics curriculum design — or at least a convergence across three distinct educational systems.
+Die Robustheit dieses Befundes über drei Sprachen hinweg (ZH, EN, DE) deutet darauf hin, dass es sich nicht um ein Artefakt einer bestimmten Lehrbuchtradition handelt. Vielmehr könnte es eine universelle Eigenschaft der mathematischen Lehrplangestaltung widerspiegeln — oder zumindest eine Konvergenz über drei unterschiedliche Bildungssysteme hinweg.
 
-### 4.3 Cross-Linguistic Structural Divergence: A Null Model Critique
+### 8.3 Sprachübergreifende strukturelle Divergenz: Eine Nullmodell-Kritik
 
-The LDS-K results (F4) reveal substantial variation across language pairs: ZH-EN=0.934, DE-EN=0.938, ZH-DE=0.519. The ZH-DE value stands out — Chinese and German textbook knowledge structures are considerably more similar (lower LDS-K) than either is to English. This immediately challenges the naive expectation that typologically distant languages (ZH-DE) would show the greatest divergence.
+Die LDS-K-Ergebnisse (F4) zeigen eine erhebliche Variation zwischen den Sprachpaaren: ZH-EN=0,934, DE-EN=0,938, ZH-DE=0,519. Der ZH-DE-Wert sticht hervor — chinesische und deutsche Lehrbuchwissensstrukturen sind beträchtlich ähnlicher (niedrigerer LDS-K) als jede von beiden im Vergleich zum Englischen. Dies stellt unmittelbar die naive Erwartung in Frage, dass typologisch entfernte Sprachen (ZH-DE) die größte Divergenz aufweisen würden.
 
-To determine whether these values represent genuine language-driven structural differences, we applied a **Null Model Suite** with four conditions:
+Um zu bestimmen, ob diese Werte echte sprachgetriebene strukturelle Unterschiede darstellen, wandten wir eine **Nullmodell-Suite** mit vier Bedingungen an:
 
-| Condition | Description | ZH-EN | DE-EN | ZH-DE |
+| Bedingung | Beschreibung | ZH-EN | DE-EN | ZH-DE |
 |:----------|-------------|:-----:|:-----:|:-----:|
-| Full (LDS-K baseline) | Real graph comparison | 0.934 | 0.938 | 0.519 |
-| Structure Null | Degree-preserving edge rewiring (×1000) | **0.957** | **0.957** | **0.717** |
-| Node-Permuted Null | Random node label reassignment | 0.934 | 0.938 | 0.519 |
-| Complete Random | Erdős–Rényi graph | 1.000 | 1.000 | 1.000 |
+| Voll (LDS-K-Baseline) | Realer Graphenvergleich | 0,934 | 0,938 | 0,519 |
+| Struktur-Null | Grad-erhaltende Kantenumordnung (×1000) | **0,957** | **0,957** | **0,717** |
+| Knotenpermutations-Null | Zufällige Neuzuweisung von Knotenbezeichnungen | 0,934 | 0,938 | 0,519 |
+| Vollständig zufällig | Erdős–Rényi-Graph | 1,000 | 1,000 | 1,000 |
 
-The critical finding: **Full LDS-K < Structure Null LDS-K for all three language pairs.** Under degree-preserving randomization (double-edge swap, 1000 iterations), the randomized graphs are systematically *more different* from each other than the real graphs are. This means textbook knowledge structures converge *more* than chance would predict — the opposite of what a language-driven divergence hypothesis would expect.
+Der entscheidende Befund: **Vollständiges LDS-K < Struktur-Null-LDS-K für alle drei Sprachpaare.** Unter grad-erhaltender Randomisierung (Doppelkantentausch, 1000 Iterationen) sind die randomisierten Graphen systematisch *unterschiedlicher* voneinander als die realen Graphen. Dies bedeutet, dass Lehrbuchwissensstrukturen *stärker* konvergieren, als der Zufall vorhersagen würde — das Gegenteil dessen, was eine sprachgetriebene Divergenzhypothese erwarten würde.
 
-This result falsifies the interpretation that LDS-K measures language-driven cognitive divergence. Instead, the high LDS-K values are dominated by **degree distribution structure** — a property shared across languages because mathematical prerequisite logic is universal. When degree distributions are preserved (Structure Null), the structural similarity drops, showing that what makes textbook graphs "similar" is their shared degree structure, not language-specific content arrangement.
+Dieses Ergebnis falsifiziert die Interpretation, dass LDS-K sprachgetriebene kognitive Divergenz misst. Stattdessen werden die hohen LDS-K-Werte von der **Gradverteilungsstruktur** dominiert — einer Eigenschaft, die sprachübergreifend geteilt wird, weil mathematische Voraussetzungslogik universell ist. Wenn die Gradverteilungen erhalten bleiben (Struktur-Null), sinkt die strukturelle Ähnlichkeit, was zeigt, dass das, was Lehrbuchgraphen „ähnlich“ macht, ihre gemeinsame Gradstruktur ist, nicht die sprachspezifische Inhaltsanordnung.
 
-The theoretical implication is significant: while mathematical truth is universal, the finding here is stronger — textbook *organizational structures* are also remarkably convergent across languages. Three distinct educational traditions (Chinese, German, English) independently produce textbook knowledge graphs whose structural properties (degree distributions, density profiles) are more similar to each other than comparable graphs with the same degree sequence would be.
+Die theoretische Implikation ist bedeutsam: Während mathematische Wahrheit universell ist, ist der hier erzielte Befund stärker — auch die *organisatorischen Strukturen* von Lehrbüchern sind sprachübergreifend bemerkenswert konvergent. Drei unterschiedliche Bildungstraditionen (Chinesisch, Deutsch, Englisch) produzieren unabhängig voneinander Lehrbuchwissensgraphen, deren strukturelle Eigenschaften (Gradverteilungen, Dichteprofile) einander ähnlicher sind als vergleichbare Graphen mit derselben Gradsequenz.
 
-This means the corpus-analysis approach (LDS-K) cannot, by itself, measure linguistic relativity effects on knowledge organization. It primarily measures **structural convergence** driven by the universal logic of mathematical prerequisites. To isolate a genuine language signal, we must move to the cognitive level — comparing how humans express knowledge in their native language — captured by ΔLDS = LDS-C − LDS-K.
+Dies bedeutet, dass der Korpusanalyse-Ansatz (LDS-K) per se keine sprachrelativistischen Effekte auf die Wissensorganisation messen kann. Er misst in erster Linie **strukturelle Konvergenz**, die von der universellen Logik mathematischer Voraussetzungen angetrieben wird. Um ein genuines Sprachsignal zu isolieren, müssen wir zur kognitiven Ebene übergehen — dem Vergleich, wie Menschen ihr Wissen in ihrer Muttersprache ausdrücken — erfasst durch ΔLDS = LDS-C − LDS-K.
 
-The pilot human data (N=8, F11) provide initial support for this shift. Human LDS-C values (DE-ZH=0.751, DE-EN=0.727, ZH-EN=0.704) are meaningfully different from LDS-K values and show a consistent rank order. The ΔLDS computation awaits N≥30 human data but represents the core scientific contribution of the framework.
+Die erweiterte Humanvalidierung (N=15, F11) liefert jedoch ein negatives Ergebnis für diese Verschiebung: Die menschlichen LDS-C-Werte (Konzeptebene ZH-EN=0,963, DE-EN=0,932, ZH-DE=0,936) liegen **nahe der Within-Language-Null** (Split-Half-Boden 0,92–0,96) und sind von Label-Permutation nicht unterscheidbar (0,94). ΔLDS ≈ 0 (−0,05 bis +0,05), nicht > 0. Damit wird die naive Hypothese „Sprache → unterschiedliche Konzeptgraphen" auf allen drei Analyseebenen (Konzept, Kategorie, Relation) falsifiziert.
 
-### 4.4 Cross-Disciplinary Validation
+### 8.4 Disziplinübergreifende Validierung
 
-The addition of Physics (F6, F7) validates that the CDS and HDS metrics capture genuine structural properties of knowledge organization, not just artifacts of the mathematics corpus. The contrasting patterns — Math peaks at Middle school, Physics peaks at Elementary — demonstrate that **knowledge organization is discipline-dependent**, with both following the same "integrate-early, diverge-late" pattern but at different educational stages.
+Die Hinzunahme der Physik (F6, F7) bestätigt, dass die CDS- und HDS-Metriken echte strukturelle Eigenschaften der Wissensorganisation erfassen und nicht lediglich Artefakte des Mathematik-Korpus darstellen. Die kontrastierenden Muster — Mathematik gipfelt in der Mittelstufe, Physik in der Grundschule — zeigen, dass **Wissensorganisation disziplinabhängig ist**, wobei beide demselben „Integriere früh, trenne spät“-Muster folgen, jedoch auf unterschiedlichen Bildungsstufen.
 
-This finding has implications for curriculum design. If mathematics and physics students experience fundamentally different knowledge density trajectories, then pedagogical strategies that work for one discipline may not transfer to the other. Mathematics education might emphasize integration early; physics education might accept that advanced-level integration is a natural part of the learning progression.
+Dieser Befund hat Implikationen für die Lehrplangestaltung. Wenn Mathematik- und Physikstudierende grundlegend unterschiedliche Wissensdichtetrajektorien durchlaufen, dann sind pädagogische Strategien, die für eine Disziplin wirken, möglicherweise nicht auf die andere übertragbar. Der Mathematikunterricht könnte frühe Integration betonen; der Physikunterricht könnte akzeptieren, dass Integration auf fortgeschrittenem Niveau ein natürlicher Bestandteil des Lernverlaufs ist.
 
-### 4.5 The Curriculum Layer
+### 8.5 Die Lehrplanebene
 
-The integration of curriculum standards (Kernlehrplan NRW, UK National Curriculum, US NGSS/CCSS) into the knowledge graph framework reveals a systematic finding: **textbook-curriculum alignment varies dramatically across educational systems**:
+Die Integration von Lehrplanstandards (Kernlehrplan NRW, UK National Curriculum, US NGSS/CCSS) in das Wissensgraphen-Rahmenwerk offenbart einen systematischen Befund: **Die Übereinstimmung zwischen Lehrbuch und Lehrplan variiert dramatisch zwischen den Bildungssystemen**:
 
-| System | Coverage Score | Pattern |
-|--------|:-------------:|---------|
-| China (CN) | 95.4% | Near-perfect alignment (centralized curriculum) |
-| England (UK) | 37.3% | Moderate; highest in secondary stages |
-| United States (US) | 17.2% | Low (broad guidelines, local variation) |
-| NRW Germany | 12.7% | Lowest (detailed per-track specifications) |
+| System | Coverage-Score | Muster |
+|--------|:-------------:|--------|
+| China (CN) | 95,4 % | Nahezu perfekte Ausrichtung (zentraler Lehrplan) |
+| England (UK) | 37,3 % | Mäßig; am höchsten in der Sekundarstufe II |
+| Vereinigte Staaten (US) | 17,2 % | Niedrig (breite Richtlinien, lokale Variation) |
+| NRW Deutschland | 12,7 % | Niedrigste (detaillierte, studiengangspezifische Vorgaben) |
 
-The Coverage Score measures **curriculum→textbook** matching: for each curriculum concept, does a corresponding concept appear in the textbook graph? The dramatic range — 12.7% (NRW) to 95.4% (CN) — reflects fundamental differences in educational governance: centralized systems produce tight alignment; federal systems with per-track specifications produce lower measurable alignment by design.
+Der Coverage-Score misst die **Lehrplan-→Lehrbuch-**Übereinstimmung: Findet sich zu jedem Lehrplankonzept ein entsprechendes Konzept im Lehrbuchgraph? Die dramatische Spanne — von 12,7 % (NRW) bis 95,4 % (CN) — spiegelt grundlegende Unterschiede in der Bildungsgovernance wider: Zentrale Systeme erzeugen enge Ausrichtung; föderale Systeme mit studiengangspezifischen Vorgaben erzeugen von Natur aus niedrigere messbare Übereinstimmung.
 
-### 4.6 Why Do Educational Systems Produce Different Knowledge Structures?
+### 8.6 Warum erzeugen Bildungssysteme unterschiedliche Wissensstrukturen?
 
-The substantial cross-system variation in Coverage Scores (12.7–95.4%) raises a question beyond measurement: **what explains these differences?** We consider three competing explanations.
+Die erhebliche systemübergreifende Variation der Coverage-Scores (12,7–95,4 %) wirft eine über die Messung hinausgehende Frage auf: **Was erklärt diese Unterschiede?** Wir betrachten drei konkurrierende Erklärungsansätze.
 
-#### Explanation A: Curriculum Granularity (Best Supported)
+#### Erklärungsansatz A: Granularität des Lehrplans (am besten gestützt)
 
-The most parsimonious explanation is that curricula differ in granularity. The NRW Kernlehrplan specifies 299 mathematics concepts across 6 stages, while the UK National Curriculum covers similar content with 397 broader descriptors. When a curriculum defines concepts at a finer granularity, each textbook concept can match fewer curriculum concepts by definition — producing lower Coverage Scores independent of actual content alignment.
+Die sparsamste Erklärung ist, dass sich Lehrpläne in ihrer Granularität unterscheiden. Der NRW-Kernlehrplan spezifiziert 299 Mathematikkonzepte über 6 Stufen, während der UK National Curriculum ähnliche Inhalte mit 397 breiteren Deskriptoren abdeckt. Wenn ein Lehrplan Konzepte in feinerer Granularität definiert, kann jedes Lehrbuchkonzept definitionsgemäß weniger Lehrplankonzepte abdecken — was niedrigere Coverage-Scores unabhängig von der tatsächlichen Übereinstimmung der Inhalte erzeugt.
 
-This is supported by the NRW per-stage pattern: coverage peaks at Sek I (grades 7-8), where the curriculum focuses on common core content, and drops at Sek II (grades 11-13), where the curriculum introduces specialized courses (Grundkurse, Leistungskurse) with finer-grained competency expectations.
+Dies wird durch das NRW-stufenweise Muster gestützt: Die Abdeckung erreicht ihren Höhepunkt in der Sek I (Klassen 7–8), wo sich der Lehrplan auf gemeinsame Kerninhalte konzentriert, und fällt in der Sek II (Klassen 11–13) ab, wo der Lehrplan spezialisierte Kurse (Grundkurse, Leistungskurse) mit feinkörnigeren Kompetenzerwartungen einführt.
 
-#### Explanation B: Educational Philosophy and Assessment Structure (Higher Interpretive Value)
+#### Erklärungsansatz B: Bildungsphilosophie und Prüfungsstruktur (höherer Interpretationswert)
 
-The UK pattern (37.3%) and US pattern (17.2%) reflect different educational philosophies. The UK National Curriculum provides a moderately prescriptive framework that textbooks align with at the secondary level. The US shows lower alignment (17.2%) consistent with broad, non-prescriptive guidelines (NGSS/CCSS) that allow local adaptation. China's near-perfect alignment (95.4%) is consistent with a centralized curriculum system where textbooks are written to explicit national standards.
+Das britische Muster (37,3 %) und das US-Muster (17,2 %) spiegeln unterschiedliche Bildungsphilosophien wider. Der UK National Curriculum bietet einen mäßig vorschreibenden Rahmen, an dem sich Lehrbücher auf Sekundarstufenebene orientieren. Die USA zeigen eine geringere Ausrichtung (17,2 %), was mit breiten, nicht vorschreibenden Richtlinien (NGSS/CCSS) konsistent ist, die lokale Anpassungen ermöglichen. Chinas nahezu perfekte Ausrichtung (95,4 %) ist konsistent mit einem zentralisierten Lehrplansystem, in dem Lehrbücher nach expliziten nationalen Standards verfasst werden.
 
-This interpretation aligns with comparative education research: Schmidt et al. (2001) found that curriculum coherence varies significantly across TIMSS countries, with China exhibiting high alignment between intended and implemented curricula. More recently, the OECD's Education at a Glance (2023) documents that federal structures produce more varied curriculum implementation than centralized systems.
+Diese Interpretation deckt sich mit der vergleichenden Bildungsforschung: Schmidt et al. (2001) fanden, dass die Kohärenz von Lehrplänen zwischen TIMSS-Ländern erheblich variiert, wobei China eine hohe Übereinstimmung zwischen intendierten und implementierten Lehrplänen aufweist. In jüngerer Zeit dokumentiert die OECD-Veröffentlichung „Education at a Glance“ (2023), dass föderale Strukturen eine stärker variierende Lehrplanumsetzung hervorbringen als zentrale Systeme.
 
-#### Explanation C: Division of Labor Between Curriculum and Textbook (Most Nuanced)
+#### Erklärungsansatz C: Arbeitsteilung zwischen Lehrplan und Lehrbuch (am differenziertesten)
 
-A third possibility is that the textbook-curriculum relationship differs fundamentally across systems. In the German tradition, Lehrpläne specify minimal competency standards, while textbooks exercise significant autonomy in knowledge organization. In the Chinese system, textbooks are directly developed from the national curriculum, producing near-perfect alignment (95.4%).
+Eine dritte Möglichkeit ist, dass sich die Beziehung zwischen Lehrbuch und Lehrplan in den verschiedenen Systemen grundlegend unterscheidet. In der deutschen Tradition legen Lehrpläne minimale Kompetenzstandards fest, während Lehrbücher erhebliche Autonomie in der Wissensorganisation ausüben. Im chinesischen System werden Lehrbücher direkt aus dem nationalen Lehrplan entwickelt, was eine nahezu perfekte Ausrichtung (95,4 %) erzeugt.
 
-Under this interpretation, NRW's low Coverage Score (12.7%) is not a deficiency but a feature: German textbooks are designed to offer alternative organizational structures that complement, rather than duplicate, the curriculum. This would predict that NRW textbooks would show HIGHER internal structural diversity (more variation across publishers) than Chinese textbooks — a testable hypothesis for future work.
+Nach dieser Interpretation ist der niedrige Coverage-Score NRWs (12,7 %) kein Mangel, sondern ein Merkmal: Deutsche Lehrbücher sind darauf ausgelegt, alternative organisatorische Strukturen anzubieten, die den Lehrplan ergänzen statt zu duplizieren. Dies würde vorhersagen, dass NRW-Lehrbücher eine HÖHERE interne strukturelle Diversität (mehr Variation zwischen Verlagen) aufweisen als chinesische Lehrbücher — eine testbare Hypothese für zukünftige Arbeiten.
 
-#### Synthesis
+#### Synthese
 
-The three explanations are not mutually exclusive. Curriculum granularity (A) is the safest interpretation, educational philosophy (B) offers the richest narrative, and curriculum-textbook division of labor (C) opens the most interesting research questions. Our data are consistent with all three, but adjudicating them requires additional evidence — particularly cross-system analyses of curriculum concept granularity and textbook content diversity.
+Die drei Erklärungen schließen sich nicht gegenseitig aus. Die Lehrplangranularität (A) ist die sicherste Interpretation, die Bildungsphilosophie (B) bietet die reichhaltigste Erzählung und die Arbeitsteilung zwischen Lehrplan und Lehrbuch (C) eröffnet die interessantesten Forschungsfragen. Unsere Daten sind mit allen drei konsistent, aber ihre Beurteilung erfordert zusätzliche Evidenz — insbesondere systemübergreifende Analysen der Lehrplankonzept-Granularität und der inhaltlichen Diversität von Lehrbüchern.
 
-This challenge — separating measurement effects from genuine structural differences — is itself a contribution: it demonstrates that cross-system educational comparisons require careful attention to the structure of the reference standard, not just the textbook graph.
+Diese Herausforderung — die Trennung von Messungseffekten und echten strukturellen Unterschieden — ist selbst ein Beitrag: Sie zeigt, dass systemübergreifende Bildungsvergleiche eine sorgfältige Beachtung der Struktur des Referenzstandards erfordern, nicht nur des Lehrbuchgraphen.
 
-### 4.7 Extraction Reliability and Error Analysis
+### 8.7 Extraktionszuverlässigkeit und Fehleranalyse
 
-One concern about any LLM-based analysis is whether measurement error could drive the reported findings. Our extraction validation across 92 gold-standard annotations (ZH F1=0.974, DE F1=0.949, EN F1=0.882) suggests that extraction quality is high overall. Error analysis reveals that 29% of extraction errors occur in very short responses (1-2 words) where an empty extraction is actually appropriate. The remaining errors are predominantly partial omissions — missing 1-2 concepts from a list of 3-4 — rather than systematic misdirection.
+Ein potenzielles Bedenken bei jeder LLM-basierten Analyse ist, ob Messfehler die berichteten Ergebnisse verursachen könnten. Unsere Extraktionsvalidierung anhand von 92 Goldstandard-Annotationen (ZH F1=0,974, DE F1=0,949, EN F1=0,882) deutet darauf hin, dass die Extraktionsqualität des früheren primären Extraktionsmodells (qwen-plus) insgesamt hoch ist. Die Fehleranalyse zeigt, dass 29 % der Extraktionsfehler bei sehr kurzen Antworten (1–2 Wörter) auftreten, bei denen eine leere Extraktion tatsächlich angemessen ist. Bei den verbleibenden Fehlern handelt es sich überwiegend um partielle Auslassungen — 1–2 Konzepte aus einer Liste von 3–4 fehlen — und nicht um systematische Fehlleitungen.
 
-This distribution of errors means that the structural metrics (CDS, HDS, LDS, Coverage Score) are robust to extraction noise: partial omissions slightly reduce concept counts but do not systematically bias graph topology or cross-lingual comparisons. We therefore consider it unlikely that the reported findings are artifacts of extraction methodology.
+**Hinweis zur N=15-Erweiterung**: Die erweiterte Humanvalidierung (§4) wurde mit `deepseek-v4-flash` (opencode GO) extrahiert; eine erneute F1-Validierung gegen die Goldstandards steht aus. Der 19-Modell-Benchmark (§8.9) zeigt jedoch, dass Konzeptextraktionsqualität über Modellfamilien hinweg eine Eigenschaft der Aufgabe ist (F1-Bereich 0,55–0,67), sodass eine modellinduzierte Skalenverschiebung der LDS-C zwar möglich, eine systematische Verzerrung der Null-Relation (beobachtet ≈ Split-Half) aber unwahrscheinlich ist.
 
-### 4.8 Robustness Check: Computational Baseline
+Diese Fehlerverteilung bedeutet, dass die strukturellen Metriken (CDS, HDS, LDS, Coverage-Score) robust gegenüber Extraktionsrauschen sind: Partielle Auslassungen reduzieren die Konzeptanzahlen leicht, verzerren jedoch nicht systematisch die Graphentopologie oder die sprachübergreifenden Vergleiche. Wir halten es daher für unwahrscheinlich, dass die berichteten Befunde Artefakte der Extraktionsmethodik sind.
 
-To verify that the observed human LDS values reflect genuine structural differences rather than random concept variation, we computed a **computational baseline** using 300 simulated responses (20 per condition × 5 topics × 3 languages). The simulation used persona-based response generation with deterministic concept extraction, producing an LDS distribution representing the null expectation under language-specific keyword variation.
+### 8.8 Robustheitsprüfung: Rechnerische Basislinie — methodisch revidiert
 
-The results confirm systematic divergence:
+Zur Kontrolle, ob die beobachteten LDS-Werte echte strukturelle Unterschiede und nicht zufällige Konzeptvariation widerspiegeln, wurde ursprünglich eine **rechnerische Basislinie** aus 300 simulierten Antworten (20 pro Bedingung × 5 Themen × 3 Sprachen) berechnet. Die frühere Version dieser Analyse (N=8, qwen-plus-Extraktion) ergab einen scheinbaren Unterschied zwischen menschlichem LDS (0,727) und Simulation (0,647, p=0,05).
 
-| Metric | Simulation | Human (Between) | Difference |
-|--------|:----------:|:---------------:|:----------:|
-| Mean LDS | 0.647 | 0.727 | +0.080 * |
-| DE–ZH | 0.646 | 0.751 | +0.105 |
-| DE–EN | 0.655 | 0.727 | +0.072 |
-| ZH–EN | 0.640 | 0.704 | +0.064 |
+**Diese Vergleich ist mit der N=15-Erweiterung nicht mehr haltbar**, aus zwei Gründen:
 
-*Independent samples t-test: t(28) = 2.05, p = 0.050
+1. **Skalenverschiebung**: Die neue, standardisierte Extraktion (deepseek-v4-flash) verschiebt LDS-C auf eine andere Skala (0,93–0,96); ein direkter Vergleich mit der alten Simulationsverteilung mischt zwei unterschiedliche Messverfahren.
+2. **Null-Test-Ergebnis**: Die korrekte Kontrolle ist nicht der Vergleich zweier Absolutwerte, sondern die Lage der beobachteten LDS-C relativ zur Within-Language-Null (Split-Half 0,92–0,96; Label-Permutation 0,94). Beobachtete LDS-C liegt **auf** diesem Boden → vollständig durch Teilnehmervariabilität erklärbar.
 
-**Human LDS exceeds simulation LDS for all three language pairs**, with the gap largest for DE–ZH (+0.105) and smallest for ZH–EN (+0.064). This pattern mirrors the rank order observed in human data, providing converging evidence that cross-language structural divergence is a genuine phenomenon amplified by education and culture, not an artifact of language-specific vocabulary distributions.
+Ein aussagekräftiger Mensch-vs-Simulation-Vergleich erfordert **dieselbe Extraktions-/Alignierungsmethode** für beide Bedingungen. Dies ist eine Aufgabe für zukünftige Arbeit (nicht mehr eine Stütze der ΔLDS > 0-Hypothese).
 
-### 4.9 Robustness Check: Cross-Model Extraction Consistency
+### 8.9 Robustheitsprüfung: Modellübergreifende Extraktionskonsistenz
 
-To verify that the LDS results are not driven by a single extraction model, we conducted a **19-model benchmark** across three API platforms (DashScope, DeepSeek API, OpenCode GO). All models extracted concepts from the same N≥50 gold-standard items:
+Um zu überprüfen, ob die LDS-Ergebnisse nicht von einem einzelnen Extraktionsmodell getrieben werden, führten wir einen **19-Modell-Benchmark** über drei API-Plattformen durch (DashScope, DeepSeek API, OpenCode GO). Alle Modelle extrahierten Konzepte aus denselben N≥50 Goldstandard-Items:
 
-| Rank | Model | F1 | N | Source |
+| Rang | Modell | F1 | N | Quelle |
 |:----:|-------|:--:|:-:|--------|
-| 1 | hy3-preview | 0.6741 | 57 | OpenCode GO |
-| 2 | mimo-v2.5-pro | 0.6735 | 75 | OpenCode GO |
-| 3 | **qwen-plus** | **0.6659** | 92 | DashScope |
-| 4 | **qwen-max** | **0.6610** | 92 | DashScope |
-| 5-10 | Mixed models | 0.59-0.63 | 79-92 | Mixed |
-| 11-19 | Lower tier | 0.55-0.59 | 89-92 | Mixed |
+| 1 | hy3-preview | 0,6741 | 57 | OpenCode GO |
+| 2 | mimo-v2.5-pro | 0,6735 | 75 | OpenCode GO |
+| 3 | **qwen-plus** | **0,6659** | 92 | DashScope |
+| 4 | **qwen-max** | **0,6610** | 92 | DashScope |
+| 5–10 | Gemischte Modelle | 0,59–0,63 | 79–92 | Gemischt |
+| 11–19 | Untere Stufe | 0,55–0,59 | 89–92 | Gemischt |
 
-**Key findings**: (1) All 19 models achieve F1 > 0.55, confirming concept extraction is robust across model families. (2) Qwen-plus (the primary extraction model) ranks 3rd at F1=0.666, well within the top cluster. (3) DeepSeek models (v4-pro at 0.593, v4-flash at 0.608) perform competitively. (4) The narrow F1 range (0.55-0.67) across diverse architectures (Qwen, DeepSeek, GLM, MinMax, Kimi, Mimo) indicates that extraction quality is a property of the task, not of any specific model.
+**Zentrale Ergebnisse**: (1) Alle 19 Modelle erreichen F1 > 0,55, was bestätigt, dass die Konzeptextraktion modellfamilienübergreifend robust ist. (2) Qwen-plus (das primäre Extraktionsmodell) belegt Rang 3 mit F1=0,666 und liegt damit innerhalb des oberen Clusters. (3) DeepSeek-Modelle (v4-pro mit 0,593, v4-flash mit 0,608) sind wettbewerbsfähig. (4) Der enge F1-Bereich (0,55–0,67) über verschiedene Architekturen hinweg (Qwen, DeepSeek, GLM, MinMax, Kimi, Mimo) deutet darauf hin, dass die Extraktionsqualität eine Eigenschaft der Aufgabe ist, nicht eines bestimmten Modells.
 
-A secondary finding: 186 additional DashScope models (text, vision, speech) all produced F1=0.0, confirming these require different prompting strategies. GPT-4o and GPT-4o-mini were credit-limited mid-benchmark.
+Ein sekundärer Befund: 186 zusätzliche DashScope-Modelle (Text, Vision, Sprache) erzeugten alle F1=0,0, was bestätigt, dass diese andere Prompting-Strategien erfordern. GPT-4o und GPT-4o-mini waren aufgrund von Guthabenbeschränkungen während des Benchmarks nicht mehr verfügbar.
 
-### 4.10 Threats to Validity
+### 8.10 Threats to Validity
 
-We identify six principal threats to the validity of the reported findings.
+Wir identifizieren sechs Hauptbedrohungen für die Validität der berichteten Ergebnisse.
 
-**Extraction model dependence**. All LDS computations depend on concept extraction via qwen-plus. While the 19-model benchmark confirms cross-model consistency (F1 range 0.55-0.67), a different extraction architecture could produce systematically different concept sets, potentially altering LDS values. This threat is partially mitigated by the narrow F1 range across diverse model families.
+**Abhängigkeit vom Extraktionsmodell**. Alle LDS-Berechnungen hängen von der Konzeptextraktion mittels qwen-plus ab. Während der 19-Modell-Benchmark die modellübergreifende Konsistenz bestätigt (F1-Bereich 0,55–0,67), könnte eine andere Extraktionsarchitektur systematisch andere Konzeptmengen erzeugen und möglicherweise die LDS-Werte verändern. Diese Bedrohung wird durch den engen F1-Bereich über verschiedene Modellfamilien hinweg teilweise abgemildert.
 
-**Corpus representativeness**. The mathematics corpus (68 textbooks) is comprehensive but biased: Chinese textbooks are predominantly from a single publisher (Renjiao), German textbooks are skewed toward university-level materials, and the English corpus is limited to IGCSE/IB frameworks. The within-language split-half null (LDS≈0.97) quantifies this threat.
+**Repräsentativität des Korpus**. Der Mathematik-Korpus (68 Lehrbücher) ist umfassend, jedoch verzerrt: Chinesische Lehrbücher stammen überwiegend von einem einzigen Verlag (Renjiao), deutsche Lehrbücher sind in Richtung universitärer Materialien verschoben und der englische Korpus ist auf IGCSE-/IB-Rahmenwerke beschränkt. Die sprachinterne Split-Half-Null (LDS≈0,97) quantifiziert diese Bedrohung.
 
-**Translation asymmetry in concept alignment**. Cross-language concept alignment depends on expert judgment. Misalignments inflate LDS by contributing to the union without intersecting. This threat is partially controlled by the aligned_groups structure, but asymmetric coverage remains a source of measurement error.
+**Übersetzungsasymmetrie bei der Konzeptausrichtung**. Die sprachübergreifende Konzeptausrichtung hängt von Expertenurteilen ab. Fehlausrichtungen erhöhen den LDS, indem sie zur Vereinigungsmenge beitragen, ohne die Schnittmenge zu erhöhen. Diese Bedrohung wird durch die Struktur der aligned_groups teilweise kontrolliert, aber die asymmetrische Abdeckung bleibt eine Quelle von Messfehlern.
 
-**Curriculum selection bias**. Curriculum documents vary in granularity (NRW: 299 concepts, UK: 397, US: 2,124, CN: 87). Higher granularity mechanically lowers coverage scores. Our per-stage analysis partially controls for this.
+**Auswahlverzerrung der Lehrpläne**. Lehrplandokumente variieren in ihrer Granularität (NRW: 299 Konzepte, UK: 397, US: 2.124, CN: 87). Höhere Granularität senkt mechanisch die Coverage-Scores. Unsere stufenweise Analyse kontrolliert dies teilweise.
 
-**Sample size limitation (pilot human data)**. The ΔLDS analysis relies on N=8 participants. The pilot data should be interpreted as feasibility evidence, not confirmatory. The heterogeneous ΔLDS pattern (DE-ZH +0.232, ZH-EN −0.230, DE-EN −0.211) may change qualitatively as N increases.
+**Begrenzte Stichprobengröße und Between-Subject-Design (Pilot-Menschendaten)**. Die ΔLDS-Analyse beruht auf N=15 Teilnehmenden (6 DE, 6 ZH, 3 EN) in einem Between-Subject-Design. Die Nullmodell-Suite zeigt, dass bei dieser Stichprobengröße die Teilnehmervariabilität die Sprachgruppe dominiert: sprachgetriebene Divergenz kann nicht von individueller Variabilität getrennt werden. Dies ist die zentrale methodologische Lehre — nicht ein temporärer Mangel, sondern eine Grenze des Designs selbst.
 
-**Null model scope**. The degree-preserving Structure Null tests edge arrangement beyond degree structure, but not whether degree structure itself is language-influenced. A future hierarchical null model could address this.
+**Reichweite des Nullmodells**. Die grad-erhaltende Struktur-Null testet die Kantenanordnung über die Gradstruktur hinaus, jedoch nicht, ob die Gradstruktur selbst sprachbeeinflusst ist. Ein zukünftiges hierarchisches Nullmodell könnte diese Frage angehen.
 
-### 4.11 LDS Interpretation Framework
+### 8.11 LDS-Interpretationsrahmen
 
-Rather than imposing arbitrary thresholds on LDS values, we anchor interpretation to the Null Model Suite:
+Anstatt willkürliche Schwellenwerte für LDS-Werte festzulegen, verankern wir die Interpretation an der Nullmodell-Suite:
 
-| LDS Range | Interpretation | Anchor |
+| LDS-Bereich | Interpretation | Anker |
 |:---------:|---------------|--------|
-| > 0.97 | Complete divergence | Above within-language noise floor |
-| 0.90–0.97 | Typical cross-language divergence | Near noise floor |
-| 0.50–0.90 | Partial convergence | Below noise floor, above Structure Null |
-| 0.00–0.50 | Substantial convergence | Well below all null expectations |
+| > 0,97 | Vollständige Divergenz | Über dem sprachinternen Rauschboden |
+| 0,90–0,97 | Typische sprachübergreifende Divergenz | Nahe am Rauschboden |
+| 0,50–0,90 | Partielle Konvergenz | Unterhalb des Rauschbodens, oberhalb der Struktur-Null |
+| 0,00–0,50 | Erhebliche Konvergenz | Deutlich unter allen Nullenwartungen |
 
-Under this framework:
-- **Within-language noise floor** ≈ 0.97 (split-half) → upper bound for meaningful comparison
-- **Structure Null** ≈ 0.96 (degree-preserving) → structural baseline
-- **Complete Random** = 1.00 → sanity check
+In diesem Rahmen:
+- **Sprachinterner Rauschboden** ≈ 0,97 (Split-Half) → Obergrenze für aussagekräftigen Vergleich
+- **Struktur-Null** ≈ 0,96 (graderhaltend) → strukturelle Basislinie
+- **Vollständig zufällig** = 1,00 → Plausibilitätsprüfung
 
-ZH-DE (0.519) falls in the "partial convergence" range — substantially below null expectations. ZH-EN (0.934) and DE-EN (0.938) fall in the "near noise floor" range — indistinguishable from two random halves of the same language's textbook graph. These are primarily observations rather than explanations; the mechanism driving heterogeneity across pairs requires further investigation.
+ZH-DE (0,519) liegt im Bereich der „partiellen Konvergenz“ — deutlich unter den Nullenwartungen. ZH-EN (0,934) und DE-EN (0,938) liegen im Bereich „nahe am Rauschboden“ — nicht unterscheidbar von zwei zufälligen Hälften desselben sprachlichen Lehrbuchgraphen. Hierbei handelt es sich in erster Linie um Beobachtungen und nicht um Erklärungen; der Mechanismus, der die Heterogenität zwischen den Paaren antreibt, erfordert weitere Untersuchungen.
 
-### 4.12 Limitations
+### 8.12 Einschränkungen
 
-Several limitations should be acknowledged:
+Mehrere Einschränkungen sollten anerkannt werden:
 
-**Scope of data**. The mathematics corpus (68 textbooks, 574 concepts) is comprehensive. The physics corpus (366 concepts) and chemistry corpus (220 concepts) provide cross-disciplinary validation but remain smaller. The curriculum graphs, while spanning four systems (NRW, UK, US, China), use varying matching methodologies that may affect comparability.
+**Umfang der Daten**. Der Mathematik-Korpus (68 Lehrbücher, 556 Konzepte) ist umfassend. Der Physik-Korpus (366 Konzepte) und der Chemie-Korpus (220 Konzepte) ermöglichen eine disziplinübergreifende Validierung, bleiben aber kleiner. Die Lehrplangraphen decken zwar vier Systeme ab (NRW, UK, US, China), verwenden jedoch unterschiedliche Abgleichsmethoden, die die Vergleichbarkeit beeinträchtigen können.
 
-**Extraction methodology**. While our gold-standard validation demonstrates high overall quality (F1=0.939), the social-domain gold data were validated using semi-automated keyword matching followed by manual review. Some errors may persist in the gold standard itself.
+**Extraktionsmethodik**. Während unsere Goldstandard-Validierung eine insgesamt hohe Qualität belegt (F1=0,939), wurden die sozialwissenschaftlichen Golddaten mittels halbautomatischen Schlüsselwortabgleichs mit anschließender manueller Überprüfung validiert. Im Goldstandard selbst könnten einige Fehler verbleiben.
 
-**Human validation sample size**. The human validation study (N=8 participants, 90 extracted responses) provides initial cross-level validation but is limited in statistical power. The rank-order consistency (DE–ZH > DE–EN > ZH–EN) is encouraging, but a larger sample would be needed to establish population-level generalizability. Additionally, the within-subject analysis was limited to DE-EN comparisons (no ZH–DE or ZH–EN within-subject data), restricting our ability to separate language effects from participant effects at the individual level.
+**Stichprobengröße und Design der menschlichen Validierung**. Die erweiterte Humanstudie (N=15, 6 DE · 6 ZH · 3 EN) bestätigt die frühere Einschränkung und verschärft sie: Bei N=15 in einem **Between-Subject-Design** dominiert Teilnehmervariabilität die messbare LDS-C vollständig (Split-Half-Boden ≈ beobachtete LDS-C ≈ Label-Permutation). Dies ist kein Stichprobenfehler, sondern eine **strukturelle Grenze des Designs**: Da jede Person nur in einer Sprache antwortet, können sprachgetriebene Divergenz und individuelle Variabilität nicht getrennt werden. Die zentrale methodologische Lehre: Zukünftige Studien benötigen (a) ein Within-Subject-Design, (b) größere Stichproben pro Sprachgruppe (N≥30), oder (c) Metriken, die gegen individuelle Konzeptwahl robust sind. Die thematischen Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) bieten eine testbare Hypothese für ein Within-Subject-Design.
 
-**Null Model interpretation**. While the degree-preserving Structure Null demonstrates that LDS-K is dominated by structural factors rather than language, the double-edge swap algorithm preserves the exact degree sequence of each graph. This is a conservative null: it tests whether language-specific edge arrangements add information beyond degree structure, but does not test whether degree structure itself could be language-influenced. A future hierarchical null model could address this layered question.
+**Interpretation des Nullmodells**. Während die graderhaltende Struktur-Null zeigt, dass LDS-K von strukturellen Faktoren und nicht von der Sprache dominiert wird, bewahrt der Doppelkantentausch-Algorithmus die exakte Gradsequenz jedes Graphen. Dies ist eine konservative Null: Sie testet, ob sprachspezifische Kantenanordnungen über die Gradstruktur hinaus Informationen hinzufügen, testet jedoch nicht, ob die Gradstruktur selbst sprachbeeinflusst sein könnte. Ein zukünftiges hierarchisches Nullmodell könnte diese geschichtete Frage angehen.
 
-**Edge-free graphs in human data**. The qwen-plus extraction produced concept-only output (no relations) for human responses, which means the LDS for human data is driven primarily by Node Jaccard similarity. The full 3-component LDS formula (GED + node Jaccard + edge Jaccard) could not be applied, and future work should collect relation annotations for human responses to enable full structural comparison.
+**Kantenfreie Graphen in früheren menschlichen Daten**. Die frühere qwen-plus-Extraktion erzeugte eine rein konzeptbasierte Ausgabe (keine Relationen) für menschliche Antworten. In der N=15-Erweiterung wurde dies behoben: Eine Relationsextraktion (7 Typen, `scripts/lds_c_extract_relations.py`) lieferte 162 Kanten (DE 59, ZH 67, EN 36), sodass die vollständige v3-LDS-Formel (Node- + Edge-Jaccard) angewendet werden konnte. Das Ergebnis bestätigt die Konzeptebene: Edge-Jaccard ≈ 0 und Split-Half-Boden ≈ beobachtete v3-LDS — kein separierbares Sprachsignal. Die Kantenzahl pro Antwort bleibt jedoch spärlich, sodass Kantenaussagen auf Gruppenebene robust, auf individueller Ebene aber eingeschränkt interpretierbar sind.
 
-**Causality**. Our analysis is correlational. We measure structural differences between systems but cannot attribute them to curriculum design, textbook tradition, or educational philosophy independently.
+**Kausalität**. Unsere Analyse ist korrelativ. Wir messen strukturelle Unterschiede zwischen Systemen, können diese jedoch nicht unabhängig voneinander auf Lehrplangestaltung, Lehrbuchtradition oder Bildungsphilosophie zurückführen.
 
-**Generalizability**. Mathematics, physics, and chemistry may share structural properties not present in humanities or social science disciplines. Extending to additional domains is a priority.
+**Generalisierbarkeit**. Mathematik, Physik und Chemie könnten strukturelle Eigenschaften teilen, die in geistes- oder sozialwissenschaftlichen Disziplinen nicht vorhanden sind. Die Erweiterung auf zusätzliche Domänen ist eine Priorität.
 
-**LDS interpretation**. The LDS Interpretation Framework (Section 4.11) anchors numerical values to null model baselines, but the thresholds (0.90, 0.50) are descriptive rather than inferential. As human data accumulates, bootstrap-derived confidence intervals should replace these descriptive thresholds for hypothesis testing.
+**LDS-Interpretation**. Der LDS-Interpretationsrahmen (Abschnitt 8.11) verankert numerische Werte an Nullmodell-Baselines, jedoch sind die Schwellenwerte (0,90, 0,50) deskriptiv statt inferenziell. Mit zunehmenden menschlichen Daten sollten Bootstrap-Konfidenzintervalle diese deskriptiven Schwellenwerte für Hypothesentests ersetzen.
 
-### 4.13 Implications
+### 8.13 Implikationen
 
-Despite these limitations, the current findings have implications for three communities:
+Trotz dieser Einschränkungen haben die vorliegenden Ergebnisse Implikationen für drei Fachgemeinschaften:
 
-**For educational research**: The CDS and HDS metrics provide quantitative tools for curriculum analysis that complement existing qualitative frameworks (TIMSS, PISA). A curriculum designer could use CDS to identify density bottlenecks and HDS to detect excessively long prerequisite chains.
+**Für die Bildungsforschung**: Die CDS- und HDS-Metriken bieten quantitative Werkzeuge für die Lehrplananalyse, die bestehende qualitative Rahmenwerke (TIMSS, PISA) ergänzen. Eine Lehrplangestalterin könnte CDS verwenden, um Dichteengpässe zu identifizieren, und HDS, um übermäßig lange Voraussetzungsketten zu erkennen.
 
-**For AI in education**: The automated pipeline demonstrates that large-scale cross-lingual knowledge graph construction from textbooks is feasible using current LLMs. This opens the possibility of curriculum-level knowledge analysis at a scale that manual content analysis cannot achieve.
+**Für KI in der Bildung**: Die automatisierte Pipeline zeigt, dass die groß angelegte, sprachübergreifende Konstruktion von Wissensgraphen aus Lehrbüchern mit aktuellen LLMs machbar ist. Dies eröffnet die Möglichkeit einer Lehrplanebenen-Wissensanalyse in einem Umfang, den die manuelle Inhaltsanalyse nicht erreichen kann.
 
-**For the study of linguistic relativity**: Our data do not support a uniform "language shapes knowledge" claim. Instead, they demonstrate that cross-linguistic structural relationships are heterogeneous — some language pairs converge substantially (ZH-DE), while others are at noise level (ZH-EN, DE-EN). The LinguaGraph framework provides tools for measuring this heterogeneity, but the question of whether a genuine language signal in cognitive expression exists remains open, pending the collection and analysis of human response data at adequate sample sizes.
+**Für die Erforschung des linguistischen Relativitätsprinzips**: Unsere Daten stützen keine einheitliche „Sprache formt Wissen“-Behauptung. Stattdessen zeigen sie, dass sprachübergreifende strukturelle Beziehungen heterogen sind — einige Sprachpaare konvergieren erheblich (ZH-DE), während andere auf Rauschniveau liegen (ZH-EN, DE-EN). Die erweiterte Humanvalidierung (N=15) erlaubt eine präzise Antwort auf der Ebene menschlicher Konzeptäußerungen: In einem Between-Subject-Design ist bei dieser Stichprobe **kein separierbares Sprachsignal** nachweisbar. Das LLM-as-Subject-Experiment (§5) zeigt jedoch, dass dies ein **Design-Artefakt** ist: Unter Within-Subject-Bedingungen ist das Sprachsignal klar nachweisbar (LDS-C 0.93–0.96 ≫ Boden 0.85–0.87), mit dem Sprachcode als dominanter Organisationsebene. Dies falsifiziert die einfache Hypothese „Sprache → unterschiedliche Konzeptgraphen" nur für das Between-Subject-Design, nicht für die Existenz sprachlicher Kognitionseffekte überhaupt. Die Richtungstendenzen (ZH rechtlich/moralisch, DE autonom/affektiv, EN sozial) bleiben als testbare Hypothesen für Within-Subject-Studien erhalten.
+
+### 8.14 LLM-as-Subject: Methodologische Einordnung des Within-Subject-Befunds
+
+Das LLM-as-Subject-Experiment (§5) liefert den methodologischen Schlüssel zur Interpretation des negativen Humanbefunds:
+
+1. **Design über Signal**: Derselbe Messrahmen (LDS-C + Nullmodelle) produziert unter Between-Subject (Menschen) kein trennbares Signal, unter Within-Subject (LLM) ein deutliches (LDS-C übersteigt den Boden um +0.08 bis +0.09). Die Sprachlabels tragen unter Within-Subject-Bedingungen messbare Information.
+
+2. **Mechanismus**: Das lineare gemischte Modell trennt die marginalen Beiträge — der Sprachcode dominiert (same_lang +0.038, p<0.001), der kulturelle Rahmen hat keinen signifikanten codeübergreifenden Beitrag (same_frame +0.001, p=0.90). Der Rahmen wirkt als code-interner Modulator; die codeübergreifende Divergenz wird von der lexikalisch-assoziativen Ebene getragen. Die freien Assoziationen desselben Modells erklären die Konzeptdivergenz für EN-Paare (M2), nicht aber für ZH-DE, wo eine strukturelle Ebene jenseits der Assoziationsstatistik existiert.
+
+3. **Validität des LLM als Subjekt**: Die Verwendung eines LLM als kontrolliertem kognitivem Subjekt folgt etablierten Paradigmen (Binz & Schulz, 2023; Hagendorff, 2023) und beantwortet eine Frage, die mit menschlichen Between-Subject-Daten prinzipiell nicht beantwortbar ist. Das Modell ist kein Ersatz für menschliche Kognition, sondern ein Werkzeug zur Isolation der Sprachvariable bei konstantem „Gewichtssatz". Diese Grenze ist zu betonen: Die Ergebnisse zeigen, dass Sprachcode und Rahmen die Konzeptwahl eines LLM verändern — sie extrapolieren nicht direkt auf menschliche Kognition, liefern aber eine testbare Blaupause (Within-Subject-Design, erwartete Effektrichtung) für zukünftige Humanstudien.
+
+4. **Präzisierung des Design-Artefakts (Design-Effekt-Beweis, §5.9.1–5.9.2)**: Der Vergleich auf identischem Messrahmen zeigt eine **gleiche Signalamplitude** bei Mensch und LLM (LDS-C jeweils 0.93–0.96); die menschliche Null ist **nicht** auf "keine Sprachwirkung" und **nicht** auf "Between-Subject-Design an sich" zurückzuführen (eine virtuelle Between-Subject-Analyse der LLM-Daten bei menschlicher N überlebt das Signal). Entscheidend ist die **individuelle Heterogenität innerhalb einer Sprachgruppe**: Sie hebt die Bodenlinie (0.92–0.96) auf das Signalniveau. Die Heterogenitäts-Injektion (§5.9.2b) zeigt als **Konsistenz-Demonstration**, dass eine ausreichende Aggregationssparsität die menschliche Null reproduzieren kann (q=0.30 → Marge +0.014 vs. menschlich +0.015) — wobei der mechanismus-konsistente Zielwert (q≈0.76–0.91) die Marge **nicht** vollständig kollabiert (P2-Recheck). Die heterogenitätsbedingte Erklärung ist damit gestützt (Exklusion + Konsistenz), aber nicht als quantitative Kausalzuordnung zu werten. Dies hat eine direkte Designimplikation — Between-Subject-Studien zum Sprachrelativismus benötigen entweder ausreichende N pro Gruppe, um die Heterogenität zu schlagen, oder ein Within-Subject-Design, das die Varianzquelle eliminiert.
+
+5. **Strukturelle vs. lexikalische Divergenz (Knoten/Kanten, §5.9.4)**: Die soziale/institutionelle Umkehr ist **knotengetrieben** (Konzeptwahl), der Kantenbeitrag in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert im *Was* (Konzepte), nicht im *Wie* (Beziehungen) — die relationale Organisation bleibt über alle Quellen systemisch divergent. Dies trennt den Mechanismus "Konzeptwahl" von "Beziehungsstruktur" und stützt die M2-Dominanz (§5.6) auf der Korpusseite: die Divergenz entsteht primär auf der assoziativ-lexikalischen Ebene, nicht auf der relationalen. **Einschränkung (P2-Recheck)**: Die Mathematik-Knoten sind Alignierungs-Labels (nicht unabhängig extrahierte Konzepte), das `de`-Label-Feld enthält teils chinesische Texte, und ein Size-Matching auf die Wikipedia-Größe kehrt das Muster um (bei k=15–35 ist der Wikipedia-J_node höher) — der mathematische J_node (0.556) ist damit teilweise ein Darstellungs-/Größen-Artefakt, nicht ein Beleg unabhängiger sprachübergreifender Konvergenz (Details: `docs/p2_methodology_rechecks.md`).
+
+### 8.15 Modellübergreifende Replikation: Die Divergenz ist eine breit replizierbare, modellabhängige Eigenschaft
+
+Ein zentraler Vorbehalt gegen den Within-Subject-Befund war dessen Beschränkung auf ein einzelnes Modell (deepseek-v4-flash). Eine Replikation des identischen P1-Protokolls (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) auf **50 weiteren Modellen** (47 eindeutige Modell-Identitäten; 43 über DashScope, 8 über zen/OpenRouter) — DeepSeek-, GLM-, Kimi-, MiniMax- und Qwen-Familien sowie nemotron-3-ultra (NVIDIA, **US-Ursprung**) und laguna-s-2.1 (Poolside, **US-Ursprung**) — erweitert die Evidenz:
+
+**Befund 1 — Signale replizieren breit, aber nicht ausnahmslos**: **Alle 51 Messungen zeigen LDS-C über dem jeweiligen Within-Language-Boden, und alle 51 ZH-DE-Paare sind signifikant** (p<0.05; die meisten p<0.01). Von den 153 Sprachpaar-Tests insgesamt sind **8 nicht signifikant** (p≥0.05) — **alle acht betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend bei DeepSeek-R1/Distill-Modellen (deepseek-r1-0528 DE-EN p=0.672). Die sprachübergreifende Wertedivergenz ist damit **eine breit replizierbare Eigenschaft mehrsprachiger LLMs**, aber mit modell- und sprachpaar-spezifischer Stärke — insbesondere ist die englisch-bezogene Divergenz in einigen Modellen statistisch nicht von der sprachinternen Varianz trennbar.
+
+**Befund 2 — Divergenzmagnitude variiert modellabhängig (Rangordnung)**: Die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.29 (deepseek-v3.1) — ein Faktor ~9 zwischen den extremsten Modellen. Für die Anwendung als KI-Validierungswerkzeug bedeutet dies eine **quantifizierbare Rangordnung der sprachübergreifenden Drift-Sensitivität** über Modelle hinweg.
+
+**Befund 3 — Die Kulturrichtung übersteigt das Zufallsniveau, am stärksten bei hoher Übereinstimmung**: Eine Voten-Analyse der ZH-DE-Divergenztreiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet (beobachtete Gesamthäufigkeit jedes Konzepts fixiert, Richtung jeder Stimme zufällig mit p=0.5). Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH)-Stimmen ≥ t) übersteigt das Nullmodell bei **allen** Schwellen (p<0.001), am stärksten bei hoher Übereinstimmung: ≥10 Stimmen 204 vs. 129±4; ≥20 Stimmen 50 vs. 8±1. Die stärksten Konzepte (Heimat:safety 41 Stimmen DE; Heimat:physical space 40 ZH + 1 abweichende DE-Stimme; equal opportunity 39) stützen die DE-Autonomie/ZH-Raum-Orientierung. Wichtig: Die Stärke ist begrenzt — z. B. produzierten nur 41 von 51 Modellen Heimat:safety überhaupt als einseitigen Treiber, und 4 Modelle wurden auf zwei Hosts gemessen (Redundanz).
+
+**Ehrliche Abgrenzung**: Die Replikation umfasst 47 eindeutige Modell-Identitäten; 4 Modelle wurden auf zwei Hosts gemessen (zen + DashScope), was die Effektivität der "51" verringert; **~94 % der Modelle stammen von chinesischen Anbietern** — der westliche Anteil ist auf zwei US-Modelle (NVIDIA nemotron-3-ultra, Poolside laguna-s-2.1) begrenzt, da OpenRouter-Gratismodelle (gpt-oss, gemma) wegen täglicher Nutzungslimits unvollständig blieben. Die Divergenz ist als **Messgröße** (nicht als normatives "Problem") zu interpretieren: Ein Modell, das Wertkonzepte in der Zielsprache kulturadäquat rahmt, ist nicht notwendigerweise fehlerhaft. Als **Vorschlag für einen operativen Schwellenwert** ("hohe sprachübergreifende Divergenz") dient die ZH-DE-Marge (LDS-C − Boden) ≥ 0.10 — bezogen auf die beobachtete Spanne von +0.03 bis +0.29 über 51 Messungen trennt dieser Wert die hoch-divergenten Modelle (glm-5.2, kimi-k2.6, deepseek-v3.x, nemotron) von den niedrig-divergenten (deepseek-v4-flash/pro, r1-Distill). Dies ist eine **heuristische** Festlegung für die Anwendung, keine validierte Validitätsgrenze; eine kalibrierte Schwelle bleibt zukünftiger Arbeit überlassen.
+
+### 8.16 Kulturell-psychologische Einordnung der Divergenzrichtung
+
+Die beobachtete Divergenzrichtung — DE-seitig Autonomie/Regeln/Ziel (equal opportunity, freedom limit, decision, goal, safety), ZH-seitig Raum/Boundary/Anspruch/Harmonie (physical space, boundary, deserved treatment, the weak, indulgence) — ist **konsistent mit etablierten kulturell-psychologischen Rahmen**:
+
+1. **Selbstkonstruktion (Markus & Kitayama, 1991)**: Die Theorie unterscheidet eine **unabhängige** (independent) von einer **interdependenten** Selbstkonstruktion. Individuell-orientierte Kulturen (typisch westlich) rahmen Werte über persönliche Autonomie, Leistung und regelbasierte Gerechtigkeit — deckungsgleich mit der DE-seitigen Treiberstruktur (Autonomie, eigene Ziele, Chancengleichheit). Interdependent-orientierte Kulturen (typisch ostasiatisch) rahmen Werte über relationale Grenzen, Harmonie und Fürsorge für die Gruppe — deckungsgleich mit der ZH-seitigen Struktur (Raum, Grenzen, Anspruch, Schutz der Schwachen, Nachsicht).
+
+2. **Individualismus/Kollektivismus (Hofstede, 1980, 2001)**: Deutschland weist einen hohen Individualismus-Index auf (≈67), China einen deutlich niedrigeren (≈20). Dies sagt vorher, dass deutsche Rahmungen Wertkonzepte individualistisch (Autonomie, Leistung) und chinesische kollektivistisch (Beziehung, Harmonie, Gruppenpflicht) organisieren.
+
+3. **Konfuzianischer Beziehungsraum**: Die ZH-seitige Betonung von "Raum/Grenze/Anspruch" (物理空间, 边界, 应得) ist mit dem konfuzianisch geprägten relationalen Selbst vereinbar, das soziale Grenzen und den eigenen "Platz" in der Beziehungsordnung betont (vgl. Nisbett, 2003: holistische vs. analytische Kognition).
+
+**Ehrliche Einordnung**: Diese Übereinstimmung ist eine **interpretative Hypothese** (die Richtung ist mit den Rahmen konsistent), kein Test der Theorien. Die Richtung ist modell- und trainingsdatenspezifisch und wird als **beschreibend** berichtet; eine kausale Zuordnung (Sprache → Kulturrahmen) ist nicht beansprucht. Die vorgeschlagenen Referenzen sind bei der PDF-Assemblierung in das Literaturverzeichnis aufzunehmen.

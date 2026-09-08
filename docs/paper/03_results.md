@@ -37,17 +37,17 @@ Diese Verteilung spiegelt die zunehmende Spezialisierung und den wachsenden Begr
 
 Die Alignierung zeigt eine substanzielle dreisprachige Überschneidung:
 
-| Abdeckung | Konzepte | Anteil |
+| Abdeckung | Konzepte | Anteil* |
 |-----------|----------|--------|
 | ZH + EN + DE (dreisprachige Gruppen) | **219** | 39,4 % |
-| Sprachspezifisch (nicht abgedeckt) | **359** | 64,6 % |
+| Sprachspezifisch (nicht abgedeckt) | **359** | — |
 | — davon nur ZH | 120 | 21,6 % |
 | — davon nur DE | 94 | 16,9 % |
 | — davon nur EN | 145 | 26,1 % |
-| Nur EN | 50 | 8,7 % |
-| Nur DE | 44 | 7,7 % |
 
-Die relativ hohe exklusive ZH-Abdeckung (15,3 %) ist auf die spezifischeren chinesischen Lehrpläne in der Grund- und Mittelschule zurückzuführen, während die Exklusivanteile für EN (8,7 %) und DE (7,7 %) deutlich geringer ausfallen.
+> *Anteile beziehen sich auf 556 Konzepte. 219 Gruppen ≠ 219 Konzepte: Gruppen- und Konzeptzählung verwenden unterschiedliche Nenner, daher addieren sich 39,4 % + 64,6 % nicht auf 100 %.
+
+Die relativ hohe exklusive ZH-Abdeckung (21,6 %) ist auf die spezifischeren chinesischen Lehrpläne in der Grund- und Mittelschule zurückzuführen, während die Exklusivanteile für EN (26,1 %) und DE (16,9 %) deutlich geringer ausfallen.
 
 ### 3.4 Semesterstruktur-Analyse
 
@@ -384,7 +384,7 @@ Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konve
 
 > Reproduzierbar via `scripts/lds_c_multi_model.py`; Ergebnisse in `data/lds_c/llm_subject/multi_model_replication_*.json`.
 
-Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **42 DashScope- und 8 zen/OpenRouter-Modelle** angewendet → **51 Messungen**, davon **47 eindeutige Modell-Identitäten** (4 Modelle auf zwei Hosts gemessen). Die Familien: Qwen (20), DeepSeek (12), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside, longcat und **nemotron-3-ultra (NVIDIA, US-Ursprung)**. **~88 % der Modelle stammen von chinesischen Anbietern.**
+Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **43 DashScope- und 8 zen/OpenRouter-Modelle** angewendet → **51 Messungen**, davon **47 eindeutige Modell-Identitäten** (4 Modelle auf zwei Hosts gemessen). Die Familien: Qwen (20), DeepSeek (12), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside, longcat und **nemotron-3-ultra (NVIDIA, US-Ursprung)**. **~94 % der Modelle stammen von chinesischen Anbietern; zwei westliche Modelle** (nemotron-3-ultra, laguna-s-2.1/Poolside, US-Ursprung) sind enthalten.
 
 **Signal — breit repliziert, aber nicht ausnahmslos**: Alle **51 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.29 (deepseek-v3.1). Von den **153 Sprachpaar-Tests sind 8 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten, und es wurde keine Mehrfachtest-Korrektur vorgenommen.
 

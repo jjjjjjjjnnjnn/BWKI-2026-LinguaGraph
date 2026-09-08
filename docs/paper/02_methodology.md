@@ -27,9 +27,9 @@ Die Grundlage des CognitiveSpace-Wissensgraphen bildet ein Korpus von **68 Lehrb
 
 | Sprache | Anzahl | Lehrwerke | Stufen |
 |---------|--------|-----------|--------|
-| Chinesisch | 45 | Volksverlag (Renjiao) K-12, Tongji Analysis, Lineare Algebra, Wahrscheinlichkeit | Grundschule bis Universität |
-| Englisch | 20 | Stewart Calculus, MIT OCW, Khan Academy, IGCSE, IB | K-12 bis Universität |
-| Deutsch | 10 | Forster Analysis, Fischer LA, Lambacher Schweizer, Papula | Sekundarstufe bis Universität |
+| Chinesisch | 39 | Volksverlag (Renjiao) K-12, Tongji Analysis, Lineare Algebra, Wahrscheinlichkeit | Grundschule bis Universität |
+| Englisch | 18 | Stewart Calculus, MIT OCW, Khan Academy, IGCSE, IB | K-12 bis Universität |
+| Deutsch | 11 | Forster Analysis, Fischer LA, Lambacher Schweizer, Papula | Sekundarstufe bis Universität |
 
 Die Lehrbücher decken ein breites mathematisches Spektrum ab: Arithmetik, Algebra, Geometrie, Analysis, Lineare Algebra, Differentialgleichungen, Wahrscheinlichkeitstheorie und Statistik.
 
@@ -89,7 +89,7 @@ Die Alignierung wird durch zwei Strategien erreicht:
 1. **Explizite Abbildung**: Lehrbücher, die dasselbe mathematische Konzept behandeln, werden über Kapitelverweise gemappt (z. B. Stewart Kapitel 2 ↔ Forster Kapitel 4 ↔ Renjiao选修2-2).
 2. **Semantische Inferenz**: Konzepte mit übereinstimmenden Nachbarschaftsbeziehungen im Graphen werden als äquivalent betrachtet.
 
-Ergebnis: **219 von 556 Konzeptgruppen (39 %) sind dreisprachig vollständig abgedeckt**, 88 sind nur im Chinesischen vorhanden (15 %), der Rest in zwei von drei Sprachen.
+Ergebnis: **219 von 556 Konzeptgruppen (39 %) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
 
 ### 2.6 CognitiveSpace 3D-Visualisierung
 
@@ -161,7 +161,9 @@ Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). Ergebnisse
 | **Sozial** | **Chinesisch** | **0,974** | **1,000** | **0,950** | **29** |
 | **Sozial** | **Deutsch** | **0,949** | **0,959** | **0,941** | **22** |
 | **Sozial** | **Englisch** | **0,882** | **0,914** | **0,857** | **21** |
-| **Gesamt (92)** | **Alle** | **0,939** | **0,957** | **0,926** | **92** |
+| **Gesamt (92, gewichtet)** | **Alle** | **0,881** | — | — | **92** |
+
+> Gesamt-F1 ist das domänengewichtete Mittel ((72×0,939+20×0,674)/92≈0,881); die Kopfzahl 0,939 gilt nur für die Sozial-Subgruppe. Gesamt-Precision/Recall werden nicht aggregiert (domänenspezifisch, s. Zeilen oben).
 
 Die Extraktionsqualität für soziale Konzepte übertrifft die mathematische Domäne deutlich: alle drei Sprachen erreichen F1 ≥ 0,88, mit chinesischen (F1=0,974) und deutschen (F1=0,949) Ergebnissen, die das Qualitätsziel (F1 ≥ 0,70) weit übertreffen. Dies bestätigt, dass die zuvor beobachtete niedrige deutsche Extraktionsqualität (F1=0,506) domänenspezifisch war und nicht die Modelleignung für die Hauptstudie widerspiegelt.
 

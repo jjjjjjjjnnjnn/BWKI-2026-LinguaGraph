@@ -43,11 +43,11 @@
   <img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/BWKI-2026-8A2BE2?style=flat-square" alt="BWKI 2026">
   <img src="https://img.shields.io/badge/gold_labels-92-success?style=flat-square" alt="92 Gold-Standard">
-  <img src="https://img.shields.io/badge/concepts-1,160%2B-informational?style=flat-square" alt="1160+ Konzepte">
+  <img src="https://img.shields.io/badge/concepts-1,140%2B-informational?style=flat-square" alt="1140+ Konzepte">
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D8-purple?style=flat-square" alt="Human Validation N=8">
+  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="Human Validation N=15">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
@@ -111,16 +111,16 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 |---|---------|----------|--------|
 | **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
 | **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
-| **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 3.538 Voraussetzungsrelationen | Mathematik ist ein flaches Netz, kein tiefer Baum |
-| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | 19-Modell-Benchmark, 3 API-Plattformen, 20 Labels | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab |
+| **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 525 direkten Relationen (+~3000 transitiv) | Mathematik ist ein flaches Netz, kein tiefer Baum |
+| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | Direkte Berechnung auf Lehrbuchgraphen | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab — aber Nullmodell (F5) falsifiziert die Sprachlesart; Matheknoten teils Alignierungs-Artefakte (s. `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS ist **themenabhängig**; **Nullmodell** bestätigt Full < Structure für alle Paare | ~0,2 Variation innerhalb der Paare; Full LDS-K=0,73, Structure LDS-K=0,77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; Taxonomie allein erklärt den Großteil der Varianz |
 | **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 366 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
 | **F7** | Physik hat **2,1× tiefere** Voraussetzungsketten | HDS-Mittelwert 0,85 vs. 0,40 | Physikwissen ist kumulativer und sequenzieller |
-| **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | STEM-Dichtemuster ist fächerübergreifend universell |
-| **F9** | **Abdeckungsgrad** variiert dramatisch zwischen Systemen | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% | Die Gestaltung des Bildungssystems beeinflusst grundlegend die Lehrbuchausrichtung; Chinas zentralisierter Lehrplan ermöglicht nahezu universelle Abdeckung |
-| **F10** | Abdeckungsverläufe offenbaren **Governance-Modell** | UK prüfungsgetriebene Konvergenz; NRW Spezialisierungsdivergenz; China zentralisierte Vollausrichtung | Lehrplan-Governance (zentral vs. föderal vs. prüfungsgetrieben) bestimmt den Abdeckungsverlauf |
-| **F11** | **Menschliche LDS-C**-Reihenfolge unterscheidet sich von **LDS-K**; **ΔLDS** als Kernmetrik vorgeschlagen | N=8 Teilnehmer, 90 Antworten; 19-Modell-Benchmark | Oberfläche (Konzeptbenennung) ≠ strukturelle (Beziehungs-)Divergenz; die Lücke selbst ist informativ |
-| **F12** | Menschlicher LDS (**0,727**) übersteigt Simulationsbasislinie (**0,647**, p=0,05) | 300 simulierte Antworten, Mock-Extraktion | Divergenz ist echt, keine zufällige Variation |
+| **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | Konsistent mit, aber kein Beleg für das fächerübergreifende Dichtemuster (kleine absolute Differenz 0,012, kein Test) |
+| **F9** | **Abdeckungsgrad** variiert dramatisch zwischen Systemen | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% (Keyword-Matching; Granularitäts-Confound: CN 87 vs. US 2124 vs. NRW 299 Curriculums-konzepte) | Messung stark, Governance-Zuschreibung schwach — CS-Lücke primär Hypothese (s. F10) |
+| **F10** | Abdeckungsverläufe legen eine **Governance-Hypothese** nahe | UK prüfungsgetriebene Konvergenz; NRW Spezialisierungsdivergenz; China zentralisierte Vollausrichtung | Nur Hypothese: zentralisierter (CN MoE) vs. föderaler (DE Länder/KMK) Kontext ist dokumentiert (TIMSS-2023-Enzyklopädie; OECD EAG 2025), Unterrichts-Implementierungskette ungetestet |
+| **F11** | **N=15 falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen**; **ΔLDS** bleibt Metrik für Within-Subject-Nutzung | N=15 (6 DE · 6 ZH · 3 EN): LDS-C 0,93–0,96 ≈ Split-Half-Boden; Pilot N=8 nicht repliziert | Between-Subject-Designs trennen Sprache nicht von Teilnehmervarianz; Within-Subject-Design erforderlich |
+| **F12** | Konzept-**ΔLDS ≈ 0** (−0,05…+0,05); Relationsebene nicht vergleichbar | N=15 + LLM-Within-Subject (LDS-C ≫ Boden +0,08–0,09) | Sprachsignal within-subject vorhanden (LLM), between-subject abwesend (Mensch) — Design-Artefakt-Hypothese, kein Beleg für Nulleffekt; früherer Sim-Vergleich zurückgezogen |
 
 ---
 
@@ -128,10 +128,12 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 | Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematik** | 574 | 3.538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW coverage NA |
 | **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE | NRW 36% |
-| **Gesamt** | **1.160+** | **4.100+** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |
+| **Gesamt** | **1.140+** | **1.100+ direkt** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |
+
+> SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 525 direkte Relationen / 219 trilinguale Gruppen). Physik/Chemie aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7).
 
 ---
 
@@ -143,20 +145,20 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
 | **Soziale Konzepte** | **0,974** | **0,949** | **0,882** | **0,939** | 72 |
 | **Mathematik** | 0,857 | 0,506 | 0,711 | 0,674 | 20 |
-| **Alle** | **0,974** | **0,949** | **0,882** | **0,939** | **92** |
+| **Alle (gewichtet)** | 0,951 | 0,842 | 0,844 | **0,881** | **92** |
+
+> Gesamt = domänengewichtetes Mittel ((72×0,939+20×0,674)/92≈0,881). Die Kopfzahl 0,939 gilt nur für die Sozial-Subgruppe.
 
 > Fehleranalyse: 29% der Fehler stammen von sehr kurzen Antworten (1-2 Wörter); 40% von teilweisen Auslassungen. Keine systematische Fehlleitung.
 
-**🧑 Humanvalidierungsstudie (N=8)**
-- 101 Antworten von ZH/DE/EN-Muttersprachlern zu 5 sozialen Themen
-- Innerhalb der Versuchsperson DE-EN LDS-C: **0,773** (gleiche Person, andere Sprache, andere Konzepte)
-- Zwischen den Versuchspersonen LDS-C Rangfolge: **DE–ZH (0,751) > DE–EN (0,727) > ZH–EN (0,704)**
-- Lehrbuch LDS-K Reihenfolge: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — Strukturebene zeigt ein anderes Muster als Konzeptebene
+**🧑 Humanvalidierungsstudie (N=15 erweitert; N=8-Pilot nicht repliziert)**
+- Erweiterte Studie (6 DE · 6 ZH · 3 EN): Konzept-LDS-C **0,93–0,96 ≈ Within-Language-Split-Half-Boden (0,92–0,96) ≈ Label-Permutation (0,94)** — kein separierbares Sprachsignal unter Between-Subject-Bedingungen; **ΔLDS ≈ 0** (Konzeptebene; Relationsebene nicht vergleichbar)
+- Pilot N=8 (0,70–0,75) **nicht repliziert** — nur aus Transparenz berichtet
+- Lehrbuch-LDS-K: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — aber siehe Nullmodell: LDS-K misst keine Sprachdivergenz
 
-**🤖 Simulationsbasislinie (300 Antworten)**
-- Simulierter LDS-C Mittelwert: **0,647** (SD=0,086)
-- **Menschlicher LDS-C (0,727) > Simulations-LDS-C (0,647)**, p=0,05
-- Bestätigt, dass sprachübergreifende Divergenz die zufällige Erwartung übersteigt
+**🤖 Simulationsbasislinie (300 Antworten, explorativ)**
+- Simulierter LDS-C-Mittelwert: **0,647** (Mock-Keyword-Extraktion — nicht mit qwen-plus-Extraktion vergleichbar; nur deskriptiv, kein p-Wert)
+- Der frühere Mensch-vs-Simulation-Vergleich (p=0,05) ist **zurückgezogen**: Messskalen-Drift macht ihn ungültig (s. `docs/paper/04_discussion.md` §8.11–8.12)
 
 **🧪 Nullmodell (Struktur vs. Vollständige Graphen)**
 - Vollständiger Wissensgraph LDS-K: **0,73** (Mittelwert über alle Paare)
@@ -253,7 +255,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 Modellvergleich
 
-19 models tested across 3 API platforms (Bailian, OpenRouter, LM Studio) on identical 20 gold labels (20 social + 20 math), F1 range 0.55–0.67 — best results shown below:
+**51 Messungen (47 eindeutige Modelle)** über DashScope (43) und zen/OpenRouter (8) mit identischem P1-Protokoll (3 Sprachen × k=10), plus 19-Modell-Extraktionsbenchmark (F1-Bereich 0,55–0,67) — beste Extraktionsergebnisse unten. Replikation: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json); alle 51 ZH–DE-Paare signifikant (p<0,05), 8 englisch-haltige Paare nicht.
 
 | Modell | Bereich | ZH F1 | DE F1 | EN F1 | Geschwindigkeit |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|

@@ -4,6 +4,79 @@
 
 ---
 
+## [2026-09-08] v0.13.2-audit-fixes — P0 数字对账 + 结论限定 + §8.17 彻底移除 + 外联同步
+
+### Overview
+
+P0-Audit-Fixes nach Autorenentscheidung: F1-All-Zeile korrigiert (0.939→0.881 gewichtet),
+SSOT-Zahlen vereinheitlicht (556/525/219), 51-Modell-Zählung korrigiert (43 DashScope,
+2 US-Modelle, ~94 % CN), Schlussfolgerungen mit P1/P2-Einschränkungen versehen,
+§8.17-Ökologie-Fall (N=1) vollständig aus der Hauptlinie entfernt und durch öffentlich
+zitierbare Literatur ersetzt, README/Portal/_deploy synchronisiert.
+
+### A. Zahlenabgleich (SSOT `manifest.json`)
+- F1-All-Zeile: Overall 0.939 (n=92) → **0.881 gewichtet** (ZH 0.951 / DE 0.842 / EN 0.844);
+  Kopfzahl 0.939 gilt nur für Sozial-Subgruppe (`README.md`, `02_methodology.md`)
+- Math-Zeile: 574/3538 → **556/525 direkt (+~3000 transitiv)**; Total → **1.140+/1.100+ direkt**
+- Lehrbuch-Tabelle: 45/20/10 → **39/18/11 = 68**; 75 JSON = Kapitel-Splits (bleibt)
+- Coverage-Tabelle `03_results.md`: Doppelzeilen (Nur EN 50 / Nur DE 44) entfernt;
+  ZH-exklusiv 15,3 % → **21,6 %**; Nenner-Fußnote (Gruppen ≠ Konzepte)
+- 51-Replikation: 42 → **43 DashScope**, 1 → **2 US-Modelle** (nemotron-3-ultra,
+  laguna-s-2.1), ~88 % → **~94 % CN** (`03`, `04` §8.15, `05` §9.7)
+- `04_discussion.md`: Elf → **Zwölf Befunde**
+
+### B. Schlussfolgerungs-Einschränkungen (P1/P2)
+- C1/C3 + Pitch + akademische Version (`00`) + §9.1/§9.3/Abschlusserklärung (`05`):
+  ZH-DE-„Konvergenz" als **indikativ** mit P2-Recheck-Einschränkung markiert
+- Design-Artefakt-Aussage abgeschwächt: **Hypothese gestützt, nicht quantitativ
+  kausal zugeordnet** (q=0.30-Caveat)
+- ΔLDS als **Konzeptebenen**-Maß gekennzeichnet (Relationsebene nicht vergleichbar)
+- F8/F10 als Hypothese formuliert; EU-AI-Act-Schwelle als heuristisch markiert
+
+### C. §8.17-Entfernung
+- `04_discussion.md` §8.17 + `research_directions` D5/D6 entfernt;
+  `qitian_data_support_assessment_20260816.md` → `_archive/20260908_qitian_removal/`
+- Ersatz: öffentlich zitierbare Literatur (Fu & Yang 2025 AMCIS; Sci. Rep. 2025
+  s41598-025-27377-z; arXiv:2606.04177; Survey arXiv:2510.05136)
+
+### D. Extern synchronisiert
+- `README.md` (+DE/ZH): F-Tabelle F3/F4/F8–F12, Human-N=15-Narrativ, Sim-Vergleich
+  zurückgezogen, Badges (1140+, N=15)
+- Portal (`cognitive-space/portal/index.html`) + `_deploy/`-Spiegel: gleiche Zahlen
+
+---
+
+## [2026-08-16] v0.13.1-qitian-data-support — 欺天数据支撑评估 + 论文 §8.17 生态案例 + 20 天市场验证协议
+
+### Overview
+
+把《欺天》AI 网文项目（LinguaGraph 旗下部署/实验臂）的数据接入论文讨论层：新增 §8.17 真实世界 AI 中文文本生产生态案例（N=1, explorativ），建立 20 天市场验证数据采集协议（欺天发书后真实读者行为），登记延后方向 D5。**纯文档/内容改动，未触 release/、未重跑 Pipeline、未动任何冻结项。**
+
+### A. 数据支撑评估（新增 `docs/planning/qitian_data_support_assessment_20260816.md`）
+
+- 双数据流契合分析：静态语料（22 章封盘正文 + 归档 AI 草稿 + 47 份审查报告 + 15 维语言基线 + AI 味缺陷台账）与 20 天市场验证
+- 诚实边界：欺天纯中文/散文语域，**不进 LDS-K/LDS-C 核心、51 模型复制、提取金标准**；冻结项全部未动
+- 关键量化事实已核实（否定对比 24 处/9 章、「盯着」50 次、声音相似度 0.86→0.71、宛如/犹如/仿佛=0）
+
+### B. 论文整合
+
+- `docs/paper/04_discussion.md` 新增 **§8.17 Ökologische Anbindung**：AI 中文文本可检测/可量化/被母语者修正的行为签名（N=1, explorativ），为 §8.13「AI in der Bildung」提供生态效度补充
+
+### C. 未来方向登记
+
+- `docs/planning/research_directions_20260808.md` 增补 **D5**（AI 草稿 vs 人工定稿概念结构对比，需作者批准后执行）；**D6**（LLM 审美/市场预测探针）经评估降级为备注——同风格封面无"审美立场"变量，当前不满足核心论据条件，封面评估留在欺天生产侧
+
+### D. 20 天市场验证协议（欺天项目侧）
+
+- 采集协议定稿于评估文档 §4；日志模板落欺天项目 `工具/审查报告/发布数据日志_20天.md`（SSOT，论文侧只引用）
+- 发书日（D0）起连续 20 天记录：10 章完读率/书架加书率/章节跟读率/前 3 章留存率/流失章节/评论摘录
+
+### 治理说明
+
+- 纯文档操作；`release/` 未动；未重跑 Pipeline；LDS v3 / 30 概念映射 / 问卷 / 标注规范 / 实验方案全部未触碰
+
+---
+
 ## [2026-08-11] v0.13.0-rnd-review — 51 模型复制收尾 + P0-P3 修复 + R&D 全生命周期审查 + 物理/LPA 整合
 
 ### Overview

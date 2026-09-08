@@ -4,6 +4,230 @@
 
 ---
 
+## [2026-09-08] v0.13.2-audit-fixes — P0 数字对账 + 结论限定 + §8.17 彻底移除 + 外联同步
+
+### Overview
+
+P0-Audit-Fixes nach Autorenentscheidung: F1-All-Zeile korrigiert (0.939→0.881 gewichtet),
+SSOT-Zahlen vereinheitlicht (556/525/219), 51-Modell-Zählung korrigiert (43 DashScope,
+2 US-Modelle, ~94 % CN), Schlussfolgerungen mit P1/P2-Einschränkungen versehen,
+§8.17-Ökologie-Fall (N=1) vollständig aus der Hauptlinie entfernt und durch öffentlich
+zitierbare Literatur ersetzt, README/Portal/_deploy synchronisiert.
+
+### A. Zahlenabgleich (SSOT `manifest.json`)
+- F1-All-Zeile: Overall 0.939 (n=92) → **0.881 gewichtet** (ZH 0.951 / DE 0.842 / EN 0.844);
+  Kopfzahl 0.939 gilt nur für Sozial-Subgruppe (`README.md`, `02_methodology.md`)
+- Math-Zeile: 574/3538 → **556/525 direkt (+~3000 transitiv)**; Total → **1.140+/1.100+ direkt**
+- Lehrbuch-Tabelle: 45/20/10 → **39/18/11 = 68**; 75 JSON = Kapitel-Splits (bleibt)
+- Coverage-Tabelle `03_results.md`: Doppelzeilen (Nur EN 50 / Nur DE 44) entfernt;
+  ZH-exklusiv 15,3 % → **21,6 %**; Nenner-Fußnote (Gruppen ≠ Konzepte)
+- 51-Replikation: 42 → **43 DashScope**, 1 → **2 US-Modelle** (nemotron-3-ultra,
+  laguna-s-2.1), ~88 % → **~94 % CN** (`03`, `04` §8.15, `05` §9.7)
+- `04_discussion.md`: Elf → **Zwölf Befunde**
+
+### B. Schlussfolgerungs-Einschränkungen (P1/P2)
+- C1/C3 + Pitch + akademische Version (`00`) + §9.1/§9.3/Abschlusserklärung (`05`):
+  ZH-DE-„Konvergenz" als **indikativ** mit P2-Recheck-Einschränkung markiert
+- Design-Artefakt-Aussage abgeschwächt: **Hypothese gestützt, nicht quantitativ
+  kausal zugeordnet** (q=0.30-Caveat)
+- ΔLDS als **Konzeptebenen**-Maß gekennzeichnet (Relationsebene nicht vergleichbar)
+- F8/F10 als Hypothese formuliert; EU-AI-Act-Schwelle als heuristisch markiert
+
+### C. §8.17-Entfernung
+- `04_discussion.md` §8.17 + `research_directions` D5/D6 entfernt;
+  `qitian_data_support_assessment_20260816.md` → `_archive/20260908_qitian_removal/`
+- Ersatz: öffentlich zitierbare Literatur (Fu & Yang 2025 AMCIS; Sci. Rep. 2025
+  s41598-025-27377-z; arXiv:2606.04177; Survey arXiv:2510.05136)
+
+### D. Extern synchronisiert
+- `README.md` (+DE/ZH): F-Tabelle F3/F4/F8–F12, Human-N=15-Narrativ, Sim-Vergleich
+  zurückgezogen, Badges (1140+, N=15)
+- Portal (`cognitive-space/portal/index.html`) + `_deploy/`-Spiegel: gleiche Zahlen
+
+---
+
+## [2026-08-16] v0.13.1-qitian-data-support — 欺天数据支撑评估 + 论文 §8.17 生态案例 + 20 天市场验证协议
+
+### Overview
+
+把《欺天》AI 网文项目（LinguaGraph 旗下部署/实验臂）的数据接入论文讨论层：新增 §8.17 真实世界 AI 中文文本生产生态案例（N=1, explorativ），建立 20 天市场验证数据采集协议（欺天发书后真实读者行为），登记延后方向 D5。**纯文档/内容改动，未触 release/、未重跑 Pipeline、未动任何冻结项。**
+
+### A. 数据支撑评估（新增 `docs/planning/qitian_data_support_assessment_20260816.md`）
+
+- 双数据流契合分析：静态语料（22 章封盘正文 + 归档 AI 草稿 + 47 份审查报告 + 15 维语言基线 + AI 味缺陷台账）与 20 天市场验证
+- 诚实边界：欺天纯中文/散文语域，**不进 LDS-K/LDS-C 核心、51 模型复制、提取金标准**；冻结项全部未动
+- 关键量化事实已核实（否定对比 24 处/9 章、「盯着」50 次、声音相似度 0.86→0.71、宛如/犹如/仿佛=0）
+
+### B. 论文整合
+
+- `docs/paper/04_discussion.md` 新增 **§8.17 Ökologische Anbindung**：AI 中文文本可检测/可量化/被母语者修正的行为签名（N=1, explorativ），为 §8.13「AI in der Bildung」提供生态效度补充
+
+### C. 未来方向登记
+
+- `docs/planning/research_directions_20260808.md` 增补 **D5**（AI 草稿 vs 人工定稿概念结构对比，需作者批准后执行）；**D6**（LLM 审美/市场预测探针）经评估降级为备注——同风格封面无"审美立场"变量，当前不满足核心论据条件，封面评估留在欺天生产侧
+
+### D. 20 天市场验证协议（欺天项目侧）
+
+- 采集协议定稿于评估文档 §4；日志模板落欺天项目 `工具/审查报告/发布数据日志_20天.md`（SSOT，论文侧只引用）
+- 发书日（D0）起连续 20 天记录：10 章完读率/书架加书率/章节跟读率/前 3 章留存率/流失章节/评论摘录
+
+### 治理说明
+
+- 纯文档操作；`release/` 未动；未重跑 Pipeline；LDS v3 / 30 概念映射 / 问卷 / 标注规范 / 实验方案全部未触碰
+
+---
+
+## [2026-08-11] v0.13.0-rnd-review — 51 模型复制收尾 + P0-P3 修复 + R&D 全生命周期审查 + 物理/LPA 整合
+
+### Overview
+
+在 v0.12.0 设计效应证明基础上：完成对抗性审查（4-agent）的 P0-P3 全部修复（数据说真话）、51 模型复制诚实化（204 vs 129 空模型对照）、PDF 组装（29 页），并执行 R&D 六维度全生命周期审查 + 项目结构整理。
+
+### A. 51 模型复制（权威数据 `multi_model_replication_20260810.json`）
+
+- 51 测量（47 唯一模型，88% 中方 + 1 NVIDIA 美）；**ZH-DE 51/51 显著**（p<0.05），8/153 英语对不显著
+- 方向一致性空模型：≥10 票 **204 vs 129±4**（p<0.001）、≥3 票 1056 vs 823（非噪声）；"1179"为旧双计数已弃用
+- Heimat:safety 41/51（80%）DE、physical space 41 ZH（1 反票）——诚实分母
+
+### B. P0-P3 对抗审查修复（审查报告 `docs/review/full_project_adversarial_review_20260810.md`）
+
+- P0: C1（51/51 措辞修正）、C2（空模型对照）、C3（诚实分母）、C6（披露重写三提供方+欠费）、C9（ratio 解读修复 + loader 校验）
+- P1: C4（SSOT 对账 556/525/219）、C5（结果章 §5.10）、H1 阈值
+- P2: C8（size-match 领域对照反转，诚实降级）、H2（异质性降级为一致性演示）、H3（交叉提取敏感性）
+- P3: release.py 验证 + 69 测试
+
+### C. PDF 组装与论文整合
+
+- `docs/submission/LinguaGraph_BWKI2026.pdf`（29 → **30 页**，fpdf2+simsun）
+- **物理章节**（366 概念/383 边，CDS/HDS 跨学科验证，F6/F7 细节）与 **LPA 章节**（探索性 N=6 试点）整合入 PDF ORDER（§6/§7）
+
+### D. R&D 全生命周期审查（`docs/review/rnd_project_review_20260811.md`）
+
+- 六维度评估：目标/先进性/过程/团队/质量合规/转化——总评偏研究型定位合理
+- 先进性扫描：文献矩阵 6 周未更新 + 缺 LLM 文化对齐 SOTA 对照（Gap，需联网补查新）
+- 结构整理：5 处 live 文档数字冲突修正；7 个过期文件归档至 `_archive/20260811_rnd_review/`
+
+### 已归档（`_archive/20260811_rnd_review/`）
+
+03_results_human_v2 · 04_discussion_revision · session_handoff_20260702 · bwki_paper_outline(+_v2) · repo_restructure_plan · PROJECT_LOG
+
+---
+
+## [2026-08-08] v0.12.0-design-effect — 设计效应证明 + A5 分歧驱动者 + 节点/边分解
+
+### Overview
+
+在 v0.11 D1 机制实验基础上，本版把"人类阴性 = 设计伪影"从推断升级为**定量证明**，并补上论文遗留的 RQ4（分歧驱动者）与跨域结构分解。全部为纯分析深化（零新 API 调用）。
+
+### A. 设计效应证明（`scripts/lds_c_design_effect.py` → `design_effect_20260808.json`）
+
+- **信号幅度相同**: 人类 LDS-C（0.93–0.96）≈ LLM LDS-C（0.93–0.96）→ 人类阴性不是"无语言效应"
+- **底噪不同**: 人类 split-half 0.92–0.96 ≈ 信号（s/f≈1.00，淹没）；LLM 0.85–0.87（s/f≈1.09–1.10，可见）
+- **非样本量效应**: LLM 在 N=3/语 仍有信号（margin +0.02–0.04）
+- **虚拟组间 lens（决定性）**: LLM 按人类组间管线 + N=6/语 重分析信号仍存活（+0.06–0.07）→ 人类阴性 = **组内个体异质性**，非"无效应"、非"组间设计本身"
+
+### B. A5 分歧驱动者（RQ4 已答，`scripts/lds_c_divergence_drivers.py`）
+
+- ZH-DE 由**框架负载文化概念**驱动: DE（equal opportunity / freedom limit / goal own）vs ZH（physical space / boundary freedom / due treatment）
+- 关系驱动者: DE `responsibility→consequence` vs ZH `success→goal`
+- 共享概念极少（20–27/语言对）→ 与 LDS-C ≈ 0.93–0.96 一致
+
+### C. 节点/边分解对称（`scripts/lds_c_node_edge_decomp.py` → `node_edge_decomp_20260808.json`）
+
+- 社会/制度反转（数学 ZH-DE 0.52 vs 社会 0.82）**节点驱动**: 数学 node-only 0.444 vs 社会 0.800
+- **边分量不反转**: 数学 edge+ 0.074（最大）vs 社会 0.019 → 制度收敛于概念选择，关系组织仍系统性分歧
+- 修正 A4 §3.8 表述: 0.075 是"边驱动的分歧"非"边驱动的趋同"
+
+### D. 论文整合
+
+- `03_results.md` 新增 **§5.9**（设计效应 + 驱动者 + 节点/边分解）
+- `04_discussion.md` §8.14 新增设计伪影精确化 + 节点/边解读
+- `lds_formal_definition.md` 新增 **§6.2 设计效应证明 + §6.3 节点/边分解**
+- 结果文档 `docs/a3_c_d_deepen_results.md`；交接 v0.9
+
+---
+
+## [2026-08-08] v0.11.0-d1-mechanism — D1 LLM-as-Subject 机制实验 + A4 语料深化
+
+### Overview
+
+在 v0.10 人类组间阴性结果的基础上，本版完成**机制级突破**：用 LLM-as-Subject 组内设计证明语言信号真实存在，并用混合效应模型分离机制。同时完成 A4 语料深化（Wikipedia 对齐修复 + 社会/制度模式相反）与 A7 核心图表。
+
+### A. D1 LLM-as-Subject 组内设计（核心）
+
+- **设计**（`docs/planning/d1_mechanism_design.md`）: 同一 LLM（deepseek-v4-flash）用 ZH/DE/EN 回答同 5 主题 = 组内设计构造上成立
+- **采集**（`scripts/lds_c_llm_subject.py`）: P1 语言主效应 + P2 框架解耦 + P3 自由联想 + P5 提示语解耦，k=10，220 units，0 空
+- **结果**（`docs/d1_mechanism_results.md`）: **LDS-C 0.93–0.96 ≫ 底 0.85–0.87 → 语言信号真实**（人类阴性是设计伪影）
+- **LMM**（`scripts/lds_c_llm_lmm.py`, scipy 实现）: **same_lang +0.038 (p<0.001) / same_frame +0.001 (p=0.90) → 代码层主导（M2），框架次级（M3）**
+- **主题分解**（`scripts/lds_c_llm_per_topic.py`）: Erfolg & Gerechtigkeit 语言信号+框架效应最强
+
+### B. A4 LDS-K 语料深化
+
+- **Wikipedia 对齐修复**（`scripts/lds_k_wiki_gloss.py`）: 96 个 ZH+DE 概念英文化 → 修正 LDS=1.0 未对齐伪影
+- **社会 vs 制度模式相反**（`scripts/lds_k_deepen.py`）: 数学 ZH-DE 0.52（趋同）vs 社会 Wikipedia ZH-DE 0.82（分歧）
+- **跨源空模型**（§3.6 首次实现）: 教材-vs-Wiki 域混淆；同域跨源 Wiki(zh)-vs-Human(zh)=0.94
+- **敏感性**全维度稳健（方向/对齐/阈值）
+- 结果文档 `docs/a4_ldsk_deepen_results.md`
+
+### C. A7 核心图表
+
+- `scripts/figures/fig_a7_core.py` — 5 图 + CSV（ΔLDS 三方对比、主题热图、空模型、机制、敏感性）
+
+### D. 论文整合
+
+- `03_results.md` — §3.8（A4 深化）+ §5（LLM-as-Subject）
+- `04_discussion.md` — §8.14（组间/组内对照方法学）
+- `05_conclusion.md` / `00_three_conclusions.md` / `01_abstract_introduction.md` — D1 + A4 同步
+- `lds_formal_definition.md` — §4 Wikipedia 负对照修正 + 证伪表更新
+
+### E. 交接
+
+- `docs/session_handoff_20260808.md` — 更新至 v0.8（完整证据链）
+- `docs/planning/restart_plan.md` — 执行进度更新（A4/A7/D1 完成）
+
+---
+
+## [2026-08-08] v0.10.0-research-restart — 研究重启 + LDS-C 三层分析
+
+### Overview
+
+停摆约一个月后研究重启（Month 2 理论+分析）。完成人类数据（N=15）的完整 LDS-C 三层分析，系统性得到**一致的阴性结果**（无语言信号），诚实更新论文主张。
+
+### A. 数据治理
+
+- **commit 人类数据 SSOT**: `freeze/freeze_survey_20260703/`（11）+ `freeze_survey_20260712/`（4）→ 共 15 合格（6DE/6ZH/3EN）
+- **清理归档** 942 个过时/重复文件至 `_archive/20260807_cleanup/`（零删除）
+- **新数据批次**: 问卷星导出 4 条（1ZH+3EN）经 QC 纳入
+
+### B. LDS-C 分析管线（deepseek-v4-flash @ opencode GO）
+
+- `scripts/lds_c_extract.py` — 概念提取（15/15，含英文 gloss）
+- `scripts/lds_c_compute.py` — 概念级 LDS-C + 空模型（split-half/标签置换）+ Bootstrap
+- `scripts/lds_c_thematic.py` — 6 类 Codebook 主题分析
+- `scripts/lds_c_extract_relations.py` + `lds_c_compute_v3.py` — 关系提取 + v3（节点+边）
+
+### C. 核心科研结果（三层一致阴性）
+
+| 层面 | 结果 | 判定 |
+|------|------|------|
+| 概念级 LDS-C | 0.93-0.96 | 无语言信号（split-half 底 0.92-0.96 ≈ 观测） |
+| 主题级类别分布 | χ² p=0.52 | 不显著（有方向趋势：ZH 法理/DE 自主/EN 具体） |
+| 关系级 v3 | 0.96-0.98 | 无语言信号（edge-J≈0） |
+
+**结论**: N=15 组间设计下无可分离语言信号；旧论文 N=8 主张（LDS-C 0.70-0.75, ΔLDS>0）不被复制。核心方法学教训 = 组间设计无法分离语言效应与个体差异（需组内设计）。
+
+### D. 论文修订
+
+- `docs/paper/03_results_human_v2.md` — 新 §4（N=15 诚实结果，待合并）
+- `docs/paper/04_discussion_revision.md` — F11/F12 修订指引
+
+### E. 交接
+
+- `docs/session_handoff_20260808.md` — 完整交接文档
+- `docs/planning/restart_plan.md` — 执行进度标注
+
+---
+
 ## [2026-06-19] v0.9.1-pre-human-validation — RC Stabilization
 
 ### Overview
