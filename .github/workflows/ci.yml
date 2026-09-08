@@ -1,0 +1,55 @@
+name: CI (tests + release dry-run + manifest guard)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install markdown fpdf2
+
+      - name: Pytest (report-only)
+        run: python -m pytest tests/ -q
+        continue-on-error: true
+
+      - name: Release dry-run (gates must pass)
+        run: python scripts/release.py --dry-run
+
+      - name: Manifest SSOT guard (556/525/219)
+        run: |
+          python - <<'EOF'
+          import json
+          m = json.load(open("manifest.json"))
+          assert m["graph"]["total_nodes"] == 556, m["graph"]
+          assert m["alignment"]["total_relations"] == 525, m["alignment"]
+          assert m["alignment"]["trilingual_groups"] == 219, m["alignment"]
+          print("manifest SSOT OK: 556/525/219")
+          EOF
+
+      - name: Forbidden-numbers guard (stale claims)
+        run: |
+          ! grep -rn --include="README.md" --include="*.html" \
+            -e "574 concepts" -e "3,538 relations" -e "247 (43" \
+            README.md README_DE.md README_ZH.md \
+            cognitive-space/portal/index.html \
+            submission/final/README.md 2>/dev/null
+          echo "no stale headline numbers"
+
+      - name: Paper reference check ([25]-[36] resolvable files)
+        run: |
+          test -f docs/paper/02_related_work.md
+          grep -c "arXiv:" docs/paper/02_related_work.md

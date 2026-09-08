@@ -37,7 +37,7 @@
 | 中文 / Chinese / Chinesisch | 335 (58%) |
 | 英语 / English / Englisch | 392 (68%) |
 | 德语 / German / Deutsch | 341 (59%) |
-| 三语完整 / Trilingual / Dreisprachig | 247 (43%) |
+| 三语完整 / Trilingual / Dreisprachig | 219 (39.4%) |
 
 ## 快速开始 / Quick Start
 

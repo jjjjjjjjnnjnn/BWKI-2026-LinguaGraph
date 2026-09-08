@@ -1,5 +1,7 @@
 # LinguaGraph — 10-Minute Presentation
 
+> ⚠️ **LEGACY / SUPERSEDED (2026-08-09)**: 本份是旧"教材课程分析"框架的深讲版本。当前提交叙事已改为 **AI 价值观一致性审计**框架——见 `docs/pitch_3min.md`（当前 3 分钟版）+ `docs/video_script.md`（视频 v2）。本份的教材内容保留价值：作为新叙事的 **领域对照控制证据**（制度知识趋同 vs 文化概念分歧）。决赛深讲 deck 将基于新框架重建。
+>
 > For conference talks, jury presentations, or deep-dive sessions
 
 ---
@@ -46,7 +48,7 @@ LinguaGraph builds on four research traditions:
 TEXTBOOKS (ZH/EN/DE STEM)
   ↓ qwen-plus API · MIMO Prompt
 CONCEPT EXTRACTION (1,160+ concepts, 4,100+ relations)
-  ↓ Gold Labels (92, F1=0.939)
+  ↓ Gold Labels (72 social, F1=0.939)
 KNOWLEDGE GRAPHS (Math · Physics · Chemistry)
   ↓ CDS ↓ HDS ↓ LDS
 STRUCTURAL INSIGHTS
@@ -65,7 +67,7 @@ CURRICULUM ALIGNMENT (4 systems)
 
 | Discipline | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |-----------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 34% · UK 82% · US 76% |
+| **Mathematics** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 366 | 383 | 94 versions | ZH/EN/DE | NRW 38% |
 | **Chemistry** | 220 | 215 | 18 versions | ZH/EN/DE | NRW 36% |
 | **Total** | **1,160+** | **4,100+** | **180+** | **3** | **4 systems** |
@@ -94,14 +96,14 @@ Measures the longest chain of prerequisite relations starting from each concept.
 
 **Finding:** ❌ False. Max depth is only 8. 83% of concepts have no prerequisites at all. Mathematics is a shallow web, not a deep tree.
 
-### LDS (Language Drift Score)
+### LDS (Linguistic Divergence Score)
 `1 − mean(GED, Jaccard_Node, Jaccard_Edge)` — How differently do languages structure the same topic?
 
 Combines graph edit distance with node and edge Jaccard similarity.
 
 **Expectation:** Chinese would differ most from both European languages.
 
-**Finding:** ❌ False. ZH–EN divergence is lowest (0.802). ZH–DE is highest (0.907). Curriculum tradition, not language family, is the primary driver.
+**Finding:** ❌ Surprising. LDS-K reveals structural convergence: ZH-DE=0.519, while ZH-EN and DE-EN approach noise level (0.934, 0.938). Curriculum tradition, not language family, is the primary driver.
 
 ### CS (Coverage Score)
 `|V_textbook ∩ V_curriculum| / |V_curriculum|` — How well do textbooks cover official curricula?
@@ -110,7 +112,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 
 **Expectation:** Coverage would be uniformly high across systems.
 
-**Finding:** ❌ False. Coverage ranges from 8% (China) to 82% (UK), with dramatically different trajectories.
+**Finding:** ❌ False/Correct. Coverage ranges from 12.7% (NRW) to 95.4% (China), with dramatically different patterns.
 
 ---
 
@@ -120,7 +122,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 
 | Finding | Evidence |
 |---------|----------|
-| **F1:** CDS peaks at Middle school (0.271) | ZH/EN/DE independent verification, 574 concepts |
+| **F1:** CDS peaks at Middle school (0.271) | ZH/EN/DE independent verification, 556 concepts |
 | **F2:** Middle → High density drops 3.7× | 0.271 → 0.073 |
 | **F6:** Physics peaks at Elementary (0.222) | Same peak-and-decline pattern |
 | **F8:** Chemistry also peaks at Middle (0.042) | Universal STEM density pattern |
@@ -140,19 +142,19 @@ Aligns textbook concept graphs against curriculum concept sets.
 
 | Finding | Evidence |
 |---------|----------|
-| **F4:** ZH–DE highest (0.907), ZH–EN lowest (0.802) | Curriculum tradition > language family |
+| **F4:** LDS-K: ZH-DE converges (0.519), ZH-EN (0.934) and DE-EN (0.938) approach noise | Curriculum tradition > language family |
 | **F5:** LDS varies by topic (up to 0.2) | Topic-dependent divergence |
 
-**Interpretation:** English and Chinese textbooks share structural similarities despite different language families, likely due to the global influence of Anglo-American mathematics education. German textbooks follow a distinct tradition emphasizing conceptual rigor.
+**Interpretation:** LDS-K reveals that ZH-DE textbook structures converge (0.519), challenging the assumption that European languages are structurally closer. ZH-EN and DE-EN approach noise level (0.934, 0.938), suggesting independence rather than similarity.
 
 ### Coverage Findings (CS: F9, F10)
 
 | Finding | Evidence |
 |---------|----------|
-| **F9:** Coverage varies dramatically: NRW 34%, UK 82%, US 76%, CN 8% | System-level differences |
-| **F10:** Trajectories reflect design philosophy: UK ↗, NRW ↘, US →, CN → | Not error, but intent |
+| **F9:** Coverage varies dramatically: NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% | System-level differences |
+| **F10:** Coverage scores reveal **design philosophy**: high coverage does not mean high quality | NRW specialized vs CN broad |
 
-**Interpretation:** Low coverage is not low quality. China's 8% coverage reflects highly selective, depth-focused curriculum design. The UK's 82% reflects a broad, exam-driven approach. These are different educational philosophies, not deficiencies.
+**Interpretation:** Coverage differences reflect educational philosophy: NRW's 12.7% indicates specialization depth, while China's 95.4% reflects broad curriculum alignment. UK's 37.3% and US's 17.2% sit in between. These are different educational philosophies, not deficiencies.
 
 ---
 
@@ -168,7 +170,7 @@ Aligns textbook concept graphs against curriculum concept sets.
 Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in German textbooks. Social concept extraction is uniformly strong.
 
 ### Model Benchmark (20 models)
-- **Production model:** qwen-plus (F1=0.939 overall on 92 gold labels)
+- **Production model:** qwen-plus (F1=0.939 for social concepts, 72 labels)
 - **Best free alternative:** qwen3-30b-a3b (F1=0.858)
 - **Best non-Qwen:** glm-4.6 (F1=0.819)
 
@@ -185,7 +187,7 @@ The dominant error type is **structural** — missing or incorrect prerequisite 
 | **B: Educational Philosophy** | Systems prioritize breadth vs depth differently | UK (exam-driven, broad) vs NRW (specialization, focused) | ✅ Best supported |
 | **C: Division of Labor** | Some concepts taught by other subjects | Cross-subject transfer is possible but unmeasured | ⚠️ Plausible |
 
-**Winner:** The educational philosophy explanation best fits the data. UK's ascending trajectory (53% → 90%) reflects exam-driven comprehensive coverage. NRW's descending trajectory (50% → 31%) reflects increasing specialization where teachers select from the curriculum rather than covering all of it.
+**Winner:** The educational philosophy explanation best fits the data. China's high coverage (95.4%) reflects broad curriculum alignment. NRW's low coverage (12.7%) reflects specialization where teachers select from the curriculum rather than covering all of it.
 
 ---
 
@@ -203,7 +205,7 @@ The dominant error type is **structural** — missing or incorrect prerequisite 
 - First framework combining LLM-based extraction with multi-lingual knowledge graph analysis
 - Four novel quantitative metrics (CDS, HDS, LDS, CS)
 - Comprehensive dataset: 1,160+ concepts, 4,100+ relations, 3 languages, 4 education systems
-- Gold-validated extraction pipeline (F1=0.939)
+- Gold-validated extraction pipeline (F1=0.939 for social concepts)
 - 10 findings spanning density, depth, language, and coverage
 
 ---
