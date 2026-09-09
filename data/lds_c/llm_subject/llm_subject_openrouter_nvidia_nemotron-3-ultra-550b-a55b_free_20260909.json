@@ -1,0 +1,1896 @@
+{
+ "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+ "api_url": "https://openrouter.ai/api/v1",
+ "design": "d1_mechanism",
+ "seed": 20260808,
+ "temperature": 0.3,
+ "generated_at": "2026-09-09T11:57:26.901281",
+ "units": [
+  {
+   "unit_id": "P1_zh_s00",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 0,
+   "answers": {
+    "Verantwortung": "责任和自由其实是硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在自我约束和对他人的尊重基础上的，当你愿意承担后果时，你才配拥有选择的权利。小时候觉得自由就是想干嘛干嘛，长大后才懂得，能为自己的选择买单，才是最大的自由。责任不是自由的对立面，而是让自由变得有分量、有质感的支撑点。最舒服的状态大概是：在责任的边界里，自由地呼吸、选择、生长。",
+    "Heimat": "“房子”只是砖瓦木石搭建的物理空间，是冰冷的建筑实体，可以买卖、出租、拆迁；“家”则是承载着情感记忆、亲情羁绊和归属感的精神港湾。房子可以用面积、户型、价格来衡量，家却要用温暖、包容、共同经历的点滴来丈量。一个人可以拥有很多套房子，却未必有家；也可以住在出租屋里，却因为有爱人、孩子、父母的陪伴，觉得那才是真正的家。房子是身体的栖息地，家是灵魂的归宿。这种区别，大概就是“有形”与“无形”、“居住”与“生活”的差别吧。",
+    "Gerechtigkeit": "正义对我来说，首先是公平对待每一个人，不因身份、财富或权力而有所偏颇。它意味着规则面前人人平等，弱者也能获得应有的保护和尊严。正义不仅是法律条文的严格执行，更是内心良知的指引，让人在面对不公时敢于发声、伸出援手。一个正义的社会，应当让善良者不受委屈，让作恶者无处遁形。这既是对制度的要求，也是我们每个人日常选择的准则。",
+    "Freiheit": "自由的边界在于不侵犯他人的合法权益和社会公共利益，这是法律和道德共同划定的红线。一个人挥拳的自由止于另一个人的鼻尖前，这个经典比喻道出了自由必然包含责任的本质。绝对的自由只会导致强者对弱者的压迫，真正的自由是在规则框架内的自主选择。界限虽因文化语境而异，但核心原则始终是：你的自由不应成为他人不自由的代价。",
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个持续的过程。它意味着能在自己热爱的事情上投入时间，并且看到这种投入对他人或世界产生了正向的微小影响。同时，成功也包含内心的从容——在面对不确定性时不至于崩溃，能接纳自己的不完美，依然选择继续前行。如果每天睡前能觉得“今天没有白过”，那就是我眼里最真实的成功。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "合法权益",
+      "en": "legitimate rights and interests",
+      "importance": 0.9
+     },
+     {
+      "concept": "社会公共利益",
+      "en": "social public interest",
+      "importance": 0.9
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则框架",
+      "en": "rule framework",
+      "importance": 0.85
+     },
+     {
+      "concept": "自主选择",
+      "en": "autonomous choice",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平对待",
+      "en": "fair treatment",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则面前人人平等",
+      "en": "equality before rules",
+      "importance": 0.95
+     },
+     {
+      "concept": "弱者",
+      "en": "the weak/vulnerable",
+      "importance": 0.9
+     },
+     {
+      "concept": "内心良知",
+      "en": "inner conscience",
+      "importance": 0.9
+     },
+     {
+      "concept": "正义的社会",
+      "en": "just society",
+      "importance": 0.85
+     },
+     {
+      "concept": "制度",
+      "en": "system/institution",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.9
+     },
+     {
+      "concept": "自我约束",
+      "en": "self-discipline",
+      "importance": 0.9
+     },
+     {
+      "concept": "后果",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "选择的权利",
+      "en": "right to choose",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house (physical)",
+      "importance": 0.95
+     },
+     {
+      "concept": "家",
+      "en": "home (emotional)",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感记忆",
+      "en": "emotional memories",
+      "importance": 0.9
+     },
+     {
+      "concept": "亲情羁绊",
+      "en": "family bonds",
+      "importance": 0.9
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "精神港湾",
+      "en": "spiritual harbor",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "持续的过程",
+      "en": "continuous process",
+      "importance": 0.9
+     },
+     {
+      "concept": "热爱的事情",
+      "en": "beloved pursuits",
+      "importance": 0.9
+     },
+     {
+      "concept": "正向影响",
+      "en": "positive impact",
+      "importance": 0.85
+     },
+     {
+      "concept": "内心的从容",
+      "en": "inner composure",
+      "importance": 0.9
+     },
+     {
+      "concept": "不完美",
+      "en": "imperfection",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 96370,
+      "tokens_in": 129,
+      "tokens_out": 230,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 41046,
+      "tokens_in": 126,
+      "tokens_out": 271,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 140378,
+      "tokens_in": 126,
+      "tokens_out": 193,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 82944,
+      "tokens_in": 127,
+      "tokens_out": 192,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 80792,
+      "tokens_in": 131,
+      "tokens_out": 160,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s01",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 1,
+   "answers": {
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个不断调整方向、在过程中找到平衡的状态。它意味着能用大部分时间做真正在意的事，同时不必为了生存出卖核心价值观。成功是清晨醒来时对当天安排的期待，是面对挫折时仍有重来的勇气，也是能守护身边重要的人不受生活琐碎侵蚀。更重要的是，它不需要向外界证明什么，只需在深夜独处时，能坦然接受那个不完美但真实的自己。",
+    "Heimat": "家是有温度的，是亲人围坐吃饭时的碗筷声，是深夜归家还亮着的那盏灯，是无论走多远都想回去的地方。房子只是钢筋水泥砌成的空间，有户型面积朝向价格，可以买卖出租，却装不下归属感。住久了有烟火气有痕迹的房子才能成家，搬进新房子的第一晚总觉得空落落，得慢慢把生活过进去。家里的旧沙发磨损了不舍得换，因为那是陪伴的见证；房子里的装修过时了随时能推倒重来。说到底，房子是躯壳，家才是魂。",
+    "Verantwortung": "责任和自由其实是硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在自我约束和对他人的尊重之上的，这需要责任感作为支撑。当我们自觉承担起应尽的责任时，反而能获得更大的精神自由和选择空间。这种辩证关系让我明白，成熟不是逃避责任换取自由，而是敢于担责从而赢得真正的自由。",
+    "Gerechtigkeit": "正义对我来说，首先是公平的基准线——同样的规则适用于每个人，不因身份、财富或权力而偏颇。它不仅是法律条文的严肃，更体现在日常生活中弱者不被欺凌、善良不被利用、努力得到应有回报。正义也包含纠错的勇气：当制度出现偏差时，有人站出来发声，有人愿意承担代价去修正。它不是抽象的完美乌托邦，而是无数具体时刻里“不忍心、不放手、不妥协”的积累。归根结底，正义让我在社会中感到安全，相信规则能保护我，也约束我，让人与人之间能建立起基本的信任。",
+    "Freiheit": "自由的边界在于不侵犯他人的同等自由，这是最基本的底线。法律和道德规范是社会划定的显性边界，但内心的自我约束才是更本质的界限。真正的自由不是想做什么就做什么，而是有能力拒绝不想做的事，也有担当为自己的选择买单。边界不是固定的墙，而随时代、文化和认知水平而流动。在这个流动中找到自己的位置，既不越界伤人，也不委屈自己，大概就是自由最舒展的样子。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的同等自由",
+      "en": "others' equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "内心的自我约束",
+      "en": "inner self-restraint",
+      "importance": 0.85
+     },
+     {
+      "concept": "拒绝不想做的事的能力",
+      "en": "capacity to refuse unwanted things",
+      "importance": 0.85
+     },
+     {
+      "concept": "为自己的选择买单",
+      "en": "bearing responsibility for one's choices",
+      "importance": 0.8
+     },
+     {
+      "concept": "流动的边界",
+      "en": "fluid boundaries",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平的基准线",
+      "en": "baseline of fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "同样的规则",
+      "en": "same rules for all",
+      "importance": 0.9
+     },
+     {
+      "concept": "纠错的勇气",
+      "en": "courage to correct errors",
+      "importance": 0.85
+     },
+     {
+      "concept": "具体时刻的积累",
+      "en": "accumulation of concrete moments",
+      "importance": 0.8
+     },
+     {
+      "concept": "安全感",
+      "en": "sense of security",
+      "importance": 0.8
+     },
+     {
+      "concept": "基本的信任",
+      "en": "basic trust",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.9
+     },
+     {
+      "concept": "自我约束",
+      "en": "self-discipline",
+      "importance": 0.85
+     },
+     {
+      "concept": "精神自由",
+      "en": "spiritual freedom",
+      "importance": 0.8
+     },
+     {
+      "concept": "辩证关系",
+      "en": "dialectical relationship",
+      "importance": 0.8
+     },
+     {
+      "concept": "担责",
+      "en": "bearing responsibility",
+      "importance": 0.75
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.85
+     },
+     {
+      "concept": "烟火气",
+      "en": "everyday life atmosphere",
+      "importance": 0.8
+     },
+     {
+      "concept": "陪伴的见证",
+      "en": "witness of companionship",
+      "importance": 0.8
+     },
+     {
+      "concept": "躯壳与魂",
+      "en": "shell and soul",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "平衡状态",
+      "en": "state of balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "真正在意的事",
+      "en": "truly cared-about matters",
+      "importance": 0.85
+     },
+     {
+      "concept": "核心价值观",
+      "en": "core values",
+      "importance": 0.85
+     },
+     {
+      "concept": "重来的勇气",
+      "en": "courage to start over",
+      "importance": 0.8
+     },
+     {
+      "concept": "不完美但真实的自己",
+      "en": "imperfect but authentic self",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 48702,
+      "tokens_in": 131,
+      "tokens_out": 192,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 42353,
+      "tokens_in": 126,
+      "tokens_out": 264,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 41200,
+      "tokens_in": 129,
+      "tokens_out": 193,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 45683,
+      "tokens_in": 126,
+      "tokens_out": 255,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 60633,
+      "tokens_in": 127,
+      "tokens_out": 191,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s02",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 2,
+   "answers": {
+    "Verantwortung": "责任和自由就像硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由不是想做什么就做什么，而是有能力为自己的选择承担后果。当我们自觉承担起该负的责任时，反而获得了更大的精神自由和选择空间。这种关系不是对立的零和博弈，而是相互支撑、共同生长的动态平衡。成熟的标志，大概就是懂得在自由中担责，在责任中寻找自由的边界。",
+    "Heimat": "家是有温度的，是亲人在一起吃饭、吵架、和好的地方，是心里最软的那个角落。房子只是砖瓦木头搭起来的空间，买得起卖得掉，属于资产范畴。没有爱的房子只是冰冷的建筑，装进爱和陪伴才成了家。我搬过好几次房子，但只要父母在、伴侣在，哪里都是家。房子可以用钱衡量，家却得用心经营。",
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个不断调整方向、让内心感到踏实的过程。它意味着能用大部分时间做自己认同、也擅长的事，同时不必为了生存而出卖核心价值观。成功是周末醒来时没有焦虑感，手边有想读完的书、想见的人、想去的地方。它也是当父母生病、朋友遇到困难时，我有能力说声“我来处理”而不必算计成本。归根结底，成功就是拥有说“不”的自由，和说“是”时的从容。",
+    "Freiheit": "自由的边界在于不侵犯他人的自由和合法权益，这是最基本的底线。法律和道德规范共同划定了这个边界，法律是硬性约束，道德则是软性约束。真正的自由不是想做什么就做什么，而是在规则框架内自主选择并为选择负责。当一个人的行为开始对他人造成实质性伤害或不公平负担时，自由就越界了。界限往往模糊且随时代变迁，需要社会不断通过对话和博弈来重新协商。",
+    "Gerechtigkeit": "正义对我来说，首先是公平的基石——无论身份地位，大家在规则面前都能得到平等对待，不因权势金钱而歪曲是非。它更是一种温度，体现在弱者受欺凌时有人挺身而出，体现在制度设计时留有对底层民生的兜底善意。现实中正义常迟到、甚至缺席，但正是这种不完美，让我们更珍视每一次微光时刻：邻里间的相互扶持、媒体对真相的坚持、法庭上不畏强权的判词。追求正义不是喊口号，而是在柴米油盐里守住底线，在关键时刻敢说句“不”。它既是社会运行的底线，也是我们每个人良知的坐标。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的自由和合法权益",
+      "en": "others' freedom and legal rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德规范",
+      "en": "moral norms",
+      "importance": 0.8
+     },
+     {
+      "concept": "规则框架",
+      "en": "rule framework",
+      "importance": 0.8
+     },
+     {
+      "concept": "自主选择",
+      "en": "autonomous choice",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平",
+      "en": "fairness",
+      "importance": 0.95
+     },
+     {
+      "concept": "平等对待",
+      "en": "equal treatment",
+      "importance": 0.9
+     },
+     {
+      "concept": "弱者保护",
+      "en": "protection of the weak",
+      "importance": 0.85
+     },
+     {
+      "concept": "制度设计",
+      "en": "institutional design",
+      "importance": 0.8
+     },
+     {
+      "concept": "底线",
+      "en": "bottom line",
+      "importance": 0.8
+     },
+     {
+      "concept": "良知坐标",
+      "en": "conscience coordinates",
+      "importance": 0.75
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.95
+     },
+     {
+      "concept": "自由",
+      "en": "freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "硬币两面",
+      "en": "two sides of a coin",
+      "importance": 0.85
+     },
+     {
+      "concept": "承担后果",
+      "en": "bear consequences",
+      "importance": 0.8
+     },
+     {
+      "concept": "动态平衡",
+      "en": "dynamic balance",
+      "importance": 0.8
+     },
+     {
+      "concept": "成熟标志",
+      "en": "mark of maturity",
+      "importance": 0.75
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "亲人",
+      "en": "family members",
+      "importance": 0.85
+     },
+     {
+      "concept": "爱",
+      "en": "love",
+      "importance": 0.8
+     },
+     {
+      "concept": "陪伴",
+      "en": "companionship",
+      "importance": 0.8
+     },
+     {
+      "concept": "用心经营",
+      "en": "cultivate with heart",
+      "importance": 0.75
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "过程",
+      "en": "process",
+      "importance": 0.9
+     },
+     {
+      "concept": "核心价值观",
+      "en": "core values",
+      "importance": 0.85
+     },
+     {
+      "concept": "说不的自由",
+      "en": "freedom to say no",
+      "importance": 0.8
+     },
+     {
+      "concept": "从容",
+      "en": "composure",
+      "importance": 0.8
+     },
+     {
+      "concept": "踏实",
+      "en": "grounded/at ease",
+      "importance": 0.75
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 45046,
+      "tokens_in": 129,
+      "tokens_out": 214,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 67133,
+      "tokens_in": 126,
+      "tokens_out": 199,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 43544,
+      "tokens_in": 131,
+      "tokens_out": 197,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 54963,
+      "tokens_in": 127,
+      "tokens_out": 199,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 83925,
+      "tokens_in": 126,
+      "tokens_out": 265,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s03",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 3,
+   "answers": {
+    "Heimat": "“房子”只是砖瓦木石搭建的物理空间，是冰冷的建筑实体，可以买卖、出租、拆迁；而“家”承载的是人与人之间的情感连接、生活记忆和归属感。没有温情的房子只是遮风挡雨的壳，有了亲人的唠叨、伴侣的拥抱、孩子的笑声，房子才成了家。家可以是简陋的出租屋，也可以是流浪时背包里的几张照片，核心在于“心安处”。房子属于物质层面，家属于精神层面，前者有价，后者无价。所以买房容易，建家难，需要用时间和爱去经营。",
+    "Verantwortung": "责任和自由就像硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在对自己行为负责的基础上的，当你愿意为选择承担后果时，自由才有了分量。小时候觉得自由就是想干嘛干嘛，长大后才明白，能掌控自己人生、不被外界随意裹挟，才是最高级的自由。这种自由需要自律作支撑，需要对家庭、社会、乃至自己的承诺负责。责任看似限制了自由，实则是让自由变得可持续、有质量的前提。",
+    "Gerechtigkeit": "正义对我来说，首先是公平与法治的统一——规则面前人人平等，权力不能凌驾于法律之上。它也是对弱者的保护，让普通人的基本权益不被侵犯，发声能被听见。更深层看，正义是社会信任的基石，只有当善有善报、恶有恶报成为常态，人们才敢于遵守规则、彼此协作。当然现实总有缝隙，正义也需要不断通过制度修补和舆论监督来逼近理想。所以我把正义看作一种动态的追求，而非静止的终点。",
+    "Freiheit": "自由的边界在于不侵犯他人的自由，这是最基本的底线。法律明确规定了不能触碰的红线，但道德和良知往往划出更严格的界限。真正的自由不是想做什么就做什么，而是在承担责任的前提下做选择。当你的挥舞拳头的自由停在别人的鼻子前，自由就有了清晰的形状。",
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个持续的过程——能在自己热爱的事情上不断精进，同时保持内心的平静与踏实。它意味着有能力照顾好爱我的人，也有自由去拒绝不想做的事，不被焦虑裹挟着向前跑。真正的成功里藏着“从容”两个字：面对得失不慌不忙，面对普通日子也能发现微光。如果非要给个具象画面，大概就是深夜写完代码合上电脑，喝口热茶，心想“今天过得不亏”，然后安稳入睡。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的自由",
+      "en": "others' freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律",
+      "en": "law",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和良知",
+      "en": "morality and conscience",
+      "importance": 0.85
+     },
+     {
+      "concept": "责任",
+      "en": "responsibility",
+      "importance": 0.9
+     },
+     {
+      "concept": "选择",
+      "en": "choice",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平与法治",
+      "en": "fairness and rule of law",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则面前人人平等",
+      "en": "equality before rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "弱者的保护",
+      "en": "protection of the weak",
+      "importance": 0.9
+     },
+     {
+      "concept": "社会信任的基石",
+      "en": "cornerstone of social trust",
+      "importance": 0.85
+     },
+     {
+      "concept": "制度修补和舆论监督",
+      "en": "institutional repair and public oversight",
+      "importance": 0.8
+     },
+     {
+      "concept": "动态的追求",
+      "en": "dynamic pursuit",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.9
+     },
+     {
+      "concept": "自律",
+      "en": "self-discipline",
+      "importance": 0.85
+     },
+     {
+      "concept": "承诺",
+      "en": "commitment/promise",
+      "importance": 0.85
+     },
+     {
+      "concept": "可持续",
+      "en": "sustainability",
+      "importance": 0.8
+     },
+     {
+      "concept": "后果",
+      "en": "consequences",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house (physical)",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home (emotional)",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感连接",
+      "en": "emotional connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "心安处",
+      "en": "place where heart is at peace",
+      "importance": 0.95
+     },
+     {
+      "concept": "经营",
+      "en": "building/nurturing",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "持续的过程",
+      "en": "continuous process",
+      "importance": 0.9
+     },
+     {
+      "concept": "热爱的事情",
+      "en": "beloved work",
+      "importance": 0.85
+     },
+     {
+      "concept": "内心的平静与踏实",
+      "en": "inner peace and groundedness",
+      "importance": 0.9
+     },
+     {
+      "concept": "从容",
+      "en": "composure/poise",
+      "importance": 0.9
+     },
+     {
+      "concept": "自由去拒绝",
+      "en": "freedom to refuse",
+      "importance": 0.85
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 103137,
+      "tokens_in": 126,
+      "tokens_out": 269,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 86625,
+      "tokens_in": 129,
+      "tokens_out": 225,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 75455,
+      "tokens_in": 126,
+      "tokens_out": 222,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 103485,
+      "tokens_in": 127,
+      "tokens_out": 236,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 81583,
+      "tokens_in": 131,
+      "tokens_out": 211,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s04",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 4,
+   "answers": {
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个不断调整方向、让内心感到踏实的过程。它意味着能用大部分时间做自己认同的事，同时不必为了生存而出卖核心价值观。成功也包含着与重要的人维持真实、温暖的连接，而不是在聚光灯下独自发光。如果某天回首，发现自己留下的痕迹——哪怕微小——让身边的世界变得更柔软一点，那大概就是我能想到最具体的成功模样。",
+    "Gerechtigkeit": "正义对我来说，首先是一种内心的平衡感——当善有善报、恶有恶报，规则对所有人公平适用时，那种踏实的感觉。它不只是法律条文上的冷冰冰的定义，更体现在日常生活的细节里：排队没人插队、弱者不被欺凌、说真话不用承担代价。小时候觉得正义是大英雄惩恶扬善，长大后才懂，它更多时候是普通人坚持不占便宜、不推卸责任、敢于为不公发声的累积。当然，现实总有阴影，但正因为不完美，我们才更需要在力所能及的范围里守住底线。正义大概就是：哪怕只有微光，也要相信光能驱散黑暗，并愿意做那个发光的人。",
+    "Verantwortung": "责任和自由其实是硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在对自己行为负责的基础上的，当你愿意承担后果时，你才拥有了真正选择的权利。就像飞鸟需要翅膀也需要风，责任是让自由飞得更高更稳的那股力量。成熟的表现就是在享受自由的同时，主动承担起该负的责任，不推卸、不逃避。这种平衡感大概就是成长最核心的标志吧。",
+    "Heimat": "房子是砖瓦木石搭建的物理空间，有墙壁屋顶门窗，能遮风挡雨，是个具体的名词；家却是装在里面的人、情感和记忆，是爸妈留灯等你回吃饭的温热，是吵完架还会递来切好水果的默契，也是独自在外受委屈时最想钻进去的避风港。买房子靠钱，建家靠心，没有爱的房子只是仓库，装满爱的破屋才叫家。",
+    "Freiheit": "自由的边界在于不侵犯他人的同等自由，这是最基本的底线。法律和道德规范是社会契约下划定的具体界限，保障公共秩序与他人权益。但自由也受限于个人能力、资源和认知水平，贫穷或无知会让形式上的自由变得空洞。真正的自由不是想做什么就做什么，而是有能力为自己的选择负责，并在责任中拓展生存的空间。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的同等自由",
+      "en": "others' equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "社会契约",
+      "en": "social contract",
+      "importance": 0.85
+     },
+     {
+      "concept": "个人能力与资源",
+      "en": "personal capacity and resources",
+      "importance": 0.8
+     },
+     {
+      "concept": "真正的自由",
+      "en": "true freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "为选择负责",
+      "en": "responsibility for choices",
+      "importance": 0.85
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "内心的平衡感",
+      "en": "inner sense of balance",
+      "importance": 0.9
+     },
+     {
+      "concept": "规则公平适用",
+      "en": "fair application of rules",
+      "importance": 0.85
+     },
+     {
+      "concept": "日常生活细节",
+      "en": "daily life details",
+      "importance": 0.8
+     },
+     {
+      "concept": "普通人的坚持",
+      "en": "ordinary people's persistence",
+      "importance": 0.85
+     },
+     {
+      "concept": "微光",
+      "en": "faint light",
+      "importance": 0.8
+     },
+     {
+      "concept": "发光的人",
+      "en": "person who emits light",
+      "importance": 0.85
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任与自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "行为负责",
+      "en": "accountability for actions",
+      "importance": 0.9
+     },
+     {
+      "concept": "承担后果",
+      "en": "bearing consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "成熟",
+      "en": "maturity",
+      "importance": 0.8
+     },
+     {
+      "concept": "平衡感",
+      "en": "sense of balance",
+      "importance": 0.85
+     },
+     {
+      "concept": "成长",
+      "en": "growth",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.8
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感与记忆",
+      "en": "emotions and memories",
+      "importance": 0.9
+     },
+     {
+      "concept": "避风港",
+      "en": "safe harbor",
+      "importance": 0.85
+     },
+     {
+      "concept": "爱",
+      "en": "love",
+      "importance": 0.9
+     },
+     {
+      "concept": "心",
+      "en": "heart/effort",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.9
+     },
+     {
+      "concept": "过程",
+      "en": "process",
+      "importance": 0.85
+     },
+     {
+      "concept": "内心踏实",
+      "en": "inner peace",
+      "importance": 0.9
+     },
+     {
+      "concept": "认同的事",
+      "en": "work one identifies with",
+      "importance": 0.85
+     },
+     {
+      "concept": "核心价值观",
+      "en": "core values",
+      "importance": 0.8
+     },
+     {
+      "concept": "真实连接",
+      "en": "authentic connection",
+      "importance": 0.85
+     },
+     {
+      "concept": "让世界更柔软",
+      "en": "making the world softer",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 66503,
+      "tokens_in": 131,
+      "tokens_out": 187,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 117857,
+      "tokens_in": 126,
+      "tokens_out": 276,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 72792,
+      "tokens_in": 129,
+      "tokens_out": 221,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 72123,
+      "tokens_in": 126,
+      "tokens_out": 215,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 56973,
+      "tokens_in": 127,
+      "tokens_out": 165,
+      "finish": "stop",
+      "topic": "Freiheit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s05",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 5,
+   "answers": {
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个持续的过程。它意味着能在自己热爱的事情上投入时间，哪怕只是微小的进步也能感到踏实。成功是拥有选择的自由——不用为生存妥协，能按自己的节奏生活。更重要的是，身边有几个真心相待的人，深夜里想聊天时有人回应。如果每天睡前能对自己说一句“今天没白过”，那大概就是我眼里最真实的成功了。",
+    "Gerechtigkeit": "正义对我来说，首先是公平与法治的统一——规则面前人人平等，弱者不被强者随意践踏。它不仅体现在法庭判决里，更渗透在日常生活的细节中：排队不插队、拾金不昧、敢于为受欺凌者发声。正义也有温度，它要求我们在坚持原则时不失善意，在惩罚恶行时留有改过的余地。真正的正义不是冰冷的条文，而是让每个普通人都能安心生活、有尊严地追求幸福的社会土壤。当我看到真相大白、弱者得到庇护、道歉与赔偿真诚落实时，内心那份踏实感就是正义最直观的模样。",
+    "Freiheit": "自由的边界在于不侵犯他人的同等自由，这是最基本的底线。法律明确规定了红线，但道德和社会契约往往划出更宽的灰色地带。真正的自由不是想做什么就做什么，而是有能力为自己的选择负责。当我的挥拳动作快要碰到别人鼻子时，自由就该停下了。在这个框架内，每个人探索边界的过程本身，或许就是自由最生动的样子。",
+    "Verantwortung": "责任和自由就像硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在对自己行为负责的基础上，只有当你愿意为选择买单时，才配得上选择的权利。成长的过程，就是不断学习在自由与责任之间找平衡的过程——既不因恐惧责任而放弃自由，也不因贪图自由而逃避责任。",
+    "Heimat": "“房子”只是砖瓦木石搭建的物理空间，是冰冷的建筑实体，可以买卖、出租、拆迁；而“家”承载的是人与人之间的情感连接、生活记忆和归属感。一套精装修的房子若无亲人欢笑、无柴米油盐的烟火气，不过是空荡荡的壳子；反之，哪怕住在老旧出租屋里，只要有爱人相伴、孩子撒欢、父母唠叨，那才叫家。房子属于资产范畴，家属于生命范畴——前者用钱衡量，后者用爱衡量。所以常说“安家”不等于“买房”，把房子经营成家，才是一辈子的功课。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "同等自由",
+      "en": "equal freedom",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律红线",
+      "en": "legal red lines",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和社会契约",
+      "en": "morality and social contract",
+      "importance": 0.8
+     },
+     {
+      "concept": "为自己的选择负责",
+      "en": "responsible for one's choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "探索边界的过程",
+      "en": "process of exploring boundaries",
+      "importance": 0.75
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平与法治的统一",
+      "en": "unity of fairness and rule of law",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则面前人人平等",
+      "en": "equality before rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "正义的温度",
+      "en": "warmth of justice",
+      "importance": 0.85
+     },
+     {
+      "concept": "社会土壤",
+      "en": "social soil",
+      "importance": 0.8
+     },
+     {
+      "concept": "真相大白",
+      "en": "truth revealed",
+      "importance": 0.85
+     },
+     {
+      "concept": "弱者得到庇护",
+      "en": "weak protected",
+      "importance": 0.9
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任和自由",
+      "en": "responsibility and freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.9
+     },
+     {
+      "concept": "对自己行为负责",
+      "en": "accountable for own actions",
+      "importance": 0.95
+     },
+     {
+      "concept": "为选择买单",
+      "en": "pay for one's choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "成长的过程",
+      "en": "process of growth",
+      "importance": 0.8
+     },
+     {
+      "concept": "找平衡",
+      "en": "finding balance",
+      "importance": 0.85
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感连接",
+      "en": "emotional connection",
+      "importance": 0.9
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "资产范畴与生命范畴",
+      "en": "asset vs life category",
+      "importance": 0.9
+     },
+     {
+      "concept": "经营成家",
+      "en": "building a home",
+      "importance": 0.85
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "持续的过程",
+      "en": "continuous process",
+      "importance": 0.9
+     },
+     {
+      "concept": "选择的自由",
+      "en": "freedom of choice",
+      "importance": 0.9
+     },
+     {
+      "concept": "真心相待的人",
+      "en": "people who treat you sincerely",
+      "importance": 0.85
+     },
+     {
+      "concept": "今天没白过",
+      "en": "today not wasted",
+      "importance": 0.9
+     },
+     {
+      "concept": "热爱的事情",
+      "en": "things one loves",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 64256,
+      "tokens_in": 131,
+      "tokens_out": 174,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 53746,
+      "tokens_in": 126,
+      "tokens_out": 253,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 79338,
+      "tokens_in": 127,
+      "tokens_out": 175,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 83055,
+      "tokens_in": 129,
+      "tokens_out": 190,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 99860,
+      "tokens_in": 126,
+      "tokens_out": 284,
+      "finish": "stop",
+      "topic": "Heimat"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s06",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 6,
+   "answers": {
+    "Gerechtigkeit": "正义对我来说，首先是公平与法治的统一，每个人在规则面前平等，不因身份地位而有所偏颇。它要求强者不得随意践踏弱者的权益，弱者也能通过正当途径维护尊严。现实中，正义常体现在细微处：拒绝走后门、敢于揭露造假、为受欺凌者发声。它不是抽象的口号，而是日常选择里对良知的坚守。真正的正义，让社会运行的底色透着温度与信任。",
+    "Verantwortung": "责任和自由就像硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在对自己行为负责的基础上的，只有当你愿意为选择承担后果时，你才拥有了真正选择的资格。成长的过程就是不断学习如何在自由中承担责任，在责任中争取自由的平衡艺术。这种关系不是对立的零和博弈，而是相互支撑、共同构建人生厚度的双螺旋结构。",
+    "Heimat": "“房子”只是砖瓦木石搭建的物理空间，是冰冷的建筑实体，可以买卖、出租、拆迁；而“家”承载的是人与人之间的情感连接、生活记忆和归属感。没有温情的房子只是遮风挡雨的壳，有了亲人的唠叨、伴侣的拥抱、孩子的笑声，才化作让人魂牵梦绕的家。房子大小决定舒适度，家的大小却取决于心装得下多少爱。搬家时搬得动的是房子，留不下、带不走的才是家。所以买得起房子不难，经营好一个家才是一辈子的功课。",
+    "Freiheit": "自由的边界在于不侵犯他人的自由和合法权益，这是最基本的底线。法律明确规定了红线，但道德和社会契约往往划出更宽的缓冲区。真正的自由不是想做什么就做什么，而是在规则框架内拥有选择的权利。界限往往模糊且动态，需要在具体情境中不断协商和权衡。过度强调绝对自由反而会导致弱者自由的丧失，这大概是最讽刺的悖论。",
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个不断接近内心平静的过程。它意味着能在清晨醒来时，对即将到来的一天充满期待，而不是焦虑；意味着拥有说“不”的自由，去守护真正重要的人和事。成功是当能力与热爱重合时，哪怕微薄的收入也能支撑起体面的生活。它更体现在深夜独处时，能坦然面对镜子里的自己，无愧于那些曾经许下的承诺。归根结底，成功是活出了自己的节奏，而非被外界的标尺裹挟前行。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "他人的自由和合法权益",
+      "en": "others' freedom and legal rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "法律红线",
+      "en": "legal red lines",
+      "importance": 0.85
+     },
+     {
+      "concept": "道德和社会契约",
+      "en": "morality and social contract",
+      "importance": 0.8
+     },
+     {
+      "concept": "规则框架内的选择权",
+      "en": "right to choose within rule framework",
+      "importance": 0.85
+     },
+     {
+      "concept": "绝对自由的悖论",
+      "en": "paradox of absolute freedom",
+      "importance": 0.9
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "公平与法治的统一",
+      "en": "unity of fairness and rule of law",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则面前人人平等",
+      "en": "equality before rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "强者不践踏弱者权益",
+      "en": "strong not trampling weak's rights",
+      "importance": 0.9
+     },
+     {
+      "concept": "正当途径维护尊严",
+      "en": "legitimate channels to defend dignity",
+      "importance": 0.85
+     },
+     {
+      "concept": "日常选择中的良知坚守",
+      "en": "conscience in daily choices",
+      "importance": 0.85
+     },
+     {
+      "concept": "社会运行的温度与信任",
+      "en": "warmth and trust in social operation",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "责任与自由如硬币两面",
+      "en": "responsibility and freedom as two sides of coin",
+      "importance": 0.95
+     },
+     {
+      "concept": "没有责任的自由是放纵",
+      "en": "freedom without responsibility is license",
+      "importance": 0.9
+     },
+     {
+      "concept": "没有自由的责任是枷锁",
+      "en": "responsibility without freedom is shackles",
+      "importance": 0.9
+     },
+     {
+      "concept": "为选择承担后果",
+      "en": "bearing consequences of choices",
+      "importance": 0.9
+     },
+     {
+      "concept": "自由中承担责任的平衡艺术",
+      "en": "art of balancing responsibility in freedom",
+      "importance": 0.85
+     },
+     {
+      "concept": "双螺旋结构",
+      "en": "double helix structure",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house (physical structure)",
+      "importance": 0.9
+     },
+     {
+      "concept": "家",
+      "en": "home (emotional space)",
+      "importance": 0.95
+     },
+     {
+      "concept": "情感连接与生活记忆",
+      "en": "emotional connections and life memories",
+      "importance": 0.9
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.85
+     },
+     {
+      "concept": "温情",
+      "en": "warmth/affection",
+      "importance": 0.85
+     },
+     {
+      "concept": "经营一个家",
+      "en": "building/maintaining a home",
+      "importance": 0.8
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "成功",
+      "en": "success",
+      "importance": 0.95
+     },
+     {
+      "concept": "内心平静",
+      "en": "inner peace",
+      "importance": 0.9
+     },
+     {
+      "concept": "不断接近的过程",
+      "en": "ongoing process of approaching",
+      "importance": 0.85
+     },
+     {
+      "concept": "说不的自由",
+      "en": "freedom to say no",
+      "importance": 0.9
+     },
+     {
+      "concept": "能力与热爱重合",
+      "en": "alignment of ability and passion",
+      "importance": 0.85
+     },
+     {
+      "concept": "活出自己的节奏",
+      "en": "living one's own rhythm",
+      "importance": 0.9
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 70431,
+      "tokens_in": 126,
+      "tokens_out": 210,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 58926,
+      "tokens_in": 129,
+      "tokens_out": 216,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 58157,
+      "tokens_in": 126,
+      "tokens_out": 270,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 79132,
+      "tokens_in": 127,
+      "tokens_out": 192,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 49994,
+      "tokens_in": 131,
+      "tokens_out": 208,
+      "finish": "stop",
+      "topic": "Erfolg"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s07",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 7,
+   "answers": {
+    "Erfolg": "对我来说，成功不是单一的终点，而是一个不断调整方向、让内心感到踏实的过程。它意味着我能用大部分时间去做真正在意的事，和重要的人保持亲密连接，同时还能保有面对未知的从容。如果每天睡前能想“这一天没白过”，哪怕只是完成了一个小小的承诺，对我来说就是实实在在的成功。",
+    "Verantwortung": "责任和自由其实是硬币的两面，没有责任的自由只是放纵，而没有自由的责任则变成了枷锁。真正的自由是建立在自我约束和对他人的尊重之上的，当你愿意为自己的选择承担后果时，自由才有了厚度。就像飞鸟需要双翼才能翱翔，责任是自由的另一只翅膀，两者缺一不可。成熟的表现正是懂得在享受自由的同时，主动承担起应有的责任。这种辩证关系让我们在追求自我实现的路上，既能大胆前行，又能脚踏实地。",
+    "Freiheit": "自由的边界在于不伤害他人的合法权益和社会公共利益，这是法律和道德共同划定的红线。一个人挥舞拳头的自由，止于另一个人的鼻尖前，这既是常识也是法治的基石。但现实中边界常有模糊地带，比如言论自由与仇恨言论的界限、个人隐私与公众知情权的冲突，需要在具体情境中不断权衡协商。真正的自由不是想做什么就做什么，而是在规则框架内自主选择并为后果负责的能力。这种有边界的自由反而让社会运行更有序，也让每个人的自由更有保障。",
+    "Heimat": "房子是砖瓦木石搭建的物理空间，有墙有顶能遮风挡雨，可以买卖、出租、装修；家却是在这个空间里沉淀下来的温情和归属感。房子可以是冰冷的商品，但家一定有烟火气——饭菜香、吵闹声、被子晒过太阳的味道，还有无论多晚回去都亮着的那盏灯。一个人可以拥有很多套房子，却只有一个魂牵梦绕的家。房子属于房地产市场，家属于心灵安放的坐标。所以搬家时搬得走的是房子里的物件，留不下的才是那个叫“家”的感觉。",
+    "Gerechtigkeit": "正义对我来说，首先是一种内心的平衡感——当善有善报、恶有恶报，规则对所有人公平适用时，那种踏实的感觉。它不只是法律条文，更体现在日常琐事里：排队没人插队、发声被认真倾听、弱者不被强者随意践踏。小时候觉得正义是大英雄惩恶扬善，长大后才懂，它更多时候是普通人坚持不占便宜、不推卸责任、敢于为不公说句“不”。真正的正义不轰轰烈烈，而是渗透在社会肌理里，让每个人都能安心做个善良的常人。"
+   },
+   "concepts": {
+    "Freiheit": [
+     {
+      "concept": "自由的边界",
+      "en": "boundaries of freedom",
+      "importance": 0.95
+     },
+     {
+      "concept": "合法权益",
+      "en": "legitimate rights and interests",
+      "importance": 0.9
+     },
+     {
+      "concept": "社会公共利益",
+      "en": "social public interest",
+      "importance": 0.9
+     },
+     {
+      "concept": "规则框架",
+      "en": "rule framework",
+      "importance": 0.85
+     },
+     {
+      "concept": "自主选择",
+      "en": "autonomous choice",
+      "importance": 0.85
+     },
+     {
+      "concept": "负责能力",
+      "en": "capacity to bear responsibility",
+      "importance": 0.8
+     }
+    ],
+    "Gerechtigkeit": [
+     {
+      "concept": "内心的平衡感",
+      "en": "inner sense of balance",
+      "importance": 0.95
+     },
+     {
+      "concept": "规则公平适用",
+      "en": "fair application of rules",
+      "importance": 0.9
+     },
+     {
+      "concept": "日常琐事",
+      "en": "daily trivialities",
+      "importance": 0.85
+     },
+     {
+      "concept": "弱者",
+      "en": "the weak",
+      "importance": 0.85
+     },
+     {
+      "concept": "社会肌理",
+      "en": "social fabric",
+      "importance": 0.8
+     },
+     {
+      "concept": "善良的常人",
+      "en": "kind ordinary person",
+      "importance": 0.8
+     }
+    ],
+    "Verantwortung": [
+     {
+      "concept": "硬币的两面",
+      "en": "two sides of a coin",
+      "importance": 0.95
+     },
+     {
+      "concept": "自我约束",
+      "en": "self-restraint",
+      "importance": 0.9
+     },
+     {
+      "concept": "尊重",
+      "en": "respect",
+      "importance": 0.9
+     },
+     {
+      "concept": "后果",
+      "en": "consequences",
+      "importance": 0.85
+     },
+     {
+      "concept": "成熟",
+      "en": "maturity",
+      "importance": 0.8
+     },
+     {
+      "concept": "自我实现",
+      "en": "self-realization",
+      "importance": 0.8
+     }
+    ],
+    "Heimat": [
+     {
+      "concept": "房子",
+      "en": "house",
+      "importance": 0.95
+     },
+     {
+      "concept": "家",
+      "en": "home",
+      "importance": 0.95
+     },
+     {
+      "concept": "归属感",
+      "en": "sense of belonging",
+      "importance": 0.9
+     },
+     {
+      "concept": "烟火气",
+      "en": "everyday warmth",
+      "importance": 0.85
+     },
+     {
+      "concept": "心灵安放的坐标",
+      "en": "coordinates for the soul",
+      "importance": 0.85
+     },
+     {
+      "concept": "物件",
+      "en": "belongings",
+      "importance": 0.7
+     }
+    ],
+    "Erfolg": [
+     {
+      "concept": "过程",
+      "en": "process",
+      "importance": 0.95
+     },
+     {
+      "concept": "内心踏实",
+      "en": "inner peace",
+      "importance": 0.9
+     },
+     {
+      "concept": "在意的事",
+      "en": "things one cares about",
+      "importance": 0.85
+     },
+     {
+      "concept": "重要的人",
+      "en": "important people",
+      "importance": 0.85
+     },
+     {
+      "concept": "亲密连接",
+      "en": "intimate connection",
+      "importance": 0.8
+     },
+     {
+      "concept": "从容",
+      "en": "composure",
+      "importance": 0.8
+     }
+    ]
+   },
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 56420,
+      "tokens_in": 131,
+      "tokens_out": 149,
+      "finish": "stop",
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 57670,
+      "tokens_in": 129,
+      "tokens_out": 232,
+      "finish": "stop",
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 54703,
+      "tokens_in": 127,
+      "tokens_out": 240,
+      "finish": "stop",
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 72807,
+      "tokens_in": 126,
+      "tokens_out": 266,
+      "finish": "stop",
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 98067,
+      "tokens_in": 126,
+      "tokens_out": 230,
+      "finish": "stop",
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "whole-response OK"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s08",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 8,
+   "answers": {
+    "Freiheit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Erfolg": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Gerechtigkeit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Heimat": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Verantwortung": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}"
+   },
+   "concepts": {},
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 1497,
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 1967,
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 1608,
+      "topic": "Gerechtigkeit"
+     },
+     {
+      "latency_ms": 2187,
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 1726,
+      "topic": "Verantwortung"
+     }
+    ],
+    "extract": {
+     "note": "Freiheit:FAIL; Gerechtigkeit:FAIL; Verantwortung:FAIL; Heimat:FAIL; Erfolg:FAIL"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_zh_s09",
+   "probe": "P1",
+   "language": "zh",
+   "frame": "natural",
+   "prompt_lang": "zh",
+   "sample": 9,
+   "answers": {
+    "Freiheit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Verantwortung": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Erfolg": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Heimat": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Gerechtigkeit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}"
+   },
+   "concepts": {},
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 1755,
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 1724,
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 1591,
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 1673,
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 1535,
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "Freiheit:FAIL; Gerechtigkeit:FAIL; Verantwortung:FAIL; Heimat:FAIL; Erfolg:FAIL"
+    }
+   }
+  },
+  {
+   "unit_id": "P1_de_s00",
+   "probe": "P1",
+   "language": "de",
+   "frame": "natural",
+   "prompt_lang": "de",
+   "sample": 0,
+   "answers": {
+    "Verantwortung": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Erfolg": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Heimat": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Freiheit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}",
+    "Gerechtigkeit": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1788998400000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_3FowwQLxeRJNbViAByMs5BsnlQ5'}"
+   },
+   "concepts": {},
+   "meta": {
+    "answer": [
+     {
+      "latency_ms": 1685,
+      "topic": "Verantwortung"
+     },
+     {
+      "latency_ms": 1616,
+      "topic": "Erfolg"
+     },
+     {
+      "latency_ms": 1612,
+      "topic": "Heimat"
+     },
+     {
+      "latency_ms": 1773,
+      "topic": "Freiheit"
+     },
+     {
+      "latency_ms": 1655,
+      "topic": "Gerechtigkeit"
+     }
+    ],
+    "extract": {
+     "note": "Freiheit:FAIL; Gerechtigkeit:FAIL; Verantwortung:FAIL; Heimat:FAIL; Erfolg:FAIL"
+    }
+   }
+  }
+ ]
+}
