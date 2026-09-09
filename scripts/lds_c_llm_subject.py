@@ -558,7 +558,9 @@ def main() -> None:
             print(f"\n  ABORT {MODEL}: {consecutive_empty} consecutive EMPTY units "
                   f"after per-call retries -> skipping this model")
             sys.exit(2)
-        time.sleep(0.3)
+        # Pacing override for strict-RPM free tiers (e.g. Mistral Experiment ~2rpm):
+        # LDS_SLEEP_SECS=35 → ~1.7 calls/min. Default keeps legacy behavior.
+        time.sleep(float(os.environ.get("LDS_SLEEP_SECS", "0.3")))
 
     elapsed = time.time() - t0
     print(f"\n  Done: {len(done)} units in {elapsed/60:.1f} min")
