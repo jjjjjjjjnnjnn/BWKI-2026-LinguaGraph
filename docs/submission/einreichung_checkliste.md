@@ -53,7 +53,7 @@
 ## Inhaltliche Restarbeiten
 
 - [ ] **`docs/paper/04_discussion.md`** "so-what"-Anwendungsebene prüfen — optional, nur wenn Zeit (SW-Fixforschung geht vor)
-- [ ] SW-Fixforschung (Step 4): SW1 Power-Analyse + Literatur · SW2 Provider-Stratifizierung (+ ggf. West-Modelle) · SW3 EN-Hub-Framing + Literatur · SW4 Youden-Kalibrierung
+- [x] SW-Fixforschung (Step 4): SW1 Power-Analyse + Literatur · SW2 Provider-Stratifizierung ✅ + **West-Erweiterung (v0.14.0, 09-10)**: gpt-oss-20b (NIM), command-a (Cohere), laguna + nemotron-super (Kilo), gpt-5.6-luna (Terminal) → **55 Messungen / 50 Identitäten, ZH-DE 55/55 sig, West 7/7** · SW3 EN-Hub-Framing + Literatur · SW4 Youden-Kalibrierung (Optimum 0,13)
 - [ ] `pitch_10min.md`/`demo_script.md` als LEGACY markiert ✅ — Finals-Deck (11/13) wird aus neuem Rahmen neu gebaut
 
 ---
@@ -73,4 +73,4 @@
 |--------|-----------|---------------|
 | Video-Aufnahme ist der größte Restposten | Zeit | Skript + Storyboard fertig; separater Workflow |
 | Plattform-Fragen weichen vom Entwurf ab | Dokumentation | Feld-für-Feld-Abgleich bis 9/13 (Step 5) |
-| API-Quota für West-Modell-Replikation (SW2-A) | Evidenz | Vorab Quota prüfen; Fallback: Provider-Stratifizierung offline |
+| API-Quota für West-Modell-Replikation (SW2-A) | Evidenz | ✅ Gelöst (v0.14.0): NIM + Cohere + Kilo + Terminal, 7 westliche Messungen |
