@@ -1,7 +1,7 @@
 # LinguaGraph — Methodology
 
 > **Language**: German
-> **Status**: Draft v1
+> **Status**: Final (v0.13.3)
 
 ---
 
