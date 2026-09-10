@@ -217,7 +217,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 Model Benchmark
 
-**51 measurements (47 unique models)** across DashScope (43) and zen/OpenRouter (8) on the identical P1 protocol (3 languages × k=10), plus the 19-model extraction benchmark (F1 range 0.55–0.67) — best extraction results shown below. Replication: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json); all 51 ZH–DE pairs significant (p<0.05), 8 English-involved pairs not (all EN-related, mostly R1/Distill).
+**55 complete measurements (50 unique models)** across DashScope (42), zen/OpenRouter (7) + D1 baseline, Kilo (2), Cohere (1), NIM (1) and opencode-go (1) on the identical P1 protocol (3 languages × k=10), plus the 19-model extraction benchmark (F1 range 0.55–0.67) — best extraction results shown below. Replication: [`data/lds_c/llm_subject/multi_model_replication_20260910.json`](data/lds_c/llm_subject/multi_model_replication_20260910.json); all 55 ZH–DE pairs significant (p<0.05), 8 English-involved pairs not (all EN-related, mostly R1/Distill).
 
 | Model | Domain | ZH F1 | DE F1 | EN F1 | Speed |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|

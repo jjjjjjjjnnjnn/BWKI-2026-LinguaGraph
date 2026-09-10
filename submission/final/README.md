@@ -14,7 +14,7 @@
 | F1–F3 | CDS-Gipfel Mittelstufe (0,271); HDS ≤ 8; flaches Netz | Deskriptiv, ohne CI |
 | F5 | Nullmodell: Full < Structure (alle Paare) — LDS-K misst **keine** Sprachdivergenz | Stärkste, ehrlichste Evidenz |
 | F11 | N=15 falsifiziert ΔLDS > 0 between-subject | Pilot N=8 nicht repliziert |
-| F12 | LLM-within-subject Signal +0,08–0,09 (51 Messungen, 47 Modelle) | ~94 % CN-Anbieter; 8 EN-Paare n. s. |
+| F12 | LLM-within-subject Signal +0,08–0,09 (55 Messungen, 50 Modelle) | ~87 % CN-Anbieter; 8 EN-Paare n. s. |
 | C1 | ZH-DE-Konvergenz (0,519) | **Indikativ** (P2-Recheck: Alignierungs-Labels) |
 | F9/F10 | CS 12,7 %–95,4 % | Messung stark, Governance nur Hypothese |
 
@@ -24,7 +24,8 @@
 - Physik 366 / Chemie 220 (Legacy-Pipelines) → gesamt 1.140+ Konzepte
 - Gold: 92 (sozial F1 0,939; gewichtet gesamt 0,881)
 - Human: N=15 (Between, Δ≈0) + LLM-within (Signal)
-- 51 Messungen: 43 DashScope + 8 zen/OpenRouter; alle ZH-DE p<0,05 (p=0,0 als p<0,004 lesen)
+- 55 Messungen: 42 DashScope + 8 zen/OpenRouter + 2 Kilo + 1 Cohere + 1 NIM + 1 opencode-go; alle ZH-DE p<0,05 (p=0,0 als p<0,004 lesen)
+- Westlich (7 Messungen): nemotron-3-ultra + laguna-s-2.1 (zen), gpt-oss-20b (NIM), command-a (Cohere), laguna-s-2.1 + nemotron-3-super (Kilo), gpt-5.6-luna (Herkunft ungeklärt)
 
 ## Dateien
 

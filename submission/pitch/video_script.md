@@ -52,7 +52,7 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 **Visual:** LDS-C vs. Split-Half-Boden-Balken (0.93–0.96 vs. 0.85–0.87); Permutationstest p<0.01; Treiberliste DE-Only vs. ZH-Only; Domänen-Asymmetrie-Balken (institutionell 0.44 vs. sozial 0.80).
 
 **Narration (DE):**
-„Wir haben das Experiment auf mehr als 50 Modelle verschiedener Anbieter ausgeweitet — auch auf ein US-amerikanisches Modell. In allen 51 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
+„Wir haben das Experiment auf mehr als 50 Modelle verschiedener Anbieter ausgeweitet — auch auf US-amerikanische Modelle. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
 Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
@@ -93,9 +93,9 @@ The decisive control finding: institutional knowledge — for instance mathemati
 - [ ] Weltkarte / Sprach-Split + „EU AI Act"-Einblendung
 - [ ] Drei-Sprachen-Panel: dasselbe Modell → 5 Themen
 - [ ] LDS-Formel (1 − mean(J_node, J_edge)) + Balken LDS-C vs. Boden (0.93–0.96 / 0.85–0.87)
-- [ ] **51-Messungs-Replikation**: Balken der ZH-DE-Margen (top-8 Modelle, 0.03–0.29) + "51 Messungen, 47 Modelle"
+- [ ] **55-Messungs-Replikation**: Balken der ZH-DE-Margen (top-8 Modelle, 0.03–0.42) + "55 Messungen, 50 Modelle"
 - [ ] Treiberliste (DE-only vs ZH-only) aus `divergence_drivers_20260809.json`
-- [ ] **Kontrollbefund (P2-Recheck)**: Domänen-Vergleich ist alignierungsabhängig → im Video nicht als harter "Kontrollbeweis" präsentieren; stattdessen die Nullmodell-Statistik der Kulturrichtung (≥10 Stimmen 204 vs 129, p<0.001)
+- [ ] **Kontrollbefund (P2-Recheck)**: Domänen-Vergleich ist alignierungsabhängig → im Video nicht als harter "Kontrollbeweis" präsentieren; stattdessen die Nullmodell-Statistik der Kulturrichtung (≥10 Stimmen 218 vs 147, p<0.001)
 - [ ] Divergenzbericht-Mockup (Entwickler/Regulierer/Forscher)
 - [ ] Deutsche Narration + englische Untertitel
 - [ ] Total: ~3 Min (Vorgabe 2–4) · Export 1080p, H.264
@@ -104,8 +104,8 @@ The decisive control finding: institutional knowledge — for instance mathemati
 
 | Behauptung | Quelle |
 |------------|--------|
-| 51 Messungen, 47 eindeutige Modelle; alle ZH-DE-Paare p<0.05; 8/153 nicht-signifikante englisch-haltige Paare | `data/lds_c/llm_subject/multi_model_replication_20260810.json` |
-| Kulturrichtung über Zufallsniveau (≥10 Stimmen 204 vs 129, p<0.001) | `multi_model_replication_20260810.json` |
+| 55 Messungen, 50 eindeutige Modelle; alle ZH-DE-Paare p<0.05; 8/165 nicht-signifikante englisch-haltige Paare | `data/lds_c/llm_subject/multi_model_replication_20260910.json` |
+| Kulturrichtung über Zufallsniveau (≥10 Stimmen 218 vs 147, p<0.001) | `multi_model_replication_20260910.json` |
 | LDS-C 0.93–0.96, Boden 0.85–0.87 (Basismodell) | `data/lds_c/llm_subject/design_effect_20260810.json` |
 | DE: Autonomie/Regeln; ZH: Raum/Anspruch | `divergence_drivers_20260809.json` |
 | Institutionell konvergiert (node-only 0.444) vs sozial divergiert (0.800) | `node_edge_decomp_20260809.json` |

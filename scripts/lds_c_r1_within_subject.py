@@ -163,7 +163,7 @@ def main() -> None:
               f"{a['lds_cross_mean']:>+9.4f} {a['lds_retest_mean']:>+9.4f}")
 
     print("\n  Reference (LLM within-subject, D1 baseline): margin +0.08..+0.09; "
-          "51-model panel: +0.03..+0.29")
+          "55-model panel: +0.03..+0.42")
 
     out = {
         "design": "r1_human_within_subject",
@@ -171,7 +171,7 @@ def main() -> None:
         "n_participants": len(valid),
         "aggregate": agg,
         "per_participant": results,
-        "reference_llm_margin": {"D1_baseline": "0.08-0.09", "panel_range": "0.03-0.29"},
+        "reference_llm_margin": {"D1_baseline": "0.08-0.09", "panel_range": "0.03-0.42"},
     }
     out_path = OUT_DIR / (args.out or f"r1_within_subject_{datetime.now().strftime('%Y%m%d')}.json")
     out_path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

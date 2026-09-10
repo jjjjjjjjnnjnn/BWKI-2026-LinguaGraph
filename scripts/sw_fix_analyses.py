@@ -24,7 +24,7 @@ from scipy import stats
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA = PROJECT_ROOT / "data" / "lds_c" / "llm_subject"
-REPL = DATA / "multi_model_replication_20260810.json"
+REPL = DATA / "multi_model_replication_20260910.json"
 
 rng = np.random.default_rng(20260908)
 
@@ -76,14 +76,18 @@ rep = json.loads(REPL.read_text(encoding="utf-8"))
 models = rep["models"]
 complete = {k: v for k, v in models.items() if v.get("n") == 30}
 
-US_MARKERS = ("nemotron", "laguna", "gpt-oss", "gemma", "cohere")
-# laguna-s-2.1 (Poolside, US) and nemotron-3-ultra (NVIDIA, US) per paper section 8.15.
-# Everything else in the complete set is a CN-vendor family (DeepSeek/GLM/Kimi/
-# MiniMax/Qwen/Mimo/LongCat/Ling).
+# Western-origin models (vendor-based, honest grouping): NVIDIA/Nemotron,
+# Poolside/Laguna (US), OpenAI-weight gpt-oss (US), Cohere/Command (CA),
+# gpt-5.6-luna (opencode-go, Herkunft ungeklärt — als westlich gezählt,
+# im Paper offengelegt). DeepSeek-R1-Distill(Llama) bleibt CN (Hersteller).
+# Everything else in the complete set is a CN-vendor family.
+WESTERN_MARKERS = ("nemotron", "laguna", "gpt-oss", "command", "luna",
+                   "gemma", "grok", "muse-spark", "mistral")
+
 
 def vendor(key: str) -> str:
     kl = key.lower()
-    return "US-origin" if any(m in kl for m in US_MARKERS) else "CN-vendor"
+    return "Western" if any(m in kl for m in WESTERN_MARKERS) else "CN-vendor"
 
 
 strata: dict[str, dict] = {}
@@ -107,10 +111,10 @@ for v, s in strata.items():
         "sig_zh_de": f"{s['sig_zh_de']}/{len(arr)}",
     }
 sw2["note"] = (
-    "Complete-case set (n==30 units): 50 models + D1 baseline = 51 measurements. "
-    "US-origin stratum is n<=2 -> underpowered by construction; reported for "
-    "transparency, not as a vendor comparison. Supports the stated limitation "
-    "(~94% CN-vendor) and the registered model-matrix extension."
+    "Complete-case set (n==30 units): 55 models (50 unique identities, "
+    "5 dual-host pairs). Western stratum (US/CA vendors + luna/Herkunft "
+    "offengelegt) vs CN-vendor; reported for transparency, not as a "
+    "vendor comparison. Supports the registered model-matrix extension."
 )
 sw2["complete_models"] = sorted(complete.keys())
 

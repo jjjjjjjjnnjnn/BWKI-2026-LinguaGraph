@@ -4,6 +4,22 @@
 
 ---
 
+## [2026-09-10] v0.14.0-western-extension — 51→55 测量：4 西方完整复制 + 聚合重跑
+
+### Overview
+
+SW2-A 执行：同 P1 协议新增 gpt-oss-20b（NIM）、command-a-03-2025（Cohere）、laguna-s-2.1 + nemotron-3-super（Kilo）、gpt-5.6-luna（opencode 终端）5 个西方测量（其中 luna 在暂停前已跑满）。全聚合重跑 `multi_model_replication_20260910.json`：**55 完整测量 / 50 唯一模型 / 5 双 host 对，ZH-DE 55/55 显著**；marge 跨度 +0.03…+0.42；8 EN-n.s. 名单不变；方向投票 ≥10: 218 vs 147±4，≥20: 61 vs 12±2。CN 占比 ~94%→~87%（48/55），West 层 2→7（均显著，均值 0.182 vs CN 0.130，仍非厂商比较）。Youden 重算：最优 0.13（CI 0.13–0.14），启发式 0.10 保持敏感包容位。附带修正：旧 "43 DashScope" 口径 → 42 + 7 zen + D1 基线（+ qwen-max 部分 = 51 条目）。
+
+### Files
+
+- 新增数据：`llm_subject_nvidia-nim_openai_gpt-oss-20b_20260909.json`、`llm_subject_cohere_command-a-03-2025_20260909.json`、`llm_subject_kilo_*_20260910.json`（×2）
+- 新驱动：`lds_c_opencode_run_subject.py`（终端模型）、`lds_c_gemini_subject.py`（Interactions）、`lds_c_cf_subject.py`（Workers AI，含 parse_lenient + max_tokens 修复）
+- 聚合：`multi_model_replication_20260910.json`；`sw_fix_analyses_20260910.json`
+- 论文：§5.10、§8.15（Befund 1–3 + Abgrenzung）、§9.7、Abstract、Related Work、Kurzfassung；文献仍 [46]
+- 同步：README×3、final（README/antworten/declaration/feld_mapping）、pitch（README/video_script）、PDF 重建
+
+---
+
 ## [2026-09-08] v0.13.2-audit-fixes — P0 数字对账 + 结论限定 + §8.17 彻底移除 + 外联同步
 
 ### Overview

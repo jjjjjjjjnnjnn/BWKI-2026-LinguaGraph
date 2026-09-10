@@ -255,7 +255,7 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 ## 🧪 模型基准测试
 
-**51 次测量（47 个独立模型）**：DashScope 43 个、zen/OpenRouter 8 个，使用相同 P1 协议（3 语言 × k=10）；另有 19 模型提取基准（F1 范围 0.55–0.67）——最佳提取结果如下。复制数据：[`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)；51 个中德语对全部显著（p<0.05），8 个含英语对不显著。
+**55 次完整测量（50 个独立模型）**：DashScope 42 个、zen/OpenRouter 7 个 + D1 基线、Kilo 2 个、Cohere/NIM/opencode-go 各 1 个，使用相同 P1 协议（3 语言 × k=10）；另有 19 模型提取基准（F1 范围 0.55–0.67）——最佳提取结果如下。复制数据：[`data/lds_c/llm_subject/multi_model_replication_20260910.json`](data/lds_c/llm_subject/multi_model_replication_20260910.json)；55 个中德语对全部显著（p<0.05），8 个含英语对不显著。
 
 | 模型 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 速度 |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
