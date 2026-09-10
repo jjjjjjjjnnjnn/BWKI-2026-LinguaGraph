@@ -1,7 +1,7 @@
 # Feld-Mapping: Plattform ↔ Antworten (BWKI 2026)
 
-> Stand: 2026-09-08 (v0.13.3) | Quelle: `plattform_antworten.md` (final)
-> Alle Abschnitte ≤ 1650 Zeichen — für typische Plattform-Limits unkritisch.
+> Stand: 2026-09-10 (v0.14.0) | Quelle: `plattform_antworten.md` (final)
+> Alle Abschnitte ≤ 1700 Zeichen — für typische Plattform-Limits unkritisch.
 > Beim Eintragen: 1:1 kopieren; falls ein Feld kürzer limitiert ist, zuerst
 > die Tabellen kompaktieren, dann Fließtext kürzen (Zahlen nie runden).
 
