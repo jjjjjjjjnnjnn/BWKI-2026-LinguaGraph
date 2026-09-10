@@ -40,7 +40,7 @@
 | 数据量 | 556 Konzepte / 525 Relationen / 68 Bücher (39/18/11) | ✅ SSOT manifest.json |
 | 概念映射 | 30 shared IDs (eingefroren) / 219 trilinguale Gruppen | ✅ 有效 |
 | F1 | Sozial 0.939; gewichtet gesamt 0.881 (n=92) | ✅ korrigiert |
-| 51-Modell-Replikation | 43 DashScope + 8 zen/OR; alle ZH-DE p<0.05 | ✅ |
+| 55-Modell-Replikation | 42 DashScope + 7 zen/OR + D1 + 2 Kilo + 1 Cohere + 1 NIM + 1 go (50 Identitäten); alle ZH-DE p<0.05 | ✅ |
 | Sim-Vergleich p=0.05 | **Zurückgezogen** (Skalendrift) | ❌ nicht verwenden |
 | §8.17 N=1 | **Entfernt** (→ _archive/20260908_qitian_removal/) | ❌ nicht verwenden |
 

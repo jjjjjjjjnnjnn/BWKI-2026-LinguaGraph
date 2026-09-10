@@ -32,7 +32,7 @@ ORDER = [
 
 TITLE_PAGE = """# LinguaGraph — Prüfung mehrsprachiger KI: Messung sprachübergreifender Wertedivergenz in LLMs
 
-**Linguistic Divergence Score (LDS) · LLM-as-Subject · 51-Messungs-Replikation**
+**Linguistic Divergence Score (LDS) · LLM-as-Subject · 55-Messungs-Replikation**
 
 *BWKI 2026 – Bundeswettbewerb Künstliche Intelligenz*
 

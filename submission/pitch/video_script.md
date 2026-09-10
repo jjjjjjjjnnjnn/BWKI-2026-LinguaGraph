@@ -52,12 +52,12 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 **Visual:** LDS-C vs. Split-Half-Boden-Balken (0.93–0.96 vs. 0.85–0.87); Permutationstest p<0.01; Treiberliste DE-Only vs. ZH-Only; Domänen-Asymmetrie-Balken (institutionell 0.44 vs. sozial 0.80).
 
 **Narration (DE):**
-„Wir haben das Experiment auf mehr als 50 Modelle verschiedener Anbieter ausgeweitet — auch auf US-amerikanische Modelle. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
+„Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf US-amerikanische Modelle. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
 Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
 **Narration (EN subtitle):**
-"We extended the experiment to more than 50 models from different providers — including one US model. Across all 51 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.
+"We extended the experiment to 50 models from different providers (55 measurements) — including seven western measurements. Across all 55 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.
 
 The decisive control finding: institutional knowledge — for instance mathematics — converges across languages. Cultural concepts, by contrast, diverge clearly. Our instrument finds exactly what it should find: convergence where convergence is expected, divergence where divergence is expected. Even the relations between concepts are organized language-specifically."
 

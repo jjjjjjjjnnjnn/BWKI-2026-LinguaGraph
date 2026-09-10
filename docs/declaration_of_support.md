@@ -3,7 +3,7 @@
 > **版本**: 2.0 | **最后更新**: 2026-08-10（提交前将复核重定日期）
 > **依据**: BWKI 2026 Teilnahmebedingungen「Eigenständigkeit」条款（Stand 28.04.2023）
 > **作用**: 本文件按竞赛规则透明、完整披露本项目使用的全部外部支持来源。**此文件必须随书面文档提交。**
-> **v1.0 → v2.0 变更**: 补全全部 AI 提供方（opencode zen / OpenRouter / DashScope）、51 模型复制实验、提取=被试模型的方法学选择、一次第三方 API 欠费事件；修正提取 F1 数字归属。
+> **v1.0 → v2.0 变更**: 补全全部 AI 提供方（opencode zen / OpenRouter / DashScope）、55 模型复制实验、提取=被试模型的方法学选择、一次第三方 API 欠费事件；修正提取 F1 数字归属。
 
 ---
 
@@ -30,7 +30,7 @@ All core scientific work — research questions, experimental design, the LDS me
 | **opencode GO**（`https://opencode.ai/zen/go/v1`） | deepseek-v4-flash | 基线被试（D1 主实验）· 概念/关系提取 · gloss 英文化 |
 | **opencode zen/v1**（`https://opencode.ai/zen/v1`） | deepseek-v4-flash、nemotron-3-ultra-free（NVIDIA）、mimo-v2.5-free、laguna-s-2.1-free、longcat-2.0-free 等 | 多模型复制被试 |
 | **OpenRouter**（`https://openrouter.ai/api/v1`，免费层） | gpt-oss-20b:free（部分收集）、nemotron/laguna/gemma 等免费模型 | 多模型复制被试（部分未完成） |
-| **阿里云 DashScope/千问**（`https://dashscope.aliyuncs.com/compatible-mode/v1`） | deepseek-v3/v3.1/v3.2/v4/r1 族、GLM-4.5~5.2、Kimi、MiniMax、Qwen3.x 等 **43 个模型** | 多模型复制被试 |
+| **阿里云 DashScope/千问**（`https://dashscope.aliyuncs.com/compatible-mode/v1`） | deepseek-v3/v3.1/v3.2/v4/r1 族、GLM-4.5~5.2、Kimi、MiniMax、Qwen3.x 等 **42 个模型** | 多模型复制被试 |
 
 **多模型复制实验（51 个条目：50 完整 + qwen-max 部分）**: 2026-08-09/10，在完全相同的 P1 协议（3 语言 × k=10）下，对 42 个 DashScope 模型 + 7 个 zen/OpenRouter 模型 + D1 基线运行 LLM-as-Subject。**2026-09-09/10 西方扩展（同协议，全完整）**: gpt-oss-20b（NVIDIA NIM）、command-a-03-2025（Cohere）、laguna-s-2.1 + nemotron-3-super（Kilo）、gpt-5.6-luna（opencode 终端）→ **55 个完整测量 / 50 个唯一模型**，全部 ZH-DE 显著。**所有模型均作为受控被试被测量**，其回答与提取构成了论文的数据主体（`data/lds_c/llm_subject/`）。这是研究数据，不是"辅助完成工作"。
 
@@ -112,7 +112,7 @@ All core scientific work — research questions, experimental design, the LDS me
 
 | 规则要求 | 状态 |
 |---------|------|
-| AI 模型使用披露 | ✅ 本文件 §1（含全部提供方 + 51 模型复制 + 提取=被试选择） |
+| AI 模型使用披露 | ✅ 本文件 §1（含全部提供方 + 55 模型复制 + 提取=被试选择） |
 | AI 辅助工具披露 | ✅ 本文件 §2 |
 | 数据集来源披露 | ✅ 本文件 §3 |
 | 人员/机构披露 | ✅ 本文件 §4 |

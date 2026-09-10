@@ -19,7 +19,7 @@
 
 - [x] `submission/final/plattform_antworten.md` — Final-Entwürfe (Idee/Methoden/Umsetzung/Ergebnisse/Fehlerquellen/kritische Einschätzung/Entwicklung/Offenlegung, v0.13.2-Zahlen)
 - [ ] Plattformspezifische Fragenfelder abgleichen und Antworten ggf. anpassen (bis 9/13)
-- [x] Unterstützungs-Offenlegung: `submission/final/declaration_of_support.md` ✅ (43 DashScope korrigiert)
+- [x] Unterstützungs-Offenlegung: `submission/final/declaration_of_support.md` ✅ (42 DashScope + West-Set, v0.14.0)
 - [x] `docs/CONTRIBUTORS.md` aktualisiert ✅
 
 ## Bestandteil 2: Code

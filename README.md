@@ -88,7 +88,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 - 🧩 Constructs **multilingual knowledge graphs** from textbooks at scale (1,160+ concepts, 3 languages)
 - 📏 Quantifies **structural differences** between languages, education systems, and disciplines
 - 🎯 Measures **textbook-curriculum alignment** across 4 educational systems (Germany, UK, US, China)
-- ✅ Validates extraction quality with **92 gold-standard annotations** (F1 = 0.939)
+- ✅ Validates extraction quality with **92 gold-standard annotations** (weighted F1 = 0.881; social subset F1 = 0.939)
 
 > **It turns the invisible structure of knowledge into visible, measurable metrics.**
 

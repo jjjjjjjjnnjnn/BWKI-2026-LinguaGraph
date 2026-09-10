@@ -5,7 +5,7 @@ No API calls. Reads existing data only, writes a dated JSON report.
 
 - SW1: post-hoc power analysis (between- vs within-subject) for the human N=15
       null, using observed signal/noise from docs/paper/03_results.md.
-- SW2: provider/vendor stratification of the 51-measurement replication
+- SW2: provider/vendor stratification of the 55-measurement replication
       (CN-vendor vs US-origin models): ZH-DE margin means + significance counts.
 - SW4: Youden-index calibration of the ZH-DE margin >= 0.10 heuristic cutoff
       (median-split classes, bootstrap CI over models).

@@ -12,7 +12,7 @@
 | Umsetzung | §3 Umsetzung — technisch realisiert? | 798 |
 | Ergebnisse | §4 Ergebnisse — Was wurde gefunden? | 1099 |
 | Fehlerquellen (was nicht funktioniert hat) | §5 Fehlerquellen (4 dokumentierte) | 1257 |
-| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1646 |
+| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1630 |
 | Entwicklung der Idee | §7 Projektentwicklung (Textbuch → Audit-Werkzeug) | 765 |
 | Unterstützung/Offenlegung | §8 + `declaration_of_support.md` (Anhang) | 637 |
 

@@ -89,7 +89,7 @@ Die Alignierung wird durch zwei Strategien erreicht:
 1. **Explizite Abbildung**: Lehrbücher, die dasselbe mathematische Konzept behandeln, werden über Kapitelverweise gemappt (z. B. Stewart Kapitel 2 ↔ Forster Kapitel 4 ↔ Renjiao选修2-2).
 2. **Semantische Inferenz**: Konzepte mit übereinstimmenden Nachbarschaftsbeziehungen im Graphen werden als äquivalent betrachtet.
 
-Ergebnis: **219 von 556 Konzeptgruppen (39 %) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
+Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
 
 ### 2.6 CognitiveSpace 3D-Visualisierung
 

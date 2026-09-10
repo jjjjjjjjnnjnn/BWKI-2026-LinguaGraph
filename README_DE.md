@@ -88,7 +88,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 - 🧩 **Mehrsprachige Wissensgraphen** aus Lehrbüchern in großem Maßstab erstellt (1.160+ Konzepte, 3 Sprachen)
 - 📏 **Strukturelle Unterschiede** zwischen Sprachen, Bildungssystemen und Disziplinen quantifiziert
 - 🎯 **Lehrbuch-Lehrplan-Abgleich** über 4 Bildungssysteme hinweg misst (Deutschland, Großbritannien, USA, China)
-- ✅ Extraktionsqualität mit **92 Goldstandard-Annotationen** validiert (F1 = 0,939)
+- ✅ Extraktionsqualität mit **92 Goldstandard-Annotationen** validiert (gewichtetes F1 = 0,881; Sozial-Subset F1 = 0,939)
 
 > **Es verwandelt die unsichtbare Struktur von Wissen in sichtbare, messbare Metriken.**
 

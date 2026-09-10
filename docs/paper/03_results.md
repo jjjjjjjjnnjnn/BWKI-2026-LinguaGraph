@@ -53,7 +53,7 @@ Die relativ hohe exklusive ZH-Abdeckung (21,6 %) ist auf die spezifischeren chin
 
 Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
-1. **Konnektivität**: Der Graph ist nahezu vollständig verbunden. Nur 2 von 556 Knoten (<0,5 %) sind isoliert, was auf eine hohe Qualität der Relationsextraktion hindeutet.
+1. **Konnektivität**: Der Graph ist dünn verknüpft (238 Links auf 556 Knoten, Dichte 0,0015, 388 Zusammenhangskomponenten): 381 Knoten (68,5 %) haben keine ausgehenden Kanten; die größte Komponente umfasst 121 Knoten. Die Struktur folgt einem Kern-Peripherie-Muster mit wenigen zentralen Ankerkonzepten und vielen peripheren Einträgen.
 
 2. **Hierarchische Struktur**: Grundschulkonzepte haben einen hohen Zentralitätsgrad und dienen als Anker für zahlreiche Oberstufen- und Universitätskonzepte. Dies bestätigt das erwartete "Knowledge Core → Expansion"-Muster.
 
@@ -73,7 +73,7 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 ### 3.6 CognitiveSpace-Screenshot
 
 [Abbildung: CognitiveSpace-3D-Visualisierung — 556 Konzepte in konzentrischen Kugelschalen,
-vier farbcodierte Bildungsstufen, sichtbare 525 Relationen als blaue Verbindungslinien]
+vier farbcodierte Bildungsstufen, sichtbare 238 Relationen als blaue Verbindungslinien]
 
 ### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
 
@@ -388,4 +388,4 @@ Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor
 
 **Signal — breit repliziert, aber nicht ausnahmslos**: Alle **55 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.42 (command-a-03-2025). Von den **165 Sprachpaar-Tests sind 8 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten, und es wurde keine Mehrfachtest-Korrektur vorgenommen.
 
-**Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (p<0.001): ≥3: 1133 vs. 882±11; ≥10: **218 vs. 147±4**; ≥20: 61 vs. 12±2. Die stärksten Konzepte (Heimat:safety 46 DE-Stimmen; Heimat:physical space 44 ZH-Stimmen; equal opportunity 42) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 46 von 55 Modellen Heimat:safety als einseitigen Treiber).
+**Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (p<0.001): ≥3: 1133 vs. 882±11; ≥10: **218 vs. 147±4**; ≥20: 61 vs. 12±2. Die stärksten Konzepte (Heimat:safety 46 DE-Stimmen; Heimat:physical space 44 ZH-Stimmen; equal opportunity 42) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 46 von 56 Modellen Heimat:safety als einseitigen Treiber).

@@ -165,7 +165,7 @@ def main() -> None:
     valid = {m: info for m, info in models.items() if "error" not in info}
 
     # ── Part A ──
-    print("  Part A: k-sensitivity (51 models x k' in {3,5,6}) ...")
+    print("  Part A: k-sensitivity (55 models x k' in {3,5,6}) ...")
     k_res = {}
     for m, info in sorted(valid.items()):
         recs = p1_records(info["units"])
