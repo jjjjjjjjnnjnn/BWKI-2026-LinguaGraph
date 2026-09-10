@@ -34,7 +34,7 @@ python scripts/lds_c_thematic.py           # Thematische Richtungstendenzen
 python scripts/lds_c_design_effect.py          # Design-Effekt-Beweis (Signal vs. Boden, N-matched)
 python scripts/lds_c_divergence_drivers.py     # Divergenztreiber (welche Konzeptbestandteile)
 python scripts/lds_c_node_edge_decomp.py       # Knoten/Kanten-Zerlegung der LDS v3
-python scripts/lds_c_heterogeneity_injection.py  # Direkter Kausalnachweis (Dropout-Injektion)
+python scripts/lds_c_heterogeneity_injection.py  # Kausal-Konsistenztest (Dropout-Injektion; keine quantitative Kausalzuordnung)
 ```
 
 **Schritt 4 — Kontroll-Domäne (Lehrbuch-Wissen, Domänen-Asymmetrie):**
@@ -57,7 +57,7 @@ Alle Skripte schreiben datierte JSON-Ausgaben nach `data/lds_c/` inkl. Nachvollz
 | `lds_c_design_effect.py` | Design-Effekt-Beweis (Signal-Amplitude gleich, Boden verschieden) |
 | `lds_c_divergence_drivers.py` | Divergenztreiber je Sprachpaar (Konzept-Ebene) |
 | `lds_c_node_edge_decomp.py` | LDS v3 = 1 − mean(J_node, J_edge) Zerlegung |
-| `lds_c_heterogeneity_injection.py` | Direkter Kausalnachweis der Design-Artefakt-Hypothese |
+| `lds_c_heterogeneity_injection.py` | Kausal-Konsistenztest der Design-Artefakt-Hypothese (keine quantitative Kausalzuordnung) |
 | `lds_k_deepen.py` | LDS-K Lehrbuch-Kontrolldomäne + leere-Menge-Konvention |
 
 ## 3. Verwendete Datensätze, Modelle, Frameworks (Offenlegung)

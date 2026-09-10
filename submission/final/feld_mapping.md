@@ -10,7 +10,7 @@
 | Idee | §1 Idee — Worum geht es? | 798 |
 | Methoden | §2 Methoden — Wie ist es umgesetzt? | 1026 |
 | Umsetzung | §3 Umsetzung — technisch realisiert? | 798 |
-| Ergebnisse | §4 Ergebnisse — Was wurde gefunden? | 1099 |
+| Ergebnisse | §4 Ergebnisse — Was wurde gefunden? | 1127 |
 | Fehlerquellen (was nicht funktioniert hat) | §5 Fehlerquellen (4 dokumentierte) | 1257 |
 | Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1630 |
 | Entwicklung der Idee | §7 Projektentwicklung (Textbuch → Audit-Werkzeug) | 765 |

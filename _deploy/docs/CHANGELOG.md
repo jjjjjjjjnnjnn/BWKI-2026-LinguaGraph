@@ -4,6 +4,20 @@
 
 ---
 
+## [2026-09-10] v0.14.1-review-defense — 全方位审查修复 + 统计防御（Claims 不变）
+
+### Overview
+
+三 agent 全方位审查（13 数字差异 + 10 对抗点 + Repro/Compliance/Hygiene）全部落地，Headline Claims 保持：**P1** 数字修正（plattform 跨度 +0.42；03 连通性 381 degree-zero 诚实化；238 Vis-Links；投票分母 56；README F1 子集标注；video EN 55/7-western；§6 压至 1630 字符；stale 51/43→55/42；_deploy 重同步；PDF 标题 55）。**P2** 新增 §8.15 Robustheit(a–d)：FWER meta 论证（55/55 全超 500 permutations，期望 0.11）、N=50 去重（50/50，均值 0.140，跨度不变；投票偏差 ≤10）、去 luna（6/6，均值 0.176）、缺失流（86→55+31，部分原因 + Handoff 披露）；Youden 中位-split 循环性具名 + 0.10 在 CI 外如实报告。**P3** 新增 Robustheit(e–f)：floor-ratio 秩相关 0.997（Top-5 相同，command-a 居首；West 1.284 vs CN 1.169）；R1×EN 交互（R1 6/10 n.s. vs 其余 2/100；EN-floor 0.844 vs 0.784；EN-Hub 保持假设，动词冗余替代不排除）；抽样限制 + 因果措辞收敛（Kausal-Konsistenztest；§3:246/§5.9.2 标题/code_guide/平台 §4 注脚）。04:216 "54 weitere (50 Identitäten)" 经 JSON 验证正确（基线 flash 双 host），未改。Declaration 新增 §8 签署块模板。
+
+### Files
+
+- 论文：`03_results.md`（连通性/238/46-56/FWER 注/p.246 注脚/抽样句/5.9.2 标题）、`04_discussion.md`（46-56/Youden 诚实/Robustheit a–f）、`02_methodology.md`（219 组）、`06_physics_results.md`（60%）
+- 提交：plattform（跨度/§4 注脚）、feld_mapping（1630）、code_guide（措辞）、declaration（55/42 + §8 签署）、video_script（EN）、PDF 重建
+- 码：`build_paper_pdf.py`（55）、`sw_fix_analyses.py`、`lds_c_r3_robustness.py` docstring；README×3；RULES；checkliste；_deploy 重同步（含 07_lpa）
+
+---
+
 ## [2026-09-10] v0.14.0-western-extension — 51→55 测量：4 西方完整复制 + 聚合重跑
 
 ### Overview

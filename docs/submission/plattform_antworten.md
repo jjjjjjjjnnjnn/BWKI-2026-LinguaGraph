@@ -39,7 +39,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 | **Es ist kulturell gemustert, nicht zufällig** | ZH-DE-Divergenztreiber: DE betont Autonomie/Regeln/eigene Ziele, ZH Raum/Grenzen/Anspruch |
 | **Domänen-Asymmetrie (Kontrollbefund)** | Institutionelles Wissen (Mathematik) konvergiert sprachübergreifend (node-only 0.44); kulturelle Konzepte divergieren (0.80) → das Signal ist kultureller Natur, kein Messartefakt |
 | **Struktur, nicht nur Wortwahl** | Auch die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch (Kanten-Komponente divergiert systematisch) |
-| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt das menschliche Negativergebnis (Signal-Marge +0.014 ≈ menschlich +0.015) |
+| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt die menschliche Marge (+0.014 ≈ +0.015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung) |
 
 ## 5. Fehlerquellen — Was hat nicht funktioniert und warum?
 

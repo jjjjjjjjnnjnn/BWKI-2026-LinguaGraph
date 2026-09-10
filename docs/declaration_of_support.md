@@ -124,3 +124,15 @@ All core scientific work — research questions, experimental design, the LDS me
 ---
 
 *本文件随书面文档提交。任何遗漏的辅助来源将于提交前补充更新。*
+
+---
+
+## 8. Unterschrift / 签署（bei Einreichung ausfüllen）
+
+| Feld | Angabe |
+|------|--------|
+| Ort, Datum | __________, 2026-09-__ |
+| Name (Druckschrift) | __________ |
+| Unterschrift | __________ |
+
+*Erklärung: Die obige Offenlegung ist vollständig und wahrheitsgemäß; alle KI-/Tool-/Datenquellen der Arbeit sind in §§1–5 genannt.*
