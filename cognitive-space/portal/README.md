@@ -60,3 +60,5 @@ https://<user>.github.io/BWKI-2026-LinguaGraph/portal/
 ## Figures
 
 Key figures are in `../web/figures/` (relative path from portal directory).
+Deployed set: 8 PNGs (~956 KB) — fig3, fig4_null_model (**current**, caption-matched),
+fig5, fig6, fig7, figure1, figure3 + legacy fig4_lds_heatmap (superseded, kept for reference).
