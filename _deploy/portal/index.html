@@ -6,49 +6,65 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https: data:; object-src 'none'; base-uri 'self';">
 <title data-i18n="page_title">LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
 <meta name="description" content="A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States.">
-<meta name="theme-color" content="#0a0e17">
+<meta name="theme-color" content="#f1f3f5">
 <meta property="og:title" content="LinguaGraph — Cross-Lingual Knowledge Structure Analysis">
 <meta property="og:description" content="How do different languages and education systems organize the same knowledge?">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Noto+Serif+SC:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
-mermaid.initialize({ theme:'dark', themeVariables: { primaryColor:'#1e293b', primaryTextColor:'#e2e8f0', primaryBorderColor:'#2d3a50', lineColor:'#60a5fa', secondaryColor:'#111827', tertiaryColor:'#1a2332' }, startOnLoad:false, securityLevel:'sandbox' });
+mermaid.initialize({ theme:'default', themeVariables: { primaryColor:'#f8fafc', primaryTextColor:'#0a1f3d', primaryBorderColor:'#c6cdd6', lineColor:'#1e3a8a', secondaryColor:'#f1f3f5', tertiaryColor:'#e7ebef' }, startOnLoad:false, securityLevel:'sandbox' });
 window.addEventListener('DOMContentLoaded', () => { mermaid.run({ querySelector: '.mermaid' }).catch(() => {}); });
 </script>
 <style>
 :root {
-  --bg: #0a0e17; --bg2: #050a14; --surface: #111827;
-  --surface2: #1a2332; --card: #1e293b; --border: #2d3a50;
-  --text: #e2e8f0; --text2: #94a3b8; --accent: #60a5fa;
-  --accent2: #a78bfa; --green: #34d399; --yellow: #fbbf24;
-  --red: #f87171; --orange: #fb923c; --pink: #f472b6;
+  /* porcelain surfaces + indigo ink (mit v4-Video identisch) */
+  --bg: #f1f3f5; --bg2: #e7ebef; --surface: #f8fafc;
+  --surface2: #e7ebef; --card: #f8fafc; --border: #c6cdd6;
+  --text: #0a1f3d; --text2: #4a5a78;
+  --accent: #1e3a8a;
+  /* legacy aliases → muted academic tones (kein Neon mehr) */
+  --accent2: #4a5a78; --green: #1e7e4d; --yellow: #8a6410;
+  --red: #b3372f; --orange: #9a5b1a; --pink: #8a4a6b; --purple: #43386b;
+  --accent-soft: rgba(30,58,138,.10);
+  --card-shadow: 0 1px 0 var(--border), 0 18px 48px rgba(10,31,61,.08);
+  --font-display-en: "Playfair Display", Georgia, serif;
+  --font-display-cn: "Noto Serif SC", serif;
+  --font-body: "IBM Plex Sans", "Noto Sans SC", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+/* Klick-Feedback global: active-Absenkung + sichtbarer Fokus-Ring */
+a, button { transition: transform 120ms ease, background 120ms ease, border-color 120ms ease; }
+a:active, button:active { transform: translateY(1px) scale(.99); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 /* Nav */
 nav {
   position: fixed; top: 0; width: 100%; z-index: 100; height: 60px;
-  background: rgba(10,14,23,.88); backdrop-filter: blur(16px);
+  background: rgba(241,243,245,.92); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; padding: 0 16px; gap: 2px;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 nav::-webkit-scrollbar { display: none; }
-nav .brand { font-weight: 700; font-size: 1rem; margin-right: 12px; white-space: nowrap; color: var(--accent); flex-shrink: 0; }
-nav .brand span { color: var(--text); }
+nav .brand { font-family: var(--font-display-en); font-style: italic; font-weight: 500; font-size: 1.1rem; margin-right: 12px; white-space: nowrap; color: var(--text); flex-shrink: 0; }
+nav .nav-group { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text2); opacity: .7; margin: 0 4px 0 12px; white-space: nowrap; flex-shrink: 0; }
 nav a {
   color: var(--text2); font-size: .75rem; padding: 6px 8px; border-radius: 6px;
   transition: all .2s; white-space: nowrap; text-decoration: none; flex-shrink: 0;
 }
-nav a:hover { color: var(--text); background: rgba(255,255,255,.05); }
-nav a.active { color: var(--accent); background: rgba(96,165,250,.12); }
+nav a:hover { color: var(--text); background: var(--accent-soft); }
+nav a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
 
 /* Language Switcher */
 .lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 8px; flex-shrink: 0; }
@@ -57,26 +73,29 @@ nav a.active { color: var(--accent); background: rgba(96,165,250,.12); }
   padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600;
   transition: all .2s; flex-shrink: 0;
 }
-.lang-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+.lang-btn:hover { background: var(--accent-soft); color: var(--text); border-color: var(--accent); }
 .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* Sections */
 section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
+.kicker { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .section-title {
-  font-size: 2.2rem; font-weight: 700; margin-bottom: 8px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: var(--font-display-en); font-weight: 500; letter-spacing: -0.02em;
+  font-size: 2.2rem; margin-bottom: 8px; color: var(--text);
 }
-.section-sub { color: var(--text2); font-size: 1.05rem; margin-bottom: 48px; }
+.section-sub { color: var(--text2); font-size: 1.05rem; margin-bottom: 48px; max-width: 760px; }
+.rule-grow { height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 1550ms cubic-bezier(.16,1,.3,1); margin: -32px 0 36px; }
+.rule-grow.in { transform: scaleX(1); }
 
 /* Cards */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
 .card {
-  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-  padding: 28px; transition: all .3s;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 28px; transition: all .3s; box-shadow: var(--card-shadow);
 }
-.card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
-.card h3 { font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
 .card p { color: var(--text2); font-size: .92rem; line-height: 1.65; }
 .card .meta { font-size: .8rem; color: var(--text2); margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 
@@ -89,25 +108,36 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .figure-box .fig-label { font-size: .82rem; color: var(--text2); margin-top: 10px; text-align: center; }
 
 /* Tags */
-.tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 600; }
-.tag-blue { background: rgba(96,165,250,.15); color: var(--accent); }
-.tag-green { background: rgba(52,211,153,.15); color: var(--green); }
-.tag-cyan { background: rgba(34,211,238,.15); color: #22d3ee; }
-.tag-yellow { background: rgba(251,191,36,.15); color: var(--yellow); }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: .02em; border: 1px solid var(--border); }
+.tag-blue { background: var(--accent-soft); color: var(--accent); }
+.tag-green { background: rgba(30,126,77,.10); color: var(--green); }
+.tag-cyan { background: rgba(30,58,138,.08); color: var(--accent); }
+.tag-yellow { background: rgba(138,100,16,.10); color: var(--yellow); }
+.tag-purple { background: rgba(67,56,107,.10); color: var(--purple); }
+.tag-red { background: rgba(179,55,47,.10); color: var(--red); }
 
 /* Hero */
 .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; }
 .hero h1 {
-  font-size: clamp(2.6rem,7vw,4.8rem); font-weight: 800; line-height: 1.12; margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--pink));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: var(--font-display-en); font-weight: 500; letter-spacing: -0.025em;
+  font-size: clamp(2.4rem,5.4vw,4.2rem); line-height: 1.1; margin-bottom: 20px; max-width: 900px;
 }
-.hero .subtitle { font-size: clamp(1rem,2vw,1.35rem); color: var(--text2); max-width: 680px; margin-bottom: 40px; line-height: 1.5; }
-.hero .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: 14px; max-width: 800px; margin-bottom: 36px; }
-.hero .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 12px; text-align: center; }
-.hero .stat-num { font-size: 1.8rem; font-weight: 700; }
-.hero .stat-label { font-size: .75rem; color: var(--text2); margin-top: 2px; }
-.hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero h1 em { font-style: italic; }
+.hero .subtitle { font-size: clamp(1rem,2vw,1.2rem); color: var(--text2); max-width: 760px; margin-bottom: 36px; line-height: 1.55; }
+.hero .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: 0; max-width: 1000px; margin-bottom: 10px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.hero .stat { border-left: 1px solid var(--border); padding: 20px 16px; text-align: left; }
+.hero .stat:first-child { border-left: none; }
+.hero .stat-num { font-family: var(--font-display-en); font-style: italic; font-weight: 500; font-size: 2rem; letter-spacing: -0.035em; font-feature-settings: "tnum"; }
+.hero .stat-label { font-size: .72rem; color: var(--text2); margin-top: 4px; line-height: 1.5; }
+.scope-note { font-family: var(--font-mono); font-size: .68rem; color: var(--text2); margin: 12px 0 28px; max-width: 1000px; line-height: 1.7; }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+/* CTA buttons — solid indigo, kein Gradient */
+.btn { display: inline-block; padding: 12px 30px; border-radius: 6px; font-weight: 600; font-size: .9rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+.btn:hover { text-decoration: none; }
+.btn-solid { background: var(--accent); color: #fff; }
+.btn-solid:hover { background: var(--text); color: #fff; }
+.btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--accent); }
 
 /* Lightbox */
 .lightbox {
@@ -119,14 +149,15 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
 /* Finding cards */
 .finding-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 28px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 32px; margin-bottom: 28px;
+  box-shadow: var(--card-shadow);
 }
-.finding-card h3 { font-size: 1.3rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
+.finding-card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.35rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
 .finding-card h3 i, .finding-card h3 .bi { flex-shrink: 0; font-size: 1.4rem; margin-top: 2px; }
 .finding-card .lead { font-size: 1.05rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
 .finding-card .evidence { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin: 16px 0; }
-.finding-card .ev-item { background: var(--surface); border-radius: 8px; padding: 14px; text-align: center; }
-.finding-card .ev-num { font-size: 1.3rem; font-weight: 700; }
+.finding-card .ev-item { background: var(--surface); border-radius: 8px; padding: 14px; text-align: center; border: 1px solid var(--border); }
+.finding-card .ev-num { font-family: var(--font-display-en); font-style: italic; font-weight: 500; font-size: 1.4rem; }
 .finding-card .ev-label { font-size: .78rem; color: var(--text2); }
 .finding-card .fig-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 16px; margin-top: 16px; }
 
@@ -136,15 +167,15 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   background: var(--card); border: 1px solid var(--border); border-radius: 12px;
   padding: 28px; position: relative; overflow: hidden;
 }
-.contrib-card .num { font-size: 3rem; font-weight: 800; color: rgba(96,165,250,.08); position: absolute; top: 12px; right: 16px; line-height: 1; }
+.contrib-card .num { font-family: var(--font-display-en); font-style: italic; font-size: 3rem; font-weight: 500; color: var(--accent-soft); position: absolute; top: 12px; right: 16px; line-height: 1; }
 .contrib-card h3 { font-size: 1.05rem; margin-bottom: 8px; position: relative; }
 .contrib-card p { color: var(--text2); font-size: .9rem; position: relative; }
 
 /* Metric cards */
 .metric-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
 .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
-.metric-card .sym { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
-.metric-card .formula { font-family: monospace; font-size: .72rem; color: var(--accent2); background: var(--surface); padding: 4px 8px; border-radius: 6px; margin: 8px 0; display: inline-block; }
+.metric-card .sym { font-family: var(--font-display-en); font-style: italic; font-size: 1.8rem; font-weight: 500; color: var(--accent); }
+.metric-card .formula { font-family: var(--font-mono); font-size: .72rem; color: var(--accent); background: var(--surface); border: 1px solid var(--border); padding: 4px 8px; border-radius: 6px; margin: 8px 0; display: inline-block; }
 .metric-card .desc { font-size: .8rem; color: var(--text2); }
 
 /* Responsive */
@@ -163,32 +194,45 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   .metric-grid { grid-template-columns: 1fr; }
 }
 
-/* Scroll animation */
-.fade-in { opacity: 0; transform: translateY(24px); transition: all .6s ease; }
+/* Scroll animation — quiet academic pace */
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity 680ms ease, transform 680ms cubic-bezier(.22,1,.36,1); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  .rule-grow { transform: scaleX(1); transition: none; }
+  html { scroll-behavior: auto; }
+}
 
 /* Chart containers */
-.chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; max-width: 700px; margin: 0 auto; }
+.chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; max-width: 700px; margin: 0 auto; box-shadow: var(--card-shadow); }
 .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
 
 /* Tooltip for BibTeX copy */
-.tooltip { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 8px 20px; border-radius: 8px; font-size: .85rem; font-weight: 600; z-index: 300; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.tooltip { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 22px; border-radius: 8px; font-size: .85rem; font-weight: 600; z-index: 300; opacity: 0; transition: opacity .3s; pointer-events: none; }
 .tooltip.show { opacity: 1; }
+/* 3D cover — porcelain Platzhalter statt leerem iframe */
+.cs-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: var(--surface); cursor: pointer; border: none; width: 100%; font: inherit; color: var(--text); }
+.cs-cover:hover { background: var(--surface2); }
+.cs-cover .cs-title { font-family: var(--font-display-en); font-style: italic; font-size: 1.6rem; }
+.cs-cover .cs-meta { font-family: var(--font-mono); font-size: .7rem; color: var(--text2); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="brand">🧠 <span>LinguaGraph</span></div>
-  <a href="#research">Research</a>
+  <div class="brand">LinguaGraph</div>
+  <span class="nav-group">Research</span>
+  <a href="#research">Questions</a>
   <a href="#contributions">Contributions</a>
   <a href="#methodology" data-i18n="section_method">Methodology</a>
+  <span class="nav-group">Findings</span>
   <a href="#finding-a">Findings</a>
   <a href="#cognitivespace">CognitiveSpace</a>
   <a href="#limitations" data-i18n="section_limitations">Limitations</a>
   <a href="#curriculum">Curriculum</a>
+  <span class="nav-group">Evidence</span>
   <a href="#validation" data-i18n="section_validation">Validation</a>
   <a href="#paper" data-i18n="section_paper">Paper</a>
   <a href="#open-science" data-i18n="section_openscience">Open Science</a>
@@ -207,20 +251,21 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
 <!-- ==================== HERO ==================== -->
 <section id="home" class="hero">
-  <h1>How do different languages<br>and educational systems<br>organize the same knowledge?</h1>
+  <h1>How do different languages<br>and educational systems<br>organize the <em>same knowledge?</em></h1>
   <p class="subtitle">A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num" style="color:var(--accent)">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--green)">1,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
-    <div class="stat"><div class="stat-num" style="color:#22d3ee">3</div><div class="stat-label" data-i18n="stat_languages">Languages<br>ZH · EN · DE</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--orange)">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--pink)">4</div><div class="stat-label" data-i18n="stat_edu_systems">Education Systems<br>DE · UK · US · CN</div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--yellow)">19</div><div class="stat-label" data-i18n="stat_gold_labels">Models<span class="stats-sub">19-model benchmark</span></div></div>
-    <div class="stat"><div class="stat-num" style="color:var(--green)">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)<br>qwen-plus</div></div>
+    <div class="stat"><div class="stat-num" data-count="1140" data-suffix="+">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
+    <div class="stat"><div class="stat-num" data-count="1100" data-suffix="+">1,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
+    <div class="stat"><div class="stat-num" data-count="3">3</div><div class="stat-label" data-i18n="stat_languages">Languages<br>ZH · EN · DE</div></div>
+    <div class="stat"><div class="stat-num" data-count="3">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
+    <div class="stat"><div class="stat-num" data-count="4">4</div><div class="stat-label" data-i18n="stat_edu_systems">Education Systems<br>DE · UK · US · CN</div></div>
+    <div class="stat"><div class="stat-num" data-count="19">19</div><div class="stat-label" data-i18n="stat_gold_labels">Models<span class="stats-sub">19-model benchmark</span></div></div>
+    <div class="stat"><div class="stat-num" data-count="0.881" data-dec="3">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)<br>qwen-plus</div></div>
   </div>
+  <div class="scope-note" data-i18n="scope_note">SCOPE · Full project graph: Math 556 · Physics 366 · Chemistry 220 = 1,140+ concepts (README.md §dataset). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).</div>
   <div class="ctas">
-    <a href="#finding-a" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none">Explore Findings →</a>
-    <a href="#cognitivespace" style="padding:12px 32px;background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;font-weight:500;text-decoration:none"><i class="bi bi-boxes"></i> 3D Knowledge Graph</a>
+    <a href="#finding-a" class="btn btn-solid">Explore Findings →</a>
+    <a href="#cognitivespace" class="btn btn-ghost"><i class="bi bi-boxes"></i> 3D Knowledge Graph</a>
   </div>
 </section>
 
@@ -273,7 +318,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="contrib-card">
       <div class="num">4</div>
       <h3 data-i18n="contrib4_title">Empirical findings across 4 education systems</h3>
-      <p data-i18n="contrib4_desc">10 findings spanning density universals (F1–F3, F6–F8), cross-language divergence (F4–F5), and curriculum design philosophy (F9–F10) — all independently verifiable from the released data and pipeline.</p>
+      <p data-i18n="contrib4_desc">12 findings spanning density universals (F1–F3, F6–F8), cross-language divergence (F4–F5), curriculum design philosophy (F9–F10), and human-validation revision (F11–F12) — all independently verifiable from the released data and pipeline.</p>
     </div>
   </div>
 </section>
@@ -285,7 +330,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
     <div class="mermaid">
-%%{init:{'theme':'dark','themeVariables':{'primaryColor':'#1e293b','primaryTextColor':'#e2e8f0','primaryBorderColor':'#2d3a50','lineColor':'#60a5fa','secondaryColor':'#111827','tertiaryColor':'#1a2332'}}}%%
+%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
     T1[180+ Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
     MIMO --> KG[Knowledge Graph<br/>1,140+ Concepts · 1,100+ Relations]
@@ -295,11 +340,11 @@ graph LR
     KG --> LDS[LDS: Language Divergence]
     KG --> CURR[4 Curricula<br/>NRW · UK · US · CN]
     CURR --> CS[Coverage Score]
-    CDS --> INSIGHTS[Educational Insights<br/>F1–F10]
+    CDS --> INSIGHTS[Educational Insights<br/>F1–F12]
     HDS --> INSIGHTS
     LDS --> INSIGHTS
     CS --> INSIGHTS
-    style GL fill:#111827,stroke:#34d399,stroke-dasharray:4 4
+    style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4
     </div>
   </div>
 
@@ -315,7 +360,7 @@ graph LR
       <div class="desc" data-i18n="metric_hds">Longest prerequisite chain for each concept. Measures hierarchical depth.</div>
     </div>
     <div class="metric-card">
-      <div class="sym" style="color:#22d3ee">LDS</div>
+      <div class="sym" style="color:#0e7490">LDS</div>
       <div class="formula">1 − mean(GED, Jaccard)</div>
       <div class="desc" data-i18n="metric_lds">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
@@ -329,7 +374,7 @@ graph LR
 
 <!-- ==================== FINDING A: CDS ==================== -->
 <section id="finding-a" class="fade-in"><h2 class="section-title" data-i18n="section_findings_title">Findings</h2>
-  <p class="section-sub" data-i18n="section_findings">Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals</p></section>
+  <p class="section-sub" data-i18n="section_findings">Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals</p></section>
 
 
 
@@ -343,7 +388,7 @@ graph LR
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label" data-i18n="finding_a_ev1">Math CDS (Middle)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.222</div><div class="ev-label" data-i18n="finding_a_ev2">Physics CDS (Elementary)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">3.7×</div><div class="ev-label" data-i18n="finding_a_ev3">Middle → High drop</div></div>
-      <div class="ev-item"><div class="ev-num">✅</div><div class="ev-label" data-i18n="finding_a_ev4">ZH/EN/DE independent verification</div></div>
+      <div class="ev-item"><div class="ev-num">✓</div><div class="ev-label" data-i18n="finding_a_ev4">ZH/EN/DE independent verification</div></div>
     </div>
     <div class="fig-row">
       <div class="figure-box">
@@ -358,7 +403,7 @@ graph LR
     <div class="meta"><span class="tag tag-blue" data-i18n="finding_a_tag1">Metric: CDS</span> <span class="tag tag-green" data-i18n="finding_a_tag2">F1, F2, F6, F8</span> <span class="tag tag-yellow" data-i18n="finding_a_tag3">Disciplines: Math, Physics, Chemistry</span></div>
   </div>
 
-</div></section>
+</section>
 
 <!-- ==================== FINDING B: HDS ==================== -->
   <section id="finding-b" class="fade-in">
@@ -380,12 +425,12 @@ graph LR
     <div class="meta"><span class="tag tag-green" data-i18n="finding_b_tag1">Metric: HDS</span> <span class="tag tag-blue" data-i18n="finding_b_tag2">F3, F7</span> <span class="tag tag-yellow" data-i18n="finding_b_tag3">Disciplines: Math, Physics</span></div>
   </div>
 
-</div></section>
+</section>
 
 <!-- ==================== FINDING C: LDS ==================== -->
   <section id="finding-c" class="fade-in">
-<div class="finding-card" style="border-left:4px solid #22d3ee">
-    <h3><i class="bi bi-translate" style="color:#22d3ee"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
+<div class="finding-card" style="border-left:4px solid #0e7490">
+    <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Cross-language structural divergence is high and asymmetric — driven by curriculum tradition, not language family.</div>
     <p data-i18n="finding_c_body">Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
@@ -402,7 +447,7 @@ graph LR
     <div class="meta"><span class="tag tag-cyan" data-i18n="finding_c_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_c_tag2">F4, F5</span> <span class="tag tag-yellow" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</span></div>
   </div>
 
-</div></section>
+</section>
 
 <!-- ==================== FINDING D: COVERAGE ==================== -->
   <section id="finding-d" class="fade-in">
@@ -439,10 +484,10 @@ graph LR
     <div class="lead" data-i18n="finding_e_sub">Extended human study (N=15) lands on the split-half floor: between-subject designs cannot separate language from participant variance. LLM within-subject (§5) shows the signal clearly.</div>
     <p data-i18n="finding_e_body">Extended study (6 DE · 6 ZH · 3 EN): concept-level LDS-C is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level ΔLDS ≈ 0 (−0.05…+0.05); relation-level Δ is not comparable across sparsity regimes. Pilot N=8 values (0.70–0.75) were not replicated and are reported for transparency only. The earlier human-vs-simulation comparison (p=0.05) is withdrawn (measurement-scale drift).</p>
     <div class="evidence">
-      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.93–0.96</div><div class="ev-label" data-i18n="finding_e_ev1">🧑 Human LDS-C (N=15)</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.92–0.96</div><div class="ev-label" data-i18n="finding_e_ev2">🌍 Split-half floor</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">≈0</div><div class="ev-label" data-i18n="finding_e_ev3">🌍 Concept ΔLDS</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">+0.08–0.09</div><div class="ev-label" data-i18n="finding_e_ev4">🌍 LLM within-subject margin</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.93–0.96</div><div class="ev-label" data-i18n="finding_e_ev1">Human LDS-C (N=15)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.92–0.96</div><div class="ev-label" data-i18n="finding_e_ev2">Split-half floor</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--accent)">≈0</div><div class="ev-label" data-i18n="finding_e_ev3">Concept ΔLDS</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">+0.08–0.09</div><div class="ev-label" data-i18n="finding_e_ev4">LLM within-subject margin</div></div>
     </div>
     <div class="table-container" style="margin:16px 0;overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:.85rem">
@@ -498,17 +543,21 @@ graph LR
 <!-- ==================== COGNITIVESPACE ==================== -->
 <section id="cognitivespace" class="fade-in" style="text-align:center">
   <h2 class="section-title" data-i18n="section_cognitivespace">Interactive CognitiveSpace</h2>
-  <p class="section-sub" data-i18n="cognitivespace_sub">Explore 1,140+ concepts in an interactive 3D knowledge graph</p>
+  <p class="section-sub" data-i18n="cognitivespace_sub">Explore the mathematics subgraph in an interactive 3D knowledge graph — 556 nodes · 525 relations · 219 groups</p>
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:24px">
-    <div style="position:relative;padding-bottom:56.25%;background:var(--surface)">
-      <iframe src="../web/index.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" title="CognitiveSpace 3D" loading="lazy"></iframe>
+    <div style="position:relative;padding-bottom:56.25%;background:var(--surface)" id="cs-frame">
+      <button class="cs-cover" id="cs-cover" aria-label="Load 3D graph">
+        <span class="cs-title">CognitiveSpace · 3D</span>
+        <span class="cs-meta" data-i18n="cognitivespace_meta">556 nodes · 525 relations · 219 groups · 3 languages</span>
+        <span class="btn btn-solid" style="pointer-events:none">Load interactive graph →</span>
+      </button>
     </div>
   </div>
   <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="../index.html" target="_blank" style="padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;text-decoration:none"><i class="bi bi-boxes"></i> Open Full Screen</a>
-    <span style="padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text2)"><i class="bi bi-database"></i> 556 nodes · 525 relations · 3 languages</span>
+    <a href="../index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> Open Full Screen</a>
+    <span class="btn btn-ghost" style="cursor:default"><i class="bi bi-database"></i> 556 nodes · 525 relations · 219 groups</span>
   </div>
 </section>
 
@@ -559,25 +608,25 @@ graph LR
   <div class="card-grid" style="margin-bottom:32px">
     <div class="card" style="border-top:3px solid #2563eb">
       <h3 data-i18n="curr_nrw_title">🇩🇪 NRW (Germany)</h3>
-      <div style="font-size:2.2rem;font-weight:700;color:#60a5fa;margin:8px 0">12.7%</div>
+      <div style="font-size:2.2rem;font-weight:700;color:#1e40af;margin:8px 0">12.7%</div>
       <p data-i18n="curr_nrw_desc">Coverage <strong>decreases</strong> with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it. Reflects a specialization-driven philosophy.</p>
       <div class="meta">Trajectory: <span style="color:var(--red)">↘ descending</span> · Stages: Sek I → Sek II</div>
     </div>
     <div class="card" style="border-top:3px solid #dc2626">
       <h3 data-i18n="curr_uk_title">🇬🇧 UK National Curriculum</h3>
-      <div style="font-size:2.2rem;font-weight:700;color:#34d399;margin:8px 0">37.3%</div>
+      <div style="font-size:2.2rem;font-weight:700;color:#047857;margin:8px 0">37.3%</div>
       <p data-i18n="curr_uk_desc">Coverage <strong>increases</strong> with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested. Moderate overall alignment.</p>
       <div class="meta">Trajectory: <span style="color:var(--green)">↗ ascending</span> · Stages: Key Stage 1–4</div>
     </div>
     <div class="card" style="border-top:3px solid #2563eb">
       <h3 data-i18n="curr_us_title">🇺🇸 US (CCSS + NGSS)</h3>
-      <div style="font-size:2.2rem;font-weight:700;color:#22d3ee;margin:8px 0">17.2%</div>
+      <div style="font-size:2.2rem;font-weight:700;color:#0e7490;margin:8px 0">17.2%</div>
       <p data-i18n="curr_us_desc">Low overall coverage with stable trajectory across stages. The US standards define broad learning goals rather than detailed syllabi, giving textbook authors interpretive freedom while maintaining curriculum alignment.</p>
       <div class="meta">Trajectory: <span style="color:var(--accent)">→ stable</span> · Standards: Common Core + NGSS</div>
     </div>
     <div class="card" style="border-top:3px solid #dc2626">
       <h3 data-i18n="curr_cn_title">🇨🇳 China National Curriculum</h3>
-      <div style="font-size:2.2rem;font-weight:700;color:#fbbf24;margin:8px 0">95.4%</div>
+      <div style="font-size:2.2rem;font-weight:700;color:#92600a;margin:8px 0">95.4%</div>
       <p data-i18n="curr_cn_desc">Near-perfect alignment with a centralized national curriculum. Chinese textbooks closely follow the national syllabus, resulting in the highest coverage across all four systems. The highly selective, curriculum-driven textbook market aligns textbooks tightly with government standards.</p>
       <div class="meta">Trajectory: <span style="color:var(--accent)">→ stable</span> · Focus: centralized curriculum alignment</div>
     </div>
@@ -586,15 +635,15 @@ graph LR
   <h3 style="margin-bottom:16px;font-size:1.2rem" data-i18n="three_explanations">Three Competing Explanations</h3>
   <div class="card-grid">
     <div class="card">
-      <h3><span class="tag tag-red" style="font-size:1rem">❌</span> <span data-i18n="expl_a_title">A: Curriculum Granularity</span></h3>
+      <h3><span class="tag tag-red" style="font-size:1rem">×</span> <span data-i18n="expl_a_title">A: Curriculum Granularity</span></h3>
       <p data-i18n="expl_a_desc">Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — the US has the densest curriculum (2,124 concepts) but one of the lowest coverages (17.2%).</p>
     </div>
     <div class="card" style="border-color:var(--green)">
-      <h3><span class="tag tag-green" style="font-size:1rem">✅</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span></h3>
+      <h3><span class="tag tag-green" style="font-size:1rem">✓</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span></h3>
       <p data-i18n="expl_b_desc">Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW per-track specifications (12.7%).</p>
     </div>
     <div class="card">
-      <h3><span class="tag tag-yellow" style="font-size:1rem">⚠️</span> <span data-i18n="expl_c_title">C: Division of Labor</span></h3>
+      <h3><span class="tag tag-yellow" style="font-size:1rem">!</span> <span data-i18n="expl_c_title">C: Division of Labor</span></h3>
       <p data-i18n="expl_c_desc">Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.</p>
     </div>
   </div>
@@ -615,7 +664,7 @@ graph LR
           <tbody>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong>Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939</td><td style="padding:8px 10px;text-align:center">72</td></tr>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong>Mathematics</strong></td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.857</td><td style="padding:8px 10px;text-align:center;color:var(--yellow)">0.506</td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.711</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.674</td><td style="padding:8px 10px;text-align:center">20</td></tr>
-            <tr style="border-top:1px solid var(--border);background:rgba(96,165,250,.06)"><td style="padding:8px 10px"><strong>All (weighted)</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.951</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.842</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.844</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.881</td><td style="padding:8px 10px;text-align:center">92</td></tr>
+            <tr style="border-top:1px solid var(--border);background:var(--accent-soft)"><td style="padding:8px 10px"><strong>All (weighted)</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.951</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.842</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.844</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.881</td><td style="padding:8px 10px;text-align:center">92</td></tr>
           </tbody>
         </table>
       </div>
@@ -645,13 +694,13 @@ graph LR
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
       <p data-i18n="paper_abstract_text">LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
-      <div class="meta">📄 <a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
+      <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
       <p data-i18n="paper_sections_text">Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
-      <div class="meta">📚 9 sections · ~56 KB · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta">9 sections · ~56 KB · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -665,7 +714,7 @@ graph LR
   journal = {BWKI 2026},
   url = {https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph}
 }</pre>
-    <button onclick="copyBibtex()" style="margin-top:12px;padding:8px 20px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:500"><i class="bi bi-clipboard"></i> Copy BibTeX</button>
+    <button onclick="copyBibtex()" class="btn btn-solid" style="margin-top:12px"><i class="bi bi-clipboard"></i> Copy BibTeX</button>
   </div>
 </section>
 
@@ -690,7 +739,7 @@ graph LR
     <a href="../docs/paper/01_abstract_introduction.md" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
-      <p>Full manuscript with 3 research questions, 4 metrics, 10 findings and error analysis.</p>
+      <p>Full manuscript with 3 research questions, 4 metrics, 12 findings and error analysis.</p>
       <div class="meta">9 sections · 19+ references</div>
     </a>
     <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/tree/master/cognitive-space/web/figures" target="_blank" class="card" style="text-decoration:none;text-align:center">
@@ -702,8 +751,8 @@ graph LR
     <a href="#validation" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-graph-up" style="font-size:2.2rem;color:var(--pink);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Benchmarks</h3>
-      <p>20-model comparison across Bailian API. Full evaluation results with F1 scores per language and domain.</p>
-      <div class="meta">20 models · 92 gold labels · Full ranking</div>
+      <p>19-model comparison across Bailian API. Full evaluation results with F1 scores per language and domain.</p>
+      <div class="meta">19 models · 92 gold labels · Full ranking</div>
     </a>
     <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/issues" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-envelope" style="font-size:2.2rem;color:var(--orange);display:block;margin-bottom:8px"></i>
@@ -716,7 +765,7 @@ graph LR
 
 <!-- ==================== FOOTER ==================== -->
 <footer style="text-align:center;padding:48px 24px 32px;color:var(--text2);font-size:.82rem;border-top:1px solid var(--border)">
-  <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px" data-i18n="footer_brand">🧠 LinguaGraph</p>
+  <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px" data-i18n="footer_brand">LinguaGraph</p>
   <p data-i18n="footer_desc">Cross-Lingual Knowledge Structure Analysis Framework</p>
   <p style="margin-top:12px" data-i18n="footer_copyright">BWKI 2026 · All Rights Reserved · Built with qwen-plus</p>
   <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph"><i class="bi bi-github"></i> GitHub</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">🇬🇧 English</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_DE.md">🇩🇪 Deutsch</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_ZH.md">🇨🇳 中文</a></p>
@@ -724,11 +773,50 @@ graph LR
 
 <!-- ==================== JAVASCRIPT ==================== -->
 <script>
-// IntersectionObserver for fade-in
+// IntersectionObserver for fade-in + rule-grow
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); e.target.classList.add('in'); } });
 }, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.fade-in, .rule-grow').forEach(el => observer.observe(el));
+// Hairline rules auto-inserted after each section subtitle (porcelain rhythm)
+document.querySelectorAll('section .section-sub').forEach(s => {
+  const r = document.createElement('div');
+  r.className = 'rule-grow';
+  s.after(r);
+  observer.observe(r);
+});
+
+// Stat count-up (1050ms, easeOutCubic, respects reduced motion)
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, target = parseFloat(el.dataset.count),
+          dec = parseInt(el.dataset.dec || 0, 10), suf = el.dataset.suffix || '';
+    const t0 = performance.now(), dur = 1050;
+    (function tick(t) {
+      const p = Math.min((t - t0) / dur, 1), v = target * (1 - Math.pow(1 - p, 3));
+      el.textContent = (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }), { threshold: 0.4 });
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => cio.observe(el));
+})();
+
+// CognitiveSpace cover → click loads iframe (saves 429KB data.js on first paint)
+(function() {
+  const cover = document.getElementById('cs-cover');
+  if (!cover) return;
+  cover.addEventListener('click', function() {
+    const frame = document.getElementById('cs-frame');
+    const f = document.createElement('iframe');
+    f.src = '../web/index.html';
+    f.title = 'CognitiveSpace 3D';
+    f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none';
+    frame.appendChild(f);
+    cover.remove();
+  });
+})();
 
 // Nav active section tracking
 const navLinks = document.querySelectorAll('nav a');
@@ -766,8 +854,8 @@ new Chart(document.getElementById('coverageChart'), {
     datasets: [{
       label: 'Coverage Score (%)',
       data: [12.7, 17.2, 37.3, 95.4],
-      backgroundColor: ['rgba(96,165,250,.85)', 'rgba(251,191,36,.85)', 'rgba(34,211,238,.85)', 'rgba(52,211,153,.85)'],
-      borderColor: ['#60a5fa', '#fbbf24', '#22d3ee', '#34d399'],
+      backgroundColor: ['rgba(30,58,138,.85)', 'rgba(138,100,16,.85)', 'rgba(14,116,144,.85)', 'rgba(4,120,87,.85)'],
+      borderColor: ['#1e3a8a', '#92600a', '#0e7490', '#047857'],
       borderWidth: 2,
       borderRadius: 8,
       borderSkipped: false
@@ -782,8 +870,8 @@ new Chart(document.getElementById('coverageChart'), {
       tooltip: { callbacks: { label: ctx => ctx.parsed.y + '%' } }
     },
     scales: {
-      y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%', color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,.05)' } },
-      x: { ticks: { color: '#94a3b8' } }
+      y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%', color: '#4a5a78' }, grid: { color: 'rgba(10,31,61,.08)' } },
+      x: { ticks: { color: '#4a5a78' } }
     }
   }
 });
@@ -796,22 +884,22 @@ new Chart(document.getElementById('trajectoryChart'), {
     datasets: [{
       label: 'China (CN)',
       data: [97.4, 96.2, 91.7],
-      backgroundColor: 'rgba(251,191,36,.85)',
+      backgroundColor: 'rgba(138,100,16,.85)',
       borderRadius: 4,
     }, {
       label: 'UK',
       data: [36.7, 43.8, 29.2],
-      backgroundColor: 'rgba(52,211,153,.85)',
+      backgroundColor: 'rgba(4,120,87,.85)',
       borderRadius: 4,
     }, {
       label: 'US',
       data: [17.9, 17.9, 17.9],
-      backgroundColor: 'rgba(34,211,238,.85)',
+      backgroundColor: 'rgba(14,116,144,.85)',
       borderRadius: 4,
     }, {
       label: 'NRW (DE)',
       data: [18.7, 16.7, 5.1],
-      backgroundColor: 'rgba(96,165,250,.85)',
+      backgroundColor: 'rgba(30,58,138,.85)',
       borderRadius: 4,
     }]
   },
@@ -820,12 +908,12 @@ new Chart(document.getElementById('trajectoryChart'), {
     maintainAspectRatio: true,
     aspectRatio: 1.6,
     plugins: {
-      legend: { labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 12, padding: 8 } },
+      legend: { labels: { color: '#4a5a78', font: { size: 10 }, boxWidth: 12, padding: 8 } },
       tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } }
     },
     scales: {
-      y: { min: 0, max: 100, ticks: { callback: v => v + '%', color: '#94a3b8', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,.05)' } },
-      x: { stacked: false, ticks: { color: '#94a3b8', font: { size: 9 } } }
+      y: { min: 0, max: 100, ticks: { callback: v => v + '%', color: '#4a5a78', font: { size: 9 } }, grid: { color: 'rgba(10,31,61,.08)' } },
+      x: { stacked: false, ticks: { color: '#4a5a78', font: { size: 9 } } }
     }
   }
 });
@@ -839,11 +927,11 @@ new Chart(document.getElementById('benchmarkChart'), {
       label: 'Overall F1',
       data: [0.674, 0.674, 0.666, 0.661, 0.628, 0.626, 0.614, 0.613, 0.608, 0.593, 0.592, 0.591, 0.590, 0.588, 0.580, 0.577, 0.576, 0.566, 0.547],
       backgroundColor: ctx => {
-        const v = ctx.parsed.y;
-        if (v >= 0.66) return 'rgba(52,211,153,.85)';
-        if (v >= 0.61) return 'rgba(96,165,250,.85)';
-        if (v >= 0.57) return 'rgba(251,191,36,.85)';
-        return 'rgba(248,113,113,.85)';
+        const v = ctx.parsed.x; // horizontal bars: value is on x
+        if (v >= 0.66) return 'rgba(4,120,87,.85)';
+        if (v >= 0.61) return 'rgba(30,58,138,.85)';
+        if (v >= 0.57) return 'rgba(138,100,16,.85)';
+        return 'rgba(179,55,47,.85)';
       },
       borderWidth: 0,
       borderRadius: 6
@@ -857,8 +945,8 @@ new Chart(document.getElementById('benchmarkChart'), {
       tooltip: { callbacks: { label: ctx => 'F1 = ' + ctx.parsed.y.toFixed(3) } }
     },
     scales: {
-      x: { min: 0.5, max: 0.7, ticks: { callback: v => v.toFixed(2), color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,.05)' } },
-      y: { ticks: { font: { size: 9 }, color: '#94a3b8' } }
+      x: { min: 0.5, max: 0.7, ticks: { callback: v => v.toFixed(2), color: '#4a5a78' }, grid: { color: 'rgba(10,31,61,.08)' } },
+      y: { ticks: { font: { size: 9 }, color: '#4a5a78' } }
     }
   }
 });
@@ -866,14 +954,15 @@ new Chart(document.getElementById('benchmarkChart'), {
 const TRANSLATIONS = {
   en: {
     page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
-    nav_research: 'Research', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
+    nav_research: 'Questions', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
     nav_findings: 'Findings', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Curriculum',
     nav_validation: 'Validation', nav_paper: 'Paper', nav_limitations: 'Limitations', nav_open: 'Open Science',
-    hero_title: 'How do different languages<br>and educational systems<br>organize the same knowledge?',
+    hero_title: 'How do different languages<br>and educational systems<br>organize the <em>same knowledge?</em>',
     hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
-    stat_concepts: 'Concepts', stat_relations: 'Relations', stat_languages: 'Languages', stat_disciplines: 'Disciplines',
-    stat_edu_systems: 'Education Systems', stat_gold_labels: 'Gold Labels', stat_overall_f1: 'Overall F1',
+    stat_concepts: 'Concepts · full project', stat_relations: 'Relations · full project', stat_languages: 'Languages<br>ZH · EN · DE', stat_disciplines: 'Disciplines<br>Math · Physics · Chemistry',
+    stat_edu_systems: 'Education Systems<br>DE · UK · US · CN', stat_gold_labels: 'Models<br>19-model benchmark', stat_overall_f1: 'Overall F1 (weighted)<br>qwen-plus',
+    scope_note: 'SCOPE · Full project graph: Math 556 · Physics 366 · Chemistry 220 = 1,140+ concepts (README.md dataset section). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).',
     section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
     rq1_title: 'RQ1: Language', rq1_question: 'How do different languages organize the same knowledge?',
     rq1_answer: 'Chinese and German textbooks are structurally most similar (LDS-K=0.519); English diverges from both (ZH-EN=0.934, DE-EN=0.938). A Null Model reveals textbook structures converge more than chance — the language signal emerges in human cognitive expression (ΔLDS).',
@@ -892,7 +981,7 @@ const TRANSLATIONS = {
     contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings_title: 'Findings',
-    section_findings: 'Five structural discoveries about how knowledge is organized across disciplines, languages, education systems, and individuals',
+    section_findings: 'Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals',
     finding_a_title: 'Knowledge density peaks early',
     finding_a_sub: 'Finding A — All three STEM disciplines follow a peak-and-decline pattern. Mathematics peaks at middle school, physics at elementary school, and chemistry at middle school.',
     fig3_caption: 'Fig 3: CDS by Education Level', fig7_caption: 'Fig 7: Three Subject CDS',
@@ -929,12 +1018,12 @@ const TRANSLATIONS = {
     openscience_dataset: 'Full Dataset', openscience_dataset_desc: 'Knowledge graphs, gold labels, extractions',
     openscience_code: 'Source Code', openscience_code_desc: 'Complete analysis pipeline',
     openscience_paper: 'Research Paper', openscience_paper_desc: 'Full manuscript with methodology',
-    openscience_bench: 'Benchmark Results', openscience_bench_desc: '20-model comparison',
+    openscience_bench: 'Benchmark Results', openscience_bench_desc: '19-model comparison',
     openscience_figures: 'Figures & Visualizations', openscience_figures_desc: 'Publication-ready charts',
     openscience_contact: 'Get in Touch', openscience_contact_desc: 'Questions, feedback, collaborations',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: 'Interactive CognitiveSpace',
-    cognitivespace_sub: 'Explore 1,140+ concepts in an interactive 3D knowledge graph',
+    cognitivespace_sub: 'Explore the mathematics subgraph in an interactive 3D knowledge graph — 556 nodes · 525 relations · 219 groups',
     curr_explanations_title: 'Three competing explanations',
     finding_a_body: 'Mathematics peaks at middle school (CDS = 0.271). Physics peaks at elementary school (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics.',
     finding_a_body2: 'This contradicts the natural assumption that "more advanced knowledge is more densely connected." Instead, curricula are designed to maximize connection density during foundational stages (early integration) before branching into specialization (later differentiation).',
@@ -1027,7 +1116,7 @@ const TRANSLATIONS = {
     paper_cite_title: 'Cite this work',
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
-    cognitivespace_meta: '556 nodes · 525 relations · 3 languages',
+    cognitivespace_meta: '556 nodes · 525 relations · 219 groups · 3 languages',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
     footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
@@ -1040,7 +1129,7 @@ const TRANSLATIONS = {
     expl_c_desc: 'Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.',
     contrib2_desc: 'CDS (concept density), HDS (hierarchy depth) and LDS (language drift) quantify how knowledge is connected, sequenced and structured across languages and disciplines.',
     contrib3_desc: 'The Coverage Score measures textbook-curriculum alignment across four education systems (Germany, UK, US, China), revealing how different educational philosophies produce systematically different alignment patterns.',
-    contrib4_desc: '10 findings spanning density universals (F1-F3, F6-F8), cross-language divergence (F4-F5), and curriculum design philosophy (F9-F10) — all independently verifiable from the released data and pipeline.',
+    contrib4_desc: '12 findings spanning density universals (F1-F3, F6-F8), cross-language divergence (F4-F5), curriculum design philosophy (F9-F10), and human-validation revision (F11-F12) — all independently verifiable from the released data and pipeline.',
     metric_cds: 'How densely connected knowledge is at each education level. Higher = more integrated.',
     metric_hds: 'Longest prerequisite chain for each concept. Measures hierarchical depth.',
     metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
@@ -1138,7 +1227,7 @@ const TRANSLATIONS = {
     paper_cite_title: 'Diese Arbeit zitieren',
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Filtern Sie nach Sprache oder Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
-    cognitivespace_meta: '556 Knoten · 525 Relationen · 3 Sprachen',
+    cognitivespace_meta: '556 Knoten · 525 Relationen · 219 Gruppen · 3 Sprachen',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
     footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
@@ -1150,14 +1239,15 @@ const TRANSLATIONS = {
     expl_c_title: 'C: Arbeitsteilung',
     expl_c_desc: 'Manche Konzepte werden in anderen Faechern gelehrt (z.B. Physik in Chemie). Plausibel aber unbestaatigt.',
     page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
-    nav_research: 'Forschung', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
+    nav_research: 'Fragen', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
     nav_findings: 'Erkenntnisse', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Lehrplan',
     nav_validation: 'Validierung', nav_paper: 'Paper', nav_limitations: 'Einschränkungen', nav_open: 'Open Science',
-    hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br>das gleiche Wissen?',
+    hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br><em>das gleiche Wissen?</em>',
     hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
     cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
-    stat_concepts: 'Konzepte', stat_relations: 'Beziehungen', stat_languages: 'Sprachen', stat_disciplines: 'Disziplinen',
-    stat_edu_systems: 'Bildungssysteme', stat_gold_labels: 'Goldstandard', stat_overall_f1: 'Gesamt-F1',
+    stat_concepts: 'Konzepte · Gesamtprojekt', stat_relations: 'Relationen · Gesamtprojekt', stat_languages: 'Sprachen<br>ZH · EN · DE', stat_disciplines: 'Disziplinen<br>Mathe · Physik · Chemie',
+    stat_edu_systems: 'Bildungssysteme<br>DE · UK · US · CN', stat_gold_labels: 'Modelle<br>19-Modell-Benchmark', stat_overall_f1: 'Gesamt-F1 (gewichtet)<br>qwen-plus',
+    scope_note: 'SCOPE · Gesamtprojekt: Mathe 556 · Physik 366 · Chemie 220 = 1.140+ Konzepte (README.md Datensatz-Abschnitt). Die 3D-Ansicht zeigt den Mathematik-Subgraphen (manifest.json: 556 Knoten · 525 Relationen · 219 Gruppen).',
     section_rq: 'Forschungsfragen', rq_sub: 'Drei komplementäre Perspektiven auf die Organisation desselben Wissens',
     rq1_title: 'FF1: Sprache', rq1_question: 'Wie organisieren verschiedene Sprachen das gleiche Wissen?',
     rq1_answer: 'LDS-K zeigt heterogene sprachübergreifende Beziehungen: ZH-DE (0,519) konvergieren erheblich; ZH-EN (0,934) und DE-EN (0,938) liegen nahe der sprachinternen Rauschschwelle. Ein Null-Modell widerlegt die Sprachdivergenz-Interpretation — das Kernsignal ist ΔLDS (kognitiv minus Lehrbuch).',
@@ -1176,7 +1266,7 @@ const TRANSLATIONS = {
     contrib1_desc: '1.160+ Konzepte und 4.100+ Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180+ Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (F1 = 0,939).',
     section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
     section_findings_title: 'Erkenntnisse',
-    section_findings: 'Fünf strukturelle Entdeckungen über die Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
+    section_findings: 'Fünf Findings-Abschnitte mit zwölf nummerierten Ergebnissen (F1–F12): Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
     finding_a_title: 'Wissensdichte erreicht frühen Höhepunkt',
     finding_a_sub: 'Erkenntnis A — Alle drei MINT-Disziplinen folgen einem Muster aus Höhepunkt und Abfall. Mathematik erreicht den Höhepunkt in der Mittelstufe, Physik in der Grundschule, Chemie in der Mittelstufe.',
     fig3_caption: 'Abb. 3: CDS nach Bildungsstufe', fig7_caption: 'Abb. 7: CDS der drei Fächer',
@@ -1213,16 +1303,16 @@ const TRANSLATIONS = {
     openscience_dataset: 'Vollständiger Datensatz', openscience_dataset_desc: 'Wissensgraphen, Goldlabels, Extraktionen',
     openscience_code: 'Quellcode', openscience_code_desc: 'Vollständige Analyse-Pipeline',
     openscience_paper: 'Forschungspapier', openscience_paper_desc: 'Vollständiges Manuskript mit Methodik',
-    openscience_bench: 'Benchmark-Ergebnisse', openscience_bench_desc: '20-Modell-Vergleich',
+    openscience_bench: 'Benchmark-Ergebnisse', openscience_bench_desc: '19-Modell-Vergleich',
     openscience_figures: 'Abbildungen & Visualisierungen', openscience_figures_desc: 'Publikationsreife Diagramme',
     openscience_contact: 'Kontakt', openscience_contact_desc: 'Fragen, Feedback, Kooperationen',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: 'Interaktiver CognitiveSpace',
-    cognitivespace_sub: 'Erkunden Sie 1.140+ Konzepte in einem interaktiven 3D-Wissensgraphen',
+    cognitivespace_sub: 'Erkunden Sie den Mathematik-Subgraphen in einem interaktiven 3D-Wissensgraphen — 556 Knoten · 525 Relationen · 219 Gruppen',
     curr_explanations_title: 'Drei konkurrierende Erklärungen',
     contrib2_desc: 'CDS (Konzeptdichte), HDS (Hierarchietiefe) und LDS (Sprachabdrift) quantifizieren, wie Wissen ueber Sprachen und Disziplinen hinweg verbunden, angeordnet und strukturiert ist.',
     contrib3_desc: 'Der Coverage Score misst die Lehrplanabdeckung ueber vier Bildungssysteme (DE, UK, US, CN) und zeigt systematische Unterschiede.',
-    contrib4_desc: '10 Ergebnisse zu Dichteuniversalien (F1-F3, F6-F8), sprachuebergreifender Divergenz (F4-F5) und Lehrplandesign (F9-F10).',
+    contrib4_desc: '12 Ergebnisse zu Dichteuniversalien (F1-F3, F6-F8), sprachuebergreifender Divergenz (F4-F5), Lehrplandesign (F9-F10) und Humanvalidierung-Revision (F11-F12).',
     metric_cds: 'Wie dicht Wissen auf jeder Bildungsstufe vernetzt ist. Hoeher = integrierter.',
     metric_hds: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst Hierarchietiefe.',
     metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
@@ -1230,14 +1320,15 @@ const TRANSLATIONS = {
   },
   zh: {
     page_title: 'LinguaGraph — 跨语言知识结构分析',
-    nav_research: '研究', nav_contributions: '贡献', nav_methodology: '方法',
+    nav_research: '问题', nav_contributions: '贡献', nav_methodology: '方法',
     nav_findings: '发现', nav_cognitivespace: '认知空间', nav_curriculum: '课程',
     nav_validation: '验证', nav_paper: '论文', nav_limitations: '局限性', nav_open: '开放科学',
-    hero_title: '不同语言和教育体系<br>是如何组织<br>同一种知识的？',
+    hero_title: '不同语言和教育体系<br>是如何组织<br><em>同一种知识的？</em>',
     hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
     cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
-    stat_concepts: '概念', stat_relations: '关系', stat_languages: '语言', stat_disciplines: '学科',
-    stat_edu_systems: '教育体系', stat_gold_labels: '黄金标注', stat_overall_f1: '总体 F1',
+    stat_concepts: '概念 · 项目全图', stat_relations: '关系 · 项目全图', stat_languages: '语言<br>中 · 英 · 德', stat_disciplines: '学科<br>数学 · 物理 · 化学',
+    stat_edu_systems: '教育体系<br>德 · 英 · 美 · 中', stat_gold_labels: '模型<br>19 模型基准', stat_overall_f1: '总体 F1（加权）<br>qwen-plus',
+    scope_note: '范围 · 项目全图：数学 556 · 物理 366 · 化学 220 = 1,140+ 概念（README.md 数据集一节）。3D 视图为数学子图（manifest.json：556 节点 · 525 关系 · 219 分组）。',
     section_rq: '研究问题', rq_sub: '理解同一知识如何被不同组织方式呈现的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '不同语言如何组织相同的知识？',
     rq1_answer: 'LDS-K显示中德教材在结构上显著趋同（0.519），中英（0.934）和德英（0.938）接近语内噪声底线。Null Model 推翻了语言差异的解释——核心信号来自ΔLDS（认知减去教材）。',
@@ -1256,7 +1347,7 @@ const TRANSLATIONS = {
     contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939；加权总体 0.881）。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings_title: '研究发现',
-    section_findings: '关于知识如何在学科、语言、教育体系和个人之间组织的五项结构性发现',
+    section_findings: '五个发现小节，十二项编号结果（F1–F12）：知识如何在学科、语言、教育体系和个人之间组织',
     finding_a_title: '知识密度早期达到峰值',
     finding_a_sub: '发现 A — 三个 STEM 学科都遵循峰值-下降模式。数学在初中达到峰值，物理在小学，化学在初中。',
     fig3_caption: '图 3：按教育阶段的 CDS', fig7_caption: '图 7：三个学科的 CDS',
@@ -1291,12 +1382,12 @@ const TRANSLATIONS = {
     openscience_dataset: '完整数据集', openscience_dataset_desc: '知识图谱、黄金标签、提取结果',
     openscience_code: '源代码', openscience_code_desc: '完整分析流程',
     openscience_paper: '研究论文', openscience_paper_desc: '含方法论的完整手稿',
-    openscience_bench: '基准测试结果', openscience_bench_desc: '20 模型对比',
+    openscience_bench: '基准测试结果', openscience_bench_desc: '19 模型对比',
     openscience_figures: '图表与可视化', openscience_figures_desc: '可出版的图表',
     openscience_contact: '联系我们', openscience_contact_desc: '问题、反馈、合作',
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: '交互式 CognitiveSpace',
-    cognitivespace_sub: '在交互式 3D 知识图谱中探索 1,140+ 个概念',
+    cognitivespace_sub: '在交互式 3D 知识图谱中探索数学子图 —— 556 个节点 · 525 条关系 · 219 个分组',
         finding_e_title: '人类验证确认语言驱动的认知差异',
     finding_e_sub: '发现 E — N=15 落在 split-half 底线上：被试间设计无法分离语言与个体差异。LLM 被试内实验显示信号清晰。',
 curr_explanations_title: '三种竞争性解释',
@@ -1391,7 +1482,7 @@ curr_explanations_title: '三种竞争性解释',
     paper_cite_title: '引用本作品',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。按语言或学科筛选。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
-    cognitivespace_meta: '556 个节点 · 525 条关系 · 3 种语言',
+    cognitivespace_meta: '556 个节点 · 525 条关系 · 219 个分组 · 3 种语言',
     footer_brand: 'LinguaGraph',
     footer_desc: '跨语言知识结构分析框架',
     footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',
@@ -1404,7 +1495,7 @@ curr_explanations_title: '三种竞争性解释',
     expl_c_desc: '有些概念可能在其他科目中教授（如化学中的物理概念）。合理但未经验证——跨学科概念映射可能揭示系统性转移。',
     contrib2_desc: 'CDS（概念密度）、HDS（层次深度）和 LDS（语言漂移）量化了知识在不同语言和学科之间的连接方式、排序方式和结构方式。',
     contrib3_desc: '覆盖率得分衡量了教材与课程在四个教育体系（德国、英国、美国、中国）之间的对齐程度，揭示了不同教育理念如何产生系统性的对齐差异。',
-    contrib4_desc: '10 项发现涵盖密度普遍性（F1-F3, F6-F8）、跨语言差异（F4-F5）和课程设计理念（F9-F10）——全部可独立验证。',
+    contrib4_desc: '12 项发现涵盖密度普遍性（F1-F3, F6-F8）、跨语言差异（F4-F5）、课程设计理念（F9-F10）与人工验证修订（F11-F12）——全部可独立验证。',
     metric_cds: '衡量每个教育阶段知识的连接密度。越高 = 越整合。',
     metric_hds: '每个概念的最长前提链。衡量层次深度。',
     metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
@@ -1435,6 +1526,7 @@ function setLanguage(lang) {
   var statLabels = document.querySelectorAll('.hero .stat-label');
   var statKeys = ['stat_concepts','stat_relations','stat_languages','stat_disciplines','stat_edu_systems','stat_gold_labels','stat_overall_f1'];
   statLabels.forEach(function(l,i) { if (l && t[statKeys[i]]) l.innerHTML = t[statKeys[i]]; });
+  _q('.hero .scope-note', 'scope_note');
 
   // Inline helper: set textContent if element and key exist
   function _q(sel, key) { var e = document.querySelector(sel); if (e && key && t[key]) e.textContent = t[key]; }
