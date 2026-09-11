@@ -263,20 +263,20 @@ Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](d
 
 ### Academic Papers
 
-| # | Reference | Relevance |
-|---|-----------|-----------|
-| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Foundational — concept mapping theory underpinning CDS/HDS |
-| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilation theory — knowledge is structured, not listed |
-| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS curriculum coherence — Coverage Score inspiration |
-| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Cross-national textbook comparison methodology |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Linguistic relativity — research question context |
-| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Network analysis of cognitive/educational structures |
-| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Most directly relevant EKG pipeline methodology |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Prerequisite inference — supports HDS metric |
-| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Cross-national textbook problem analysis |
-| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Cross-national curriculum structure data |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematics and Science.* | Curriculum coverage analysis methodology |
-| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer architecture — foundational for LLMs used |
+| # | Reference | Paper | Relevance |
+|---|-----------|-------|-----------|
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | [13] | Foundational — concept mapping theory underpinning CDS/HDS |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | [12] | Assimilation theory — knowledge is structured, not listed |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | [54] | TIMSS curriculum coherence — Coverage Score inspiration |
+| 4 | **Liang, S. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(5), 743–756. | [8] | Cross-national textbook comparison methodology |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(2). | [53] | Linguistic relativity — research question context |
+| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | — (background) | Network analysis of cognitive/educational structures |
+| 7 | **Ain, Q. U., Chatti, M. A., & Qussa, J.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv:2509.05392. | [3] | Most directly relevant EKG pipeline methodology |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, N.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv:2509.05393. | [5] | Prerequisite inference — supports HDS metric |
+| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ICMT. | [9] | Cross-national textbook problem analysis |
+| 10 | **OECD.** (2025). *Education at a Glance 2025.* OECD Publishing. | [32] | Cross-national curriculum structure data |
+| 11 | **IEA.** (2023). *TIMSS 2023.* | [6] / [30] | Curriculum coverage analysis methodology |
+| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | — (background) | Transformer architecture — foundational for LLMs used |
 
 ### Open Source Libraries
 
@@ -327,7 +327,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ```bibtex
 @misc{linguaGraph2026,
-  author = {Rongjing, J.},
+  author = {Rong, Jiajun and Lan, Zhenxi},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
@@ -352,7 +352,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **Competition**: [BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
-- **Author**: Rongjing J. — bilingual researcher (ZH/DE), passionate about AI & education
+- **Authors**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 team)
 
 <p align="center">
   <sub>Built with ❤️ for BWKI 2026 — because knowledge should be understood, not just taught.</sub>

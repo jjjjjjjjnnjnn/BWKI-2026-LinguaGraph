@@ -297,14 +297,14 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | 基础性——支撑 CDS/HDS 的概念映射理论 |
 | 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | 同化理论——知识是结构化的，而非列表式的 |
 | 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS 课程一致性——覆盖率评分的灵感来源 |
-| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | 跨国教材比较方法论 |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | 语言相对论——研究问题背景 |
+| 4 | **Liang, S. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(5), 743-756. | 跨国教材比较方法论 |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(2). | 语言相对论——研究问题背景 |
 | 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | 认知/教育结构的网络分析 |
-| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | 最直接相关的 EKG 流程方法论 |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | 前驱关系推理——支持 HDS 指标 |
+| 7 | **Ain, Q. U., Chatti, M. A., & Qussa, J.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv:2509.05392. | 最直接相关的 EKG 流程方法论 |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, N.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv:2509.05393. | 前驱关系推理——支持 HDS 指标 |
 | 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | 跨国教材问题分析 |
-| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | 跨国课程结构数据 |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in 数学和 Science.* | 课程覆盖率分析方法论 |
+| 10 | **OECD.** (2025). *Education at a Glance 2025.* OECD Publishing. | 跨国课程结构数据 |
+| 11 | **IEA.** (2023). *TIMSS 2023 International Results in 数学和 Science.* | 课程覆盖率分析方法论 |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer 架构——所用大语言模型的基础 |
 
 #
@@ -360,7 +360,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ```bibtex
 @misc{linguaGraph2026,
-  author = {Rongjing, J.},
+  author = {Rong, Jiajun and Lan, Zhenxi},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
@@ -385,7 +385,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **竞赛**：[BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
-- **作者**：Rongjing J. — 双语研究者（中/德），对 AI 与教育充满热情
+- **作者**：戎嘉骏 & Zhenxi Lan — Schloss Heessen 私立学校（BWKI 2026 团队）
 
 <p align="center">
   <sub>用 ❤️ 为 BWKI 2026 打造——因为知识应该被理解，而不仅仅是被告知。</sub>

@@ -95,7 +95,9 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
   padding: 28px; transition: all .3s; box-shadow: var(--card-shadow);
 }
 .card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; row-gap: 6px; }
+.card h3 .tag { flex-shrink: 0; }
+.card h3 .h3note { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em; color: var(--text2); font-weight: 400; flex-basis: 100%; }
 .card p { color: var(--text2); font-size: .92rem; line-height: 1.65; }
 .card .meta { font-size: .8rem; color: var(--text2); margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 
@@ -305,7 +307,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="card" style="border-top:3px solid var(--yellow)">
       <h3><i class="bi bi-building" style="color:var(--yellow);font-size:1.4rem"></i> RQ3: Education System</h3>
       <p style="font-size:1rem;font-weight:500;color:var(--text);margin-bottom:12px" data-i18n="rq3_question">How do different curricula organize the same subject?</p>
-      <p data-i18n="rq3_answer">Coverage scores range from 12.7% (NRW) to 95.4% (China). These dramatic differences reflect educational governance — centralized systems (China) produce near-perfect alignment, while federal systems (NRW, US) allow local adaptation.</p>
+      <p data-i18n="rq3_answer">Coverage scores range from 12.7% (NRW) to 95.4% (China). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit these differences.</p>
       <div class="meta"><span class="tag tag-yellow" data-i18n="rq3_cs">CS: 12.7%–95.4%</span></div>
     </div>
   </div>
@@ -652,7 +654,7 @@ graph LR
       <p data-i18n="expl_a_desc">Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — the US has the densest curriculum (2,124 concepts) but one of the lowest coverages (17.2%).</p>
     </div>
     <div class="card" style="border-color:var(--green)">
-      <h3><span class="tag tag-green" style="font-size:1rem">✓</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--text2);font-weight:400">Hypothesis (paper §8.6)</span></h3>
+      <h3><span class="tag tag-green" style="font-size:1rem">✓</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span class="h3note" data-i18n="expl_b_note">Hypothesis (paper §8.6)</span></h3>
       <p data-i18n="expl_b_desc">Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW per-track specifications (12.7%).</p>
     </div>
     <div class="card">
@@ -667,7 +669,7 @@ graph LR
   <h2 class="section-title">Validation</h2>
   <p class="section-sub" data-i18n="validation_sub">Gold standard annotations and model benchmarks</p>
 
-  <div class="card-grid" style="margin-bottom:40px">
+  <div class="card-grid" style="margin-bottom:40px;grid-template-columns:1fr">
     <div class="card">
       <h3><i class="bi bi-patch-check" style="color:var(--green)"></i> <span data-i18n="val_gold_title">Gold Dataset: 92 Labels</span></h3>
       <p data-i18n="validation_gold_desc">Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against qwen-plus extraction.</p>
@@ -688,14 +690,14 @@ graph LR
       <h3><i class="bi bi-cpu" style="color:var(--accent)"></i> <span data-i18n="val_bench_title">Model Benchmark: 19 Models</span></h3>
       <p data-i18n="validation_bench_desc">All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.</p>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
-        <canvas id="benchmarkChart" height="380"></canvas>
+        <canvas id="benchmarkChart" height="300"></canvas>
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
       </div>
       <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting</h3>
       <p style="font-size:.82rem;color:var(--text2)" data-i18n="val_roster_desc">Same P1 protocol (ZH/DE/EN × 10). ZH-DE margin = LDS-C minus split-half floor; all 55 p&lt;0.01 (500 permutations). 7 western runs highlighted. qwen-max (n=29/30) counts as collecting per paper §8.15. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
-      <div style="margin:12px 0;overflow-x:auto;max-height:520px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
+      <div style="margin:12px 0;overflow-x:auto;max-height:560px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
         <table class="gold roster" style="margin-top:0">
           <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Model</th><th>Origin</th><th>ZH-DE margin</th><th>Signif.</th></tr></thead>
           <tbody>
@@ -818,7 +820,7 @@ graph LR
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px">
     <h3 style="margin-bottom:12px" data-i18n="paper_cite_title">Cite this work</h3>
     <pre style="background:var(--surface);padding:16px;border-radius:8px;font-size:.82rem;overflow-x:auto;color:var(--text2);position:relative" id="bibtex">@misc{linguaGraph2026,
-  author = {Rongjing, J.},
+  author = {Rong, Jiajun and Lan, Zhenxi},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
@@ -857,7 +859,7 @@ graph LR
       <i class="bi bi-image" style="font-size:2.2rem;color:var(--yellow);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Figures</h3>
       <p>8 publication-ready figures: CDS, HDS, LDS, null-model and coverage distributions.</p>
-      <div class="meta">8 figures · PNG · ~956 KB total</div>
+      <div class="meta">14 figures · PNG · ~1.7 MB total (EN/DE/ZH; fig5 EN-only)</div>
     </a>
     <a href="#validation" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-graph-up" style="font-size:2.2rem;color:var(--pink);display:block;margin-bottom:8px"></i>
@@ -959,7 +961,7 @@ function copyBibtex() {
 window.copyBibtex = copyBibtex;
 
 // Chart.js — Coverage Score
-new Chart(document.getElementById('coverageChart'), {
+window.coverageChart = new Chart(document.getElementById('coverageChart'), {
   type: 'bar',
   data: {
     labels: ['NRW (Germany)', 'US', 'UK', 'China'],
@@ -1041,7 +1043,7 @@ const TRANSLATIONS = {
     rq2_answer: 'All three disciplines follow an early-peak-later-decline pattern. Knowledge density peaks at middle or elementary school, then drops sharply. Maximum prerequisite depth is bounded at 8.',
     rq2_cds: 'CDS: 0.042–0.271', rq2_hds: 'HDS: max 8',
     rq3_title: 'RQ3: Education System', rq3_question: 'How do different curricula organize the same subject?',
-    rq3_answer: 'Coverage scores range from 12.7% (NRW) to 95.4% (China). These differences reflect educational governance — centralized vs. federal — not alignment quality.',
+    rq3_answer: 'Coverage scores range from 12.7% (NRW) to 95.4% (China). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit these differences.',
     rq3_cs: 'CS: 12.7%–95.4%',
     section_contrib: 'Research Contributions', contrib_sub: 'What this project delivers to the field',
     contrib1_title: 'A multilingual STEM knowledge graph',
@@ -1198,7 +1200,7 @@ const TRANSLATIONS = {
     three_explanations: 'Three Competing Explanations',
     expl_a_title: 'A: Curriculum Granularity',
     expl_a_desc: 'Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — the US has the densest curriculum (2,124 concepts) but one of the lowest coverages (17.2%).',
-    expl_b_title: 'B: Educational Philosophy',
+    expl_b_title: 'B: Educational Philosophy', expl_b_note: 'Hypothesis (paper §8.6)',
     expl_b_desc: 'Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW detailed per-track specs (12.7%). Higher granularity ≠ better alignment.',
     expl_c_title: 'C: Division of Labor',
     expl_c_desc: 'Some concepts may be taught in other subjects (e.g., physics in chemistry). Plausible but unverified — cross-subject concept mapping could reveal systematic transfers.',
@@ -1314,7 +1316,7 @@ const TRANSLATIONS = {
     three_explanations: 'Drei konkurrierende Erklaerungen',
     expl_a_desc: 'Annahme: Dichtere Lehrplaene erzeugen hoehere Abdeckung. Gegenbeleg: USA hat dichtesten Lehrplan (2.124 Konzepte) aber eine der niedrigsten Abdeckungen (17,2%).',
     expl_a_title: 'A: Lehrplangranularitaet',
-    expl_b_title: 'B: Bildungssystemphilosophie',
+    expl_b_title: 'B: Bildungssystemphilosophie', expl_b_note: 'Hypothese (Paper §8.6)',
     expl_b_desc: 'Abdeckungsmuster spiegeln Bildungsgovernance: CN zentralisiert (95.4%), UK nationaler Lehrplan (37.3%), US breite Standards (17.2%), NRW detaillierte Vorgaben (12.7%). Höhere Granularität ≠ bessere Abdeckung.',
     expl_c_title: 'C: Arbeitsteilung',
     expl_c_desc: 'Manche Konzepte werden in anderen Faechern gelehrt (z.B. Physik in Chemie). Plausibel aber unbestaatigt.',
@@ -1336,7 +1338,7 @@ const TRANSLATIONS = {
     rq2_answer: 'Alle drei Disziplinen folgen einem Muster aus frühem Höhepunkt und anschließendem Abfall. Die Wissensdichte erreicht ihren Höhepunkt in der Mittel- oder Grundschule und fällt dann stark ab.',
     rq2_cds: 'CDS: 0,042–0,271', rq2_hds: 'HDS: max. 8',
     rq3_title: 'FF3: Bildungssystem', rq3_question: 'Wie organisieren verschiedene Lehrpläne das gleiche Fach?',
-    rq3_answer: 'Die Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). Diese Unterschiede spiegeln die Bildungsgovernance wider — zentralisiert vs. föderal — nicht die Ausrichtungsqualität.',
+    rq3_answer: 'Die Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). Granularität (sicherste Lesart) und Governance (Hypothese, Paper §8.6) passen beide zu diesen Unterschieden.',
     rq3_cs: 'CS: 12.7%–95.4%',
     section_contrib: 'Forschungsbeiträge', contrib_sub: 'Was dieses Projekt für das Feld leistet',
     contrib1_title: 'Ein mehrsprachiger MINT-Wissensgraph',
@@ -1417,7 +1419,7 @@ const TRANSLATIONS = {
     rq2_answer: '三个学科都遵循先达到峰值后下降的模式。知识密度在初中或小学达到峰值，然后急剧下降。最大前提知识深度不超过 8。',
     rq2_cds: 'CDS：0.042–0.271', rq2_hds: 'HDS：最大值 8',
     rq3_title: '问题3：教育体系', rq3_question: '不同课程体系如何组织同一学科？',
-    rq3_answer: '课程覆盖率从 12.7%（NRW）到 95.4%（中国）。这些差异反映了教育治理结构——集中制 vs 联邦制——而非对齐质量。',
+    rq3_answer: '课程覆盖率从 12.7%（NRW）到 95.4%（中国）。粒度（最稳妥解读）与治理结构（假设，论文 §8.6）都与这些差异相符。',
     rq3_cs: 'CS：12.7%–95.4%',
     section_contrib: '研究贡献', contrib_sub: '本项目为领域的贡献',
     contrib1_title: '多语言 STEM 知识图谱',
@@ -1574,7 +1576,7 @@ curr_explanations_title: '三种竞争性解释',
     three_explanations: '三种竞争性解释',
     expl_a_desc: '假设：更密集的课程产生更高的覆盖率。证据：反例——美国拥有最密集的课程（2,124 个概念），但覆盖率最低（17.2%）。',
     expl_a_title: 'A：课程粒度',
-    expl_b_title: 'B：教育理念',
+    expl_b_title: 'B：教育理念', expl_b_note: '假设（论文 §8.6）',
     expl_b_desc: '覆盖率模式反映教育治理结构：中国集中制（95.4%），英国国家课程（37.3%），美国宽泛标准（17.2%），北威州详细分类规范（12.7%）。更高粒度 ≠ 更好覆盖。',
     expl_c_title: 'C：劳动分工',
     expl_c_desc: '有些概念可能在其他科目中教授（如化学中的物理概念）。合理但未经验证——跨学科概念映射可能揭示系统性转移。',
@@ -1717,6 +1719,32 @@ function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
+
+  // Coverage chart labels follow language
+  if (window.coverageChart) {
+    var covL = {
+      en: { labels: ['NRW (Germany)', 'US', 'UK', 'China'], ds: 'Coverage Score (%)' },
+      de: { labels: ['NRW (Deutschland)', 'USA', 'UK', 'China'], ds: 'Coverage-Score (%)' },
+      zh: { labels: ['北威州（德国）', '美国', '英国', '中国'], ds: '覆盖率（%）' }
+    }[lang] || null;
+    if (covL) {
+      window.coverageChart.data.labels = covL.labels;
+      window.coverageChart.data.datasets[0].label = covL.ds;
+      window.coverageChart.update();
+    }
+  }
+  // Figure language variants (fig5 stays EN: source superseded, see docs/SSOT-web.md)
+  var figBases = ['fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model'];
+  document.querySelectorAll('.figure-box img').forEach(function(img) {
+    var src = img.getAttribute('src') || '';
+    for (var k = 0; k < figBases.length; k++) {
+      var b0 = figBases[k];
+      if (src.indexOf(b0) !== -1) {
+        var dir = src.slice(0, src.indexOf(b0));
+        img.setAttribute('src', dir + b0 + (lang === 'en' ? '' : '_' + lang) + '.png');
+      }
+    }
+  });
 }function initLang() {
   const saved = localStorage.getItem('portal_lang') || 'en';
   setLanguage(saved);

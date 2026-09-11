@@ -39,9 +39,18 @@
 | 8 | Kleinigkeiten | 180+ · 816 KB | **180** (68+94+18) · **956 KB** (8 PNGs) | README §Dataset · gemessen |
 
 ## P2c Modell-Roster + Academic-Honesty (2026-09-11)
-
 - 56 complete-Aggregat = **55 (n=30) + qwen-max (n=29/30)**; 30 error + qwen-max = **31 collecting** (paper §8.15: 86 begonnen, 55 vollständig).
 -西方 7 Messungen / 6 Identitäten (NVIDIA×2, Poolside×2 Hosts, OpenAI-Gewichte, Cohere, luna) — rote West-Badges, nach Margin sortiert.
 - Alle 55 ZH-DE p=0.0 (<0.01), Marge 0.033–0.424 = paper +0.03…+0.42 (§5.10).
 - LDS-Formel: `1 − mean(J_node, J_edge)` (README Metrics; portal vorher GED-veraltet).
 - Governance-Downgrade: B = Hypothese, A (Granularität) sicherste Lesart (paper §8.6); ZH-E-Titel Falsifikations-Wording; P2-Recheck-Note an Finding C; Youden 0.13-Zeile; Paper-Sektion real (Abstract/Sections/BibTeX/PDF-Link); Footer +Schule/Autor; Figures 7→8.
+
+## D Figure-i18n (2026-09-11, scripts/figures_i18n.py)
+
+- fig3/fig7 DE+ZH aus Archiv-Snapshots (outputs/physics_comparison.json + chemistry_comparison.json):
+  math-mid 0.2705, phys-elem 0.2222, chem-mid 0.0415 — identisch mit EN-Figuren + Portal-Text (asserts im Skript).
+- fig4 DE+ZH deterministisch neu gerechnet (seeded) + assert ZH-DE 0.519; Legende/Conditions bleiben EN (Fachbegriffe).
+- fig5 EN-ONLY: Recompute aus aligned_data.json ergibt 442/270/6/0.72 vs publiziert 556/459/8/0.40
+  (Quellgraph superseded) — Re-Render würde Balken fälschen. Caption bleibt dreisprachig.
+- Level-Mapping DE: Grundschule/Mittelstufe/Oberstufe/Hochschule; ZH: 小学/初中/高中/大学.
+- Portal tauscht img-src per Sprache (fig5 bleibt EN); Coverage-Chart-Labels dreisprachig.

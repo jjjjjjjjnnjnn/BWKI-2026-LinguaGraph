@@ -297,14 +297,14 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Grundlegend — Concept-Mapping-Theorie als Grundlage von CDS/HDS |
 | 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |
 | 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS-Lehrplankohärenz — Inspiration für den Coverage Score |
-| 4 | **Liang, L. L. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(6). | Internationale Lehrbuchvergleichsmethodik |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(1). | Sprachliche Relativität — Kontext der Forschungsfrage |
+| 4 | **Liang, S. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(5), 743-756. | Internationale Lehrbuchvergleichsmethodik |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(2). | Sprachliche Relativität — Kontext der Forschungsfrage |
 | 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Netzwerkanalyse kognitiver/bildungsbezogener Strukturen |
-| 7 | **Ain, Q. T., Chatti, M. A., & Qussa, H.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv. | Direkt relevanteste EKG-Pipeline-Methodik |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, A.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv. | Voraussetzungsinferenz — unterstützt HDS-Metrik |
+| 7 | **Ain, Q. U., Chatti, M. A., & Qussa, J.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv:2509.05392. | Direkt relevanteste EKG-Pipeline-Methodik |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, N.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv:2509.05393. | Voraussetzungsinferenz — unterstützt HDS-Metrik |
 | 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Internationale Lehrbuch-Problemanalyse |
-| 10 | **OECD.** (2023). *Education at a Glance 2023.* OECD Publishing. | Internationale Lehrplanstrukturdaten |
-| 11 | **IEA.** (2019). *TIMSS 2019 International Results in Mathematik und Science.* | Methodik der Lehrplanabdeckungsanalyse |
+| 10 | **OECD.** (2025). *Education at a Glance 2025.* OECD Publishing. | Internationale Lehrplanstrukturdaten |
+| 11 | **IEA.** (2023). *TIMSS 2023 International Results in Mathematik und Science.* | Methodik der Lehrplanabdeckungsanalyse |
 | 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer-Architektur — grundlegend für verwendete LLMs |
 
 #
@@ -360,7 +360,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 ```bibtex
 @misc{linguaGraph2026,
-  author = {Rongjing, J.},
+  author = {Rong, Jiajun and Lan, Zhenxi},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
@@ -385,7 +385,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D-Demo**: Öffnen Sie [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in Ihrem Browser
-- **Autor**: Rongjing J. — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung
+- **Autoren**: Jiajun Rong & Zhenxi Lan — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung
 
 <p align="center">
   <sub>Mit ❤️ für BWKI 2026 — denn Wissen sollte verstanden, nicht nur gelehrt werden.</sub>

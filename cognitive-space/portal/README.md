@@ -70,5 +70,6 @@ https://<user>.github.io/BWKI-2026-LinguaGraph/portal/
 ## Figures
 
 Key figures are in `../web/figures/` (relative path from portal directory).
-Deployed set: 8 PNGs (~956 KB) — fig3, fig4_null_model (**current**, caption-matched),
-fig5, fig6, fig7, figure1, figure3 + legacy fig4_lds_heatmap (superseded, kept for reference).
+Deployed set: 14 PNGs (~1.7 MB) — fig3, fig4_null_model, fig7 in EN/DE/ZH
+(fig5 EN-only: source graph superseded, see `docs/SSOT-web.md` P2b/D-section),
+figure1, figure3 (EN) + legacy fig4_lds_heatmap (superseded, kept for reference).
