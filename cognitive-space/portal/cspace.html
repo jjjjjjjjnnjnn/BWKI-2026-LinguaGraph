@@ -107,7 +107,13 @@ function setL(l) {
 }
 document.querySelectorAll(".lang button").forEach(function(b) { b.addEventListener("click", function() { setL(b.dataset.l); }); });
 var saved = "en";
-try { saved = localStorage.getItem("cspace_lang") || (localStorage.getItem("portal_lang") || "en"); } catch (e) {}
+try {
+  saved = localStorage.getItem("cspace_lang") || localStorage.getItem("portal_lang") || null;
+  if (!saved) {
+    var n = (navigator.language || "en").toLowerCase();
+    saved = n.indexOf("zh") === 0 ? "zh" : (n.indexOf("de") === 0 ? "de" : "en");
+  }
+} catch (e) {}
 if (!T[saved]) saved = "en";
 setL(saved);
 </script>

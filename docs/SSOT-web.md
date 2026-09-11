@@ -85,3 +85,12 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
   55-Zeilen-Tabelle in <details>, Collecting-Tabelle separat sichtbar.
 - Cover zurück auf Direkt-3D (`../web/index.html`); cspace.html geparkt für Redesign.
 - Paper/docs Recruiting-Dokumente unangetastet (Methodenspezifikation + eingefrorene Preregistrierung).
+
+## v9 Browser-Lang + Audit (2026-09-11)
+
+- Erstbesuch folgt navigator.language (zh/de/en, sonst en); gespeicherte Wahl gewinnt; documentElement.lang wird gesetzt (portal/story/cspace).
+- Audit Zahlen: keine schweren Fehler. 180+ → 180 (README-Trio + Story, SSOT P2b#8).
+- p<0.01 (Portal) vs p<0.05 (Paper/README): beide wahr (perm_p=0.0); Paper-Caveat bleibt führend.
+- qwen-max ohne error-Key (n=29): JSON unverändert, Zählregel dokumentiert (55×n=30 + qwen-max n=29/30).
+- 0.55–0.67 vs 0.547 (story deepseek-chat): Rundung, ok.
+- _deploy/LinguaGraph_BWKI2026.pdf (unreferenziert, identische Kopie) gelöscht; Mirrors 7/7 SAME; keine Konflikte/Backups; keine >10MB tracked; math_full.json (106MB) ignoriert, nicht getrackt.

@@ -414,7 +414,7 @@ flowchart TB
 <!-- ================================================================ -->
 <section id="dataset">
   <h2>Dataset</h2>
-  <p class="subtitle">180+ textbooks across 3 languages, 3 disciplines, 4 education systems</p>
+  <p class="subtitle">180 textbooks across 3 languages, 3 disciplines, 4 education systems</p>
 
   <div class="card-grid">
     <div class="card">
@@ -898,7 +898,7 @@ var TRANSLATIONS = {
     rq3_title: 'RQ3: Education System', rq3_question: '<strong>Question:</strong> How do different education systems organize curricula?',
     rq3_answer: 'Coverage varies dramatically: CN 95.4% → UK 37.3% → US 17.2% → NRW 12.7%. Chinese textbooks achieve near-complete curriculum coverage; Western systems show selective alignment.',
     rq3_metric: 'CS: 12.7%–95.4%',
-    section_dataset_title: 'Dataset', section_dataset_sub: '180+ textbooks across 3 languages, 3 disciplines, 4 education systems',
+    section_dataset_title: 'Dataset', section_dataset_sub: '180 textbooks across 3 languages, 3 disciplines, 4 education systems',
     math_title: 'Mathematics', math_desc: '556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
     physics_title: 'Physics', physics_desc: '366 concepts, 383 relations across 94 textbook versions. Covers mechanics through quantum physics.',
     chemistry_title: 'Chemistry', chemistry_desc: '220 concepts, 215 relations across 18 textbook versions. Covers general chemistry through organic chemistry.',
@@ -966,7 +966,7 @@ var TRANSLATIONS = {
     rq3_title: 'FF3: Bildungssystem', rq3_question: '<strong>Frage:</strong> Wie organisieren verschiedene Bildungssysteme Lehrplaene?',
     rq3_answer: 'Abdeckung variiert stark: CN 95,4% → GB 37,3% → US 17,2% → NRW 12,7%. Chinesische Lehrbuecher erreichen nahezu vollstaendige Lehrplanabdeckung; westliche Systeme zeigen selektive Anpassung.',
     rq3_metric: 'CS: 12,7%–95,4%',
-    section_dataset_title: 'Datensatz', section_dataset_sub: '180+ Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
+    section_dataset_title: 'Datensatz', section_dataset_sub: '180 Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
     math_title: 'Mathematik', math_desc: '556 Konzepte, 525 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
     physics_title: 'Physik', physics_desc: '366 Konzepte, 383 Beziehungen aus 94 Lehrbuchversionen. Von Mechanik bis Quantenphysik.',
     chemistry_title: 'Chemie', chemistry_desc: '220 Konzepte, 215 Beziehungen aus 18 Lehrbuchversionen. Von allgemeiner bis organischer Chemie.',
@@ -1034,7 +1034,7 @@ var TRANSLATIONS = {
     rq3_title: '问题3：教育体系', rq3_question: '<strong>问题：</strong>不同教育体系如何组织课程？',
     rq3_answer: '覆盖率差异显著：中国 95.4% → 英国 37.3% → 美国 17.2% → 北威州 12.7%。中文教材实现了近乎完全的课程覆盖；西方体系则呈现选择性对齐。',
     rq3_metric: 'CS：12.7%–95.4%',
-    section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180+ 本教材',
+    section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180 本教材',
     math_title: '数学', math_desc: '556 个概念，525 条关系，来自 68 本教材。从算术到高等微积分。',
     physics_title: '物理', physics_desc: '366 个概念，383 条关系，来自 94 个教材版本。从力学到量子物理。',
     chemistry_title: '化学', chemistry_desc: '220 个概念，215 条关系，来自 18 个教材版本。从普通化学到有机化学。',
@@ -1238,8 +1238,17 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
+function browserLang() {
+  try {
+    var n = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    if (n.indexOf('zh') === 0) return 'zh';
+    if (n.indexOf('de') === 0) return 'de';
+  } catch (e) {}
+  return 'en';
+}
+
 function initLang() {
-  var saved = localStorage.getItem('story_lang') || 'en';
+  var saved = localStorage.getItem('story_lang') || browserLang();
   setLanguage(saved);
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.addEventListener('click', function() { setLanguage(btn.textContent.toLowerCase()); });
@@ -1247,7 +1256,7 @@ function initLang() {
 }
 document.addEventListener('DOMContentLoaded', initLang);
 window.addEventListener('pageshow', function() {
-  var s = localStorage.getItem('story_lang') || 'en';
+  var s = localStorage.getItem('story_lang') || browserLang();
   if (!document.querySelector('.lang-btn.active') || !document.querySelector('.lang-btn.active').textContent.toLowerCase().includes(s)) setLanguage(s);
 });
 </script>

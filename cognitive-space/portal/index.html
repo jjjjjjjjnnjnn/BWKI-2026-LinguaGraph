@@ -1815,8 +1815,17 @@ function setLanguage(lang) {
       }
     }
   });
-}function initLang() {
-  const saved = localStorage.getItem('portal_lang') || 'en';
+}function browserLang() {
+  // First-visit default follows the browser; an explicit choice (saved) always wins
+  try {
+    var n = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    if (n.indexOf('zh') === 0) return 'zh';
+    if (n.indexOf('de') === 0) return 'de';
+  } catch (e) {}
+  return 'en';
+}
+function initLang() {
+  const saved = localStorage.getItem('portal_lang') || browserLang();
   setLanguage(saved);
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => setLanguage(btn.textContent.toLowerCase()));
@@ -1824,7 +1833,7 @@ function setLanguage(lang) {
 }
 document.addEventListener('DOMContentLoaded', initLang);
 window.addEventListener('pageshow', () => {
-  const s = localStorage.getItem('portal_lang') || 'en';
+  const s = localStorage.getItem('portal_lang') || browserLang();
   if (!document.querySelector('.lang-btn.active')?.textContent.toLowerCase().includes(s)) setLanguage(s);
 });
 </script>

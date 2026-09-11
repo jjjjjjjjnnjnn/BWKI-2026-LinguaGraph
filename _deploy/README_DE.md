@@ -131,7 +131,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW coverage NA |
 | **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE | NRW 36% |
-| **Gesamt** | **1.140+** | **1.100+ direkt** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |
+| **Gesamt** | **1.140+** | **1.100+ direkt** | **180** | **3 Sprachen** | **4 Bildungssysteme** |
 
 > SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 525 direkte Relationen / 219 trilinguale Gruppen). Physik/Chemie aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7).
 

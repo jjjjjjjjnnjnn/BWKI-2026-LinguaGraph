@@ -131,7 +131,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 366 | 383 | 94 editions | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 18 editions | ZH/EN/DE | NRW 36% |
-| **Total** | **1,140+** | **1,100+ direct** | **180+** | **3 languages** | **4 educational systems** |
+| **Total** | **1,140+** | **1,100+ direct** | **180** | **3 languages** | **4 educational systems** |
 
 > SSOT: math-graph counts from `manifest.json` (556 nodes / 525 direct relations / 219 trilingual groups). Physics/chemistry counts from legacy pipelines (see `docs/review/rnd_project_review_20260811.md` §7).
 
