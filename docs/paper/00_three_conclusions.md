@@ -19,7 +19,7 @@
 | Mathematik | Mittelstufe | 0,271 | ↑ Gipfel ↓ stetiger Abfall |
 | Physik | Grundschule | 0,222 | ↑ Gipfel ↓ rascher Abfall |
 
-**Robustheit**: ✅ Unabhängig in ZH, EN, DE bestätigt
+**◆ Robustheit**: Unabhängig in ZH, EN, DE bestätigt
 
 ---
 
@@ -81,4 +81,4 @@
 | C1 | Ausubel (1963) — Wissensintegration vor Spezialisierung | CDS nach Niveau (Mathe + Physik + Chemie) | Curriculumentwicklung |
 | C2 | Novak & Cañas (2008) — Concept Maps als propositionale Netzwerke | HDS-Verteilung (Mathe + Physik) | Lernprogression |
 | C3 | Nullmodell (gradbewahrendes Rewiring) | LDS-K vs. Structure Null (Voll < Null) | **Falsifikation** — LDS-K misst KEINE Sprachdivergenz |
-| ΔLDS-Hypothese | Linguistische Relativität (Whorf, 1956; Lucy, 1997) | LDS-C vs. LDS-K: Human (N=15, Between) + LLM (Within) | **Human: falsifiziert (Between-Subject); LLM Within-Subject: Sprachsignal nachweisbar** — Code dominiert, Rahmen sekundär |
+| ΔLDS-Hypothese | Linguistische Relativität [49][50] | LDS-C vs. LDS-K: Human (N=15, Between) + LLM (Within) | **Human: falsifiziert (Between-Subject); LLM Within-Subject: Sprachsignal nachweisbar** — Code dominiert, Rahmen sekundär |

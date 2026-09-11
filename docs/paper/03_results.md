@@ -73,7 +73,7 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 ### 3.6 CognitiveSpace-Screenshot
 
 [Abbildung: CognitiveSpace-3D-Visualisierung — 556 Konzepte in konzentrischen Kugelschalen,
-vier farbcodierte Bildungsstufen, sichtbare 238 Relationen als blaue Verbindungslinien]
+vier farbcodierte Bildungsstufen, sichtbare 238 Links (von 525 Relationen) als blaue Verbindungslinien]
 
 ### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
 
@@ -148,7 +148,7 @@ Aggregierte Konzeptmengen pro Sprachgruppe, LDS = 1 − Jaccard(kanonische Schl�
 
 **Wichtig**: Alle drei Sprachpaare zeigen LDS-C ≈ 0.93–0.96. Die Werte liegen **nahe der Zufallsverteilung** (siehe 4.3) und deutlich höher als die früheren N=8-Schätzungen (0.70–0.75), die mit einer älteren Pipeline berechnet wurden.
 
-**Hinweis zur ΔLDS-Definition (Berichtsformat)**: Die hier berichteten ΔLDS-Werte (konzeptuelle Ebene, −0.044 bis +0.047) verwenden die **konzeptuelle LDS-K** (nur Knoten) als Basis, sodass LDS-C und LDS-K auf derselben Skala verglichen werden (apples-to-apples). Die relationale v3-LDS-K (§4.5) ist mit den relationalen LDS-C-Werten zu vergleichen — beide ΔLDS-Formate sind in der Arbeit durchgängig nach Ebene getrennt und nicht miteinander vermischt. Die Titelaussage "ΔLDS ≈ 0 (−0.05 bis +0.05)" bezieht sich auf die konzeptuelle Ebene.
+**● Hinweis zur ΔLDS-Definition (Berichtsformat)**: Die hier berichteten ΔLDS-Werte (konzeptuelle Ebene, −0.044 bis +0.047) verwenden die **konzeptuelle LDS-K** (nur Knoten) als Basis, sodass LDS-C und LDS-K auf derselben Skala verglichen werden (apples-to-apples). Die relationale v3-LDS-K (§4.5) ist mit den relationalen LDS-C-Werten zu vergleichen — beide ΔLDS-Formate sind in der Arbeit durchgängig nach Ebene getrennt und nicht miteinander vermischt. Die Titelaussage "ΔLDS ≈ 0 (−0.05 bis +0.05)" bezieht sich auf die konzeptuelle Ebene.
 
 ### 4.3 Null-Modell-Prüfung: Kein separierbares Sprachsignal
 
@@ -185,7 +185,7 @@ Eine grobkörnige Codierung (Codebook v1: Legal/Institutional, Individual/Autono
 | Permutationstest | p=0.354 (5000 Iterationen) |
 | Shannon-Entropie | DE 2.68 · EN 2.74 · ZH 2.64 |
 
-**Befund**: Die Kategorienverteilungen unterscheiden sich **nicht signifikant** zwischen den Sprachen. Es zeigen sich jedoch **konsistente Richtungstendenzen**, die mit einer kulturellen Rahmungshypothese übereinstimmen: ZH rahmt Freiheit häufiger rechtlich-institutionell (Freiheit: 0.24 vs. DE 0.09 / EN 0.07), ZH stärker moralisch-abstrakt (0.24), DE stärker individuell-autonom (0.27) und affektiv (0.14). Diese Tendenzen sind bei N=15 nicht statistisch bestätigbar.
+**◆ Befund**: Die Kategorienverteilungen unterscheiden sich **nicht signifikant** zwischen den Sprachen. Es zeigen sich jedoch **konsistente Richtungstendenzen**, die mit einer kulturellen Rahmungshypothese übereinstimmen: ZH rahmt Freiheit häufiger rechtlich-institutionell (Freiheit: 0.24 vs. DE 0.09 / EN 0.07), ZH stärker moralisch-abstrakt (0.24), DE stärker individuell-autonom (0.27) und affektiv (0.14). Diese Tendenzen sind bei N=15 nicht statistisch bestätigbar.
 
 ### 4.5 Relationale Ebene (v3-Knoten+Kante)
 
@@ -295,13 +295,15 @@ Um die marginalen Beiträge von Sprachcode und kulturellem Rahmen zu trennen, wu
 
 ### 5.7 Themenbezogene Decomposition
 
-| Thema | Ø Sprachsignal (P1−Boden) | Ø Rahmen-Effekt (P2) |
-|:------|:---:|:---:|
-| Freiheit | 0.045 | 0.89 |
-| Gerechtigkeit | **0.114** | **0.96** |
-| Verantwortung | 0.058 | 0.87 |
-| Heimat | 0.082 | 0.86 |
-| Erfolg | **0.115** | **0.98** |
+| Thema | Ø Sprachsignal (P1−Boden) | Ø Rahmen-Effekt (P2) | LDS-C ZH-DE (D1-Baseline) |
+|:------|:---:|:---:|:---:|
+| Freiheit | 0.045 | 0.89 | 0.959 |
+| Gerechtigkeit | **0.114** | **0.96** | 0.957 |
+| Verantwortung | 0.058 | 0.87 | **0.980** |
+| Heimat | 0.082 | 0.86 | 0.927 |
+| Erfolg | **0.115** | **0.98** | 0.927 |
+
+Die D1-Baseline-Spalte (`data/lds_c/lds_c_results_20260808.json`, `per_topic_lds_c.ZH-DE`) verankert die Themenabsolutwerte: Alle fünf Themen liegen im Band 0.93–0.96 (Verantwortung 0.9804 höchst), konsistent mit LDS-C ≈ 0.93–0.96.
 
 Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotierten Themen (Erfolg, Gerechtigkeit) am stärksten** — konsistent mit der Hypothese, dass abstrakte Konzepte sprach- und kulturabhängiger sind als konkrete.
 
@@ -331,7 +333,7 @@ Der Vergleich von Mensch (Between-Subject, N=15) und LLM (Within-Subject, k=10) 
 
 Die **Signalamplitude (LDS-C) ist bei Mensch und LLM nahezu identisch (0.93–0.96)**. Der entscheidende Unterschied liegt in der **Bodenlinie** (Within-Language Split-Half): Bei Menschen überlagert die Variabilität *innerhalb* einer Sprachgruppe (0.92–0.96) die Divergenz *zwischen* den Gruppen (Signal/Boden ≈ 1.00 → Signal **untergegangen**); beim LLM liegt der Boden (0.85–0.87) deutlich unter dem Signal (Signal/Boden ≈ 1.09–1.10 → Signal **sichtbar**).
 
-> **Hinweis zur Stichprobengröße (Sample-Size-Kontrolle)**: Die menschlichen Bodenwerte in der Tabelle beruhen auf Halb-Splits mit 3/3 (DE/ZH) bzw. 1/2 (EN) Teilnehmenden; die LLM-Bodenwerte auf 5/5 Stichproben. Ein N-abgestimmter Floor-Scan (§5.9.1, N=6 → 3+3 Halb-Splits, analog zur menschlichen Aufteilung) ergibt für das LLM weiterhin einen Boden von 0.854–0.885 — weit unter dem menschlichen Boden (0.922–0.958, Differenz 0.05–0.07). Die Schlussfolgerung ist daher **nicht** durch unterschiedliche Stichprobengrößen verursacht.
+> **● Hinweis zur Stichprobengröße (Sample-Size-Kontrolle)**: Die menschlichen Bodenwerte in der Tabelle beruhen auf Halb-Splits mit 3/3 (DE/ZH) bzw. 1/2 (EN) Teilnehmenden; die LLM-Bodenwerte auf 5/5 Stichproben. Ein N-abgestimmter Floor-Scan (§5.9.1, N=6 → 3+3 Halb-Splits, analog zur menschlichen Aufteilung) ergibt für das LLM weiterhin einen Boden von 0.854–0.885 — weit unter dem menschlichen Boden (0.922–0.958, Differenz 0.05–0.07). Die Schlussfolgerung ist daher **nicht** durch unterschiedliche Stichprobengrößen verursacht.
 
 Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist also **kein Stichprobeneffekt**, sondern Folge der Varianzstruktur: menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
 
@@ -386,6 +388,6 @@ Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konve
 
 Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **42 DashScope-, 7 zen/OpenRouter-Modellen plus D1-Baseline sowie neu je 2 Kilo-, 1 Cohere-, 1 NIM- und 1 opencode-go-Modell** angewendet → **55 vollständige Messungen (je 10/10/10)**, davon **50 eindeutige Modell-Identitäten** (5 Modelle auf zwei Hosts gemessen: deepseek-v4-flash, deepseek-v4-pro, glm-5.2, kimi-k2.6, laguna-s-2.1). Die Familien: Qwen (20), DeepSeek (12), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside (×2 Hosts), longcat, **nemotron-3-ultra + nemotron-3-super (NVIDIA, US-Ursprung)**, **gpt-oss-20b (OpenAI-Gewichte, US-Ursprung)**, **command-a (Cohere, CA-Ursprung)**, gpt-5.6-luna (Herkunft ungeklärt, offengelegt). **~87 % der Messungen stammen von chinesischen Anbietern; sieben westliche Messungen** (6 Identitäten: NVIDIA ×2, Poolside ×2 Hosts, OpenAI-Gewichte, Cohere, luna) sind enthalten. Die Modellauswahl folgte der API-Verfügbarkeit (kostenlose Tiers, Anbieter-Quotas), nicht einer präregistrierten Matrix — eine Verfügbarkeitsstichprobe (s. Robustheit (d) in §8.15).
 
-**Signal — breit repliziert, aber nicht ausnahmslos**: Alle **55 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.42 (command-a-03-2025). Von den **165 Sprachpaar-Tests sind 8 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten, und es wurde keine Mehrfachtest-Korrektur vorgenommen. Ein formaler Bonferroni-Test (α≈0,0003 bei 165 Tests) übersteigt diese Permutationsauflösung; die Meta-Betrachtung — alle 55 ZH-DE-Paare überschreiten sämtliche 500 Permutationen (erwartet unter der globalen Null ≈0,11) — stützt die Aussage dennoch (Details §8.15).
+**◆ Signal — breit repliziert, aber nicht ausnahmslos**: Alle **55 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.42 (command-a-03-2025). Von den **165 Sprachpaar-Tests sind 8 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten, und es wurde keine Mehrfachtest-Korrektur vorgenommen. Ein formaler Bonferroni-Test (α≈0,0003 bei 165 Tests) übersteigt diese Permutationsauflösung; die Meta-Betrachtung — alle 55 ZH-DE-Paare überschreiten sämtliche 500 Permutationen (erwartet unter der globalen Null ≈0,11) — stützt die Aussage dennoch (Details §8.15).
 
 **Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (p<0.001): ≥3: 1133 vs. 882±11; ≥10: **218 vs. 147±4**; ≥20: 61 vs. 12±2. Die stärksten Konzepte (Heimat:safety 46 DE-Stimmen; Heimat:physical space 44 ZH-Stimmen; equal opportunity 42) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 46 von 56 Modellen Heimat:safety als einseitigen Treiber).
