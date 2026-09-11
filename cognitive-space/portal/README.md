@@ -49,8 +49,11 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 
 ## Deployment (`_deploy/` = Pages root mirror)
 
-Source of truth is `cognitive-space/`. After any change, mirror these
-(single-direction copy, verify with `Get-FileHash` + `linkcheck.py`):
+Source of truth is `cognitive-space/`. Live deploys are **rebuilt from sources**
+by `.github/workflows/deploy-cognitive-space.yml` on every push (portal,
+web/*, docs, READMEs; site root = portal copy). `scripts/mirror_root.py`
+reproduces the root-portal step locally for preview. `_deploy/` commits are
+a local mirror only — the workflow artifact is what goes live.
 
 | Source | Mirror |
 |---|---|

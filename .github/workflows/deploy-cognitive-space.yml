@@ -37,9 +37,17 @@ jobs:
           mkdir -p _deploy
           cp -r cognitive-space/web/* _deploy/
           cp -r cognitive-space/portal _deploy/portal
-          sed -i 's|../web/index.html|../index.html|g' _deploy/portal/index.html
           cp -r docs _deploy/docs
           cp README.md README_DE.md README_ZH.md _deploy/ 2>/dev/null || true
+          # Site root serves the portal (same rule as scripts/mirror_root.py):
+          # flatten one-level ../x refs to x for the root copy.
+          cp cognitive-space/portal/index.html _deploy/index.html
+          sed -i "s|'../web/index.html'|'web/index.html'|g" _deploy/index.html
+          sed -i 's|"../web/|"web/|g' _deploy/index.html
+          sed -i 's|"../figures/|"figures/|g' _deploy/index.html
+          sed -i 's|"../docs/|"docs/|g' _deploy/index.html
+          sed -i 's|"../portal/|"portal/|g' _deploy/index.html
+          sed -i 's|"../index.html"|"web/index.html"|g' _deploy/index.html
           echo "Deployment bundle contents:"
           find _deploy -maxdepth 2 -type f | head -40
 
