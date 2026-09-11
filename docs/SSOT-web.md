@@ -73,3 +73,15 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Nav-Overflow: globales box-sizing + .nav-group hidden <1100px + sticky switcher (ZH-Button wieder sichtbar).
 - Benchmark-Tooltip Bugfix: parsed.y->parsed.x (horizontale Bars).
 - cspace.html Mini-Portal (EN/DE/ZH, what/why/how + Launch in-iframe); Portal-Cover lädt Guide.
+
+## v8 Debrand + Fusionschart + Cover-Revert (2026-09-11)
+
+- Namen: 戎嘉骏→戎嘉浚，Zhenxi Lan→兰振熙 (nur ZH-Footer); EN/DE-Pinyin (Jiajun Rong · Zhenxi Lan) + CITATION.cff bereits korrekt.
+- HSHL raus (Portal-Footer 3-sprachig, Root-READMEs, sync-mappings); Story-BibTeX Rongjing→Rong+Lan.
+- qwen-plus Branding→neutrale Rollenbegriffe (Footer/Methodik/Flussdiagramm/Stat-Karte, Portal+Story+READMEs);
+  Datenlabels bleiben (Roster-Zeile, Bench-Chart, Medaillen-Tabelle, CLI, Paper-Methoden).
+- Fusionschart: 55 ZH-DE-Margen als horizontale Balken (desc, West rot) per Chart.js — Daten per Skript aus Roster-Tabelle extrahiert;
+  19er-F1-Chart unverändert (andere Metrik/Achse); P1-Protokoll als Kleindruck unter dem Chart;
+  55-Zeilen-Tabelle in <details>, Collecting-Tabelle separat sichtbar.
+- Cover zurück auf Direkt-3D (`../web/index.html`); cspace.html geparkt für Redesign.
+- Paper/docs Recruiting-Dokumente unangetastet (Methodenspezifikation + eingefrorene Preregistrierung).

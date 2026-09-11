@@ -139,7 +139,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 ## ✅ Extraction & Human Validation
 
-**92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):
+**92 gold-standard annotations** across 2 domains and 3 languages (production extraction model, Bailian API):
 
 | Domain | ZH F1 | DE F1 | EN F1 | Overall | n |
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
@@ -157,7 +157,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 - Textbook LDS-K rank order: **ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)** — but see Null Model: LDS-K does not measure language divergence
 
 **🤖 Simulation Baseline (300 responses, exploratory)**
-- Mean simulated LDS-C: **0.647** (mock keyword extraction — not comparable to qwen-plus extraction; descriptive only, no p-value)
+- Mean simulated LDS-C: **0.647** (mock keyword extraction — not comparable to production-model extraction; descriptive only, no p-value)
 - The earlier human-vs-simulation comparison (p=0.05) is **withdrawn**: measurement-scale drift makes it invalid (see `docs/paper/04_discussion.md` §8.11–8.12)
 
 **🧪 Null Model (Structure vs Full Graphs)**
@@ -315,7 +315,6 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 - **BWKI 2026** — Competition platform and framework
 - **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance
-- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation
 - **OpenCode GO** — AI service platform providing model API access
 - **Claude Code** — AI-assisted development platform (Anthropic)
 - **MimoCode** — AI service platform via OpenCode GO

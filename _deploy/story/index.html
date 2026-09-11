@@ -302,7 +302,7 @@ graph LR
     end
 
     subgraph Extraction["🧩 Concept Extraction"]
-        LLM["qwen-plus API<br/>MIMO Prompt"]
+        LLM["LLM API<br/>MIMO Prompt"]
         CG["Concept Graphs<br/>1160+ nodes"]
         GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939)"]
     end
@@ -499,7 +499,7 @@ flowchart TB
   </div>
 
   <h3 style="margin:40px 0 16px">Extraction Quality: 92 Gold Labels</h3>
-  <p style="color:var(--text2); margin-bottom:20px">Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against qwen-plus extraction.</p>
+  <p style="color:var(--text2); margin-bottom:20px">Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against production-model extraction.</p>
 
   <table class="data-table" style="margin-bottom:20px">
     <thead>
@@ -704,7 +704,7 @@ timeline
     Phase 3 : Chemistry Expansion : 220 concepts : 215 relations : 18 versions : Three-discipline comparison
     Phase 4 : Curriculum Layer : NRW curriculum : UK curriculum : US curriculum : CN curriculum
     Phase 5 : Coverage Score : 12.7%–95.4% range : F9/F10 findings : System philosophy analysis
-    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.881 weighted : 19-model benchmark : qwen-plus selected
+    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.881 weighted : 19-model benchmark : production model selected
     Phase 7 : Paper & Release : Full paper : v0.2 release : GitHub Pages : Trilingual README
     </div>
   </div>
@@ -743,7 +743,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 6 — Validation</div>
       <h4>Gold Standard Validation & Model Benchmark</h4>
-      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. qwen-plus selected as production model (F1=0.939 social, F1=0.881 weighted).</p>
+      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. Production extraction model selected (F1=0.939 social, F1=0.881 weighted).</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 7 — Publication</div>
@@ -800,7 +800,7 @@ timeline
     <h4 style="margin-bottom:8px">Cite this work</h4>
     <pre style="background:var(--bg3);padding:16px;border-radius:8px;font-size:.82rem;overflow-x:auto;color:var(--text2)">
 @misc{linguaGraph2026,
-  author = {Rongjing, J.},
+  author = {Rong, Jiajun and Lan, Zhenxi},
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
@@ -819,7 +819,7 @@ timeline
 <!-- Footer -->
 <footer>
   <p>🧠 <strong>LinguaGraph</strong> — Cross-Lingual Knowledge Structure Analysis Framework</p>
-  <p style="margin-top:8px">BWKI 2026 · All Rights Reserved · Built with qwen-plus · 1,140+ concepts · 92 gold labels · F1 = 0.881 weighted</p>
+  <p style="margin-top:8px">BWKI 2026 · All Rights Reserved · 1,140+ concepts · 92 gold labels · F1 = 0.881 weighted</p>
   <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">GitHub</a></p>
 </footer>
 
@@ -915,7 +915,7 @@ var TRANSLATIONS = {
     metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'How much of the curriculum the textbooks cover. Textbook–curriculum alignment.',
     gold_title: 'Extraction Quality: 92 Gold Labels',
-    gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against qwen-plus extraction.',
+    gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against production-model extraction.',
     th_domain: 'Domain', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
     th_overall: 'Overall', th_n: 'n',
     social_concepts: 'Social Concepts', mathematical_concepts: 'Mathematical Concepts',
@@ -941,7 +941,7 @@ var TRANSLATIONS = {
     references_title: 'Key References',
     cite_title: 'Cite this work',
     footer_title: 'LinguaGraph', footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
-    footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
+    footer_copyright: 'BWKI 2026 · All Rights Reserved',
     footer_github: 'GitHub',
   },
   de: {
@@ -983,7 +983,7 @@ var TRANSLATIONS = {
     metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'Wie viel des Lehrplans die Lehrbuecher abdecken. Lehrbuch-Lehrplan-Abgleich.',
     gold_title: 'Extraktionsqualitaet: 92 Goldlabels',
-    gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in 3 Sprachen, bewertet mit qwen-plus-Extraktion.',
+    gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in 3 Sprachen, bewertet mit der Extraktion des Produktionsmodells.',
     th_domain: 'Bereich', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
     th_overall: 'Gesamt', th_n: 'n',
     social_concepts: 'Soziale Konzepte', mathematical_concepts: 'Mathematische Konzepte',
@@ -1009,7 +1009,7 @@ var TRANSLATIONS = {
     references_title: 'Wichtige Referenzen',
     cite_title: 'Diese Arbeit zitieren',
     footer_title: 'LinguaGraph', footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
-    footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
+    footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten',
     footer_github: 'GitHub',
   },
   zh: {
@@ -1051,7 +1051,7 @@ var TRANSLATIONS = {
     metric_lds_name: '语言漂移得分', metric_lds_desc: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs_name: '覆盖率得分', metric_cs_desc: '课程内容有多少被教材覆盖。教材–课程对齐程度。',
     gold_title: '提取质量：92 个黄金标签',
-    gold_desc: '人工标注的黄金标准，涵盖 3 种语言的社会概念和数学概念，经 qwen-plus 提取验证。',
+    gold_desc: '人工标注的黄金标准，涵盖 3 种语言的社会概念和数学概念，经生产模型提取验证。',
     th_domain: '领域', th_zh_f1: '中文 F1', th_de_f1: '德文 F1', th_en_f1: '英文 F1',
     th_overall: '总体', th_n: '数量',
     social_concepts: '社会概念', mathematical_concepts: '数学概念',
@@ -1077,7 +1077,7 @@ var TRANSLATIONS = {
     references_title: '主要参考文献',
     cite_title: '引用本作品',
     footer_title: 'LinguaGraph', footer_desc: '跨语言知识结构分析框架',
-    footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',
+    footer_copyright: 'BWKI 2026 · 保留所有权利',
     footer_github: 'GitHub',
   }
 };

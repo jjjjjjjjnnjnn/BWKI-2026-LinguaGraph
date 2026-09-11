@@ -21,7 +21,7 @@ Open `index.html` in any browser. No build step required.
 | 9 | Finding E | "N=15 falsifies between-subject ΔLDS" — human validation (F11–F12) |
 | 10 | CognitiveSpace | Click-to-load 3D viewer (porcelain cover, saves 429KB first paint) |
 | 11 | Curriculum | Coverage scores by education system + 3 competing explanations |
-| 12 | Validation | Gold dataset F1 table + interactive 19-model benchmark chart |
+| 12 | Validation | Gold dataset F1 table + 19-model benchmark chart + 55-margin fused replication chart (collecting table separate) |
 | 13 | Limitations | 6 methodological boundaries with mitigations |
 | 14 | Paper | Citation, BibTeX with copy button |
 | 15 | Open Science | Links to code, data, paper, figures, benchmarks |
@@ -54,7 +54,7 @@ Source of truth is `cognitive-space/`. After any change, mirror these
 
 | Source | Mirror |
 |---|---|
-| `portal/index.html` + `portal/cspace.html` | `_deploy/portal/` |
+| `portal/index.html` (+ `portal/cspace.html`, parked — cover loads 3D directly pending redesign) | `_deploy/portal/` |
 | `web/index.html` + `data.js` + `i18n.js` | `_deploy/web/` (portal iframe target) **and** `_deploy/` root (full-screen target) |
 | `web/story/index.html` | `_deploy/story/index.html` |
 | `web/figures/fig4_null_model.png` | `_deploy/figures/` |

@@ -284,7 +284,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="stat"><div class="stat-num" data-count="3">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
     <div class="stat"><div class="stat-num" data-count="4">4</div><div class="stat-label" data-i18n="stat_edu_systems">Education Systems<br>DE · UK · US · CN</div></div>
     <div class="stat"><div class="stat-num" data-count="19">19</div><div class="stat-label" data-i18n="stat_gold_labels">Models<span class="stats-sub">19-model benchmark</span></div></div>
-    <div class="stat"><div class="stat-num" data-count="0.881" data-dec="3">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)<br>qwen-plus</div></div>
+    <div class="stat"><div class="stat-num" data-count="0.881" data-dec="3">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)</div></div>
   </div>
   <div class="scope-note" data-i18n="scope_note">SCOPE · Full project graph: Math 556 · Physics 366 · Chemistry 220 = 1,140+ concepts (README.md §dataset). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).</div>
   <div class="ctas">
@@ -356,7 +356,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="mermaid">
 %%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[180 Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
+    T1[180 Textbooks<br/>ZH · EN · DE] --> MIMO[LLM API<br/>Concept Extraction]
     MIMO --> KG[Knowledge Graph<br/>1,140+ Concepts · 1,100+ Relations]
       GL[92 Gold Labels<br/>F1 = 0.939 social / 0.881 weighted] -.->|Validate| KG
     KG --> CDS[CDS: Concept Density]
@@ -568,10 +568,10 @@ graph LR
 
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:24px">
     <div style="position:relative;padding-bottom:56.25%;background:var(--surface)" id="cs-frame">
-      <button class="cs-cover" id="cs-cover" aria-label="Open CognitiveSpace guide">
+      <button class="cs-cover" id="cs-cover" aria-label="Load 3D graph">
         <span class="cs-title">CognitiveSpace · 3D</span>
         <span class="cs-meta" data-i18n="cognitivespace_meta">556 nodes · 525 relations · 219 groups · 3 languages</span>
-        <span class="btn btn-solid" style="pointer-events:none" data-i18n="cognitivespace_open_guide">Open guide →</span>
+        <span class="btn btn-solid" style="pointer-events:none">Load interactive graph →</span>
       </button>
     </div>
   </div>
@@ -605,7 +605,7 @@ graph LR
     </div>
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> <span data-i18n="limitations4_title">LLM Extraction Reliability</span></h3>
-      <p data-i18n="limitations4_desc">Concept extraction depends on qwen-plus, a single model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <p data-i18n="limitations4_desc">Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
@@ -678,7 +678,7 @@ graph LR
   <div class="card-grid" style="margin-bottom:40px;grid-template-columns:1fr">
     <div class="card">
       <h3><i class="bi bi-patch-check" style="color:var(--green)"></i> <span data-i18n="val_gold_title">Gold Dataset: 92 Labels</span></h3>
-      <p data-i18n="validation_gold_desc">Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against qwen-plus extraction.</p>
+      <p data-i18n="validation_gold_desc">Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against production-model extraction.</p>
       <div style="margin:16px 0;overflow-x:auto">
         <table style="width:100%;font-size:.82rem;border-collapse:collapse">
           <thead><tr style="background:var(--surface)"><th style="padding:8px 10px;text-align:left" data-i18n="val_domain">Domain</th><th style="padding:8px 10px;text-align:center">ZH F1</th><th style="padding:8px 10px;text-align:center">DE F1</th><th style="padding:8px 10px;text-align:center">EN F1</th><th style="padding:8px 10px;text-align:center" data-i18n="val_overall">Overall</th><th style="padding:8px 10px;text-align:center">n</th></tr></thead>
@@ -694,15 +694,21 @@ graph LR
 
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--accent)"></i> <span data-i18n="val_bench_title">Model Benchmark: 19 Models</span></h3>
-      <p data-i18n="validation_bench_desc">All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.</p>
+      <p data-i18n="validation_bench_desc">All free-quota Bailian API models tested on 92 gold labels. The production extraction model was selected by overall F1.</p>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
         <canvas id="benchmarkChart" height="300"></canvas>
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
-        <strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
+        <strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
       </div>
       <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting</h3>
-      <p style="font-size:.82rem;color:var(--text2)" data-i18n="val_roster_desc">Same P1 protocol (ZH/DE/EN × 10). ZH-DE margin = LDS-C minus split-half floor; all 55 p&lt;0.01 (500 permutations). 7 western runs highlighted. qwen-max (n=29/30) counts as collecting per paper §8.15. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
+      <div class="chart-box" style="margin:16px 0;max-width:100%">
+        <div style="position:relative;height:1080px"><canvas id="marginChart"></canvas></div>
+      </div>
+      <div style="font-size:.76rem;color:var(--text2);margin:6px 0 8px" data-i18n="margin_legend"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)</div>
+      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); every run p&lt;0.01 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
+      <details style="margin:12px 0">
+        <summary style="cursor:pointer;font-size:.85rem;color:var(--accent)" data-i18n="roster_details">Full 55-row margin table (collecting runs listed below)</summary>
       <div style="margin:12px 0;overflow-x:auto;max-height:560px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
         <table class="gold roster" style="margin-top:0">
           <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Model</th><th>Origin</th><th>ZH-DE margin</th><th>Signif.</th></tr></thead>
@@ -762,6 +768,14 @@ graph LR
 <tr><td>deepseek-r1</td><td><span class="tag">CN</span></td><td class="mnum">+0.05</td><td>p&lt;0.01</td></tr>
 <tr><td>deepseek-r1-distill-qwen-7b</td><td><span class="tag">CN</span></td><td class="mnum">+0.04</td><td>p&lt;0.01</td></tr>
 <tr><td>deepseek-r1-0528</td><td><span class="tag">CN</span></td><td class="mnum">+0.03</td><td>p&lt;0.01</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </details>
+      <div style="margin:12px 0;overflow-x:auto;max-height:560px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
+        <table class="gold roster" style="margin-top:0">
+          <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Model</th><th>Origin</th><th>Progress</th><th>Status</th></tr></thead>
+          <tbody>
 <tr class="collect-head"><td colspan="4">Collecting — incomplete runs (n&lt;30, margin withheld):</td></tr>
 <tr class="collect"><td>qwen-max</td><td><span class="tag">repo</span></td><td class="mnum">n=29/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>gpt-oss-20b</td><td><span class="tag">repo</span></td><td class="mnum">n=20/30</td><td><span class="pulse">collecting</span></td></tr>
@@ -886,8 +900,8 @@ graph LR
 <footer style="text-align:center;padding:48px 24px 32px;color:var(--text2);font-size:.82rem;border-top:1px solid var(--border)">
   <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px" data-i18n="footer_brand">LinguaGraph</p>
   <p data-i18n="footer_desc">Cross-Lingual Knowledge Structure Analysis Framework</p>
-  <p style="margin-top:8px" data-i18n="footer_team">Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen · academic advice HSHL</p>
-  <p style="margin-top:12px" data-i18n="footer_copyright">BWKI 2026 · All Rights Reserved · Built with qwen-plus</p>
+  <p style="margin-top:8px" data-i18n="footer_team">Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen</p>
+  <p style="margin-top:12px" data-i18n="footer_copyright">BWKI 2026 · All Rights Reserved</p>
   <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph"><i class="bi bi-github"></i> GitHub</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">🇬🇧 English</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_DE.md">🇩🇪 Deutsch</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_ZH.md">🇨🇳 中文</a></p>
 </footer>
 
@@ -923,15 +937,15 @@ document.querySelectorAll('section .section-sub').forEach(s => {
   document.querySelectorAll('.stat-num[data-count]').forEach(el => cio.observe(el));
 })();
 
-// CognitiveSpace cover → click loads the guide portal (which launches the 3D app)
+// CognitiveSpace cover → click loads the 3D app
 (function() {
   const cover = document.getElementById('cs-cover');
   if (!cover) return;
   cover.addEventListener('click', function() {
     const frame = document.getElementById('cs-frame');
     const f = document.createElement('iframe');
-    f.src = 'cspace.html';
-    f.title = 'CognitiveSpace guide';
+    f.src = '../web/index.html';
+    f.title = 'CognitiveSpace 3D';
     f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none';
     frame.appendChild(f);
     cover.remove();
@@ -1029,6 +1043,37 @@ new Chart(document.getElementById('benchmarkChart'), {
   }
 });
 
+// Chart.js — Fused replication margins (55 full runs, desc; generated from roster table)
+const MARGIN_LABELS = ['command-a-03-2025', 'deepseek-v3.1', 'qwen-turbo', 'qwen3-max', 'deepseek-v3', 'gpt-5.6-luna', 'qwen3.8-max', 'glm-5', 'qwen3.5-397b-a17b', 'qwen3.7-max', 'glm-5.2-fast-preview', 'qwen3.5-plus', 'nemotron-3-super-120b-a12b', 'deepseek-v3.2', 'nemotron-3-ultra', 'deepseek-v4-flash · dashscope', 'MiniMax-M2.5', 'qwen3.6-plus', 'glm-5.2 · direct', 'qwen3.7-plus', 'glm-4.6', 'glm-5.1', 'longcat-2.0', 'kimi-k2.6 · direct', 'gpt-oss-20b', 'glm-4.7', 'kimi-k2.6 · dashscope', 'MiniMax-M2.1', 'kimi-k2.5', 'kimi-k2.7-code', 'qwen3.5-27b', 'glm-5.2 · dashscope', 'qwen3.6-27b', 'deepseek-v4-pro · dashscope', 'qwen-flash', 'laguna-s-2.1 · direct', 'Kimi-K2-Instruct', 'deepseek-r1-distill-qwen-14b', 'qwen-plus', 'qwen3.5-35b-a3b', 'qwen3.5-flash', 'qwen3.5-122b-a10b', 'kimi-k2-thinking', 'qwen3.6-35b-a3b', 'deepseek-v4-flash · direct', 'qwen3-235b-a22b', 'mimo-v2.5', 'laguna-s-2.1 · kilo', 'deepseek-v4-pro · direct', 'qwen3.7-flash', 'deepseek-r1-distill-qwen-32b', 'qwen3.6-flash', 'deepseek-r1', 'deepseek-r1-distill-qwen-7b', 'deepseek-r1-0528'];
+const MARGIN_VALUES = [0.42, 0.29, 0.25, 0.24, 0.24, 0.22, 0.21, 0.19, 0.18, 0.18, 0.18, 0.18, 0.17, 0.17, 0.16, 0.16, 0.16, 0.16, 0.16, 0.15, 0.15, 0.14, 0.14, 0.14, 0.13, 0.13, 0.13, 0.13, 0.12, 0.12, 0.12, 0.12, 0.11, 0.11, 0.11, 0.10, 0.10, 0.10, 0.10, 0.10, 0.09, 0.09, 0.09, 0.08, 0.08, 0.08, 0.08, 0.07, 0.07, 0.07, 0.07, 0.05, 0.05, 0.04, 0.03];
+const MARGIN_WEST = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0];
+new Chart(document.getElementById('marginChart'), {
+  type: 'bar',
+  data: {
+    labels: MARGIN_LABELS,
+    datasets: [{
+      label: 'ZH-DE margin',
+      data: MARGIN_VALUES,
+      backgroundColor: ctx => MARGIN_WEST[ctx.dataIndex] ? 'rgba(179,55,47,.9)' : 'rgba(30,58,138,.8)',
+      borderWidth: 0,
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => 'margin +' + ctx.parsed.x.toFixed(2) + ' · p<0.01' } }
+    },
+    scales: {
+      x: { min: 0, max: 0.45, ticks: { stepSize: 0.05, color: '#4a5a78' }, grid: { color: 'rgba(10,31,61,.08)' } },
+      y: { ticks: { font: { size: 9 }, color: '#4a5a78', autoSkip: false } }
+    }
+  }
+});
+
 const TRANSLATIONS = {
   en: {
     page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
@@ -1039,7 +1084,7 @@ const TRANSLATIONS = {
     hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
     stat_concepts: 'Concepts · full project', stat_relations: 'Relations · full project', stat_languages: 'Languages<br>ZH · EN · DE', stat_disciplines: 'Disciplines<br>Math · Physics · Chemistry',
-    stat_edu_systems: 'Education Systems<br>DE · UK · US · CN', stat_gold_labels: 'Models<br>19-model benchmark', stat_overall_f1: 'Overall F1 (weighted)<br>qwen-plus',
+    stat_edu_systems: 'Education Systems<br>DE · UK · US · CN', stat_gold_labels: 'Models<br>19-model benchmark', stat_overall_f1: 'Overall F1 (weighted)',
     scope_note: 'SCOPE · Full project graph: Math 556 · Physics 366 · Chemistry 220 = 1,140+ concepts (README.md dataset section). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).',
     section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
     rq1_title: 'RQ1: Language', rq1_question: 'How do different languages organize the same knowledge?',
@@ -1089,8 +1134,8 @@ const TRANSLATIONS = {
     section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
     val_gold_title: 'Gold Dataset: 92 Labels',
     val_bench_title: 'Model Benchmark: 19 Models',
-    validation_gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against qwen-plus extraction.',
-    validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.',
+    validation_gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across all three languages. Validated against production-model extraction.',
+    validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. The production extraction model was selected by overall F1.',
     section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
     section_paper: 'Paper', paper_sub: 'Preprint manuscript available in the repository',
     paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
@@ -1176,7 +1221,7 @@ const TRANSLATIONS = {
     limitations3_desc: 'Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 397 (paper §8: NRW 299 · UK 397 · US 2,124 · CN 87). Higher granularity mechanically lowers coverage scores when matched against the same textbook graph.',
     limitations3_mit: 'Mitigation: Analysis focuses on within-system trajectories, not absolute values',
     limitations4_title: 'LLM Extraction Reliability',
-    limitations4_desc: 'Concept extraction depends on qwen-plus, a single model. The 19-model benchmark (F1 range 0.55-0.67) confirms extraction consistency across architectures. Extraction errors propagate through downstream metrics.',
+    limitations4_desc: 'Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55-0.67) confirms extraction consistency across architectures. Extraction errors propagate through downstream metrics.',
     limitations4_mit: 'Mitigation: 92 gold labels ensure measurable quality bounds',
     limitations5_title: 'Language Coverage Gap',
     limitations5_desc: 'Only three languages (ZH, EN, DE) were analyzed. These represent only two language families (Sino-Tibetan, Germanic) and one educational tradition cluster (Western Europe + East Asia).',
@@ -1190,10 +1235,12 @@ const TRANSLATIONS = {
     val_math: 'Mathematics',
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
-    val_bench_note: '<strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
+    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
     val_roster_title: 'Replication roster: 55 full runs + 31 collecting',
-    val_roster_desc: 'Same P1 protocol (ZH/DE/EN × 10). ZH-DE margin = LDS-C minus split-half floor; all 55 p<0.01 (500 permutations). 7 western runs highlighted. qwen-max (n=29/30) counts as collecting per paper §8.15.',
+    val_roster_desc: 'Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); every run p<0.01 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)',
+    roster_details: 'Full 55-row margin table (collecting runs listed below)',
     val_roster_note: 'Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=29/30, margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: 'Abstract',
     paper_abstract_text: 'LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (55 runs, 50 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).',
@@ -1201,12 +1248,12 @@ const TRANSLATIONS = {
     paper_sections_text: 'Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis',
     paper_cite_title: 'Cite this work',
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.',
-    cognitivespace_open: 'Open Full Screen', cognitivespace_open_guide: 'Open guide →',
+    cognitivespace_open: 'Open Full Screen',
     cognitivespace_meta: '556 nodes · 525 relations · 219 groups · 3 languages',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
-    footer_team: 'Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen · academic advice HSHL',
-    footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
+    footer_team: 'Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen',
+    footer_copyright: 'BWKI 2026 · All Rights Reserved',
     three_explanations: 'Three Competing Explanations',
     expl_a_title: 'A: Curriculum Granularity',
     expl_a_desc: 'Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — the US has the densest curriculum (2,124 concepts) but one of the lowest coverages (17.2%).',
@@ -1292,7 +1339,7 @@ const TRANSLATIONS = {
     limitations3_desc: 'Lehrplandokumente variieren stark in der Granularitaet: US-Math 2.124 Konzepte, UK-Science 397 (Paper §8: NRW 299 · UK 397 · US 2.124 · CN 87).',
     limitations3_mit: 'Massnahme: Fokus auf systeminterne Trajektorien',
     limitations4_title: 'LLM-Extraktionszuverlaessigkeit',
-    limitations4_desc: 'Konzeptextraktion hängt von qwen-plus ab. 19-Modell-Benchmark (F1-Bereich 0.55-0.67) bestätigt Extraktionskonsistenz. Mathematik nur 0.674 gesamt, Deutsch 0.506.',
+    limitations4_desc: 'Konzeptextraktion hängt von einem einzigen Produktionsmodell ab. 19-Modell-Benchmark (F1-Bereich 0.55-0.67) bestätigt Extraktionskonsistenz. Mathematik nur 0.674 gesamt, Deutsch 0.506.',
     limitations4_mit: 'Massnahme: 92 Goldlabels gewaehrleisten messbare Qualitaet',
     limitations5_title: 'Sprachabdeckungsluecke',
     limitations5_desc: 'Nur drei Sprachen (ZH, EN, DE) analysiert. Nur zwei Sprachfamilien.',
@@ -1306,10 +1353,12 @@ const TRANSLATIONS = {
     val_math: 'Mathematik',
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
-    val_bench_note: '<strong>Produktion:</strong> qwen-plus (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
+    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 55 Messungen / 50 Modelle — alle 55 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
     val_roster_title: 'Replikations-Roster: 55 vollständige Runs + 31 laufend',
-    val_roster_desc: 'Gleiches P1-Protokoll (ZH/DE/EN × 10). ZH-DE-Marge = LDS-C minus Split-Half-Boden; alle 55 p<0,01 (500 Permutationen). 7 westliche Runs markiert. qwen-max (n=29/30) zählt per Paper §8.15 als laufend.',
+    val_roster_desc: 'Gesamtansicht — alle 55 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); jeder Run p<0,01 (500 Permutationen). Westliche Runs in Rot. Die 31 laufenden Runs (inkl. qwen-max n=29/30, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + Paper §5.10.',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN-Run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>westlicher Run (7)',
+    roster_details: 'Vollständige 55-Zeilen-Margentabelle (laufende Runs unten)',
     val_roster_note: 'Scope-Hinweis: F1-Benchmark (19 Modelle, Goldlabel-Auswahl) ≠ Replikation (55 Runs, Sprachsignal) ≠ laufend (31 unvollständig inkl. qwen-max n=29/30, Marge zurückgehalten). Familien per Paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: 'Zusammenfassung',
     paper_abstract_text: 'LinguaGraph fragt, ob Sprache die strukturelle Organisation von Wissen prägt. Zwei Pipelines — Lehrbuchgraphen (556 Konzepte, 525 Relationen, 219 Gruppen) und LLM-as-Subject (55 Runs, 50 Modelle) — isolieren das Sprachsignal ΔLDS: N=15 falsifiziert es between-subject; within-subject zeigt es klar (Paper §5).',
@@ -1317,12 +1366,12 @@ const TRANSLATIONS = {
     paper_sections_text: 'Drei Schlussfolgerungen · Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Ergebnisse · LPA-Analyse',
     paper_cite_title: 'Diese Arbeit zitieren',
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Filtern Sie nach Sprache oder Disziplin.',
-    cognitivespace_open: 'Vollbild oeffnen', cognitivespace_open_guide: 'Anleitung öffnen →',
+    cognitivespace_open: 'Vollbild oeffnen',
     cognitivespace_meta: '556 Knoten · 525 Relationen · 219 Gruppen · 3 Sprachen',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
-    footer_team: 'Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen · Beratung HSHL',
-    footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
+    footer_team: 'Jiajun Rong · Zhenxi Lan · Privatschule Schloss Heessen',
+    footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten',
     three_explanations: 'Drei konkurrierende Erklaerungen',
     expl_a_desc: 'Annahme: Dichtere Lehrplaene erzeugen hoehere Abdeckung. Gegenbeleg: USA hat dichtesten Lehrplan (2.124 Konzepte) aber eine der niedrigsten Abdeckungen (17,2%).',
     expl_a_title: 'A: Lehrplangranularitaet',
@@ -1338,7 +1387,7 @@ const TRANSLATIONS = {
     hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
     cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
     stat_concepts: 'Konzepte · Gesamtprojekt', stat_relations: 'Relationen · Gesamtprojekt', stat_languages: 'Sprachen<br>ZH · EN · DE', stat_disciplines: 'Disziplinen<br>Mathe · Physik · Chemie',
-    stat_edu_systems: 'Bildungssysteme<br>DE · UK · US · CN', stat_gold_labels: 'Modelle<br>19-Modell-Benchmark', stat_overall_f1: 'Gesamt-F1 (gewichtet)<br>qwen-plus',
+    stat_edu_systems: 'Bildungssysteme<br>DE · UK · US · CN', stat_gold_labels: 'Modelle<br>19-Modell-Benchmark', stat_overall_f1: 'Gesamt-F1 (gewichtet)',
     scope_note: 'SCOPE · Gesamtprojekt: Mathe 556 · Physik 366 · Chemie 220 = 1.140+ Konzepte (README.md Datensatz-Abschnitt). Die 3D-Ansicht zeigt den Mathematik-Subgraphen (manifest.json: 556 Knoten · 525 Relationen · 219 Gruppen).',
     section_rq: 'Forschungsfragen', rq_sub: 'Drei komplementäre Perspektiven auf die Organisation desselben Wissens',
     rq1_title: 'FF1: Sprache', rq1_question: 'Wie organisieren verschiedene Sprachen das gleiche Wissen?',
@@ -1388,8 +1437,8 @@ const TRANSLATIONS = {
     section_validation: 'Validierung', validation_sub: 'Goldstandard-Annotationen und Modellvergleiche',
     val_gold_title: 'Gold-Datensatz: 92 Labels',
     val_bench_title: 'Modell-Benchmark: 19 Modelle',
-    validation_gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in allen drei Sprachen. Validiert mit qwen-plus-Extraktion.',
-    validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. qwen-plus als Produktionsmodell ausgewählt.',
+    validation_gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in allen drei Sprachen. Validiert mit der Extraktion des Produktionsmodells.',
+    validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. Das Produktions-Extraktionsmodell wurde anhand des Gesamt-F1 ausgewählt.',
     section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
     section_paper: 'Paper', paper_sub: 'Vorabdruck des Manuskripts im Repository verfügbar',
     paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 180 Lehrbüchern erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
@@ -1423,7 +1472,7 @@ const TRANSLATIONS = {
     hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
     cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
     stat_concepts: '概念 · 项目全图', stat_relations: '关系 · 项目全图', stat_languages: '语言<br>中 · 英 · 德', stat_disciplines: '学科<br>数学 · 物理 · 化学',
-    stat_edu_systems: '教育体系<br>德 · 英 · 美 · 中', stat_gold_labels: '模型<br>19 模型基准', stat_overall_f1: '总体 F1（加权）<br>qwen-plus',
+    stat_edu_systems: '教育体系<br>德 · 英 · 美 · 中', stat_gold_labels: '模型<br>19 模型基准', stat_overall_f1: '总体 F1（加权）',
     scope_note: '范围 · 项目全图：数学 556 · 物理 366 · 化学 220 = 1,140+ 概念（README.md 数据集一节）。3D 视图为数学子图（manifest.json：556 节点 · 525 关系 · 219 分组）。',
     section_rq: '研究问题', rq_sub: '理解同一知识如何被不同组织方式呈现的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '不同语言如何组织相同的知识？',
@@ -1471,8 +1520,8 @@ const TRANSLATIONS = {
     section_validation: '验证', validation_sub: '黄金标准标注与模型基准',
     val_gold_title: '黄金数据集：92 个标签',
     val_bench_title: '模型基准: 19 个模型',
-    validation_gold_desc: '人工标注的黄金标准，涵盖所有三种语言的社会概念和数学概念。经 qwen-plus 提取验证。',
-    validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。qwen-plus 被选为生产模型。',
+    validation_gold_desc: '人工标注的黄金标准，涵盖所有三种语言的社会概念和数学概念。经生产模型提取验证。',
+    validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。生产提取模型按总体 F1 选定。',
     section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
     section_paper: '论文', paper_sub: '预印本手稿可在仓库中获取',
     paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 180 本教材中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
@@ -1560,7 +1609,7 @@ curr_explanations_title: '三种竞争性解释',
     limitations3_desc: '课程文件的粒度差异巨大：美国数学课程包含 2,124 个概念，而英国科学课程有 397 个（论文 §8：NRW 299 · UK 397 · US 2,124 · CN 87）。更高的粒度会机械地降低覆盖率得分。这通过按课程归一化部分缓解，但跨系统比较仍为近似。',
     limitations3_mit: '缓解措施：分析聚焦于体系内轨迹，而非绝对值',
     limitations4_title: 'LLM 提取可靠性',
-    limitations4_desc: '概念提取依赖于 qwen-plus 单一模型。尽管社会概念的 F1 = 0.939，但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
+    limitations4_desc: '概念提取依赖于单一生产模型。尽管社会概念的 F1 = 0.939，但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
     limitations4_mit: '缓解措施：92 个黄金标签确保可测量的质量边界',
     limitations5_title: '语言覆盖漏洞',
     limitations5_desc: '仅分析了三种语言（ZH, EN, DE）。这仅代表两个语系（汉藏语系、日尔曼语系）和一个教育传统聚类（西欧 + 东亚）。框架对罗曼语系、斯拉夫语系、阿拉伯语系等的适用性尚待测试。',
@@ -1574,10 +1623,12 @@ curr_explanations_title: '三种竞争性解释',
     val_math: '数学',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
-    val_bench_note: '<strong>生产模型：</strong> qwen-plus (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
+    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：55 次测量 / 50 个模型 —— 55 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
     val_roster_title: '复刻名录：55 次完整运行 ＋ 31 次收集中',
-    val_roster_desc: '同一 P1 协议（中/德/英 × 10）。ZH-DE 边际 ＝ LDS-C 减 split-half 底线；55 个 p<0.01（500 置换）。7 个西方运行已标出。qwen-max（n=29/30）按论文 §8.15 计入收集中。',
+    val_roster_desc: '融合视图——55 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），全部 p<0.01（500 置换）；西方运行标红。31 个收集中运行（含 qwen-max n=29/30，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + 论文 §5.10。',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>中国模型运行 &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>西方运行 (7)',
+    roster_details: '55 行完整边际表（收集中运行见下表）',
     val_roster_note: '口径说明：F1 基准（19 模型，金标选型）≠ 复刻（55 运行，语言信号）≠ 收集中（31 未完成，含 qwen-max n=29/30，边际不公布）。家族划分见论文 §5.10：Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: '摘要',
     paper_abstract_text: 'LinguaGraph 追问语言是否塑造知识的结构组织。双管线——教材图谱（556 概念、525 关系、219 分组）与 LLM-as-subject（55 运行、50 模型）——分离语言信号 ΔLDS：N=15 在被试间设计下证伪它，被试内设计清晰显示它（论文 §5）。',
@@ -1585,12 +1636,12 @@ curr_explanations_title: '三种竞争性解释',
     paper_sections_text: '三大结论 · 引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理结果 · LPA 分析',
     paper_cite_title: '引用本作品',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。按语言或学科筛选。比较不同教育体系如何组织同一数学知识。',
-    cognitivespace_open: '打开全屏', cognitivespace_open_guide: '打开指南 →',
+    cognitivespace_open: '打开全屏',
     cognitivespace_meta: '556 个节点 · 525 条关系 · 219 个分组 · 3 种语言',
     footer_brand: 'LinguaGraph',
     footer_desc: '跨语言知识结构分析框架',
-    footer_team: '戎嘉骏 · Zhenxi Lan · Schloss Heessen 私立学校 · HSHL 学术指导',
-    footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',
+    footer_team: '戎嘉浚 · 兰振熙 · Schloss Heessen 私立学校',
+    footer_copyright: 'BWKI 2026 · 保留所有权利',
     three_explanations: '三种竞争性解释',
     expl_a_desc: '假设：更密集的课程产生更高的覆盖率。证据：反例——美国拥有最密集的课程（2,124 个概念），但覆盖率最低（17.2%）。',
     expl_a_title: 'A：课程粒度',

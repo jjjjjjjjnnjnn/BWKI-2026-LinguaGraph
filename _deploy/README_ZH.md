@@ -139,7 +139,7 @@
 
 ## ✅ 提取与人类验证
 
-**92 个黄金标准标注**覆盖 2 个领域和 3 种语言（qwen-plus，百联 API）：
+**92 个黄金标准标注**覆盖 2 个领域和 3 种语言（百联 API 提取）：
 
 | 领域 | 中文 F1 | 德文 F1 | 英文 F1 | 总体 | n |
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
@@ -157,7 +157,7 @@
 - 教材 LDS-K 排序：**ZH–EN (0.934) ≈ DE–EN (0.938) ≫ ZH–DE (0.519)**——但见 Null Model：LDS-K 不度量语言差异
 
 **🤖 模拟基线（300 条回答，探索性）**
-- 模拟 LDS 均值：**0.647**（关键词模拟提取——与 qwen-plus 提取不可比；仅描述性，无 p 值）
+- 模拟 LDS 均值：**0.647**（关键词模拟提取——与生产模型提取不可比；仅描述性，无 p 值）
 - 早期人类 vs 模拟比较（p=0.05）**已撤回**：测量尺度漂移使其无效（见 `docs/paper/04_discussion.md` §8.11–8.12）
 
 **🧪 零模型（结构 vs 完整图）**
@@ -348,7 +348,6 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 - **BWKI 2026** — 竞赛平台 and framework
 - **Schloss Heessen** — 德国哈姆寄宿学校；机构支持与教育指导
-- **Hamm-Lippstadt 应用科学大学（HSHL）** — 学术咨询与专业顾问
 - **OpenCode GO** — AI 服务平台，提供模型 API 接入
 - **Claude Code** — AI 辅助开发平台（Anthropic）
 - **MimoCode** — AI 服务平台（通过 OpenCode GO）
@@ -385,7 +384,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **竞赛**：[BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D Demo**: Open [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in your browser
-- **作者**：戎嘉骏 & Zhenxi Lan — Schloss Heessen 私立学校（BWKI 2026 团队）
+- **作者**：戎嘉浚 & 兰振熙 — Schloss Heessen 私立学校（BWKI 2026 团队）
 
 <p align="center">
   <sub>用 ❤️ 为 BWKI 2026 打造——因为知识应该被理解，而不仅仅是被告知。</sub>

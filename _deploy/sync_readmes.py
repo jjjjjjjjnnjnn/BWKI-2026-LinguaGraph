@@ -269,8 +269,8 @@ def build_body_map(lang: str) -> dict:
                 '| **Gesamt** | **1.160+** | **4.100+** | **180+** | **3 Sprachen** | **4 Bildungssysteme** |',
 
             # ===== Extraction & Human Validation =====
-            '**92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):':
-                '**92 Goldstandard-Annotationen** über 2 Domänen und 3 Sprachen (qwen-plus, Bailian API):',
+            '**92 gold-standard annotations** across 2 domains and 3 languages (production extraction model, Bailian API):':
+                '**92 Goldstandard-Annotationen** über 2 Domänen und 3 Sprachen (Bailian-API-Extraktion):',
             '| **Social concepts** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |':
                 '| **Soziale Konzepte** | **0,974** | **0,949** | **0,882** | **0,939** | 72 |',
             '| **Mathematics** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |':
@@ -367,11 +367,8 @@ def build_body_map(lang: str) -> dict:
             # ===== Contact =====
             '- **Competition**: [BWKI 2026](https://www.bw-ki.de/)':
                 '- **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)',
-            '- **Author**: Rongjing J. — bilingual researcher (ZH/DE), passionate about AI & education':
-                '- **Autor**: Rongjing J. — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung',
-            # author in contact section
-            'bilingual researcher (ZH/DE), passionate about AI & education':
-                'zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung interessiert',
+            '- **Authors**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 team)':
+                '- **Autoren**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 Team)',
 
             # ===== Acknowledgments (DE) =====
             '- **BWKI 2026** — Competition platform':
@@ -384,8 +381,6 @@ def build_body_map(lang: str) -> dict:
                 '- **OpenRouter** — Modell-Routing (getestet)',
             '- **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance':
                 '- **Schloss Heessen** — Internatsschule in Hamm, Deutschland; institutionelle Unterstützung und Bildungsberatung',
-            '- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation':
-                '- **Hochschule Hamm-Lippstadt (HSHL)** — Akademische Beratung und professionelle Konsultation',
             '- **OpenCode GO** — AI service platform providing model API access':
                 '- **OpenCode GO** — KI-Dienstplattform mit Modell-API-Zugang',
             '- **Claude Code** — AI-assisted development platform (Anthropic)':
@@ -737,8 +732,8 @@ def build_body_map(lang: str) -> dict:
                 '| **总计** | **1,160+** | **4,100+** | **180+** | **3 种语言** | **4 个教育体系** |',
 
             # ===== Extraction & Human Validation =====
-            '**92 gold-standard annotations** across 2 domains and 3 languages (qwen-plus, Bailian API):':
-                '**92 个黄金标准标注**覆盖 2 个领域和 3 种语言（qwen-plus，百联 API）：',
+            '**92 gold-standard annotations** across 2 domains and 3 languages (production extraction model, Bailian API):':
+                '**92 个黄金标准标注**覆盖 2 个领域和 3 种语言（百联 API 提取）：',
             '| **Social concepts** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |':
                 '| **社会概念** | **0.974** | **0.949** | **0.882** | **0.939** | 72 |',
             '| **Mathematics** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |':
@@ -835,10 +830,8 @@ def build_body_map(lang: str) -> dict:
             # ===== Contact =====
             '- **Competition**: [BWKI 2026](https://www.bw-ki.de/)':
                 '- **竞赛**：[BWKI 2026](https://www.bw-ki.de/)',
-            '- **Author**: Rongjing J. — bilingual researcher (ZH/DE), passionate about AI & education':
-                '- **作者**：Rongjing J. — 双语研究者（中/德），对 AI 与教育充满热情',
-            'bilingual researcher (ZH/DE), passionate about AI & education':
-                '双语研究者（中/德），对 AI 与教育充满热情',
+            '- **Authors**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 team)':
+                '- **作者**：戎嘉浚 & 兰振熙 — Schloss Heessen 私立学校（BWKI 2026 团队）',
 
             # ===== Acknowledgments (ZH) =====
             '- **BWKI 2026** — Competition platform':
@@ -851,8 +844,6 @@ def build_body_map(lang: str) -> dict:
                 '- **LM Studio** — 本地推理（初期开发）',
             '- **Schloss Heessen** — Boarding school in Hamm, Germany; institutional support and educational guidance':
                 '- **Schloss Heessen** — 德国哈姆寄宿学校；机构支持与教育指导',
-            '- **Hamm-Lippstadt University of Applied Sciences (HSHL)** — Academic advisory and professional consultation':
-                '- **Hamm-Lippstadt 应用科学大学（HSHL）** — 学术咨询与专业顾问',
             '- **OpenCode GO** — AI service platform providing model API access':
                 '- **OpenCode GO** — AI 服务平台，提供模型 API 接入',
             '- **Claude Code** — AI-assisted development platform (Anthropic)':

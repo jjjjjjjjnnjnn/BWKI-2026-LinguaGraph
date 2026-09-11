@@ -139,7 +139,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 ## ✅ Extraktion und Humanvalidierung
 
-**92 Goldstandard-Annotationen** über 2 Domänen und 3 Sprachen (qwen-plus, Bailian API):
+**92 Goldstandard-Annotationen** über 2 Domänen und 3 Sprachen (Bailian-API-Extraktion):
 
 | Bereich | ZH F1 | DE F1 | EN F1 | Gesamt | n |
 |--------|:-----:|:-----:|:-----:|:-------:|:-:|
@@ -157,7 +157,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 - Lehrbuch-LDS-K: **ZH–EN (0,934) ≈ DE–EN (0,938) ≫ ZH–DE (0,519)** — aber siehe Nullmodell: LDS-K misst keine Sprachdivergenz
 
 **🤖 Simulationsbasislinie (300 Antworten, explorativ)**
-- Simulierter LDS-C-Mittelwert: **0,647** (Mock-Keyword-Extraktion — nicht mit qwen-plus-Extraktion vergleichbar; nur deskriptiv, kein p-Wert)
+- Simulierter LDS-C-Mittelwert: **0,647** (Mock-Keyword-Extraktion — nicht mit der Produktions-Extraktion vergleichbar; nur deskriptiv, kein p-Wert)
 - Der frühere Mensch-vs-Simulation-Vergleich (p=0,05) ist **zurückgezogen**: Messskalen-Drift macht ihn ungültig (s. `docs/paper/04_discussion.md` §8.11–8.12)
 
 **🧪 Nullmodell (Struktur vs. Vollständige Graphen)**
@@ -348,7 +348,6 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 - **BWKI 2026** — Wettbewerbsplattform und Rahmen
 - **Schloss Heessen** — Internatsschule in Hamm, Deutschland; institutionelle Unterstützung und Bildungsberatung
-- **Hochschule Hamm-Lippstadt (HSHL)** — Akademische Beratung und professionelle Konsultation
 - **OpenCode GO** — KI-Dienstplattform mit Modell-API-Zugang
 - **Claude Code** — KI-gestützte Entwicklungsplattform (Anthropic)
 - **MimoCode** — KI-Dienstplattform über OpenCode GO
@@ -385,7 +384,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 - **Wettbewerb**: [BWKI 2026](https://www.bw-ki.de/)
 - **Repository**: [github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph](https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph)
 - **3D-Demo**: Öffnen Sie [`cognitive-space/web/index.html`](cognitive-space/web/index.html) in Ihrem Browser
-- **Autoren**: Jiajun Rong & Zhenxi Lan — zweisprachiger Forscher (ZH/DE), leidenschaftlich für KI & Bildung
+- **Autoren**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 Team)
 
 <p align="center">
   <sub>Mit ❤️ für BWKI 2026 — denn Wissen sollte verstanden, nicht nur gelehrt werden.</sub>
