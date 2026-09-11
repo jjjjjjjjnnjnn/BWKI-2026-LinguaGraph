@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CognitiveSpace — Guide & Launch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --surface: #f1f3f5; --surface-2: #f8fafc; --text: #0a1f3d; --text-2: #4a5a78;
+  --rule: #c6cdd6; --accent: #1e3a8a; --accent-soft: rgba(30,58,138,.10);
+  --green: #1e7e4d;
+  --card-shadow: 0 1px 0 var(--rule), 0 18px 48px rgba(10,31,61,.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "IBM Plex Sans", "Noto Sans SC", sans-serif; background: var(--surface); color: var(--text); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 56px 28px 64px; }
+.kicker { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 8px; }
+h1 em { font-style: italic; }
+.sub { color: var(--text-2); margin-bottom: 28px; max-width: 640px; }
+.rule { height: 1px; background: var(--accent); margin: 0 0 24px; }
+.card { background: var(--surface-2); border: 1px solid var(--rule); border-radius: 8px; padding: 24px 26px; box-shadow: var(--card-shadow); margin-bottom: 18px; }
+.card h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: 1.3rem; margin-bottom: 10px; }
+.card p, .card li { font-size: .9rem; color: var(--text-2); line-height: 1.7; }
+.card ul { margin: 8px 0 0 18px; }
+.card li { margin: 5px 0; }
+.card li b { color: var(--text); font-weight: 600; }
+table.how { width: 100%; font-size: .82rem; border-collapse: collapse; margin-top: 12px; }
+table.how th, table.how td { padding: 8px 10px; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
+table.how th { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
+table.how td:first-child { font-family: "IBM Plex Mono", monospace; font-size: .74rem; white-space: nowrap; color: var(--accent); font-weight: 500; }
+.scope { font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--text-2); margin: 14px 0 22px; line-height: 1.7; }
+.launch { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn { display: inline-block; padding: 13px 34px; border-radius: 6px; font-weight: 600; font-size: .92rem; text-decoration: none; border: 1px solid transparent; transition: transform 120ms ease, background 120ms ease; }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn-solid { background: var(--accent); color: #fff; }
+.btn-solid:hover { background: var(--text); color: #fff; text-decoration: none; }
+.btn-ghost { background: var(--surface-2); border-color: var(--rule); color: var(--text); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+.lang { position: fixed; top: 14px; right: 14px; display: flex; gap: 4px; }
+.lang button { border: 1px solid var(--rule); background: var(--surface-2); color: var(--text-2); padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600; }
+.lang button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tag { font-family: "IBM Plex Mono", monospace; font-size: .64rem; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--rule); padding: 2px 9px; border-radius: 20px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="lang"><button class="active" data-l="en">EN</button><button data-l="de">DE</button><button data-l="zh">ZH</button></div>
+<div class="wrap">
+  <div class="kicker" data-k="kicker">Interactive guide · 2 min</div>
+  <h1 data-k="title">CognitiveSpace <em>3D</em></h1>
+  <p class="sub" data-k="sub">The mathematics subgraph as an explorable 3D knowledge graph — 556 nodes · 525 relations (238 links shown) · 219 trilingual groups.</p>
+  <div class="rule"></div>
+
+  <div class="card">
+    <h2 data-k="what_t">What is this?</h2>
+    <p data-k="what">Each bubble is a math concept; each line is a textbook relation (prerequisite, part-of, requires…). Color encodes the education stage. The same graph the paper measures — rendered explorable instead of printed static.</p>
+  </div>
+
+  <div class="card">
+    <h2 data-k="why_t">Why explore it in 3D?</h2>
+    <p data-k="why">The language signal (ΔLDS) is structural: which concepts exist, how they link, how deep chains run. A flat figure shows one projection; the 3D view lets you verify density, hubs and language splits with your own eyes before trusting any single number.</p>
+  </div>
+
+  <div class="card">
+    <h2 data-k="how_t">How to operate it</h2>
+    <table class="how">
+      <thead><tr><th data-k="th_c">Control</th><th data-k="th_f">Function</th></tr></thead>
+      <tbody>
+        <tr><td>Universe / Space-Fill / Compare</td><td data-k="r_modes">View modes: free flight, volume filling, side-by-side language comparison.</td></tr>
+        <tr><td>All / ZH / EN / DE</td><td data-k="r_lang">Language filter: dim the graph to one language or show all three overlaid.</td></tr>
+        <tr><td data-k="r_click_h">Click node</td><td data-k="r_click">Detail panel: labels in three languages, metrics, relations of that concept.</td></tr>
+        <tr><td>Auto Rotate</td><td data-k="r_rot">Slow orbit for presentations; click again to stop.</td></tr>
+        <tr><td>Drag · Scroll · WASD</td><td data-k="r_nav">Rotate, zoom and fly through the graph.</td></tr>
+        <tr><td data-k="r_leg_h">Legend colors</td><td data-k="r_leg">Green elementary · cyan middle · blue high · purple college.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="scope" data-k="scope">SCOPE · Mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups). 238 links rendered (visual subset). Full project: 1,140+ concepts across math, physics, chemistry.</div>
+
+  <div class="launch">
+    <a class="btn btn-solid" href="../web/index.html" data-k="launch">Launch 3D graph →</a>
+    <a class="btn btn-ghost" href="../web/index.html" target="_blank" data-k="full">Full screen ⬈</a>
+    <span class="tag" data-k="loadnote">~430 KB loads on launch</span>
+  </div>
+</div>
+
+<script>
+var T = {
+en: { kicker: "Interactive guide · 2 min", title: "CognitiveSpace <em>3D</em>", sub: "The mathematics subgraph as an explorable 3D knowledge graph — 556 nodes · 525 relations (238 links shown) · 219 trilingual groups.", what_t: "What is this?", what: "Each bubble is a math concept; each line is a textbook relation (prerequisite, part-of, requires…). Color encodes the education stage. The same graph the paper measures — rendered explorable instead of printed static.", why_t: "Why explore it in 3D?", why: "The language signal (ΔLDS) is structural: which concepts exist, how they link, how deep chains run. A flat figure shows one projection; the 3D view lets you verify density, hubs and language splits with your own eyes before trusting any single number.", how_t: "How to operate it", th_c: "Control", th_f: "Function", r_modes: "View modes: free flight, volume filling, side-by-side language comparison.", r_lang: "Language filter: dim the graph to one language or show all three overlaid.", r_click_h: "Click node", r_click: "Detail panel: labels in three languages, metrics, relations of that concept.", r_rot: "Slow orbit for presentations; click again to stop.", r_nav: "Rotate, zoom and fly through the graph.", r_leg_h: "Legend colors", r_leg: "Green elementary · cyan middle · blue high · purple college.", scope: "SCOPE · Mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups). 238 links rendered (visual subset). Full project: 1,140+ concepts across math, physics, chemistry.", launch: "Launch 3D graph →", full: "Full screen ⬈", loadnote: "~430 KB loads on launch" },
+de: { kicker: "Interaktive Anleitung · 2 Min.", title: "CognitiveSpace <em>3D</em>", sub: "Der Mathematik-Subgraph als erkundbarer 3D-Wissensgraph — 556 Knoten · 525 Relationen (238 dargestellt) · 219 dreisprachige Gruppen.", what_t: "Was ist das?", what: "Jede Blase ist ein Mathe-Konzept; jede Linie eine Lehrbuch-Relation (Voraussetzung, Teil-von, erfordert…). Farbe kodiert die Bildungsstufe. Derselbe Graph, den das Paper misst — erkundbar statt statisch gedruckt.", why_t: "Warum in 3D erkunden?", why: "Das Sprachsignal (ΔLDS) ist strukturell: welche Konzepte existieren, wie sie verlinkt sind, wie tief Ketten laufen. Eine flache Abbildung zeigt eine Projektion; die 3D-Ansicht lässt Dichte, Hubs und Sprach-Splits mit eigenen Augen prüfen, bevor man einer einzelnen Zahl vertraut.", how_t: "Bedienung", th_c: "Steuerung", th_f: "Funktion", r_modes: "Ansichten: freier Flug, Volumenfüllung, Seite-an-Seite-Sprachvergleich.", r_lang: "Sprachfilter: Graph auf eine Sprache dimmen oder alle drei überlagert zeigen.", r_click_h: "Knoten klicken", r_click: "Detailpanel: Labels in drei Sprachen, Metriken, Relationen des Konzepts.", r_rot: "Langsamer Orbit für Präsentationen; erneut klicken zum Stoppen.", r_nav: "Drehen, zoomen und durch den Graphen fliegen.", r_leg_h: "Legendenfarben", r_leg: "Grün Grundschule · Cyan Mittelstufe · Blau Oberstufe · Lila Hochschule.", scope: "SCOPE · Mathematik-Subgraph (manifest.json: 556 Knoten · 525 Relationen · 219 Gruppen). 238 Links dargestellt (visuelle Teilmenge). Gesamtprojekt: 1.140+ Konzepte aus Mathe, Physik, Chemie.", launch: "3D-Graph starten →", full: "Vollbild ⬈", loadnote: "~430 KB beim Start" },
+zh: { kicker: "交互式指南 · 2 分钟", title: "CognitiveSpace <em>3D</em>", sub: "数学子图的可探索 3D 知识图谱 —— 556 节点 · 525 关系（展示 238 条）· 219 个三语分组。", what_t: "这是什么？", what: "每个气泡是一个数学概念，每条线是一条教材关系（前提、部分、需求……）。颜色编码教育阶段。正是论文测量的同一张图——可探索，而非静态印刷。", why_t: "为什么用 3D 探索？", why: "语言信号（ΔLDS）是结构性的：哪些概念存在、如何连接、链有多深。平面图只是一个投影；3D 视图让你在相信任何单个数字之前，亲眼验证密度、枢纽与语言分野。", how_t: "操作方法", th_c: "控件", th_f: "功能", r_modes: "视图模式：自由飞行、体积填充、双语并排对比。", r_lang: "语言筛选：将图谱调暗至单一语言，或三语叠加显示。", r_click_h: "点击节点", r_click: "详情面板：三语标签、指标、该概念的关系。", r_rot: "慢速环绕，适合演示；再点停止。", r_nav: "旋转、缩放，飞越图谱。", r_leg_h: "图例颜色", r_leg: "绿 小学 · 青 初中 · 蓝 高中 · 紫 大学。", scope: "范围 · 数学子图（manifest.json：556 节点 · 525 关系 · 219 分组）。渲染 238 条（视觉子集）。全项目：数学、物理、化学 1,140+ 概念。", launch: "启动 3D 图谱 →", full: "全屏 ⬈", loadnote: "启动时加载 ~430 KB" }
+};
+function setL(l) {
+  var t = T[l] || T.en;
+  document.querySelectorAll("[data-k]").forEach(function(el) {
+    var k = el.getAttribute("data-k");
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll(".lang button").forEach(function(b) { b.classList.toggle("active", b.dataset.l === l); });
+  document.documentElement.lang = l;
+  try { localStorage.setItem("cspace_lang", l); } catch (e) {}
+}
+document.querySelectorAll(".lang button").forEach(function(b) { b.addEventListener("click", function() { setL(b.dataset.l); }); });
+var saved = "en";
+try { saved = localStorage.getItem("cspace_lang") || (localStorage.getItem("portal_lang") || "en"); } catch (e) {}
+if (!T[saved]) saved = "en";
+setL(saved);
+</script>
+</body>
+</html>

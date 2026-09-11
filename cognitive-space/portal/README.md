@@ -54,7 +54,7 @@ Source of truth is `cognitive-space/`. After any change, mirror these
 
 | Source | Mirror |
 |---|---|
-| `portal/index.html` | `_deploy/portal/index.html` |
+| `portal/index.html` + `portal/cspace.html` | `_deploy/portal/` |
 | `web/index.html` + `data.js` + `i18n.js` | `_deploy/web/` (portal iframe target) **and** `_deploy/` root (full-screen target) |
 | `web/story/index.html` | `_deploy/story/index.html` |
 | `web/figures/fig4_null_model.png` | `_deploy/figures/` |

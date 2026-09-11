@@ -54,3 +54,22 @@
   (Quellgraph superseded) — Re-Render würde Balken fälschen. Caption bleibt dreisprachig.
 - Level-Mapping DE: Grundschule/Mittelstufe/Oberstufe/Hochschule; ZH: 小学/初中/高中/大学.
 - Portal tauscht img-src per Sprache (fig5 bleibt EN); Coverage-Chart-Labels dreisprachig.
+
+## D2 fig5-Archäologie: NEGATIV (2026-09-11)
+
+4 Versuche, publizierte Werte (556 nodes / 459 roots / max 8 / mean 0.40) zu reproduzieren:
+1. aligned_data.json alle Relationen, BFS: 442 / 270 / 6 / 0.72 ✗
+2. merged_relations requires(+prerequisite): 196–201 / ~110 / 4 / ~0.6 ✗
+3. compute_hds exakt auf merged (556 Konzepteinträge, 525 Rel): IDs inkonsistent (canonical_name vs Display-Namen) ✗
+Schluss: Quellgraph der publizierten Fig5 ist superseded. fig5 bleibt EN-only + Caption;
+kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/4/7 only).
+
+## v7 Fix-Pack (2026-09-11)
+
+- F9/F10-Paragraphen + Curriculum-Metas + Benchmark-Tooltip per data-i18n verdrahtet (EN/DE/ZH);
+  F9/F10-Texte auf Governance-Downgrade synchronisiert.
+- Meta-Tags -> klickbare Chips: Metric->#methodology, F9->#f9, F10->#f10,
+  F1-F8/F11-F12-> eigene Finding-Sektion, Systems->#curriculum, Disciplines/Languages->#research.
+- Nav-Overflow: globales box-sizing + .nav-group hidden <1100px + sticky switcher (ZH-Button wieder sichtbar).
+- Benchmark-Tooltip Bugfix: parsed.y->parsed.x (horizontale Bars).
+- cspace.html Mini-Portal (EN/DE/ZH, what/why/how + Launch in-iframe); Portal-Cover lädt Guide.
