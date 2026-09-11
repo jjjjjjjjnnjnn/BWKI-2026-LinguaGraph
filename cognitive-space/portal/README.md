@@ -47,11 +47,21 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 - 3D section = mathematics subgraph only: 556 nodes · 525 relations · 219 groups (`manifest.json`).
 - 12 findings (F1–F12, paper §discussion); 19-model benchmark (chart has 19 labels).
 
-## Deployment
+## Deployment (`_deploy/` = Pages root mirror)
 
-Source of truth is `cognitive-space/portal/index.html`. After any change, copy it to
-`_deploy/portal/index.html` (single-direction sync, verify with `Get-FileHash`).
-GitHub Pages serves the portal at:
+Source of truth is `cognitive-space/`. After any change, mirror these
+(single-direction copy, verify with `Get-FileHash` + `linkcheck.py`):
+
+| Source | Mirror |
+|---|---|
+| `portal/index.html` | `_deploy/portal/index.html` |
+| `web/index.html` + `data.js` + `i18n.js` | `_deploy/web/` (portal iframe target) **and** `_deploy/` root (full-screen target) |
+| `web/story/index.html` | `_deploy/story/index.html` |
+| `web/figures/fig4_null_model.png` | `_deploy/figures/` |
+| `docs/submission/LinguaGraph_BWKI2026.pdf` | `_deploy/docs/submission/` |
+
+Known mirror-only patch: `_deploy/index.html` uses `portal/index.html`
+(source uses `../portal/index.html`). Never back-port this line to source.
 
 ```
 https://<user>.github.io/BWKI-2026-LinguaGraph/portal/
