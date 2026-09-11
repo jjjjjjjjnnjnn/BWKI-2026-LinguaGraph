@@ -115,6 +115,21 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .tag-yellow { background: rgba(138,100,16,.10); color: var(--yellow); }
 .tag-purple { background: rgba(67,56,107,.10); color: var(--purple); }
 .tag-red { background: rgba(179,55,47,.10); color: var(--red); }
+.tag-west { background: rgba(179,55,47,.12); color: var(--red); border-color: rgba(179,55,47,.35); }
+
+/* Roster table */
+table.roster { width: 100%; font-size: .8rem; border-collapse: collapse; }
+table.roster th, table.roster td { padding: 7px 10px; text-align: center; border-top: 1px solid var(--border); }
+table.roster td:first-child, table.roster th:first-child { text-align: left; }
+table.roster td:first-child { font-family: var(--font-mono); font-size: .72rem; }
+table.roster .mnum { font-family: var(--font-mono); font-feature-settings: "tnum"; font-weight: 600; }
+tr.collect td { color: var(--text2); }
+tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text2); background: var(--surface); text-align: left; }
+.pulse { display: inline-block; font-size: .68rem; font-family: var(--font-mono); color: var(--yellow); white-space: nowrap; }
+.pulse::before { content: "●"; margin-right: 5px; animation: pulse-dot 1.6s ease-in-out infinite; }
+@keyframes pulse-dot { 50% { opacity: .25; } }
+.mono { font-family: var(--font-mono); font-size: .92em; }
+.honesty { font-size: .8rem; color: var(--text2); border-left: 2px solid var(--yellow); padding-left: 12px; margin-top: 12px; line-height: 1.6; }
 
 /* Hero */
 .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; }
@@ -200,6 +215,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in { opacity: 1; transform: none; transition: none; }
   .rule-grow { transform: scaleX(1); transition: none; }
+  .pulse::before { animation: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -361,7 +377,7 @@ graph LR
     </div>
     <div class="metric-card">
       <div class="sym" style="color:#0e7490">LDS</div>
-      <div class="formula">1 − mean(GED, Jaccard)</div>
+      <div class="formula">1 − mean(J_node, J_edge)</div>
       <div class="desc" data-i18n="metric_lds">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
     <div class="metric-card">
@@ -431,7 +447,7 @@ graph LR
   <section id="finding-c" class="fade-in">
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
-    <div class="lead" data-i18n="finding_c_sub">Cross-language structural divergence is high and asymmetric — driven by curriculum tradition, not language family.</div>
+    <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K shows convergence (ZH-DE 0.519, ZH-EN 0.934, DE-EN 0.938) — an observation consistent with curriculum tradition; the core signal is ΔLDS.</div>
     <p data-i18n="finding_c_body">Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
@@ -445,6 +461,7 @@ graph LR
       <div class="fig-label" data-i18n="finding_c_fig"><strong>Fig 4</strong> — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation</div>
     </div>
     <div class="meta"><span class="tag tag-cyan" data-i18n="finding_c_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_c_tag2">F4, F5</span> <span class="tag tag-yellow" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</span></div>
+    <p class="honesty" data-i18n="finding_c_honesty">Honesty note (P2 recheck): math nodes are alignment labels, not independently extracted concepts — size-matching to Wikipedia scale reverses the pattern. The 0.519 convergence is partly a representation/size artifact (paper §3.8).</p>
   </div>
 
 </section>
@@ -453,8 +470,8 @@ graph LR
   <section id="finding-d" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--yellow)">
     <h3><i class="bi bi-building" style="color:var(--yellow)"></i> <span data-i18n="finding_d_title">Finding D: Education systems emphasize different curriculum designs</span></h3>
-    <div class="lead" data-i18n="finding_d_sub">Textbook–curriculum coverage varies dramatically — not because of quality differences, but because of fundamentally different educational philosophies.</div>
-    <p data-i18n="finding_d_body">Coverage scores range from <strong>12.7% (NRW) to 95.4% (China)</strong>. China shows near-perfect alignment under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. These differences reflect educational governance, not alignment quality.</p>
+    <div class="lead" data-i18n="finding_d_sub">Textbook–curriculum coverage varies dramatically — not necessarily quality differences: granularity (safest reading) and governance (hypothesis, paper §8.6) both fit the data.</div>
+    <p data-i18n="finding_d_body">Coverage scores range from <strong>12.7% (NRW) to 95.4% (China)</strong>. China shows near-perfect alignment under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. These differences are consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation; the data fit all three explanations below.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">95.4%</div><div class="ev-label" data-i18n="finding_d_ev1">🇨🇳 China (highest)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">37.3%</div><div class="ev-label" data-i18n="finding_d_ev2">🇬🇧 UK</div></div>
@@ -566,7 +583,7 @@ graph LR
     <div class="card">
       <h3><i class="bi bi-database" style="color:var(--yellow)"></i> <span data-i18n="limitations1_title">Textbook Selection Bias</span></h3>
       <p data-i18n="limitations1_desc">The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
-      <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68+ textbooks</div>
+      <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68 math textbooks (180 total, all subjects)</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> <span data-i18n="limitations2_title">Limited Discipline Coverage</span></h3>
@@ -580,7 +597,7 @@ graph LR
     </div>
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> <span data-i18n="limitations4_title">LLM Extraction Reliability</span></h3>
-      <p data-i18n="limitations4_desc">Concept extraction depends on qwen-plus, a single model. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <p data-i18n="limitations4_desc">Concept extraction depends on qwen-plus, a single model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
@@ -635,7 +652,7 @@ graph LR
       <p data-i18n="expl_a_desc">Claims: Dense curricula produce higher coverage. Evidence: Counter-indicated — the US has the densest curriculum (2,124 concepts) but one of the lowest coverages (17.2%).</p>
     </div>
     <div class="card" style="border-color:var(--green)">
-      <h3><span class="tag tag-green" style="font-size:1rem">✓</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--green);font-weight:400">Best supported</span></h3>
+      <h3><span class="tag tag-green" style="font-size:1rem">✓</span> <span data-i18n="expl_b_title">B: Educational Philosophy</span> <span style="font-size:.7rem;color:var(--text2);font-weight:400">Hypothesis (paper §8.6)</span></h3>
       <p data-i18n="expl_b_desc">Coverage patterns reflect educational governance: CN centralized (95.4%), UK national curriculum (37.3%), US broad standards (17.2%), NRW per-track specifications (12.7%).</p>
     </div>
     <div class="card">
@@ -676,6 +693,103 @@ graph LR
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
       </div>
+      <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting</h3>
+      <p style="font-size:.82rem;color:var(--text2)" data-i18n="val_roster_desc">Same P1 protocol (ZH/DE/EN × 10). ZH-DE margin = LDS-C minus split-half floor; all 55 p&lt;0.01 (500 permutations). 7 western runs highlighted. qwen-max (n=29/30) counts as collecting per paper §8.15. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
+      <div style="margin:12px 0;overflow-x:auto;max-height:520px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
+        <table class="gold roster" style="margin-top:0">
+          <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Model</th><th>Origin</th><th>ZH-DE margin</th><th>Signif.</th></tr></thead>
+          <tbody>
+<tr><td>command-a-03-2025</td><td><span class="tag tag-west">West · Cohere · CA</span></td><td class="mnum">+0.42</td><td>p&lt;0.01</td></tr>
+<tr><td>gpt-5.6-luna</td><td><span class="tag tag-west">West · origin undisclosed</span></td><td class="mnum">+0.22</td><td>p&lt;0.01</td></tr>
+<tr><td>nemotron-3-super-120b-a12b</td><td><span class="tag tag-west">West · NVIDIA · US</span></td><td class="mnum">+0.17</td><td>p&lt;0.01</td></tr>
+<tr><td>nemotron-3-ultra</td><td><span class="tag tag-west">West · NVIDIA · US</span></td><td class="mnum">+0.16</td><td>p&lt;0.01</td></tr>
+<tr><td>gpt-oss-20b</td><td><span class="tag tag-west">West · OpenAI-weights · US</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
+<tr><td>laguna-s-2.1 · direct</td><td><span class="tag tag-west">West · Poolside · US</span></td><td class="mnum">+0.10</td><td>p&lt;0.01</td></tr>
+<tr><td>laguna-s-2.1 · kilo</td><td><span class="tag tag-west">West · Poolside · US</span></td><td class="mnum">+0.07</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v3.1</td><td><span class="tag">CN</span></td><td class="mnum">+0.29</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen-turbo</td><td><span class="tag">CN</span></td><td class="mnum">+0.25</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3-max</td><td><span class="tag">CN</span></td><td class="mnum">+0.24</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v3</td><td><span class="tag">CN</span></td><td class="mnum">+0.24</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.8-max</td><td><span class="tag">CN</span></td><td class="mnum">+0.21</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-5</td><td><span class="tag">CN</span></td><td class="mnum">+0.19</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-397b-a17b</td><td><span class="tag">CN</span></td><td class="mnum">+0.18</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.7-max</td><td><span class="tag">CN</span></td><td class="mnum">+0.18</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-5.2-fast-preview</td><td><span class="tag">CN</span></td><td class="mnum">+0.18</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-plus</td><td><span class="tag">CN</span></td><td class="mnum">+0.18</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v3.2</td><td><span class="tag">CN</span></td><td class="mnum">+0.17</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v4-flash · dashscope</td><td><span class="tag">CN</span></td><td class="mnum">+0.16</td><td>p&lt;0.01</td></tr>
+<tr><td>MiniMax-M2.5</td><td><span class="tag">CN</span></td><td class="mnum">+0.16</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.6-plus</td><td><span class="tag">CN</span></td><td class="mnum">+0.16</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-5.2 · direct</td><td><span class="tag">CN</span></td><td class="mnum">+0.16</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.7-plus</td><td><span class="tag">CN</span></td><td class="mnum">+0.15</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-4.6</td><td><span class="tag">CN</span></td><td class="mnum">+0.15</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-5.1</td><td><span class="tag">CN</span></td><td class="mnum">+0.14</td><td>p&lt;0.01</td></tr>
+<tr><td>longcat-2.0</td><td><span class="tag">CN</span></td><td class="mnum">+0.14</td><td>p&lt;0.01</td></tr>
+<tr><td>kimi-k2.6 · direct</td><td><span class="tag">CN</span></td><td class="mnum">+0.14</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-4.7</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
+<tr><td>kimi-k2.6 · dashscope</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
+<tr><td>MiniMax-M2.1</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
+<tr><td>kimi-k2.5</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
+<tr><td>kimi-k2.7-code</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-27b</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
+<tr><td>glm-5.2 · dashscope</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.6-27b</td><td><span class="tag">CN</span></td><td class="mnum">+0.11</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v4-pro · dashscope</td><td><span class="tag">CN</span></td><td class="mnum">+0.11</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen-flash</td><td><span class="tag">CN</span></td><td class="mnum">+0.11</td><td>p&lt;0.01</td></tr>
+<tr><td>Kimi-K2-Instruct</td><td><span class="tag">CN</span></td><td class="mnum">+0.10</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-r1-distill-qwen-14b</td><td><span class="tag">CN</span></td><td class="mnum">+0.10</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen-plus</td><td><span class="tag">CN</span></td><td class="mnum">+0.10</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-35b-a3b</td><td><span class="tag">CN</span></td><td class="mnum">+0.10</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-flash</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.5-122b-a10b</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
+<tr><td>kimi-k2-thinking</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.6-35b-a3b</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v4-flash · direct</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3-235b-a22b</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
+<tr><td>mimo-v2.5</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-v4-pro · direct</td><td><span class="tag">CN</span></td><td class="mnum">+0.07</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.7-flash</td><td><span class="tag">CN</span></td><td class="mnum">+0.07</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-r1-distill-qwen-32b</td><td><span class="tag">CN</span></td><td class="mnum">+0.07</td><td>p&lt;0.01</td></tr>
+<tr><td>qwen3.6-flash</td><td><span class="tag">CN</span></td><td class="mnum">+0.05</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-r1</td><td><span class="tag">CN</span></td><td class="mnum">+0.05</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-r1-distill-qwen-7b</td><td><span class="tag">CN</span></td><td class="mnum">+0.04</td><td>p&lt;0.01</td></tr>
+<tr><td>deepseek-r1-0528</td><td><span class="tag">CN</span></td><td class="mnum">+0.03</td><td>p&lt;0.01</td></tr>
+<tr class="collect-head"><td colspan="4">Collecting — incomplete runs (n&lt;30, margin withheld):</td></tr>
+<tr class="collect"><td>qwen-max</td><td><span class="tag">repo</span></td><td class="mnum">n=29/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gpt-oss-20b</td><td><span class="tag">repo</span></td><td class="mnum">n=20/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>grok-4.6</td><td><span class="tag">repo</span></td><td class="mnum">n=18/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>llama-3.3-70b-instruct-fp8-fast</td><td><span class="tag">repo</span></td><td class="mnum">n=15/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>ling-3.0-tiny</td><td><span class="tag">repo</span></td><td class="mnum">n=12/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=11/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>mistral-medium-latest</td><td><span class="tag">repo</span></td><td class="mnum">n=10/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-nano-30b-a3b</td><td><span class="tag">repo</span></td><td class="mnum">n=6/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>laguna-s-2.1</td><td><span class="tag">repo</span></td><td class="mnum">n=5/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>north-mini-code</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>glm-4.5</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>glm-4.5-air</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>qwen3-14b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>qwen3-30b-a3b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>qwen3-32b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>qwen3-8b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>qwq-plus</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gemma-4-26b-a4b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gemma-4-31b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>ling-3.0-tiny</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-super-120b-a12b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>laguna-xs-2.1</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gemini-3.8-flash</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>mistral-large</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gemma-4-31b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>mistral-small-3.1-24b-instruct</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>mistral-small-latest</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>gpt-oss-120b</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>muse-spark-1.3-contributor</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_note">Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=29/30, margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.</p>
       <div style="margin-top:8px;font-size:.82rem;color:var(--text2)" data-i18n="val_replication_note">Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.</div>
     </div>
   </div>
@@ -690,13 +804,13 @@ graph LR
     <div class="card" style="text-align:center">
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
-      <p data-i18n="paper_abstract_text">LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
-      <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
+      <p data-i18n="paper_abstract_text">LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (55 runs, 50 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).</p>
+      <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a> · <a href="../docs/submission/LinguaGraph_BWKI2026.pdf">PDF (293 KB)</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
-      <p data-i18n="paper_sections_text">Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
+      <p data-i18n="paper_sections_text">Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis</p>
       <div class="meta">9 files · ~153 KB md · 293 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
@@ -708,7 +822,7 @@ graph LR
   title = {LinguaGraph: Cross-Lingual Knowledge Structure Analysis Framework},
   year = {2026},
   publisher = {GitHub},
-  journal = {BWKI 2026},
+  journal = {BWKI 2026 — Bundeswettbewerb Künstliche Intelligenz},
   url = {https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph}
 }</pre>
     <button onclick="copyBibtex()" class="btn btn-solid" style="margin-top:12px"><i class="bi bi-clipboard"></i> Copy BibTeX</button>
@@ -742,7 +856,7 @@ graph LR
     <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/tree/master/cognitive-space/web/figures" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-image" style="font-size:2.2rem;color:var(--yellow);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Figures</h3>
-      <p>7 publication-ready figures: CDS, HDS, LDS distributions and cross-discipline comparisons.</p>
+      <p>8 publication-ready figures: CDS, HDS, LDS, null-model and coverage distributions.</p>
       <div class="meta">8 figures · PNG · ~956 KB total</div>
     </a>
     <a href="#validation" class="card" style="text-decoration:none;text-align:center">
@@ -764,6 +878,7 @@ graph LR
 <footer style="text-align:center;padding:48px 24px 32px;color:var(--text2);font-size:.82rem;border-top:1px solid var(--border)">
   <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px" data-i18n="footer_brand">LinguaGraph</p>
   <p data-i18n="footer_desc">Cross-Lingual Knowledge Structure Analysis Framework</p>
+  <p style="margin-top:8px" data-i18n="footer_team">Jiajun Rong · Privatschule Schloss Heessen · academic advice HSHL</p>
   <p style="margin-top:12px" data-i18n="footer_copyright">BWKI 2026 · All Rights Reserved · Built with qwen-plus</p>
   <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph"><i class="bi bi-github"></i> GitHub</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">🇬🇧 English</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_DE.md">🇩🇪 Deutsch</a> · <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/README_ZH.md">🇨🇳 中文</a></p>
 </footer>
@@ -947,7 +1062,7 @@ const TRANSLATIONS = {
     finding_c_sub: 'Finding C — LDS-K values show textbook knowledge convergence (ZH-DE=0.519, ZH-EN=0.934, DE-EN=0.938). A Null Model proves Full < Structure Null for all pairs: textbook structures are more similar than chance. The core signal is ΔLDS = LDS-C − LDS-K.',
     fig4_caption: 'Fig 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Curriculum alignment varies dramatically by governance',
-    finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). China shows near-perfect alignment under centralized curriculum; NRW and US reflect local adaptation.',
+    finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit the data.',
     finding_e_title: 'N=15 falsifies delta-LDS between-subject',
     finding_e_sub: 'Finding E — N=15 lands on the split-half floor (LDS-C 0.93–0.96 ≈ floor 0.92–0.96): between-subject designs cannot separate language from participant variance. LLM within-subject shows the signal (margin +0.08–0.09).',
     section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
@@ -1011,7 +1126,8 @@ const TRANSLATIONS = {
     finding_c_tag1: 'Metric: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
-    finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. These differences reflect educational governance — centralized vs. federal — not alignment quality.',
+    finding_c_honesty: 'Honesty note (P2 recheck): math nodes are alignment labels, not independently extracted concepts — size-matching to Wikipedia scale reverses the pattern. The 0.519 convergence is partly a representation/size artifact (paper §3.8).',
+    finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. Consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation.',
     finding_d_ev1: 'China (highest)',
     finding_d_ev2: 'UK',
     finding_d_ev3: 'US',
@@ -1040,7 +1156,7 @@ const TRANSLATIONS = {
     e_tbl_sim: 'Simulation Baseline',
     limitations1_title: 'Textbook Selection Bias',
     limitations1_desc: 'The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.',
-    limitations1_mit: 'Mitigation: Multi-source triangulation across 68+ textbooks',
+    limitations1_mit: 'Mitigation: Multi-source triangulation across 68 math textbooks (180 total, all subjects)',
     limitations2_title: 'Limited Discipline Coverage',
     limitations2_desc: 'Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims are therefore limited to STEM education.',
     limitations2_mit: 'Mitigation: Framework is design-agnostic and extendable',
@@ -1064,16 +1180,20 @@ const TRANSLATIONS = {
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
     val_bench_note: '<strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
+    val_roster_title: 'Replication roster: 55 full runs + 31 collecting',
+    val_roster_desc: 'Same P1 protocol (ZH/DE/EN × 10). ZH-DE margin = LDS-C minus split-half floor; all 55 p<0.01 (500 permutations). 7 western runs highlighted. qwen-max (n=29/30) counts as collecting per paper §8.15.',
+    val_roster_note: 'Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=29/30, margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: 'Abstract',
-    paper_abstract_text: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
+    paper_abstract_text: 'LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (55 runs, 50 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).',
     paper_sections_title: 'Sections',
-    paper_sections_text: 'Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix',
+    paper_sections_text: 'Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis',
     paper_cite_title: 'Cite this work',
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
     cognitivespace_meta: '556 nodes · 525 relations · 219 groups · 3 languages',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
+    footer_team: 'Jiajun Rong · Privatschule Schloss Heessen · academic advice HSHL',
     footer_copyright: 'BWKI 2026 · All Rights Reserved · Built with qwen-plus',
     three_explanations: 'Three Competing Explanations',
     expl_a_title: 'A: Curriculum Granularity',
@@ -1122,7 +1242,8 @@ const TRANSLATIONS = {
     finding_c_tag1: 'Metrik: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
-    finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung.',
+    finding_c_honesty: 'Ehrlichkeitshinweis (P2-Recheck): Mathe-Knoten sind Alignierungs-Labels, keine unabhängig extrahierten Konzepte — Size-Matching auf Wikipedia-Größe kehrt das Muster um. Die 0,519-Konvergenz ist teils Darstellungs-/Größen-Artefakt (Paper §3.8).',
+    finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung. Konsistent mit Governance (Hypothese, Paper §8.6) — Granularität (A) bleibt die sicherste Interpretation.',
     finding_d_ev1: 'China (hoechste)',
     finding_d_ev2: 'GB',
     finding_d_ev3: 'US',
@@ -1151,7 +1272,7 @@ const TRANSLATIONS = {
     e_tbl_sim: 'Simulationsbasislinie',
     limitations1_title: 'Lehrbuchauswahlverzerrung',
     limitations1_desc: 'Das Korpus ist keine umfassende Stichprobe aller Lehrbuecher. Chinesische Lehrbuecher ueberwiegend eine Serie (Renjiao). Deutsche Lehrbuecher zum hoeheren Anteil Universitaetstexte.',
-    limitations1_mit: 'Massnahme: Multi-Source-Triangulation ueber 68+ Lehrbuecher',
+    limitations1_mit: 'Massnahme: Multi-Source-Triangulation ueber 68 Mathe-Lehrbuecher (180 gesamt, alle Faecher)',
     limitations2_title: 'Begrenzte Faecher',
     limitations2_desc: 'Nur drei MINT-Faecher analysiert. Der Rahmen wurde nicht fuer Geisteswissenschaften validiert.',
     limitations2_mit: 'Massnahme: Framework ist designneutral und erweiterbar',
@@ -1175,16 +1296,20 @@ const TRANSLATIONS = {
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
     val_bench_note: '<strong>Produktion:</strong> qwen-plus (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 55 Messungen / 50 Modelle — alle 55 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
+    val_roster_title: 'Replikations-Roster: 55 vollständige Runs + 31 laufend',
+    val_roster_desc: 'Gleiches P1-Protokoll (ZH/DE/EN × 10). ZH-DE-Marge = LDS-C minus Split-Half-Boden; alle 55 p<0,01 (500 Permutationen). 7 westliche Runs markiert. qwen-max (n=29/30) zählt per Paper §8.15 als laufend.',
+    val_roster_note: 'Scope-Hinweis: F1-Benchmark (19 Modelle, Goldlabel-Auswahl) ≠ Replikation (55 Runs, Sprachsignal) ≠ laufend (31 unvollständig inkl. qwen-max n=29/30, Marge zurückgehalten). Familien per Paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: 'Zusammenfassung',
-    paper_abstract_text: 'LinguaGraph fuehrt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme dasselbe Wissen organisieren.',
+    paper_abstract_text: 'LinguaGraph fragt, ob Sprache die strukturelle Organisation von Wissen prägt. Zwei Pipelines — Lehrbuchgraphen (556 Konzepte, 525 Relationen, 219 Gruppen) und LLM-as-Subject (55 Runs, 50 Modelle) — isolieren das Sprachsignal ΔLDS: N=15 falsifiziert es between-subject; within-subject zeigt es klar (Paper §5).',
     paper_sections_title: 'Abschnitte',
-    paper_sections_text: 'Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Anhang',
+    paper_sections_text: 'Drei Schlussfolgerungen · Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Ergebnisse · LPA-Analyse',
     paper_cite_title: 'Diese Arbeit zitieren',
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Filtern Sie nach Sprache oder Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
     cognitivespace_meta: '556 Knoten · 525 Relationen · 219 Gruppen · 3 Sprachen',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
+    footer_team: 'Jiajun Rong · Privatschule Schloss Heessen · Beratung HSHL',
     footer_copyright: 'BWKI 2026 · Alle Rechte vorbehalten · Mit qwen-plus erstellt',
     three_explanations: 'Drei konkurrierende Erklaerungen',
     expl_a_desc: 'Annahme: Dichtere Lehrplaene erzeugen hoehere Abdeckung. Gegenbeleg: USA hat dichtesten Lehrplan (2.124 Konzepte) aber eine der niedrigsten Abdeckungen (17,2%).',
@@ -1232,7 +1357,7 @@ const TRANSLATIONS = {
     finding_c_sub: 'Erkenntnis C — LDS-K zeigt Konvergenz: ZH-DE=0,519, ZH-EN=0,934, DE-EN=0,938. Ein Null-Modell beweist Full < Structure Null für alle Paare. Das Kernsignal ist ΔLDS = LDS-C − LDS-K.',
     fig4_caption: 'Abb. 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
-    finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). China zeigt nahezu perfekte Abstimmung unter einem zentralisierten Lehrplan; NRW und USA spiegeln lokale Anpassung wider.',
+    finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). Granularität (sicherste Lesart) und Governance (Hypothese, Paper §8.6) passen beide zu den Daten.',
     finding_e_title: 'N=15 falsifiziert delta-LDS between-subject',
     finding_e_sub: 'Erkenntnis E — N=15 landet auf dem Split-Half-Boden: Between-Subject-Designs trennen Sprache nicht von Teilnehmervarianz. LLM-Within-Subject zeigt das Signal.',
     section_curriculum: 'Lehrplananalyse', curriculum_sub: 'Wie vier Bildungssysteme ihre Lehrpläne mit Lehrbuchinhalten abgleichen',
@@ -1313,7 +1438,7 @@ const TRANSLATIONS = {
     finding_c_sub: '发现 C — 教材 LDS-K 显示知识系统趋同（中德=0.519，中英=0.934，德英=0.938）。Null Model 证明 Full < Structure Null：教材结构比随机更相似。核心信号是 ΔLDS。',
     fig4_caption: '图 4：Null Model Suite — Full vs Structure Null',
     finding_d_title: '课程覆盖因教育治理模式而异',
-    finding_d_sub: '发现 D — 覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐；NRW 和美国反映本地适应性。',
+    finding_d_sub: '发现 D — 覆盖率从 12.7%（NRW）到 95.4%（中国）。粒度（最稳妥解读）与治理结构（假设，论文 §8.6）都与数据相符。',
     section_curriculum: '课程分析', curriculum_sub: '四个教育体系如何使课程与教材内容对齐',
     curr_nrw_title: '北威州（德国）——本地适应模式',
     curr_nrw_desc: '覆盖率最低（12.7%）。按学校类型的详细分类规范（文理中学、综合中学、实科中学）导致分散的对齐。德国教材享有显著的课程自主权。',
@@ -1343,7 +1468,7 @@ const TRANSLATIONS = {
     footer_github: 'GitHub', footer_en: 'English', footer_de: 'Deutsch', footer_zh: '中文',
     section_cognitivespace: '交互式 CognitiveSpace',
     cognitivespace_sub: '在交互式 3D 知识图谱中探索数学子图 —— 556 个节点 · 525 条关系 · 219 个分组',
-        finding_e_title: '人类验证确认语言驱动的认知差异',
+        finding_e_title: 'N=15 在被试间设计下证伪 delta-LDS 大于 0',
     finding_e_sub: '发现 E — N=15 落在 split-half 底线上：被试间设计无法分离语言与个体差异。LLM 被试内实验显示信号清晰。',
 curr_explanations_title: '三种竞争性解释',
     finding_a_body: '数学在初中达到峰值（CDS = 0.271）。物理在小学达到峰值（CDS = 0.222）。化学也在初中达到峰值（CDS = 0.042）。峰值之后，密度急剧下降——数学从初中到高中下降了 3.7 倍。',
@@ -1377,7 +1502,8 @@ curr_explanations_title: '三种竞争性解释',
     finding_c_tag1: '指标：LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
-    finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。这些差异反映教育治理结构而非对齐质量。',
+    finding_c_honesty: '诚实注（P2 复核）：数学节点是对齐标签，而非独立提取的概念——按维基规模做 size-matching 会翻转模式。0.519 的趋同部分是表征/规模假象（论文 §3.8）。',
+    finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。与治理结构一致（假设，论文 §8.6）——但粒度（A）仍是最稳妥的解读。',
     finding_d_ev1: '中国（最高）',
     finding_d_ev2: '英国',
     finding_d_ev3: '美国',
@@ -1406,7 +1532,7 @@ curr_explanations_title: '三种竞争性解释',
     e_tbl_sim: '仿真基线',
     limitations1_title: '教材选择偏差',
     limitations1_desc: '语料库并非每种语言教材的全面样本。中文教材以人教版为主，可能无法代表中国数学教育的多样性。德文教材偏向高年级大学教材（Forster、Fischer），小学阶段资源较少。',
-    limitations1_mit: '缓解措施：跨 68+ 本教材的多源三角验证',
+    limitations1_mit: '缓解措施：跨 68 本数学教材（共 180 本，含全部学科）的多源三角验证',
     limitations2_title: '学科覆盖有限',
     limitations2_desc: '仅分析了三个 STEM 学科（数学、物理、化学）。该框架尚未在人文科学、社会科学或专业领域验证。知识密度早期达峰等普遍性结论仅局限于 STEM 教育。',
     limitations2_mit: '缓解措施：框架设计中立，可扩展',
@@ -1430,16 +1556,20 @@ curr_explanations_title: '三种竞争性解释',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
     val_bench_note: '<strong>生产模型：</strong> qwen-plus (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：55 次测量 / 50 个模型 —— 55 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
+    val_roster_title: '复刻名录：55 次完整运行 ＋ 31 次收集中',
+    val_roster_desc: '同一 P1 协议（中/德/英 × 10）。ZH-DE 边际 ＝ LDS-C 减 split-half 底线；55 个 p<0.01（500 置换）。7 个西方运行已标出。qwen-max（n=29/30）按论文 §8.15 计入收集中。',
+    val_roster_note: '口径说明：F1 基准（19 模型，金标选型）≠ 复刻（55 运行，语言信号）≠ 收集中（31 未完成，含 qwen-max n=29/30，边际不公布）。家族划分见论文 §5.10：Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
     paper_abstract_title: '摘要',
-    paper_abstract_text: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于 LLM 从 180 本教材中进行概念提取，构建多语言知识图谱并通过四个指标量化结构差异。',
+    paper_abstract_text: 'LinguaGraph 追问语言是否塑造知识的结构组织。双管线——教材图谱（556 概念、525 关系、219 分组）与 LLM-as-subject（55 运行、50 模型）——分离语言信号 ΔLDS：N=15 在被试间设计下证伪它，被试内设计清晰显示它（论文 §5）。',
     paper_sections_title: '章节结构',
-    paper_sections_text: '引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理附录',
+    paper_sections_text: '三大结论 · 引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理结果 · LPA 分析',
     paper_cite_title: '引用本作品',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。按语言或学科筛选。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
     cognitivespace_meta: '556 个节点 · 525 条关系 · 219 个分组 · 3 种语言',
     footer_brand: 'LinguaGraph',
     footer_desc: '跨语言知识结构分析框架',
+    footer_team: '戎嘉骏 · Schloss Heessen 私立学校 · HSHL 学术指导',
     footer_copyright: 'BWKI 2026 · 保留所有权利 · 由 qwen-plus 驱动',
     three_explanations: '三种竞争性解释',
     expl_a_desc: '假设：更密集的课程产生更高的覆盖率。证据：反例——美国拥有最密集的课程（2,124 个概念），但覆盖率最低（17.2%）。',
