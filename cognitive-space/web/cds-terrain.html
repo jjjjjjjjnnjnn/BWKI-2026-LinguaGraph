@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDS Terrain — 3 disciplines × 4 levels</title>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); overflow:hidden; }
+#scene { width:100vw; height:100vh; display:block; }
+.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:320px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
+.hud h1 { font-size:.82rem; font-weight:600; }
+.hud h1 span { color:var(--accent); }
+.hud .sub { font-size:.58rem; color:var(--text2); margin:2px 0 8px; line-height:1.5; }
+.hud .row { font-size:.6rem; color:var(--text2); margin-top:4px; line-height:1.5; }
+.hud .row b { color:var(--text); }
+.nav { position:absolute; top:16px; right:16px; z-index:10; display:flex; gap:6px; }
+.nav a, .nav button { font-size:.62rem; color:var(--accent); background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:6px; padding:6px 12px; text-decoration:none; cursor:pointer; font-family:inherit; font-weight:600; }
+.nav button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+#tip { position:absolute; z-index:20; pointer-events:none; background:rgba(10,31,61,.92); color:#fff; font-size:.62rem; padding:6px 10px; border-radius:6px; display:none; line-height:1.5; max-width:260px; }
+.scope { position:absolute; bottom:14px; left:16px; z-index:10; font-size:.58rem; color:var(--text2); font-family:ui-monospace,Menlo,Consolas,monospace; }
+.hint { position:absolute; bottom:14px; right:16px; z-index:10; font-size:.58rem; color:var(--text2); }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div class="hud">
+  <h1>CDS <span data-k="t_terrain">Terrain</span></h1>
+  <div class="sub" data-k="sub">Concept density by discipline and education level. Click a bar for Finding A.</div>
+  <div class="row" data-k="peakrow"><b>Peaks:</b> math middle 0.271 · physics elementary 0.222 · chemistry middle 0.042</div>
+  <div class="row" data-k="chemrow">Chemistry has no elementary stage (0 nodes).</div>
+</div>
+<div class="nav">
+  <a href="../portal/cspace.html" data-k="back">← Gallery</a>
+  <button data-l="en" class="active">EN</button><button data-l="de">DE</button><button data-l="zh">ZH</button>
+</div>
+<div id="tip"></div>
+<div class="scope" data-k="scope">SCOPE · CDS = 2|E|/(|V|·(|V|−1)) · outputs/physics_comparison.json + chemistry_comparison.json (fig7 source)</div>
+<div class="hint" data-k="hint">drag rotate · scroll zoom · hover values</div>
+<script>
+// DATA — CDS matrix, same source as portal Fig 7 (outputs/*_comparison.json)
+var DATA = {
+  math:      { color: 0x1e3a8a, levels: { elementary: {cds:0.2162,n:37,e:144}, middle: {cds:0.2705,n:46,e:280}, high: {cds:0.0731,n:175,e:1113}, college: {cds:0.0415,n:298,e:1838} } },
+  physics:   { color: 0x0e7490, levels: { elementary: {cds:0.2222,n:10,e:10},  middle: {cds:0.0208,n:93,e:89},  high: {cds:0.0125,n:136,e:115}, college: {cds:0.0107,n:127,e:86} } },
+  chemistry: { color: 0x1e7e4d, levels: { elementary: {cds:0.0,n:0,e:0},         middle: {cds:0.0415,n:46,e:43},  high: {cds:0.0298,n:51,e:38},  college: {cds:0.0125,n:123,e:94} } },
+};
+var ORDER = ['elementary','middle','high','college'];
+var DISCS = ['math','physics','chemistry'];
+var T = {
+en: { t_terrain:'Terrain', sub:'Concept density by discipline and education level. Click a bar for Finding A.', peakrow:'<b>Peaks:</b> math middle 0.271 · physics elementary 0.222 · chemistry middle 0.042', chemrow:'Chemistry has no elementary stage (0 nodes).', scope:'SCOPE · CDS = 2|E|/(|V|·(|V|−1)) · outputs/physics_comparison.json + chemistry_comparison.json (fig7 source)', hint:'drag rotate · scroll zoom · hover values', back:'← Gallery', lv:{elementary:'Elementary',middle:'Middle',high:'High',college:'College'}, dn:{math:'Mathematics',physics:'Physics',chemistry:'Chemistry'} },
+de: { t_terrain:'Terrain', sub:'Konzeptdichte nach Fach und Bildungsstufe. Balken klicken für Finding A.', peakrow:'<b>Spitzen:</b> Mathe Mittelstufe 0,271 · Physik Grundschule 0,222 · Chemie Mittelstufe 0,042', chemrow:'Chemie hat keine Grundstufe (0 Knoten).', scope:'SCOPE · CDS = 2|E|/(|V|·(|V|−1)) · outputs/physics_comparison.json + chemistry_comparison.json (Fig-7-Quelle)', hint:'Drehen · Zoomen · Werte hovern', back:'← Galerie', lv:{elementary:'Grundschule',middle:'Mittelstufe',high:'Oberstufe',college:'Hochschule'}, dn:{math:'Mathematik',physics:'Physik',chemistry:'Chemie'} },
+zh: { t_terrain:'地形', sub:'按学科与学段的概念密度。点击柱子查看发现 A。', peakrow:'<b>峰值：</b>数学初中 0.271 · 物理小学 0.222 · 化学初中 0.042', chemrow:'化学无小学段（0 节点）。', scope:'口径 · CDS = 2|E|/(|V|·(|V|−1)) · outputs/physics_comparison.json + chemistry_comparison.json（图 7 同源）', hint:'拖拽旋转 · 滚轮缩放 · 悬停看值', back:'← 展厅', lv:{elementary:'小学',middle:'初中',high:'高中',college:'大学'}, dn:{math:'数学',physics:'物理',chemistry:'化学'} },
+};
+var lang = 'en';
+try {
+  lang = localStorage.getItem('viz_lang') || localStorage.getItem('portal_lang') || null;
+  if (!lang) { var n = (navigator.language||'en').toLowerCase(); lang = n.indexOf('zh')===0?'zh':(n.indexOf('de')===0?'de':'en'); }
+} catch(e) { lang = 'en'; }
+if (!T[lang]) lang = 'en';
+
+var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('scene'), antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0xf1f3f5);
+var scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0xf1f3f5, 30, 70);
+var camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 200);
+camera.position.set(14, 11, 17);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 1.5, 0);
+controls.enableDamping = true;
+scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+var dir = new THREE.DirectionalLight(0xffffff, 0.7);
+dir.position.set(8, 14, 6);
+scene.add(dir);
+
+var grid = new THREE.GridHelper(20, 20, 0xc6cdd6, 0xdbe2ea);
+grid.position.y = -0.01;
+scene.add(grid);
+
+var HMAX = 10, CDSMAX = 0.2705;
+var bars = [], labelGroup = new THREE.Group();
+scene.add(labelGroup);
+
+function textSprite(text, size, color) {
+  var c = document.createElement('canvas');
+  var g = c.getContext('2d');
+  g.font = '600 ' + (size || 42) + 'px "IBM Plex Sans", sans-serif';
+  var w = Math.ceil(g.measureText(text).width) + 24;
+  c.width = w; c.height = 64;
+  var g2 = c.getContext('2d');
+  g2.font = '600 ' + (size || 42) + 'px "IBM Plex Sans", sans-serif';
+  g2.fillStyle = color || '#0a1f3d';
+  g2.textBaseline = 'middle';
+  g2.fillText(text, 12, 34);
+  var tex = new THREE.CanvasTexture(c);
+  var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+  sp.scale.set(w / 64 * 0.55, 0.55, 1);
+  return sp;
+}
+
+function build() {
+  bars.forEach(b => { scene.remove(b.mesh); });
+  bars = [];
+  while (labelGroup.children.length) labelGroup.remove(labelGroup.children[0]);
+  var t = T[lang];
+  var peakOf = {};
+  DISCS.forEach(function(d) {
+    var best = null, bv = -1;
+    ORDER.forEach(function(l) { var v = DATA[d].levels[l].cds; if (v > bv) { bv = v; best = l; } });
+    peakOf[d] = best;
+  });
+  DISCS.forEach(function(d, zi) {
+    ORDER.forEach(function(l, xi) {
+      var cell = DATA[d].levels[l];
+      var h = Math.max(0.06, cell.cds / CDSMAX * HMAX);
+      var isPeak = (l === peakOf[d] && cell.cds > 0);
+      var mat = new THREE.MeshLambertMaterial({ color: DATA[d].color, emissive: isPeak ? 0x1e3a8a : 0x000000, emissiveIntensity: isPeak ? 0.55 : 0 });
+      var mesh = new THREE.Mesh(new THREE.BoxGeometry(1.1, h, 1.1), mat);
+      mesh.position.set((xi - 1.5) * 2.4, h / 2, (zi - 1) * 2.8);
+      mesh.userData = { d: d, l: l, cell: cell, peak: isPeak };
+      scene.add(mesh);
+      bars.push({ mesh: mesh });
+      var val = textSprite(cell.cds.toFixed(cell.cds < 0.01 && cell.cds > 0 ? 4 : 3), 40, isPeak ? '#0a1f3d' : '#4a5a78');
+      val.position.set(mesh.position.x, h + 0.45, mesh.position.z);
+      labelGroup.add(val);
+    });
+    var dl = textSprite(t.dn[d], 46, '#1e3a8a');
+    dl.position.set(0, 0.35, (zi - 1) * 2.8 + 1.35);
+    labelGroup.add(dl);
+  });
+  ORDER.forEach(function(l, xi) {
+    var s = textSprite(t.lv[l], 40, '#4a5a78');
+    s.position.set((xi - 1.5) * 2.4, 0.3, -3.6);
+    labelGroup.add(s);
+  });
+}
+
+var tip = document.getElementById('tip');
+var ray = new THREE.Raycaster(), mouse = new THREE.Vector2(), hovered = null;
+renderer.domElement.addEventListener('pointermove', function(e) {
+  mouse.x = (e.clientX / innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / innerHeight) * 2 + 1;
+  ray.setFromCamera(mouse, camera);
+  var hits = ray.intersectObjects(bars.map(b => b.mesh));
+  if (hits.length) {
+    var u = hits[0].object.userData, t = T[lang];
+    hovered = hits[0].object;
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY + 10) + 'px';
+    tip.innerHTML = '<b>' + t.dn[u.d] + ' · ' + t.lv[u.l] + '</b><br>CDS = ' + u.cell.cds.toFixed(4) +
+      '<br>' + u.cell.n + ' nodes · ' + u.cell.e + ' edges' + (u.peak ? '<br>★ peak' : '');
+    renderer.domElement.style.cursor = 'pointer';
+  } else {
+    hovered = null;
+    tip.style.display = 'none';
+    renderer.domElement.style.cursor = 'grab';
+  }
+});
+renderer.domElement.addEventListener('click', function() {
+  if (hovered) window.open('../portal/index.html#finding-a', '_blank');
+});
+
+function applyLang() {
+  var t = T[lang];
+  document.querySelectorAll('[data-k]').forEach(function(el) {
+    var k = el.getAttribute('data-k');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
+  document.documentElement.lang = lang;
+  build();
+}
+document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
+  b.addEventListener('click', function() {
+    lang = b.dataset.l;
+    try { localStorage.setItem('viz_lang', lang); } catch(e) {}
+    applyLang();
+  });
+});
+window.addEventListener('resize', function() {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+applyLang();
+(function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
+</script>
+</body>
+</html>

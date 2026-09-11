@@ -54,8 +54,9 @@ Source of truth is `cognitive-space/`. After any change, mirror these
 
 | Source | Mirror |
 |---|---|
-| `portal/index.html` (+ `portal/cspace.html`, parked — cover loads 3D directly pending redesign) | `_deploy/portal/` |
+| `portal/index.html` (+ `portal/cspace.html`, 3D gallery hub) | `_deploy/portal/` |
 | `web/index.html` + `data.js` + `i18n.js` | `_deploy/web/` (portal iframe target) **and** `_deploy/` root (full-screen target) |
+| `web/data_physics.js` + `web/cds-terrain.html` + `web/margin-galaxy.html` + `web/coverage-towers.html` | `_deploy/web/` (3D gallery views) |
 | `web/story/index.html` | `_deploy/story/index.html` |
 | `web/figures/fig4_null_model.png` | `_deploy/figures/` |
 | `docs/submission/LinguaGraph_BWKI2026.pdf` | `_deploy/docs/submission/` |

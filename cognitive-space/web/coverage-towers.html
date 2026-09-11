@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coverage Towers — 4 education systems</title>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); overflow:hidden; }
+#scene { width:100vw; height:100vh; display:block; }
+.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:340px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
+.hud h1 { font-size:.82rem; font-weight:600; }
+.hud h1 span { color:var(--accent); }
+.hud .sub { font-size:.58rem; color:var(--text2); margin:2px 0 8px; line-height:1.5; }
+.hud .row { font-size:.6rem; color:var(--text2); margin-top:4px; line-height:1.5; }
+.hud .row b { color:var(--text); }
+.nav { position:absolute; top:16px; right:16px; z-index:10; display:flex; gap:6px; }
+.nav a, .nav button { font-size:.62rem; color:var(--accent); background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:6px; padding:6px 12px; text-decoration:none; cursor:pointer; font-family:inherit; font-weight:600; }
+.nav button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+#tip { position:absolute; z-index:20; pointer-events:none; background:rgba(10,31,61,.92); color:#fff; font-size:.62rem; padding:6px 10px; border-radius:6px; display:none; line-height:1.5; max-width:260px; }
+.scope { position:absolute; bottom:14px; left:16px; z-index:10; font-size:.58rem; color:var(--text2); font-family:ui-monospace,Menlo,Consolas,monospace; max-width:62vw; line-height:1.6; }
+.hint { position:absolute; bottom:14px; right:16px; z-index:10; font-size:.58rem; color:var(--text2); }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div class="hud">
+  <h1>Coverage <span data-k="t_towers">Towers</span></h1>
+  <div class="sub" data-k="sub">Textbook–curriculum coverage by stage and system. Bright bars = overall. Click for the curriculum section.</div>
+  <div class="row" data-k="overallrow"><b>Overall:</b> NRW 12.7% · US 17.2% · UK 37.3% · China 95.4%</div>
+</div>
+<div class="nav">
+  <a href="../portal/cspace.html" data-k="back">← Gallery</a>
+  <button data-l="en" class="active">EN</button><button data-l="de">DE</button><button data-l="zh">ZH</button>
+</div>
+<div id="tip"></div>
+<div class="scope" data-k="scope">SCOPE · config/expert_graphs/coverage_all_curricula.json · keyword bridge + 2-overlap threshold · paper §8.5</div>
+<div class="hint" data-k="hint">drag rotate · scroll zoom · hover values</div>
+<script>
+// DATA — per-stage coverage, config/expert_graphs/coverage_all_curricula.json
+var SYSTEMS = [
+  { id:'nrw', color:0x1e3a8a, stages:[['Erprob.',0.2069,12,58],['Stufe 1',0.1875,9,48],['Stufe 2',0.1525,9,59],['Einführung',0.1667,7,42],['Grundkurs',0.0256,1,39],['Leistungskurs',0.0755,4,53]], overall:['Gesamt',0.1271,38,299] },
+  { id:'us', color:0x1e7e4d, stages:[['K–5',0.1794,127,708],['6–8',0.1794,127,708],['9–12',0.1794,127,708]], overall:['Gesamt',0.1723,366,2124] },
+  { id:'uk', color:0x0e7490, stages:[['Y1',0.3333,10,30],['Y2',0.4,16,40],['Y3',0.4167,15,36],['Y4',0.4048,17,42],['Y5',0.4808,25,52],['Y6',0.4386,25,57],['KS3',0.3,24,80],['KS4',0.2833,17,60]], overall:['Gesamt',0.3728,148,397] },
+  { id:'cn', color:0x6d28d9, stages:[['G1–2',1.0,18,18],['G3–4',0.9474,18,19],['G5–6',0.9615,25,26],['G7–9',0.9167,22,24]], overall:['Gesamt',0.954,83,87] },
+];
+var T = {
+en: { t_towers:'Towers', sub:'Textbook–curriculum coverage by stage and system. Bright bars = overall. Click for the curriculum section.', overallrow:'<b>Overall:</b> NRW 12.7% · US 17.2% · UK 37.3% · China 95.4%', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · keyword bridge + 2-overlap threshold · paper §8.5', hint:'drag rotate · scroll zoom · hover values', back:'← Gallery', sys:{nrw:'NRW (Germany)',us:'US',uk:'UK',cn:'China'}, overall:'Overall' },
+de: { t_towers:'Türme', sub:'Lehrbuch-Curriculum-Abdeckung nach Stufe und System. Helle Balken = gesamt. Klicken für Curriculum.', overallrow:'<b>Gesamt:</b> NRW 12,7 % · USA 17,2 % · UK 37,3 % · China 95,4 %', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · Keyword-Brücke + 2-Overlap-Schwelle · Paper §8.5', hint:'Drehen · Zoomen · Werte hovern', back:'← Galerie', sys:{nrw:'NRW (Deutschland)',us:'USA',uk:'UK',cn:'China'}, overall:'Gesamt' },
+zh: { t_towers:'塔群', sub:'按学段与体系的教材—课程覆盖率。亮色为总体。点击查看课程板块。', overallrow:'<b>总体：</b>北威州 12.7% · 美国 17.2% · 英国 37.3% · 中国 95.4%', scope:'口径 · config/expert_graphs/coverage_all_curricula.json · 关键词桥接＋2 重叠阈值 · 论文 §8.5', hint:'拖拽旋转 · 滚轮缩放 · 悬停看值', back:'← 展厅', sys:{nrw:'北威州（德国）',us:'美国',uk:'英国',cn:'中国'}, overall:'总体' },
+};
+var lang = 'en';
+try {
+  lang = localStorage.getItem('viz_lang') || localStorage.getItem('portal_lang') || null;
+  if (!lang) { var n = (navigator.language||'en').toLowerCase(); lang = n.indexOf('zh')===0?'zh':(n.indexOf('de')===0?'de':'en'); }
+} catch(e) { lang = 'en'; }
+if (!T[lang]) lang = 'en';
+
+var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('scene'), antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0xf1f3f5);
+var scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0xf1f3f5, 45, 110);
+var camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 260);
+camera.position.set(22, 15, 27);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.target.set(9, 2.5, 0);
+controls.enableDamping = true;
+scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+var dir = new THREE.DirectionalLight(0xffffff, 0.65);
+dir.position.set(8, 14, 6);
+scene.add(dir);
+var grid = new THREE.GridHelper(30, 30, 0xc6cdd6, 0xdbe2ea);
+grid.position.set(1, -0.01, 0);
+scene.add(grid);
+
+function textSprite(text, color, size) {
+  var c = document.createElement('canvas');
+  var g = c.getContext('2d');
+  g.font = '600 ' + (size || 40) + 'px "IBM Plex Sans", sans-serif';
+  var w = Math.ceil(g.measureText(text).width) + 24;
+  c.width = w; c.height = 60;
+  var g2 = c.getContext('2d');
+  g2.font = '600 ' + (size || 40) + 'px "IBM Plex Sans", sans-serif';
+  g2.fillStyle = color || '#0a1f3d';
+  g2.textBaseline = 'middle';
+  g2.fillText(text, 12, 32);
+  var tex = new THREE.CanvasTexture(c);
+  var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+  sp.scale.set(w / 60 * 0.5, 0.5, 1);
+  return sp;
+}
+
+var bars = [], labelGroup = new THREE.Group();
+scene.add(labelGroup);
+function build() {
+  bars.forEach(function(b) { scene.remove(b.mesh); });
+  bars = [];
+  while (labelGroup.children.length) labelGroup.remove(labelGroup.children[0]);
+  var t = T[lang];
+  var xoff = -9;
+  SYSTEMS.forEach(function(s) {
+    var items = s.stages.map(function(st) { return { label: st[0], v: st[1], m: st[2], n: st[3], overall: false }; });
+    items.push({ label: t.overall, v: s.overall[1], m: s.overall[2], n: s.overall[3], overall: true });
+    items.forEach(function(it, i) {
+      var h = Math.max(0.08, it.v * 10);
+      var mat = new THREE.MeshLambertMaterial({ color: s.color, emissive: it.overall ? s.color : 0x000000, emissiveIntensity: it.overall ? 0.45 : 0 });
+      var w = it.overall ? 1.25 : 0.95;
+      var mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, w), mat);
+      mesh.position.set(xoff + i * 1.35, h / 2, 0);
+      mesh.userData = { sys: s.id, it: it };
+      scene.add(mesh);
+      bars.push({ mesh: mesh });
+      var val = textSprite((it.v * 100).toFixed(1) + '%', it.overall ? '#0a1f3d' : '#4a5a78', it.overall ? 42 : 36);
+      val.position.set(mesh.position.x, h + 0.45, 0);
+      labelGroup.add(val);
+      var sl = textSprite(it.label, '#8595ad', 34);
+      sl.position.set(mesh.position.x, 0.28, 1.0);
+      labelGroup.add(sl);
+    });
+    var sys = textSprite(t.sys[s.id], '#1e3a8a', 46);
+    sys.position.set(xoff + (items.length - 1) * 1.35 / 2, 0.3, -1.6);
+    labelGroup.add(sys);
+    xoff += items.length * 1.35 + 2.2;
+  });
+}
+
+var tip = document.getElementById('tip');
+var ray = new THREE.Raycaster(), mouse = new THREE.Vector2(), hovered = null;
+renderer.domElement.addEventListener('pointermove', function(e) {
+  mouse.x = (e.clientX / innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / innerHeight) * 2 + 1;
+  ray.setFromCamera(mouse, camera);
+  var hits = ray.intersectObjects(bars.map(function(b) { return b.mesh; }));
+  if (hits.length) {
+    var u = hits[0].object.userData, t = T[lang];
+    hovered = hits[0].object;
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY + 10) + 'px';
+    tip.innerHTML = '<b>' + t.sys[u.sys] + ' · ' + u.it.label + '</b><br>' + (u.it.v * 100).toFixed(1) + '% (' + u.it.m + '/' + u.it.n + ')' + (u.it.overall ? '<br>★ overall' : '');
+    renderer.domElement.style.cursor = 'pointer';
+  } else {
+    hovered = null;
+    tip.style.display = 'none';
+    renderer.domElement.style.cursor = 'grab';
+  }
+});
+renderer.domElement.addEventListener('click', function() {
+  if (hovered) window.open('../portal/index.html#curriculum', '_blank');
+});
+
+function applyLang() {
+  var t = T[lang];
+  document.querySelectorAll('[data-k]').forEach(function(el) {
+    var k = el.getAttribute('data-k');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
+  document.documentElement.lang = lang;
+  build();
+}
+document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
+  b.addEventListener('click', function() {
+    lang = b.dataset.l;
+    try { localStorage.setItem('viz_lang', lang); } catch(e) {}
+    applyLang();
+  });
+});
+window.addEventListener('resize', function() {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+applyLang();
+(function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
+</script>
+</body>
+</html>

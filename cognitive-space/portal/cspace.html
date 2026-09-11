@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CognitiveSpace — Guide & Launch</title>
+<title>CognitiveSpace — 3D Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -15,18 +15,24 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: "IBM Plex Sans", "Noto Sans SC", sans-serif; background: var(--surface); color: var(--text); -webkit-font-smoothing: antialiased; }
-.wrap { max-width: 860px; margin: 0 auto; padding: 56px 28px 64px; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 56px 28px 64px; }
 .kicker { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 8px; }
 h1 em { font-style: italic; }
-.sub { color: var(--text-2); margin-bottom: 28px; max-width: 640px; }
+.sub { color: var(--text-2); margin-bottom: 28px; max-width: 680px; }
 .rule { height: 1px; background: var(--accent); margin: 0 0 24px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
 .card { background: var(--surface-2); border: 1px solid var(--rule); border-radius: 8px; padding: 24px 26px; box-shadow: var(--card-shadow); margin-bottom: 18px; }
-.card h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: 1.3rem; margin-bottom: 10px; }
+.grid .card { margin-bottom: 0; display: flex; flex-direction: column; }
+.card h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: 1.3rem; margin-bottom: 6px; }
 .card p, .card li { font-size: .9rem; color: var(--text-2); line-height: 1.7; }
 .card ul { margin: 8px 0 0 18px; }
 .card li { margin: 5px 0; }
 .card li b { color: var(--text); font-weight: 600; }
+.stats { font-family: "IBM Plex Mono", monospace; font-size: .7rem; color: var(--accent); margin-bottom: 10px; }
+.card .launch { margin-top: auto; padding-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.soon { opacity: .75; border-style: dashed; }
 table.how { width: 100%; font-size: .82rem; border-collapse: collapse; margin-top: 12px; }
 table.how th, table.how td { padding: 8px 10px; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
 table.how th { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
@@ -40,6 +46,7 @@ table.how td:first-child { font-family: "IBM Plex Mono", monospace; font-size: .
 .btn-solid:hover { background: var(--text); color: #fff; text-decoration: none; }
 .btn-ghost { background: var(--surface-2); border-color: var(--rule); color: var(--text); font-weight: 500; }
 .btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+.btn-sm { padding: 9px 22px; font-size: .84rem; }
 .lang { position: fixed; top: 14px; right: 14px; display: flex; gap: 4px; }
 .lang button { border: 1px solid var(--rule); background: var(--surface-2); color: var(--text-2); padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600; }
 .lang button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -50,50 +57,98 @@ table.how td:first-child { font-family: "IBM Plex Mono", monospace; font-size: .
 <body>
 <div class="lang"><button class="active" data-l="en">EN</button><button data-l="de">DE</button><button data-l="zh">ZH</button></div>
 <div class="wrap">
-  <div class="kicker" data-k="kicker">Interactive guide · 2 min</div>
-  <h1 data-k="title">CognitiveSpace <em>3D</em></h1>
-  <p class="sub" data-k="sub">The mathematics subgraph as an explorable 3D knowledge graph — 556 nodes · 525 relations (238 links shown) · 219 trilingual groups.</p>
+  <div class="kicker" data-k="kicker">3D gallery · interactive views</div>
+  <h1 data-k="title">CognitiveSpace <em>Gallery</em></h1>
+  <p class="sub" data-k="sub">Every interactive 3D view of the project in one place — knowledge graphs first, metric landscapes next.</p>
   <div class="rule"></div>
 
-  <div class="card">
-    <h2 data-k="what_t">What is this?</h2>
-    <p data-k="what">Each bubble is a math concept; each line is a textbook relation (prerequisite, part-of, requires…). Color encodes the education stage. The same graph the paper measures — rendered explorable instead of printed static.</p>
+  <div class="grid">
+    <div class="card">
+      <h2 data-k="math_t">Mathematics 3D graph</h2>
+      <div class="stats" data-k="math_s">556 nodes · 525 relations (238 shown) · 219 groups</div>
+      <p data-k="math_d">The math subgraph as an explorable force graph. Search concepts, filter languages, inspect degree, roles and finding links per node.</p>
+      <div class="launch">
+        <a class="btn btn-solid btn-sm" href="../web/index.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="../web/index.html" target="_blank" data-k="full">Full screen ⬈</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-k="phys_t">Physics 3D graph</h2>
+      <div class="stats" data-k="phys_s">366 nodes · 383 relations · 4 levels</div>
+      <p data-k="phys_d">The physics subgraph in the same viewer — switch disciplines inside the app or open it directly. Textbook LDS values are mathematics-only.</p>
+      <div class="launch">
+        <a class="btn btn-solid btn-sm" href="../web/index.html?graph=physics" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="../web/index.html?graph=physics" target="_blank" data-k="full">Full screen ⬈</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 data-k="cds_t">CDS terrain</h2>
+      <div class="stats" data-k="cds_s">3 disciplines × 4 levels · Finding A</div>
+      <p data-k="cds_d">Concept-density bars in 3D. Peaks highlighted, values on hover, click through to the finding.</p>
+      <div class="launch">
+        <a class="btn btn-solid btn-sm" href="../web/cds-terrain.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="../web/cds-terrain.html" target="_blank" data-k="full">Full screen ⬈</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-k="gal_t">Margin galaxy</h2>
+      <div class="stats" data-k="gal_s">55 models · 12 family lanes</div>
+      <p data-k="gal_d">Every full replication margin as a sphere. X = margin, lanes = families, red = western runs.</p>
+      <div class="launch">
+        <a class="btn btn-solid btn-sm" href="../web/margin-galaxy.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="../web/margin-galaxy.html" target="_blank" data-k="full">Full screen ⬈</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 data-k="tow_t">Coverage towers</h2>
+      <div class="stats" data-k="tow_s">4 systems · per-stage bars</div>
+      <p data-k="tow_d">Textbook–curriculum coverage as towers. Bright bars = overall. Matched/total counts on hover.</p>
+      <div class="launch">
+        <a class="btn btn-solid btn-sm" href="../web/coverage-towers.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="../web/coverage-towers.html" target="_blank" data-k="full">Full screen ⬈</a>
+      </div>
+    </div>
+    <div class="card soon">
+      <h2 data-k="soon_t">More views — on request</h2>
+      <p data-k="soon_d">Chemistry graph (pipeline pending) · HDS depth cones · null-model suite. Tell us what to build next.</p>
+      <span class="tag" data-k="soontag">roadmap</span>
+    </div>
   </div>
 
   <div class="card">
-    <h2 data-k="why_t">Why explore it in 3D?</h2>
-    <p data-k="why">The language signal (ΔLDS) is structural: which concepts exist, how they link, how deep chains run. A flat figure shows one projection; the 3D view lets you verify density, hubs and language splits with your own eyes before trusting any single number.</p>
-  </div>
-
-  <div class="card">
-    <h2 data-k="how_t">How to operate it</h2>
+    <h2 data-k="how_t">How to operate the graphs</h2>
     <table class="how">
       <thead><tr><th data-k="th_c">Control</th><th data-k="th_f">Function</th></tr></thead>
       <tbody>
-        <tr><td>Universe / Space-Fill / Compare</td><td data-k="r_modes">View modes: free flight, volume filling, side-by-side language comparison.</td></tr>
-        <tr><td>All / ZH / EN / DE</td><td data-k="r_lang">Language filter: dim the graph to one language or show all three overlaid.</td></tr>
-        <tr><td data-k="r_click_h">Click node</td><td data-k="r_click">Detail panel: labels in three languages, metrics, relations of that concept.</td></tr>
-        <tr><td>Auto Rotate</td><td data-k="r_rot">Slow orbit for presentations; click again to stop.</td></tr>
-        <tr><td>Drag · Scroll · WASD</td><td data-k="r_nav">Rotate, zoom and fly through the graph.</td></tr>
-        <tr><td data-k="r_leg_h">Legend colors</td><td data-k="r_leg">Green elementary · cyan middle · blue high · purple college.</td></tr>
+        <tr><td>Search</td><td data-k="r_search">Find any concept by name in three languages; Enter flies the camera to it.</td></tr>
+        <tr><td>Universe / Space-Fill / Compare</td><td data-k="r_modes">Degree-sized force layout; level shells pinned; trilingual nodes enlarged.</td></tr>
+        <tr><td>All / ZH / EN / DE</td><td data-k="r_lang">Graph filter only — the interface language has its own switcher.</td></tr>
+        <tr><td>Math / Physics</td><td data-k="r_disc">Discipline switcher inside the viewer (?graph=physics deep-links).</td></tr>
+        <tr><td data-k="r_click_h">Click node</td><td data-k="r_click">Detail panel: trilingual labels, degree, role, HDS depth, finding link, Focus button.</td></tr>
+        <tr><td>Auto Rotate / WASD</td><td data-k="r_rot">Slow orbit for presentations; WASD flies the camera (toggleable).</td></tr>
+        <tr><td data-k="r_leg_h">Legend colors</td><td data-k="r_leg">Green elementary · teal middle · indigo high · purple college. Size = degree.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="scope" data-k="scope">SCOPE · Mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups). 238 links rendered (visual subset). Full project: 1,140+ concepts across math, physics, chemistry.</div>
+  <div class="scope" data-k="scope">SCOPE · Math: manifest.json (556 nodes · 525 relations · 219 groups), 238 links rendered. Physics: outputs/physics_cognitivespace.json (366 nodes · 383 relations). Full project: 1,140+ concepts across math, physics, chemistry.</div>
 
   <div class="launch">
-    <a class="btn btn-solid" href="../web/index.html" data-k="launch">Launch 3D graph →</a>
-    <a class="btn btn-ghost" href="../web/index.html" target="_blank" data-k="full">Full screen ⬈</a>
-    <span class="tag" data-k="loadnote">~430 KB loads on launch</span>
+    <span class="tag" data-k="loadnote">~430 KB loads per graph</span>
   </div>
 </div>
 
 <script>
 var T = {
-en: { kicker: "Interactive guide · 2 min", title: "CognitiveSpace <em>3D</em>", sub: "The mathematics subgraph as an explorable 3D knowledge graph — 556 nodes · 525 relations (238 links shown) · 219 trilingual groups.", what_t: "What is this?", what: "Each bubble is a math concept; each line is a textbook relation (prerequisite, part-of, requires…). Color encodes the education stage. The same graph the paper measures — rendered explorable instead of printed static.", why_t: "Why explore it in 3D?", why: "The language signal (ΔLDS) is structural: which concepts exist, how they link, how deep chains run. A flat figure shows one projection; the 3D view lets you verify density, hubs and language splits with your own eyes before trusting any single number.", how_t: "How to operate it", th_c: "Control", th_f: "Function", r_modes: "View modes: free flight, volume filling, side-by-side language comparison.", r_lang: "Language filter: dim the graph to one language or show all three overlaid.", r_click_h: "Click node", r_click: "Detail panel: labels in three languages, metrics, relations of that concept.", r_rot: "Slow orbit for presentations; click again to stop.", r_nav: "Rotate, zoom and fly through the graph.", r_leg_h: "Legend colors", r_leg: "Green elementary · cyan middle · blue high · purple college.", scope: "SCOPE · Mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups). 238 links rendered (visual subset). Full project: 1,140+ concepts across math, physics, chemistry.", launch: "Launch 3D graph →", full: "Full screen ⬈", loadnote: "~430 KB loads on launch" },
-de: { kicker: "Interaktive Anleitung · 2 Min.", title: "CognitiveSpace <em>3D</em>", sub: "Der Mathematik-Subgraph als erkundbarer 3D-Wissensgraph — 556 Knoten · 525 Relationen (238 dargestellt) · 219 dreisprachige Gruppen.", what_t: "Was ist das?", what: "Jede Blase ist ein Mathe-Konzept; jede Linie eine Lehrbuch-Relation (Voraussetzung, Teil-von, erfordert…). Farbe kodiert die Bildungsstufe. Derselbe Graph, den das Paper misst — erkundbar statt statisch gedruckt.", why_t: "Warum in 3D erkunden?", why: "Das Sprachsignal (ΔLDS) ist strukturell: welche Konzepte existieren, wie sie verlinkt sind, wie tief Ketten laufen. Eine flache Abbildung zeigt eine Projektion; die 3D-Ansicht lässt Dichte, Hubs und Sprach-Splits mit eigenen Augen prüfen, bevor man einer einzelnen Zahl vertraut.", how_t: "Bedienung", th_c: "Steuerung", th_f: "Funktion", r_modes: "Ansichten: freier Flug, Volumenfüllung, Seite-an-Seite-Sprachvergleich.", r_lang: "Sprachfilter: Graph auf eine Sprache dimmen oder alle drei überlagert zeigen.", r_click_h: "Knoten klicken", r_click: "Detailpanel: Labels in drei Sprachen, Metriken, Relationen des Konzepts.", r_rot: "Langsamer Orbit für Präsentationen; erneut klicken zum Stoppen.", r_nav: "Drehen, zoomen und durch den Graphen fliegen.", r_leg_h: "Legendenfarben", r_leg: "Grün Grundschule · Cyan Mittelstufe · Blau Oberstufe · Lila Hochschule.", scope: "SCOPE · Mathematik-Subgraph (manifest.json: 556 Knoten · 525 Relationen · 219 Gruppen). 238 Links dargestellt (visuelle Teilmenge). Gesamtprojekt: 1.140+ Konzepte aus Mathe, Physik, Chemie.", launch: "3D-Graph starten →", full: "Vollbild ⬈", loadnote: "~430 KB beim Start" },
-zh: { kicker: "交互式指南 · 2 分钟", title: "CognitiveSpace <em>3D</em>", sub: "数学子图的可探索 3D 知识图谱 —— 556 节点 · 525 关系（展示 238 条）· 219 个三语分组。", what_t: "这是什么？", what: "每个气泡是一个数学概念，每条线是一条教材关系（前提、部分、需求……）。颜色编码教育阶段。正是论文测量的同一张图——可探索，而非静态印刷。", why_t: "为什么用 3D 探索？", why: "语言信号（ΔLDS）是结构性的：哪些概念存在、如何连接、链有多深。平面图只是一个投影；3D 视图让你在相信任何单个数字之前，亲眼验证密度、枢纽与语言分野。", how_t: "操作方法", th_c: "控件", th_f: "功能", r_modes: "视图模式：自由飞行、体积填充、双语并排对比。", r_lang: "语言筛选：将图谱调暗至单一语言，或三语叠加显示。", r_click_h: "点击节点", r_click: "详情面板：三语标签、指标、该概念的关系。", r_rot: "慢速环绕，适合演示；再点停止。", r_nav: "旋转、缩放，飞越图谱。", r_leg_h: "图例颜色", r_leg: "绿 小学 · 青 初中 · 蓝 高中 · 紫 大学。", scope: "范围 · 数学子图（manifest.json：556 节点 · 525 关系 · 219 分组）。渲染 238 条（视觉子集）。全项目：数学、物理、化学 1,140+ 概念。", launch: "启动 3D 图谱 →", full: "全屏 ⬈", loadnote: "启动时加载 ~430 KB" }
+en: { kicker: "3D gallery · interactive views", title: "CognitiveSpace <em>Gallery</em>", sub: "Every interactive 3D view of the project in one place — knowledge graphs first, metric landscapes next.", math_t: "Mathematics 3D graph", math_s: "556 nodes · 525 relations (238 shown) · 219 groups", math_d: "The math subgraph as an explorable force graph. Search concepts, filter languages, inspect degree, roles and finding links per node.", phys_t: "Physics 3D graph", phys_s: "366 nodes · 383 relations · 4 levels", phys_d: "The physics subgraph in the same viewer — switch disciplines inside the app or open it directly. Textbook LDS values are mathematics-only.", cds_t: "CDS terrain", cds_s: "3 disciplines × 4 levels · Finding A", cds_d: "Concept-density bars in 3D. Peaks highlighted, values on hover, click through to the finding.", gal_t: "Margin galaxy", gal_s: "55 models · 12 family lanes", gal_d: "Every full replication margin as a sphere. X = margin, lanes = families, red = western runs.", tow_t: "Coverage towers", tow_s: "4 systems · per-stage bars", tow_d: "Textbook–curriculum coverage as towers. Bright bars = overall. Matched/total counts on hover.", soon_t: "More views — on request", soon_d: "Chemistry graph (pipeline pending) · HDS depth cones · null-model suite.", soontag: "roadmap", how_t: "How to operate the graphs", th_c: "Control", th_f: "Function", r_search: "Find any concept by name in three languages; Enter flies the camera to it.", r_modes: "Degree-sized force layout; level shells pinned; trilingual nodes enlarged.", r_lang: "Graph filter only — the interface language has its own switcher.", r_disc: "Discipline switcher inside the viewer (?graph=physics deep-links).", r_click_h: "Click node", r_click: "Detail panel: trilingual labels, degree, role, HDS depth, finding link, Focus button.", r_rot: "Slow orbit for presentations; WASD flies the camera (toggleable).", r_leg_h: "Legend colors", r_leg: "Green elementary · teal middle · indigo high · purple college. Size = degree.", scope: "SCOPE · Math: manifest.json (556 nodes · 525 relations · 219 groups), 238 links rendered. Physics: outputs/physics_cognitivespace.json (366 nodes · 383 relations). Full project: 1,140+ concepts across math, physics, chemistry.", launch: "Open →", full: "Full screen ⬈", loadnote: "~430 KB loads per graph" },
+de: { kicker: "3D-Galerie · interaktive Ansichten", title: "CognitiveSpace <em>Galerie</em>", sub: "Alle interaktiven 3D-Ansichten des Projekts an einem Ort — erst Wissensgraphen, dann Metriklandschaften.", math_t: "Mathematik-3D-Graph", math_s: "556 Knoten · 525 Relationen (238 gezeigt) · 219 Gruppen", math_d: "Der Mathe-Subgraph als erkundbarer Force-Graph. Konzepte suchen, Sprachen filtern, Grad, Rollen und Finding-Links pro Knoten prüfen.", phys_t: "Physik-3D-Graph", phys_s: "366 Knoten · 383 Relationen · 4 Stufen", phys_d: "Der Physik-Subgraph im selben Viewer — Disziplin in der App wechseln oder direkt öffnen. Lehrbuch-LDS nur Mathematik.", cds_t: "CDS-Terrain", cds_s: "3 Fächer × 4 Stufen · Finding A", cds_d: "Konzeptdichte-Balken in 3D. Spitzen markiert, Werte beim Hovern, Klick zum Finding.", gal_t: "Margen-Galaxie", gal_s: "55 Modelle · 12 Familien-Spuren", gal_d: "Jede vollständige Replikationsmarge als Kugel. X = Marge, Spuren = Familien, rot = West-Runs.", tow_t: "Coverage-Türme", tow_s: "4 Systeme · Stufen-Balken", tow_d: "Lehrbuch-Curriculum-Abdeckung als Türme. Helle Balken = gesamt. Treffer/Gesamt beim Hovern.", soon_t: "Mehr Ansichten — auf Anfrage", soon_d: "Chemie-Graph (Pipeline offen) · HDS-Tiefenkegel · Nullmodell-Suite.", soontag: "Roadmap", how_t: "Bedienung der Graphen", th_c: "Steuerung", th_f: "Funktion", r_search: "Konzeptnamen in drei Sprachen finden; Enter fliegt die Kamera dorthin.", r_modes: "Grad-skaliertes Force-Layout; Stufen-Schalen fixiert; dreisprachige Knoten vergrößert.", r_lang: "Nur Graphfilter — die UI-Sprache hat einen eigenen Umschalter.", r_disc: "Disziplin-Umschalter in der App (?graph=physics als Deep-Link).", r_click_h: "Knoten klicken", r_click: "Detailpanel: dreisprachige Labels, Grad, Rolle, HDS-Tiefe, Finding-Link, Fokus-Button.", r_rot: "Langsamer Orbit für Präsentationen; WASD fliegt die Kamera (umschaltbar).", r_leg_h: "Legendenfarben", r_leg: "Grün Grundschule · Petrol Mittelstufe · Indigo Oberstufe · Lila Hochschule. Größe = Grad.", scope: "SCOPE · Mathe: manifest.json (556 Knoten · 525 Relationen · 219 Gruppen), 238 Links dargestellt. Physik: outputs/physics_cognitivespace.json (366 Knoten · 383 Relationen). Gesamtprojekt: 1.140+ Konzepte aus Mathe, Physik, Chemie.", launch: "Öffnen →", full: "Vollbild ⬈", loadnote: "~430 KB pro Graph" },
+zh: { kicker: "3D 展厅 · 交互视图", title: "CognitiveSpace <em>展厅</em>", sub: "项目所有交互式 3D 视图的入口——先是知识图谱，再是度量景观。", math_t: "数学 3D 图谱", math_s: "556 节点 · 525 关系（展示 238）· 219 分组", math_d: "可探索的数学子图力导向图。搜索概念、筛选语言、查看每个节点的度、角色与发现链接。", phys_t: "物理 3D 图谱", phys_s: "366 节点 · 383 关系 · 4 学段", phys_d: "同一查看器中的物理子图——可在应用内切换学科，或直接打开。教材 LDS 仅为数学。", cds_t: "CDS 地形", cds_s: "3 学科 × 4 学段 · 发现 A", cds_d: "3D 概念密度柱。峰值高亮，悬停看值，点击直达发现。", gal_t: "边际星系", gal_s: "55 模型 · 12 家族泳道", gal_d: "每个完整复刻边际一颗球。X＝边际，泳道＝家族，红色＝西方运行。", tow_t: "覆盖塔群", tow_s: "4 体系 · 分学段柱", tow_d: "教材—课程覆盖率塔群。亮色为总体。悬停看命中/总数。", soon_t: "更多视图——按需", soon_d: "化学图谱（管线待跑）· HDS 深度锥 · 零模型套件。", soontag: "路线图", how_t: "图谱操作方法", th_c: "控件", th_f: "功能", r_search: "按三语名称找概念；回车飞过去。", r_modes: "按度缩放的力导向布局；学段壳层固定；三语节点放大。", r_lang: "仅筛选图谱——界面语言有独立切换器。", r_disc: "应用内学科切换器（?graph=physics 深链）。", r_click_h: "点击节点", r_click: "详情面板：三语标签、度、角色、HDS 深度、发现链接、聚焦按钮。", r_rot: "慢速环绕适合演示；WASD 飞行（可开关）。", r_leg_h: "图例颜色", r_leg: "绿 小学 · 青 初中 · 靛蓝 高中 · 紫 大学。大小＝度。", scope: "范围 · 数学：manifest.json（556 节点 · 525 关系 · 219 分组），渲染 238 条。物理：outputs/physics_cognitivespace.json（366 节点 · 383 关系）。全项目：数学、物理、化学 1,140+ 概念。", launch: "打开 →", full: "全屏 ⬈", loadnote: "每图约 430 KB" }
 };
 function setL(l) {
   var t = T[l] || T.en;

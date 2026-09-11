@@ -94,3 +94,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - qwen-max ohne error-Key (n=29): JSON unverändert, Zählregel dokumentiert (55×n=30 + qwen-max n=29/30).
 - 0.55–0.67 vs 0.547 (story deepseek-chat): Rundung, ok.
 - _deploy/LinguaGraph_BWKI2026.pdf (unreferenziert, identische Kopie) gelöscht; Mirrors 7/7 SAME; keine Konflikte/Backups; keine >10MB tracked; math_full.json (106MB) ignoriert, nicht getrackt.
+
+## v11 3D-Neubau (2026-09-11)
+
+- Viewer v2: porcelain hell, degree-Größen, Suche+Fokus, UI-Sprache entkoppelt, About-Panel, Modus-Captions, Space-Fill-Shell-Pinning, WASD-Toggle; 3 Bugs (all-EN, breathBase, Ripple-Farbe).
+- Physik-Graph (366/383, outputs/physics_cognitivespace.json → web/data_physics.js) + Disziplin-Umschalter + ?graph-Deep-Link; LDS-Zeilen nur Mathe (Physik: Hinweis).
+- Galerie cspace.html (2 Graphen + 3 Metrik-Karten + Roadmap); Story-Space-Sektion ent-hypt (556+366, 3 Modi).
+- Neu: cds-terrain.html (3×4 CDS, fig7-Quelle), margin-galaxy.html (55 Modelle, 12 Familien), coverage-towers.html (4 Systeme × Stages, coverage_all_curricula.json).

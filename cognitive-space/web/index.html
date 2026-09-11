@@ -7,6 +7,7 @@
     <title>CognitiveSpace v2 — Mathematics Knowledge Graph · ZH/EN/DE</title>
     <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
     <script src="data.js"></script>
+    <script src="data_physics.js"></script>
     <script>
     /* release.py schreibt `var data`; der Viewer erwartet COGNITIVE_DATA(_EXT) — Shim, kein Generator-Eingriff */
     if (typeof COGNITIVE_DATA_EXT === 'undefined' && typeof data !== 'undefined' && data && data.nodes) { var COGNITIVE_DATA_EXT = data; }
@@ -16,13 +17,12 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
         font-family:'IBM Plex Sans','Inter','Segoe UI',system-ui,-apple-system,sans-serif;
-        background:#050a14; color:#d0d0d0; overflow:hidden;
+        background:#f1f3f5; color:#0a1f3d; overflow:hidden;
         -webkit-font-smoothing:antialiased;
     }
     #graph-container {
         width:100vw; height:100vh;
-        /* CSS glow on the canvas for a more advanced look */
-        filter: brightness(1.6) saturate(1.8) drop-shadow(0 0 3px rgba(120,160,255,.12));
+        filter:none;
     }
     #graph-container canvas { display:block; }
 
@@ -97,24 +97,56 @@
 
     #mode-tag {
         position:absolute; bottom:20px; right:20px; z-index:100;
-        font-size:.5rem; color:#2a2a4a; letter-spacing:1.2px; text-transform:uppercase;
-        opacity:.6;
+        font-size:.5rem; color:#4a5a78; letter-spacing:1.2px; text-transform:uppercase;
+        opacity:.8;
     }
     #ctrl-hint {
         position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
-        font-size:.5rem; color:#2a2a4a; z-index:99;
-        letter-spacing:1px; opacity:.4; pointer-events:none;
+        font-size:.5rem; color:#4a5a78; z-index:99;
+        letter-spacing:1px; opacity:.7; pointer-events:none;
     }
     @media(max-width:640px){
         #hud{ min-width:150px; padding:10px; }
         #ctrl-hint{ display:none; }
     }
 
-    /* Diffusion ring animation */
+    /* Search */
+    #search {
+        width:100%; padding:5px 9px; margin-bottom:5px;
+        border:1px solid #c6cdd6; border-radius:4px; font-size:.6rem; font-family:inherit;
+        background:#fff; color:#0a1f3d;
+    }
+    #search:focus{ outline:2px solid #1e3a8a; outline-offset:1px; }
+    #searchMeta{ font-size:.55rem; color:#4a5a78; margin:-2px 0 5px; min-height:.7em; }
+    #searchMeta button{ border:none; background:none; color:#1e3a8a; cursor:pointer; font-size:.55rem; padding:0 2px; font-family:inherit; }
+    #searchMeta button:hover{ text-decoration:underline; }
+
+    /* Mode caption */
+    .cap{ font-size:.55rem; color:#4a5a78; margin-bottom:6px; line-height:1.4; min-height:1.9em; }
+
+    /* UI language switcher */
+    .ulab{ font-size:.5rem; color:#8595ad; text-transform:uppercase; letter-spacing:.6px; margin:2px 0; }
+
+    /* About panel */
+    #aboutBtn{ margin-left:auto; }
+    #about {
+        position:absolute; top:16px; right:16px; z-index:200;
+        background:rgba(248,250,252,.98); border:1px solid #1e3a8a; border-radius:8px;
+        padding:14px 16px; width:320px; max-width:calc(100vw - 32px);
+        display:none; box-shadow:0 18px 48px rgba(10,31,61,.25);
+        font-size:.62rem; color:#0a1f3d; line-height:1.5;
+    }
+    #about h2{ font-size:.72rem; color:#1e3a8a; margin-bottom:6px; }
+    #about p{ margin-bottom:6px; color:#33415c; }
+    #about a{ color:#1e3a8a; }
+    #about .mono{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
+    #aboutClose{ float:right; border:1px solid #c6cdd6; background:#f1f3f5; border-radius:4px; font-size:.55rem; padding:2px 8px; cursor:pointer; color:#4a5a78; font-family:inherit; }
+
+    /* Diffusion ring animation (legend-consistent indigo) */
     .ripple-ring {
         position: fixed;
         border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.8);
+        border: 2px solid rgba(30,58,138,0.7);
         pointer-events: none;
         z-index: 200;
         animation: ripple-expand 1.2s cubic-bezier(0, 0.5, 0.3, 1) forwards;
@@ -150,6 +182,9 @@
             <div class="si"><span class="sv" id="sR">0</span><span class="sl" data-i18n="stats.relations">Relations</span></div>
             <div class="si"><span class="sv" id="sL">0</span><span class="sl" data-i18n="stats.levels">Levels</span></div>
         </div>
+        <input id="search" data-i18n-placeholder="search.ph" placeholder="Search concepts…">
+        <div id="searchMeta"></div>
+        <div class="cap" id="modeCap" data-i18n="modecap.universe"></div>
         <div class="br" id="vb">
             <button class="b v a" data-m="universe" data-i18n="mode.universe">Universe</button>
             <button class="b v" data-m="spacefill" data-i18n="mode.spacefill">Space-Fill</button>
@@ -161,16 +196,36 @@
             <button class="b l" data-g="en">EN</button>
             <button class="b l" data-g="de">DE</button>
         </div>
+        <div class="ulab" data-i18n="disc.label">Discipline</div>
+        <div class="br" id="db">
+            <button class="b d a" data-d="math" data-i18n="disc.math">Math</button>
+            <button class="b d" data-d="physics" data-i18n="disc.physics">Physics</button>
+        </div>
+        <div class="ulab" data-i18n="ui.label">Interface</div>
+        <div class="br" id="ub">
+            <button class="b u" data-u="en">EN</button>
+            <button class="b u" data-u="de">DE</button>
+            <button class="b u" data-u="zh">ZH</button>
+        </div>
         <div class="br" style="margin-bottom:0">
             <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem" data-i18n="auto.rotate">⟳ Auto Rotate</button>
+            <button id="wasdBtn" class="b a" style="font-size:.5rem" data-i18n="wasd.toggle">WASD: on</button>
+            <button id="aboutBtn" class="b" style="font-size:.5rem" data-i18n="about.open">About</button>
         </div>
         <button id="rbtn" class="b" style="display:none;width:100%;margin-top:4px;border-color:rgba(255,107,107,.15);color:#ff6b6b" data-i18n="clear">← Clear</button>
         <div class="leg">
-            <span class="li"><span class="ld" style="background:#22c55e"></span><span data-i18n="level.elementary">Elementary</span></span>
-            <span class="li"><span class="ld" style="background:#06b6d4"></span><span data-i18n="level.middle">Middle</span></span>
-            <span class="li"><span class="ld" style="background:#2563eb"></span><span data-i18n="level.high">High</span></span>
-            <span class="li"><span class="ld" style="background:#c084fc"></span><span data-i18n="level.college">College</span></span>
+            <span class="li"><span class="ld" style="background:#1e7e4d"></span><span data-i18n="level.elementary">Elementary</span></span>
+            <span class="li"><span class="ld" style="background:#0e7490"></span><span data-i18n="level.middle">Middle</span></span>
+            <span class="li"><span class="ld" style="background:#1e3a8a"></span><span data-i18n="level.high">High</span></span>
+            <span class="li"><span class="ld" style="background:#6d28d9"></span><span data-i18n="level.college">College</span></span>
         </div>
+        <div class="li" style="margin-top:3px"><span data-i18n="legend.size">Size = degree (connections)</span></div>
+    </div>
+
+    <div id="about">
+        <button id="aboutClose" data-i18n="about.close">Close</button>
+        <h2 data-i18n="about.title">About this graph</h2>
+        <div data-i18n="about.body"></div>
     </div>
 
     <div id="detail">
@@ -202,15 +257,40 @@
        ═══════════════════════════════════════════════════════════════ */
 
     const LV = {
-        elementary: { c:'#22c55e', l:'Elementary' },
-        middle:     { c:'#06b6d4', l:'Middle' },
-        high:       { c:'#2563eb', l:'High' },
-        college:    { c:'#c084fc', l:'College' },
+        elementary: { c:'#1e7e4d', l:'Elementary' },
+        middle:     { c:'#0e7490', l:'Middle' },
+        high:       { c:'#1e3a8a', l:'High' },
+        college:    { c:'#6d28d9', l:'College' },
     };
     const MT = { universe:'UNIVERSE', spacefill:'SPACE-FILL', compare:'COMPARE' };
 
     let G, ND=[], LK=[], ADJ=new Map();
-    let mode='universe', lang='all', rT=null, _autoRotate=false;
+    let mode='universe', lang='all', graph='math', rT=null, _autoRotate=false, _wasd=true;
+
+    /* ─── Graph registry (math + physics share one viewer) ────── */
+    const GRAPHS = {
+        math: { data: () => (typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT : (typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null)) },
+        physics: { data: () => (typeof data_physics !== 'undefined' ? data_physics : null) },
+    };
+    function switchGraph(g, pushState) {
+        if (!GRAPHS[g] || !G) return;
+        const d = GRAPHS[g].data();
+        if (!d || !d.nodes || !d.nodes.length) return;
+        graph = g;
+        ND = d.nodes; LK = d.links;
+        document.getElementById('sC').textContent = ND.length;
+        document.getElementById('sR').textContent = LK.length;
+        document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
+        document.querySelectorAll('[data-d]').forEach(x=>x.classList.toggle('a', x.dataset.d === g));
+        lang = 'all';
+        document.querySelectorAll('[data-g]').forEach(x=>x.classList.toggle('a', x.dataset.g === 'all'));
+        document.getElementById('search').value = '';
+        document.getElementById('searchMeta').innerHTML = '';
+        hideDetail(); clearRipple();
+        buildAdj();
+        setMode(mode);
+        try { if (pushState !== false && window.history && history.replaceState) history.replaceState(null, '', g === 'math' ? location.pathname : '?graph=' + g); } catch(e) {}
+    }
 
     /* ─── Init ────────────────────────────────────────────────────── */
     function init() {
@@ -239,6 +319,14 @@
         mkGraph();
         mkUI();
         i18n.apply();
+        // i18n.detect() already follows browser on first visit; just sync widgets
+        refreshAbout(); refreshModeCap(); window.__paintWasd();
+        document.querySelectorAll('[data-u]').forEach(x=>x.classList.toggle('a', x.dataset.u === i18n.lang));
+        // Deep link: ?graph=physics
+        try {
+            const q = new URLSearchParams(location.search).get('graph');
+            if (q === 'physics') switchGraph('physics', false);
+        } catch(e) {}
 
         // Hide loading
         setTimeout(() => {
@@ -267,9 +355,9 @@
     function colorCB(n) {
         if (n._r != null) {
             const d = n._r;
-            return d === 0 ? '#ffffff' : d === 1 ? '#00ffff' : d === 2 ? '#ff8800' : '#440044';
+            return d === 0 ? '#1e3a8a' : d === 1 ? '#0e7490' : d === 2 ? '#b45309' : '#c6cdd6';
         }
-        if (n._h) return '#222222';
+        if (n._h) return '#dbe2ea';
         return (LV[n.level] || LV.college).c;
     }
     function opacityCB(n) {
@@ -277,13 +365,17 @@
         if (n._h) return .02;
         return 1;
     }
-    function valCB(n) {
-        if (n._val != null) return n._val;
-        const base = (n.source_count || 1) + 2;
-        const lv = n.level || 'college';
-        const m = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
-        return base * m;
+    function degreeOf(id){ const s = ADJ.get(id); return s ? s.size : 0; }
+    // Node size = degree (connections). Compare mode adds a trilingual bonus.
+    function sizeVal(n){
+        const d = degreeOf(n.id);
+        if (mode === 'compare') {
+            const langs = Object.keys(n.labels || {}).length;
+            return 2 + d * 1.2 + (langs >= 3 ? 4 : langs === 2 ? 2 : 0);
+        }
+        return 2 + d * 2.2;
     }
+    function valCB(n) { return sizeVal(n); }
 
     /* ─── Deterministic hash ──────────────────────────────────────────── */
     function hashStr(str) {
@@ -308,13 +400,10 @@
     function mkGraph() {
         ND.forEach(n => {
             n.color = colorCB(n);
-            const base = (n.source_count || 1) + 2;
-            const lv = n.level || 'college';
-            const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
-            n.val = base * m2;
+            n.val = sizeVal(n);
 
             // Deterministic position within spherical shell (hash-based, no Math.random)
-            const shell = SHELL[lv] || SHELL.college;
+            const shell = SHELL[n.level || 'college'] || SHELL.college;
             const h = hashStr(n.id);
             const r = shell.minR + (h % 1001) / 1000 * (shell.maxR - shell.minR);
             const theta = (h % 997) / 997 * Math.PI * 2;
@@ -322,18 +411,20 @@
             n.x = r * Math.sin(phi) * Math.cos(theta);
             n.y = r * Math.sin(phi) * Math.sin(theta);
             n.z = r * Math.cos(phi);
+            // Remember shell anchor for Space-Fill pinning
+            n.sx = n.x; n.sy = n.y; n.sz = n.z;
         });
 
         G = ForceGraph3D()(document.getElementById('graph-container'))
             .nodeColor('color')
             .nodeVal('val')
-            .nodeResolution(20)
-            .nodeRelSize(20)
-            .linkColor(l => l.inferred ? '#2a3d5e' : '#3f7ec0')
-            .linkWidth(0.25)
-            .linkOpacity(0.15)
+            .nodeResolution(16)
+            .nodeRelSize(8)
+            .linkColor(l => l.inferred ? '#b9c7d8' : '#7aa3c8')
+            .linkWidth(0.35)
+            .linkOpacity(0.35)
             .linkDirectionalParticles(0)
-            .backgroundColor('#050a14')
+            .backgroundColor('#f1f3f5')
             .showNavInfo(false)
             .width(innerWidth)
             .height(innerHeight)
@@ -357,28 +448,29 @@
             const cam = G.camera();
             if (!cam) return;
 
-            // Boost scene lighting (once)
+            // Boost scene lighting (once) — tuned for porcelain background
             if (!_lightsBoosted) {
                 const scene = G.scene();
                 if (scene) {
                     scene.children.forEach(c => {
                         if (c.type === 'AmbientLight' || (c.constructor && c.constructor.name === 'AmbientLight')) {
-                            c.intensity = 2.5;
+                            c.intensity = 1.6;
                             c.color.setHex(0xffffff);
                         }
                         if (c.type === 'DirectionalLight' || (c.constructor && c.constructor.name === 'DirectionalLight')) {
-                            c.intensity = 1.8;
+                            c.intensity = 1.2;
                             c.color.setHex(0xffffff);
                         }
                         if (c.type === 'HemisphereLight' || (c.constructor && c.constructor.name === 'HemisphereLight')) {
-                            c.intensity = 1.5;
+                            c.intensity = 1.0;
                         }
                     });
                     _lightsBoosted = true;
                 }
             }
 
-            // WASD movement
+            // WASD movement (toggleable; ignored while typing in search)
+            if (_wasd && document.activeElement && document.activeElement.id !== 'search') {
             cam.updateMatrixWorld();
             const e = cam.matrixWorld.elements;
             const fx = -e[8], fy = -e[9], fz = -e[10];
@@ -399,6 +491,7 @@
                 cam.position.y += (dy / len) * spd;
                 cam.position.z += (dz / len) * spd;
             }
+            } // end _wasd guard
 
             // Auto-rotate around Y axis (toggle with [Auto Rotate] button)
             if (_autoRotate) {
@@ -409,30 +502,13 @@
                 cam.lookAt(0, 0, 0);
             }
 
-            // Breathing animation: pulse node sizes by 10%
+            // Breathing animation: gentle ±4% pulse on degree-based sizes
+            // (sizeVal reads live mode — no stale cache across mode switches)
             const t = Date.now() * 0.001;
-            const pulse = 1.0 + 0.1 * Math.sin(t * Math.PI);
+            const pulse = 1.0 + 0.04 * Math.sin(t * Math.PI);
             const gd = G.graphData();
             if (gd && gd.nodes) {
-                gd.nodes.forEach(n => {
-                    if (n._breathBase == null) {
-                        const base = (n.source_count || 1) + 2;
-                        if (mode === 'spacefill') {
-                            const lv = n.level || 'college';
-                            const m2 = lv === 'college' ? 12 : lv === 'high' ? 9 : lv === 'middle' ? 6 : 4;
-                            n._breathBase = base * m2;
-                        } else if (mode === 'compare') {
-                            const langs = Object.keys(n.labels || {}).length;
-                            n._breathBase = base * (langs >= 3 ? 8 : langs === 2 ? 6 : 3);
-                        } else {
-                            const lv = n.level || 'college';
-                            const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
-                            n._breathBase = base * m2;
-                        }
-                    }
-                    // Set n.val directly (library reads this via nodeVal('val'))
-                    n.val = n._breathBase * pulse;
-                });
+                gd.nodes.forEach(n => { n.val = sizeVal(n) * pulse; });
             }
 
         });
@@ -565,18 +641,31 @@
         const uniqueNbrs = [...new Set(neighbors)]; const topNbrs = uniqueNbrs.slice(0,5);
         const nbrHtml = topNbrs.length ? '<div class="row"><span class="label">'+i18n.tr('detail.connected_to')+'</span><span class="val">'+topNbrs.join(', ')+(uniqueNbrs.length>5?', +'+(uniqueNbrs.length-5):'')+'</span></div>' : '';
 
+        // Portal cross-link: chain → Finding B, hub → Finding A, else → Finding C
+        const fanchor = (role === i18n.tr('role.prerequisite_chain')) ? 'finding-b'
+            : (role === i18n.tr('role.hub') ? 'finding-a-content' : 'finding-c');
+        const fkey = fanchor === 'finding-b' ? 'b' : (fanchor === 'finding-a-content' ? 'a' : 'c');
+
+        // LDS textbook values are mathematics-pipeline only — hidden on physics
+        const ldsRows = (graph === 'physics')
+            ? '<div class="row"><span class="label">'+i18n.tr('detail.graph_level')+'</span><span class="val" style="font-weight:400">'+i18n.tr('detail.no_lds')+'</span></div>'
+            : '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhen')+'</span><span class="val">0.934</span></div>'+
+              '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhde')+'</span><span class="val">0.519</span></div>'+
+              '<div class="row"><span class="label">'+i18n.tr('detail.lds_ende')+'</span><span class="val">0.938</span></div>'+
+              '<div class="row"><span class="label">'+i18n.tr('detail.graph_level')+'</span><span class="val" style="font-weight:400">'+i18n.tr('detail.graph_level_v')+'</span></div>';
+
         document.getElementById('dmetrics').innerHTML =
             '<div style="margin-bottom:3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.node.profile')+'</div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.degree')+'</span><span class="val">'+connections+' connections</span></div>'+nbrHtml+
+            '<div class="row"><span class="label">'+i18n.tr('detail.degree')+'</span><span class="val">'+connections+' '+i18n.tr('connections')+'</span></div>'+nbrHtml+
             '<div class="row"><span class="label">'+i18n.tr('detail.role')+'</span><span class="val" style="color:'+roleColor+'">'+role+'</span></div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.hds_depth')+'</span><span class="val">'+hdsDepth+' levels</span></div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.sources')+'</span><span class="val">'+(n.source_count||1)+' textbooks</span></div>'+
-            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:574)})+'</div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.hds_depth')+'</span><span class="val">'+hdsDepth+' '+i18n.tr('levels')+'</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.sources')+'</span><span class="val">'+(n.source_count||1)+' '+i18n.tr('textbooks')+'</span></div>'+
+            '<div class="row"><span class="label">'+i18n.tr('detail.finding')+'</span><span class="val"><a href="../portal/index.html#'+fanchor+'" target="_blank" style="color:#1e3a8a">'+i18n.tr('finding.'+fkey)+'</a> · <a href="#" id="focusBtn" style="color:#1e3a8a">'+i18n.tr('detail.focus')+'</a></span></div>'+
+            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:556)})+'</div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.cds')+'</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.avg_degree')+'</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhen')+'</span><span class="val">0.934</span></div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhde')+'</span><span class="val">0.519</span></div>'+
-            '<div class="row"><span class="label">'+i18n.tr('detail.lds_ende')+'</span><span class="val">0.938</span></div>';
+            ldsRows;
+        document.getElementById('focusBtn').addEventListener('click', function(ev){ ev.preventDefault(); focusNode(n); });
 
         document.getElementById('dnote').innerHTML =
             '<div style="margin-bottom:2px;font-weight:500;color:#7a9aff">'+i18n.tr('detail.about')+'</div>'+
@@ -612,31 +701,22 @@
             });
         }
 
-        // Set color and size per mode
+        // Degree-based sizes; Space-Fill pins nodes to education-level shells
         fn.forEach(n => {
             n.color = colorCB(n);
-            const base = (n.source_count || 1) + 2;
-            if (m === 'spacefill') {
-                const lv = n.level || 'college';
-                const m2 = lv === 'college' ? 12 : lv === 'high' ? 9 : lv === 'middle' ? 6 : 4;
-                n.val = base * m2;
-            } else if (m === 'compare') {
-                const langs = Object.keys(n.labels || {}).length;
-                n.val = base * (langs >= 3 ? 8 : langs === 2 ? 6 : 3);
-            } else {
-                const lv = n.level || 'college';
-                const m2 = lv === 'college' ? 8 : lv === 'high' ? 6 : lv === 'middle' ? 4 : 2;
-                n.val = base * m2;
-            }
+            n.val = sizeVal(n);
+            if (m === 'spacefill' && n.sx != null) { n.fx = n.sx; n.fy = n.sy; n.fz = n.sz; }
+            else { n.fx = undefined; n.fy = undefined; n.fz = undefined; }
         });
+        refreshModeCap();
 
         // Re-load graph data with colors and sizes baked in
         G.nodeColor('color')
          .nodeVal('val')
-         .nodeRelSize(20)
+         .nodeRelSize(8)
          .nodeOpacity(1)
-         .linkWidth(0.25)
-         .linkOpacity(0.15)
+         .linkWidth(0.35)
+         .linkOpacity(0.35)
          .linkDirectionalParticles(0)
          .graphData({ nodes: fn, links: fl });
 
@@ -644,13 +724,8 @@
         document.getElementById('sub').textContent = i18n.tr('hud.subtitle', {concepts: fn.length, relations: fl.length});
     }
 
-    /* ─── Language Filter ─────────────────────────────────────────── */
+    /* ─── Language Filter (graph only — UI language has its own switcher) ── */
     function setLang(l) {
-        // Also switch UI language when a language is selected
-        if (['zh','en','de'].indexOf(l) >= 0) {
-            i18n.setLanguage(l);
-            i18n.apply();
-        }
         lang = l;
         if (!G) return;
 
@@ -690,10 +765,22 @@
         // Update HUD with filter count
         const sub = document.getElementById('sub');
         if (l === 'all') {
-            sub.textContent = ND.length + ' concepts · ' + fl.length + ' relations';
+            sub.textContent = i18n.tr('hud.subtitle', {concepts: ND.length, relations: fl.length});
         } else {
-            sub.textContent = fn.length + ' / ' + ND.length + ' concepts · ' + fl.length + ' relations';
+            sub.textContent = i18n.tr('hud.filtered', {shown: fn.length, concepts: ND.length, relations: fl.length});
         }
+    }
+
+    /* ─── Mode caption ────────────────────────────────────────── */
+    function refreshModeCap() {
+        const el = document.getElementById('modeCap');
+        if (el) el.textContent = i18n.tr('modecap.' + mode);
+    }
+
+    /* ─── About panel (innerHTML — i18n.apply uses textContent) ── */
+    function refreshAbout() {
+        const el = document.querySelector('[data-i18n="about.body"]');
+        if (el) el.innerHTML = i18n.tr(graph === 'physics' ? 'about.body_physics' : 'about.body');
     }
 
     /* ─── UI ──────────────────────────────────────────────────────── */
@@ -710,6 +797,9 @@
                 b.classList.add('a'); setLang(b.dataset.g);
             });
         });
+        document.querySelectorAll('[data-d]').forEach(b => {
+            b.addEventListener('click', ()=>{ switchGraph(b.dataset.d); });
+        });
         document.getElementById('rbtn').addEventListener('click', ()=>{
             hideDetail(); clearRipple(); setLang('all');
             document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));
@@ -721,6 +811,81 @@
             this.dataset.ar = _autoRotate ? 'on' : 'off';
             this.classList.toggle('a', _autoRotate);
         });
+        // WASD toggle
+        const wasdBtn = document.getElementById('wasdBtn');
+        window.__paintWasd = function() {
+            wasdBtn.classList.toggle('a', _wasd);
+            wasdBtn.textContent = i18n.tr(_wasd ? 'wasd.on' : 'wasd.off');
+        };
+        wasdBtn.addEventListener('click', function() { _wasd = !_wasd; window.__paintWasd(); });
+        // UI language switcher (independent from graph filter)
+        document.querySelectorAll('[data-u]').forEach(b => {
+            b.addEventListener('click', ()=>{
+                document.querySelectorAll('[data-u]').forEach(x=>x.classList.remove('a'));
+                b.classList.add('a');
+                i18n.setLanguage(b.dataset.u);
+                i18n.apply();
+                refreshAbout(); refreshModeCap(); window.__paintWasd(); refreshCounts();
+                document.getElementById('mode-tag').textContent = i18n.tr('mode.'+mode);
+            });
+        });
+        // About panel
+        const about = document.getElementById('about');
+        document.getElementById('aboutBtn').addEventListener('click', () => {
+            refreshAbout();
+            about.style.display = about.style.display === 'block' ? 'none' : 'block';
+        });
+        document.getElementById('aboutClose').addEventListener('click', () => { about.style.display = 'none'; });
+        // Search
+        const searchBox = document.getElementById('search');
+        const searchMeta = document.getElementById('searchMeta');
+        function matchNodes(q){
+            q = (q || '').trim().toLowerCase();
+            if (!q) return [];
+            return ND.filter(n => {
+                const lbs = n.labels || {};
+                return (n.name || '').toLowerCase().indexOf(q) >= 0 ||
+                    Object.keys(lbs).some(l => (lbs[l] || '').toLowerCase().indexOf(q) >= 0);
+            }).slice(0, 6);
+        }
+        searchBox.addEventListener('input', () => {
+            const ms = matchNodes(searchBox.value);
+            searchMeta.innerHTML = '';
+            if (!searchBox.value.trim()) return;
+            if (!ms.length) { searchMeta.textContent = i18n.tr('search.none'); return; }
+            ms.forEach(n => {
+                const b = document.createElement('button');
+                b.textContent = n.name || n.id;
+                b.addEventListener('click', () => focusNode(n));
+                searchMeta.appendChild(b);
+                searchMeta.appendChild(document.createTextNode(' '));
+            });
+        });
+        searchBox.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                const ms = matchNodes(searchBox.value);
+                if (ms.length) focusNode(ms[0]);
+            }
+        });
+    }
+
+    /* ─── Helpers: counts / caption / about / focus ───────────── */
+    function refreshCounts(){
+        if (!G) return;
+        const gd = G.graphData();
+        const fn = gd ? gd.nodes.length : ND.length, fl = gd ? gd.links.length : LK.length;
+        document.getElementById('sub').textContent = (lang === 'all')
+            ? i18n.tr('hud.subtitle', {concepts: ND.length, relations: fl})
+            : i18n.tr('hud.filtered', {shown: fn, concepts: ND.length, relations: fl});
+    }
+    function focusNode(n) {
+        showDetail(n);
+        ripple(n);
+        if (!G || n.x == null) return;
+        const r = Math.hypot(n.x || 0, n.y || 0, n.z || 0) || 200;
+        const f = (r + 150) / r;
+        G.cameraPosition({ x: (n.x || 0) * f, y: (n.y || 0) * f, z: (n.z || 0) * f },
+            { x: n.x || 0, y: n.y || 0, z: n.z || 0 }, 900);
     }
 
     /* ─── Start ───────────────────────────────────────────────────── */
