@@ -41,7 +41,7 @@ const TRANSLATIONS = {
         'level.college': 'College',
 
         // Links
-        'research.portal': '📖 Research Portal',
+        'research.portal': 'Research Portal',
 
         // Controls hint
         'ctrl.hint': 'DRAG · SCROLL · WASD',
@@ -117,7 +117,7 @@ const TRANSLATIONS = {
         'level.high': 'Oberstufe',
         'level.college': 'Hochschule',
 
-        'research.portal': '📖 Forschungsportal',
+        'research.portal': 'Forschungsportal',
 
         'ctrl.hint': 'ZIEHEN · SKALIEREN · WASD',
 
@@ -185,7 +185,7 @@ const TRANSLATIONS = {
         'level.high': '高中',
         'level.college': '大学',
 
-        'research.portal': '📖 研究门户',
+        'research.portal': '研究门户',
 
         'ctrl.hint': '拖拽 · 滚轮 · WASD',
 

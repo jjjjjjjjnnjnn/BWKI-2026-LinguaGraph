@@ -281,13 +281,13 @@ footer { text-align: center; padding: 48px 24px; color: var(--text2); font-size:
   A cross-lingual, cross-disciplinary framework for measuring structural differences in educational knowledge organization.</p>
 
   <div class="stats">
-    <div class="stat-card"><div class="num">1,160+</div><div class="label">Concepts</div></div>
-    <div class="stat-card"><div class="num green">4,100+</div><div class="label">Relations</div></div>
+    <div class="stat-card"><div class="num">1,140+</div><div class="label">Concepts</div></div>
+    <div class="stat-card"><div class="num green">1,100+</div><div class="label">Relations</div></div>
     <div class="stat-card"><div class="num cyan">3</div><div class="label">Languages (ZH/EN/DE)</div></div>
     <div class="stat-card"><div class="num orange">3</div><div class="label">Disciplines</div></div>
     <div class="stat-card"><div class="num pink">4</div><div class="label">Education Systems</div></div>
     <div class="stat-card"><div class="num">92</div><div class="label">Gold Labels</div></div>
-    <div class="stat-card"><div class="num green">0.939</div><div class="label">Overall F1</div></div>
+    <div class="stat-card"><div class="num green">0.881</div><div class="label">Overall F1 (weighted)</div></div>
   </div>
 
   <!-- Architecture Diagram -->
@@ -304,7 +304,7 @@ graph LR
     subgraph Extraction["🧩 Concept Extraction"]
         LLM["qwen-plus API<br/>MIMO Prompt"]
         CG["Concept Graphs<br/>1160+ nodes"]
-        GL["Gold Labels<br/>92 labels | F1=0.939"]
+        GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939)"]
     end
 
     subgraph Analysis["📊 Structural Analysis"]
@@ -419,7 +419,7 @@ flowchart TB
   <div class="card-grid">
     <div class="card">
       <h3>📐 Mathematics</h3>
-      <p>574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus. Validated against 4 national curricula.</p>
+      <p>556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus. Validated against 4 national curricula.</p>
       <div class="meta">CDS peak: 0.271 · HDS max: 8 · LDS range: 0.52–0.94</div>
     </div>
     <div class="card">
@@ -523,11 +523,11 @@ flowchart TB
         <td>20</td>
       </tr>
       <tr style="background:rgba(96,165,250,.08)">
-        <td><strong>All</strong></td>
-        <td><span class="tag tag-green">0.974</span></td>
-        <td><span class="tag tag-green">0.949</span></td>
-        <td><span class="tag tag-green">0.882</span></td>
-        <td><strong>0.939</strong></td>
+        <td><strong>All (weighted)</strong></td>
+        <td><span class="tag tag-green">0.951</span></td>
+        <td><span class="tag tag-green">0.842</span></td>
+        <td><span class="tag tag-green">0.844</span></td>
+        <td><strong>0.881</strong></td>
         <td><strong>92</strong></td>
       </tr>
     </tbody>
@@ -560,13 +560,14 @@ flowchart TB
       <tr><td>19</td><td>deepseek-chat</td><td>0.547</td></tr>
     </tbody>
   </table>
+  <p style="font-size:.82rem;color:var(--text2);margin-top:12px">Scope: this 19-model table is gold-label model selection (extraction F1) — not the language-signal replication: 55 full runs / 50 models, all 55 ZH-DE pairs significant (paper §5.10), plus N=15 human validation (F11/F12: between-subject ΔLDS ≈ 0, within-subject signal clear).</p>
 </section>
 
 <!-- ================================================================ -->
 <!-- SECTION 5: FINDINGS -->
 <!-- ================================================================ -->
 <section id="findings">
-  <h2>10 Findings (F1–F10)</h2>
+  <h2>12 Findings (F1–F12)</h2>
   <p class="subtitle">Quantitative evidence for structural differences in knowledge organization</p>
 
   <table class="finding-table">
@@ -576,7 +577,7 @@ flowchart TB
     <tbody>
       <tr class="fhighlight">
         <td class="fnum">F1</td>
-        <td><strong>CDS peaks at Middle school (0.271), not Elementary</strong><br><span style="color:var(--text2);font-size:.82rem">Independently verified across ZH/EN/DE on 574 math concepts</span></td>
+        <td><strong>CDS peaks at Middle school (0.271), not Elementary</strong><br><span style="color:var(--text2);font-size:.82rem">Independently verified across ZH/EN/DE on 556 math concepts</span></td>
         <td>Middle CDS = 0.271<br>College CDS = 0.042</td>
         <td><span class="tag tag-blue">CDS</span></td>
       </tr>
@@ -679,7 +680,7 @@ flowchart TB
   <p class="subtitle">Explore the 3D knowledge graph — rotate, filter, compare</p>
 
   <div class="card" style="text-align:center">
-    <p style="margin-bottom:16px">The CognitiveSpace visualization lets you explore all 1,160+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.</p>
+    <p style="margin-bottom:16px">The CognitiveSpace visualization lets you explore all 1,140+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.</p>
     <a href="../index.html" target="_blank" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;font-size:1.05rem;text-decoration:none">🚀 Launch CognitiveSpace 3D</a>
     <div class="meta" style="margin-top:16px;border:none;padding:0">Three.js · 3 discipline layers · Cross-lingual comparison · 4 view modes</div>
   </div>
@@ -698,12 +699,12 @@ flowchart TB
 timeline
     title LinguaGraph Development
     Phase 0 : Concept & Pilot : 3 students : Pilot LDS analysis : 20 gold labels
-    Phase 1 : Math Knowledge Graph : 574 concepts : 3,538 relations : 68 textbooks : CDS/HDS/LDS
+    Phase 1 : Math Knowledge Graph : 556 concepts : 525 relations : 68 textbooks : CDS/HDS/LDS
     Phase 2 : Physics Expansion : 366 concepts : 383 relations : 94 versions : Cross-disciplinary validation
     Phase 3 : Chemistry Expansion : 220 concepts : 215 relations : 18 versions : Three-discipline comparison
     Phase 4 : Curriculum Layer : NRW curriculum : UK curriculum : US curriculum : CN curriculum
     Phase 5 : Coverage Score : 12.7%–95.4% range : F9/F10 findings : System philosophy analysis
-    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.939 : 19-model benchmark : qwen-plus selected
+    Phase 6 : Gold Validation : 92 gold labels : F1 = 0.881 weighted : 19-model benchmark : qwen-plus selected
     Phase 7 : Paper & Release : Full paper : v0.2 release : GitHub Pages : Trilingual README
     </div>
   </div>
@@ -716,7 +717,7 @@ timeline
     </div>
     <div class="timeline-item">
       <div class="date">Phase 1 — Mathematics</div>
-      <h4>Mathematics Knowledge Graph (574 concepts, 3,538 relations)</h4>
+      <h4>Mathematics Knowledge Graph (556 concepts, 525 relations)</h4>
       <p>68 textbooks across ZH/EN/DE. MIMO extraction pipeline. First CDS/HDS/LDS measurements. Discovered peak-and-decline density pattern (F1–F5).</p>
     </div>
     <div class="timeline-item">
@@ -742,7 +743,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 6 — Validation</div>
       <h4>Gold Standard Validation & Model Benchmark</h4>
-      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. qwen-plus selected as production model (F1=0.939 social, F1=0.882 overall).</p>
+      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. qwen-plus selected as production model (F1=0.939 social, F1=0.881 weighted).</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 7 — Publication</div>
@@ -762,11 +763,11 @@ timeline
   <div class="card-grid" style="margin-bottom:32px">
     <div class="card" style="text-align:center">
       <h3 style="justify-content:center">📄 Preprint</h3>
-      <p>Full manuscript covering all 3 research questions, 4 metrics, 10 findings, model benchmarks, and error analysis.</p>
+      <p>Full manuscript covering all 3 research questions, 4 metrics, 12 findings, model benchmarks, and error analysis.</p>
       <div class="meta" style="border:none;padding:0">
         <span class="tag tag-blue">docs/paper/</span>
-        <span class="tag tag-green">7 chapters</span>
-        <span class="tag tag-yellow">19+ references</span>
+        <span class="tag tag-green">9 files</span>
+        <span class="tag tag-yellow">54 references</span>
       </div>
     </div>
     <div class="card" style="text-align:center">
@@ -818,7 +819,7 @@ timeline
 <!-- Footer -->
 <footer>
   <p>🧠 <strong>LinguaGraph</strong> — Cross-Lingual Knowledge Structure Analysis Framework</p>
-  <p style="margin-top:8px">BWKI 2026 · All Rights Reserved · Built with qwen-plus · 1,160+ concepts · 92 gold labels · F1 = 0.939</p>
+  <p style="margin-top:8px">BWKI 2026 · All Rights Reserved · Built with qwen-plus · 1,140+ concepts · 92 gold labels · F1 = 0.881 weighted</p>
   <p style="margin-top:4px"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">GitHub</a></p>
 </footer>
 
@@ -898,7 +899,7 @@ var TRANSLATIONS = {
     rq3_answer: 'Coverage varies dramatically: CN 95.4% → UK 37.3% → US 17.2% → NRW 12.7%. Chinese textbooks achieve near-complete curriculum coverage; Western systems show selective alignment.',
     rq3_metric: 'CS: 12.7%–95.4%',
     section_dataset_title: 'Dataset', section_dataset_sub: '180+ textbooks across 3 languages, 3 disciplines, 4 education systems',
-    math_title: 'Mathematics', math_desc: '574 concepts, 3,538 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
+    math_title: 'Mathematics', math_desc: '556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
     physics_title: 'Physics', physics_desc: '366 concepts, 383 relations across 94 textbook versions. Covers mechanics through quantum physics.',
     chemistry_title: 'Chemistry', chemistry_desc: '220 concepts, 215 relations across 18 textbook versions. Covers general chemistry through organic chemistry.',
     curr_title: 'Curriculum Standards',
@@ -921,7 +922,7 @@ var TRANSLATIONS = {
     all_label: 'All',
     bench_title: 'Model Benchmark (19 Models)',
     th_rank: 'Rank', th_model: 'Model', th_f1_social: 'F1 (Social)', th_f1_math: 'F1 (Math)',
-    section_findings_title: '10 Findings (F1–F10)', section_findings_sub: 'Quantitative evidence for structural differences in knowledge organization',
+    section_findings_title: '12 Findings (F1–F12)', section_findings_sub: 'Quantitative evidence for structural differences in knowledge organization',
     th_fnum: '#', th_finding: 'Finding', th_evidence: 'Evidence', th_metric: 'Metric',
     section_figures_title: 'Figures', section_figures_sub: 'Key visualizations from the LinguaGraph analysis',
     fig3_caption: '<strong>Fig 3</strong> — Concept Density Score (CDS) across education levels for Mathematics. CDS peaks at Middle school (0.271), then declines 3.7x to High school (0.073).',
@@ -930,12 +931,12 @@ var TRANSLATIONS = {
     fig6_caption: '<strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.',
     fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds universally.',
     section_space_title: 'Interactive Cognitive Space', section_space_sub: 'Explore the 3D knowledge graph — rotate, filter, compare',
-    space_desc: 'The CognitiveSpace visualization lets you explore all 1,160+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.',
+    space_desc: 'The CognitiveSpace visualization lets you explore all 1,140+ concepts in an interactive 3D environment. Switch between zoom/rotate/fly modes, filter by language, toggle discipline layers, and compare cross-lingual knowledge structures.',
     space_cta: 'Launch CognitiveSpace 3D',
     space_meta: 'Three.js · 3 discipline layers · Cross-lingual comparison · 4 view modes',
     section_timeline_title: 'Project Timeline', section_timeline_sub: 'From concept to comprehensive framework',
     section_paper_title: 'Paper & References', section_paper_sub: 'Preprint manuscript, citations, and related work',
-    preprint_title: 'Preprint', preprint_desc: 'Full manuscript covering all 3 research questions, 4 metrics, 10 findings, model benchmarks, and error analysis.',
+    preprint_title: 'Preprint', preprint_desc: 'Full manuscript covering all 3 research questions, 4 metrics, 12 findings, model benchmarks, and error analysis.',
     data_title: 'Data', data_desc: 'All knowledge graphs, curriculum alignments, and evaluation results available in the repository.',
     references_title: 'Key References',
     cite_title: 'Cite this work',
@@ -966,7 +967,7 @@ var TRANSLATIONS = {
     rq3_answer: 'Abdeckung variiert stark: CN 95,4% → GB 37,3% → US 17,2% → NRW 12,7%. Chinesische Lehrbuecher erreichen nahezu vollstaendige Lehrplanabdeckung; westliche Systeme zeigen selektive Anpassung.',
     rq3_metric: 'CS: 12,7%–95,4%',
     section_dataset_title: 'Datensatz', section_dataset_sub: '180+ Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
-    math_title: 'Mathematik', math_desc: '574 Konzepte, 3.538 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
+    math_title: 'Mathematik', math_desc: '556 Konzepte, 525 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
     physics_title: 'Physik', physics_desc: '366 Konzepte, 383 Beziehungen aus 94 Lehrbuchversionen. Von Mechanik bis Quantenphysik.',
     chemistry_title: 'Chemie', chemistry_desc: '220 Konzepte, 215 Beziehungen aus 18 Lehrbuchversionen. Von allgemeiner bis organischer Chemie.',
     curr_title: 'Lehrplanstandards',
@@ -989,7 +990,7 @@ var TRANSLATIONS = {
     all_label: 'Alle',
     bench_title: 'Modell-Benchmark (19 Modelle)',
     th_rank: 'Rang', th_model: 'Modell', th_f1_social: 'F1 (Sozial)', th_f1_math: 'F1 (Math)',
-    section_findings_title: '10 Erkenntnisse (F1–F10)', section_findings_sub: 'Quantitative Belege fuer strukturelle Unterschiede in der Wissensorganisation',
+    section_findings_title: '12 Erkenntnisse (F1–F12)', section_findings_sub: 'Quantitative Belege fuer strukturelle Unterschiede in der Wissensorganisation',
     th_fnum: '#', th_finding: 'Erkenntnis', th_evidence: 'Belege', th_metric: 'Metrik',
     section_figures_title: 'Abbildungen', section_figures_sub: 'Wichtige Visualisierungen aus der LinguaGraph-Analyse',
     fig3_caption: '<strong>Abb. 3</strong> — Concept Density Score (CDS) nach Bildungsstufe fuer Mathematik. CDS erreicht Hoehepunkt in der Mittelstufe (0,271), dann 3,7-facher Abfall zur Oberstufe (0,073).',
@@ -998,12 +999,12 @@ var TRANSLATIONS = {
     fig6_caption: '<strong>Abb. 6</strong> — CDS-Vergleich: Math vs. Physik. Physik erreicht frueheren Hoehepunkt (Grundschule), beide folgen demselben Muster.',
     fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt universell.',
     section_space_title: 'Interaktiver CognitiveSpace', section_space_sub: 'Erkunden Sie den 3D-Wissensgraphen — rotieren, filtern, vergleichen',
-    space_desc: 'Die CognitiveSpace-Visualisierung laesst Sie alle 1.160+ Konzepte in einer interaktiven 3D-Umgebung erkunden. Wechseln Sie zwischen Zoom-/Rotations-/Flugmodi, filtern Sie nach Sprache und vergleichen Sie sprachuebergreifende Wissensstrukturen.',
+    space_desc: 'Die CognitiveSpace-Visualisierung laesst Sie alle 1.140+ Konzepte in einer interaktiven 3D-Umgebung erkunden. Wechseln Sie zwischen Zoom-/Rotations-/Flugmodi, filtern Sie nach Sprache und vergleichen Sie sprachuebergreifende Wissensstrukturen.',
     space_cta: 'CognitiveSpace 3D starten',
     space_meta: 'Three.js · 3 Disziplin-Ebenen · Sprachuebergreifend · 4 Ansichtsmodi',
     section_timeline_title: 'Projektzeitstrahl', section_timeline_sub: 'Vom Konzept zum umfassenden Rahmen',
     section_paper_title: 'Paper & Referenzen', section_paper_sub: 'Vorabdruck des Manuskripts, Zitationen und verwandte Arbeiten',
-    preprint_title: 'Vorabdruck', preprint_desc: 'Vollstaendiges Manuskript mit allen 3 Forschungsfragen, 4 Metriken, 10 Erkenntnissen, Modellvergleichen und Fehleranalyse.',
+    preprint_title: 'Vorabdruck', preprint_desc: 'Vollstaendiges Manuskript mit allen 3 Forschungsfragen, 4 Metriken, 12 Erkenntnissen, Modellvergleichen und Fehleranalyse.',
     data_title: 'Daten', data_desc: 'Alle Wissensgraphen, Lehrplanabgleiche und Bewertungsergebnisse im Repository verfuegbar.',
     references_title: 'Wichtige Referenzen',
     cite_title: 'Diese Arbeit zitieren',
@@ -1034,7 +1035,7 @@ var TRANSLATIONS = {
     rq3_answer: '覆盖率差异显著：中国 95.4% → 英国 37.3% → 美国 17.2% → 北威州 12.7%。中文教材实现了近乎完全的课程覆盖；西方体系则呈现选择性对齐。',
     rq3_metric: 'CS：12.7%–95.4%',
     section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180+ 本教材',
-    math_title: '数学', math_desc: '574 个概念，3,538 条关系，来自 68 本教材。从算术到高等微积分。',
+    math_title: '数学', math_desc: '556 个概念，525 条关系，来自 68 本教材。从算术到高等微积分。',
     physics_title: '物理', physics_desc: '366 个概念，383 条关系，来自 94 个教材版本。从力学到量子物理。',
     chemistry_title: '化学', chemistry_desc: '220 个概念，215 条关系，来自 18 个教材版本。从普通化学到有机化学。',
     curr_title: '课程标准',
@@ -1057,7 +1058,7 @@ var TRANSLATIONS = {
     all_label: '全部',
     bench_title: '模型基准测试（19 个模型）',
     th_rank: '排名', th_model: '模型', th_f1_social: 'F1（社会）', th_f1_math: 'F1（数学）',
-    section_findings_title: '10 项发现（F1–F10）', section_findings_sub: '知识组织结构差异的量化证据',
+    section_findings_title: '12 项发现（F1–F12）', section_findings_sub: '知识组织结构差异的量化证据',
     th_fnum: '#', th_finding: '发现', th_evidence: '证据', th_metric: '指标',
     section_figures_title: '图表', section_figures_sub: 'LinguaGraph 分析的关键可视化',
     fig3_caption: '<strong>图 3</strong> — 数学概念密度得分（CDS）按教育阶段分布。CDS 在初中达到峰值（0.271），然后下降 3.7 倍至高中（0.073）。',
@@ -1066,12 +1067,12 @@ var TRANSLATIONS = {
     fig6_caption: '<strong>图 6</strong> — CDS 对比：数学 vs 物理。物理峰值更早（小学），两者都遵循相同的先峰后降模式。',
     fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式具有普遍性。',
     section_space_title: '交互式认知空间', section_space_sub: '探索 3D 知识图谱 — 旋转、筛选、对比',
-    space_desc: 'CognitiveSpace 可视化让您在交互式 3D 环境中探索全部 1,160+ 个概念。在缩放/旋转/飞行模式间切换，按语言筛选，切换学科图层，比较跨语言知识结构。',
+    space_desc: 'CognitiveSpace 可视化让您在交互式 3D 环境中探索全部 1,140+ 个概念。在缩放/旋转/飞行模式间切换，按语言筛选，切换学科图层，比较跨语言知识结构。',
     space_cta: '启动 CognitiveSpace 3D',
     space_meta: 'Three.js · 3 个学科层 · 跨语言比较 · 4 种视图模式',
     section_timeline_title: '项目时间线', section_timeline_sub: '从概念到综合框架',
     section_paper_title: '论文与参考文献', section_paper_sub: '预印本手稿、引用和相关工作',
-    preprint_title: '预印本', preprint_desc: '完整手稿涵盖所有 3 个研究问题、4 个指标、10 项发现、模型基准和错误分析。',
+    preprint_title: '预印本', preprint_desc: '完整手稿涵盖所有 3 个研究问题、4 个指标、12 项发现、模型基准和错误分析。',
     data_title: '数据', data_desc: '所有知识图谱、课程对齐和评估结果均可在仓库中获取。',
     references_title: '主要参考文献',
     cite_title: '引用本作品',
