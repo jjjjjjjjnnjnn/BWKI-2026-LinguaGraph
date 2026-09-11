@@ -55,6 +55,7 @@ const TRANSLATIONS = {
         // Search
         'search.ph': 'Search concepts…',
         'search.none': 'No match — try another spelling.',
+        'search.more': 'more results',
 
         // Mode captions
         'modecap.universe': 'Universe — all concepts, force layout. Size = degree.',
@@ -63,6 +64,7 @@ const TRANSLATIONS = {
 
         // Interface language + toggles
         'ui.label': 'Interface',
+        'ui.topbar': 'Language',
         'wasd.on': 'WASD: on',
         'wasd.off': 'WASD: off',
 
@@ -168,6 +170,7 @@ const TRANSLATIONS = {
         // Suche
         'search.ph': 'Konzepte suchen…',
         'search.none': 'Nichts gefunden — andere Schreibweise versuchen.',
+        'search.more': 'weitere Treffer',
 
         // Modus-Legenden
         'modecap.universe': 'Universum — alle Konzepte, Force-Layout. Größe = Grad.',
@@ -176,6 +179,7 @@ const TRANSLATIONS = {
 
         // Oberfläche + Schalter
         'ui.label': 'Oberfläche',
+        'ui.topbar': 'Sprache',
         'wasd.on': 'WASD: an',
         'wasd.off': 'WASD: aus',
 
@@ -274,6 +278,7 @@ const TRANSLATIONS = {
         // 搜索
         'search.ph': '搜索概念…',
         'search.none': '无匹配——换个拼写试试。',
+        'search.more': '更多结果',
 
         // 模式说明
         'modecap.universe': '宇宙模式——全部概念，力导向布局。大小＝度。',
@@ -282,6 +287,7 @@ const TRANSLATIONS = {
 
         // 界面语言＋开关
         'ui.label': '界面',
+        'ui.topbar': '语言',
         'wasd.on': 'WASD：开',
         'wasd.off': 'WASD：关',
 

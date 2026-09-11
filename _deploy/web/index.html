@@ -95,6 +95,22 @@
     #detail .note{ font-size:.55rem; color:#4a5a78; margin-top:4px; padding:4px 6px; background:rgba(30,58,138,.06); border-radius:4px; line-height:1.4; }
     #detail .rf{ font-size:.55rem; color:#8595ad; margin-top:4px; line-height:1.5; }
 
+    /* Top bar: prominent UI-language switcher + portal link */
+    #topbar {
+        position:absolute; top:16px; right:16px; z-index:100;
+        display:flex; gap:5px; align-items:center;
+        background:rgba(248,250,252,.94); border:1px solid #c6cdd6; border-radius:8px;
+        padding:6px 8px; box-shadow:0 1px 0 #c6cdd6, 0 8px 24px rgba(10,31,61,.12);
+    }
+    #topbar-label{ font-size:.55rem; color:#4a5a78; text-transform:uppercase; letter-spacing:.6px; margin:0 2px 0 4px; }
+    #topbar .b{ font-size:.6rem; padding:4px 10px; }
+    #topbar .b.a{ background:rgba(30,58,138,.12); }
+    #portalLink{
+        font-size:.6rem; color:#fff; background:#1e3a8a; border-radius:6px;
+        padding:5px 12px; text-decoration:none; letter-spacing:.4px; font-weight:600; margin-left:2px;
+    }
+    #portalLink:hover{ background:#0a1f3d; }
+
     #mode-tag {
         position:absolute; bottom:20px; right:20px; z-index:100;
         font-size:.5rem; color:#4a5a78; letter-spacing:1.2px; text-transform:uppercase;
@@ -117,9 +133,14 @@
         background:#fff; color:#0a1f3d;
     }
     #search:focus{ outline:2px solid #1e3a8a; outline-offset:1px; }
-    #searchMeta{ font-size:.55rem; color:#4a5a78; margin:-2px 0 5px; min-height:.7em; }
-    #searchMeta button{ border:none; background:none; color:#1e3a8a; cursor:pointer; font-size:.55rem; padding:0 2px; font-family:inherit; }
-    #searchMeta button:hover{ text-decoration:underline; }
+    /* Search dropdown */
+    #searchMeta{ margin:0 0 5px; max-height:190px; overflow-y:auto; background:#fff; border:1px solid #c6cdd6; border-radius:4px; display:none; box-shadow:0 8px 24px rgba(10,31,61,.14); }
+    #searchMeta.has{ display:block; }
+    #searchMeta button{ display:flex; justify-content:space-between; align-items:center; gap:6px; width:100%; border:none; background:none; color:#0a1f3d; cursor:pointer; font-size:.6rem; padding:5px 8px; font-family:inherit; text-align:left; }
+    #searchMeta button.sel, #searchMeta button:hover{ background:rgba(30,58,138,.10); }
+    #searchMeta button em{ font-style:normal; font-size:.5rem; color:#1e7e4d; border:1px solid #1e7e4d; border-radius:3px; padding:0 4px; margin-left:2px; white-space:nowrap; }
+    #searchMeta .none, #searchMeta .more{ font-size:.55rem; color:#8595ad; padding:4px 8px; }
+    #searchMeta .more{ border-top:1px solid #e7ebef; }
 
     /* Mode caption */
     .cap{ font-size:.55rem; color:#4a5a78; margin-bottom:6px; line-height:1.4; min-height:1.9em; }
@@ -201,12 +222,6 @@
             <button class="b d a" data-d="math" data-i18n="disc.math">Math</button>
             <button class="b d" data-d="physics" data-i18n="disc.physics">Physics</button>
         </div>
-        <div class="ulab" data-i18n="ui.label">Interface</div>
-        <div class="br" id="ub">
-            <button class="b u" data-u="en">EN</button>
-            <button class="b u" data-u="de">DE</button>
-            <button class="b u" data-u="zh">ZH</button>
-        </div>
         <div class="br" style="margin-bottom:0">
             <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem" data-i18n="auto.rotate">⟳ Auto Rotate</button>
             <button id="wasdBtn" class="b a" style="font-size:.5rem" data-i18n="wasd.toggle">WASD: on</button>
@@ -237,7 +252,13 @@
         <div class="rf" id="dr"></div>
     </div>
     <div id="mode-tag" data-i18n="mode.universe">UNIVERSE</div>
-    <a href="../portal/index.html" target="_blank" style="position:absolute;top:20px;right:20px;z-index:100;font-size:.55rem;color:#1e3a8a;background:rgba(248,250,252,.94);border:1px solid #c6cdd6;border-radius:6px;padding:6px 12px;text-decoration:none;letter-spacing:.4px" data-i18n="research.portal">Research Portal</a>
+    <div id="topbar">
+        <span id="topbar-label" data-i18n="ui.topbar">Language</span>
+        <button class="b u" data-u="en">EN</button>
+        <button class="b u" data-u="de">DE</button>
+        <button class="b u" data-u="zh">ZH</button>
+        <a href="../portal/index.html" target="_blank" rel="noopener" id="portalLink" data-i18n="research.portal">Research Portal</a>
+    </div>
     <div id="ctrl-hint" data-i18n="ctrl.hint">DRAG · SCROLL · WASD</div>
 
     <script>
@@ -583,7 +604,7 @@
         document.getElementById('dl').innerHTML = ['zh','en','de']
             .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
         const lv = n.level||'college', lc = LV[lv]||LV.college;
-        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+lc.l+'</span> · '+(n.group||'general')+' · '+((n.source_count||1)+' '+i18n.tr('sources'));
+        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+i18n.tr('level.'+lv)+'</span> · '+(n.group||'general')+' · '+((n.source_count||1)+' '+i18n.tr('sources'));
 
         // ── Compute node-level metrics ──
         const gd = G.graphData();
@@ -836,35 +857,74 @@
             about.style.display = about.style.display === 'block' ? 'none' : 'block';
         });
         document.getElementById('aboutClose').addEventListener('click', () => { about.style.display = 'none'; });
-        // Search
+        // Search with predictive dropdown (trilingual match badges + keyboard)
         const searchBox = document.getElementById('search');
         const searchMeta = document.getElementById('searchMeta');
+        let searchItems = [], searchSel = -1;
+        function matchLang(n, q){
+            const lbs = n.labels || {};
+            const hit = [];
+            if ((n.name || '').toLowerCase().indexOf(q) >= 0) hit.push('ID');
+            ['zh','en','de'].forEach(l => { if ((lbs[l] || '').toLowerCase().indexOf(q) >= 0) hit.push(l.toUpperCase()); });
+            return hit;
+        }
         function matchNodes(q){
             q = (q || '').trim().toLowerCase();
             if (!q) return [];
-            return ND.filter(n => {
-                const lbs = n.labels || {};
-                return (n.name || '').toLowerCase().indexOf(q) >= 0 ||
-                    Object.keys(lbs).some(l => (lbs[l] || '').toLowerCase().indexOf(q) >= 0);
-            }).slice(0, 6);
+            return ND.filter(n => matchLang(n, q).length > 0);
         }
-        searchBox.addEventListener('input', () => {
-            const ms = matchNodes(searchBox.value);
+        function paintSel(i){
+            searchSel = i;
+            searchItems.forEach((it, j) => it.b.classList.toggle('sel', j === i));
+        }
+        function paintSearch(){
+            const qv = searchBox.value.trim();
+            const ms = matchNodes(qv);
             searchMeta.innerHTML = '';
-            if (!searchBox.value.trim()) return;
-            if (!ms.length) { searchMeta.textContent = i18n.tr('search.none'); return; }
-            ms.forEach(n => {
+            searchMeta.classList.remove('has');
+            searchItems = []; searchSel = -1;
+            if (!qv) return;
+            searchMeta.classList.add('has');
+            if (!ms.length) {
+                const d = document.createElement('div');
+                d.className = 'none';
+                d.textContent = i18n.tr('search.none');
+                searchMeta.appendChild(d);
+                return;
+            }
+            const q = qv.toLowerCase();
+            ms.slice(0, 6).forEach(n => {
                 const b = document.createElement('button');
-                b.textContent = n.name || n.id;
+                b.type = 'button';
+                const badges = matchLang(n, q).map(l => '<em>' + l + '</em>').join('');
+                b.innerHTML = '<span>' + (n.name || n.id) + '</span><span>' + badges + '</span>';
                 b.addEventListener('click', () => focusNode(n));
+                const idx = searchItems.length;
+                b.addEventListener('mousemove', () => paintSel(idx));
                 searchMeta.appendChild(b);
-                searchMeta.appendChild(document.createTextNode(' '));
+                searchItems.push({ b: b, n: n });
             });
-        });
+            if (ms.length > 6) {
+                const more = document.createElement('div');
+                more.className = 'more';
+                more.textContent = '+' + (ms.length - 6) + ' ' + i18n.tr('search.more');
+                searchMeta.appendChild(more);
+            }
+            paintSel(0);
+        }
+        searchBox.addEventListener('input', paintSearch);
         searchBox.addEventListener('keydown', e => {
-            if (e.key === 'Enter') {
-                const ms = matchNodes(searchBox.value);
-                if (ms.length) focusNode(ms[0]);
+            if (e.key === 'ArrowDown' && searchItems.length) { e.preventDefault(); paintSel((searchSel + 1) % searchItems.length); }
+            else if (e.key === 'ArrowUp' && searchItems.length) { e.preventDefault(); paintSel((searchSel - 1 + searchItems.length) % searchItems.length); }
+            else if (e.key === 'Enter') {
+                if (searchSel >= 0 && searchItems[searchSel]) focusNode(searchItems[searchSel].n);
+                else { const ms = matchNodes(searchBox.value); if (ms.length) focusNode(ms[0]); }
+            }
+            else if (e.key === 'Escape') { searchMeta.innerHTML = ''; searchMeta.classList.remove('has'); searchItems = []; searchBox.blur(); }
+        });
+        document.addEventListener('click', e => {
+            if (e.target && e.target.closest && !e.target.closest('#search') && !e.target.closest('#searchMeta')) {
+                searchMeta.innerHTML = ''; searchMeta.classList.remove('has'); searchItems = [];
             }
         });
     }

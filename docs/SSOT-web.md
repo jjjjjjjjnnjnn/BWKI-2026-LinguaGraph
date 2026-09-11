@@ -101,3 +101,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Physik-Graph (366/383, outputs/physics_cognitivespace.json → web/data_physics.js) + Disziplin-Umschalter + ?graph-Deep-Link; LDS-Zeilen nur Mathe (Physik: Hinweis).
 - Galerie cspace.html (2 Graphen + 3 Metrik-Karten + Roadmap); Story-Space-Sektion ent-hypt (556+366, 3 Modi).
 - Neu: cds-terrain.html (3×4 CDS, fig7-Quelle), margin-galaxy.html (55 Modelle, 12 Familien), coverage-towers.html (4 Systeme × Stages, coverage_all_curricula.json).
+
+## v12 404-Fix + Suche + Einstiege (2026-09-11)
+
+- 404-Ursache: _deploy/index.html war stale v2-Viewer; relativer ../portal-Pfad lief ins Leere. Fix: scripts/mirror_root.py (portal→Root mit ../-Flattening, fail-loud bei Rest-../).
+- UI-Sprache in Topbar neben Research-Portal (+rel=noopener); Browser-Auto beibehalten; Detail-Stufenname übersetzt (lc.l-Bug).
+- Suche: Dropdown-Panel, Match-Sprach-Badges, ↑↓/Enter/Esc, +N more, Click-outside-schließt.
+- Einstiege: Portal-CS-Sektion 6 View-Buttons (EN/DE/ZH), Story-Space 4 Kleinlinks; Story-CTA-Ziel unverändert.

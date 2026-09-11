@@ -682,6 +682,7 @@ flowchart TB
   <div class="card" style="text-align:center">
       <p style="margin-bottom:16px">The CognitiveSpace visualization lets you explore the 556-concept mathematics subgraph in an interactive 3D environment. Switch between Universe, Space-Fill and Compare views, search any concept, filter by language, and inspect degree, roles and metric definitions per node. A second physics graph (366 nodes) is available through the discipline switcher.</p>
     <a href="../index.html" target="_blank" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:8px;font-weight:600;font-size:1.05rem;text-decoration:none">🚀 Launch CognitiveSpace 3D</a>
+    <div class="vlinks" style="margin-top:12px;font-size:.82rem"><a href="../portal/cspace.html" target="_blank">Gallery</a> · <a href="../web/cds-terrain.html" target="_blank">CDS Terrain</a> · <a href="../web/margin-galaxy.html" target="_blank">Margin Galaxy</a> · <a href="../web/coverage-towers.html" target="_blank">Coverage Towers</a></div>
     <div class="meta" style="margin-top:16px;border:none;padding:0">3D force graphs · Math (556) + Physics (366) · Trilingual · 3 view modes</div>
   </div>
 </section>
@@ -933,6 +934,7 @@ var TRANSLATIONS = {
     section_space_title: 'Interactive Cognitive Space', section_space_sub: 'Explore the 3D knowledge graph — rotate, filter, compare',
     space_desc: 'The CognitiveSpace visualization lets you explore the 556-concept mathematics subgraph in an interactive 3D environment. Switch between Universe, Space-Fill and Compare views, search any concept, filter by language, and inspect degree, roles and metric definitions per node. A second physics graph (366 nodes) is available through the discipline switcher.',
     space_cta: 'Launch CognitiveSpace 3D',
+    space_l_gallery: 'Gallery', space_l_cds: 'CDS Terrain', space_l_galaxy: 'Margin Galaxy', space_l_towers: 'Coverage Towers',
     space_meta: '3D force graphs · Math (556) + Physics (366) · Trilingual · 3 view modes',
     section_timeline_title: 'Project Timeline', section_timeline_sub: 'From concept to comprehensive framework',
     section_paper_title: 'Paper & References', section_paper_sub: 'Preprint manuscript, citations, and related work',
@@ -1001,6 +1003,7 @@ var TRANSLATIONS = {
     section_space_title: 'Interaktiver CognitiveSpace', section_space_sub: 'Erkunden Sie den 3D-Wissensgraphen — rotieren, filtern, vergleichen',
     space_desc: 'Die CognitiveSpace-Visualisierung laesst Sie den 556-Konzepte-Mathematik-Subgraphen in einer interaktiven 3D-Umgebung erkunden. Wechseln Sie zwischen Universum-, Raumfuellungs- und Vergleichsansicht, suchen Sie Konzepte, filtern Sie nach Sprache und pruefen Sie Grad, Rollen und Metrikdefinitionen pro Knoten. Ein zweiter Physik-Graph (366 Knoten) ist ueber den Disziplin-Umschalter verfuegbar.',
     space_cta: 'CognitiveSpace 3D starten',
+    space_l_gallery: 'Galerie', space_l_cds: 'CDS-Terrain', space_l_galaxy: 'Margen-Galaxie', space_l_towers: 'Coverage-Türme',
     space_meta: '3D-Force-Graphen · Mathe (556) + Physik (366) · Dreisprachig · 3 Ansichten',
     section_timeline_title: 'Projektzeitstrahl', section_timeline_sub: 'Vom Konzept zum umfassenden Rahmen',
     section_paper_title: 'Paper & Referenzen', section_paper_sub: 'Vorabdruck des Manuskripts, Zitationen und verwandte Arbeiten',
@@ -1069,6 +1072,7 @@ var TRANSLATIONS = {
     section_space_title: '交互式认知空间', section_space_sub: '探索 3D 知识图谱 — 旋转、筛选、对比',
     space_desc: 'CognitiveSpace 可视化让您在交互式 3D 环境中探索 556 个概念的数学子图。在宇宙/空间填充/比较视图间切换，搜索任意概念，按语言筛选，查看每个节点的度、角色与指标定义。另有物理图谱（366 节点），可通过学科切换器进入。',
     space_cta: '启动 CognitiveSpace 3D',
+    space_l_gallery: '展厅', space_l_cds: 'CDS 地形', space_l_galaxy: '边际星系', space_l_towers: '覆盖塔群',
     space_meta: '3D 力导向图 · 数学 (556) + 物理 (366) · 三语 · 3 种视图',
     section_timeline_title: '项目时间线', section_timeline_sub: '从概念到综合框架',
     section_paper_title: '论文与参考文献', section_paper_sub: '预印本手稿、引用和相关工作',
@@ -1216,6 +1220,9 @@ function setLanguage(lang) {
   _q('#space .card p', 'space_desc');
   var spaceCta = document.querySelector('#space .card a');
   if (spaceCta && t.space_cta) spaceCta.innerHTML = t.space_cta;
+  var vlinks = document.querySelectorAll('#space .vlinks a');
+  var vkeys = ['space_l_gallery','space_l_cds','space_l_galaxy','space_l_towers'];
+  vlinks.forEach(function(a, i){ if (t[vkeys[i]]) a.textContent = t[vkeys[i]]; });
   _q('#space .card .meta', 'space_meta');
 
   // Paper
