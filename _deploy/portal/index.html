@@ -303,7 +303,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="contrib-card">
       <div class="num">1</div>
       <h3 data-i18n="contrib1_title">A multilingual STEM knowledge graph</h3>
-      <p data-i18n="contrib1_desc">1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).</p>
+      <p data-i18n="contrib1_desc">1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).</p>
     </div>
     <div class="contrib-card">
       <div class="num">2</div>
@@ -332,7 +332,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
     <div class="mermaid">
 %%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[180+ Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
+    T1[180 Textbooks<br/>ZH · EN · DE] --> MIMO[qwen-plus API<br/>MIMO Extraction]
     MIMO --> KG[Knowledge Graph<br/>1,140+ Concepts · 1,100+ Relations]
       GL[92 Gold Labels<br/>F1 = 0.939 social / 0.881 weighted] -.->|Validate| KG
     KG --> CDS[CDS: Concept Density]
@@ -411,7 +411,7 @@ graph LR
     <h3><i class="bi bi-diagram-3" style="color:var(--green)"></i> <span data-i18n="finding_b_title">Finding B: Knowledge structures stay shallow</span></h3>
     <div class="lead" data-i18n="finding_b_sub">Educational knowledge has a universal upper bound on prerequisite depth, regardless of discipline.</div>
     <p data-i18n="finding_b_body">Maximum prerequisite chain depth is <strong>HDS ≤ 8</strong> for mathematics and <strong>HDS ≤ 6</strong> for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts).</p>
-    <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_b_body2">Physics has 2.1× more sequential depth than mathematics (64% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.</p>
+    <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_b_body2">Physics has 2.1× more sequential depth than mathematics (60% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">8</div><div class="ev-label" data-i18n="finding_b_ev1">Math HDS (max)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.40</div><div class="ev-label" data-i18n="finding_b_ev2">Math HDS (mean)</div></div>
@@ -441,7 +441,7 @@ graph LR
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label" data-i18n="finding_c_ev4">Topic variance</div></div>
     </div>
     <div class="figure-box" style="max-width:600px;margin:16px auto">
-      <img src="../figures/fig4_lds_heatmap.png" alt="Fig 4: LDS Heatmap" onclick="openLightbox(this.src)" loading="lazy">
+      <img src="../figures/fig4_null_model.png" alt="Fig 4: Null Model Suite — Full vs Structure Null" onclick="openLightbox(this.src)" loading="lazy">
       <div class="fig-label" data-i18n="finding_c_fig"><strong>Fig 4</strong> — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation</div>
     </div>
     <div class="meta"><span class="tag tag-cyan" data-i18n="finding_c_tag1">Metric: LDS</span> <span class="tag tag-blue" data-i18n="finding_c_tag2">F4, F5</span> <span class="tag tag-yellow" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</span></div>
@@ -461,14 +461,10 @@ graph LR
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">17.2%</div><div class="ev-label" data-i18n="finding_d_ev3">🇺🇸 US</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--orange)">12.7%</div><div class="ev-label" data-i18n="finding_d_ev4">🇩🇪 NRW Germany</div></div>
     </div>
-    <div class="chart-grid">
-      <div class="chart-box" style="max-width:100%">
+    <div class="chart-box" style="max-width:700px;margin:16px auto">
+      <div>
         <canvas id="coverageChart"></canvas>
-        <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px" data-i18n="finding_d_fig8"><strong>Fig 8</strong> — Overall Coverage Score</p>
-      </div>
-      <div class="chart-box" style="max-width:100%">
-        <canvas id="trajectoryChart"></canvas>
-        <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px" data-i18n="finding_d_fig9"><strong>Fig 9</strong> — Stage-by-stage trajectory (UK ↗, NRW ↘)</p>
+        <p style="text-align:center;color:var(--text2);font-size:.78rem;margin-top:8px" data-i18n="finding_d_fig8"><strong>Fig 8</strong> — Overall Coverage Score (paper §8.5: NRW 12.7% · UK 37.3% · US 17.2% · China 95.4%)</p>
       </div>
     </div>
     <p style="font-size:.9rem;margin-top:8px;color:var(--text2)">
@@ -579,7 +575,7 @@ graph LR
     </div>
     <div class="card">
       <h3><i class="bi bi-rulers" style="color:var(--red)"></i> <span data-i18n="limitations3_title">Curriculum Granularity Mismatch</span></h3>
-      <p data-i18n="limitations3_desc">Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
+      <p data-i18n="limitations3_desc">Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 397 (paper §8: NRW 299 · UK 397 · US 2,124 · CN 87). Higher granularity mechanically lowers coverage scores when matched against the same textbook graph. This is partially mitigated by normalizing per-curriculum, but cross-system comparisons remain approximate.</p>
       <div class="meta" data-i18n="limitations3_mit">Mitigation: Analysis focuses on within-system trajectories, not absolute values</div>
     </div>
     <div class="card">
@@ -609,14 +605,14 @@ graph LR
     <div class="card" style="border-top:3px solid #2563eb">
       <h3 data-i18n="curr_nrw_title">🇩🇪 NRW (Germany)</h3>
       <div style="font-size:2.2rem;font-weight:700;color:#1e40af;margin:8px 0">12.7%</div>
-      <p data-i18n="curr_nrw_desc">Coverage <strong>decreases</strong> with stage: 50% at early levels → 31% at advanced. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it. Reflects a specialization-driven philosophy.</p>
-      <div class="meta">Trajectory: <span style="color:var(--red)">↘ descending</span> · Stages: Sek I → Sek II</div>
+      <p data-i18n="curr_nrw_desc">Coverage <strong>decreases</strong> toward upper-secondary specialization. Teachers exercise curricular freedom — they select from the curriculum rather than covering all of it. Reflects a specialization-driven philosophy.</p>
+      <div class="meta">Stages: Sek I → Sek II · Overall 12.7% (paper §8.5)</div>
     </div>
     <div class="card" style="border-top:3px solid #dc2626">
       <h3 data-i18n="curr_uk_title">🇬🇧 UK National Curriculum</h3>
       <div style="font-size:2.2rem;font-weight:700;color:#047857;margin:8px 0">37.3%</div>
-      <p data-i18n="curr_uk_desc">Coverage <strong>increases</strong> with stage: 53% → 90%. The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested. Moderate overall alignment.</p>
-      <div class="meta">Trajectory: <span style="color:var(--green)">↗ ascending</span> · Stages: Key Stage 1–4</div>
+      <p data-i18n="curr_uk_desc">The exam-driven system drives comprehensive textbook coverage — every curriculum point must be taught because it might be tested. Moderate overall alignment (37.3%, paper §8.5).</p>
+      <div class="meta">Stages: Key Stage 1–4 · Overall 37.3% (paper §8.5)</div>
     </div>
     <div class="card" style="border-top:3px solid #2563eb">
       <h3 data-i18n="curr_us_title">🇺🇸 US (CCSS + NGSS)</h3>
@@ -680,6 +676,7 @@ graph LR
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
       </div>
+      <div style="margin-top:8px;font-size:.82rem;color:var(--text2)" data-i18n="val_replication_note">Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.</div>
     </div>
   </div>
 </section>
@@ -693,14 +690,14 @@ graph LR
     <div class="card" style="text-align:center">
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
-      <p data-i18n="paper_abstract_text">LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
+      <p data-i18n="paper_abstract_text">LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.</p>
       <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
       <p data-i18n="paper_sections_text">Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix</p>
-      <div class="meta">9 sections · ~56 KB · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta">9 files · ~153 KB md · 293 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -740,13 +737,13 @@ graph LR
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
       <p>Full manuscript with 3 research questions, 4 metrics, 12 findings and error analysis.</p>
-      <div class="meta">9 sections · 19+ references</div>
+      <div class="meta">9 files · 54 references</div>
     </a>
     <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/tree/master/cognitive-space/web/figures" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-image" style="font-size:2.2rem;color:var(--yellow);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Figures</h3>
       <p>7 publication-ready figures: CDS, HDS, LDS distributions and cross-discipline comparisons.</p>
-      <div class="meta">PNG · 816 KB total</div>
+      <div class="meta">8 figures · PNG · ~956 KB total</div>
     </a>
     <a href="#validation" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-graph-up" style="font-size:2.2rem;color:var(--pink);display:block;margin-bottom:8px"></i>
@@ -876,48 +873,6 @@ new Chart(document.getElementById('coverageChart'), {
   }
 });
 
-// Chart.js — Coverage Trajectory (per-stage grouped)
-new Chart(document.getElementById('trajectoryChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Early', 'Mid', 'Late'],
-    datasets: [{
-      label: 'China (CN)',
-      data: [97.4, 96.2, 91.7],
-      backgroundColor: 'rgba(138,100,16,.85)',
-      borderRadius: 4,
-    }, {
-      label: 'UK',
-      data: [36.7, 43.8, 29.2],
-      backgroundColor: 'rgba(4,120,87,.85)',
-      borderRadius: 4,
-    }, {
-      label: 'US',
-      data: [17.9, 17.9, 17.9],
-      backgroundColor: 'rgba(14,116,144,.85)',
-      borderRadius: 4,
-    }, {
-      label: 'NRW (DE)',
-      data: [18.7, 16.7, 5.1],
-      backgroundColor: 'rgba(30,58,138,.85)',
-      borderRadius: 4,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1.6,
-    plugins: {
-      legend: { labels: { color: '#4a5a78', font: { size: 10 }, boxWidth: 12, padding: 8 } },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } }
-    },
-    scales: {
-      y: { min: 0, max: 100, ticks: { callback: v => v + '%', color: '#4a5a78', font: { size: 9 } }, grid: { color: 'rgba(10,31,61,.08)' } },
-      x: { stacked: false, ticks: { color: '#4a5a78', font: { size: 9 } } }
-    }
-  }
-});
-
 // Chart.js — Model Benchmark
 new Chart(document.getElementById('benchmarkChart'), {
   type: 'bar',
@@ -978,7 +933,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Three structural metrics for knowledge organization',
     contrib3_title: 'Curriculum coverage analysis framework',
     contrib4_title: 'Empirical findings across 4 education systems',
-    contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180+ textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).',
+    contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings_title: 'Findings',
     section_findings: 'Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals',
@@ -1011,7 +966,7 @@ const TRANSLATIONS = {
     validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. qwen-plus selected as production model.',
     section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
     section_paper: 'Paper', paper_sub: 'Preprint manuscript available in the repository',
-    paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
+    paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
     paper_sections: 'Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix',
     paper_copy_bib: 'Copy BibTeX',
     section_openscience: 'Open Science', openscience_sub: 'All data, code and results are publicly available',
@@ -1037,7 +992,7 @@ const TRANSLATIONS = {
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: 'Disciplines: Math, Physics, Chemistry',
     finding_b_body: 'Maximum prerequisite chain depth is HDS ≤ 8 for mathematics and HDS ≤ 6 for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts).',
-    finding_b_body2: 'Physics has 2.1× more sequential depth than mathematics (64% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.',
+    finding_b_body2: 'Physics has 2.1× more sequential depth than mathematics (60% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.',
     finding_b_ev1: 'Math HDS (max)',
     finding_b_ev2: 'Math HDS (mean)',
     finding_b_ev3: 'Root concepts (Math)',
@@ -1061,8 +1016,7 @@ const TRANSLATIONS = {
     finding_d_ev2: 'UK',
     finding_d_ev3: 'US',
     finding_d_ev4: 'NRW Germany',
-    finding_d_fig8: 'Fig 8 — Overall Coverage Score',
-    finding_d_fig9: 'Fig 9 — Stage-by-stage trajectory (UK ↗, NRW ↘)',
+    finding_d_fig8: 'Fig 8 — Overall Coverage Score (paper §8.5: NRW 12.7% · UK 37.3% · US 17.2% · China 95.4%)',
     finding_d_f9: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). Educational governance — centralized vs. federal — drives differences, not alignment quality.',
     finding_d_f10: 'China near-perfect alignment (95.4%) versus NRW low alignment (12.7%) reflects the spectrum from centralized curriculum to local adaptation.',
     finding_d_tag1: 'Metric: CS',
@@ -1091,7 +1045,7 @@ const TRANSLATIONS = {
     limitations2_desc: 'Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims are therefore limited to STEM education.',
     limitations2_mit: 'Mitigation: Framework is design-agnostic and extendable',
     limitations3_title: 'Curriculum Granularity Mismatch',
-    limitations3_desc: 'Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 186. Higher granularity mechanically lowers coverage scores when matched against the same textbook graph.',
+    limitations3_desc: 'Curriculum documents vary enormously in granularity: the US math curriculum contains 2,124 concepts while the UK science curriculum has 397 (paper §8: NRW 299 · UK 397 · US 2,124 · CN 87). Higher granularity mechanically lowers coverage scores when matched against the same textbook graph.',
     limitations3_mit: 'Mitigation: Analysis focuses on within-system trajectories, not absolute values',
     limitations4_title: 'LLM Extraction Reliability',
     limitations4_desc: 'Concept extraction depends on qwen-plus, a single model. The 19-model benchmark (F1 range 0.55-0.67) confirms extraction consistency across architectures. Extraction errors propagate through downstream metrics.',
@@ -1109,8 +1063,9 @@ const TRANSLATIONS = {
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
     val_bench_note: '<strong>Production:</strong> qwen-plus (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
+    val_replication_note: 'Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
     paper_abstract_title: 'Abstract',
-    paper_abstract_text: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180+ textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
+    paper_abstract_text: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
     paper_sections_title: 'Sections',
     paper_sections_text: 'Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix',
     paper_cite_title: 'Cite this work',
@@ -1148,7 +1103,7 @@ const TRANSLATIONS = {
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: 'Faecher: Math, Physik, Chemie',
     finding_b_body: 'Die maximale Voraussetzungstiefe betraegt HDS ≤ 8 fuer Mathematik und HDS ≤ 6 fuer Physik. Die mittlere Tiefe ist noch niedriger: 0,40 fuer Math, 0,85 fuer Physik. Ueber 83% der Math-Konzepte haben keine Voraussetzungskette.',
-    finding_b_body2: 'Die Physik hat die 2,1-fache sequentielle Tiefe der Mathematik (64% Wurzeln in Physik vs 83% in Math). Beide Disziplinen respektieren jedoch dieselbe flache Obergrenze.',
+    finding_b_body2: 'Die Physik hat die 2,1-fache sequentielle Tiefe der Mathematik (60% Wurzeln in Physik vs 83% in Math). Beide Disziplinen respektieren jedoch dieselbe flache Obergrenze.',
     finding_b_ev1: 'Math HDS (max.)',
     finding_b_ev2: 'Math HDS (Mittel)',
     finding_b_ev3: 'Wurzelkonzepte (Math)',
@@ -1172,8 +1127,7 @@ const TRANSLATIONS = {
     finding_d_ev2: 'GB',
     finding_d_ev3: 'US',
     finding_d_ev4: 'NRW Deutschland',
-    finding_d_fig8: 'Abb. 8 — Gesamtabdeckungswert',
-    finding_d_fig9: 'Abb. 9 — Stufenweise Trajektorie (UK ↗, NRW ↘)',
+    finding_d_fig8: 'Abb. 8 — Gesamtabdeckungswert (Paper §8.5: NRW 12,7 % · UK 37,3 % · US 17,2 % · China 95,4 %)',
     finding_d_f9: 'Abdeckungswerte variieren stark zwischen Bildungssystemen (12.7%–95.4%). Bildungsgovernance — zentralisiert vs. föderal — bestimmt die Unterschiede.',
     finding_d_f10: 'China (95.4%) vs. NRW (12.7%): das Spektrum von zentralisiertem Lehrplan bis lokaler Anpassung.',
     finding_d_tag1: 'Metrik: CS',
@@ -1202,7 +1156,7 @@ const TRANSLATIONS = {
     limitations2_desc: 'Nur drei MINT-Faecher analysiert. Der Rahmen wurde nicht fuer Geisteswissenschaften validiert.',
     limitations2_mit: 'Massnahme: Framework ist designneutral und erweiterbar',
     limitations3_title: 'Lehrplangranularitaet',
-    limitations3_desc: 'Lehrplandokumente variieren stark in der Granularitaet: US-Math 2.124 Konzepte, UK-Science 186.',
+    limitations3_desc: 'Lehrplandokumente variieren stark in der Granularitaet: US-Math 2.124 Konzepte, UK-Science 397 (Paper §8: NRW 299 · UK 397 · US 2.124 · CN 87).',
     limitations3_mit: 'Massnahme: Fokus auf systeminterne Trajektorien',
     limitations4_title: 'LLM-Extraktionszuverlaessigkeit',
     limitations4_desc: 'Konzeptextraktion hängt von qwen-plus ab. 19-Modell-Benchmark (F1-Bereich 0.55-0.67) bestätigt Extraktionskonsistenz. Mathematik nur 0.674 gesamt, Deutsch 0.506.',
@@ -1220,6 +1174,7 @@ const TRANSLATIONS = {
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
     val_bench_note: '<strong>Produktion:</strong> qwen-plus (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
+    val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 55 Messungen / 50 Modelle — alle 55 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
     paper_abstract_title: 'Zusammenfassung',
     paper_abstract_text: 'LinguaGraph fuehrt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme dasselbe Wissen organisieren.',
     paper_sections_title: 'Abschnitte',
@@ -1263,7 +1218,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Drei strukturelle Metriken fuer Wissensorganisation',
     contrib3_title: 'Rahmen fuer Lehrplanabdeckungsanalyse',
     contrib4_title: 'Empirische Ergebnisse aus 4 Bildungssystemen',
-    contrib1_desc: '1.160+ Konzepte und 4.100+ Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180+ Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (F1 = 0,939).',
+    contrib1_desc: '1.140+ Konzepte und 1.100+ direkte Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180 Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (sozial F1 = 0,939; gewichtet gesamt 0,881).',
     section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
     section_findings_title: 'Erkenntnisse',
     section_findings: 'Fünf Findings-Abschnitte mit zwölf nummerierten Ergebnissen (F1–F12): Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
@@ -1296,7 +1251,7 @@ const TRANSLATIONS = {
     validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. qwen-plus als Produktionsmodell ausgewählt.',
     section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
     section_paper: 'Paper', paper_sub: 'Vorabdruck des Manuskripts im Repository verfügbar',
-    paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 180+ Lehrbüchern erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
+    paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 180 Lehrbüchern erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
     paper_sections: 'Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Anhang',
     paper_copy_bib: 'BibTeX kopieren',
     section_openscience: 'Open Science', openscience_sub: 'Alle Daten, Code und Ergebnisse sind öffentlich verfügbar',
@@ -1344,7 +1299,7 @@ const TRANSLATIONS = {
     contrib2_title: '知识组织的三项结构指标',
     contrib3_title: '课程覆盖分析框架',
     contrib4_title: '跨四个教育体系的实证发现',
-    contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180+ 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939；加权总体 0.881）。',
+    contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939；加权总体 0.881）。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings_title: '研究发现',
     section_findings: '五个发现小节，十二项编号结果（F1–F12）：知识如何在学科、语言、教育体系和个人之间组织',
@@ -1375,7 +1330,7 @@ const TRANSLATIONS = {
     validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。qwen-plus 被选为生产模型。',
     section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
     section_paper: '论文', paper_sub: '预印本手稿可在仓库中获取',
-    paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 180+ 本教材中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
+    paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 180 本教材中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
     paper_sections: '引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理附录',
     paper_copy_bib: '复制 BibTeX',
     section_openscience: '开放科学', openscience_sub: '所有数据、代码和结果公开可用',
@@ -1403,7 +1358,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: '学科：数学、物理、化学',
     finding_b_body: '最大前提知识链深度为数学 HDS ≤ 8，物理 HDS ≤ 6。平均深度更低：数学 0.40，物理 0.85。超过 83% 的数学概念没有任何前提链（根概念）。',
-    finding_b_body2: '物理的顺序深度是数学的 2.1 倍（物理根概念 64% vs 数学 83%），反映了其更强的累积性知识结构。但两个学科都遵守相同的浅层上限——表明知识的排序存在教学或认知约束。',
+    finding_b_body2: '物理的顺序深度是数学的 2.1 倍（物理根概念 60% vs 数学 83%），反映了其更强的累积性知识结构。但两个学科都遵守相同的浅层上限——表明知识的排序存在教学或认知约束。',
     finding_b_ev1: '数学 HDS（最大）',
     finding_b_ev2: '数学 HDS（平均）',
     finding_b_ev3: '根概念（数学）',
@@ -1427,8 +1382,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_d_ev2: '英国',
     finding_d_ev3: '美国',
     finding_d_ev4: 'NRW 德国',
-    finding_d_fig8: '图 8 — 总体覆盖率得分',
-    finding_d_fig9: '图 9 — 分阶段轨迹（UK ↗，NRW ↘）',
+    finding_d_fig8: '图 8 — 总体覆盖率得分（论文 §8.5：NRW 12.7% · UK 37.3% · US 17.2% · 中国 95.4%）',
     finding_d_f9: '覆盖率在不同教育体系之间差异巨大（12.7%–95.4%）。教育治理结构——集中制 vs 联邦制——驱动差异，而非对齐质量。',
     finding_d_f10: '中国近乎完美对齐（95.4%）vs NRW 低对齐（12.7%），体现了从集中课程到本地适应的光谱。',
     finding_d_tag1: '指标：CS',
@@ -1457,7 +1411,7 @@ curr_explanations_title: '三种竞争性解释',
     limitations2_desc: '仅分析了三个 STEM 学科（数学、物理、化学）。该框架尚未在人文科学、社会科学或专业领域验证。知识密度早期达峰等普遍性结论仅局限于 STEM 教育。',
     limitations2_mit: '缓解措施：框架设计中立，可扩展',
     limitations3_title: '课程粒度不匹配',
-    limitations3_desc: '课程文件的粒度差异巨大：美国数学课程包含 2,124 个概念，而英国科学课程只有 186 个。更高的粒度会机械地降低覆盖率得分。这通过按课程归一化部分缓解，但跨系统比较仍为近似。',
+    limitations3_desc: '课程文件的粒度差异巨大：美国数学课程包含 2,124 个概念，而英国科学课程有 397 个（论文 §8：NRW 299 · UK 397 · US 2,124 · CN 87）。更高的粒度会机械地降低覆盖率得分。这通过按课程归一化部分缓解，但跨系统比较仍为近似。',
     limitations3_mit: '缓解措施：分析聚焦于体系内轨迹，而非绝对值',
     limitations4_title: 'LLM 提取可靠性',
     limitations4_desc: '概念提取依赖于 qwen-plus 单一模型。尽管社会概念的 F1 = 0.939，但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
@@ -1475,8 +1429,9 @@ curr_explanations_title: '三种竞争性解释',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
     val_bench_note: '<strong>生产模型：</strong> qwen-plus (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
+    val_replication_note: '扩展复刻（2026-09，论文 §5.10）：55 次测量 / 50 个模型 —— 55 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
     paper_abstract_title: '摘要',
-    paper_abstract_text: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于 LLM 从 180+ 本教材中进行概念提取，构建多语言知识图谱并通过四个指标量化结构差异。',
+    paper_abstract_text: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于 LLM 从 180 本教材中进行概念提取，构建多语言知识图谱并通过四个指标量化结构差异。',
     paper_sections_title: '章节结构',
     paper_sections_text: '引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理附录',
     paper_cite_title: '引用本作品',

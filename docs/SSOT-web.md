@@ -24,3 +24,16 @@
 2. CognitiveSpace 段保留 `556 nodes · 525 relations · 219 groups`,标注 `mathematics subgraph (manifest.json)`.
 3. "19-model benchmark" 旁标注 `model-selection benchmark on 92 gold labels`,与 §5 的 55/50 区分。
 4. 禁止新数字;物理/化学数只用 README 已有值,不反查 legacy pipeline。
+
+## P2b 数据修正 (2026-09-11, v0.14.2-Abgleich)
+
+| # | Stelle | Alt | Neu | Quelle |
+|---|---|---|---|---|
+| 1 | trajectoryChart + Bühnen-% (50→31, 53→90) | zwei widersprüchliche Quellen (deep-Skripte vs. keyword-bridge-JSON) | **gestrichen**, nur Overalls 12.7/37.3/17.2/95.4 + paper §8.5 | paper = Schiedsrichter, kein Paper-Beleg für Trajektorien |
+| 2 | Finding B Physik-Roots | 64% | **60%** (219) | `06_physics_results.md` F7 (mean 0.85 = Paper-Rundung, behalten) |
+| 3 | DE contrib1 | 1.160+ / 4.100+ | **1.140+ / 1.100+** | EN/ZH + README |
+| 4 | Limitations UK-Granularität | 186 | **397** (NRW 299 · US 2.124 · CN 87) | `04_discussion.md` §8 |
+| 5 | Paper-Karten | 56 KB · 19+ refs | **153 KB md · 293 KB PDF · 54 refs** | gemessen (`docs/paper/`, `docs/submission/`) |
+| 6 | Fig4 | alte Heatmap (6-22) | **fig4_null_model.png** (6-30), Caption unverändert | `outputs/figures/fig4_null_model_data.csv` |
+| 7 | Validation | nur 19-Benchmark | **+55/50-Satz** (paper §5.10, EN/DE/ZH) | `multi_model_replication_20260910.json` |
+| 8 | Kleinigkeiten | 180+ · 816 KB | **180** (68+94+18) · **956 KB** (8 PNGs) | README §Dataset · gemessen |
