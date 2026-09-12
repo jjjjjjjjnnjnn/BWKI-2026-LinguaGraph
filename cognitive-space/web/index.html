@@ -299,6 +299,7 @@
         if (!d || !d.nodes || !d.nodes.length) return;
         graph = g;
         ND = d.nodes; LK = d.links;
+        assignAnchors(ND);
         document.getElementById('sC').textContent = ND.length;
         document.getElementById('sR').textContent = LK.length;
         document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
@@ -388,12 +389,9 @@
     }
     function degreeOf(id){ const s = ADJ.get(id); return s ? s.size : 0; }
     // Node size = degree (connections). Compare mode adds a trilingual bonus.
+    // Node size = degree (connections) in every mode; modes differ by geometry.
     function sizeVal(n){
         const d = degreeOf(n.id);
-        if (mode === 'compare') {
-            const langs = Object.keys(n.labels || {}).length;
-            return 2 + d * 1.2 + (langs >= 3 ? 4 : langs === 2 ? 2 : 0);
-        }
         return 2 + d * 2.2;
     }
     function valCB(n) { return sizeVal(n); }
@@ -408,32 +406,61 @@
         return Math.abs(hash);
     }
 
-    /* ─── Shell radii by education level ──────────────────────────────── */
-    // Node counts: elementary=37, middle=46, high=193, college=298
-    // Shell thickness scales with node count
-    const SHELL = {
-        elementary: { minR: 0,   maxR: 50  },
-        middle:     { minR: 60,  maxR: 120 },
-        high:       { minR: 140, maxR: 230 },
-        college:    { minR: 250, maxR: 320 },
-    };
+    /* ─── Shell radii + cluster layout (auto-fit to the live graph) ── */
+    // Old build used math-tuned constants; radii are now derived from the
+    // current graph's level distribution so physics/chemistry fit as well.
+    const LV_ORDER = ['elementary','middle','high','college'];
+    function computeShells(nodes){
+        const counts = {elementary:0, middle:0, high:0, college:0};
+        nodes.forEach(n => { counts[n.level || 'college']++; });
+        const S = {}; let r = 0;
+        LV_ORDER.forEach(l => {
+            const band = counts[l] ? Math.max(30, 300 * counts[l] / (nodes.length || 1)) : 0;
+            S[l] = { minR: r, maxR: r + band };
+            r += band + 14;
+        });
+        return S;
+    }
+    function shellPos(n, S){
+        const shell = (S && S[n.level || 'college']) || { minR: 250, maxR: 320 };
+        const h = hashStr(n.id);
+        const span = Math.max(shell.maxR - shell.minR, 1);
+        const r = shell.minR + (h % 1001) / 1000 * span;
+        const theta = (h % 997) / 997 * Math.PI * 2;
+        const phi = Math.acos(2 * (((h * 13 + 7) % 1000) / 1000) - 1);
+        return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi) };
+    }
+    // Compare mode: one pinned ball per education level (tetrahedral layout)
+    const CLUSTER_DIR = { elementary:[1,1,1], middle:[1,-1,-1], high:[-1,1,-1], college:[-1,-1,1] };
+    function clusterPos(n, counts){
+        const dir = CLUSTER_DIR[n.level || 'college'] || CLUSTER_DIR.college;
+        const len = Math.sqrt(dir[0]*dir[0] + dir[1]*dir[1] + dir[2]*dir[2]);
+        const R = 235, h = hashStr(n.id + '|c');
+        const jr = 30 + 2.4 * Math.sqrt(counts[n.level || 'college'] || 1);
+        const rr = (h % 1001) / 1000 * jr;
+        const th = (h % 997) / 997 * Math.PI * 2;
+        const ph = Math.acos(2 * (((h * 13 + 7) % 1000) / 1000) - 1);
+        return {
+            x: dir[0]/len*R + rr*Math.sin(ph)*Math.cos(th),
+            y: dir[1]/len*R + rr*Math.sin(ph)*Math.sin(th),
+            z: dir[2]/len*R + rr*Math.cos(ph)
+        };
+    }
+    function assignAnchors(nodes){
+        const S = computeShells(nodes);
+        nodes.forEach(n => {
+            const p = shellPos(n, S);
+            n.x = p.x; n.y = p.y; n.z = p.z;
+            n.sx = p.x; n.sy = p.y; n.sz = p.z;
+        });
+        return S;
+    }
 
     function mkGraph() {
+        assignAnchors(ND);
         ND.forEach(n => {
             n.color = colorCB(n);
             n.val = sizeVal(n);
-
-            // Deterministic position within spherical shell (hash-based, no Math.random)
-            const shell = SHELL[n.level || 'college'] || SHELL.college;
-            const h = hashStr(n.id);
-            const r = shell.minR + (h % 1001) / 1000 * (shell.maxR - shell.minR);
-            const theta = (h % 997) / 997 * Math.PI * 2;
-            const phi = Math.acos(2 * (((h * 13 + 7) % 1000) / 1000) - 1);
-            n.x = r * Math.sin(phi) * Math.cos(theta);
-            n.y = r * Math.sin(phi) * Math.sin(theta);
-            n.z = r * Math.cos(phi);
-            // Remember shell anchor for Space-Fill pinning
-            n.sx = n.x; n.sy = n.y; n.sz = n.z;
         });
 
         G = ForceGraph3D()(document.getElementById('graph-container'))
@@ -728,12 +755,19 @@
             });
         }
 
-        // Degree-based sizes; Space-Fill pins nodes to education-level shells
+        // Geometry per mode (deterministic):
+        // universe  = free force layout, reset to shell anchors (drift fix);
+        // spacefill = pinned to auto-fit education-level shells;
+        // compare   = one pinned ball per education level.
+        const S = computeShells(ND);
+        const counts = {elementary:0, middle:0, high:0, college:0};
+        fn.forEach(n => { counts[n.level || 'college']++; });
         fn.forEach(n => {
             n.color = colorCB(n);
             n.val = sizeVal(n);
-            if (m === 'spacefill' && n.sx != null) { n.fx = n.sx; n.fy = n.sy; n.fz = n.sz; }
-            else { n.fx = undefined; n.fy = undefined; n.fz = undefined; }
+            if (m === 'spacefill') { const p = shellPos(n, S); n.fx = p.x; n.fy = p.y; n.fz = p.z; }
+            else if (m === 'compare') { const p = clusterPos(n, counts); n.fx = p.x; n.fy = p.y; n.fz = p.z; }
+            else { const p = shellPos(n, S); n.x = p.x; n.y = p.y; n.z = p.z; n.fx = undefined; n.fy = undefined; n.fz = undefined; }
         });
         refreshModeCap();
 

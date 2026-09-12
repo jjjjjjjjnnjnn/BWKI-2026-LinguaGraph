@@ -115,3 +115,11 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Patchliste: scripts/label_patch_{zh_a,zh_d1,zh_d2,de,en_a,en_b}.json + scripts/apply_label_patch.py (idempotent, nur Missing/Platzhalter, 13 benign Plural-Varianten allowlist). Ergebnis: 556/556 Triple, 0 Platzhalter. Bei release.py-Regeneration: Skript erneut laufen lassen.
 - Suche zeigt UI-Sprach-Label + Name (nodeLabel-Fallback); Nachbarliste lokalisiert; Detail-dl weiter dreisprachig.
 - Satelliten 3D→2D (null CDN-Abhängigkeit): cds-terrain (Gruppenbalken + Peak-★ + Chemie-0-Rahmen, Klick #finding-a), margin-galaxy (Dot-Strips 12 Familien, rot=westlich, Klick #validation), coverage-towers (Gruppenbalken + Overall-★, Klick #curriculum). T-Wörterbücher + Ziele unverändert; Haupt-Force-Graph bleibt 3D.
+
+## v14 Modi + Margin Proof + Methoden + Quellen (2026-09-11)
+
+- Viewer-Modi neu: universe = freie Force-Lage mit Anker-Reset (Drift-Bugfix, stationär range<1); spacefill = auto-fit Schalen aus Live-Levelverteilung; compare = 1 fixierte Kugel pro Stufe (Tetraeder). sizeVal-Sprachbonus gelöscht (post-v13 alle Knoten trilingual). switchGraph ruft assignAnchors (Physik hatte keine Anker → NaN-Distanz).
+- Margin Proof (margin-galaxy.html rewrite): 55 Balken降序, Familienfarben, West-rot-Kontur, Headline 55/55 positiv · +0.03…+0.42 · all p<0.01; Portal/cspace Buttons umbenannt (Margin Proof/Beleg/实证).
+- Methoden-<details> überall: 3 Satelliten (T-m_*), Viewer-About (Modi-Zeile), Portal (mm_fig37/fig8/cover/bench/margin), Story (story_mm_*). Keine neuen Zahlen.
+- Portal #sources: 73 Titel aus source_references (Mathe 32 / Physik 23 / Chemie 18) + Nav-Link; Refs = Zitatzählung.
+- docs/physics_sourcing.md: Lückenliste P0 (Physik ZH 必修三 + 选必1/2/3), P1 (Chemie 选必1-3 + 大学有机/物化; Mathe 必修1/2), P2 Dubletten (Duden/Tipler). Freeze: kein Merge pre-9/13.

@@ -8,8 +8,14 @@
 :root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); }
-.chart { position:absolute; inset:0; overflow:auto; display:flex; align-items:center; justify-content:flex-start; padding:90px 20px 60px; }
+.chart { position:absolute; inset:0; overflow:auto; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; padding:90px 20px 60px; }
 .chart svg { flex:0 0 auto; margin:0 auto; background:var(--surface2); border:1px solid var(--rule); border-radius:10px; box-shadow:0 18px 48px rgba(10,31,61,.10); }
+.method { flex:0 0 auto; margin:18px auto 0; width:900px; max-width:94vw; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; font-size:.62rem; color:var(--text2); }
+.method summary { cursor:pointer; padding:10px 14px; font-weight:600; color:var(--accent); }
+.method .msec { padding:0 14px 10px; line-height:1.6; }
+.method .msec b { color:var(--text); display:block; margin-bottom:2px; }
+.method .msec + .msec { border-top:1px dashed var(--rule); padding-top:10px; }
+.method .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
 .chart text { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; }
 .bar { cursor:pointer; }
 .bar:hover { filter:brightness(1.12); }
@@ -50,9 +56,12 @@ var SYSTEMS = [
   { id:'cn', color:'#6d28d9', stages:[['G1–2',1.0,18,18],['G3–4',0.9474,18,19],['G5–6',0.9615,25,26],['G7–9',0.9167,22,24]], overall:['Gesamt',0.954,83,87] },
 ];
 var T = {
-en: { t_towers:'Towers', sub:'Textbook–curriculum coverage by stage and system. Bright bars = overall. Click for the curriculum section.', overallrow:'<b>Overall:</b> NRW 12.7% · US 17.2% · UK 37.3% · China 95.4%', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · keyword bridge + 2-overlap threshold · paper §8.5', hint:'hover values · click for details', back:'← Gallery', sys:{nrw:'NRW (Germany)',us:'US',uk:'UK',cn:'China'}, overall:'Overall' },
-de: { t_towers:'Türme', sub:'Lehrbuch-Curriculum-Abdeckung nach Stufe und System. Helle Balken = gesamt. Klicken für Curriculum.', overallrow:'<b>Gesamt:</b> NRW 12,7 % · USA 17,2 % · UK 37,3 % · China 95,4 %', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · Keyword-Brücke + 2-Overlap-Schwelle · Paper §8.5', hint:'Werte hovern · Klicken für Details', back:'← Galerie', sys:{nrw:'NRW (Deutschland)',us:'USA',uk:'UK',cn:'China'}, overall:'Gesamt' },
-zh: { t_towers:'塔群', sub:'按学段与体系的教材—课程覆盖率。亮色为总体。点击查看课程板块。', overallrow:'<b>总体：</b>北威州 12.7% · 美国 17.2% · 英国 37.3% · 中国 95.4%', scope:'口径 · config/expert_graphs/coverage_all_curricula.json · 关键词桥接＋2 重叠阈值 · 论文 §8.5', hint:'悬停看值 · 点击看详情', back:'← 展厅', sys:{nrw:'北威州（德国）',us:'美国',uk:'英国',cn:'中国'}, overall:'总体' },
+en: { t_towers:'Towers', sub:'Textbook–curriculum coverage by stage and system. Bright bars = overall. Click for the curriculum section.', overallrow:'<b>Overall:</b> NRW 12.7% · US 17.2% · UK 37.3% · China 95.4%', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · keyword bridge + 2-overlap threshold · paper §8.5', hint:'hover values · click for details', back:'← Gallery', sys:{nrw:'NRW (Germany)',us:'US',uk:'UK',cn:'China'}, overall:'Overall',
+m_sum:'Details · how this chart is made', m_src_t:'Source', m_src:'Stage-level rows from <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> — the same table behind the portal coverage cards (Curriculum section).', m_calc_t:'Method', m_calc:'Keyword bridge + 2-overlap threshold: a curriculum item counts as covered if it shares at least 2 keywords with the textbook graph. Bar value = matched/total per stage; bright bar = system overall. Nothing is rescaled.', m_read_t:'Reading', m_read:'Bar height = coverage %. ★ = system overall. The headline gap is China ≈95% vs NRW ≈13% (paper §8.5). Click any bar for the curriculum section.' },
+de: { t_towers:'Türme', sub:'Lehrbuch-Curriculum-Abdeckung nach Stufe und System. Helle Balken = gesamt. Klicken für Curriculum.', overallrow:'<b>Gesamt:</b> NRW 12,7 % · USA 17,2 % · UK 37,3 % · China 95,4 %', scope:'SCOPE · config/expert_graphs/coverage_all_curricula.json · Keyword-Brücke + 2-Overlap-Schwelle · Paper §8.5', hint:'Werte hovern · Klicken für Details', back:'← Galerie', sys:{nrw:'NRW (Deutschland)',us:'USA',uk:'UK',cn:'China'}, overall:'Gesamt',
+m_sum:'Details · wie diese Grafik entsteht', m_src_t:'Quelle', m_src:'Stufen-Zeilen aus <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> — dieselbe Tabelle wie hinter den Portal-Coverage-Karten (Curriculum).', m_calc_t:'Methode', m_calc:'Keyword-Brücke + 2-Overlap-Schwelle: Ein Curriculum-Item gilt als abgedeckt, wenn es mindestens 2 Keywords mit dem Lehrbuchgraphen teilt. Balkenwert = Treffer/Gesamt pro Stufe; heller Balken = System gesamt. Nichts wird reskaliert.', m_read_t:'Lesart', m_read:'Balkenhöhe = Abdeckung %. ★ = System gesamt. Die Schlagzeile: China ≈95 % vs. NRW ≈13 % (Paper §8.5). Balken klicken für Curriculum.' },
+zh: { t_towers:'塔群', sub:'按学段与体系的教材—课程覆盖率。亮色为总体。点击查看课程板块。', overallrow:'<b>总体：</b>北威州 12.7% · 美国 17.2% · 英国 37.3% · 中国 95.4%', scope:'口径 · config/expert_graphs/coverage_all_curricula.json · 关键词桥接＋2 重叠阈值 · 论文 §8.5', hint:'悬停看值 · 点击看详情', back:'← 展厅', sys:{nrw:'北威州（德国）',us:'美国',uk:'英国',cn:'中国'}, overall:'总体',
+m_sum:'详细 · 这张图是怎么做的', m_src_t:'数据来源', m_src:'分学段行来自 <span class="mono">config/expert_graphs/coverage_all_curricula.json</span>——与门户覆盖率卡片（课程板块）同表。', m_calc_t:'计算口径', m_calc:'关键词桥接＋2 重叠阈值：课程条目与教材图谱共享至少 2 个关键词即算覆盖。柱值＝每学段命中/总数，亮色＝体系总体。无重缩放。', m_read_t:'怎么读', m_read:'柱高＝覆盖率%。★＝体系总体。最大看点是中国 ≈95% 对北威州 ≈13%（论文 §8.5）。点击柱子查看课程板块。' },
 };
 var lang = 'en';
 try {
@@ -131,9 +140,17 @@ function build() {
     gx += gw + SYSGAP;
     gi++;
   });
+  var det = document.createElement('details');
+  det.className = 'method';
+  det.innerHTML = '<summary data-k="m_sum"></summary>' +
+    '<div class="msec"><b data-k="m_src_t"></b><p data-k="m_src"></p></div>' +
+    '<div class="msec"><b data-k="m_calc_t"></b><p data-k="m_calc"></p></div>' +
+    '<div class="msec"><b data-k="m_read_t"></b><p data-k="m_read"></p></div>';
+  box.appendChild(det);
 }
 
 function applyLang() {
+  build();
   var t = T[lang];
   document.querySelectorAll('[data-k]').forEach(function(el) {
     var k = el.getAttribute('data-k');
@@ -141,7 +158,6 @@ function applyLang() {
   });
   document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
   document.documentElement.lang = lang;
-  build();
 }
 document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
   b.addEventListener('click', function() {

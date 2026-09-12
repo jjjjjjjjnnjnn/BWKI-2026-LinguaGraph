@@ -3,17 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Margin Galaxy — 55 replication runs</title>
+<title>Margin Proof — 55 replication runs, 55/55 positive</title>
 <style>
 :root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; --red:#b3372f; }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); }
-.chart { position:absolute; inset:0; overflow:auto; display:flex; align-items:flex-start; justify-content:flex-start; padding:110px 20px 60px; }
+.chart { position:absolute; inset:0; overflow:auto; display:flex; flex-direction:column; align-items:flex-start; padding:150px 20px 60px; }
 .chart svg { flex:0 0 auto; margin:0 auto; background:var(--surface2); border:1px solid var(--rule); border-radius:10px; box-shadow:0 18px 48px rgba(10,31,61,.10); }
 .chart text { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; }
-.dot { cursor:pointer; }
-.dot:hover { stroke:#0a1f3d; stroke-width:2; }
-.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:330px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
+.bar { cursor:pointer; }
+.bar:hover { filter:brightness(1.12); }
+.method { flex:0 0 auto; margin:18px auto 0; width:900px; max-width:94vw; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; font-size:.62rem; color:var(--text2); }
+.method summary { cursor:pointer; padding:10px 14px; font-weight:600; color:var(--accent); }
+.method .msec { padding:0 14px 10px; line-height:1.6; }
+.method .msec b { color:var(--text); display:block; margin-bottom:2px; }
+.method .msec + .msec { border-top:1px dashed var(--rule); padding-top:10px; }
+.method .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
+.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:360px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
 .hud h1 { font-size:.82rem; font-weight:600; }
 .hud h1 span { color:var(--accent); }
 .hud .sub { font-size:.58rem; color:var(--text2); margin:2px 0 8px; line-height:1.5; }
@@ -31,9 +37,9 @@ body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--s
 <body>
 <div class="chart" id="chart"></div>
 <div class="hud">
-  <h1>Margin <span data-k="t_galaxy">Galaxy</span></h1>
-  <div class="sub" data-k="sub">55 full ZH-DE margins by model family. X = margin, lanes = families. Click a dot for the roster.</div>
-  <div class="row"><span class="dot" style="background:#1e3a8a"></span><span data-k="lg_cn">CN run</span>&nbsp;&nbsp;<span class="dot" style="background:#b3372f"></span><span data-k="lg_w">western run (7)</span></div>
+  <h1>Margin <span data-k="t_proof">Proof</span></h1>
+  <div class="sub" data-k="sub">55/55 full runs positive · margins +0.03…+0.42 · all p&lt;0.01 — the ZH-DE signal replicates everywhere. Click a bar for the roster.</div>
+  <div class="row"><span class="dot" style="background:#1e3a8a"></span><span data-k="lg_cn">CN run</span>&nbsp;&nbsp;<span class="dot" style="border:2px solid #b3372f;background:#fff"></span><span data-k="lg_w">western run (7)</span></div>
   <div class="row" data-k="note">31 collecting runs withhold margins (n&lt;30) — not plotted.</div>
 </div>
 <div class="nav">
@@ -44,34 +50,38 @@ body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--s
 <div class="scope" data-k="scope">SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p&lt;0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json</div>
 <div class="hint" data-k="hint">hover values · click for roster</div>
 <script>
-// DATA — 55 full runs, same values as portal marginChart (desc here by family lane)
+// DATA — 55 full runs, sorted desc (same values as portal marginChart + roster table)
 var MODELS = [
-["command-a-03-2025","command-a",1,0.42],["gpt-5.6-luna","luna",1,0.22],
-["nemotron-3-super-120b-a12b","nemotron",1,0.17],["nemotron-3-ultra","nemotron",1,0.16],
-["gpt-oss-20b","gpt-oss",1,0.13],["laguna-s-2.1 · direct","laguna",1,0.10],["laguna-s-2.1 · kilo","laguna",1,0.07],
-["deepseek-v3.1","deepseek",0,0.29],["qwen-turbo","qwen",0,0.25],["qwen3-max","qwen",0,0.24],
-["deepseek-v3","deepseek",0,0.24],["qwen3.8-max","qwen",0,0.21],["glm-5","glm",0,0.19],
+["command-a-03-2025","command-a",1,0.42],["deepseek-v3.1","deepseek",0,0.29],
+["qwen-turbo","qwen",0,0.25],["qwen3-max","qwen",0,0.24],["deepseek-v3","deepseek",0,0.24],
+["gpt-5.6-luna","luna",1,0.22],["qwen3.8-max","qwen",0,0.21],["glm-5","glm",0,0.19],
 ["qwen3.5-397b-a17b","qwen",0,0.18],["qwen3.7-max","qwen",0,0.18],["glm-5.2-fast-preview","glm",0,0.18],
-["qwen3.5-plus","qwen",0,0.18],["deepseek-v3.2","deepseek",0,0.17],["deepseek-v4-flash · dashscope","deepseek",0,0.16],
+["qwen3.5-plus","qwen",0,0.18],["deepseek-v3.2","deepseek",0,0.17],
+["nemotron-3-super-120b-a12b","nemotron",1,0.17],["deepseek-v4-flash · dashscope","deepseek",0,0.16],
 ["MiniMax-M2.5","minimax",0,0.16],["qwen3.6-plus","qwen",0,0.16],["glm-5.2 · direct","glm",0,0.16],
-["qwen3.7-plus","qwen",0,0.15],["glm-4.6","glm",0,0.15],["glm-5.1","glm",0,0.14],
-["longcat-2.0","longcat",0,0.14],["kimi-k2.6 · direct","kimi",0,0.14],
+["nemotron-3-ultra","nemotron",1,0.16],["qwen3.7-plus","qwen",0,0.15],["glm-4.6","glm",0,0.15],
+["glm-5.1","glm",0,0.14],["longcat-2.0","longcat",0,0.14],["kimi-k2.6 · direct","kimi",0,0.14],
 ["glm-4.7","glm",0,0.13],["kimi-k2.6 · dashscope","kimi",0,0.13],["MiniMax-M2.1","minimax",0,0.13],
-["kimi-k2.5","kimi",0,0.12],["kimi-k2.7-code","kimi",0,0.12],["qwen3.5-27b","qwen",0,0.12],
-["glm-5.2 · dashscope","glm",0,0.12],["qwen3.6-27b","qwen",0,0.11],["deepseek-v4-pro · dashscope","deepseek",0,0.11],
-["qwen-flash","qwen",0,0.11],["Kimi-K2-Instruct","kimi",0,0.10],["deepseek-r1-distill-qwen-14b","deepseek",0,0.10],
-["qwen-plus","qwen",0,0.10],["qwen3.5-35b-a3b","qwen",0,0.10],["qwen3.5-flash","qwen",0,0.09],
-["qwen3.5-122b-a10b","qwen",0,0.09],["kimi-k2-thinking","kimi",0,0.09],["qwen3.6-35b-a3b","qwen",0,0.08],
-["deepseek-v4-flash · direct","deepseek",0,0.08],["qwen3-235b-a22b","qwen",0,0.08],["mimo-v2.5","mimo",0,0.08],
-["deepseek-v4-pro · direct","deepseek",0,0.07],["qwen3.7-flash","qwen",0,0.07],["deepseek-r1-distill-qwen-32b","deepseek",0,0.07],
-["qwen3.6-flash","qwen",0,0.05],["deepseek-r1","deepseek",0,0.05],["deepseek-r1-distill-qwen-7b","deepseek",0,0.04],
-["deepseek-r1-0528","deepseek",0,0.03]
+["gpt-oss-20b","gpt-oss",1,0.13],["kimi-k2.5","kimi",0,0.12],["kimi-k2.7-code","kimi",0,0.12],
+["qwen3.5-27b","qwen",0,0.12],["glm-5.2 · dashscope","glm",0,0.12],["qwen3.6-27b","qwen",0,0.11],
+["deepseek-v4-pro · dashscope","deepseek",0,0.11],["qwen-flash","qwen",0,0.11],
+["laguna-s-2.1 · direct","laguna",1,0.10],["Kimi-K2-Instruct","kimi",0,0.10],
+["deepseek-r1-distill-qwen-14b","deepseek",0,0.10],["qwen-plus","qwen",0,0.10],["qwen3.5-35b-a3b","qwen",0,0.10],
+["qwen3.5-flash","qwen",0,0.09],["qwen3.5-122b-a10b","qwen",0,0.09],["kimi-k2-thinking","kimi",0,0.09],
+["qwen3.6-35b-a3b","qwen",0,0.08],["deepseek-v4-flash · direct","deepseek",0,0.08],
+["qwen3-235b-a22b","qwen",0,0.08],["mimo-v2.5","mimo",0,0.08],["deepseek-v4-pro · direct","deepseek",0,0.07],
+["qwen3.7-flash","qwen",0,0.07],["deepseek-r1-distill-qwen-32b","deepseek",0,0.07],
+["laguna-s-2.1 · kilo","laguna",1,0.07],["qwen3.6-flash","qwen",0,0.05],["deepseek-r1","deepseek",0,0.05],
+["deepseek-r1-distill-qwen-7b","deepseek",0,0.04],["deepseek-r1-0528","deepseek",0,0.03]
 ];
-var LANES = ['qwen','deepseek','glm','kimi','minimax','mimo','laguna','longcat','nemotron','gpt-oss','command-a','luna'];
+var FAMCOLOR = { qwen:'#1e3a8a', deepseek:'#0e7490', glm:'#1e7e4d', kimi:'#7c3aed', minimax:'#b45309', mimo:'#be185d', laguna:'#64748b', longcat:'#0f766e', nemotron:'#4d7c0f', 'gpt-oss':'#6d28d9', 'command-a':'#9a3412', luna:'#334155' };
 var T = {
-en: { t_galaxy:'Galaxy', sub:'55 full ZH-DE margins by model family. X = margin, lanes = families. Click a dot for the roster.', lg_cn:'CN run', lg_w:'western run (7)', note:'31 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'hover values · click for roster', back:'← Gallery' },
-de: { t_galaxy:'Galaxie', sub:'55 vollständige ZH-DE-Margen nach Modellfamilie. X = Marge, Spuren = Familien. Punkt klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (7)', note:'31 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'Werte hovern · Klicken für Roster', back:'← Galerie' },
-zh: { t_galaxy:'星系', sub:'55 个完整 ZH-DE 边际，按模型家族分泳道。X＝边际。点击圆点查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (7)', note:'31 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'悬停看值 · 点击看名录', back:'← 展厅' },
+en: { t_proof:'Proof', sub:'55/55 full runs positive · margins +0.03…+0.42 · all p<0.01 — the ZH-DE signal replicates everywhere. Click a bar for the roster.', lg_cn:'CN run', lg_w:'western run (7)', note:'31 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'hover values · click for roster', back:'← Gallery',
+m_sum:'Details · how this chart is made', m_src_t:'Source', m_src:'55 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> — the same rows as the portal replication roster (Validation section). 31 collecting runs (n&lt;30, incl. qwen-max n=29/30) withhold margins and are not plotted.', m_calc_t:'Method', m_calc:'Margin = LDS-C minus split-half floor, one P1 protocol (ZH/DE/EN × 10 prompts) for all runs; significance by 500 permutations, every run p&lt;0.01. Sorted descending; nothing is rescaled.', m_read_t:'Reading', m_read:'Bar length = ZH-DE margin. Every bar is positive: the language signal holds for all 55 runs. Red outline = western run (7) — scattered across the ranking, i.e. no origin clustering. Click any bar for the full roster.' },
+de: { t_proof:'Beleg', sub:'55/55 vollständige Runs positiv · Margen +0,03…+0,42 · alle p<0,01 — das ZH-DE-Signal repliziert überall. Balken klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (7)', note:'31 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'Werte hovern · Klicken für Roster', back:'← Galerie',
+m_sum:'Details · wie diese Grafik entsteht', m_src_t:'Quelle', m_src:'55 vollständige Runs aus <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> — dieselben Zeilen wie das Replikations-Roster im Portal (Validation). 31 laufende Runs (n&lt;30, inkl. qwen-max n=29/30) halten Margen zurück und fehlen im Plot.', m_calc_t:'Methode', m_calc:'Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll (ZH/DE/EN × 10 Prompts) für alle Runs; Signifikanz per 500 Permutationen, jeder Run p&lt;0,01. Absteigend sortiert; nichts wird reskaliert.', m_read_t:'Lesart', m_read:'Balkenlänge = ZH-DE-Marge. Jeder Balken ist positiv: Das Sprachsignal gilt für alle 55 Runs. Rote Kontur = westlicher Run (7) — über das Ranking verstreut, d.h. keine Herkunfts-Cluster. Balken klicken für das volle Roster.' },
+zh: { t_proof:'实证', sub:'55/55 完整运行为正 · 边际 +0.03…+0.42 · 全部 p<0.01——ZH-DE 语言信号处处复现。点击柱子查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (7)', note:'31 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'悬停看值 · 点击看名录', back:'← 展厅',
+m_sum:'详细 · 这张图是怎么做的', m_src_t:'数据来源', m_src:'55 个完整运行，来自 <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span>——与门户 Validation 名录同行。31 个收集中运行（n&lt;30，含 qwen-max n=29/30）边际暂扣，未绘制。', m_calc_t:'计算口径', m_calc:'边际＝LDS-C 减 split-half 底线，统一 P1 协议（中/德/英 ×10 提示），500 置换检验，全部 p&lt;0.01。降序排列，无重缩放。', m_read_t:'怎么读', m_read:'柱长＝ZH-DE 边际。全部为正：语言信号在 55 个运行中全部成立。红色描边＝西方运行（7 个）——散布全榜，即无出身聚类。点击柱子查看完整名录。' },
 };
 var lang = 'en';
 try {
@@ -101,45 +111,47 @@ function hideTip() { tip.style.display = 'none'; }
 function build() {
   var box = document.getElementById('chart');
   box.innerHTML = '';
-  var LEFT = 150, RIGHT = 30, TOP = 26, LANEH = 34, PW = 720, BOT = 44;
+  var LEFT = 250, RIGHT = 70, TOP = 20, ROWH = 26, PW = 560, BOT = 20;
   var MAXM = 0.45;
-  var H = TOP + LANES.length * LANEH + BOT;
+  var H = TOP + MODELS.length * ROWH + BOT;
   var W = LEFT + PW + RIGHT;
   var X = function(m) { return LEFT + m / MAXM * PW; };
   var svg = el('svg', {width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img'}, box);
-  LANES.forEach(function(f, i) {
-    var y = TOP + i * LANEH + LANEH / 2;
-    el('line', {x1: LEFT, y1: TOP + i * LANEH, x2: LEFT + PW, y2: TOP + i * LANEH, stroke: '#e4e9f0', 'stroke-width': 1}, svg);
-    var lb = el('text', {x: LEFT - 10, y: y + 4, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 600, fill: '#0a1f3d'}, svg);
-    lb.textContent = f;
-    var cnt = MODELS.filter(function(m) { return m[1] === f; }).length;
-    var cn = el('text', {x: LEFT + PW + 8, y: y + 4, 'font-size': 11, fill: '#8595ad'}, svg);
-    cn.textContent = 'n=' + cnt;
-  });
   for (var v = 0; v <= 0.41; v += 0.1) {
     var ax = X(Math.min(v, MAXM));
-    el('line', {x1: ax, y1: TOP, x2: ax, y2: TOP + LANES.length * LANEH, stroke: '#dbe2ea', 'stroke-width': 1}, svg);
-    var at = el('text', {x: ax, y: TOP + LANES.length * LANEH + 20, 'text-anchor': 'middle', 'font-size': 11, fill: '#8595ad'}, svg);
-    at.textContent = '+' + v.toFixed(1);
+    el('line', {x1: ax, y1: TOP, x2: ax, y2: TOP + MODELS.length * ROWH, stroke: '#dbe2ea', 'stroke-width': 1}, svg);
+    var at = el('text', {x: ax, y: TOP + MODELS.length * ROWH + 16, 'text-anchor': 'middle', 'font-size': 11, fill: '#8595ad'}, svg);
+    at.textContent = '+' + v.toFixed(2);
   }
-  MODELS.forEach(function(m) {
-    var lane = LANES.indexOf(m[1]);
-    var y = TOP + lane * LANEH + LANEH / 2;
-    var c = el('circle', {cx: X(m[3]), cy: y, r: m[2] ? 8 : 6, fill: m[2] ? '#b3372f' : '#1e3a8a',
-      opacity: m[2] ? 1 : 0.8, 'class': 'dot'}, svg);
-    var title = el('title', {}, c);
+  MODELS.forEach(function(m, i) {
+    var y = TOP + i * ROWH;
+    var lb = el('text', {x: LEFT - 10, y: y + 15, 'text-anchor': 'end', 'font-size': 11, fill: m[2] ? '#b3372f' : '#0a1f3d'}, svg);
+    lb.textContent = m[0];
+    var r = el('rect', {x: LEFT, y: y + 4, width: Math.max(3, m[3] / MAXM * PW), height: 16,
+      fill: FAMCOLOR[m[1]] || '#1e3a8a', stroke: m[2] ? '#b3372f' : 'none', 'stroke-width': m[2] ? 2.5 : 0, rx: 3, 'class': 'bar'}, svg);
+    var vt = el('text', {x: X(m[3]) + 8, y: y + 16, 'font-size': 11, 'font-weight': m[3] >= 0.2 ? 700 : 400, fill: '#0a1f3d'}, svg);
+    vt.textContent = '+' + m[3].toFixed(2);
+    var title = el('title', {}, r);
     title.textContent = m[0] + ' · +' + m[3].toFixed(2);
     (function(mm) {
-      c.addEventListener('mousemove', function(e) {
+      r.addEventListener('mousemove', function(e) {
         showTip(e, '<b>' + esc(mm[0]) + '</b><br>margin +' + mm[3].toFixed(2) + ' · p<0.01' + (mm[2] ? '<br>western run' : ''));
       });
-      c.addEventListener('mouseleave', hideTip);
-      c.addEventListener('click', function() { window.open('../portal/index.html#validation', '_blank'); });
+      r.addEventListener('mouseleave', hideTip);
+      r.addEventListener('click', function() { window.open('../portal/index.html#validation', '_blank'); });
     })(m);
   });
+  var det = document.createElement('details');
+  det.className = 'method';
+  det.innerHTML = '<summary data-k="m_sum"></summary>' +
+    '<div class="msec"><b data-k="m_src_t"></b><p data-k="m_src"></p></div>' +
+    '<div class="msec"><b data-k="m_calc_t"></b><p data-k="m_calc"></p></div>' +
+    '<div class="msec"><b data-k="m_read_t"></b><p data-k="m_read"></p></div>';
+  box.appendChild(det);
 }
 
 function applyLang() {
+  build();
   var t = T[lang];
   document.querySelectorAll('[data-k]').forEach(function(el) {
     var k = el.getAttribute('data-k');
@@ -147,7 +159,6 @@ function applyLang() {
   });
   document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
   document.documentElement.lang = lang;
-  build();
 }
 document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
   b.addEventListener('click', function() {

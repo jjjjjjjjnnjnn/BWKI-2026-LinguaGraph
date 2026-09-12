@@ -112,6 +112,12 @@ section:first-of-type { padding-top: 100px; }
 .stat-card .num.pink { color: var(--pink); }
 .stat-card .label { font-size: .8rem; color: var(--text2); margin-top: 4px; }
 
+/* ===== Method details ===== */
+.method { width: 100%; max-width: 800px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: .82rem; color: var(--text2); }
+.method summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--accent); }
+.method .msec { padding: 0 16px 12px; line-height: 1.6; }
+.method .msec b { color: var(--text); display: block; margin-bottom: 2px; }
+
 /* ===== Cards ===== */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
 .card {
@@ -342,6 +348,13 @@ graph LR
     <div class="stat-card"><div class="num cyan" style="font-size:1.1rem">LDS</div><div class="label">Linguistic Divergence Score</div></div>
     <div class="stat-card"><div class="num orange" style="font-size:1.1rem">CS</div><div class="label">Coverage Score</div></div>
   </div>
+
+  <details class="method" style="margin-top:16px">
+    <summary id="story_mm_sum">Details · where the headline numbers come from</summary>
+    <div class="msec"><b id="story_mm_src_t">Source</b><p id="story_mm_src">Headline counts come from the three discipline graphs (math 556 nodes / physics 366 / chemistry 220 ≈ 1,140+ concepts; relations ≈ 1,100+), 92 gold labels, and 4 curricula — the same figures as the Research Portal.</p></div>
+    <div class="msec"><b id="story_mm_calc_t">Method</b><p id="story_mm_calc">CDS = 2|E|/(|V|·(|V|−1)) per level; HDS = longest prerequisite chain; LDS = 1 − mean structural overlap across language pairs; Coverage = keyword bridge + 2-overlap threshold. Full pipeline in portal Methodology.</p></div>
+    <div class="msec"><b id="story_mm_read_t">Reading</b><p id="story_mm_read">Big numbers = corpus size, not claims. Claims live in Findings F1–F12; every chart on this page links back to its portal evidence.</p></div>
+  </details>
 </section>
 
 <!-- ================================================================ -->
@@ -889,6 +902,13 @@ var TRANSLATIONS = {
     stat_gold_labels: 'Gold Labels', stat_f1: 'Overall F1',
     metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
     metric_lds: 'Linguistic Divergence Score', metric_cs: 'Coverage Score',
+    story_mm_sum: 'Details · where the headline numbers come from',
+    story_mm_src_t: 'Source',
+    story_mm_src: 'Headline counts come from the three discipline graphs (math 556 nodes / physics 366 / chemistry 220 ≈ 1,140+ concepts; relations ≈ 1,100+), 92 gold labels, and 4 curricula — the same figures as the Research Portal.',
+    story_mm_calc_t: 'Method',
+    story_mm_calc: 'CDS = 2|E|/(|V|·(|V|−1)) per level; HDS = longest prerequisite chain; LDS = 1 − mean structural overlap across language pairs; Coverage = keyword bridge + 2-overlap threshold. Full pipeline in portal Methodology.',
+    story_mm_read_t: 'Reading',
+    story_mm_read: 'Big numbers = corpus size, not claims. Claims live in Findings F1–F12; every chart on this page links back to its portal evidence.',
     section_rqs_title: 'Research Questions', section_rqs_sub: 'Three complementary lenses on knowledge organization',
     rq1_title: 'RQ1: Language', rq1_question: '<strong>Question:</strong> How do different languages organize the same knowledge?',
     rq1_answer: 'Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).',
@@ -958,6 +978,13 @@ var TRANSLATIONS = {
     stat_gold_labels: 'Goldstandard', stat_f1: 'Gesamt-F1',
     metric_cds: 'Concept Density Score', metric_hds: 'Hierarchy Depth Score',
     metric_lds: 'Linguistic Divergence Score', metric_cs: 'Coverage Score',
+    story_mm_sum: 'Details · woher die Kennzahlen stammen',
+    story_mm_src_t: 'Quelle',
+    story_mm_src: 'Kennzahlen aus den drei Fachgraphen (Mathe 556 Knoten / Physik 366 / Chemie 220 ≈ 1.140+ Konzepte; Relationen ≈ 1.100+), 92 Gold-Labels und 4 Lehrplänen — dieselben Zahlen wie im Research Portal.',
+    story_mm_calc_t: 'Methode',
+    story_mm_calc: 'CDS = 2|E|/(|V|·(|V|−1)) pro Stufe; HDS = längste Voraussetzungskette; LDS = 1 − mittlere strukturelle Überlappung über Sprachpaare; Coverage = Keyword-Brücke + 2-Overlap-Schwelle. Volle Pipeline in der Portal-Methodik.',
+    story_mm_read_t: 'Lesart',
+    story_mm_read: 'Große Zahlen = Korpusgröße, keine Claims. Claims stehen in Findings F1–F12; jede Grafik verlinkt zurück auf ihre Portal-Evidenz.',
     section_rqs_title: 'Forschungsfragen', section_rqs_sub: 'Drei komplementaere Perspektiven auf Wissensorganisation',
     rq1_title: 'FF1: Sprache', rq1_question: '<strong>Frage:</strong> Wie organisieren verschiedene Sprachen das gleiche Wissen?',
     rq1_answer: 'Nullmodell-Analyse zeigt Konvergenz der Lehrbuchstrukturen zwischen ZH und DE (LDS=0,519), entgegen sprachfamilienbasierter Erwartungen. ZH–EN und DE–EN bleiben stark divergent (0,934; 0,938).',
@@ -1027,6 +1054,13 @@ var TRANSLATIONS = {
     stat_gold_labels: '黄金标注', stat_f1: '总体 F1',
     metric_cds: '概念密度得分', metric_hds: '层次深度得分',
     metric_lds: '语言漂移得分', metric_cs: '覆盖率得分',
+    story_mm_sum: '详细 · 头图数字从哪来',
+    story_mm_src_t: '数据来源',
+    story_mm_src: '头图数字来自三学科图谱（数学 556 节点 / 物理 366 / 化学 220 ≈ 1,140+ 概念；关系 ≈ 1,100+）、92 个 gold 标注与 4 套课程——与研究门户同数。',
+    story_mm_calc_t: '计算口径',
+    story_mm_calc: 'CDS = 2|E|/(|V|·(|V|−1)) 逐学段；HDS ＝最长前提链；LDS ＝1 减语言对平均结构重叠；覆盖率＝关键词桥接＋2 重叠阈值。完整管线见门户方法区。',
+    story_mm_read_t: '怎么读',
+    story_mm_read: '大数字＝语料规模，不是结论。结论在发现 F1–F12；本页每张图都链回门户证据。',
     section_rqs_title: '研究问题', section_rqs_sub: '理解知识组织的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '<strong>问题：</strong>不同语言如何组织相同的知识？',
     rq1_answer: '零模型分析显示，中德教材结构趋同（LDS=0.519），这与语系预期相反。中英、德英之间仍高度分歧（0.934、0.938）。',
@@ -1113,6 +1147,15 @@ function setLanguage(lang) {
   document.querySelectorAll('.hero .stats:last-of-type .stat-card .label').forEach(function(l,i) {
     if (l && t[metricLabels[i]]) l.innerHTML = t[metricLabels[i]];
   });
+
+  // Hero method details
+  _q('#story_mm_sum', 'story_mm_sum');
+  _q('#story_mm_src_t', 'story_mm_src_t');
+  _q('#story_mm_src', 'story_mm_src');
+  _q('#story_mm_calc_t', 'story_mm_calc_t');
+  _q('#story_mm_calc', 'story_mm_calc');
+  _q('#story_mm_read_t', 'story_mm_read_t');
+  _q('#story_mm_read', 'story_mm_read');
 
   // Section titles & subtitles
   _q('#rqs h2', 'section_rqs_title');

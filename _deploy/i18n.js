@@ -30,6 +30,11 @@ const TRANSLATIONS = {
         // Language filter
         'lang.all': 'All',
 
+        // Discipline switcher
+        'disc.label': 'Discipline',
+        'disc.math': 'Math',
+        'disc.physics': 'Physics',
+
         // Controls
         'auto.rotate': '⟳ Auto Rotate',
         'clear': '← Clear',
@@ -39,12 +44,47 @@ const TRANSLATIONS = {
         'level.middle': 'Middle',
         'level.high': 'High',
         'level.college': 'College',
+        'legend.size': 'Size = degree (connections)',
 
         // Links
         'research.portal': 'Research Portal',
 
         // Controls hint
         'ctrl.hint': 'DRAG · SCROLL · WASD',
+
+        // Search
+        'search.ph': 'Search concepts…',
+        'search.none': 'No match — try another spelling.',
+        'search.more': 'more results',
+
+        // Mode captions
+        'modecap.universe': 'Universe — free force layout, reset to shell anchors on every click. Size = degree.',
+        'modecap.spacefill': 'Space-Fill — pinned to education-level shells, radii auto-fit to this graph.',
+        'modecap.compare': 'Compare — one pinned ball per education level; gaps show level separation. Size = degree.',
+
+        // Interface language + toggles
+        'ui.label': 'Interface',
+        'ui.topbar': 'Language',
+        'wasd.on': 'WASD: on',
+        'wasd.off': 'WASD: off',
+
+        // About panel
+        'about.open': 'About',
+        'about.close': 'Close',
+        'about.title': 'About this graph',
+        'about.body': 'Mathematics subgraph: <b>556</b> of 1,140+ concepts · 525 relations (<b>238 shown</b>) · 219 groups. Built from <b>68 textbooks</b> (39 ZH · 18 EN · 11 DE) by <span class="mono">scripts/release.py</span> from <span class="mono">manifest.json</span>. Node size = degree (connections); colour = education level. Modes: Universe (free layout) · Space-Fill (pinned shells) · Compare (level clusters). LDS rows are graph-level values. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.',
+        'about.body_physics': 'Physics subgraph: <b>366</b> concepts · <b>383</b> relations · 4 levels, same pipeline (<span class="mono">outputs/physics_cognitivespace.json</span>). Node size = degree (connections); colour = education level. Modes: Universe (free layout) · Space-Fill (pinned shells) · Compare (level clusters). Textbook LDS values below are mathematics-only. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.',
+        'detail.no_lds': 'Textbook LDS is mathematics-pipeline only.',
+
+        // Filtered counts + detail extras
+        'hud.filtered': '{shown} / {concepts} concepts · {relations} relations',
+        'detail.focus': 'Focus',
+        'detail.finding': 'Finding:',
+        'detail.graph_level': 'Scope:',
+        'detail.graph_level_v': 'Graph-level LDS-K (same for every node)',
+        'finding.a': 'Finding A →',
+        'finding.b': 'Finding B →',
+        'finding.c': 'Finding C →',
 
         // Loading
         'loading': 'CognitiveSpace',
@@ -109,6 +149,11 @@ const TRANSLATIONS = {
 
         'lang.all': 'Alle',
 
+        // Disziplin-Umschalter
+        'disc.label': 'Disziplin',
+        'disc.math': 'Mathe',
+        'disc.physics': 'Physik',
+
         'auto.rotate': '⟳ Auto-Rotation',
         'clear': '← Zurücksetzen',
 
@@ -116,10 +161,45 @@ const TRANSLATIONS = {
         'level.middle': 'Mittelstufe',
         'level.high': 'Oberstufe',
         'level.college': 'Hochschule',
+        'legend.size': 'Größe = Grad (Verbindungen)',
 
         'research.portal': 'Forschungsportal',
 
         'ctrl.hint': 'ZIEHEN · SKALIEREN · WASD',
+
+        // Suche
+        'search.ph': 'Konzepte suchen…',
+        'search.none': 'Nichts gefunden — andere Schreibweise versuchen.',
+        'search.more': 'weitere Treffer',
+
+        // Modus-Legenden
+        'modecap.universe': 'Universum — freies Force-Layout, bei jedem Klick auf Schalenanker zurückgesetzt. Größe = Grad.',
+        'modecap.spacefill': 'Raumfüllung — auf Bildungsstufen-Schalen fixiert, Radien auto-angepasst an diesen Graphen.',
+        'modecap.compare': 'Vergleich — eine fixierte Kugel pro Bildungsstufe; Lücken zeigen Stufentrennung. Größe = Grad.',
+
+        // Oberfläche + Schalter
+        'ui.label': 'Oberfläche',
+        'ui.topbar': 'Sprache',
+        'wasd.on': 'WASD: an',
+        'wasd.off': 'WASD: aus',
+
+        // Über-Panel
+        'about.open': 'Über',
+        'about.close': 'Schließen',
+        'about.title': 'Über diesen Graphen',
+        'about.body': 'Mathematik-Subgraph: <b>556</b> von 1.140+ Konzepten · 525 Relationen (<b>238 gezeigt</b>) · 219 Gruppen. Erbaut aus <b>68 Lehrbüchern</b> (39 ZH · 18 EN · 11 DE) mit <span class="mono">scripts/release.py</span> aus <span class="mono">manifest.json</span>. Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe. Modi: Universum (frei) · Raumfüllung (fixierte Schalen) · Vergleich (Stufencluster). LDS-Zeilen sind Graphenwerte. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.',
+        'about.body_physics': 'Physik-Subgraph: <b>366</b> Konzepte · <b>383</b> Relationen · 4 Stufen, gleiche Pipeline (<span class="mono">outputs/physics_cognitivespace.json</span>). Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe. Modi: Universum (frei) · Raumfüllung (fixierte Schalen) · Vergleich (Stufencluster). Lehrbuch-LDS unten ist nur Mathematik. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.',
+        'detail.no_lds': 'Lehrbuch-LDS nur aus der Mathematik-Pipeline.',
+
+        // Gefilterte Zählung + Detail-Extras
+        'hud.filtered': '{shown} / {concepts} Konzepte · {relations} Beziehungen',
+        'detail.focus': 'Fokussieren',
+        'detail.finding': 'Erkenntnis:',
+        'detail.graph_level': 'Geltung:',
+        'detail.graph_level_v': 'LDS-K auf Graphenebene (für jeden Knoten gleich)',
+        'finding.a': 'Erkenntnis A →',
+        'finding.b': 'Erkenntnis B →',
+        'finding.c': 'Erkenntnis C →',
 
         'loading': 'CognitiveSpace',
         'error.load': '3d-force-graph konnte nicht geladen werden. Netzwerk prüfen.',
@@ -177,6 +257,11 @@ const TRANSLATIONS = {
 
         'lang.all': '全部',
 
+        // 学科切换
+        'disc.label': '学科',
+        'disc.math': '数学',
+        'disc.physics': '物理',
+
         'auto.rotate': '⟳ 自动旋转',
         'clear': '← 清除',
 
@@ -184,10 +269,45 @@ const TRANSLATIONS = {
         'level.middle': '初中',
         'level.high': '高中',
         'level.college': '大学',
+        'legend.size': '大小＝度（连接数）',
 
         'research.portal': '研究门户',
 
         'ctrl.hint': '拖拽 · 滚轮 · WASD',
+
+        // 搜索
+        'search.ph': '搜索概念…',
+        'search.none': '无匹配——换个拼写试试。',
+        'search.more': '更多结果',
+
+        // 模式说明
+        'modecap.universe': '宇宙模式——自由力导布局，每次点击回到壳层锚点。大小＝度。',
+        'modecap.spacefill': '空间填充——固定到学段壳层，半径按本图谱自动适配。',
+        'modecap.compare': '比较模式——每个学段一个固定簇球，簇间距即学段分离度。大小＝度。',
+
+        // 界面语言＋开关
+        'ui.label': '界面',
+        'ui.topbar': '语言',
+        'wasd.on': 'WASD：开',
+        'wasd.off': 'WASD：关',
+
+        // 关于面板
+        'about.open': '关于',
+        'about.close': '关闭',
+        'about.title': '关于本图谱',
+        'about.body': '数学子图：1,140+ 概念中的 <b>556</b> · 525 条关系（<b>展示 238</b>）· 219 分组。由 <span class="mono">scripts/release.py</span> 从 <span class="mono">manifest.json</span> 基于 <b>68 本教材</b>（中 39 · 英 18 · 德 11）构建。节点大小＝度（连接数）；颜色＝学段。模式：宇宙（自由布局）·空间填充（固定壳层）·比较（学段簇球）。LDS 行为全图级数值。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。',
+        'about.body_physics': '物理子图：<b>366</b> 概念 · <b>383</b> 关系 · 4 学段，同管线（<span class="mono">outputs/physics_cognitivespace.json</span>）。节点大小＝度（连接数）；颜色＝学段。模式：宇宙（自由布局）·空间填充（固定壳层）·比较（学段簇球）。下表 LDS 为数学管线数值。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。',
+        'detail.no_lds': '教材 LDS 仅来自数学管线。',
+
+        // 筛选计数＋详情扩展
+        'hud.filtered': '{shown} / {concepts} 个概念 · {relations} 条关系',
+        'detail.focus': '聚焦',
+        'detail.finding': '发现：',
+        'detail.graph_level': '口径：',
+        'detail.graph_level_v': '全图级 LDS-K（所有节点相同）',
+        'finding.a': '发现 A →',
+        'finding.b': '发现 B →',
+        'finding.c': '发现 C →',
 
         'loading': 'CognitiveSpace',
         'error.load': '3d-force-graph 加载失败，请检查网络。',
