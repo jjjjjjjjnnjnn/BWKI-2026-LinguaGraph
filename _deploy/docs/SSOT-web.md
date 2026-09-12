@@ -194,6 +194,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring; reverse: substring 33.8/25.5 vs semantic 62.1/53.2); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
 
+## v22-maint (2026-09-12, 红蓝对抗)
+- 归档5脚本（-f进仓保provenance）+旧CSV deprecated + manifest三合一（备份→重跑→零漂移，commit=84fb483）+ deploy图补齐20件 + workflow paths + submission 3快照 + 407注释。pre-grounding大备份留磁盘（2.8MB，不进仓）。
+- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+
 ## v22-p1 (2026-09-12, 红蓝对抗12/12)
 - 366→367六处、89 titles、pitch 556/525、hero=1143、floor三线、人/机后缀、双账脚注、EN层标签、CN 7+4=11、p口径、paper frozen句、§2.2镜像句、MANIFEST 7行+数字修正。红方全过。
 - OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。

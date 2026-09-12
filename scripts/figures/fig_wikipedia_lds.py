@@ -194,6 +194,7 @@ def main():
 
     # CSV
     csv_path = OUTPUT_DIR / "fig_wikipedia_lds_data.csv"
+    print("WARNING: DEPRECATED output path — Latin-only alignment artefact (see docs/BASELINE_LEDGER.md §7)")
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["topic", "language_pair", "lds"])

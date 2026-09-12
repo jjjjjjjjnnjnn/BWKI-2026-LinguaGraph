@@ -13,6 +13,8 @@ g = json.loads(Path("config/expert_graphs/text_grounding_20260912.json")
                .read_text(encoding="utf-8"))
 by_name = {n["name"]: n for gk in ("physics", "chemistry")
            for n in g["graphs"][gk]["items"]}
+# 407 = total semantic verdicts in text_grounding_en_semantic_20260912.json
+# ("results" list length; 10 shards merged); guards against silent shard loss.
 assert len(results) == 407, len(results)
 for r in results:
     assert r["name"] in by_name, r["name"]
