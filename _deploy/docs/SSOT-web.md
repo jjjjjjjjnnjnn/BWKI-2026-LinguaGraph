@@ -200,6 +200,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - 公式终审：二元精确复现发表值(裁决人亲跑 `reproduce_lds_binary.py`，log冻结)；三元收窄为as-implemented；`src/scoring.py`加VERDICT注(行为不动)；Fig2重画二元+三语脚注；portal公式卡改回二元；paper §2.7改为Verdict注。
 - 附带：`outputs/physics_{comparison,cognitivespace}.json` v18漏提交的367/386本次收齐(physics_full.json实测367概念/386关系)；portal ZH字典区历史mojibake(HEAD既有)记P1，不在本轮修。
 - Fig3破案 CLOSED (Wave 2 W2.1, 原因找到→不删除)：middle 46/280→0.271、high 175/1113→0.073（无向密度唯一命中）；源头 eeca788/2ffd963/763b836（2026-06-21/22）；稠密管线已丢失（574→556/3375），16+96穷举无命中；Option 1落地（portal三语+story+assert信息）。
+- Fig5立案 CLOSED (Wave 2 W2.2, 同政策→不删除)：`docs/fig5_hds_forensic.md`新建；4阶段拼合史（eeca788定义/2ffd963 max7+mean0.40/8ad379a 459/897f04e max8+0.4029+3538/0962982 556分母）；丢失556/525一致ID图（merged-557+6悬空边为残骸，最接近460/7/0.27）；`6f1d5b2`事故覆盖math节（发表JSON仅存于6f1d5b2^）；脚注portal finding_b三语+story F7/fig5_caption三语；story stale 64%→60%顺手修复；paper表为发表态，披露由取证注承担。
 
 ## v19 P2/P3/P4-Abschluss (2026-09-12，续)
 - P2 QC-closure: `--pages`-Modus in skill-`pdf_extract.py` (+ Manifest-Merge, `pdf_qc.py` ignoriert skipped/-1) → `conf_backfill.py`: 101 Seiten nachgeholt, **-1 = 0, 1481 Seiten, 27 flagged (alle belegt blank/cover), mean conf 0.9665**; Visual-Closure: 2 Seiten vom Modell gegengeprüft (xb2-p60 Sinus-Wechselstrom, bx1-p28 Redox — Schlüsselterme im OCR verifiziert); `render_qc_sample.py`.
