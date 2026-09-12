@@ -118,6 +118,14 @@ def calculate_lds_score(
 
     LDS(L1, L2) = 1 - mean(GED_sim, Jaccard_node, Jaccard_edge)
 
+    VERDICT 2026-09-12 (BASELINE_LEDGER §8): published LDS-K values
+    (0.934/0.938/0.519) were produced by the 2-component pipeline
+    (scripts/figures/_lds_utils.py::lds_jaccard), NOT by this function.
+    Exact GED is intractable at graph scale (219 nodes: timeout even on
+    12-node subgraphs); the ged_sim=0.5 fallback does not reproduce
+    published values. This function is kept for small-graph use;
+    do NOT cite it as the source of published LDS-K numbers.
+
     Args:
         graph_l1: First language graph
         graph_l2: Second language graph

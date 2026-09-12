@@ -441,7 +441,7 @@ graph LR
     </div>
     <div class="metric-card">
       <div class="sym" style="color:#0e7490">LDS</div>
-      <div class="formula">1 − mean(GED_sim, J_node, J_edge)</div>
+      <div class="formula">1 − mean(J_node, J_edge)</div>
       <div class="desc" data-i18n="metric_lds">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
     <div class="metric-card">
@@ -454,7 +454,7 @@ graph LR
   <div class="fig-row" style="margin-top:24px">
     <div class="figure-box">
       <img src="figures/fig2_lds_flow.png" alt="Fig 2: LDS Calculation Flow" onclick="openLightbox(this.src)" loading="lazy">
-      <div class="fig-label" data-i18n="method_fig2"><strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, three similarity components</div>
+      <div class="fig-label" data-i18n="method_fig2"><strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components</div>
     </div>
   </div>
 
@@ -1635,7 +1635,7 @@ const TRANSLATIONS = {
     metric_hds: 'Longest prerequisite chain for each concept. Measures hierarchical depth.',
     metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
-    method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, three similarity components',
+    method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components',
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
     glos_1: 'Grade-randomized graphs: the overlap expected by pure chance.',
     glos_2: 'k = 15/25/35: comparison at equal vocabulary size.',
@@ -1875,7 +1875,7 @@ const TRANSLATIONS = {
     metric_hds: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst Hierarchietiefe.',
     metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
-    method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, drei Aehnlichkeitskomponenten',
+    method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, zwei Aehnlichkeitskomponenten',
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
     glos_1: 'Grad-randomisierte Graphen: die Ueberlappung, die reiner Zufall erwarten laesst.',
     glos_2: 'k = 15/25/35: Vergleich bei gleicher Vokabelgroesse.',
@@ -2115,7 +2115,7 @@ curr_explanations_title: '三种竞争性解释',
     metric_hds: '每个概念的最长前提链。衡量层次深度。',
     metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
-    method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、三个相似度分量',
+    method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、两个相似度分量',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
     glos_1: '度随机化图谱：纯随机下的期望重叠。',
     glos_2: 'k＝15/25/35：等词汇量下的比较。',

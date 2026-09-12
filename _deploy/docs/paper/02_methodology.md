@@ -144,7 +144,7 @@ wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und
 
 **Null-Modell-Rahmen**: Um Struktureffekte von Spracheffekten zu trennen, werden drei Null-Modelle eingesetzt (Details in `docs/lds_formal_definition.md` §3): (1) **Within-Language Split-Half** — Aufteilung einer Sprache in zwei Hälften → Bodenniveau der Teilnehmervariabilität; (2) **Label-Permutation** — Permutation der Sprachlabels → formales p-Wert für das getragene Sprachsignal; (3) **Cross-Source Null** — Textbuch vs. Wikipedia derselben Sprache → Trennung von Quell- und Spracheffekt. Alle LDS-Berechnungen verwenden die frozen v3-Formel; die Ergebnisse der Human- und LLM-Analyse (§4, §5) stützen sich auf denselben Rahmen.
 
-> **Implementierungs-Hinweis (2026-09-12)**: `src/scoring.py` L119 und `docs/methodology.md` implementieren die 3-Komponenten-Formel `LDS = 1 − mean(GED_sim, Jaccard_node, Jaccard_edge)` (in `src` gilt `calculate_lcd_score = calculate_lds_score` als Alias); obige frozen-v3-Definition (Mittel aus 2) weicht davon ab. Publizierte LDS-Werte bleiben unverändert; die Klärung, welche Formelvariante die berichteten Werte erzeugt hat, ist fällig (vgl. Portal Fig. 2 mit Fußnote).
+> **Formel-Verdict (2026-09-12, vgl. `docs/BASELINE_LEDGER.md` §8)**: verifiziert — publizierte LDS-K-Werte stammen aus der 2-Komponenten-Pipeline (`scripts/figures/_lds_utils.py::lds_jaccard`; Freeze-Skript `scripts/figures/reproduce_lds_binary.py`, Log `outputs/figures/reproduce_lds_binary.log`). Die 3-Komponenten-Variante in `src/scoring.py` (exaktes GED auf 219 Knoten intractable, Fallback 0,5) reproduziert sie nicht; obiger frozen-v3-Text (2 Komponenten) ist damit die maßgebliche Definition.
 
 ### 2.8 LLM-Extraktionsqualität
 

@@ -194,7 +194,15 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
 
-## v19 P2/P3/P4-Abschluss (2026-09-12)
+## v20 基线台账+公式裁决 (2026-09-12, 红蓝对抗)
+
+- 对抗机制：蓝方举证 → 红方9组质询(7致命) → 蓝方作答(8认罚) → 红方复验 → 裁决人终审。红方3"不通过"中2误伤(只搜JSON未查CSV，已纠正)，1成立(6.2逻辑跳跃，已收窄)。
+- `docs/BASELINE_LEDGER.md`：8基线四列台账；verified仅§4人机同幅+§8a二元；2a drop；其余needs_review+补实验清单(P0/P1/P2)；精度政策3位+CI；容差三档。
+- 公式终审：二元精确复现发表值(裁决人亲跑 `reproduce_lds_binary.py`，log冻结)；三元收窄为as-implemented；`src/scoring.py`加VERDICT注(行为不动)；Fig2重画二元+三语脚注；portal公式卡改回二元；paper §2.7改为Verdict注。
+- 附带：`outputs/physics_{comparison,cognitivespace}.json` v18漏提交的367/386本次收齐(physics_full.json实测367概念/386关系)；portal ZH字典区历史mojibake(HEAD既有)记P1，不在本轮修。
+- Fig3破案仍 open (Wave 2 W2.1)。
+
+## v19 P2/P3/P4-Abschluss (2026-09-12，续)
 
 - P2 QC-closure: `--pages`-Modus in skill-`pdf_extract.py` (+ Manifest-Merge, `pdf_qc.py` ignoriert skipped/-1) → `conf_backfill.py`: 101 Seiten nachgeholt, **-1 = 0, 1481 Seiten, 27 flagged (alle belegt blank/cover), mean conf 0.9665**; Visual-Closure: 2 Seiten vom Modell gegengeprüft (xb2-p60 Sinus-Wechselstrom, bx1-p28 Redox — Schlüsselterme im OCR verifiziert); `render_qc_sample.py`.
 - P3 chem-15: `status = staging-confirmed-2026-09-12` + deutsches Verdict (kein zweiter Verzeichnis-Fehler); physics-10-Elementar-Refs als Konvention vermerkt.
