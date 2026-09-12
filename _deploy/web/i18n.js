@@ -33,6 +33,13 @@ const TRANSLATIONS = {
         'disc.physics': 'Physics',
         'disc.chemistry': 'Chemistry',
 
+        // Concept groups (card domain line)
+        'group.general': 'General', 'group.calculus': 'Calculus',
+        'group.linear_algebra': 'Linear Algebra', 'group.statistics': 'Statistics',
+        'group.elementary': 'Elementary', 'group.middle': 'Middle School',
+        'group.geometry': 'Geometry', 'group.physics': 'Physics',
+        'group.chemistry': 'Chemistry',
+
         // Controls
         'auto.rotate': '⟳ Auto Rotate',
         'clear': '← Clear',
@@ -152,6 +159,13 @@ const TRANSLATIONS = {
         'disc.physics': 'Physik',
         'disc.chemistry': 'Chemie',
 
+        // Konzeptgruppen (Karten-Domänenzeile)
+        'group.general': 'Allgemein', 'group.calculus': 'Analysis',
+        'group.linear_algebra': 'Lineare Algebra', 'group.statistics': 'Statistik',
+        'group.elementary': 'Grundstufe', 'group.middle': 'Mittelstufe',
+        'group.geometry': 'Geometrie', 'group.physics': 'Physik',
+        'group.chemistry': 'Chemie',
+
         'auto.rotate': '⟳ Auto-Rotation',
         'clear': '← Zurücksetzen',
 
@@ -259,6 +273,13 @@ const TRANSLATIONS = {
         'disc.math': '数学',
         'disc.physics': '物理',
         'disc.chemistry': '化学',
+
+        // 概念分组（卡片领域行）
+        'group.general': '综合', 'group.calculus': '微积分',
+        'group.linear_algebra': '线性代数', 'group.statistics': '统计',
+        'group.elementary': '小学', 'group.middle': '初中',
+        'group.geometry': '几何', 'group.physics': '物理',
+        'group.chemistry': '化学',
 
         'auto.rotate': '⟳ 自动旋转',
         'clear': '← 清除',

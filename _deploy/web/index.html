@@ -620,7 +620,12 @@
     }
 
     /* ─── Detail ──────────────────────────────────────────────────── */
-    // Display label follows the UI language (fallback: node name, then id).
+    // Concept group label (localized; falls back to the raw group id)
+    function groupName(g){
+        g = g || 'general';
+        const t = i18n.tr('group.'+g);
+        return (t && t.charAt(0) !== '[') ? t : g;
+    }
     // Every node is trilingual, so counts never change with language.
     function nodeLabel(n){
         const lbs = (n && n.labels) || {};
@@ -635,7 +640,7 @@
         document.getElementById('dl').innerHTML = ['zh','en','de']
             .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
         const lv = n.level||'college', lc = LV[lv]||LV.college;
-        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+i18n.tr('level.'+lv)+'</span> · '+(n.group||'general')+' · '+((n.source_count||1)+' '+i18n.tr('sources'));
+        document.getElementById('dm').innerHTML = '<span style="color:'+lc.c+'">'+i18n.tr('level.'+lv)+'</span> · '+groupName(n.group)+' · '+((n.source_count||1)+' '+i18n.tr('sources'));
 
         // ── Compute node-level metrics ──
         const gd = G.graphData();
@@ -726,7 +731,7 @@
             '<em>'+i18n.tr('def.cds')+'<br>'+i18n.tr('def.hds')+'<br>'+i18n.tr('def.lds')+'</em>';
 
         const refs = n.cross_references||[];
-        document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+'</span>').join('<br>'):'';
+        document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+(r.language?' <em style="color:#7a9aff">['+String(r.language).toUpperCase()+']</em>':'')+'</span>').join('<br>'):'';
         e.style.display = 'block';
         clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000);
     }
