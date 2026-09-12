@@ -13,11 +13,12 @@ Stand: 2026-09-12 · Inventar aus `source_references` (Physik 23 Titel, Chemie *
 
 ## Download-Liste (Priorität)
 
-**P0 — Physik ZH (v15-kritisch):**
-1. 人教版高中物理必修第三册（全）
-2. 人教版高中物理选择性必修第一册（动量/振动波/光）
-3. 人教版高中物理选择性必修第二册（电磁感应/交变电流/传感）
-4. 人教版高中物理选择性必修第三册（热/气体/原子物理）
+**P0 — Physik ZH (v17 MERGED als Refs, 2026-09-12):**
+1. 人教版高中物理必修第三册（全）—— zitiert (136× high)
+2. 人教版高中物理选择性必修第一册（动量/振动波/光）—— zitiert (136× high)
+3. 人教版高中物理选择性必修第二册（电磁感应/交变电流/传感）—— zitiert (136× high); Lücke: 传感器单元 (0 Treffer, 1 Kandidat-Knoten, nicht gebaut)
+4. 人教版高中物理选择性必修第三册（热/气体/原子物理）—— zitiert (136× high)
+(Vorgehen: `[:2]`-Cut entfernt, Refs 2127→10088, 366/383 unverändert; Buchtexte weiter nicht in `data/textbook/`, chapter/section leer.)
 
 **P1 — Chemie (v16 ERLEDIGT als Refs, ohne Buchtexte):**
 5. 人教版高中化学选择性必修1（反应原理）—— zitiert (51×), chapter/section noch leer

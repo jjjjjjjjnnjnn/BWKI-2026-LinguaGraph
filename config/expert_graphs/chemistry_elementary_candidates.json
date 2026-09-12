@@ -1,0 +1,790 @@
+{
+  "version": "0.1",
+  "domain": "chemistry_elementary_candidates",
+  "status": "staging",
+  "description": "Chemistry elementary (primary-science enlightenment) STAGING candidates. NOT merged into chemistry_full.json. No expand run. Textbook verification required before any merge.",
+  "languages": [
+    "zh",
+    "en",
+    "de"
+  ],
+  "assessment": {
+    "verdict": "有采（staging 候选，非正式合入）",
+    "chemistry_full_level_dist": {
+      "middle": 46,
+      "high": 51,
+      "college": 123,
+      "elementary": 0,
+      "total": 220
+    },
+    "why_chemistry_has_no_elementary": "chemistry_full.json 由 scripts/expand_chemistry_graph.py 生成，该脚本 publisher 目录只有 middle/high/college 三档（初中化学九年级起、高中必修/选必、大学无机/有机/物化/分析）， purposefully middle 起编，无 elementary 档。这是学科特性：化学作为独立学科在中国九年级、UK KS3/GCSE、US middle-high、DE Sek I 才出现，小学段无独立化学课。",
+    "why_staging_candidates_exist": "小学科学/小学自然虽无独立化学，但含化学启蒙主题（物质材料、水、空气、溶解、混合分离、三态变化、冷热、燃烧/生锈的现象观察）。physics_full.json 已有先例：10 个 elementary 概念引用小学科学作为 source（见下），chemistry 可镜像该做法做 staging 启蒙层，与 middle 正式概念构成 prerequisite 关系，而非平级替代。",
+    "evidence": {
+      "data_textbook": "data/textbook/ 下 95 个 txt 经核查：无小学科学/小学自然文本。仅有小学数学（zh_小学数学_一年级上/下、二年级上/下）与 Khan 数学（en_khan_academy_k-2/3-5/5-6/6-8，内容为 K-5 数学非科学）。结论：小学科学教材原文不在库，physics 的小学科学 refs 属引用惯例标注，非库内文本直采。",
+      "physics_refs_verbatim": {
+        "note": "physics_full.json 10 个 level=elementary 概念（mechanics 运动/参照系/位移/路程/速度/速率/匀速直线运动/时间/长度测量/时间测量）的 source_references 原文如下（逐字，含出版社/年级/章节）",
+        "zh": [
+          {
+            "textbook": "人教版小学科学三年级上",
+            "language": "zh",
+            "chapter": "三年级",
+            "section": "上册"
+          },
+          {
+            "textbook": "人教版小学科学四年级上",
+            "language": "zh",
+            "chapter": "四年级",
+            "section": "上册"
+          }
+        ],
+        "en": [
+          {
+            "textbook": "Khan Academy: Elementary Science",
+            "language": "en",
+            "chapter": "Grades K-2",
+            "section": "Forces and Motion"
+          },
+          {
+            "textbook": "Khan Academy: Elementary Science",
+            "language": "en",
+            "chapter": "Grades 3-5",
+            "section": "Energy and Waves"
+          }
+        ],
+        "de": [
+          {
+            "textbook": "Duden: Physik Kompakt",
+            "language": "de",
+            "chapter": "5.-6. Klasse",
+            "section": ""
+          },
+          {
+            "textbook": "Cornelsen: Physik entdecken",
+            "language": "de",
+            "chapter": "5. Klasse",
+            "section": ""
+          }
+        ],
+        "zh_publisher_catalog": "scripts/expand_physics_graph.py ZH_PUBLISHERS[elementary] = 人教版小学科学三年级上/四年级上/五年级上 + 沪教版小学科学三年级 + 北师大版小学科学四年级；EN = Khan Elementary Science K-2/3-5 + National Geographic + CK-12 Elementary Physical Science；DE = Duden Physik Kompakt 5.-6. Klasse / Cornelsen Physik entdecken 5. Klasse / Westermann Physik 5. Klasse。"
+      },
+      "parse_science_curricula_covers_primary": "scripts/parse_science_curricula.py 覆盖小学段：UK_SCIENCE_STAGES 含 uk_sci_ks1 (Y1-2→elementary)、uk_sci_ks2_lower (Y3-4→elementary)，Che 判词含 material/change/mix/dissolv/heat/temperature；US_SCIENCE_STAGES 含 us_sci_k5 (K-5→elementary)，PS 域对应物质科学。但解析产物不完整：curriculum_uk_science.json 186 条全为 high/KS4（KS1-KS3 解析落空），curriculum_us_science.json 27 条中 K-5 仅 9 条且 PS 显示为 NGSS 碎片。源 PDF 在库（data/curricula/uk_science_ks1_ks2.pdf、us_ngss_science.pdf、us_ngss_topic_arrangements.pdf），属有源可采、解析待修状态。",
+      "curriculum_pdfs_present": [
+        "data/curricula/uk_science_ks1_ks2.pdf",
+        "data/curricula/uk_science_ks3.pdf",
+        "data/curricula/uk_science_ks4.pdf",
+        "data/curricula/us_ngss_science.pdf",
+        "data/curricula/us_ngss_topic_arrangements.pdf"
+      ]
+    },
+    "staging_scope": "本文件 15 个候选均为现象观察层（phenomenon-level），刻意避开正式概念（原子/分子/元素/化学式/方程式/pH/摩尔），拟 level=elementary，name 统一 chem_elem_ 前缀以保证与现有 220 零冲突，语义上为 middle 正式概念的前置（prerequisite），见各候选 maps_to_formal。",
+    "not_done": "未合入 chemistry_full.json；未运行任何 expand 脚本；未改动 chemistry_full.json、physics_full.json 及任何 curriculum/textbook 源文件。",
+    "textbook_verification_required": "候选 source_references 沿用 physics 小学科学引用惯例（人教版小学科学三/四/五年级上 + Khan Elementary Science + DE 5. Klasse 自然科学），但 data/textbook/ 无小学科学原文，属拟标注。合入前须逐条核对人教/沪教/北师大及 UK KS1-KS2 / NGSS K-2/3-5 原文页码，未核验不得转正。",
+    "viewer_suggestion": "正式 chemistry viewer 在转正前应诚实标注“ middle 起编（初中化学起），小学为启蒙观察层（staging，未计入正式图）”；若展示本文件须加 staging/待审角标，与 220 正式概念视觉区分，不计入 coverage 分子。",
+    "discipline_characteristic": "若未来复核认定小学科学化学启蒙不独立成科，亦可接受结论 B（化学确实无小学段，viewer 空壳诚实标注即可）。本文件已为该回退路径保留依据：即使 15 候选全部驳回，assessment 本身即为特性结论记录。"
+  },
+  "candidates": [
+    {
+      "name": "chem_elem_常见材料",
+      "display_name": "常见材料",
+      "level": "elementary",
+      "labels": {
+        "zh": "常见材料",
+        "en": "Common Materials and Uses",
+        "de": "Alltagsmaterialien und Verwendung"
+      },
+      "maps_to_formal": [
+        "chem_物质",
+        "chem_混合物"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Properties of Materials"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Matter and Materials"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_固体与液体",
+      "display_name": "固体与液体",
+      "level": "elementary",
+      "labels": {
+        "zh": "固体与液体",
+        "en": "Solids and Liquids in Everyday Life",
+        "de": "Feststoffe und Flüssigkeiten im Alltag"
+      },
+      "maps_to_formal": [
+        "chem_物质",
+        "chem_物理变化"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "States of Matter"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Matter and Materials"
+        },
+        {
+          "textbook": "Duden: Naturwissenschaften Kompakt",
+          "language": "de",
+          "chapter": "5.-6. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_水的三态",
+      "display_name": "水的三态变化",
+      "level": "elementary",
+      "labels": {
+        "zh": "水的三态变化",
+        "en": "States of Water: Ice, Water, Vapor",
+        "de": "Zustandsformen des Wassers: Eis, Wasser, Dampf"
+      },
+      "maps_to_formal": [
+        "chem_水",
+        "chem_物理变化"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Water Cycle and States"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "States of Matter"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_空气的存在",
+      "display_name": "空气的存在",
+      "level": "elementary",
+      "labels": {
+        "zh": "空气的存在",
+        "en": "Air Exists and Moves",
+        "de": "Luft gibt es wirklich"
+      },
+      "maps_to_formal": [
+        "chem_物质",
+        "chem_混合物"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Air and Weather"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Gases Around Us"
+        },
+        {
+          "textbook": "Westermann: Naturwissenschaften",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_溶解现象",
+      "display_name": "溶解现象",
+      "level": "elementary",
+      "labels": {
+        "zh": "溶解现象",
+        "en": "Dissolving: Sugar and Salt in Water",
+        "de": "Lösen: Zucker und Salz in Wasser"
+      },
+      "maps_to_formal": [
+        "chem_溶液",
+        "chem_溶质",
+        "chem_溶剂",
+        "chem_溶解度"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Mixtures and Solutions"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Solutions"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_混合与分离",
+      "display_name": "混合与分离",
+      "level": "elementary",
+      "labels": {
+        "zh": "混合与分离",
+        "en": "Mixing and Separating Mixtures",
+        "de": "Mischen und Trennen von Gemischen"
+      },
+      "maps_to_formal": [
+        "chem_混合物",
+        "chem_过滤",
+        "chem_蒸馏",
+        "chem_萃取"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Mixtures and Solutions"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Separating Mixtures"
+        },
+        {
+          "textbook": "Duden: Naturwissenschaften Kompakt",
+          "language": "de",
+          "chapter": "5.-6. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_冷热与温度",
+      "display_name": "冷热与温度",
+      "level": "elementary",
+      "labels": {
+        "zh": "冷热与温度",
+        "en": "Hot, Cold and Temperature",
+        "de": "Warm, Kalt und Temperatur"
+      },
+      "maps_to_formal": [
+        "chem_物理变化"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Temperature and Measurement"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Energy and Heat"
+        },
+        {
+          "textbook": "Westermann: Naturwissenschaften",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_加热与冷却",
+      "display_name": "加热与冷却",
+      "level": "elementary",
+      "labels": {
+        "zh": "加热与冷却",
+        "en": "Heating and Cooling Cause Change",
+        "de": "Erwärmen und Abkühlen verändert Stoffe"
+      },
+      "maps_to_formal": [
+        "chem_物理变化",
+        "chem_化学变化"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Energy and Change"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Changes in Matter"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_燃烧观察",
+      "display_name": "燃烧的现象观察",
+      "level": "elementary",
+      "labels": {
+        "zh": "燃烧的现象观察",
+        "en": "Observing Burning: Candle Flame",
+        "de": "Verbrennung beobachten: Kerzenflamme"
+      },
+      "maps_to_formal": [
+        "chem_燃烧",
+        "chem_化学变化"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Chemical Changes"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Changes in Matter"
+        },
+        {
+          "textbook": "Duden: Naturwissenschaften Kompakt",
+          "language": "de",
+          "chapter": "5.-6. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_生锈观察",
+      "display_name": "生锈的现象观察",
+      "level": "elementary",
+      "labels": {
+        "zh": "生锈的现象观察",
+        "en": "Observing Rusting Iron",
+        "de": "Rosten beobachten: Eisen"
+      },
+      "maps_to_formal": [
+        "chem_化学变化",
+        "chem_金属活动性顺序"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "北师大版小学科学四年级",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": ""
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Chemical Changes"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Changes in Matter"
+        },
+        {
+          "textbook": "Westermann: Naturwissenschaften",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_食物与保存",
+      "display_name": "食物与保存",
+      "level": "elementary",
+      "labels": {
+        "zh": "食物与保存",
+        "en": "Food Types and Keeping Food Fresh",
+        "de": "Lebensmittel und Aufbewahrung"
+      },
+      "maps_to_formal": [
+        "chem_化学变化",
+        "chem_化学"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Living Things and Food"
+        },
+        {
+          "textbook": "CK-12: Elementary Life Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Food and Nutrition"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_水的用途",
+      "display_name": "水的用途与节约",
+      "level": "elementary",
+      "labels": {
+        "zh": "水的用途与节约",
+        "en": "Uses of Water and Saving Water",
+        "de": "Verwendung von Wasser und Wassersparen"
+      },
+      "maps_to_formal": [
+        "chem_水",
+        "chem_溶液"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Water Around Us"
+        },
+        {
+          "textbook": "CK-12: Elementary Earth Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Water on Earth"
+        },
+        {
+          "textbook": "Westermann: Naturwissenschaften",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_土壤与岩石",
+      "display_name": "土壤与岩石",
+      "level": "elementary",
+      "labels": {
+        "zh": "土壤与岩石",
+        "en": "Soil and Rocks Around Us",
+        "de": "Boden und Gesteine"
+      },
+      "maps_to_formal": [
+        "chem_混合物",
+        "chem_物质"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Earth Materials"
+        },
+        {
+          "textbook": "CK-12: Elementary Earth Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Rocks and Soil"
+        },
+        {
+          "textbook": "Duden: Naturwissenschaften Kompakt",
+          "language": "de",
+          "chapter": "5.-6. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_气味味道与安全",
+      "display_name": "气味味道与安全",
+      "level": "elementary",
+      "labels": {
+        "zh": "气味味道与安全",
+        "en": "Smell, Taste and Safety",
+        "de": "Geruch, Geschmack und Sicherheit"
+      },
+      "maps_to_formal": [
+        "chem_酸",
+        "chem_碱",
+        "chem_盐"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学三年级上",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "沪教版小学科学三年级",
+          "language": "zh",
+          "chapter": "三年级",
+          "section": ""
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades K-2",
+          "section": "Senses and Safety"
+        },
+        {
+          "textbook": "CK-12: Elementary Physical Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Properties of Matter"
+        },
+        {
+          "textbook": "Cornelsen: Naturwissenschaften entdecken",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    },
+    {
+      "name": "chem_elem_垃圾分类与回收",
+      "display_name": "垃圾分类与回收",
+      "level": "elementary",
+      "labels": {
+        "zh": "垃圾分类与回收",
+        "en": "Sorting Waste and Recycling",
+        "de": "Mülltrennung und Recycling"
+      },
+      "maps_to_formal": [
+        "chem_混合物",
+        "chem_化学"
+      ],
+      "source_references": [
+        {
+          "textbook": "人教版小学科学四年级上",
+          "language": "zh",
+          "chapter": "四年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "人教版小学科学五年级上",
+          "language": "zh",
+          "chapter": "五年级",
+          "section": "上册"
+        },
+        {
+          "textbook": "Khan Academy: Elementary Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Humans and Environment"
+        },
+        {
+          "textbook": "CK-12: Elementary Earth Science",
+          "language": "en",
+          "chapter": "Grades 3-5",
+          "section": "Caring for Earth"
+        },
+        {
+          "textbook": "Westermann: Naturwissenschaften",
+          "language": "de",
+          "chapter": "5. Klasse",
+          "section": ""
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "method": "python json.load 后逐项检查 labels[zh/en/de] 非空 + name 与 chemistry_full.json 220 条精确去重",
+    "candidate_count": 15,
+    "labels_nonempty_rate": "zh 15/15=100%，en 15/15=100%，de 15/15=100%（已运行验证）",
+    "name_conflict_with_chemistry_full_220": "0 冲突（已运行验证：15 个 chem_elem_ 前缀名与 chemistry_full 220 条精确比对，无重名）",
+    "level_all_elementary": true,
+    "merged_into_chemistry_full": false,
+    "expand_run": false
+  }
+}
