@@ -71,7 +71,6 @@
     .b:focus-visible{ outline:2px solid #1e3a8a; outline-offset:2px; }
     .b.a{ border-color:#1e3a8a; color:#1e3a8a; font-weight:600; }
     .b.v.a{ background:rgba(30,58,138,.10); }
-    .b.l.a{ background:rgba(30,126,77,.10); color:#1e7e4d; border-color:#1e7e4d; }
 
     .leg{ display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
     .li{ display:flex; align-items:center; gap:3px; font-size:.5rem; color:#4a5a78; }
@@ -211,12 +210,6 @@
             <button class="b v" data-m="spacefill" data-i18n="mode.spacefill">Space-Fill</button>
             <button class="b v" data-m="compare" data-i18n="mode.compare">Compare</button>
         </div>
-        <div class="br" id="lb">
-            <button class="b l a" data-g="all" data-i18n="lang.all">All</button>
-            <button class="b l" data-g="zh">ZH</button>
-            <button class="b l" data-g="en">EN</button>
-            <button class="b l" data-g="de">DE</button>
-        </div>
         <div class="ulab" data-i18n="disc.label">Discipline</div>
         <div class="br" id="db">
             <button class="b d a" data-d="math" data-i18n="disc.math">Math</button>
@@ -286,7 +279,7 @@
     const MT = { universe:'UNIVERSE', spacefill:'SPACE-FILL', compare:'COMPARE' };
 
     let G, ND=[], LK=[], ADJ=new Map();
-    let mode='universe', lang='all', graph='math', rT=null, _autoRotate=false, _wasd=true;
+    let mode='universe', graph='math', rT=null, _autoRotate=false, _wasd=true;
     let lastNode=null; // currently open detail card (for UI-language hot re-render)
 
     /* ─── Graph registry (math + physics share one viewer) ────── */
@@ -305,8 +298,6 @@
         document.getElementById('sR').textContent = LK.length;
         document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
         document.querySelectorAll('[data-d]').forEach(x=>x.classList.toggle('a', x.dataset.d === g));
-        lang = 'all';
-        document.querySelectorAll('[data-g]').forEach(x=>x.classList.toggle('a', x.dataset.g === 'all'));
         document.getElementById('search').value = '';
         document.getElementById('searchMeta').innerHTML = '';
         hideDetail(); clearRipple();
@@ -373,7 +364,7 @@
     }
 
     /* ─── Graph ───────────────────────────────────────────────────── */
-    // Callback functions shared between mkGraph() and setLang()/setMode()
+    // Callback functions shared between mkGraph() and setMode()
     // Defined here so both can access them (JavaScript scope)
     function colorCB(n) {
         if (n._r != null) {
@@ -626,17 +617,12 @@
     }
 
     /* ─── Detail ──────────────────────────────────────────────────── */
-    // Display language: explicit ZH/EN/DE choice, or 'all' = follow UI language.
-    // (Post-v13 every node is trilingual, so this selects the display label —
-    // it never filters nodes; counts stay constant by design.)
-    function dispLang(){
-        if (lang !== 'all') return lang;
-        return (typeof i18n !== 'undefined' && i18n.lang) || 'en';
-    }
-    // Display label follows the display language (fallback: node name, then id)
+    // Display label follows the UI language (fallback: node name, then id).
+    // Every node is trilingual, so counts never change with language.
     function nodeLabel(n){
         const lbs = (n && n.labels) || {};
-        return lbs[dispLang()] || n.name || n.id;
+        const l = (typeof i18n !== 'undefined' && i18n.lang) || 'en';
+        return lbs[l] || n.name || n.id;
     }
     function showDetail(n) {
         lastNode = n;
@@ -779,18 +765,8 @@
          .linkDirectionalParticles(0)
          .graphData({ nodes: fn, links: fl });
 
-        // Update HUD (display language, never a filter — counts are constant)
-        document.getElementById('sub').textContent = i18n.tr('hud.display', {concepts: fn.length, relations: fl.length, lang: dispLang().toUpperCase()});
-    }
-
-    /* ─── Display language (graph labels only — UI language has its own switcher) ── */
-    function setLang(l) {
-        lang = l;
-        if (!G) return;
-        // No graph reload: every node stays, only the display label changes.
-        // Tooltip follows automatically (nodeLabel accessor evaluates per hover).
-        refreshCounts();
-        if (lastNode && document.getElementById('detail').style.display === 'block') showDetail(lastNode);
+        // Update HUD
+        document.getElementById('sub').textContent = i18n.tr('hud.subtitle', {concepts: fn.length, relations: fl.length});
     }
 
     /* ─── Mode caption ────────────────────────────────────────── */
@@ -813,19 +789,11 @@
                 b.classList.add('a'); setMode(b.dataset.m);
             });
         });
-        document.querySelectorAll('[data-g]').forEach(b => {
-            b.addEventListener('click', ()=>{
-                document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));
-                b.classList.add('a'); setLang(b.dataset.g);
-            });
-        });
         document.querySelectorAll('[data-d]').forEach(b => {
             b.addEventListener('click', ()=>{ switchGraph(b.dataset.d); });
         });
         document.getElementById('rbtn').addEventListener('click', ()=>{
-            hideDetail(); clearRipple(); setLang('all');
-            document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('a'));
-            document.querySelector('[data-g="all"]').classList.add('a');
+            hideDetail(); clearRipple();
         });
         // Auto Rotate toggle
         document.getElementById('arBtn').addEventListener('click', function() {
@@ -941,7 +909,7 @@
         const gd = G.graphData();
         const fn = gd ? gd.nodes.length : ND.length, fl = gd ? gd.links.length : LK.length;
         document.getElementById('sub').textContent =
-            i18n.tr('hud.display', {concepts: fn, relations: fl, lang: dispLang().toUpperCase()});
+            i18n.tr('hud.subtitle', {concepts: fn, relations: fl});
     }
     function focusNode(n) {
         showDetail(n);

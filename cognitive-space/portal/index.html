@@ -156,6 +156,12 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 .hero-video #pitch { padding: 0; }
 .hero-video .section-title { font-size: 1.35rem; margin-bottom: 4px; }
 .hero-video .section-sub { font-size: .85rem; margin-bottom: 12px; }
+/* Pitch segmented control — one compact group instead of three big buttons */
+.pitch-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); margin-top: 14px; }
+.pitch-seg .pitch-sw { border: none; background: transparent; padding: 8px 18px; font-size: .78rem; font-weight: 600; color: var(--text2); cursor: pointer; font-family: inherit; }
+.pitch-seg .pitch-sw + .pitch-sw { border-left: 1px solid var(--border); }
+.pitch-seg .pitch-sw.a { background: var(--accent); color: #fff; }
+.hero-video .pitch-note { color: var(--text2); font-size: .72rem; margin: 10px 0 0; }
 /* CTA buttons — solid indigo, kein Gradient */
 .btn { display: inline-block; padding: 12px 30px; border-radius: 6px; font-weight: 600; font-size: .9rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
 .btn:hover { text-decoration: none; }
@@ -303,12 +309,12 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <video id="pitch-video" controls preload="none" poster="../portal/pitch/pitch_poster.jpg" style="width:100%;border-radius:12px;background:#0a1f3d">
       <source id="pitch-src" src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" type="video/mp4">
     </video>
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px">
-      <button class="btn btn-solid pitch-sw a" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" data-i18n="pitch_de">DE · no subtitles</button>
-      <button class="btn btn-ghost pitch-sw" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4" data-i18n="pitch_en">EN subtitles</button>
-      <button class="btn btn-ghost pitch-sw" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4" data-i18n="pitch_zh">ZH subtitles</button>
+    <div class="pitch-seg">
+      <button class="pitch-sw a" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" data-i18n="pitch_de">DE</button>
+      <button class="pitch-sw" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4" data-i18n="pitch_en">EN subs</button>
+      <button class="pitch-sw" data-src="../portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4" data-i18n="pitch_zh">ZH subs</button>
     </div>
-    <p style="color:var(--text2);font-size:.8rem;margin:12px 0 0" data-i18n="pitch_note">Same 173s cut in all three versions — switching keeps your position. 4K master archived in the video repo; web copies are identically-cut embeds.</p>
+    <p class="pitch-note" data-i18n="pitch_note">Same 173s cut — switching keeps your position.</p>
   </div>
 </section>
 <script>
@@ -322,8 +328,8 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
       v.querySelector('#pitch-src').setAttribute('src', b.dataset.src);
       v.load();
       v.addEventListener('loadedmetadata', function h(){ v.removeEventListener('loadedmetadata', h); try { v.currentTime = t; } catch(e){} if (!paused) v.play().catch(function(){}); });
-      document.querySelectorAll('.pitch-sw').forEach(function(x){ x.classList.remove('btn-solid'); x.classList.add('btn-ghost'); });
-      b.classList.remove('btn-ghost'); b.classList.add('btn-solid');
+      document.querySelectorAll('.pitch-sw').forEach(function(x){ x.classList.remove('a'); });
+      b.classList.add('a');
     });
   });
 })();
@@ -744,7 +750,7 @@ graph LR
       </button>
     </div>
   </div>
-  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Switch display language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
+  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="../web/index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> Open Full Screen</a>
     <a href="cspace.html" class="btn btn-solid" data-i18n="cs_view_gallery">Gallery</a>
@@ -1443,13 +1449,13 @@ const TRANSLATIONS = {
     paper_sections_title: 'Sections',
     paper_sections_text: 'Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis',
     paper_cite_title: 'Cite this work',
-    cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Switch display language or discipline. Compare how different education systems structure the same mathematical knowledge.',
+    cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
     cs_view_gallery: 'Interactive Gallery', cs_view_math: 'Math 3D', cs_view_physics: 'Physics 3D',
     cs_view_cds: 'CDS Terrain', cs_view_galaxy: 'Margin Proof', cs_view_towers: 'Coverage Towers',
     section_pitch: 'Pitch', pitch_title: 'Pitch Video', pitch_sub: 'The project in 173 seconds — German narration, subtitles on switch',
-    pitch_de: 'DE · no subtitles', pitch_en: 'EN subtitles', pitch_zh: 'ZH subtitles',
-    pitch_note: 'Same 173s cut in all three versions — switching keeps your position. 4K master archived in the video repo; web copies are identically-cut embeds.',
+    pitch_de: 'DE', pitch_en: 'EN subs', pitch_zh: 'ZH subs',
+    pitch_note: 'Same 173s cut — switching keeps your position.',
     cognitivespace_meta: '556 nodes · 525 relations · 219 groups · 3 languages',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Cross-Lingual Knowledge Structure Analysis Framework',
@@ -1594,13 +1600,13 @@ const TRANSLATIONS = {
     paper_sections_title: 'Abschnitte',
     paper_sections_text: 'Drei Schlussfolgerungen · Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Ergebnisse · LPA-Analyse',
     paper_cite_title: 'Diese Arbeit zitieren',
-    cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Anzeigesprache oder Disziplin umschalten.',
+    cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Erkunden Sie den Graphen in drei Sprachen oder wechseln Sie die Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
     cs_view_gallery: 'Interaktive Galerie', cs_view_math: 'Mathe 3D', cs_view_physics: 'Physik 3D',
     cs_view_cds: 'CDS-Terrain', cs_view_galaxy: 'Margin-Beleg', cs_view_towers: 'Coverage-Türme',
     section_pitch: 'Pitch', pitch_title: 'Pitch-Video', pitch_sub: 'Das Projekt in 173 Sekunden — deutsche Narration, Untertitel umschaltbar',
-    pitch_de: 'DE · ohne Untertitel', pitch_en: 'EN-Untertitel', pitch_zh: 'ZH-Untertitel',
-    pitch_note: 'Alle drei Versionen derselbe 173-s-Schnitt — Umschalten behält die Position. 4K-Master im Video-Repo archiviert; Web-Kopien sind schnittidentische Einbettungen.',
+    pitch_de: 'DE', pitch_en: 'EN-UT', pitch_zh: 'ZH-UT',
+    pitch_note: 'Gleicher 173-s-Schnitt — Position bleibt.',
     cognitivespace_meta: '556 Knoten · 525 Relationen · 219 Gruppen · 3 Sprachen',
     footer_brand: 'LinguaGraph',
     footer_desc: 'Sprachuebergreifender Rahmen zur Analyse von Wissensstrukturen',
@@ -1897,13 +1903,13 @@ curr_explanations_title: '三种竞争性解释',
     paper_sections_title: '章节结构',
     paper_sections_text: '三大结论 · 引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理结果 · LPA 分析',
     paper_cite_title: '引用本作品',
-    cognitivespace_hint: '在旋转、缩放和飞行模式间切换。一键切换显示语言或学科。比较不同教育体系如何组织同一数学知识。',
+    cognitivespace_hint: '在旋转、缩放和飞行模式间切换。以三种语言浏览图谱或切换学科。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
     cs_view_gallery: '交互展厅', cs_view_math: '数学 3D', cs_view_physics: '物理 3D',
     cs_view_cds: 'CDS 地形', cs_view_galaxy: '边际实证', cs_view_towers: '覆盖塔群',
     section_pitch: '宣讲', pitch_title: '宣讲视频', pitch_sub: '173 秒讲清项目——德语旁白，一键切换字幕',
-    pitch_de: '德语·无字幕', pitch_en: '英文字幕', pitch_zh: '中文字幕',
-    pitch_note: '三版同一 173 秒剪辑——切换保持播放位置。4K 母版存档于视频仓库；网页版为同一切片的嵌入副本。',
+    pitch_de: '德语', pitch_en: '英字', pitch_zh: '中字',
+    pitch_note: '同一切片，切换不断播。',
     cognitivespace_meta: '556 个节点 · 525 条关系 · 219 个分组 · 3 种语言',
     footer_brand: 'LinguaGraph',
     footer_desc: '跨语言知识结构分析框架',
