@@ -9,7 +9,7 @@
 
 ## 0. Zusicherung
 
-Das Projekt (LinguaGraph) wurde in seiner wissenschaftlichen Kernarbeit — Fragestellung, Versuchsdesign, Definition der LDS-Metrik, Datenerhebungsplan, Ergebnisinterpretation und Schlussfolgerungen — von den teilnehmenden Schülern eigenständig erbracht. Alle unten genannten Unterstützungsquellen sind transparent offengelegt; keine Form der Hilfe wurde verschwiegen.
+Das Projekt (LinguaGraph) wurde in seiner wissenschaftlichen Kernarbeit — Fragestellung, Versuchsdesign, Definition der LDS-Metrik, Datenerhebungsplan, Ergebnisinterpretation und Schlussfolgerungen — von den teilnehmenden Schülern eigenständig erbracht. Rollen: Jiajun Rong (Lead: Forschung, Implementierung, alle Analysen); Zhenxi Lan (Supporting: Finanzierung & Beratung). Alle unten genannten Unterstützungsquellen sind transparent offengelegt; keine Form der Hilfe wurde verschwiegen.
 
 ---
 
@@ -58,6 +58,11 @@ In der Mehrmodell-Replikation **extrahiert jedes Versuchsmodell die Konzepte aus
 | Werkzeug | Verwendung | Umfang |
 |------|------|---------|
 | **Claude Code** (Anthropic) | unterstütztes Programmieren, Schreiben von Datenanalyseskripten, Dokumentation, Code-Review, **dieser Review-/Reparaturprozess** | Kerncode/Analyseskripte wurden mit Claude Code generiert und debuggt; Forschungsdesign und Schlussfolgerungen wurden von den teilnehmenden Schülern geleitet |
+| **Netzwerke/Graphen** | NetworkX, 3d-force-graph (CognitiveSpace-Rendering) | Visualisierung/Graphanalyse (Hilfsmittel, vgl. Paper §2.12) |
+| **Figuren** | matplotlib (deterministische Skripte `scripts/figures/`) | alle Figuren reproduzierbar |
+| **Textextraktion** | pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill) | Scan-OCR, Layer getrennt gebucht |
+| **Semantik** | nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (EN-Grounding-Layer, temp-0-Protokoll in `scripts/semantic_ground_en.py`) | EN-Grounding, kein Mix mit String-Match |
+| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92-human-annotiert (F1 sozial 0,939) | Extraktion, Layer getrennt gebucht |
 
 **Hinweis**: Claude Code wirkte als KI-Programmierassistent bei Skriptentwicklung, Datenanalyse und Dokumentenlayout mit. **Wissenschaftliche Urteile, Versuchsdesign-Entscheidungen und Ergebnisinterpretation wurden von den teilnehmenden Schülern eigenständig erbracht** und werden gemäß Wettbewerbsregeln transparent offengelegt.
 

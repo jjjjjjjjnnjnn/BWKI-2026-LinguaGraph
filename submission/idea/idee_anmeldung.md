@@ -2,7 +2,7 @@
 
 > **Deadline**: 28. Juni 2026
 > **Einreichung**: 脺ber das BWKI-Portal (idee.bw-ki.de)
-> **Team**: Jiajun Rong (Einzelteilnahme)
+> **Team**: Jiajun Rong (lead research & implementation) · Zhenxi Lan (funding & advisory)
 
 ---
 

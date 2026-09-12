@@ -5,6 +5,7 @@ Status: ✅ gelöst / 🟡 teilweise / 🔴 offen.
 
 ## 1. Eigenständigkeit (6/10: LLM/Tools nicht markiert) — 🟡 teilweise
 - ✅ `docs/paper/02_methodology.md` §2.12 Technische Werkzeuge + `docs/declaration_of_support.md` v2.0 als Hauptoffenlegung.
+- ✅ Autoren-Rollen (2026-09-12): Jiajun Rong (Lead) / Zhenxi Lan (Supporting: Finanzierung & Beratung) — in `CONTRIBUTORS.md` + declaration §0 registriert; `submission/README.md` Einzelteilnahme→Zweierteam korrigiert.
 - 🔴 Sync fällig (v21-p0a): `CONTRIBUTORS.md` + `submission/final/code_einreichung.md` §3 + Portal/Story-Toolchain übernehmen die §2.12-Tabelle 1:1 (nomic-embed-v1.5, Spark-Adjudikation, RapidOCR-ONNX, pymupdf, matplotlib, NetworkX, 3d-force-graph).
 - Regel: eigene Leistung = Design, LDS-Definition, alle Befund-/Falsifikationsanalysen; Hilfsmittel offengelegt.
 

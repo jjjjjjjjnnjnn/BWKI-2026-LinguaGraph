@@ -1,6 +1,6 @@
 # LinguaGraph — BWKI 2026 Final Submission (bis 20.09.)
 
-> Stand: 2026-09-08 (v0.13.2) | Autor: Jiajun Rong (Einzelteilnahme)
+> Stand: 2026-09-08 (v0.13.2) | Autor: Jiajun Rong (lead) · Zhenxi Lan (supporting: funding & advisory)
 > Historie: `submission/idea/` (Ideenanmeldung 28.06., historisch — Teamnamen/Rauschzeichen dort nicht mehr anfassen).
 
 ## Forschungsfrage

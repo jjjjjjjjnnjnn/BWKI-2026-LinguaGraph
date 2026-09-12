@@ -196,23 +196,23 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 
 ## v22-pdf (2026-09-12, 红蓝对抗)
 - PDF全量重出：227898B/35页（旧222388B备份_archive）；红方独立提取核对0,934/0,938/0,519、367/386、T1-falsifiziert×17、frozen/forensic同句、LEDGER引用；混用逗号/缺字形记备注不拦路。
-- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+- CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v22-maint (2026-09-12, 红蓝对抗)
 - 归档5脚本（-f进仓保provenance）+旧CSV deprecated + manifest三合一（备份→重跑→零漂移，commit=84fb483）+ deploy图补齐20件 + workflow paths + submission 3快照 + 407注释。pre-grounding大备份留磁盘（2.8MB，不进仓）。
-- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+- CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v22-p1 (2026-09-12, 红蓝对抗12/12)
 - 366→367六处、89 titles、pitch 556/525、hero=1143、floor三线、人/机后缀、双账脚注、EN层标签、CN 7+4=11、p口径、paper frozen句、§2.2镜像句、MANIFEST 7行+数字修正。红方全过。
-- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+- CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v21-p0b (2026-09-12, 红蓝对抗)
 - 接地回写：merge_grounding_back.py→verification 367/367+220/220（有证据302/180，空65/40确为空）；CN 11/11 0 stubs（+60节）；24 zero页verified_blank（重提0成功，空白版权/尾页）。红方全过。
-- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+- CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v21-p0a (2026-09-12, 红蓝对抗)
 - 工具披露同步（declaration+code_einreichung+新建CONTRIBUTORS）；submission/README旧数清零；证伪措辞三处+返工（video BAKED-FREEZE声明不改台词、plattform 219、p<0.004记法、§2.2来源）。
-- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+- CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v21-wave2 (2026-09-12, 红蓝对抗)
 - scope_note三语367+pending标注；05_conclusion T1收敛5处（L13/L17/L25/9.2 frozen注/L35/L92返工）；evidence C16-C20 + C3/C7/C8降级 + 表头更新；新建compliance_review_response.md（7条：3✅2🟡…R3 teilweise）；chat/emb垃圾确认不存在（红方Test-Path False）。

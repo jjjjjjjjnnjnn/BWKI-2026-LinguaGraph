@@ -1,7 +1,7 @@
 # LinguaGraph — BWKI 2026 Submission Package
 
 > **Project**: Cross-Lingual Cognitive Structure Analysis  
-> **Student**: [Name], [School], [Grade]  
+> **Student**: Jiajun Rong (lead) · Zhenxi Lan (supporting: funding & advisory), [School], [Grade]  
 > **Languages**: ZH (native) · DE (school) · EN (academic)
 
 ---
@@ -78,4 +78,4 @@ submission/
 - [ ] Beschreibung: ~970/1000 Zeichen ✅
 - [ ] Datenquellen: ~970/1000 Zeichen ✅
 - [ ] Dateianhang (optional): Cognitive City Screenshot
-- [ ] Team: Jiajun Rong (Einzelteilnahme)
+- [ ] Team: Jiajun Rong (lead research & implementation) · Zhenxi Lan (funding & advisory)

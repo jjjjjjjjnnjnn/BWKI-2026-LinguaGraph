@@ -9,7 +9,7 @@
 
 ## 0. Zusicherung
 
-Das Projekt (LinguaGraph) wurde in seiner wissenschaftlichen Kernarbeit — Fragestellung, Versuchsdesign, Definition der LDS-Metrik, Datenerhebungsplan, Ergebnisinterpretation und Schlussfolgerungen — von den teilnehmenden Schülern eigenständig erbracht. Alle unten genannten Unterstützungsquellen sind transparent offengelegt; keine Form der Hilfe wurde verschwiegen.
+Das Projekt (LinguaGraph) wurde in seiner wissenschaftlichen Kernarbeit — Fragestellung, Versuchsdesign, Definition der LDS-Metrik, Datenerhebungsplan, Ergebnisinterpretation und Schlussfolgerungen — von den teilnehmenden Schülern eigenständig erbracht. Rollen: Jiajun Rong (Lead: Forschung, Implementierung, alle Analysen); Zhenxi Lan (Supporting: Finanzierung & Beratung). Alle unten genannten Unterstützungsquellen sind transparent offengelegt; keine Form der Hilfe wurde verschwiegen.
 
 ---
 
