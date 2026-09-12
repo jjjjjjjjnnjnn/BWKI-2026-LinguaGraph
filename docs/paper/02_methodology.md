@@ -144,6 +144,8 @@ wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und
 
 **Null-Modell-Rahmen**: Um Struktureffekte von Spracheffekten zu trennen, werden drei Null-Modelle eingesetzt (Details in `docs/lds_formal_definition.md` §3): (1) **Within-Language Split-Half** — Aufteilung einer Sprache in zwei Hälften → Bodenniveau der Teilnehmervariabilität; (2) **Label-Permutation** — Permutation der Sprachlabels → formales p-Wert für das getragene Sprachsignal; (3) **Cross-Source Null** — Textbuch vs. Wikipedia derselben Sprache → Trennung von Quell- und Spracheffekt. Alle LDS-Berechnungen verwenden die frozen v3-Formel; die Ergebnisse der Human- und LLM-Analyse (§4, §5) stützen sich auf denselben Rahmen.
 
+> **Implementierungs-Hinweis (2026-09-12)**: `src/scoring.py` L119 und `docs/methodology.md` implementieren die 3-Komponenten-Formel `LDS = 1 − mean(GED_sim, Jaccard_node, Jaccard_edge)` (in `src` gilt `calculate_lcd_score = calculate_lds_score` als Alias); obige frozen-v3-Definition (Mittel aus 2) weicht davon ab. Publizierte LDS-Werte bleiben unverändert; die Klärung, welche Formelvariante die berichteten Werte erzeugt hat, ist fällig (vgl. Portal Fig. 2 mit Fußnote).
+
 ### 2.8 LLM-Extraktionsqualität
 
 Zur Validierung der Extraktionsqualität wird ein mehrsprachiger Goldstandard verwendet. Der Datensatz umfasst insgesamt **92 manuell annotierte Antworten** (36 ZH, 29 DE, 27 EN), verteilt auf zwei Domänen:
@@ -200,3 +202,21 @@ Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scrip
 | NRW (DE) | **12,7 %** | Grundschule 1–4 (höchste) | Sekundarstufe II (niedrigste) |
 
 Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während chinesische Lehrbücher den nationalen Lehrplan nahezu vollständig abdecken (95,4 %), liegt die Abdeckung für NRW bei nur 12,7 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
+
+### 2.11 Baseline-Glossar
+
+Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Portal: Methodik → Baseline-Glossar):
+
+1. **Structure Null** — gradrandomisierte Graphen: erwartete Überlappung durch Zufall.
+2. **Size-matched Bootstrap** (k = 15/25/35) — Vergleich bei gleicher Vokabelgröße.
+3. **Within-language noise floor (0,97)** — sprachinterne Divergenz als Untergrenze.
+4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
+5. **Human N=15 floor** — Between-Subject-Marge +0,015.
+6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
+7. **Permutation test** — z. B. ZH-DE 56/56 bei p = 0,0.
+8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
+9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
+
+### 2.12 Technische Werkzeuge (Eigenständigkeit)
+
+Externe Werkzeuge und Modelle (BWKI-Kriterium Eigenständigkeit — eigene Leistung: Design, LDS-Definition, alle Befund- und Falsifikationsanalysen; Hilfsmittel hier offengelegt): **Netzwerke/Graphen**: NetworkX, 3d-force-graph (CognitiveSpace-Rendering); **Figuren**: matplotlib (deterministische Skripte `scripts/figures/`); **Textextraktion**: pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill); **Semantik**: nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (EN-Grounding-Layer, temp-0-Protokoll in `scripts/semantic_ground_en.py`); **Konzeptextraktion (D1)**: qwen-plus via Alibaba Cloud Bailian API (als production-extraction-model gelabelt), Gold-N=92-human-annotiert (F1 sozial 0,939); **OCR/LLM-Nutzung ist in allen Ergebnisdateien als Layer getrennt gebucht** (kein Vermischen mit String-Match-Zählungen).

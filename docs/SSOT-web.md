@@ -187,3 +187,18 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - `scripts/ground_refs.py` + `text_grounding_20260912.json` (545KB, tracked): substring-grounding ZH→51 CN-Kapitel, EN→101 OpenStax/MIT-Files. Physik 367: ZH 66.5 % / EN 33.8 %; Chemie 220: ZH 65.9 % / EN 25.5 %; DE = unavailable (LEIFI link-only, ehrlich).
 - Lücken-Audit → 4 Bücher nachgeladen (Phys/Chem 必修1/2, +526pp, GPU-OCR 0.95-0.98, 4 Subagents):斜抛/开普勒/宇宙速度 jetzt grounded; Rest = College-Knoten (83, erwartet) + OCR-Varianten + EN-Phrasen-Recall.
 - Mapping 7→11 Bücher (4 stubs,节 pending); Manifest + Portal-`src_local` (grounding-Raten, 3-sprachig); Skripte: `ground_refs.py` / `extend_mapping_bx.py` / `fetch_cn_pep_mirror.py` (+4 Jobs).
+
+## v19 P1 EN-Semantik (2026-09-12, Spark statt phi-4)
+
+- Pipeline: `semantic_ground_en.py` (nomic-embed-v1.5 Prefilter top-5, 11.147 Sätze, Cache) smoke 5/5 → `sem_shards.py` (10 Shards à ~40) → 10 parallele Spark-Judges (substantive-description-Regel, passing-mention rejected) → `merge_sem_verdicts.py`.
+- Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
+- Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
+
+## v19 P2/P3/P4-Abschluss (2026-09-12)
+
+- P2 QC-closure: `--pages`-Modus in skill-`pdf_extract.py` (+ Manifest-Merge, `pdf_qc.py` ignoriert skipped/-1) → `conf_backfill.py`: 101 Seiten nachgeholt, **-1 = 0, 1481 Seiten, 27 flagged (alle belegt blank/cover), mean conf 0.9665**; Visual-Closure: 2 Seiten vom Modell gegengeprüft (xb2-p60 Sinus-Wechselstrom, bx1-p28 Redox — Schlüsselterme im OCR verifiziert); `render_qc_sample.py`.
+- P3 chem-15: `status = staging-confirmed-2026-09-12` + deutsches Verdict (kein zweiter Verzeichnis-Fehler); physics-10-Elementar-Refs als Konvention vermerkt.
+- P4a Glossar-9: Portal Methodik-`<details>` (EN/DE/ZH, 11 keys × 3) + Paper §2.11 + §2.12 Technische Werkzeuge (Eigenständigkeit-Fix: NetworkX/3d-force-graph/matplotlib/RapidOCR/nomic/Spark-Adjudikation/qwen-plus offengelegt).
+- P4b Fig2: `fig2_lds_flow.py` (Subagent, scoring.py-L119-treu: 3 Komponenten, LCD = Alias) EN/DE/ZH + web-Spiegel + `figBases`-Eintrag + Portal-Einbettung; LDS-Formelkarte korrigiert (2→3 Komponenten).
+- P4c Fig3-Forensik: `fig3_forensic.py` + CSV (16 Zeilen): 0.271/0.073 unter keinem Archiv-Setup reproduzierbar (Snapshot 0.0038/0.0025; requires 0.0328/0.0180) → frozen + `docs/fig3_cds_forensic.md` mit 3 Optionen (User-Entscheidung fällig, keine stille Claim-Änderung).
+- Inkonsistenz gefunden & dokumentiert (statt vertuscht): Paper §2.7 frozen-v3 (2 Komponenten) vs Code+methodology.md (3) → Paper-Fußnote in §2.7.

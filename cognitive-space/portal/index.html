@@ -441,7 +441,7 @@ graph LR
     </div>
     <div class="metric-card">
       <div class="sym" style="color:#0e7490">LDS</div>
-      <div class="formula">1 − mean(J_node, J_edge)</div>
+      <div class="formula">1 − mean(GED_sim, J_node, J_edge)</div>
       <div class="desc" data-i18n="metric_lds">Cross-language structural divergence. 0 = identical, 1 = completely different.</div>
     </div>
     <div class="metric-card">
@@ -450,13 +450,35 @@ graph LR
       <div class="desc" data-i18n="metric_cs">Textbook–curriculum alignment. How much of the official curriculum textbooks actually cover.</div>
     </div>
   </div>
+
+  <div class="fig-row" style="margin-top:24px">
+    <div class="figure-box">
+      <img src="../figures/fig2_lds_flow.png" alt="Fig 2: LDS Calculation Flow" onclick="openLightbox(this.src)" loading="lazy">
+      <div class="fig-label" data-i18n="method_fig2"><strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, three similarity components</div>
+    </div>
+  </div>
+
+  <details style="margin:24px 0;font-size:.82rem;color:var(--text2)">
+    <summary style="cursor:pointer;color:var(--accent)" data-i18n="glos_sum">Baseline-Glossar: 9 reference lines every finding is measured against</summary>
+    <dl style="margin:12px 0;line-height:1.7">
+      <dt><strong>1. Structure Null</strong></dt><dd data-i18n="glos_1">Grade-randomized graphs: the overlap expected by pure chance.</dd>
+      <dt><strong>2. Size-matched bootstrap</strong></dt><dd data-i18n="glos_2">k = 15/25/35: comparison at equal vocabulary size.</dd>
+      <dt><strong>3. Within-language noise floor (0.97)</strong></dt><dd data-i18n="glos_3">Same-language divergence: the baseline no cross-language claim may sit below.</dd>
+      <dt><strong>4. Wikipedia aligned control</strong></dt><dd data-i18n="glos_4">Domain-pure social concepts in ZH/EN/DE, independently extracted.</dd>
+      <dt><strong>5. Human N=15 floor</strong></dt><dd data-i18n="glos_5">Between-subject margin +0.015: no separable language signal at this N.</dd>
+      <dt><strong>6. LLM within-subject signal</strong></dt><dd data-i18n="glos_6">LDS-C 0.93–0.96, permutation p &lt; 0.01: language code dominates.</dd>
+      <dt><strong>7. Permutation test</strong></dt><dd data-i18n="glos_7">Label shuffling, e.g. ZH-DE 56/56 at p = 0.0.</dd>
+      <dt><strong>8. Heterogeneity injection (q-scan)</strong></dt><dd data-i18n="glos_8">Consistency demonstration, not a causal proof of the human null.</dd>
+      <dt><strong>9. Margin threshold (≥ 0.10)</strong></dt><dd data-i18n="glos_9">Operational heuristic for audit use, not a validated boundary.</dd>
+    </dl>
+  </details>
 </section>
 
 <!-- ==================== SOURCES ==================== -->
 <section id="sources" class="fade-in">
   <h2 class="section-title" data-i18n="src_title">Sources</h2>
   <p class="section-sub" data-i18n="src_intro">Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).</p>
-  <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics-ZH 66.5% / chemistry-ZH 65.9% of nodes (college nodes out of high-school scope; DE link-only).</p>
+  <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (college nodes out of high-school scope; DE link-only).</p>
   <details style="margin:12px 0">
     <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_math_sum">Mathematics · 32 titles</summary>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
@@ -1613,6 +1635,17 @@ const TRANSLATIONS = {
     metric_hds: 'Longest prerequisite chain for each concept. Measures hierarchical depth.',
     metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
+    method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, three similarity components',
+    glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
+    glos_1: 'Grade-randomized graphs: the overlap expected by pure chance.',
+    glos_2: 'k = 15/25/35: comparison at equal vocabulary size.',
+    glos_3: 'Same-language divergence: the baseline no cross-language claim may sit below.',
+    glos_4: 'Domain-pure social concepts in ZH/EN/DE, independently extracted.',
+    glos_5: 'Between-subject margin +0.015: no separable language signal at this N.',
+    glos_6: 'LDS-C 0.93–0.96, permutation p < 0.01: language code dominates.',
+    glos_7: 'Label shuffling, e.g. ZH-DE 56/56 at p = 0.0.',
+    glos_8: 'Consistency demonstration, not a causal proof of the human null.',
+    glos_9: 'Operational heuristic for audit use, not a validated boundary.',
     mm_fig37_sum: 'Details · how Fig 3 / Fig 7 are made',
     mm_fig37_src: 'Source. CDS per level from the math graph (Fig 3) and the three-discipline matrix (outputs/physics_comparison.json + chemistry_comparison.json, Fig 7) — the same numbers as the CDS Terrain view.',
     mm_fig37_calc: 'Method. CDS = 2|E|/(|V|·(|V|−1)) per level cell; the math graph renders 238 of 525 relations. Nothing is rescaled.',
@@ -1635,7 +1668,7 @@ const TRANSLATIONS = {
     mm_margin_read: 'Reading. Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
     src_title: 'Sources',
     src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
-    src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics-ZH 66.5% / chemistry-ZH 65.9% of nodes (college nodes out of high-school scope; DE link-only).',
+    src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (college nodes out of high-school scope; DE link-only).',
     src_math_sum: 'Mathematics · 32 titles',
     src_phys_sum: 'Physics · 83 titles',
     src_chem_sum: 'Chemistry · 89 titles',
@@ -1842,6 +1875,17 @@ const TRANSLATIONS = {
     metric_hds: 'Laengste Voraussetzungskette fuer jedes Konzept. Misst Hierarchietiefe.',
     metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
+    method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, drei Aehnlichkeitskomponenten',
+    glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
+    glos_1: 'Grad-randomisierte Graphen: die Ueberlappung, die reiner Zufall erwarten laesst.',
+    glos_2: 'k = 15/25/35: Vergleich bei gleicher Vokabelgroesse.',
+    glos_3: 'Sprachinterne Divergenz: die Basislinie, unter die keine sprachuebergreifende Aussage fallen darf.',
+    glos_4: 'Domaenenreine soziale Konzepte in ZH/EN/DE, unabhaengig extrahiert.',
+    glos_5: 'Between-Subject-Marge +0,015: kein separierbares Sprachsignal bei diesem N.',
+    glos_6: 'LDS-C 0,93–0,96, Permutation p < 0,01: Sprachcode dominiert.',
+    glos_7: 'Label-Shuffling, z.B. ZH-DE 56/56 bei p = 0,0.',
+    glos_8: 'Konsistenz-Demonstration, kein kausaler Beweis der menschlichen Null.',
+    glos_9: 'Operative Heuristik fuer Audit-Nutzung, keine validierte Grenze.',
     mm_fig37_sum: 'Details · wie Abb. 3 / Abb. 7 entstehen',
     mm_fig37_src: 'Quelle. CDS pro Stufe aus dem Mathe-Graphen (Abb. 3) und der Drei-Faecher-Matrix (outputs/physics_comparison.json + chemistry_comparison.json, Abb. 7) — dieselben Zahlen wie CDS-Terrain.',
     mm_fig37_calc: 'Methode. CDS = 2|E|/(|V|·(|V|−1)) pro Stufenzelle; der Mathe-Graph zeigt 238 von 525 Relationen. Nichts wird reskaliert.',
@@ -1864,7 +1908,7 @@ const TRANSLATIONS = {
     mm_margin_read: 'Lesart. Balken = Marge, alle 55 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
     src_title: 'Quellen',
     src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
-    src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik-ZH 66,5 % / Chemie-ZH 65,9 % der Knoten (College-Knoten außerhalb Schul-Scope; DE nur Link).',
+    src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (College-Knoten außerhalb Schul-Scope; DE nur Link).',
     src_math_sum: 'Mathematik · 32 Titel',
     src_phys_sum: 'Physik · 83 Titel',
     src_chem_sum: 'Chemie · 89 Titel',
@@ -2071,6 +2115,17 @@ curr_explanations_title: '三种竞争性解释',
     metric_hds: '每个概念的最长前提链。衡量层次深度。',
     metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
+    method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、三个相似度分量',
+    glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
+    glos_1: '度随机化图谱：纯随机下的期望重叠。',
+    glos_2: 'k＝15/25/35：等词汇量下的比较。',
+    glos_3: '语言内噪声基线（0.97）：任何跨语言结论不得低于此线。',
+    glos_4: '领域纯净的社会概念（中/英/德），独立抽取。',
+    glos_5: '被试间 marge＋0.015：该 N 下无可分语言信号。',
+    glos_6: 'LDS-C 0.93–0.96，permutation p＜0.01：语言代码主导。',
+    glos_7: '标签 shuffling，如中德 56/56、p＝0.0。',
+    glos_8: '一致性演示，不是人类零结果的因果证明。',
+    glos_9: '审计用操作启发式，非验证过的边界。',
     mm_fig37_sum: '详细 · 图 3 / 图 7 是怎么做的',
     mm_fig37_src: '数据来源。数学图谱分学段 CDS（图 3）与三学科矩阵（outputs/physics_comparison.json ＋ chemistry_comparison.json，图 7）——与 CDS 地形同数。',
     mm_fig37_calc: '计算口径。CDS = 2|E|/(|V|·(|V|−1))，逐学段格计算；数学图谱渲染 525 条中的 238 条。无重缩放。',
@@ -2093,7 +2148,7 @@ curr_explanations_title: '三种竞争性解释',
     mm_margin_read: '怎么读。柱＝边际，55 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
     src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
-    src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理-ZH 66.5%／化学-ZH 65.9% 节点（大学节点超出高中范围；DE 仅链接）。',
+    src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（大学节点超出高中范围；DE 仅链接）。',
     src_math_sum: '数学 · 32 种',
     src_phys_sum: '物理 · 83 种',
     src_chem_sum: '化学 · 89 种',
@@ -2248,7 +2303,7 @@ function setLanguage(lang) {
     }
   }
   // Figure language variants (fig5 stays EN: source superseded, see docs/SSOT-web.md)
-  var figBases = ['fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination'];
+  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {
