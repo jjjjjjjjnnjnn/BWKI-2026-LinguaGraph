@@ -194,6 +194,9 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
 
+## v21-wave2 (2026-09-12, 红蓝对抗)
+- scope_note三语367+pending标注；05_conclusion T1收敛5处（L13/L17/L25/9.2 frozen注/L35/L92返工）；evidence C16-C20 + C3/C7/C8降级 + 表头更新；新建compliance_review_response.md（7条：3✅2🟡…R3 teilweise）；chat/emb垃圾确认不存在（红方Test-Path False）。
+
 ## v20 基线台账+公式裁决 (2026-09-12, 红蓝对抗)
 - 对抗机制：蓝方举证 → 红方9组质询(7致命) → 蓝方作答(8认罚) → 红方复验 → 裁决人终审。红方3"不通过"中2误伤(只搜JSON未查CSV，已纠正)，1成立(6.2逻辑跳跃，已收窄)。
 - `docs/BASELINE_LEDGER.md`：8基线四列台账；verified仅§4人机同幅+§8a二元；2a drop；其余needs_review+补实验清单(P0/P1/P2)；精度政策3位+CI；容差三档。
