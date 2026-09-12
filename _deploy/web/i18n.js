@@ -78,6 +78,7 @@ const TRANSLATIONS = {
 
         // Filtered counts + detail extras
         'hud.filtered': '{shown} / {concepts} concepts · {relations} relations',
+        'hud.display': '{concepts} concepts · {relations} relations · display {lang}',
         'detail.focus': 'Focus',
         'detail.finding': 'Finding:',
         'detail.graph_level': 'Scope:',
@@ -193,6 +194,7 @@ const TRANSLATIONS = {
 
         // Gefilterte Zählung + Detail-Extras
         'hud.filtered': '{shown} / {concepts} Konzepte · {relations} Beziehungen',
+        'hud.display': '{concepts} Konzepte · {relations} Beziehungen · Anzeige {lang}',
         'detail.focus': 'Fokussieren',
         'detail.finding': 'Erkenntnis:',
         'detail.graph_level': 'Geltung:',
@@ -301,6 +303,7 @@ const TRANSLATIONS = {
 
         // 筛选计数＋详情扩展
         'hud.filtered': '{shown} / {concepts} 个概念 · {relations} 条关系',
+        'hud.display': '{concepts} 个概念 · {relations} 条关系 · 显示{lang}',
         'detail.focus': '聚焦',
         'detail.finding': '发现：',
         'detail.graph_level': '口径：',

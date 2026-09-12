@@ -123,3 +123,12 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Methoden-<details> überall: 3 Satelliten (T-m_*), Viewer-About (Modi-Zeile), Portal (mm_fig37/fig8/cover/bench/margin), Story (story_mm_*). Keine neuen Zahlen.
 - Portal #sources: 73 Titel aus source_references (Mathe 32 / Physik 23 / Chemie 18) + Nav-Link; Refs = Zitatzählung.
 - docs/physics_sourcing.md: Lückenliste P0 (Physik ZH 必修三 + 选必1/2/3), P1 (Chemie 选必1-3 + 大学有机/物化; Mathe 必修1/2), P2 Dubletten (Duden/Tipler). Freeze: kein Merge pre-9/13.
+
+## v15 Display-Sprache + Portal + Hero-Video (2026-09-11/12)
+
+- Viewer Sprachfilter → Anzeigesprache (v15): presence-Filter war post-v13 vakant (alle Knoten trilingual → identische Counts). `setLang` lädt nichts mehr nach (kein graphData-Reload, keine Kamera-Bewegung); `nodeLabel` liest `dispLang()` (explizit ZH/EN/DE oder 'all' = UI-Sprache); HUD `hud.display` zeigt Sprache (`display DE`), Counts konstant per Design. Tooltip-Accessor `.nodeLabel()` gesetzt (evaluiert pro Hover → UI-Wechsel folgt automatisch). Kartentitel `:635` nutzt `nodeLabel` (vorher rohes `n.name` = immer ZH).
+- Hot-Switch (B): UI-Handler rendert offene Karte (`lastNode`) + Suchdropdown neu; `All` + UI-ZH ⇒ ZH-Titel. Playwright-verifiziert (556/366 konstant, 0 pageerrors).
+- Portal (D): `Open Full Screen` → `../web/index.html` (war `../index.html` = Portal-Selbstreferenz live); Galerie-Button in Hauptzeile solid (`Interactive Gallery`/`Interaktive Galerie`/交互展厅); `cognitivespace_hint` Filter→Display-Wording (3-sprachig).
+- Hero-Doppelspalte: `#pitch` in `.hero-inner` (Text links, Video rechts; ≤1024px gestapelt); Stats/Scope darunter vollbreit; keine neuen Refs (Regeln `../portal/` greifen positionsunabhängig).
+- C Länderfilter GESCHLOSSEN (Entscheidung A): Vorwärts-Mapping (offizielle Methodik) liefert keine per-node Flags (Viewer-Hits NRW 16 / UK 19 / US 20 / CN 5 von 556); Rückwärts-Substrings invertieren die publizierten Totalen (CN 13,5 % statt 95,4 % — grobe Lehrpläne vs. feine Topics sind verschiedene Fragen). Kein Filter, keine Explorationsebene — Anzeige-Sprache ist die Antwort auf #1.
+- physics_sourcing-Freeze AUFGEHOBEN (User-Entscheidung v15-Planung): Chemie/Physik-Merge nach Sammel-Signal (E), nicht mehr 9/13-Datum.

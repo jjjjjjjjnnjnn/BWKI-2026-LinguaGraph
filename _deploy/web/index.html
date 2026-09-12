@@ -287,6 +287,7 @@
 
     let G, ND=[], LK=[], ADJ=new Map();
     let mode='universe', lang='all', graph='math', rT=null, _autoRotate=false, _wasd=true;
+    let lastNode=null; // currently open detail card (for UI-language hot re-render)
 
     /* ─── Graph registry (math + physics share one viewer) ────── */
     const GRAPHS = {
@@ -466,6 +467,7 @@
         G = ForceGraph3D()(document.getElementById('graph-container'))
             .nodeColor('color')
             .nodeVal('val')
+            .nodeLabel(n => nodeLabel(n))
             .nodeResolution(16)
             .nodeRelSize(8)
             .linkColor(l => l.inferred ? '#b9c7d8' : '#7aa3c8')
@@ -624,15 +626,22 @@
     }
 
     /* ─── Detail ──────────────────────────────────────────────────── */
-    // Display label follows the UI language (fallback: node name, then id)
+    // Display language: explicit ZH/EN/DE choice, or 'all' = follow UI language.
+    // (Post-v13 every node is trilingual, so this selects the display label —
+    // it never filters nodes; counts stay constant by design.)
+    function dispLang(){
+        if (lang !== 'all') return lang;
+        return (typeof i18n !== 'undefined' && i18n.lang) || 'en';
+    }
+    // Display label follows the display language (fallback: node name, then id)
     function nodeLabel(n){
         const lbs = (n && n.labels) || {};
-        const l = (typeof i18n !== 'undefined' && i18n.lang) || 'en';
-        return lbs[l] || n.name || n.id;
+        return lbs[dispLang()] || n.name || n.id;
     }
     function showDetail(n) {
+        lastNode = n;
         const e = document.getElementById('detail');
-        document.getElementById('dn').textContent = n.name||n.id;
+        document.getElementById('dn').textContent = nodeLabel(n);
         const lbs = n.labels||{};
         document.getElementById('dl').innerHTML = ['zh','en','de']
             .filter(l=>lbs[l]).map(l=>'<span style="margin:0 2px">'+l.toUpperCase()+': '+lbs[l]+'</span>').join('');
@@ -741,19 +750,8 @@
         if (!G) return;
 
         // Dynamic view update: re-create graph data with mode-specific values
-        let fn, fl;
-        if (lang === 'all') {
-            fn = ND; fl = LK;
-        } else {
-            const ids = new Set();
-            ND.forEach(n => { const lbs = n.labels || {}; if (lbs[lang]) ids.add(n.id); });
-            fn = ND.filter(n => ids.has(n.id));
-            fl = LK.filter(link => {
-                const s = typeof link.source === 'object' ? link.source.id : link.source;
-                const t = typeof link.target === 'object' ? link.target.id : link.target;
-                return ids.has(s) && ids.has(t);
-            });
-        }
+        // (lang is display-only since v15 — the full dataset always stays loaded)
+        const fn = ND, fl = LK;
 
         // Geometry per mode (deterministic):
         // universe  = free force layout, reset to shell anchors (drift fix);
@@ -781,55 +779,18 @@
          .linkDirectionalParticles(0)
          .graphData({ nodes: fn, links: fl });
 
-        // Update HUD
-        document.getElementById('sub').textContent = i18n.tr('hud.subtitle', {concepts: fn.length, relations: fl.length});
+        // Update HUD (display language, never a filter — counts are constant)
+        document.getElementById('sub').textContent = i18n.tr('hud.display', {concepts: fn.length, relations: fl.length, lang: dispLang().toUpperCase()});
     }
 
-    /* ─── Language Filter (graph only — UI language has its own switcher) ── */
+    /* ─── Display language (graph labels only — UI language has its own switcher) ── */
     function setLang(l) {
         lang = l;
         if (!G) return;
-
-        // Save camera position before filter
-        const cam = G.camera();
-        const savedPos = cam ? { x: cam.position.x, y: cam.position.y, z: cam.position.z } : null;
-
-        let fn, fl;
-        if (l === 'all') {
-            // Restore full dataset from originals
-            fn = ND;
-            fl = LK;
-        } else {
-            // Filter: only nodes with the selected language label
-            const ids = new Set();
-            ND.forEach(n => {
-                const lbs = n.labels || {};
-                if (lbs[l]) ids.add(n.id);
-            });
-            fn = ND.filter(n => ids.has(n.id));
-            // Keep only links where BOTH ends are in the filter
-            fl = LK.filter(link => {
-                const s = typeof link.source === 'object' ? link.source.id : link.source;
-                const t = typeof link.target === 'object' ? link.target.id : link.target;
-                return ids.has(s) && ids.has(t);
-            });
-        }
-        G.graphData({ nodes: fn, links: fl });
-
-        // Restore camera position after filter
-        if (savedPos) {
-            setTimeout(() => {
-                G.cameraPosition(savedPos, { x: 0, y: 0, z: 0 }, 0);
-            }, 50);
-        }
-
-        // Update HUD with filter count
-        const sub = document.getElementById('sub');
-        if (l === 'all') {
-            sub.textContent = i18n.tr('hud.subtitle', {concepts: ND.length, relations: fl.length});
-        } else {
-            sub.textContent = i18n.tr('hud.filtered', {shown: fn.length, concepts: ND.length, relations: fl.length});
-        }
+        // No graph reload: every node stays, only the display label changes.
+        // Tooltip follows automatically (nodeLabel accessor evaluates per hover).
+        refreshCounts();
+        if (lastNode && document.getElementById('detail').style.display === 'block') showDetail(lastNode);
     }
 
     /* ─── Mode caption ────────────────────────────────────────── */
@@ -888,6 +849,10 @@
                 i18n.apply();
                 refreshAbout(); refreshModeCap(); window.__paintWasd(); refreshCounts();
                 document.getElementById('mode-tag').textContent = i18n.tr('mode.'+mode);
+                // Hot-switch: open card + search dropdown follow the new UI language
+                // ('all' display mode reads i18n.lang, so tooltip follows on next hover)
+                if (lastNode && document.getElementById('detail').style.display === 'block') showDetail(lastNode);
+                if (document.getElementById('search').value.trim()) paintSearch();
             });
         });
         // About panel
@@ -975,9 +940,8 @@
         if (!G) return;
         const gd = G.graphData();
         const fn = gd ? gd.nodes.length : ND.length, fl = gd ? gd.links.length : LK.length;
-        document.getElementById('sub').textContent = (lang === 'all')
-            ? i18n.tr('hud.subtitle', {concepts: ND.length, relations: fl})
-            : i18n.tr('hud.filtered', {shown: fn, concepts: ND.length, relations: fl});
+        document.getElementById('sub').textContent =
+            i18n.tr('hud.display', {concepts: fn, relations: fl, lang: dispLang().toUpperCase()});
     }
     function focusNode(n) {
         showDetail(n);

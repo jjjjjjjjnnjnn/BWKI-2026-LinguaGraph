@@ -151,6 +151,11 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 .hero .stat-label { font-size: .72rem; color: var(--text2); margin-top: 4px; line-height: 1.5; }
 .scope-note { font-family: var(--font-mono); font-size: .68rem; color: var(--text2); margin: 12px 0 28px; max-width: 1000px; line-height: 1.7; }
 .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+/* Hero two-column: text left, pitch video right (stacks ≤1024px) */
+.hero-inner { display: grid; grid-template-columns: 1.02fr .98fr; gap: 40px; align-items: center; max-width: 1280px; width: 100%; }
+.hero-video #pitch { padding: 0; }
+.hero-video .section-title { font-size: 1.35rem; margin-bottom: 4px; }
+.hero-video .section-sub { font-size: .85rem; margin-bottom: 12px; }
 /* CTA buttons — solid indigo, kein Gradient */
 .btn { display: inline-block; padding: 12px 30px; border-radius: 6px; font-weight: 600; font-size: .9rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
 .btn:hover { text-decoration: none; }
@@ -201,6 +206,9 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 /* Responsive */
 @media (max-width: 1100px) {
   nav .nav-group { display: none; }
+}
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 768px) {
   nav .brand { font-size: .85rem; margin-right: 10px; }
@@ -277,8 +285,51 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 
 <!-- ==================== HERO ==================== -->
 <section id="home" class="hero">
+  <div class="hero-inner">
+  <div class="hero-text">
   <h1>How do different languages<br>and educational systems<br>organize the <em>same knowledge?</em></h1>
   <p class="subtitle">A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.</p>
+  <div class="ctas">
+    <a href="#finding-a" class="btn btn-solid">Explore Findings →</a>
+    <a href="#cognitivespace" class="btn btn-ghost"><i class="bi bi-boxes"></i> 3D Knowledge Graph</a>
+  </div>
+  </div>
+  <div class="hero-video">
+<!-- ==================== PITCH VIDEO ==================== -->
+<section id="pitch" class="fade-in" style="text-align:center">
+  <h2 class="section-title" data-i18n="pitch_title">Pitch Video</h2>
+  <p class="section-sub" data-i18n="pitch_sub">The project in 173 seconds — German narration, subtitles on switch</p>
+  <div class="card" style="padding:20px;margin:0 auto">
+    <video id="pitch-video" controls preload="none" poster="portal/pitch/pitch_poster.jpg" style="width:100%;border-radius:12px;background:#0a1f3d">
+      <source id="pitch-src" src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" type="video/mp4">
+    </video>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px">
+      <button class="btn btn-solid pitch-sw a" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" data-i18n="pitch_de">DE · no subtitles</button>
+      <button class="btn btn-ghost pitch-sw" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4" data-i18n="pitch_en">EN subtitles</button>
+      <button class="btn btn-ghost pitch-sw" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4" data-i18n="pitch_zh">ZH subtitles</button>
+    </div>
+    <p style="color:var(--text2);font-size:.8rem;margin:12px 0 0" data-i18n="pitch_note">Same 173s cut in all three versions — switching keeps your position. 4K master archived in the video repo; web copies are identically-cut embeds.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var v = document.getElementById('pitch-video');
+  if (!v) return;
+  document.querySelectorAll('.pitch-sw').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (v.querySelector('#pitch-src').getAttribute('src') === b.dataset.src) return;
+      var t = v.currentTime || 0, paused = v.paused;
+      v.querySelector('#pitch-src').setAttribute('src', b.dataset.src);
+      v.load();
+      v.addEventListener('loadedmetadata', function h(){ v.removeEventListener('loadedmetadata', h); try { v.currentTime = t; } catch(e){} if (!paused) v.play().catch(function(){}); });
+      document.querySelectorAll('.pitch-sw').forEach(function(x){ x.classList.remove('btn-solid'); x.classList.add('btn-ghost'); });
+      b.classList.remove('btn-ghost'); b.classList.add('btn-solid');
+    });
+  });
+})();
+</script>
+  </div>
+  </div>
   <div class="stats">
     <div class="stat"><div class="stat-num" data-count="1140" data-suffix="+">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
     <div class="stat"><div class="stat-num" data-count="1100" data-suffix="+">1,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
@@ -289,10 +340,6 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="stat"><div class="stat-num" data-count="0.881" data-dec="3">0.881</div><div class="stat-label" data-i18n="stat_overall_f1">Overall F1 (weighted)</div></div>
   </div>
   <div class="scope-note" data-i18n="scope_note">SCOPE · Full project graph: Math 556 · Physics 366 · Chemistry 220 = 1,140+ concepts (README.md §dataset). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).</div>
-  <div class="ctas">
-    <a href="#finding-a" class="btn btn-solid">Explore Findings →</a>
-    <a href="#cognitivespace" class="btn btn-ghost"><i class="bi bi-boxes"></i> 3D Knowledge Graph</a>
-  </div>
 </section>
 
 <!-- ==================== RESEARCH QUESTIONS ==================== -->
@@ -697,9 +744,10 @@ graph LR
       </button>
     </div>
   </div>
-  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
+  <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Switch display language or discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="web/index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> Open Full Screen</a>
+    <a href="cspace.html" class="btn btn-solid" data-i18n="cs_view_gallery">Gallery</a>
     <span class="btn btn-ghost" style="cursor:default"><i class="bi bi-database"></i> 556 nodes · 525 relations · 219 groups</span>
   </div>
   <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
@@ -711,40 +759,6 @@ graph LR
     <a href="web/coverage-towers.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_towers">Coverage Towers</a>
   </div>
 </section>
-
-<!-- ==================== PITCH VIDEO ==================== -->
-<section id="pitch" class="fade-in" style="text-align:center">
-  <h2 class="section-title" data-i18n="pitch_title">Pitch Video</h2>
-  <p class="section-sub" data-i18n="pitch_sub">The project in 173 seconds — German narration, subtitles on switch</p>
-  <div class="card" style="padding:20px;max-width:960px;margin:0 auto">
-    <video id="pitch-video" controls preload="none" poster="portal/pitch/pitch_poster.jpg" style="width:100%;border-radius:12px;background:#0a1f3d">
-      <source id="pitch-src" src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" type="video/mp4">
-    </video>
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px">
-      <button class="btn btn-solid pitch-sw a" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4" data-i18n="pitch_de">DE · no subtitles</button>
-      <button class="btn btn-ghost pitch-sw" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4" data-i18n="pitch_en">EN subtitles</button>
-      <button class="btn btn-ghost pitch-sw" data-src="portal/pitch/LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4" data-i18n="pitch_zh">ZH subtitles</button>
-    </div>
-    <p style="color:var(--text2);font-size:.8rem;margin:12px 0 0" data-i18n="pitch_note">Same 173s cut in all three versions — switching keeps your position. 4K master archived in the video repo; web copies are identically-cut embeds.</p>
-  </div>
-</section>
-<script>
-(function(){
-  var v = document.getElementById('pitch-video');
-  if (!v) return;
-  document.querySelectorAll('.pitch-sw').forEach(function(b){
-    b.addEventListener('click', function(){
-      if (v.querySelector('#pitch-src').getAttribute('src') === b.dataset.src) return;
-      var t = v.currentTime || 0, paused = v.paused;
-      v.querySelector('#pitch-src').setAttribute('src', b.dataset.src);
-      v.load();
-      v.addEventListener('loadedmetadata', function h(){ v.removeEventListener('loadedmetadata', h); try { v.currentTime = t; } catch(e){} if (!paused) v.play().catch(function(){}); });
-      document.querySelectorAll('.pitch-sw').forEach(function(x){ x.classList.remove('btn-solid'); x.classList.add('btn-ghost'); });
-      b.classList.remove('btn-ghost'); b.classList.add('btn-solid');
-    });
-  });
-})();
-</script>
 
 <!-- ==================== LIMITATIONS ==================== -->
 <section id="limitations" class="fade-in">
@@ -1429,9 +1443,9 @@ const TRANSLATIONS = {
     paper_sections_title: 'Sections',
     paper_sections_text: 'Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis',
     paper_cite_title: 'Cite this work',
-    cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Filter by language or discipline. Compare how different education systems structure the same mathematical knowledge.',
+    cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Switch display language or discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
-    cs_view_gallery: 'Gallery', cs_view_math: 'Math 3D', cs_view_physics: 'Physics 3D',
+    cs_view_gallery: 'Interactive Gallery', cs_view_math: 'Math 3D', cs_view_physics: 'Physics 3D',
     cs_view_cds: 'CDS Terrain', cs_view_galaxy: 'Margin Proof', cs_view_towers: 'Coverage Towers',
     section_pitch: 'Pitch', pitch_title: 'Pitch Video', pitch_sub: 'The project in 173 seconds — German narration, subtitles on switch',
     pitch_de: 'DE · no subtitles', pitch_en: 'EN subtitles', pitch_zh: 'ZH subtitles',
@@ -1580,9 +1594,9 @@ const TRANSLATIONS = {
     paper_sections_title: 'Abschnitte',
     paper_sections_text: 'Drei Schlussfolgerungen · Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Ergebnisse · LPA-Analyse',
     paper_cite_title: 'Diese Arbeit zitieren',
-    cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Filtern Sie nach Sprache oder Disziplin.',
+    cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Anzeigesprache oder Disziplin umschalten.',
     cognitivespace_open: 'Vollbild oeffnen',
-    cs_view_gallery: 'Galerie', cs_view_math: 'Mathe 3D', cs_view_physics: 'Physik 3D',
+    cs_view_gallery: 'Interaktive Galerie', cs_view_math: 'Mathe 3D', cs_view_physics: 'Physik 3D',
     cs_view_cds: 'CDS-Terrain', cs_view_galaxy: 'Margin-Beleg', cs_view_towers: 'Coverage-Türme',
     section_pitch: 'Pitch', pitch_title: 'Pitch-Video', pitch_sub: 'Das Projekt in 173 Sekunden — deutsche Narration, Untertitel umschaltbar',
     pitch_de: 'DE · ohne Untertitel', pitch_en: 'EN-Untertitel', pitch_zh: 'ZH-Untertitel',
@@ -1883,9 +1897,9 @@ curr_explanations_title: '三种竞争性解释',
     paper_sections_title: '章节结构',
     paper_sections_text: '三大结论 · 引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理结果 · LPA 分析',
     paper_cite_title: '引用本作品',
-    cognitivespace_hint: '在旋转、缩放和飞行模式间切换。按语言或学科筛选。比较不同教育体系如何组织同一数学知识。',
+    cognitivespace_hint: '在旋转、缩放和飞行模式间切换。一键切换显示语言或学科。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
-    cs_view_gallery: '展厅', cs_view_math: '数学 3D', cs_view_physics: '物理 3D',
+    cs_view_gallery: '交互展厅', cs_view_math: '数学 3D', cs_view_physics: '物理 3D',
     cs_view_cds: 'CDS 地形', cs_view_galaxy: '边际实证', cs_view_towers: '覆盖塔群',
     section_pitch: '宣讲', pitch_title: '宣讲视频', pitch_sub: '173 秒讲清项目——德语旁白，一键切换字幕',
     pitch_de: '德语·无字幕', pitch_en: '英文字幕', pitch_zh: '中文字幕',
