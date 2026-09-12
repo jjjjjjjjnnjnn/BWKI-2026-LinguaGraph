@@ -1,9 +1,7 @@
 # Physik-Sourcing: Beschaffungsliste + Lücken (Chemie/Mathe-Anhang)
 
-Stand: 2026-09-11 · Inventar aus `source_references` (Physik 23 Titel, Chemie 18, Mathe 32 — siehe Portal #sources).
-**Freeze-Regel:** Neue Texte dürfen ab sofort in `data/textbook/` abgelegt + extrahiert werden,
-aber **kein Merge** in `*_full.json` / `web/data*.js` vor der Formatprüfung (9/13). Danach v15 mit
-SSOT-/Paper-/Portal-Update.
+Stand: 2026-09-12 · Inventar aus `source_references` (Physik 23 Titel, Chemie **89**, Mathe 32 — siehe Portal #sources, gesamt 144).
+**Freeze aufgehoben (User-Entscheidung v16):** Merge nach Sammel-Signal, kein 9/13-Datum mehr.
 
 ## Physik-Bestand (23 Titel)
 
@@ -21,12 +19,12 @@ SSOT-/Paper-/Portal-Update.
 3. 人教版高中物理选择性必修第二册（电磁感应/交变电流/传感）
 4. 人教版高中物理选择性必修第三册（热/气体/原子物理）
 
-**P1 — Chemie:**
-5. 人教版高中化学选择性必修1（反应原理）
-6. 人教版高中化学选择性必修2（物质结构）
-7. 人教版高中化学选择性必修3（有机）
-8. 邢其毅《基础有机化学》上/下（大学）
-9. 傅献彩《物理化学》上/下（大学）
+**P1 — Chemie (v16 ERLEDIGT als Refs, ohne Buchtexte):**
+5. 人教版高中化学选择性必修1（反应原理）—— zitiert (51×), chapter/section noch leer
+6. 人教版高中化学选择性必修2（物质结构）—— zitiert (51×), chapter/section noch leer
+7. 人教版高中化学选择性必修3（有机）—— zitiert (51×), chapter/section noch leer
+8. 邢其毅《基础有机化学》上/下（大学）—— zitiert (123×), chapter/section noch leer
+9. 傅献彩《物理化学》上/下（大学）—— zitiert (123×), chapter/section noch leer
 
 **P1 — Mathe (Auffüllung):**
 10. 人教A版高中数学必修第一册 / 必修第二册（2019）

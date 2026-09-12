@@ -31,6 +31,7 @@ const TRANSLATIONS = {
         'disc.label': 'Discipline',
         'disc.math': 'Math',
         'disc.physics': 'Physics',
+        'disc.chemistry': 'Chemistry',
 
         // Controls
         'auto.rotate': '⟳ Auto Rotate',
@@ -71,6 +72,7 @@ const TRANSLATIONS = {
         'about.title': 'About this graph',
         'about.body': 'Mathematics subgraph: <b>556</b> of 1,140+ concepts · 525 relations (<b>238 shown</b>) · 219 groups. Built from <b>68 textbooks</b> (39 ZH · 18 EN · 11 DE) by <span class="mono">scripts/release.py</span> from <span class="mono">manifest.json</span>. Node size = degree (connections); colour = education level. Modes: Universe (free layout) · Space-Fill (pinned shells) · Compare (level clusters). LDS rows are graph-level values. All node labels follow the top-right UI language; every card lists ZH/EN/DE. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.',
         'about.body_physics': 'Physics subgraph: <b>366</b> concepts · <b>383</b> relations · 4 levels, same pipeline (<span class="mono">outputs/physics_cognitivespace.json</span>). Node size = degree (connections); colour = education level. Modes: Universe (free layout) · Space-Fill (pinned shells) · Compare (level clusters). Textbook LDS values below are mathematics-only. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.',
+        'about.body_chemistry': 'Chemistry subgraph: <b>220</b> concepts · <b>215</b> relations · 3 levels (middle/high/college), same pipeline (<span class="mono">outputs/chemistry_cognitivespace.json</span>). Node size = degree (connections); colour = education level. Modes: Universe (free layout) · Space-Fill (pinned shells) · Compare (level clusters). Textbook LDS values below are mathematics-only. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.',
         'detail.no_lds': 'Textbook LDS is mathematics-pipeline only.',
 
         // Filtered counts + detail extras
@@ -148,6 +150,7 @@ const TRANSLATIONS = {
         'disc.label': 'Disziplin',
         'disc.math': 'Mathe',
         'disc.physics': 'Physik',
+        'disc.chemistry': 'Chemie',
 
         'auto.rotate': '⟳ Auto-Rotation',
         'clear': '← Zurücksetzen',
@@ -184,6 +187,7 @@ const TRANSLATIONS = {
         'about.title': 'Über diesen Graphen',
         'about.body': 'Mathematik-Subgraph: <b>556</b> von 1.140+ Konzepten · 525 Relationen (<b>238 gezeigt</b>) · 219 Gruppen. Erbaut aus <b>68 Lehrbüchern</b> (39 ZH · 18 EN · 11 DE) mit <span class="mono">scripts/release.py</span> aus <span class="mono">manifest.json</span>. Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe. Modi: Universum (frei) · Raumfüllung (fixierte Schalen) · Vergleich (Stufencluster). LDS-Zeilen sind Graphenwerte. Alle Knotenlabels folgen der UI-Sprache oben rechts; jede Karte listet ZH/EN/DE. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.',
         'about.body_physics': 'Physik-Subgraph: <b>366</b> Konzepte · <b>383</b> Relationen · 4 Stufen, gleiche Pipeline (<span class="mono">outputs/physics_cognitivespace.json</span>). Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe. Modi: Universum (frei) · Raumfüllung (fixierte Schalen) · Vergleich (Stufencluster). Lehrbuch-LDS unten ist nur Mathematik. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.',
+        'about.body_chemistry': 'Chemie-Subgraph: <b>220</b> Konzepte · <b>215</b> Relationen · 3 Stufen (Mittelstufe/Oberstufe/Hochschule), gleiche Pipeline (<span class="mono">outputs/chemistry_cognitivespace.json</span>). Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe. Modi: Universum (frei) · Raumfüllung (fixierte Schalen) · Vergleich (Stufencluster). Lehrbuch-LDS unten ist nur Mathematik. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.',
         'detail.no_lds': 'Lehrbuch-LDS nur aus der Mathematik-Pipeline.',
 
         // Gefilterte Zählung + Detail-Extras
@@ -254,6 +258,7 @@ const TRANSLATIONS = {
         'disc.label': '学科',
         'disc.math': '数学',
         'disc.physics': '物理',
+        'disc.chemistry': '化学',
 
         'auto.rotate': '⟳ 自动旋转',
         'clear': '← 清除',
@@ -290,6 +295,7 @@ const TRANSLATIONS = {
         'about.title': '关于本图谱',
         'about.body': '数学子图：1,140+ 概念中的 <b>556</b> · 525 条关系（<b>展示 238</b>）· 219 分组。由 <span class="mono">scripts/release.py</span> 从 <span class="mono">manifest.json</span> 基于 <b>68 本教材</b>（中 39 · 英 18 · 德 11）构建。节点大小＝度（连接数）；颜色＝学段。模式：宇宙（自由布局）·空间填充（固定壳层）·比较（学段簇球）。LDS 行为全图级数值。所有节点名跟随右上 UI 语言；每张卡片都列出中英德三语。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。',
         'about.body_physics': '物理子图：<b>366</b> 概念 · <b>383</b> 关系 · 4 学段，同管线（<span class="mono">outputs/physics_cognitivespace.json</span>）。节点大小＝度（连接数）；颜色＝学段。模式：宇宙（自由布局）·空间填充（固定壳层）·比较（学段簇球）。下表 LDS 为数学管线数值。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。',
+        'about.body_chemistry': '化学子图：<b>220</b> 概念 · <b>215</b> 关系 · 3 学段（初中/高中/大学），同管线（<span class="mono">outputs/chemistry_cognitivespace.json</span>）。节点大小＝度（连接数）；颜色＝学段。模式：宇宙（自由布局）·空间填充（固定壳层）·比较（学段簇球）。下表 LDS 为数学管线数值。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。',
         'detail.no_lds': '教材 LDS 仅来自数学管线。',
 
         // 筛选计数＋详情扩展

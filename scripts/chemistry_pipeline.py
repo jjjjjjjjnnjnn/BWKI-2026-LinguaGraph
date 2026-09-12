@@ -11,6 +11,8 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 CHEM_JSON = PROJECT_DIR / "config" / "expert_graphs" / "chemistry_full.json"
 DATA_JS = PROJECT_DIR / "cognitive-space" / "web" / "data.js"
 OUTPUT_JSON = PROJECT_DIR / "outputs" / "chemistry_comparison.json"
+CHEM_CS_JSON = PROJECT_DIR / "outputs" / "chemistry_cognitivespace.json"
+DATA_CHEMISTRY_JS = PROJECT_DIR / "cognitive-space" / "web" / "data_chemistry.js"
 
 LV_ORDER = ["elementary", "middle", "high", "college"]
 LV_LABELS = {"elementary": "Elementary", "middle": "Middle", "high": "High", "college": "College"}
@@ -19,6 +21,60 @@ LV_LABELS = {"elementary": "Elementary", "middle": "Middle", "high": "High", "co
 def load_graph(path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def graph_to_cognitivespace(graph):
+    """Convert chemistry_full.json format to data.js compatible format.
+
+    Idempotent: pure function of the input graph dict, no I/O, no mutation.
+    Mirrors scripts/physics_pipeline.py:24-50 with group='chemistry'.
+    """
+    nodes = []
+    for c in graph["concepts"]:
+        level = c.get("level", "college")
+        nodes.append({
+            "id": c["name"],
+            "name": c["display_name"],
+            "labels": c.get("labels", {}),
+            "group": "chemistry",
+            "level": level,
+            "level_order": LV_ORDER.index(level) if level in LV_ORDER else 3,
+            "importance": 5,
+            "source_count": len(c.get("source_references", [])),
+            "cross_references": c.get("source_references", [])[:5],
+        })
+
+    links = []
+    for r in graph["relations"]:
+        links.append({
+            "source": r["source"],
+            "target": r["target"],
+            "type": r.get("type", "relates_to"),
+        })
+
+    return {"nodes": nodes, "links": links}
+
+
+def export_cognitivespace(graph, cs_json_path=CHEM_CS_JSON, data_js_path=DATA_CHEMISTRY_JS):
+    """Write outputs/chemistry_cognitivespace.json + wrap data_chemistry.js.
+
+    Idempotent: byte-identical output for identical input graph (json.dumps
+    with fixed separators/sort off, header counts derived from data).
+    Returns (n_nodes, n_links).
+    """
+    cs_data = graph_to_cognitivespace(graph)
+    n, m = len(cs_data["nodes"]), len(cs_data["links"])
+    cs_json_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(cs_json_path, "w", encoding="utf-8") as f:
+        json.dump(cs_data, f, indent=2, ensure_ascii=False)
+    payload = json.dumps(cs_data, ensure_ascii=False)
+    header = (
+        "// CognitiveSpace - Chemistry 3D Knowledge Graph Data\n"
+        f"// Converted from outputs/{cs_json_path.name} ({n} nodes | {m} links)\n"
+    )
+    with open(data_js_path, "w", encoding="utf-8") as f:
+        f.write(header + "var data_chemistry = " + payload + ";\n")
+    return n, m
 
 
 def load_data_js():
@@ -168,6 +224,11 @@ def main():
         print(f"   Both peak at {chem_peak}")
 
     print(f"\n[OK] Saved: {OUTPUT_JSON}")
+
+    # Export cognitivespace JSON + viewer data_chemistry.js (idempotent re-runnable)
+    n_cs, m_cs = export_cognitivespace(chem)
+    print(f"[OK] Chemistry CS data: {CHEM_CS_JSON} ({n_cs} nodes | {m_cs} links)")
+    print(f"[OK] Chemistry viewer data: {DATA_CHEMISTRY_JS}")
 
 
 if __name__ == "__main__":

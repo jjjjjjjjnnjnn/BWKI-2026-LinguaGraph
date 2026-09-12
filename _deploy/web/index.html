@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
     <script src="data.js"></script>
     <script src="data_physics.js"></script>
+    <script src="data_chemistry.js"></script>
     <script>
     /* release.py schreibt `var data`; der Viewer erwartet COGNITIVE_DATA(_EXT) — Shim, kein Generator-Eingriff */
     if (typeof COGNITIVE_DATA_EXT === 'undefined' && typeof data !== 'undefined' && data && data.nodes) { var COGNITIVE_DATA_EXT = data; }
@@ -214,6 +215,7 @@
         <div class="br" id="db">
             <button class="b d a" data-d="math" data-i18n="disc.math">Math</button>
             <button class="b d" data-d="physics" data-i18n="disc.physics">Physics</button>
+            <button class="b d" data-d="chemistry" data-i18n="disc.chemistry">Chemistry</button>
         </div>
         <div class="br" style="margin-bottom:0">
             <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem" data-i18n="auto.rotate">⟳ Auto Rotate</button>
@@ -286,6 +288,7 @@
     const GRAPHS = {
         math: { data: () => (typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT : (typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null)) },
         physics: { data: () => (typeof data_physics !== 'undefined' ? data_physics : null) },
+        chemistry: { data: () => (typeof data_chemistry !== 'undefined' ? data_chemistry : null) },
     };
     function switchGraph(g, pushState) {
         if (!GRAPHS[g] || !G) return;
@@ -336,10 +339,10 @@
         // i18n.detect() already follows browser on first visit; just sync widgets
         refreshAbout(); refreshModeCap(); window.__paintWasd();
         document.querySelectorAll('[data-u]').forEach(x=>x.classList.toggle('a', x.dataset.u === i18n.lang));
-        // Deep link: ?graph=physics
+        // Deep link: ?graph=physics / ?graph=chemistry
         try {
             const q = new URLSearchParams(location.search).get('graph');
-            if (q === 'physics') switchGraph('physics', false);
+            if (q === 'physics' || q === 'chemistry') switchGraph(q, false);
         } catch(e) {}
 
         // Hide loading
@@ -695,8 +698,8 @@
             : (role === i18n.tr('role.hub') ? 'finding-a-content' : 'finding-c');
         const fkey = fanchor === 'finding-b' ? 'b' : (fanchor === 'finding-a-content' ? 'a' : 'c');
 
-        // LDS textbook values are mathematics-pipeline only — hidden on physics
-        const ldsRows = (graph === 'physics')
+        // LDS textbook values are mathematics-pipeline only — hidden on physics/chemistry
+        const ldsRows = (graph === 'physics' || graph === 'chemistry')
             ? '<div class="row"><span class="label">'+i18n.tr('detail.graph_level')+'</span><span class="val" style="font-weight:400">'+i18n.tr('detail.no_lds')+'</span></div>'
             : '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhen')+'</span><span class="val">0.934</span></div>'+
               '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhde')+'</span><span class="val">0.519</span></div>'+
@@ -710,7 +713,7 @@
             '<div class="row"><span class="label">'+i18n.tr('detail.hds_depth')+'</span><span class="val">'+hdsDepth+' '+i18n.tr('levels')+'</span></div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.sources')+'</span><span class="val">'+(n.source_count||1)+' '+i18n.tr('textbooks')+'</span></div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.finding')+'</span><span class="val"><a href="../portal/index.html#'+fanchor+'" target="_blank" style="color:#1e3a8a">'+i18n.tr('finding.'+fkey)+'</a> · <a href="#" id="focusBtn" style="color:#1e3a8a">'+i18n.tr('detail.focus')+'</a></span></div>'+
-            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:556)})+'</div>'+
+            '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:ND.length)})+'</div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.cds')+'</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.avg_degree')+'</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
             ldsRows;
@@ -778,7 +781,7 @@
     /* ─── About panel (innerHTML — i18n.apply uses textContent) ── */
     function refreshAbout() {
         const el = document.querySelector('[data-i18n="about.body"]');
-        if (el) el.innerHTML = i18n.tr(graph === 'physics' ? 'about.body_physics' : 'about.body');
+        if (el) el.innerHTML = i18n.tr(graph === 'physics' ? 'about.body_physics' : graph === 'chemistry' ? 'about.body_chemistry' : 'about.body');
     }
 
     /* ─── UI ──────────────────────────────────────────────────────── */

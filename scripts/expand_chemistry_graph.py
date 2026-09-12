@@ -93,7 +93,9 @@ def ref(lang, textbook, chapter="", section=""):
 def mkrefs(level):
     refs = []
     for lang, pubs in [("zh", ZH_PUBS), ("en", EN_PUBS), ("de", DE_PUBS)]:
-        for p in pubs.get(level, [])[:2]:
+        # P1 chem enrich (docs/physics_sourcing.md P1 #5-9): use full PUBS
+        # catalog — former [:2] slice dropped 选必1/2/3, 邢其毅/汪小兰, 傅献彩 etc.
+        for p in pubs.get(level, []):
             refs.append(ref(lang, p))
     return refs
 
@@ -156,6 +158,11 @@ concepts += [
     c("悬浊液", "悬浊液", "middle", {"zh": "悬浊液", "en": "Suspension", "de": "Suspension"}),
     c("乳浊液", "乳浊液", "middle", {"zh": "乳浊液", "en": "Emulsion", "de": "Emulsion"}),
     c("胶体", "胶体", "middle", {"zh": "胶体", "en": "Colloid", "de": "Kolloid"}),
+    # Relation-target backfill (pre-existing scope, NOT P1): relations reference
+    # chem_水 (水的电离→水) and chem_化学 (定量/定性分析→化学); keep them so the
+    # graph has 0 dangling refs as in the audited baseline (220 concepts).
+    c("水", "水", "middle", {"zh": "水", "en": "Water", "de": "Wasser"}),
+    c("化学", "化学", "middle", {"zh": "化学", "en": "Chemistry", "de": "Chemie"}),
 ]
 
 # ── HIGH: 进阶化学 ──
