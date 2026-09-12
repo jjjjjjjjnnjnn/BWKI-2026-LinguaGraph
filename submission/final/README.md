@@ -14,14 +14,14 @@
 | F1–F3 | CDS-Gipfel Mittelstufe (0,271); HDS ≤ 8; flaches Netz | Deskriptiv, ohne CI |
 | F5 | Nullmodell: Full < Structure (alle Paare) — LDS-K misst **keine** Sprachdivergenz | Stärkste, ehrlichste Evidenz |
 | F11 | N=15 falsifiziert ΔLDS > 0 between-subject | Pilot N=8 nicht repliziert |
-| F12 | LLM-within-subject Signal +0,08–0,09 (55 Messungen, 50 Modelle) | ~87 % CN-Anbieter; 8 EN-Paare n. s. |
+| F12 | LLM-within-subject Signal +0,08–0,09 (55 Messungen, 50 Modelle; file truth 56/51/168 incl. qwen-max n=29/30) | ~87 % CN-Anbieter; 8 EN-Paare n. s. |
 | C1 | ZH-DE-Konvergenz (0,519) | **Indikativ** (P2-Recheck: Alignierungs-Labels) |
 | F9/F10 | CS 12,7 %–95,4 % | Messung stark, Governance nur Hypothese |
 
 ## Zahlen (SSOT `manifest.json`, Build 2026-09-08)
 
 - 556 Konzepte / 525 direkte Relationen (+~3000 transitiv) / 219 trilinguale Gruppen (39,4 %)
-- Physik 366 / Chemie 220 (Legacy-Pipelines) → gesamt 1.140+ Konzepte
+- Physik 367 / Chemie 220 (Legacy-Pipelines) → gesamt 1.140+ Konzepte
 - Gold: 92 (sozial F1 0,939; gewichtet gesamt 0,881)
 - Human: N=15 (Between, Δ≈0) + LLM-within (Signal)
 - 55 Messungen: 42 DashScope + 8 zen/OpenRouter + 2 Kilo + 1 Cohere + 1 NIM + 1 opencode-go; alle ZH-DE p<0,05 (p=0,0 als p<0,004 lesen)

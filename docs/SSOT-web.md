@@ -179,7 +179,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 ## v18d GPU-OCR-Vollmenge (2026-09-12, pdf-reading-Skill + DirectML)
 
 - Skill global: `~/.config/opencode/skills/pdf-reading/` (SKILL.md + scripts/pdf_extract.py + pdf_qc.py + QC-CHECKLIST.md + gpu_config.yaml). Engine: RapidOCR ONNX; CUDA-EP scheitert (cublasLt64_13.dll fehlt) → DirectML (flat flags det_use_dml!; nested dicts werden still ignoriert), warm ~0.5s/Seite (CPU 5s), RTX 5060 ~52%.
-- 9 Subagents parallel: 7 CN-Bücher (31 Kapitel-txts ~1.55MB, mean conf 0.95-0.985, Census je Buch OK, Front/Back-Matter an Kapiteln vermerkt), MIT-Bundle 712pp (Probe 0.9585, full 0.9512, 0 flagged; Bonus Ch27-29 extrahiert), OpenStax-Re-Verify (Vol2 781pp/1.75M chars, Vol3 597pp/1.39M, alle Keywords hit; USTC/UCAS text_layer OK).
+- 9 Subagents parallel: 7+4=11 CN-Bücher (见DM; 31 Kapitel-txts ~1.55MB, mean conf 0.95-0.985, Census je Buch OK, Front/Back-Matter an Kapiteln vermerkt), MIT-Bundle 712pp (Probe 0.9585, full 0.9512, 0 flagged; Bonus Ch27-29 extrahiert), OpenStax-Re-Verify (Vol2 781pp/1.75M chars, Vol3 597pp/1.39M, alle Keywords hit; USTC/UCAS text_layer OK).
 - Scan-Korrektur: Chemie-选必1 hat kein §1.3 — 化学反应的方向 = §2.3 (Mapping repariert, Alter-Eintrag gelöscht). QC-Reports: Temp/opencode/qc_*.md (9x). Offene Reste: resumed pages ohne conf-Werte, 5%-Samples tlw. ungeeyeballt, section-fact-Extraktion → source_references noch fällig.
 
 ## v18e R-Grounding (2026-09-12)
@@ -191,8 +191,12 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 ## v19 P1 EN-Semantik (2026-09-12, Spark statt phi-4)
 
 - Pipeline: `semantic_ground_en.py` (nomic-embed-v1.5 Prefilter top-5, 11.147 Sätze, Cache) smoke 5/5 → `sem_shards.py` (10 Shards à ~40) → 10 parallele Spark-Judges (substantive-description-Regel, passing-mention rejected) → `merge_sem_verdicts.py`.
-- Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
+- Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring; reverse: substring 33.8/25.5 vs semantic 62.1/53.2); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
+
+## v22-p1 (2026-09-12, 红蓝对抗12/12)
+- 366→367六处、89 titles、pitch 556/525、hero=1143、floor三线、人/机后缀、双账脚注、EN层标签、CN 7+4=11、p口径、paper frozen句、§2.2镜像句、MANIFEST 7行+数字修正。红方全过。
+- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
 
 ## v21-p0b (2026-09-12, 红蓝对抗)
 - 接地回写：merge_grounding_back.py→verification 367/367+220/220（有证据302/180，空65/40确为空）；CN 11/11 0 stubs（+60节）；24 zero页verified_blank（重提0成功，空白版权/尾页）。红方全过。

@@ -338,7 +338,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   </div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="stat-num" data-count="1140" data-suffix="+">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts</div></div>
+    <div class="stat"><div class="stat-num" data-count="1140" data-suffix="+">1,140+</div><div class="stat-label" data-i18n="stat_concepts">Concepts · full project (=1143 = 556+367+220)</div></div>
     <div class="stat"><div class="stat-num" data-count="1100" data-suffix="+">1,100+</div><div class="stat-label" data-i18n="stat_relations">Relations</div></div>
     <div class="stat"><div class="stat-num" data-count="3">3</div><div class="stat-label" data-i18n="stat_languages">Languages<br>ZH · EN · DE</div></div>
     <div class="stat"><div class="stat-num" data-count="3">3</div><div class="stat-label" data-i18n="stat_disciplines">Disciplines<br>Math · Physics · Chemistry</div></div>
@@ -463,10 +463,10 @@ graph LR
     <dl style="margin:12px 0;line-height:1.7">
       <dt><strong>1. Structure Null</strong></dt><dd data-i18n="glos_1">Grade-randomized graphs: the overlap expected by pure chance.</dd>
       <dt><strong>2. Size-matched bootstrap</strong></dt><dd data-i18n="glos_2">k = 15/25/35: comparison at equal vocabulary size.</dd>
-      <dt><strong>3. Within-language noise floor (0.97)</strong></dt><dd data-i18n="glos_3">Same-language divergence: the baseline no cross-language claim may sit below.</dd>
+      <dt><strong>3. Within-language noise floor (0.97)</strong></dt><dd data-i18n="glos_3">Same-language divergence: the baseline no cross-language claim may sit below. (textbook legacy line; human line 0.92-0.96; LLM line 0.85-0.87)</dd>
       <dt><strong>4. Wikipedia aligned control</strong></dt><dd data-i18n="glos_4">Domain-pure social concepts in ZH/EN/DE, independently extracted.</dd>
       <dt><strong>5. Human N=15 floor</strong></dt><dd data-i18n="glos_5">Between-subject margin +0.015: no separable language signal at this N.</dd>
-      <dt><strong>6. LLM within-subject signal</strong></dt><dd data-i18n="glos_6">LDS-C 0.93–0.96, permutation p &lt; 0.01: language code dominates.</dd>
+      <dt><strong>6. LLM within-subject signal</strong></dt><dd data-i18n="glos_6">LDS-C 0.93–0.96 (LLM-as-subject), permutation p &lt; 0.01: language code dominates.</dd>
       <dt><strong>7. Permutation test</strong></dt><dd data-i18n="glos_7">Label shuffling, e.g. ZH-DE 55/55, p&lt;0.004 (500 perm.).</dd>
       <dt><strong>8. Heterogeneity injection (q-scan)</strong></dt><dd data-i18n="glos_8">Consistency demonstration, not a causal proof of the human null.</dd>
       <dt><strong>9. Margin threshold (≥ 0.10)</strong></dt><dd data-i18n="glos_9">Operational heuristic for audit use, not a validated boundary.</dd>
@@ -478,7 +478,7 @@ graph LR
 <section id="sources" class="fade-in">
   <h2 class="section-title" data-i18n="src_title">Sources</h2>
   <p class="section-sub" data-i18n="src_intro">Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).</p>
-  <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (college nodes out of high-school scope; DE link-only).</p>
+  <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).</p>
   <details style="margin:12px 0">
     <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_math_sum">Mathematics · 32 titles</summary>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
@@ -780,7 +780,7 @@ graph LR
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K shows convergence (ZH-DE 0.519, ZH-EN 0.934, DE-EN 0.938) — an observation consistent with curriculum tradition; the core signal is ΔLDS.</div>
-    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97) either way.</p>
+    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.519</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (0.519)</div></div>
@@ -837,7 +837,7 @@ graph LR
 <div class="finding-card" style="border-left:4px solid var(--purple)">
     <h3><i class="bi bi-people" style="color:var(--purple)"></i> <span data-i18n="finding_e_title">Finding E: N=15 falsifies ΔLDS > 0 between-subject — language signal needs within-subject design</span></h3>
     <div class="lead" data-i18n="finding_e_sub">Extended human study (N=15) lands on the split-half floor: between-subject designs cannot separate language from participant variance. LLM within-subject (§5) shows the signal clearly.</div>
-    <p data-i18n="finding_e_body">Extended study (6 DE · 6 ZH · 3 EN): concept-level LDS-C is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level ΔLDS ≈ 0 (−0.05…+0.05); relation-level Δ is not comparable across sparsity regimes. Pilot N=8 values (0.70–0.75) were not replicated and are reported for transparency only. The earlier human-vs-simulation comparison (p=0.05) is withdrawn (measurement-scale drift).</p>
+    <p data-i18n="finding_e_body">Extended study (6 DE · 6 ZH · 3 EN): concept-level LDS-C (human) is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level ΔLDS ≈ 0 (−0.05…+0.05); relation-level Δ is not comparable across sparsity regimes. Pilot N=8 values (0.70–0.75) were not replicated and are reported for transparency only. The earlier human-vs-simulation comparison (p=0.05) is withdrawn (measurement-scale drift).</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.93–0.96</div><div class="ev-label" data-i18n="finding_e_ev1">Human LDS-C (N=15)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--purple)">0.92–0.96</div><div class="ev-label" data-i18n="finding_e_ev2">Split-half floor</div></div>
@@ -1056,16 +1056,16 @@ graph LR
         <p style="margin:8px 0" data-i18n="mm_bench_calc"><b>Method.</b> F1 on gold labels; the production extraction model was selected by overall F1. Range 0.55–0.67.</p>
         <p style="margin:8px 0" data-i18n="mm_bench_read"><b>Reading.</b> Bar = F1 per model. Used <b>only</b> for extractor selection — never for language claims (that is the 55-run replication below).</p>
       </details>
-      <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting</h3>
+      <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting (file truth 56/51/168 incl. qwen-max n=29/30)</h3>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
         <div style="position:relative;height:1080px"><canvas id="marginChart"></canvas></div>
       </div>
       <div style="font-size:.76rem;color:var(--text2);margin:6px 0 8px" data-i18n="margin_legend"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)</div>
-      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); every run p&lt;0.01 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
+      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 55 ZH-DE p&lt;0.01; 8 EN n.s. among 165 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.</p>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_margin_sum">Details · how the margin chart is made</summary>
         <p style="margin:8px 0" data-i18n="mm_margin_src"><b>Source.</b> 55 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> — the same rows as the Margin Proof view and the roster table below. 31 collecting runs (n&lt;30) withhold margins.</p>
-        <p style="margin:8px 0" data-i18n="mm_margin_calc"><b>Method.</b> Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, every run p&lt;0.01. Sorted descending; nothing rescaled.</p>
+        <p style="margin:8px 0" data-i18n="mm_margin_calc"><b>Method.</b> Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 55 ZH-DE p&lt;0.01; 8 EN n.s. among 165. Sorted descending; nothing rescaled.</p>
         <p style="margin:8px 0" data-i18n="mm_margin_read"><b>Reading.</b> Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.</p>
       </details>
       <details style="margin:12px 0">
@@ -1444,7 +1444,7 @@ const TRANSLATIONS = {
     hero_title: 'How do different languages<br>and educational systems<br>organize the <em>same knowledge?</em>',
     hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
-    stat_concepts: 'Concepts · full project', stat_relations: 'Relations · full project', stat_languages: 'Languages<br>ZH · EN · DE', stat_disciplines: 'Disciplines<br>Math · Physics · Chemistry',
+    stat_concepts: 'Concepts · full project (=1143 = 556+367+220)', stat_relations: 'Relations · full project', stat_languages: 'Languages<br>ZH · EN · DE', stat_disciplines: 'Disciplines<br>Math · Physics · Chemistry',
     stat_edu_systems: 'Education Systems<br>DE · UK · US · CN', stat_gold_labels: 'Models<br>19-model benchmark', stat_overall_f1: 'Overall F1 (weighted)',
     scope_note: 'SCOPE · Full project graph: Math 556 · Physics 367 (incl. 1 pending sensor node) · Chemistry 220 = 1,140+ concepts (README.md dataset section). The 3D view shows the mathematics subgraph (manifest.json: 556 nodes · 525 relations · 219 groups).',
     section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
@@ -1478,7 +1478,7 @@ const TRANSLATIONS = {
     finding_d_title: 'Curriculum alignment varies dramatically by governance',
     finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit the data.',
     finding_e_title: 'N=15 falsifies delta-LDS between-subject',
-    finding_e_sub: 'Finding E — N=15 lands on the split-half floor (LDS-C 0.93–0.96 ≈ floor 0.92–0.96): between-subject designs cannot separate language from participant variance. LLM within-subject shows the signal (margin +0.08–0.09).',
+    finding_e_sub: 'Finding E — N=15 lands on the split-half floor (LDS-C (human) 0.93–0.96 ≈ floor 0.92–0.96): between-subject designs cannot separate language from participant variance. LLM within-subject shows the signal (margin +0.08–0.09).',
     section_curriculum: 'Curriculum Analysis', curriculum_sub: 'How four education systems align their curricula with textbook content',
     curr_nrw_title: 'NRW (Germany) — Local Adaptation Model',
     curr_nrw_desc: 'Coverage is lowest (12.7%). Per-track detailed specifications (Gymnasium, Gesamtschule, Realschule) produce fragmented alignment. German textbooks exercise significant autonomy from curriculum.',
@@ -1534,7 +1534,7 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
-    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97) either way.',
+    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.',
     finding_c_body2: 'The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.',
     finding_c_ev1: 'ZH–DE (0.519)',
     finding_c_ev2: 'DE–EN (0.938)',
@@ -1557,7 +1557,7 @@ const TRANSLATIONS = {
     finding_d_tag1: 'Metric: CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systems: DE, UK, US, CN',
-    finding_e_body: 'Extended study (6 DE, 6 ZH, 3 EN): concept-level LDS-C is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level delta-LDS is approximately 0. Pilot N=8 values were not replicated. The earlier simulation comparison (p=0.05) is withdrawn.',
+    finding_e_body: 'Extended study (6 DE, 6 ZH, 3 EN): concept-level LDS-C (human) is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level delta-LDS is approximately 0. Pilot N=8 values were not replicated. The earlier simulation comparison (p=0.05) is withdrawn.',
     finding_e_ev1: 'Human LDS-C (N=15)',
     finding_e_ev2: 'Split-half floor',
     finding_e_ev3: 'Concept delta-LDS',
@@ -1599,8 +1599,8 @@ const TRANSLATIONS = {
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
     val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
-    val_roster_title: 'Replication roster: 55 full runs + 31 collecting',
-    val_roster_desc: 'Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); every run p<0.01 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.',
+    val_roster_title: 'Replication roster: 55 full runs + 31 collecting (file truth 56/51/168 incl. qwen-max n=29/30)',
+    val_roster_desc: 'Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 55 ZH-DE p<0.01; 8 EN n.s. among 165 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=29/30, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + paper §5.10.',
     margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)',
     roster_details: 'Full 55-row margin table (collecting runs listed below)',
     val_roster_note: 'Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=29/30, margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
@@ -1639,10 +1639,10 @@ const TRANSLATIONS = {
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
     glos_1: 'Grade-randomized graphs: the overlap expected by pure chance.',
     glos_2: 'k = 15/25/35: comparison at equal vocabulary size.',
-    glos_3: 'Same-language divergence: the baseline no cross-language claim may sit below.',
+    glos_3: 'Same-language divergence: the baseline no cross-language claim may sit below. (textbook legacy line; human line 0.92-0.96; LLM line 0.85-0.87)',
     glos_4: 'Domain-pure social concepts in ZH/EN/DE, independently extracted.',
     glos_5: 'Between-subject margin +0.015: no separable language signal at this N.',
-    glos_6: 'LDS-C 0.93–0.96, permutation p < 0.01: language code dominates.',
+    glos_6: 'LDS-C 0.93–0.96 (LLM-as-subject), permutation p < 0.01: language code dominates.',
     glos_7: 'Label shuffling, e.g. ZH-DE 55/55, p<0.004 (500 perm.).',
     glos_8: 'Consistency demonstration, not a causal proof of the human null.',
     glos_9: 'Operational heuristic for audit use, not a validated boundary.',
@@ -1664,11 +1664,11 @@ const TRANSLATIONS = {
     mm_bench_read: 'Reading. Bar = F1 per model. Used only for extractor selection — never for language claims (that is the 55-run replication below).',
     mm_margin_sum: 'Details · how the margin chart is made',
     mm_margin_src: 'Source. 55 full runs from data/lds_c/llm_subject/multi_model_replication_20260910.json — the same rows as the Margin Proof view and the roster table below. 31 collecting runs (n<30) withhold margins.',
-    mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, every run p<0.01. Sorted descending; nothing rescaled.',
+    mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 55 ZH-DE p<0.01; 8 EN n.s. among 165. Sorted descending; nothing rescaled.',
     mm_margin_read: 'Reading. Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
     src_title: 'Sources',
     src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
-    src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (college nodes out of high-school scope; DE link-only).',
+    src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).',
     src_math_sum: 'Mathematics · 32 titles',
     src_phys_sum: 'Physics · 83 titles',
     src_chem_sum: 'Chemistry · 89 titles',
@@ -1698,7 +1698,7 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
-    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,934) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97).',
+    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,934) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97, Lehrbuchlinie).',
     finding_c_body2: 'Das Muster ist auch themenabhaengig: innerhalb jedes Sprachpaars variiert der LDS um bis zu 0,2 zwischen den 5 analysierten Sozialthemen.',
     finding_c_ev1: 'ZH–DE (0,519)',
     finding_c_ev2: 'DE–EN (0,938)',
@@ -1721,7 +1721,7 @@ const TRANSLATIONS = {
     finding_d_tag1: 'Metrik: CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systeme: DE, UK, US, CN',
-    finding_e_body: 'Erweiterte Studie (6 DE, 6 ZH, 3 EN): Konzept-LDS-C 0,93–0,96 — nicht unterscheidbar vom Within-Language-Split-Half-Boden (0,92–0,96) und Label-Permutation (0,94). Konzept-delta-LDS ≈ 0. Pilot N=8 nicht repliziert. Früherer Simulationsvergleich (p=0,05) zurückgezogen.',
+    finding_e_body: 'Erweiterte Studie (6 DE, 6 ZH, 3 EN): Konzept-LDS-C (human) 0,93–0,96 — nicht unterscheidbar vom Within-Language-Split-Half-Boden (0,92–0,96) und Label-Permutation (0,94). Konzept-delta-LDS ≈ 0. Pilot N=8 nicht repliziert. Früherer Simulationsvergleich (p=0,05) zurückgezogen.',
     finding_e_ev1: 'Human-LDS-C (N=15)',
     finding_e_ev2: 'Split-Half-Boden',
     finding_e_ev3: 'Konzept-delta-LDS',
@@ -1763,8 +1763,8 @@ const TRANSLATIONS = {
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
     val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 55 Messungen / 50 Modelle — alle 55 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
-    val_roster_title: 'Replikations-Roster: 55 vollständige Runs + 31 laufend',
-    val_roster_desc: 'Gesamtansicht — alle 55 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); jeder Run p<0,01 (500 Permutationen). Westliche Runs in Rot. Die 31 laufenden Runs (inkl. qwen-max n=29/30, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + Paper §5.10.',
+    val_roster_title: 'Replikations-Roster: 55 vollständige Runs + 31 laufend (file truth 56/51/168 incl. qwen-max n=29/30)',
+    val_roster_desc: 'Gesamtansicht — alle 55 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 55 ZH-DE p<0,01; 8 EN n.s. unter 165 (500 Permutationen). Westliche Runs in Rot. Die 31 laufenden Runs (inkl. qwen-max n=29/30, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + Paper §5.10.',
     margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN-Run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>westlicher Run (7)',
     roster_details: 'Vollständige 55-Zeilen-Margentabelle (laufende Runs unten)',
     val_roster_note: 'Scope-Hinweis: F1-Benchmark (19 Modelle, Goldlabel-Auswahl) ≠ Replikation (55 Runs, Sprachsignal) ≠ laufend (31 unvollständig inkl. qwen-max n=29/30, Marge zurückgehalten). Familien per Paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
@@ -1799,7 +1799,7 @@ const TRANSLATIONS = {
     hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br><em>das gleiche Wissen?</em>',
     hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
     cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
-    stat_concepts: 'Konzepte · Gesamtprojekt', stat_relations: 'Relationen · Gesamtprojekt', stat_languages: 'Sprachen<br>ZH · EN · DE', stat_disciplines: 'Disziplinen<br>Mathe · Physik · Chemie',
+    stat_concepts: 'Konzepte · Gesamtprojekt (=1143 = 556+367+220)', stat_relations: 'Relationen · Gesamtprojekt', stat_languages: 'Sprachen<br>ZH · EN · DE', stat_disciplines: 'Disziplinen<br>Mathe · Physik · Chemie',
     stat_edu_systems: 'Bildungssysteme<br>DE · UK · US · CN', stat_gold_labels: 'Modelle<br>19-Modell-Benchmark', stat_overall_f1: 'Gesamt-F1 (gewichtet)',
     scope_note: 'SCOPE · Gesamtprojekt: Mathe 556 · Physik 367 (inkl. 1 pending Sensor-Knoten) · Chemie 220 = 1.140+ Konzepte (README.md Datensatz-Abschnitt). Die 3D-Ansicht zeigt den Mathematik-Subgraphen (manifest.json: 556 Knoten · 525 Relationen · 219 Gruppen).',
     section_rq: 'Forschungsfragen', rq_sub: 'Drei komplementäre Perspektiven auf die Organisation desselben Wissens',
@@ -1879,10 +1879,10 @@ const TRANSLATIONS = {
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
     glos_1: 'Grad-randomisierte Graphen: die Ueberlappung, die reiner Zufall erwarten laesst.',
     glos_2: 'k = 15/25/35: Vergleich bei gleicher Vokabelgroesse.',
-    glos_3: 'Sprachinterne Divergenz: die Basislinie, unter die keine sprachuebergreifende Aussage fallen darf.',
+    glos_3: 'Sprachinterne Divergenz: die Basislinie, unter die keine sprachuebergreifende Aussage fallen darf. (Lehrbuch-Legacylinie; Humanlinie 0.92-0.96; LLM-Linie 0.85-0.87)',
     glos_4: 'Domaenenreine soziale Konzepte in ZH/EN/DE, unabhaengig extrahiert.',
     glos_5: 'Between-Subject-Marge +0,015: kein separierbares Sprachsignal bei diesem N.',
-    glos_6: 'LDS-C 0,93–0,96, Permutation p < 0,01: Sprachcode dominiert.',
+    glos_6: 'LDS-C 0,93–0,96 (LLM-as-subject), Permutation p < 0,01: Sprachcode dominiert.',
     glos_7: 'Label-Shuffling, z.B. ZH-DE 55/55, p<0,004 (500 perm.).',
     glos_8: 'Konsistenz-Demonstration, kein kausaler Beweis der menschlichen Null.',
     glos_9: 'Operative Heuristik fuer Audit-Nutzung, keine validierte Grenze.',
@@ -1904,11 +1904,11 @@ const TRANSLATIONS = {
     mm_bench_read: 'Lesart. Balken = F1 pro Modell. Nur für die Extraktorauswahl — nie für Sprachclaims (das ist die 55-Run-Replikation unten).',
     mm_margin_sum: 'Details · wie das Margin-Chart entsteht',
     mm_margin_src: 'Quelle. 55 vollständige Runs aus data/lds_c/llm_subject/multi_model_replication_20260910.json — dieselben Zeilen wie Margin-Beleg und Roster-Tabelle unten. 31 laufende Runs (n<30) halten Margen zurück.',
-    mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, jeder Run p<0,01. Absteigend sortiert; nichts reskaliert.',
+    mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, alle 55 ZH-DE p<0,01; 8 EN n.s. unter 165. Absteigend sortiert; nichts reskaliert.',
     mm_margin_read: 'Lesart. Balken = Marge, alle 55 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
     src_title: 'Quellen',
     src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
-    src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (College-Knoten außerhalb Schul-Scope; DE nur Link).',
+    src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (semantische Schicht; Substring 33,8/25,5) (College-Knoten außerhalb Schul-Scope; DE nur Link).',
     src_math_sum: 'Mathematik · 32 Titel',
     src_phys_sum: 'Physik · 83 Titel',
     src_chem_sum: 'Chemie · 89 Titel',
@@ -1924,7 +1924,7 @@ const TRANSLATIONS = {
     hero_title: '不同语言和教育体系<br>是如何组织<br><em>同一种知识的？</em>',
     hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
     cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
-    stat_concepts: '概念 · 项目全图', stat_relations: '关系 · 项目全图', stat_languages: '语言<br>中 · 英 · 德', stat_disciplines: '学科<br>数学 · 物理 · 化学',
+    stat_concepts: '概念 · 项目全图(=1143 = 556+367+220)', stat_relations: '关系 · 项目全图', stat_languages: '语言<br>中 · 英 · 德', stat_disciplines: '学科<br>数学 · 物理 · 化学',
     stat_edu_systems: '教育体系<br>德 · 英 · 美 · 中', stat_gold_labels: '模型<br>19 模型基准', stat_overall_f1: '总体 F1（加权）',
     scope_note: '范围 · 项目全图：数学 556 · 物理 367（含1个待核验传感器节点） · 化学 220 = 1,140+ 概念（README.md 数据集一节）。3D 视图为数学子图（manifest.json：556 节点 · 525 关系 · 219 分组）。',
     section_rq: '研究问题', rq_sub: '理解同一知识如何被不同组织方式呈现的三个互补视角',
@@ -2014,7 +2014,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
-    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.934）与德英（0.938）本来就贴着语内噪声底线（0.97）。',
+    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.934）与德英（0.938）本来就贴着语内噪声底线（0.97，教材线）。',
     finding_c_body2: '这种模式也受主题影响：在每个语言对内，LDS 在所分析的 5 个社会议题中可变动达 0.2，表明某些知识领域受文化影响更大。',
     finding_c_ev1: 'ZH–DE（0.519）',
     finding_c_ev2: 'DE–EN (0.938)',
@@ -2037,7 +2037,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_d_tag1: '指标：CS',
     finding_d_tag2: 'F9, F10',
     finding_d_tag3: '体系：DE, UK, US, CN',
-    finding_e_body: '扩展研究（6 德、6 中、3 英）：概念层 LDS-C 为 0.93–0.96——与语言内 split-half 底线（0.92–0.96）及标签置换（0.94）不可区分。概念层 delta-LDS 约为 0。N=8 试点未被复制。早期仿真比较（p=0.05）已撤回。',
+    finding_e_body: '扩展研究（6 德、6 中、3 英）：概念层 LDS-C (human) 为 0.93–0.96——与语言内 split-half 底线（0.92–0.96）及标签置换（0.94）不可区分。概念层 delta-LDS 约为 0。N=8 试点未被复制。早期仿真比较（p=0.05）已撤回。',
     finding_e_ev1: '人类 LDS-C（N=15）',
     finding_e_ev2: 'split-half 底线',
     finding_e_ev3: '概念 delta-LDS',
@@ -2079,8 +2079,8 @@ curr_explanations_title: '三种竞争性解释',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
     val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：55 次测量 / 50 个模型 —— 55 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
-    val_roster_title: '复刻名录：55 次完整运行 ＋ 31 次收集中',
-    val_roster_desc: '融合视图——55 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），全部 p<0.01（500 置换）；西方运行标红。31 个收集中运行（含 qwen-max n=29/30，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + 论文 §5.10。',
+    val_roster_title: '复刻名录：55 次完整运行 ＋ 31 次收集中(file truth 56/51/168 incl. qwen-max n=29/30)',
+    val_roster_desc: '融合视图——55 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），55 个 ZH-DE 全部 p<0.01；165 中 8 个 EN n.s.（500 置换）；西方运行标红。31 个收集中运行（含 qwen-max n=29/30，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> + 论文 §5.10。',
     margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>中国模型运行 &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>西方运行 (7)',
     roster_details: '55 行完整边际表（收集中运行见下表）',
     val_roster_note: '口径说明：F1 基准（19 模型，金标选型）≠ 复刻（55 运行，语言信号）≠ 收集中（31 未完成，含 qwen-max n=29/30，边际不公布）。家族划分见论文 §5.10：Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
@@ -2119,10 +2119,10 @@ curr_explanations_title: '三种竞争性解释',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
     glos_1: '度随机化图谱：纯随机下的期望重叠。',
     glos_2: 'k＝15/25/35：等词汇量下的比较。',
-    glos_3: '语言内噪声基线（0.97）：任何跨语言结论不得低于此线。',
+    glos_3: '语言内噪声基线（0.97）：任何跨语言结论不得低于此线。(教材旧线；人线0.92-0.96；LLM线0.85-0.87)',
     glos_4: '领域纯净的社会概念（中/英/德），独立抽取。',
     glos_5: '被试间 marge＋0.015：该 N 下无可分语言信号。',
-    glos_6: 'LDS-C 0.93–0.96，permutation p＜0.01：语言代码主导。',
+    glos_6: 'LDS-C 0.93–0.96 (LLM-as-subject)，permutation p＜0.01：语言代码主导。',
     glos_7: '标签 shuffling，如中德 55/55、p＜0.004（500 perm.）。',
     glos_8: '一致性演示，不是人类零结果的因果证明。',
     glos_9: '审计用操作启发式，非验证过的边界。',
@@ -2144,11 +2144,11 @@ curr_explanations_title: '三种竞争性解释',
     mm_bench_read: '怎么读。柱＝单模型 F1。只用于选抽取器——不用于语言结论（那是下面的 55 运行复刻）。',
     mm_margin_sum: '详细 · 边际图是怎么做的',
     mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260910.json 55 个完整运行——与边际实证视图、下方名录表同行。31 个收集中运行（n<30）边际暂扣。',
-    mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，全部 p<0.01。降序排列，无重缩放。',
+    mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，55 个 ZH-DE 全部 p<0.01；165 中 8 个 EN n.s.。降序排列，无重缩放。',
     mm_margin_read: '怎么读。柱＝边际，55 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
     src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
-    src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（大学节点超出高中范围；DE 仅链接）。',
+    src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（语义层；substring 33.8/25.5）（大学节点超出高中范围；DE 仅链接）。',
     src_math_sum: '数学 · 32 种',
     src_phys_sum: '物理 · 83 种',
     src_chem_sum: '化学 · 89 种',

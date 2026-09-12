@@ -67,7 +67,7 @@ CURRICULUM ALIGNMENT (4 systems)
 
 | Discipline | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |-----------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematics** | 556 | 525 | 219 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% | (574/3538 = superseded June dense graph) |
 | **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW 38% |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
 | **Total** | **1,160+** | **4,100+** | **240** | **3** | **4 systems** |

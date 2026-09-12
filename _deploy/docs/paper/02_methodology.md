@@ -31,7 +31,7 @@ Die Grundlage des CognitiveSpace-Wissensgraphen bildet ein Korpus von **68 Lehrb
 | Englisch | 18 | Stewart Calculus, MIT OCW, Khan Academy, IGCSE, IB | K-12 bis Universität |
 | Deutsch | 11 | Forster Analysis, Fischer LA, Lambacher Schweizer, Papula | Sekundarstufe bis Universität |
 
-Die Lehrbücher decken ein breites mathematisches Spektrum ab: Arithmetik, Algebra, Geometrie, Analysis, Lineare Algebra, Differentialgleichungen, Wahrscheinlichkeitstheorie und Statistik.
+Die Lehrbücher decken ein breites mathematisches Spektrum ab: Arithmetik, Algebra, Geometrie, Analysis, Lineare Algebra, Differentialgleichungen, Wahrscheinlichkeitstheorie und Statistik. CN-Physik/Chemie-Ergänzung (PEP 2019, 7+4=11 Bände, s. DATA_MANIFEST): Drittspiegel (TapXWorld/ChinaTextbook) provenance unverified, nie committed, smartedu-offizielle Fassung maßgeblich.
 
 ### 2.3 Konzeptextraktion (MIMO-Verfahren)
 
