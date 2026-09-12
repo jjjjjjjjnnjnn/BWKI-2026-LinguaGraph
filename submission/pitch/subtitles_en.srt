@@ -1,0 +1,99 @@
+1
+00:00:00,000 --> 00:00:14,000
+Ask a German AI model: what belongs to freedom?
+It answers: autonomy, rules, one's own goals.
+
+2
+00:00:14,000 --> 00:00:29,000
+Ask the same model in Chinese:
+it answers with space, boundaries, what one deserves.
+The same word — but a different cognitive map.
+LinguaGraph makes exactly such differences measurable.
+
+3
+00:00:29,000 --> 00:00:42,000
+AI systems are deployed to billions of people in dozens of languages,
+but they are trained mostly on English data.
+
+4
+00:00:42,000 --> 00:00:52,000
+Does a model understand 'justice' in a loan-decision system
+the same way in German and Chinese?
+If not, users get inconsistent treatment depending on language.
+
+5
+00:00:52,000 --> 00:01:01,000
+But standard AI evaluation measures task performance —
+not whether the model's value concepts are consistent across languages.
+That is a blind spot.
+
+6
+00:01:01,000 --> 00:01:24,000
+How do you measure something invisible like a model's concept structure?
+Key idea: ask the AI itself.
+We turn the LLM into a controlled experimental subject:
+the same model, the same five topics —
+justice, freedom, responsibility, home, success —
+only the language changes.
+
+7
+00:01:24,000 --> 00:01:35,000
+Because it is the same model, language is the only variable.
+
+8
+00:01:35,000 --> 00:01:47,000
+We extract a concept graph per language,
+and our new metric, the Linguistic Divergence Score (LDS),
+measures structural divergence — over shared concepts and relations.
+And we can go beyond a single number:
+we can name exactly which concept components diverge.
+
+9
+00:01:47,000 --> 00:02:06,000
+We extended the experiment to 50 models from different providers
+(55 measurements) — including seven western measurements.
+Across all 55 measurements the Chinese–German signal
+is statistically significant (permutation test p < 0.05).
+
+10
+00:02:06,000 --> 00:02:16,000
+And it is not random but culturally patterned:
+German concepts emphasize autonomy and rules,
+Chinese concepts space and entitlement —
+the cultural direction clearly exceeds a random null model.
+
+11
+00:02:16,000 --> 00:02:26,000
+The decisive control finding: institutional knowledge —
+for instance mathematics — converges across languages.
+Cultural concepts, by contrast, diverge clearly.
+Our instrument finds exactly what it should find:
+convergence where convergence is expected,
+divergence where divergence is expected.
+Even the relations between concepts are organized language-specifically.
+
+12
+00:02:26,000 --> 00:02:51,000
+[Silence — three red dots: N = 15 between-subject / 8 n.s. / 0.10 heuristic]
+
+13
+00:02:51,000 --> 00:03:06,000
+This makes LinguaGraph a new kind of AI audit.
+A developer can check a multilingual model before deployment:
+does my model drift on value-laden terms between languages —
+and where exactly?
+
+14
+00:03:06,000 --> 00:03:14,000
+For regulators, it provides the transparency
+that frameworks like the EU AI Act require.
+The output is interpretable — not a black-box score,
+but a list of the concrete concept components that diverge.
+
+15
+00:03:14,000 --> 00:03:23,000
+LinguaGraph turns a philosophical question —
+does language shape our thinking? — into a measurable engineering question
+for the AI systems we all depend on.
+And the first finding is: yes, they drift.
+Now we can see where — and that is the first step toward auditing it.

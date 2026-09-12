@@ -4,6 +4,18 @@
 
 ---
 
+## [2026-09-10] v0.14.2-audit-repair — 全仓审计修复（P0/P1/P2）
+
+### Overview
+
+四探针全仓审计（paper/figures/文献/结构）落地。**P0**：video_script EN 字幕 51/one-US→55/seven-western（DE 同步 pitch 版），docs/pitch 双源合一（逐行比对一致）；04_discussion F1=0,939→0,881（加权总数，0,939 仅社会子集 n=72）；03_results 图注 238 Relationen→238 Links（von 525 Relationen）；judge_qa 分母 51→n=56（218 vs 147±4；20260910.json；55/55 ZH-DE）。**P1**：figure_plan 加 ARCHIV-Stempel（Success 1.00 作废）；INDEX→v0.14.1 + [1]–[54] + 55-Replikation；文献 [10]/[11] 年份对齐正文、[14][15][16][18][19][34][35][36] 补作者（[16] 纠正 McGillivray→Chen et al. 2017；[17] 不可验证条目替换为 Trisedya et al. 2019；[28][29][31] 补 Zugriff）；06_physics 图注改 deploy-路径。**P2**：§5.7 新增 D1-Baseline 列（per-topic ZH-DE：Gerechtigkeit 0.957 / Freiheit 0.959 / Verantwortung 0.980 / Heimat 0.927 / Erfolg 0.927）；README×5 文献映射 paper-[N] + 名字/年份漂移修正；Author-Year 悬空转 [47]–[54]（Binz & Schulz / Hagendorff / Whorf / Lucy / Winawer / Levinson / Boroditsky / Schmidt）。PDF 重建 293KB（159418 chars）+ 三处同步（docs/submission、final、_deploy 补缺）。srt 双语字幕新增（15 cues，时码为估计值，待录音校准）。pytest 84/84。
+
+### Files
+
+- 见 P0/P1/P2 上述文件 + `submission/pitch/subtitles_{de,en}.srt` + PDF×3 + 桌面视频包 v2（17 文件，04_daten_S04 补 3 源 JSON）
+
+---
+
 ## [2026-09-10] v0.14.1-review-defense — 全方位审查修复 + 统计防御（Claims 不变）
 
 ### Overview

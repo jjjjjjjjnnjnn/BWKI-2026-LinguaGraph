@@ -49,10 +49,10 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 
 ## 1:40–2:25 — Befunde: Sprachsignal ist real und kulturell gemustert (发现)
 
-**Visual:** Fünf Themen-Säulen ZH-DE (Gerechtigkeit 0.96 / Freiheit 0.96 / Verantwortung 0.98 / Heimat 0.93 / Erfolg 0.93) + Math-Kontrollsäule 0.52; Ecke: "55 Messungen · 50 Modelle · alle ZH-DE p<0.05"; B1: LDS-C 0.93–0.96 / Boden 0.85–0.87 / Social 0.82 (Basismodell deepseek-v4-flash).
+**Visual:** Fünf Themen-Säulen ZH-DE (Gerechtigkeit 0.96 / Freiheit 0.96 / Verantwortung 0.98 / Heimat 0.93 / Erfolg 0.93) + Math-Kontrollsäule 0.52; Ecke: "55 Messungen · 50 Modelle · alle ZH-DE p<0.05" + Fußnote "ohne qwen-max-Teilmessung (n=29, in ZH-DE ebenfalls signifikant)"; B1: LDS-C 0.93–0.96 / Boden 0.85–0.87 / Social 0.82 (Basismodell deepseek-v4-flash).
 
 **Narration (DE):**
-„Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf US-amerikanische Modelle. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
+„Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf sieben westliche Messungen. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
 Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
@@ -83,7 +83,7 @@ The decisive control finding: institutional knowledge — for instance mathemati
 „LinguaGraph verwandelt eine philosophische Frage — formt Sprache unser Denken? — in eine messbare Ingenieursfrage für die KI-Systeme, von denen wir alle abhängen. Und der Befund ist: Ja, sie driften — messbar über Dutzende Modelle hinweg, in einer klar erkennbaren kulturellen Richtung. Jetzt können wir sehen, wo — das ist der erste Schritt zu einer verlässlichen Prüfung mehrsprachiger KI."
 
 **Narration (EN subtitle):**
-"LinguaGraph turns a philosophical question — does language shape our thinking? — into a measurable engineering question for the AI systems we all depend on. And the first finding is: yes, they drift. Now we can see where — and that is the first step toward correcting it."
+"LinguaGraph turns a philosophical question — does language shape our thinking? — into a measurable engineering question for the AI systems we all depend on. And the first finding is: yes, they drift. Now we can see where — and that is the first step toward auditing it."
 
 ---
 
