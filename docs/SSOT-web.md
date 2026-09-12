@@ -168,3 +168,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Vol3-Slugs korrigiert (10.4 Nuclear Reactions / 10.5 Fission / 10.6 Nuclear Fusion / 10.7 Medical statt geratenen Titeln); Chem2e-Voll-PDF (218MB) bewusst geskipt → Sektionen; LEIFI/NPTEL link-only; OpenStax-LLM-Training-Vorbehalt in Manifest vermerkt (nur lokales Mapping).
 - Backfill: `open_source_mapping.json` + `local_evidence` pro Entry (9/9, 0 missing) + `local_arrivals_20260912`; `data/DATA_MANIFEST.md` 8-Felder-Zeilen; Portal `#sources` + `src_local`-Badge (3-sprachig); CN-PEP-Texte weiter pending (smartedu-Login, User-Aktion).
 - Skripte: `fetch_open_texts.py` / `fetch_openstax_sections.py` (mit Marker-Validierung) / `extract_vol3_ch10.py` (superseded, dokumentiert) / `update_mapping_local_evidence.py`.
+
+## v18c CN-PEP-Mirror (2026-09-12, User-Fund)
+
+- Quelle auf User-Hinweis: `github.com/TapXWorld/ChinaTextbook` (Dritt-Mirror, 43GB, provenance unverified; offiziell: smartedu). 7/7 Bedarf-Bücher als "普通高中教科书" (2019) vorhanden, via raw.githubusercontent geladen: Phys 必修3 21.6MB/143pp, 选必1 10.4/130, 选必2 14.3/122, 选必3 12.3/143; Chem 选必1 12.3/139, 选必2 10.5/115, 选必3 15.0/163 (Größen = API-Bytes, vollständig).
+- Format: **Scans ohne Textlayer** (264 Bild-XObjects, 0 ToUnicode, 48 Fonts) → OCR pending (keine lokale Engine); Cover + TOC-Seiten visuell verifiziert (2019-Prüfsiegel + PEP-Imprint, 2 Covers vom Modell gelesen).
+- Ablage `data/textbook/cn_mirror/` (gitignored, nie committed); Manifest-8-Felder + `cn_textbook_mapping` + `local_evidence` 7/7 (`text_available` bleibt False bis OCR); Portal-`src_local` aktualisiert (3-sprachig).
+- Skripte: `fetch_cn_pep_mirror.py` (URL-Encoding-Fix dokumentiert) / `render_cn_covers.py` / `update_cn_mapping_local_evidence.py`.

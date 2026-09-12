@@ -47,6 +47,6 @@ All textbook sources are documented in `cognitive-space/README.md` with full att
 - `题名:MIT OCW 5.60/5.12/5.13/8.01SC/8.02 syllabi+notes | 作者:MIT Faculty | 版次:2005-2016 terms | 出版社:MIT OCW | 年份:2005-2016 | 章节:syllabus metadata (5) + 8.01 F16 course-notes bundle (64MB, source URL named TableOfContents) | 语言:en | 许可+URL:CC BY-NC-SA 4.0 · ocw.mit.edu/pages/privacy-and-terms-of-use | 到货:2026-09-12`
 - `题名:USTC 621《物理化学》考试大纲 | 作者:中国科学技术大学 | 版次:当年版 | 出版社:USTC研招 | 年份:当年版 | 章节:模块划分依据(傅献彩第六版对应) | 语言:zh | 许可+URL:公开行政文件(unverified)·本地研究使用 | 到货:2026-09-12`
 - `题名:UCAS《有机化学》考试大纲 | 作者:中国科学院大学 | 版次:2016-06-22 | 出版社:UCAS研招 | 年份:2016 | 章节:模块划分依据(邢其毅第三版对应) | 语言:zh | 许可+URL:公开行政文件(unverified)·本地研究使用 | 到货:2026-09-12`
-- `题名:普通高中教科书·物理/化学7册 (PEP 2019) | 作者:人教社课材所 | 版次:2019(第1版) | 出版社:人民教育出版社 | 年份:2019 | 章节:见cn_download_list | 语言:zh | 许可+URL:版权教材·需smartedu登录手动获取·未到货 | 状态:pending (user action)`
+- `题名:普通高中教科书·物理/化学7册 (PEP 2019) | 作者:人教社课材所 | 版次:2019(第1版) | 出版社:人民教育出版社 | 年份:2019 | 章节:物理必修3(143pp)/选必1(130pp)/选必2(122pp)/选必3(143pp)/化学选必1(139pp)/选必2(115pp)/选必3(163pp) | 语言:zh | 许可+URL:版权教材·第三方镜像(TapXWorld/ChinaTextbook, provenance unverified)·本地研究专用·永不进仓·以smartedu官方本为准 | 到货:2026-09-12 | 格式:扫描版无文本层(OCR pending,本地无OCR引擎) | 封面已目验(2019审定章+人教社印)`
 - LEIFI/NPTEL: link-only, no local copy (LEIFI §44b / NPTEL license-version unverified) — mapping rows carry URLs only.
 - OpenStax LLM-training reservation noted (book footer): local research mapping use only; no redistribution, no model training.
