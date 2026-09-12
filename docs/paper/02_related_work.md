@@ -80,25 +80,25 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 
 [9] Fan, L., Zhu, Y., & Miao, Z. (2013). A comparative study on mathematics textbook problems across countries. ICMT.
 
-[10] MSB NRW. (2019). Kernlehrplan Mathematik für das Gymnasium (Sek I). Ministerium für Schule und Bildung NRW.
+[10] MSB NRW. (2019; Neufassung 2023). Kernlehrplan Mathematik für das Gymnasium (Sek I). Ministerium für Schule und Bildung NRW.
 
-[11] MoE China. (2022). Yiwu Jiaoyu Shuxue Kecheng Biaozhun [Compulsory Education Mathematics Curriculum Standards]. Ministry of Education, PRC.
+[11] MoE China. (2017; 2022). Putong Gaozhong Shuxue Kecheng Biaozhun (2017) / Yiwu Jiaoyu Shuxue Kecheng Biaozhun (2022) [Senior High / Compulsory Education Mathematics Curriculum Standards]. Ministry of Education, PRC.
 
 [12] Ausubel, D. P. (1963). The Psychology of Meaningful Verbal Learning. Grune & Stratton.
 
 [13] Novak, J. D., & Cañas, A. J. (2008). The Theory Underlying Concept Maps. IHMC.
 
-[14] Weakly Supervised Concept Map Generation through Task-Guided Graph Translation. (2021). AAAI.
+[14] Lu, J., Dong, X., & Yang, C. (2023). Weakly Supervised Concept Map Generation through Task-Guided Graph Translation (GT-D2G). IEEE Transactions on Knowledge and Data Engineering, 35(10), 10871–10883. https://doi.org/10.1109/tkde.2023.3252588.
 
-[15] Generative Large Language Models for Knowledge Representation: A Systematic Review of Concept Map Generation. (2025). arXiv.
+[15] Zhai, X. (2025). Generative Large Language Models for Knowledge Representation: A Systematic Review of Concept Map Generation. arXiv:2509.14554.
 
-[16] McGillivray, B., et al. (2016). Multilingual Knowledge Graph Embeddings for Cross-lingual Knowledge Alignment. IJCAI.
+[16] Chen, M., Tian, Y., Yang, M., & Zaniolo, C. (2017). Multilingual Knowledge Graph Embeddings for Cross-lingual Knowledge Alignment (MTransE). Proc. IJCAI 2017, 1511–1517. https://doi.org/10.24963/ijcai.2017/209.
 
-[17] Cross-lingual Entity Alignment with Adversarial Kernel Embedding. (2021). AAAI.
+[17] Trisedya, B. D., Qi, J., & Zhang, R. (2019). Entity Alignment between Knowledge Graphs Using Attribute Embeddings. Proc. AAAI 2019, 33(01), 297–304.
 
-[18] SubGraph Networks based Entity Alignment for Cross-lingual Knowledge Graph. (2022). arXiv.
+[18] Yu, S., Zhang, S., Zhang, J., Zhou, J., Xuan, Q., Li, B., & Hu, X. (2022). SubGraph Networks based Entity Alignment for Cross-lingual Knowledge Graph. arXiv:2205.03557.
 
-[19] Co-training Embeddings of Knowledge Graphs and Entity Descriptions for Cross-lingual Entity Alignment. (2018). arXiv.
+[19] Chen, M., Tian, Y., Chang, K.-W., Skiena, S., & Zaniolo, C. (2018). Co-training Embeddings of Knowledge Graphs and Entity Descriptions for Cross-lingual Entity Alignment. Proc. IJCAI 2018, 3998–4004. arXiv:1806.06478.
 
 [20] Zhao, W., Mondal, D., Tandon, N., et al. (2024). WorldValuesBench: A Large-Scale Benchmark Dataset for Multi-Cultural Value Awareness of Language Models. arXiv:2404.16308.
 
@@ -116,23 +116,23 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 
 [27] Wang, Y., et al. (2025). Multilingual != Multicultural: Evaluating Gaps Between Multilingual Capabilities and Cultural Alignment in LLMs. arXiv:2502.16534.
 
-[28] KMK. Ständige Konferenz der Kultusminister der Länder; BMBF-Rahmenrolle. https://www.kmk.org/en/index.html; Eurydice Germany.
+[28] KMK / BMBF. (o. J.). Ständige Konferenz der Kultusminister der Länder; Rahmenrolle des BMBF. https://www.kmk.org/en/index.html; Eurydice Germany. (Zugriff Sept. 2026.)
 
-[29] Ministry of Education of the PRC. Nationale Lehrbuchzulassung und Gaokao-Kopplung. http://en.moe.gov.cn/.
+[29] Ministry of Education of the PRC. (o. J.). Nationale Lehrbuchzulassung und Gaokao-Kopplung. http://en.moe.gov.cn/. (Zugriff Sept. 2026.)
 
 [30] IEA. (2023). TIMSS 2023 Encyclopedia: Education Policy and Curriculum in Mathematics and Science. https://timss2023.org/encyclopedia/.
 
-[31] TIMSS & PIRLS International Study Center. TIMSS 2023 Insights: Curriculum Alignment report (curricular specifications → classroom implementation → achievement). https://timss.bc.edu/latest-news/timss-2023-insights-curriculum-alignment.html.
+[31] TIMSS & PIRLS International Study Center. (2024). TIMSS 2023 Insights: Curriculum Alignment report (curricular specifications → classroom implementation → achievement). https://timss.bc.edu/latest-news/timss-2023-insights-curriculum-alignment.html. (Zugriff Sept. 2026.)
 
 [32] OECD. (2025). Education at a Glance 2025 (Germany profile: 4.4% of GDP). OECD Publishing. https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/germany_fa91d155-en.html.
 
 [33] Fu, K., & Yang, X. (2025). Linguistic Markers of AI-Generated Text: A Comparative Analysis of Machine-Identified and Human-Inferred Predictors. AMCIS 2025 TREOs. https://aisel.aisnet.org/treos_amcis2025/1.
 
-[34] Classifying human vs. AI text with machine learning and explainable transformer models. (2025). Scientific Reports. https://www.nature.com/articles/s41598-025-27377-z.
+[34] Masih, A., Afzal, B., et al. (2025). Classifying human vs. AI text with machine learning and explainable transformer models. Scientific Reports, 15, 43310. https://www.nature.com/articles/s41598-025-27377-z.
 
-[35] A Systematic Analysis of Linguistic Features in AI-Generated Text (27 LLMs × 10 domains, 284 features). (2026). arXiv:2606.04177.
+[35] El Attar, Y., Dönmez, E., Maurer, M., & Falenska, A. (2026). A Systematic Analysis of Linguistic Features in AI-Generated Text Detection Across Domains and Models (27 LLMs × 10 domains, 284 features). arXiv:2606.04177.
 
-[36] Linguistic Characteristics of AI-Generated Text: A Survey. (2025). arXiv:2510.05136.
+[36] Terčon, L., & Dobrovoljc, K. (2025). Linguistic Characteristics of AI-Generated Text: A Survey. arXiv:2510.05136.
 
 [37] Markus, H. R., & Kitayama, S. (1991). Culture and the self: Implications for cognition, emotion, and motivation. Psychological Review, 98(2), 224–253.
 
@@ -153,3 +153,19 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 [45] Wang, M., Adel, H., Lange, L., Liu, Y., Nie, E., Strötgen, J., & Schuetze, H. (2025). Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models. Proc. ACL 2025, 5075–5094. https://aclanthology.org/2025.acl-long.253/.
 
 [46] Fluss, R., Faraggi, D., & Reiser, B. (2005). Estimation of the Youden Index and its Associated Cutoff Point. Biometrical Journal, 47(4), 458–472. https://doi.org/10.1002/bimj.200410135.
+
+[47] Binz, M., & Schulz, E. (2023). Using cognitive psychology to understand GPT-3. PNAS, 120(6), e2218523120. https://doi.org/10.1073/pnas.2218523120.
+
+[48] Hagendorff, T., Fabi, S., & Kosinski, M. (2023). Human-like intuitive behavior and reasoning biases emerged in large language models but disappeared in ChatGPT. Nature Machine Intelligence, 5, 1163–1176. https://doi.org/10.1038/s42256-023-00740-0.
+
+[49] Whorf, B. L. (1956). Language, Thought, and Reality. MIT Press.
+
+[50] Lucy, J. A. (1997). Linguistic relativity. Annual Review of Anthropology, 26, 291–312.
+
+[51] Winawer, J., Witthoft, N., Frank, M. C., Wu, L., Wade, A. R., & Boroditsky, L. (2007). Russian blues reveal effects of language on color discrimination. PNAS, 104(19), 7780–7785.
+
+[52] Levinson, S. C. (1996). Language and space. Annual Review of Anthropology, 25, 353–382.
+
+[53] Boroditsky, L. (2001). Does language shape thought? Mandarin and English speakers' conceptions of time. Cognitive Psychology, 43(2), 1–22.
+
+[54] Schmidt, W. H., et al. (2001). Why Schools Matter: A Cross-National Comparison of Curriculum and Learning. Jossey-Bass.

@@ -44,7 +44,7 @@ Als zweisprachiger Schüler — aufgewachsen mit Chinesisch als Muttersprache, u
 
 Diese subjektive Beobachtung wirft eine tiefere Frage auf: **Unterscheiden sich Sprachen nicht nur in Wörtern, sondern in der Art, wie sie Wissen organisieren?**
 
-Die *linguistische Relativitätstheorie* (Sapir-Whorf-Hypothese) postuliert genau das: Sprache beeinflusst das Denken. In den letzten zwei Jahrzehnten wurde dies empirisch für Farbwahrnehmung (Winawer et al., 2007), Raumkonzepte (Levinson, 1996) und Zeitwahrnehmung (Boroditsky, 2001) belegt. Doch für **abstrakte, komplexe Wissensdomänen** wie Mathematik blieb diese Frage weitgehend unerforscht.
+Die *linguistische Relativitätstheorie* (Sapir-Whorf-Hypothese) postuliert genau das: Sprache beeinflusst das Denken. In den letzten zwei Jahrzehnten wurde dies empirisch für Farbwahrnehmung [51], Raumkonzepte [52] und Zeitwahrnehmung [53] belegt. Doch für **abstrakte, komplexe Wissensdomänen** wie Mathematik blieb diese Frage weitgehend unerforscht.
 
 Hier setzt LinguaGraph an.
 

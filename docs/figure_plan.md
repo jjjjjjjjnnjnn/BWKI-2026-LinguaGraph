@@ -1,5 +1,10 @@
 # BWKI Paper — Figure Plan
 
+> ⚠️ ARCHIV-Stand 2026-06-17 — Zahlen (u.a. Success 1.00 in Figur 7, alte Jaccard-Matrix) sind
+> durch LDS-C v3 + per-topic SSOT (`data/lds_c/lds_c_results_20260808.json`,
+> ZH-DE: Gerechtigkeit 0.9565 / Freiheit 0.9592 / Verantwortung 0.9804 / Heimat 0.9268 / Erfolg 0.9268)
+> superseded. Nicht als Zahlenquelle verwenden; nur noch als Layout-Referenz.
+
 **Project**: LinguaGraph — BWKI 2026
 **Date**: 2026-06-17
 **Paper Language**: German (BWKI official)

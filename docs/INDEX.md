@@ -1,6 +1,6 @@
 # docs/ Index
 
-> Stand: v0.13.2 (2026-09-08) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json)
+> Stand: v0.14.1 (2026-09-10) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 55 Messungen / 50 Modelle (multi_model_replication_20260910.json)
 > Lesereihenfolge Paper: `paper/` → ORDER in `scripts/build_paper_pdf.py`
 > (01_abstract → 02_related_work → 02_methodology → 03_results → 06_physics → 07_lpa → 04_discussion → 05_conclusion → 00_three_conclusions)
 
@@ -9,9 +9,9 @@
 | Datei | Inhalt |
 |-------|--------|
 | `paper/01_abstract_introduction.md` | Abstract + Einleitung (T1–T3) |
-| `paper/02_related_work.md` | Forschungsstränge + Literatur [1]–[36] |
+| `paper/02_related_work.md` | Forschungsstränge + Literatur [1]–[54] |
 | `paper/02_methodology.md` | Korpus (68 Bücher: 39/18/11), MIMO, Graph-Fusion, LDS v3, Gold (F1 0,881 gewichtet) |
-| `paper/03_results.md` | F1–F12 + §5.10 51-Messungs-Replikation + P2-Einschränkung |
+| `paper/03_results.md` | F1–F12 + §5.10 55-Messungs-Replikation + P2-Einschränkung |
 | `paper/06_physics_results.md` | Fächervergleich (F6/F7-Detail) |
 | `paper/07_lpa_analysis.md` | Explorativer Language-Production-Stream |
 | `paper/04_discussion.md` | §8-Diskussion (§8.14–8.16; §8.17 entfernt → `_archive/20260908_qitian_removal/`) |

@@ -49,7 +49,7 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 
 ## 1:40–2:25 — Befunde: Sprachsignal ist real und kulturell gemustert (发现)
 
-**Visual:** LDS-C vs. Split-Half-Boden-Balken (0.93–0.96 vs. 0.85–0.87); Permutationstest p<0.01; Treiberliste DE-Only vs. ZH-Only; Domänen-Asymmetrie-Balken (institutionell 0.44 vs. sozial 0.80).
+**Visual:** Fünf Themen-Säulen ZH-DE (Gerechtigkeit 0.96 / Freiheit 0.96 / Verantwortung 0.98 / Heimat 0.93 / Erfolg 0.93) + Math-Kontrollsäule 0.52; Ecke: "55 Messungen · 50 Modelle · alle ZH-DE p<0.05"; B1: LDS-C 0.93–0.96 / Boden 0.85–0.87 / Social 0.82 (Basismodell deepseek-v4-flash).
 
 **Narration (DE):**
 „Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf US-amerikanische Modelle. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
@@ -108,5 +108,6 @@ The decisive control finding: institutional knowledge — for instance mathemati
 | Kulturrichtung über Zufallsniveau (≥10 Stimmen 218 vs 147, p<0.001) | `multi_model_replication_20260910.json` |
 | LDS-C 0.93–0.96, Boden 0.85–0.87 (Basismodell) | `data/lds_c/llm_subject/design_effect_20260810.json` |
 | DE: Autonomie/Regeln; ZH: Raum/Anspruch | `divergence_drivers_20260809.json` |
-| Institutionell konvergiert (node-only 0.444) vs sozial divergiert (0.800) | `node_edge_decomp_20260809.json` |
+| Mathematik full-v3 0.5188 (konvergiert) vs sozial 0.8191 (divergiert); node-only 0.444 nur Dekompositionsebene, kein Domänen-Hauptwert | `node_edge_decomp_20260809.json` |
+| Per-Topic ZH-DE: Gerechtigkeit 0.9565 / Freiheit 0.9592 / Verantwortung 0.9804 / Heimat 0.9268 / Erfolg 0.9268 | `lds_c_results_20260808.json` (per_topic_lds_c.ZH-DE) |
 | Ethik: Messung = Basis für Audit, nicht fertiges "Korrektur"-Instrument | Formulierung im Skript ehrlich gehalten |
