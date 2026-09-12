@@ -1,7 +1,18 @@
 # LinguaGraph — Video-Pitch (separater Workflow)
 
 > Spec: 2–4 Min · 1080p · H.264 | Skript: `video_script.md` v2 (AI-Audit-Framing, DE-Narration + EN-Untertitel)
-> Status: Skript fertig; **Aufnahme/Schnitt ausstehend** (separater Workflow, P0 — war für 05.09. geplant).
+> Status: **Finals vorhanden (2026-09-11, 173s, gleicher Schnitt)** — Master: separates Video-Repo (`nach/`, v4-Pipeline, 32 Steps, Narration-SSOT `nach/docs/narration_de.md`, Faktencheck `nach/docs/faktencheck.md` unterschrieben). Dieses Verzeichnis hält nur die **Einbettungs-Kopien** für Repo + Portal.
+
+## Finals (Einbettungs-Kopien, Stand 2026-09-11)
+
+| Datei | Inhalt | Größe |
+|---|---|---|
+| `LinguaGraph_BWKI2026_Pitch_4K.mp4` | DE ohne Untertitel (Default-Quelle, 3840×2160 h264/aac) | 14.3 MB |
+| `LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4` | gleicher Schnitt + EN-Untertitel (eingebrannt) | 23.8 MB |
+| `LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4` | gleicher Schnitt + ZH-Untertitel (eingebrannt) | 22.1 MB |
+| `assets/pitch_poster.jpg` | Poster-Frame (t60s) | — |
+
+> Quelle: `nach/renders/final/` (Video-Repo, wird dort gepflegt — hier nicht rendern, nur kopieren). 112-MB-4K-Master bleibt im Video-Repo/Release, nicht im Git.
 
 ## Storyboard (aus `video_script.md` v2)
 
