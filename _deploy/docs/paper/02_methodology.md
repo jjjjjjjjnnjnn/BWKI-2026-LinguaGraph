@@ -213,7 +213,7 @@ Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Port
 4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
 5. **Human N=15 floor** — Between-Subject-Marge +0,015.
 6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
-7. **Permutation test** — z. B. ZH-DE 56/56 bei p = 0,0.
+7. **Permutation test** — z. B. ZH-DE 55/55 (file-truth 56/56) bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
 8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
 9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
 

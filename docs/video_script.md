@@ -5,6 +5,8 @@
 **Language:** German (narration) + English (subtitles)
 **Stand:** 2026-08-09 | ersetzt v1 (Textbuch-Rahmen, überholt)
 
+> **BAKED-FREEZE (2026-09-12)**: Audio/Video final gerendert (173s ×3 mp4) — Stand prä-T1. Die Math-Kontrollsäule (0.52) und "converges/diverge clearly"-Formulierungen (L52/L57 DE, L62 EN-Sub) spiegeln den Stand vor der T1-Dekontamination (Sept 2026: 0.52→0.99, Label-Artefakt, s. Fig8). Skript unten = Baked-Transkript, wird nicht umgeschrieben (sonst Skript/Audio-Divergenz); Korrektur trägt die Live-Präsentation + Portal/Story-Fußnoten.
+
 > **Narrativer Kern (v2):** LinguaGraph ist ein **Audit-Werkzeug für mehrsprachige KI**: Es misst, ob ein KI-Modell abstrakte, wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) in verschiedenen Sprachen konsistent versteht — und lokalisiert, welche Konzept-Bestandteile genau divergieren. Das LLM selbst ist der vermessene Proband (LLM-as-Subject, Within-Subject-Design).
 
 ---
@@ -54,7 +56,7 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 **Narration (DE):**
 „Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf sieben westliche Messungen. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
-Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
+Der entscheidende Kontrollbefund (indikativ, kein harter Kontrollbeweis): Institutionelles Wissen — etwa Mathematik — erscheint indikativ konvergent (full-v3 0.52), kollabiert aber nach T1-Dekontamination auf 0.99 (Label-Artefakt, s. Fig8). Kulturelle Konzepte divergieren dagegen indikativ deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
 **Narration (EN subtitle):**
 "We extended the experiment to 50 models from different providers (55 measurements) — including seven western measurements. Across all 55 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.

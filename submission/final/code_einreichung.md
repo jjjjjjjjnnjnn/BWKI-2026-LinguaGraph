@@ -69,6 +69,11 @@ Alle Skripte schreiben datierte JSON-Ausgaben nach `data/lds_c/` inkl. Nachvollz
 | **Datensatz: Menschliche Fragebögen** | N=15 (6 DE · 6 ZH · 3 EN), GDPR-Einwilligung, anonymisiert | `freeze/` (SSOT), `participant_data/` (PII, nicht eingereicht) |
 | **Datensatz: Mathematik-Lehrbücher** | Institutionelle Kontrolldomäne | `data/corpus/` |
 | **Bibliotheken** | numpy, scipy, statsmodels, pytest | `requirements.txt` |
+| **Netzwerke/Graphen** | NetworkX, 3d-force-graph (CognitiveSpace-Rendering) | Paper §2.12 |
+| **Figuren** | matplotlib (deterministische Skripte `scripts/figures/`) | reproduzierbar |
+| **Textextraktion** | pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill) | Scan-OCR, Layer getrennt |
+| **Semantik** | nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (`scripts/semantic_ground_en.py`, temp-0) | EN-Grounding-Layer |
+| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92 (F1 sozial 0,939) | `docs/declaration_of_support.md` |
 | **Rechenleistung** | Keine externe GPU; reine API + lokale CPU | — |
 
 **Lizenzhinweis**: Wikipedia-Daten unterliegen CC-BY-SA; Quellen in `data/wikipedia_extractions/` dokumentiert. Lehrbuch-Korpus: urheberrechtlich geschützt, nur für die Analyse verwendet, nicht weitergegeben.

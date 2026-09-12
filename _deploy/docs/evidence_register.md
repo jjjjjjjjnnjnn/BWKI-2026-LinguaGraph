@@ -28,7 +28,7 @@
 | C16 | ZH-DE LDS-K "convergence" is a CJK-label contamination artefact | LDS-K | T1: 167/219 ZH-DE edges carry CJK de-labels; J 0.556→0.020, LDS 0.52→0.990 after decontamination; Fig8 | **Mature** | **High** | SUPERSEDES the convergence reading of C3 (2026-09-12) |
 | C17 | No separable language signal in human between-subject data (N=15) | LDS-C | pooled 0.963/0.932/0.936 ≈ floor 0.959/0.924/0.922; permutation p=0.08/1.0/1.0 (n_iter=200, fragile — needs_review) | **Developing** | **Medium** | Negative result; C7 pilot superseded |
 | C18 | Within-subject LLM data shows clear language-code signal | LDS-C | LLM 0.955/0.930/0.945 vs floor 0.875/0.846/0.862; margin +0.08–0.09; permutation p<0.01 | **Mature** | **High** | Same amplitude as human, floor separated |
-| C19 | 55-model replication: ZH-DE separable in every model | LDS-C | 56 ok runs (55×n=30 + qwen-max n=29) / 51 identities / 168 pairs; ZH-DE 56/56 at p=0.0; 8 EN n.s. | **Mature** | **High** | Public headline 55/50/165 (qwen-max partial withheld); file truth 56/51/168 |
+| C19 | 55-model replication: ZH-DE separable in every model | LDS-C | 56 ok runs (55×n=30 + qwen-max n=29) / 51 identities / 168 pairs; ZH-DE 56/56 at p<0.004 (500 perm. resolution limit); 8 EN n.s. | **Mature** | **High** | Public headline 55/50/165 (qwen-max partial withheld); file truth 56/51/168 |
 | C20 | Published CDS/HDS values are frozen June-2026 dense-graph outputs | LDS-K | CDS middle 46/280→0.271, high 175/1113→0.073; HDS 556/459/8/0.40; pipeline lost, 16+96 exhaustion negative | **Mature** | **High** | Frozen + forensic notes (fig3/fig5); not recomputable, direction intact |
 
 ---

@@ -17,13 +17,13 @@
 | 1 | **LDS (Linguistic Divergence Score)** — graph-theoretic metric for cross-language structural divergence | Research |
 | 2 | **Cross-lingual analysis framework** — textbook extraction → KG → LDS → comparison pipeline | Method |
 | 3 | **CognitiveSpace** — interactive 3D visualization of cross-lingual knowledge structures | Demo |
-| 4 | **Lightweight local inference** — runs on Qwen2.5-0.5B GGUF (CPU, no cloud API) | Engineering |
+| 4 | **Production extraction + local inference** — qwen-plus (D1 extraction) + lightweight local GGUF (CPU) | Engineering |
 
 ## 3. Key Results
 
 | Metric | Value |
 |--------|-------|
-| Textbook corpus | 68 (45 ZH + 20 EN + 10 DE) |
+| Textbook corpus | 68 math (39 ZH + 18 EN + 11 DE, s. Paper §2.2) |
 | Knowledge graph | 556 concepts · 525 direct relations (+~3000 transitive) |
 | Trilingual alignment | 219 groups (39.4%) |
 | Education levels | 4 (elementary → university) |
@@ -45,10 +45,10 @@
 
 | Component | Technology |
 |-----------|-----------|
-| Concept extraction | LLM (Qwen2.5-0.5B / OpenAI) |
+| Concept extraction | LLM (qwen-plus, D1 production model) |
 | Knowledge graph | NetworkX |
 | 3D viz | 3d-force-graph (Three.js) |
-| Cross-language alignment | 30 shared concept IDs, deterministic hashing |
+| Cross-language alignment | 219 alignment groups (math 556 / 525), deterministic hashing |
 | Inference | llama.cpp GGUF / Ollama |
 | Frontend (Workbench) | Flask / standalone HTML |
 

@@ -41,7 +41,7 @@
 ## P2c Modell-Roster + Academic-Honesty (2026-09-11)
 - 56 complete-Aggregat = **55 (n=30) + qwen-max (n=29/30)**; 30 error + qwen-max = **31 collecting** (paper §8.15: 86 begonnen, 55 vollständig).
 -西方 7 Messungen / 6 Identitäten (NVIDIA×2, Poolside×2 Hosts, OpenAI-Gewichte, Cohere, luna) — rote West-Badges, nach Margin sortiert.
-- Alle 55 ZH-DE p=0.0 (<0.01), Marge 0.033–0.424 = paper +0.03…+0.42 (§5.10).
+- Alle 55 ZH-DE p<0.004 (<0.01; 500-perm. resolution limit), Marge 0.033–0.424 = paper +0.03…+0.42 (§5.10).
 - LDS-Formel: `1 − mean(J_node, J_edge)` (README Metrics; portal vorher GED-veraltet).
 - Governance-Downgrade: B = Hypothese, A (Granularität) sicherste Lesart (paper §8.6); ZH-E-Titel Falsifikations-Wording; P2-Recheck-Note an Finding C; Youden 0.13-Zeile; Paper-Sektion real (Abstract/Sections/BibTeX/PDF-Link); Footer +Schule/Autor; Figures 7→8.
 
@@ -90,7 +90,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 
 - Erstbesuch folgt navigator.language (zh/de/en, sonst en); gespeicherte Wahl gewinnt; documentElement.lang wird gesetzt (portal/story/cspace).
 - Audit Zahlen: keine schweren Fehler. 180+ → 180 (README-Trio + Story, SSOT P2b#8).
-- p<0.01 (Portal) vs p<0.05 (Paper/README): beide wahr (perm_p=0.0); Paper-Caveat bleibt führend.
+- p<0.01 (Portal) vs p<0.05 (Paper/README): beide wahr (perm_p<0.004); Paper-Caveat bleibt führend.
 - qwen-max ohne error-Key (n=29): JSON unverändert, Zählregel dokumentiert (55×n=30 + qwen-max n=29/30).
 - 0.55–0.67 vs 0.547 (story deepseek-chat): Rundung, ok.
 - _deploy/LinguaGraph_BWKI2026.pdf (unreferenziert, identische Kopie) gelöscht; Mirrors 7/7 SAME; keine Konflikte/Backups; keine >10MB tracked; math_full.json (106MB) ignoriert, nicht getrackt.
@@ -193,6 +193,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Pipeline: `semantic_ground_en.py` (nomic-embed-v1.5 Prefilter top-5, 11.147 Sätze, Cache) smoke 5/5 → `sem_shards.py` (10 Shards à ~40) → 10 parallele Spark-Judges (substantive-description-Regel, passing-mention rejected) → `merge_sem_verdicts.py`.
 - Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
+
+## v21-p0a (2026-09-12, 红蓝对抗)
+- 工具披露同步（declaration+code_einreichung+新建CONTRIBUTORS）；submission/README旧数清零；证伪措辞三处+返工（video BAKED-FREEZE声明不改台词、plattform 219、p<0.004记法、§2.2来源）。
+- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
 
 ## v21-wave2 (2026-09-12, 红蓝对抗)
 - scope_note三语367+pending标注；05_conclusion T1收敛5处（L13/L17/L25/9.2 frozen注/L35/L92返工）；evidence C16-C20 + C3/C7/C8降级 + 表头更新；新建compliance_review_response.md（7条：3✅2🟡…R3 teilweise）；chat/emb垃圾确认不存在（红方Test-Path False）。

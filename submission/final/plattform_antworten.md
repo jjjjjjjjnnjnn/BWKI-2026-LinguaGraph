@@ -17,7 +17,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 
 **LLM-as-Subject (Within-Subject-Design)**: Dasselbe Modell (deepseek-v4-flash) wird auf Deutsch, Chinesisch und Englisch zu denselben fünf Themen befragt. Da es dasselbe Modell ist, ist die Sprache die einzige Variable — anders als bei Menschen, bei denen Sprache mit individueller Variabilität konfundiert ist (eine Person spricht eine Sprache).
 
-**Kognitive Graphen**: Aus den Antworten werden pro Sprache Konzeptgraphen extrahiert (Konzepte = Knoten, Relationen = Kanten; 30 geteilte Konzept-IDs, sprachübergreifend aligniert).
+**Kognitive Graphen**: Aus den Antworten werden pro Sprache Konzeptgraphen extrahiert (Konzepte = Knoten, Relationen = Kanten; 219 sprachübergreifend alignierte Konzeptgruppen).
 
 **Neue Metrik — Linguistic Divergence Score (LDS)**: `LDS = 1 − mean(J_node, J_edge)`, wobei J_node und J_edge die Jaccard-Ähnlichkeit der Knotenmengen bzw. Kantenmengen zwischen zwei Sprachen sind.
 
@@ -37,7 +37,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 |--------|---------|
 | **Das Sprachsignal ist real** | LLM-as-Subject: LDS-C 0.93–0.96, klar über dem Within-Language-Boden 0.85–0.87; Permutationstest p<0.01 (alle Sprachpaare) |
 | **Es ist kulturell gemustert, nicht zufällig** | ZH-DE-Divergenztreiber: DE betont Autonomie/Regeln/eigene Ziele, ZH Raum/Grenzen/Anspruch |
-| **Domänen-Asymmetrie (Kontrollbefund)** | Institutionelles Wissen (Mathematik) konvergiert sprachübergreifend (node-only 0.44); kulturelle Konzepte divergieren (0.80) → das Signal ist kultureller Natur, kein Messartefakt |
+| **Domänen-Asymmetrie (Kontrollbefund, indikativ)** | Institutionelles Wissen (Mathematik, indikativ full-v3 0.52 → nach T1-Dekontamination 0.99 — Label-Artefakt, s. Fig8); kulturelle Konzepte divergieren (indikativ 0.82) → Signal indikativ kultureller Natur, kein harter Kontrollbeweis |
 | **Struktur, nicht nur Wortwahl** | Auch die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch (Kanten-Komponente divergiert systematisch) |
 | **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt die menschliche Marge (+0.014 ≈ +0.015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung) |
 
