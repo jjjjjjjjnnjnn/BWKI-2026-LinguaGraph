@@ -194,6 +194,10 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Ergebnis `text_grounding_en_semantic_20260912.json` (107KB, 165/407 = 40.5 % strict): Physik-EN 33.8 % → **62.1 %**, Chemie-EN 25.5 % → **53.2 %**; Layer getrennt gebucht (kein Mix mit Substring); temp 0, Shards+Verdicts in Temp/sem_shards (reproduzierbar).
 - Lokaler phi-4-Pfad verworfen (zu langsam); LM-Studio-Server lief (phi-4-mini + nomic-embed verifiziert), Embeddings wiederverwendet. Portal-`src_local` EN-Raten (3-sprachig); Manifest + Technische-Werkzeuge-Registrierung fällig in P4 (Eigenständigkeit).
 
+## v21-p0b (2026-09-12, 红蓝对抗)
+- 接地回写：merge_grounding_back.py→verification 367/367+220/220（有证据302/180，空65/40确为空）；CN 11/11 0 stubs（+60节）；24 zero页verified_blank（重提0成功，空白版权/尾页）。红方全过。
+- OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
+
 ## v21-p0a (2026-09-12, 红蓝对抗)
 - 工具披露同步（declaration+code_einreichung+新建CONTRIBUTORS）；submission/README旧数清零；证伪措辞三处+返工（video BAKED-FREEZE声明不改台词、plattform 219、p<0.004记法、§2.2来源）。
 - OPEN Judith-Entscheidung: CONTRIBUTORS双作者 vs submission Einzelteilnahme口径冲突，需用户定。
