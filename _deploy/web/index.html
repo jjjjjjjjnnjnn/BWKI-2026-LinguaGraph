@@ -597,6 +597,12 @@
     }
 
     /* ─── Detail ──────────────────────────────────────────────────── */
+    // Display label follows the UI language (fallback: node name, then id)
+    function nodeLabel(n){
+        const lbs = (n && n.labels) || {};
+        const l = (typeof i18n !== 'undefined' && i18n.lang) || 'en';
+        return lbs[l] || n.name || n.id;
+    }
     function showDetail(n) {
         const e = document.getElementById('detail');
         document.getElementById('dn').textContent = n.name||n.id;
@@ -618,7 +624,7 @@
                     connections++;
                     const oid = s===id ? t : s;
                     const on = gd.nodes.find(nn=>nn.id===oid);
-                    if (on) neighbors.push(on.name);
+                    if (on) neighbors.push(nodeLabel(on));
                 }
             });
         }
@@ -858,9 +864,6 @@
         });
         document.getElementById('aboutClose').addEventListener('click', () => { about.style.display = 'none'; });
         // Search with predictive dropdown (trilingual match badges + keyboard)
-        const searchBox = document.getElementById('search');
-        const searchMeta = document.getElementById('searchMeta');
-        let searchItems = [], searchSel = -1;
         function matchLang(n, q){
             const lbs = n.labels || {};
             const hit = [];
@@ -868,6 +871,9 @@
             ['zh','en','de'].forEach(l => { if ((lbs[l] || '').toLowerCase().indexOf(q) >= 0) hit.push(l.toUpperCase()); });
             return hit;
         }
+        const searchBox = document.getElementById('search');
+        const searchMeta = document.getElementById('searchMeta');
+        let searchItems = [], searchSel = -1;
         function matchNodes(q){
             q = (q || '').trim().toLowerCase();
             if (!q) return [];
@@ -897,7 +903,8 @@
                 const b = document.createElement('button');
                 b.type = 'button';
                 const badges = matchLang(n, q).map(l => '<em>' + l + '</em>').join('');
-                b.innerHTML = '<span>' + (n.name || n.id) + '</span><span>' + badges + '</span>';
+                const disp = nodeLabel(n), nm = (n.name || n.id);
+                b.innerHTML = '<span>' + disp + (disp !== nm ? ' · ' + nm : '') + '</span><span>' + badges + '</span>';
                 b.addEventListener('click', () => focusNode(n));
                 const idx = searchItems.length;
                 b.addEventListener('mousemove', () => paintSel(idx));

@@ -4,13 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Margin Galaxy — 55 replication runs</title>
-<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <style>
 :root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; --red:#b3372f; }
 * { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); overflow:hidden; }
-#scene { width:100vw; height:100vh; display:block; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); }
+.chart { position:absolute; inset:0; overflow:auto; display:flex; align-items:flex-start; justify-content:flex-start; padding:110px 20px 60px; }
+.chart svg { flex:0 0 auto; margin:0 auto; background:var(--surface2); border:1px solid var(--rule); border-radius:10px; box-shadow:0 18px 48px rgba(10,31,61,.10); }
+.chart text { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; }
+.dot { cursor:pointer; }
+.dot:hover { stroke:#0a1f3d; stroke-width:2; }
 .hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:330px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
 .hud h1 { font-size:.82rem; font-weight:600; }
 .hud h1 span { color:var(--accent); }
@@ -27,10 +29,10 @@ body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--s
 </style>
 </head>
 <body>
-<canvas id="scene"></canvas>
+<div class="chart" id="chart"></div>
 <div class="hud">
   <h1>Margin <span data-k="t_galaxy">Galaxy</span></h1>
-  <div class="sub" data-k="sub">55 full ZH-DE margins by model family. X = margin, lanes = families. Click a sphere for the roster.</div>
+  <div class="sub" data-k="sub">55 full ZH-DE margins by model family. X = margin, lanes = families. Click a dot for the roster.</div>
   <div class="row"><span class="dot" style="background:#1e3a8a"></span><span data-k="lg_cn">CN run</span>&nbsp;&nbsp;<span class="dot" style="background:#b3372f"></span><span data-k="lg_w">western run (7)</span></div>
   <div class="row" data-k="note">31 collecting runs withhold margins (n&lt;30) — not plotted.</div>
 </div>
@@ -40,7 +42,7 @@ body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--s
 </div>
 <div id="tip"></div>
 <div class="scope" data-k="scope">SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p&lt;0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json</div>
-<div class="hint" data-k="hint">drag rotate · scroll zoom · hover values</div>
+<div class="hint" data-k="hint">hover values · click for roster</div>
 <script>
 // DATA — 55 full runs, same values as portal marginChart (desc here by family lane)
 var MODELS = [
@@ -67,9 +69,9 @@ var MODELS = [
 ];
 var LANES = ['qwen','deepseek','glm','kimi','minimax','mimo','laguna','longcat','nemotron','gpt-oss','command-a','luna'];
 var T = {
-en: { t_galaxy:'Galaxy', sub:'55 full ZH-DE margins by model family. X = margin, lanes = families. Click a sphere for the roster.', lg_cn:'CN run', lg_w:'western run (7)', note:'31 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'drag rotate · scroll zoom · hover values', back:'← Gallery' },
-de: { t_galaxy:'Galaxie', sub:'55 vollständige ZH-DE-Margen nach Modellfamilie. X = Marge, Spuren = Familien. Kugel klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (7)', note:'31 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'Drehen · Zoomen · Werte hovern', back:'← Galerie' },
-zh: { t_galaxy:'星系', sub:'55 个完整 ZH-DE 边际，按模型家族分泳道。X＝边际。点击球体查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (7)', note:'31 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'拖拽旋转 · 滚轮缩放 · 悬停看值', back:'← 展厅' },
+en: { t_galaxy:'Galaxy', sub:'55 full ZH-DE margins by model family. X = margin, lanes = families. Click a dot for the roster.', lg_cn:'CN run', lg_w:'western run (7)', note:'31 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'hover values · click for roster', back:'← Gallery' },
+de: { t_galaxy:'Galaxie', sub:'55 vollständige ZH-DE-Margen nach Modellfamilie. X = Marge, Spuren = Familien. Punkt klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (7)', note:'31 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'Werte hovern · Klicken für Roster', back:'← Galerie' },
+zh: { t_galaxy:'星系', sub:'55 个完整 ZH-DE 边际，按模型家族分泳道。X＝边际。点击圆点查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (7)', note:'31 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'悬停看值 · 点击看名录', back:'← 展厅' },
 };
 var lang = 'en';
 try {
@@ -78,102 +80,64 @@ try {
 } catch(e) { lang = 'en'; }
 if (!T[lang]) lang = 'en';
 
-var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('scene'), antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setSize(innerWidth, innerHeight);
-renderer.setClearColor(0xf1f3f5);
-var scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0xf1f3f5, 34, 80);
-var camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 220);
-camera.position.set(9, 11, 22);
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.target.set(6.5, 0, 0);
-controls.enableDamping = true;
-scene.add(new THREE.AmbientLight(0xffffff, 0.9));
-var dir = new THREE.DirectionalLight(0xffffff, 0.65);
-dir.position.set(8, 14, 6);
-scene.add(dir);
-var grid = new THREE.GridHelper(30, 30, 0xc6cdd6, 0xdbe2ea);
-grid.position.set(6, -7.7, 0);
-scene.add(grid);
-
-function hashStr(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h = h & h; } return Math.abs(h); }
-function textSprite(text, color) {
-  var c = document.createElement('canvas');
-  var g = c.getContext('2d');
-  g.font = '600 40px "IBM Plex Sans", sans-serif';
-  var w = Math.ceil(g.measureText(text).width) + 24;
-  c.width = w; c.height = 60;
-  var g2 = c.getContext('2d');
-  g2.font = '600 40px "IBM Plex Sans", sans-serif';
-  g2.fillStyle = color || '#4a5a78';
-  g2.textBaseline = 'middle';
-  g2.fillText(text, 12, 32);
-  var tex = new THREE.CanvasTexture(c);
-  var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
-  sp.scale.set(w / 60 * 0.4, 0.4, 1);
-  return sp;
+var NS = 'http://www.w3.org/2000/svg';
+function el(name, attrs, parent) {
+  var e = document.createElementNS(NS, name);
+  for (var k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
 }
-
-var spheres = [], labelGroup = new THREE.Group();
-scene.add(labelGroup);
-function build() {
-  spheres.forEach(function(s) { scene.remove(s.mesh); });
-  spheres = [];
-  while (labelGroup.children.length) labelGroup.remove(labelGroup.children[0]);
-  MODELS.forEach(function(m) {
-    var lane = LANES.indexOf(m[1]);
-    var x = m[3] / 0.45 * 13;
-    var y = (LANES.length - 1 - lane) * 1.3 - 7.15;
-    var z = ((hashStr(m[0]) % 100) / 100 - 0.5) * 2.4;
-    var mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(0.24, 18, 14),
-      new THREE.MeshLambertMaterial({ color: m[2] ? 0xb3372f : 0x1e3a8a })
-    );
-    mesh.position.set(x, y, z);
-    mesh.userData = { name: m[0], fam: m[1], west: m[2], margin: m[3] };
-    scene.add(mesh);
-    spheres.push({ mesh: mesh });
-    var lb = textSprite(m[0], m[2] ? '#b3372f' : '#4a5a78');
-    lb.position.set(x, y + 0.5, z);
-    labelGroup.add(lb);
-  });
-  LANES.forEach(function(f, i) {
-    var s = textSprite(f, '#0a1f3d');
-    s.position.set(-2.6, (LANES.length - 1 - i) * 1.3 - 7.15, 0);
-    labelGroup.add(s);
-  });
-  for (var v = 0; v <= 0.4; v += 0.1) {
-    var ax = textSprite('+' + v.toFixed(1), '#8595ad');
-    ax.position.set(v / 0.45 * 13, -7.5, 0);
-    labelGroup.add(ax);
-  }
-}
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
 var tip = document.getElementById('tip');
-var ray = new THREE.Raycaster(), mouse = new THREE.Vector2(), hovered = null;
-renderer.domElement.addEventListener('pointermove', function(e) {
-  mouse.x = (e.clientX / innerWidth) * 2 - 1;
-  mouse.y = -(e.clientY / innerHeight) * 2 + 1;
-  ray.setFromCamera(mouse, camera);
-  var hits = ray.intersectObjects(spheres.map(function(s) { return s.mesh; }));
-  if (hits.length) {
-    var u = hits[0].object.userData;
-    hovered = hits[0].object;
-    tip.style.display = 'block';
-    tip.style.left = (e.clientX + 14) + 'px';
-    tip.style.top = (e.clientY + 10) + 'px';
-    tip.innerHTML = '<b>' + u.name + '</b><br>margin +' + u.margin.toFixed(2) + ' · p<0.01' + (u.west ? '<br>western run' : '');
-    renderer.domElement.style.cursor = 'pointer';
-  } else {
-    hovered = null;
-    tip.style.display = 'none';
-    renderer.domElement.style.cursor = 'grab';
+function showTip(e, html) {
+  tip.innerHTML = html;
+  tip.style.display = 'block';
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top = (e.clientY + 10) + 'px';
+}
+function hideTip() { tip.style.display = 'none'; }
+
+function build() {
+  var box = document.getElementById('chart');
+  box.innerHTML = '';
+  var LEFT = 150, RIGHT = 30, TOP = 26, LANEH = 34, PW = 720, BOT = 44;
+  var MAXM = 0.45;
+  var H = TOP + LANES.length * LANEH + BOT;
+  var W = LEFT + PW + RIGHT;
+  var X = function(m) { return LEFT + m / MAXM * PW; };
+  var svg = el('svg', {width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img'}, box);
+  LANES.forEach(function(f, i) {
+    var y = TOP + i * LANEH + LANEH / 2;
+    el('line', {x1: LEFT, y1: TOP + i * LANEH, x2: LEFT + PW, y2: TOP + i * LANEH, stroke: '#e4e9f0', 'stroke-width': 1}, svg);
+    var lb = el('text', {x: LEFT - 10, y: y + 4, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 600, fill: '#0a1f3d'}, svg);
+    lb.textContent = f;
+    var cnt = MODELS.filter(function(m) { return m[1] === f; }).length;
+    var cn = el('text', {x: LEFT + PW + 8, y: y + 4, 'font-size': 11, fill: '#8595ad'}, svg);
+    cn.textContent = 'n=' + cnt;
+  });
+  for (var v = 0; v <= 0.41; v += 0.1) {
+    var ax = X(Math.min(v, MAXM));
+    el('line', {x1: ax, y1: TOP, x2: ax, y2: TOP + LANES.length * LANEH, stroke: '#dbe2ea', 'stroke-width': 1}, svg);
+    var at = el('text', {x: ax, y: TOP + LANES.length * LANEH + 20, 'text-anchor': 'middle', 'font-size': 11, fill: '#8595ad'}, svg);
+    at.textContent = '+' + v.toFixed(1);
   }
-});
-renderer.domElement.addEventListener('click', function() {
-  if (hovered) window.open('../portal/index.html#validation', '_blank');
-});
+  MODELS.forEach(function(m) {
+    var lane = LANES.indexOf(m[1]);
+    var y = TOP + lane * LANEH + LANEH / 2;
+    var c = el('circle', {cx: X(m[3]), cy: y, r: m[2] ? 8 : 6, fill: m[2] ? '#b3372f' : '#1e3a8a',
+      opacity: m[2] ? 1 : 0.8, 'class': 'dot'}, svg);
+    var title = el('title', {}, c);
+    title.textContent = m[0] + ' · +' + m[3].toFixed(2);
+    (function(mm) {
+      c.addEventListener('mousemove', function(e) {
+        showTip(e, '<b>' + esc(mm[0]) + '</b><br>margin +' + mm[3].toFixed(2) + ' · p<0.01' + (mm[2] ? '<br>western run' : ''));
+      });
+      c.addEventListener('mouseleave', hideTip);
+      c.addEventListener('click', function() { window.open('../portal/index.html#validation', '_blank'); });
+    })(m);
+  });
+}
 
 function applyLang() {
   var t = T[lang];
@@ -183,6 +147,7 @@ function applyLang() {
   });
   document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
   document.documentElement.lang = lang;
+  build();
 }
 document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
   b.addEventListener('click', function() {
@@ -191,14 +156,7 @@ document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
     applyLang();
   });
 });
-window.addEventListener('resize', function() {
-  camera.aspect = innerWidth / innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth, innerHeight);
-});
-build();
 applyLang();
-(function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); })();
 </script>
 </body>
 </html>

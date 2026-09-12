@@ -12,8 +12,8 @@ var data = {
       "name": "导数",
       "labels": {
         "zh": "导数",
-        "en": "导数",
-        "de": "导数"
+        "en": "derivative",
+        "de": "Ableitung"
       },
       "group": "calculus",
       "level": "college",
@@ -52,8 +52,8 @@ var data = {
       "name": "极限",
       "labels": {
         "zh": "极限",
-        "en": "极限",
-        "de": "极限"
+        "en": "limit",
+        "de": "Grenzwert"
       },
       "group": "calculus",
       "level": "college",
@@ -92,8 +92,8 @@ var data = {
       "name": "积分",
       "labels": {
         "zh": "积分",
-        "en": "积分",
-        "de": "积分"
+        "en": "integral",
+        "de": "Integral"
       },
       "group": "calculus",
       "level": "high",
@@ -114,8 +114,8 @@ var data = {
       "name": "微分",
       "labels": {
         "zh": "微分",
-        "en": "微分",
-        "de": "微分"
+        "en": "differential",
+        "de": "Differenzial"
       },
       "group": "calculus",
       "level": "high",
@@ -137,7 +137,7 @@ var data = {
       "labels": {
         "zh": "不定积分",
         "en": "Antiderivative",
-        "de": "原函数"
+        "de": "Stammfunktion"
       },
       "group": "calculus",
       "level": "high",
@@ -193,7 +193,7 @@ var data = {
       "labels": {
         "zh": "连续性",
         "en": "Continuity",
-        "de": "连续性"
+        "de": "Stetigkeit"
       },
       "group": "calculus",
       "level": "college",
@@ -220,8 +220,8 @@ var data = {
       "name": "切线",
       "labels": {
         "zh": "切线",
-        "en": "切线",
-        "de": "切线"
+        "en": "tangent line",
+        "de": "Tangente"
       },
       "group": "calculus",
       "level": "college",
@@ -261,7 +261,7 @@ var data = {
       "labels": {
         "zh": "变化率",
         "en": "Rate of Change",
-        "de": "变化率"
+        "de": "Änderungsrate"
       },
       "group": "calculus",
       "level": "college",
@@ -282,7 +282,7 @@ var data = {
       "name": "速度",
       "labels": {
         "zh": "速度",
-        "en": "速度",
+        "en": "velocity",
         "de": "Geschwindigkeit"
       },
       "group": "calculus",
@@ -304,8 +304,8 @@ var data = {
       "name": "函数",
       "labels": {
         "zh": "函数",
-        "en": "函数",
-        "de": "函数"
+        "en": "function",
+        "de": "Funktion"
       },
       "group": "calculus",
       "level": "college",
@@ -351,7 +351,7 @@ var data = {
       "labels": {
         "zh": "极限定理",
         "en": "Limit Theorem",
-        "de": "极限定理"
+        "de": "Grenzwertsatz"
       },
       "group": "calculus",
       "level": "high",
@@ -372,7 +372,7 @@ var data = {
       "name": "洛必达法则",
       "labels": {
         "zh": "洛必达法则",
-        "en": "洛必达法则",
+        "en": "L'Hôpital's Rule",
         "de": "Regel von L'Hospital"
       },
       "group": "calculus",
@@ -407,7 +407,7 @@ var data = {
       "labels": {
         "zh": "泰勒展开",
         "en": "Taylor Expansion",
-        "de": "泰勒展开"
+        "de": "Taylorentwicklung"
       },
       "group": "calculus",
       "level": "college",
@@ -435,7 +435,7 @@ var data = {
       "labels": {
         "zh": "麦克劳林级数",
         "en": "Maclaurin Series",
-        "de": "麦克劳林级数"
+        "de": "Maclaurin-Reihe"
       },
       "group": "calculus",
       "level": "high",
@@ -457,7 +457,7 @@ var data = {
       "labels": {
         "zh": "幂级数",
         "en": "Power Series",
-        "de": "幂级数"
+        "de": "Potenzreihe"
       },
       "group": "calculus",
       "level": "high",
@@ -479,7 +479,7 @@ var data = {
       "labels": {
         "zh": "收敛",
         "en": "Convergence",
-        "de": "收敛"
+        "de": "Konvergenz"
       },
       "group": "calculus",
       "level": "high",
@@ -501,7 +501,7 @@ var data = {
       "labels": {
         "zh": "发散",
         "en": "Divergence",
-        "de": "散度"
+        "de": "Divergenz"
       },
       "group": "calculus",
       "level": "high",
@@ -551,7 +551,7 @@ var data = {
       "labels": {
         "zh": "方向导数",
         "en": "Directional Derivative",
-        "de": "方向导数"
+        "de": "Richtungsableitung"
       },
       "group": "calculus",
       "level": "high",
@@ -572,8 +572,8 @@ var data = {
       "name": "梯度",
       "labels": {
         "zh": "梯度",
-        "en": "梯度",
-        "de": "梯度"
+        "en": "gradient",
+        "de": "Gradient"
       },
       "group": "calculus",
       "level": "high",
@@ -617,7 +617,7 @@ var data = {
       "labels": {
         "zh": "旋度",
         "en": "Curl",
-        "de": "旋度"
+        "de": "Rotation"
       },
       "group": "calculus",
       "level": "high",
@@ -639,7 +639,7 @@ var data = {
       "labels": {
         "zh": "拉格朗日乘数",
         "en": "Lagrange Multiplier",
-        "de": "拉格朗日乘数"
+        "de": "Lagrange-Multiplikator"
       },
       "group": "calculus",
       "level": "high",
@@ -661,7 +661,7 @@ var data = {
       "labels": {
         "zh": "微分方程",
         "en": "Differential Equation",
-        "de": "微分方程"
+        "de": "Differenzialgleichung"
       },
       "group": "calculus",
       "level": "college",
@@ -739,7 +739,7 @@ var data = {
       "labels": {
         "zh": "复合函数",
         "en": "Composite Function",
-        "de": "复合函数"
+        "de": "verkettete Funktion"
       },
       "group": "calculus",
       "level": "high",
@@ -761,7 +761,7 @@ var data = {
       "labels": {
         "zh": "链式法则",
         "en": "Chain Rule",
-        "de": "链式法则"
+        "de": "Kettenregel"
       },
       "group": "calculus",
       "level": "college",
@@ -794,8 +794,8 @@ var data = {
       "name": "和差法则",
       "labels": {
         "zh": "和差法则",
-        "en": "和差法则",
-        "de": "和差法则"
+        "en": "sum and difference rules",
+        "de": "Summen- und Differenzregel"
       },
       "group": "calculus",
       "level": "college",
@@ -828,8 +828,8 @@ var data = {
       "name": "积法则",
       "labels": {
         "zh": "积法则",
-        "en": "积法则",
-        "de": "积法则"
+        "en": "product rule",
+        "de": "Produktregel"
       },
       "group": "calculus",
       "level": "college",
@@ -868,8 +868,8 @@ var data = {
       "name": "商法则",
       "labels": {
         "zh": "商法则",
-        "en": "商法则",
-        "de": "商法则"
+        "en": "quotient rule",
+        "de": "Quotientenregel"
       },
       "group": "calculus",
       "level": "college",
@@ -909,7 +909,7 @@ var data = {
       "labels": {
         "zh": "原函数",
         "en": "Antiderivative",
-        "de": "原函数"
+        "de": "Stammfunktion"
       },
       "group": "calculus",
       "level": "high",
@@ -930,8 +930,8 @@ var data = {
       "name": "微积分基本定理",
       "labels": {
         "zh": "微积分基本定理",
-        "en": "微积分基本定理",
-        "de": "微积分基本定理"
+        "en": "Fundamental Theorem of Calculus",
+        "de": "Hauptsatz der Differenzial- und Integralrechnung"
       },
       "group": "calculus",
       "level": "college",
@@ -965,7 +965,7 @@ var data = {
       "labels": {
         "zh": "黎曼和",
         "en": "Riemann Sum",
-        "de": "黎曼和"
+        "de": "Riemann-Summe"
       },
       "group": "calculus",
       "level": "college",
@@ -993,7 +993,7 @@ var data = {
       "labels": {
         "zh": "中间变量",
         "en": "Intermediate Variable",
-        "de": "中间变量"
+        "de": "Zwischenvariable"
       },
       "group": "calculus",
       "level": "high",
@@ -1015,7 +1015,7 @@ var data = {
       "labels": {
         "zh": "外层函数",
         "en": "Outer Function",
-        "de": "外层函数"
+        "de": "äußere Funktion"
       },
       "group": "calculus",
       "level": "high",
@@ -1037,7 +1037,7 @@ var data = {
       "labels": {
         "zh": "内层函数",
         "en": "Inner Function",
-        "de": "内层函数"
+        "de": "innere Funktion"
       },
       "group": "calculus",
       "level": "high",
@@ -1080,8 +1080,8 @@ var data = {
       "name": "柯西中值定理",
       "labels": {
         "zh": "柯西中值定理",
-        "en": "柯西中值定理",
-        "de": "柯西中值定理"
+        "en": "Cauchy Mean Value Theorem",
+        "de": "Cauchyscher Mittelwertsatz"
       },
       "group": "calculus",
       "level": "high",
@@ -1102,7 +1102,7 @@ var data = {
       "name": "泰勒公式",
       "labels": {
         "zh": "泰勒公式",
-        "en": "泰勒公式",
+        "en": "Taylor's formula",
         "de": "Taylor's Theorem"
       },
       "group": "calculus",
@@ -1137,7 +1137,7 @@ var data = {
       "labels": {
         "zh": "麦克劳林公式",
         "en": "Maclaurin Formula",
-        "de": "麦克劳林公式"
+        "de": "Maclaurin-Formel"
       },
       "group": "calculus",
       "level": "high",
@@ -1159,7 +1159,7 @@ var data = {
       "labels": {
         "zh": "拉格朗日余项",
         "en": "Lagrange Remainder",
-        "de": "拉格朗日余项"
+        "de": "Lagrange-Restglied"
       },
       "group": "calculus",
       "level": "high",
@@ -1225,7 +1225,7 @@ var data = {
       "labels": {
         "zh": "初始条件",
         "en": "Initial Condition",
-        "de": "初始条件"
+        "de": "Anfangsbedingung"
       },
       "group": "calculus",
       "level": "high",
@@ -1268,8 +1268,8 @@ var data = {
       "name": "矩阵",
       "labels": {
         "zh": "矩阵",
-        "en": "矩阵",
-        "de": "矩阵"
+        "en": "matrix",
+        "de": "Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1303,7 +1303,7 @@ var data = {
       "labels": {
         "zh": "vectors",
         "en": "Vector",
-        "de": "向量"
+        "de": "Vektoren"
       },
       "group": "linear_algebra",
       "level": "high",
@@ -1349,7 +1349,7 @@ var data = {
       "labels": {
         "zh": "行列式",
         "en": "Determinant",
-        "de": "行列式"
+        "de": "Determinante"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1383,7 +1383,7 @@ var data = {
       "labels": {
         "zh": "特征值",
         "en": "Eigenvalue",
-        "de": "特征值"
+        "de": "Eigenwert"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1411,7 +1411,7 @@ var data = {
       "labels": {
         "zh": "特征向量",
         "en": "Eigenvector",
-        "de": "特征向量"
+        "de": "Eigenvektor"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1439,7 +1439,7 @@ var data = {
       "labels": {
         "zh": "线性方程组",
         "en": "Linear System",
-        "de": "线性方程组"
+        "de": "lineares Gleichungssystem"
       },
       "group": "linear_algebra",
       "level": "high",
@@ -1467,7 +1467,7 @@ var data = {
       "labels": {
         "zh": "向量空间",
         "en": "Vector Space",
-        "de": "向量空间"
+        "de": "Vektorraum"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1545,7 +1545,7 @@ var data = {
       "labels": {
         "zh": "单位矩阵",
         "en": "Identity Matrix",
-        "de": "单位矩阵"
+        "de": "Einheitsmatrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1588,8 +1588,8 @@ var data = {
       "name": "逆矩阵",
       "labels": {
         "zh": "逆矩阵",
-        "en": "逆矩阵",
-        "de": "逆矩阵"
+        "en": "inverse matrix",
+        "de": "inverse Matrix"
       },
       "group": "linear_algebra",
       "level": "high",
@@ -1617,7 +1617,7 @@ var data = {
       "labels": {
         "zh": "矩阵转置",
         "en": "Transpose",
-        "de": "矩阵转置"
+        "de": "transponierte Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1639,7 +1639,7 @@ var data = {
       "labels": {
         "zh": "矩阵乘法",
         "en": "Matrix Multiplication",
-        "de": "矩阵乘法"
+        "de": "Matrizenmultiplikation"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1661,7 +1661,7 @@ var data = {
       "labels": {
         "zh": "伴随矩阵",
         "en": "Adjugate Matrix",
-        "de": "伴随矩阵"
+        "de": "adjungierte Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1682,8 +1682,8 @@ var data = {
       "name": "克莱姆法则",
       "labels": {
         "zh": "克莱姆法则",
-        "en": "克莱姆法则",
-        "de": "克莱姆法则"
+        "en": "Cramer's Rule",
+        "de": "Cramersche Regel"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1799,7 +1799,7 @@ var data = {
       "labels": {
         "zh": "向量组的秩",
         "en": "Rank of Vector System",
-        "de": "向量组的秩"
+        "de": "Rang eines Vektorsystems"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1821,7 +1821,7 @@ var data = {
       "labels": {
         "zh": "矩阵的秩",
         "en": "Rank of Matrix",
-        "de": "矩阵的秩"
+        "de": "Rang einer Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1865,7 +1865,7 @@ var data = {
       "labels": {
         "zh": "解空间",
         "en": "Solution Space",
-        "de": "解空间"
+        "de": "Lösungsraum"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1949,7 +1949,7 @@ var data = {
       "labels": {
         "zh": "矩阵的迹",
         "en": "Trace",
-        "de": "矩阵的迹"
+        "de": "Spur einer Matrix"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -1971,7 +1971,7 @@ var data = {
       "labels": {
         "zh": "对角化",
         "en": "Diagonalization",
-        "de": "对角化"
+        "de": "Diagonalisierung"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2092,8 +2092,8 @@ var data = {
       "name": "基",
       "labels": {
         "zh": "基",
-        "en": "基",
-        "de": "基"
+        "en": "basis",
+        "de": "Basis"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2114,8 +2114,8 @@ var data = {
       "name": "维数",
       "labels": {
         "zh": "维数",
-        "en": "维数",
-        "de": "维数"
+        "en": "dimension",
+        "de": "Dimension"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2137,7 +2137,7 @@ var data = {
       "labels": {
         "zh": "列空间",
         "en": "Column Space",
-        "de": "列空间"
+        "de": "Spaltenraum"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2159,7 +2159,7 @@ var data = {
       "labels": {
         "zh": "零空间",
         "en": "Null Space",
-        "de": "零空间"
+        "de": "Nullraum"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2181,7 +2181,7 @@ var data = {
       "labels": {
         "zh": "秩",
         "en": "Rank",
-        "de": "秩"
+        "de": "Rang"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2203,7 +2203,7 @@ var data = {
       "labels": {
         "zh": "谱定理",
         "en": "Spectral Theorem",
-        "de": "谱定理"
+        "de": "Spektralsatz"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -2225,7 +2225,7 @@ var data = {
       "labels": {
         "zh": "概率",
         "en": "Probability",
-        "de": "概率"
+        "de": "Wahrscheinlichkeit"
       },
       "group": "statistics",
       "level": "high",
@@ -2311,7 +2311,7 @@ var data = {
       "labels": {
         "zh": "贝叶斯公式",
         "en": "Bayes' Theorem",
-        "de": "贝叶斯公式"
+        "de": "Bayes-Formel"
       },
       "group": "statistics",
       "level": "college",
@@ -2351,7 +2351,7 @@ var data = {
       "labels": {
         "zh": "随机变量",
         "en": "Random Variable",
-        "de": "随机变量"
+        "de": "Zufallsvariable"
       },
       "group": "statistics",
       "level": "college",
@@ -2385,7 +2385,7 @@ var data = {
       "labels": {
         "zh": "分布函数",
         "en": "Distribution Function",
-        "de": "分布函数"
+        "de": "Verteilungsfunktion"
       },
       "group": "statistics",
       "level": "college",
@@ -2407,7 +2407,7 @@ var data = {
       "labels": {
         "zh": "概率密度函数",
         "en": "Probability Density Function",
-        "de": "概率密度函数"
+        "de": "Wahrscheinlichkeitsdichtefunktion"
       },
       "group": "statistics",
       "level": "college",
@@ -2429,7 +2429,7 @@ var data = {
       "labels": {
         "zh": "二项分布",
         "en": "Binomial Distribution",
-        "de": "二项分布"
+        "de": "Binomialverteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2475,7 +2475,7 @@ var data = {
       "labels": {
         "zh": "泊松分布",
         "en": "Poisson Distribution",
-        "de": "泊松分布"
+        "de": "Poisson-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2509,7 +2509,7 @@ var data = {
       "labels": {
         "zh": "正态分布",
         "en": "Normal Distribution",
-        "de": "正态分布"
+        "de": "Normalverteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2555,7 +2555,7 @@ var data = {
       "labels": {
         "zh": "均匀分布",
         "en": "Uniform Distribution",
-        "de": "均匀分布"
+        "de": "Gleichverteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2577,7 +2577,7 @@ var data = {
       "labels": {
         "zh": "指数分布",
         "en": "Exponential Distribution",
-        "de": "指数分布"
+        "de": "Exponentialverteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2621,7 +2621,7 @@ var data = {
       "labels": {
         "zh": "边缘分布",
         "en": "Marginal Distribution",
-        "de": "边缘分布"
+        "de": "Randverteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2643,7 +2643,7 @@ var data = {
       "labels": {
         "zh": "数学期望",
         "en": "Expectation",
-        "de": "数学期望"
+        "de": "Erwartungswert"
       },
       "group": "statistics",
       "level": "college",
@@ -2671,7 +2671,7 @@ var data = {
       "labels": {
         "zh": "方差",
         "en": "Variance",
-        "de": "方差"
+        "de": "Varianz"
       },
       "group": "statistics",
       "level": "high",
@@ -2717,7 +2717,7 @@ var data = {
       "labels": {
         "zh": "协方差",
         "en": "Covariance",
-        "de": "协方差"
+        "de": "Kovarianz"
       },
       "group": "statistics",
       "level": "college",
@@ -2751,7 +2751,7 @@ var data = {
       "labels": {
         "zh": "相关系数",
         "en": "Correlation Coefficient",
-        "de": "相关系数"
+        "de": "Korrelationskoeffizient"
       },
       "group": "statistics",
       "level": "college",
@@ -2772,8 +2772,8 @@ var data = {
       "name": "大数定律",
       "labels": {
         "zh": "大数定律",
-        "en": "大数定律",
-        "de": "大数定律"
+        "en": "Law of Large Numbers",
+        "de": "Gesetz der großen Zahlen"
       },
       "group": "statistics",
       "level": "college",
@@ -2806,8 +2806,8 @@ var data = {
       "name": "中心极限定理",
       "labels": {
         "zh": "中心极限定理",
-        "en": "中心极限定理",
-        "de": "中心极限定理"
+        "en": "Central Limit Theorem",
+        "de": "Zentraler Grenzwertsatz"
       },
       "group": "statistics",
       "level": "college",
@@ -2841,7 +2841,7 @@ var data = {
       "labels": {
         "zh": "统计量",
         "en": "Statistic",
-        "de": "统计量"
+        "de": "Statistik"
       },
       "group": "statistics",
       "level": "college",
@@ -2869,7 +2869,7 @@ var data = {
       "labels": {
         "zh": "χ²分布",
         "en": "Chi-squared Distribution",
-        "de": "χ²分布"
+        "de": "Chi-Quadrat-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2902,8 +2902,8 @@ var data = {
       "name": "t分布",
       "labels": {
         "zh": "t分布",
-        "en": "t分布",
-        "de": "t分布"
+        "en": "t-distribution",
+        "de": "t-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2936,8 +2936,8 @@ var data = {
       "name": "F分布",
       "labels": {
         "zh": "F分布",
-        "en": "F分布",
-        "de": "F分布"
+        "en": "F-distribution",
+        "de": "F-Verteilung"
       },
       "group": "statistics",
       "level": "college",
@@ -2971,7 +2971,7 @@ var data = {
       "labels": {
         "zh": "参数估计",
         "en": "Parameter Estimation",
-        "de": "参数估计"
+        "de": "Parameterschätzung"
       },
       "group": "statistics",
       "level": "college",
@@ -2993,7 +2993,7 @@ var data = {
       "labels": {
         "zh": "最大似然估计",
         "en": "Maximum Likelihood Estimation",
-        "de": "最大似然估计"
+        "de": "Maximum-Likelihood-Schätzung"
       },
       "group": "statistics",
       "level": "college",
@@ -3027,7 +3027,7 @@ var data = {
       "labels": {
         "zh": "置信区间",
         "en": "Confidence Interval",
-        "de": "置信区间"
+        "de": "Konfidenzintervall"
       },
       "group": "statistics",
       "level": "college",
@@ -3067,7 +3067,7 @@ var data = {
       "labels": {
         "zh": "假设检验",
         "en": "Hypothesis Testing",
-        "de": "假设检验"
+        "de": "Hypothesentest"
       },
       "group": "statistics",
       "level": "college",
@@ -3107,7 +3107,7 @@ var data = {
       "labels": {
         "zh": "显著性水平",
         "en": "Significance Level",
-        "de": "显著性水平"
+        "de": "Signifikanzniveau"
       },
       "group": "statistics",
       "level": "college",
@@ -3141,7 +3141,7 @@ var data = {
       "labels": {
         "zh": "原假设",
         "en": "Null Hypothesis",
-        "de": "原假设"
+        "de": "Nullhypothese"
       },
       "group": "statistics",
       "level": "college",
@@ -3163,7 +3163,7 @@ var data = {
       "labels": {
         "zh": "备择假设",
         "en": "Alternative Hypothesis",
-        "de": "备择假设"
+        "de": "Alternativhypothese"
       },
       "group": "statistics",
       "level": "college",
@@ -3184,8 +3184,8 @@ var data = {
       "name": "t检验",
       "labels": {
         "zh": "t检验",
-        "en": "t检验",
-        "de": "t检验"
+        "en": "t-test",
+        "de": "t-Test"
       },
       "group": "statistics",
       "level": "college",
@@ -3218,8 +3218,8 @@ var data = {
       "name": "F检验",
       "labels": {
         "zh": "F检验",
-        "en": "F检验",
-        "de": "F检验"
+        "en": "F-test",
+        "de": "F-Test"
       },
       "group": "statistics",
       "level": "college",
@@ -3253,7 +3253,7 @@ var data = {
       "labels": {
         "zh": "切比雪夫不等式",
         "en": "Chebyshev's Inequality",
-        "de": "切比雪夫不等式"
+        "de": "Tschebyscheff-Ungleichung"
       },
       "group": "statistics",
       "level": "college",
@@ -3297,7 +3297,7 @@ var data = {
       "labels": {
         "zh": "待定系数法",
         "en": "Method of Undetermined Coefficients",
-        "de": "待定系数法"
+        "de": "Koeffizientenvergleich"
       },
       "group": "calculus",
       "level": "college",
@@ -3331,7 +3331,7 @@ var data = {
       "labels": {
         "zh": "参数变易法",
         "en": "Variation of Parameters",
-        "de": "参数变易法"
+        "de": "Variation der Konstanten"
       },
       "group": "calculus",
       "level": "college",
@@ -3409,7 +3409,7 @@ var data = {
       "labels": {
         "zh": "微分方程组",
         "en": "System of ODEs",
-        "de": "微分方程组"
+        "de": "Differenzialgleichungssystem"
       },
       "group": "calculus",
       "level": "college",
@@ -3443,7 +3443,7 @@ var data = {
       "labels": {
         "zh": "矩阵指数",
         "en": "Matrix Exponential",
-        "de": "矩阵指数"
+        "de": "Matrixexponential"
       },
       "group": "calculus",
       "level": "college",
@@ -3471,7 +3471,7 @@ var data = {
       "labels": {
         "zh": "弹簧振动",
         "en": "Spring Oscillation",
-        "de": "弹簧振动"
+        "de": "Federschwingung"
       },
       "group": "calculus",
       "level": "high",
@@ -3537,7 +3537,7 @@ var data = {
       "labels": {
         "zh": "共振",
         "en": "Resonance",
-        "de": "共振"
+        "de": "Resonanz"
       },
       "group": "calculus",
       "level": "college",
@@ -3605,7 +3605,7 @@ var data = {
       "labels": {
         "zh": "SIR模型",
         "en": "SIR Model",
-        "de": "SIR模型"
+        "de": "SIR-Modell"
       },
       "group": "calculus",
       "level": "high",
@@ -3649,7 +3649,7 @@ var data = {
       "labels": {
         "zh": "达朗贝尔解",
         "en": "d'Alembert Solution",
-        "de": "达朗贝尔解"
+        "de": "d'Alembertsche Lösung"
       },
       "group": "calculus",
       "level": "college",
@@ -3671,7 +3671,7 @@ var data = {
       "labels": {
         "zh": "特征值问题",
         "en": "Eigenvalue Problem",
-        "de": "特征值问题"
+        "de": "Eigenwertproblem"
       },
       "group": "calculus",
       "level": "college",
@@ -3693,7 +3693,7 @@ var data = {
       "labels": {
         "zh": "傅里叶级数",
         "en": "Fourier Series",
-        "de": "傅里叶级数"
+        "de": "Fourierreihe"
       },
       "group": "calculus",
       "level": "college",
@@ -3727,7 +3727,7 @@ var data = {
       "labels": {
         "zh": "相平面",
         "en": "Phase Plane",
-        "de": "相平面"
+        "de": "Phasenebene"
       },
       "group": "calculus",
       "level": "college",
@@ -3782,8 +3782,8 @@ var data = {
       "name": "加法",
       "labels": {
         "zh": "加法",
-        "en": "加法",
-        "de": "加法"
+        "en": "addition",
+        "de": "Addition"
       },
       "group": "elementary",
       "level": "high",
@@ -3811,7 +3811,7 @@ var data = {
       "labels": {
         "zh": "减法",
         "en": "Subtraction",
-        "de": "减法"
+        "de": "Subtraktion"
       },
       "group": "elementary",
       "level": "high",
@@ -3839,7 +3839,7 @@ var data = {
       "labels": {
         "zh": "乘法",
         "en": "Multiplication",
-        "de": "乘法"
+        "de": "Multiplikation"
       },
       "group": "elementary",
       "level": "high",
@@ -3866,8 +3866,8 @@ var data = {
       "name": "除法",
       "labels": {
         "zh": "除法",
-        "en": "除法",
-        "de": "除法"
+        "en": "division",
+        "de": "Division"
       },
       "group": "elementary",
       "level": "high",
@@ -3895,7 +3895,7 @@ var data = {
       "labels": {
         "zh": "分数",
         "en": "Fraction",
-        "de": "分数"
+        "de": "Bruch"
       },
       "group": "elementary",
       "level": "high",
@@ -3917,7 +3917,7 @@ var data = {
       "labels": {
         "zh": "小数",
         "en": "Decimal",
-        "de": "小数"
+        "de": "Dezimalzahl"
       },
       "group": "elementary",
       "level": "high",
@@ -3967,7 +3967,7 @@ var data = {
       "labels": {
         "zh": "周长",
         "en": "Perimeter",
-        "de": "周长"
+        "de": "Umfang"
       },
       "group": "elementary",
       "level": "high",
@@ -3989,7 +3989,7 @@ var data = {
       "labels": {
         "zh": "面积",
         "en": "Area",
-        "de": "面积"
+        "de": "Flächeninhalt"
       },
       "group": "elementary",
       "level": "high",
@@ -4011,7 +4011,7 @@ var data = {
       "labels": {
         "zh": "体积",
         "en": "Volume",
-        "de": "体积"
+        "de": "Volumen"
       },
       "group": "elementary",
       "level": "high",
@@ -4039,7 +4039,7 @@ var data = {
       "labels": {
         "zh": "角",
         "en": "Angle",
-        "de": "角"
+        "de": "Winkel"
       },
       "group": "elementary",
       "level": "high",
@@ -4095,7 +4095,7 @@ var data = {
       "labels": {
         "zh": "三角形",
         "en": "Triangle",
-        "de": "三角形"
+        "de": "Dreieck"
       },
       "group": "elementary",
       "level": "high",
@@ -4123,7 +4123,7 @@ var data = {
       "labels": {
         "zh": "长方形",
         "en": "Rectangle",
-        "de": "长方形"
+        "de": "Rechteck"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4145,7 +4145,7 @@ var data = {
       "labels": {
         "zh": "正方形",
         "en": "Square",
-        "de": "正方形"
+        "de": "Quadrat"
       },
       "group": "elementary",
       "level": "middle",
@@ -4173,7 +4173,7 @@ var data = {
       "labels": {
         "zh": "圆",
         "en": "Circle",
-        "de": "圆"
+        "de": "Kreis"
       },
       "group": "elementary",
       "level": "high",
@@ -4207,7 +4207,7 @@ var data = {
       "labels": {
         "zh": "长方体",
         "en": "Cuboid",
-        "de": "长方体"
+        "de": "Quader"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4229,7 +4229,7 @@ var data = {
       "labels": {
         "zh": "正方体",
         "en": "Cube",
-        "de": "正方体"
+        "de": "Würfel"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4251,7 +4251,7 @@ var data = {
       "labels": {
         "zh": "圆柱",
         "en": "Cylinder",
-        "de": "圆柱"
+        "de": "Zylinder"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4273,7 +4273,7 @@ var data = {
       "labels": {
         "zh": "球",
         "en": "Sphere",
-        "de": "球"
+        "de": "Kugel"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4295,7 +4295,7 @@ var data = {
       "labels": {
         "zh": "厘米",
         "en": "Centimeter",
-        "de": "厘米"
+        "de": "Zentimeter"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4316,8 +4316,8 @@ var data = {
       "name": "米",
       "labels": {
         "zh": "米",
-        "en": "米",
-        "de": "米"
+        "en": "meter",
+        "de": "Meter"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4339,7 +4339,7 @@ var data = {
       "labels": {
         "zh": "千克",
         "en": "Kilogram",
-        "de": "千克"
+        "de": "Kilogramm"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4361,7 +4361,7 @@ var data = {
       "labels": {
         "zh": "乘法口诀",
         "en": "Multiplication Table",
-        "de": "乘法口诀"
+        "de": "Einmaleins"
       },
       "group": "elementary",
       "level": "elementary",
@@ -4411,7 +4411,7 @@ var data = {
       "labels": {
         "zh": "整式",
         "en": "Algebraic Expression",
-        "de": "整式"
+        "de": "Polynom"
       },
       "group": "middle",
       "level": "high",
@@ -4461,7 +4461,7 @@ var data = {
       "labels": {
         "zh": "二元一次方程组",
         "en": "System of Linear Equations",
-        "de": "线性方程组"
+        "de": "System zweier linearer Gleichungen"
       },
       "group": "middle",
       "level": "middle",
@@ -4495,7 +4495,7 @@ var data = {
       "labels": {
         "zh": "不等式",
         "en": "Inequality",
-        "de": "不等式"
+        "de": "Ungleichung"
       },
       "group": "middle",
       "level": "high",
@@ -4523,7 +4523,7 @@ var data = {
       "labels": {
         "zh": "一次函数",
         "en": "Linear Function",
-        "de": "一次函数"
+        "de": "lineare Funktion"
       },
       "group": "middle",
       "level": "high",
@@ -4563,7 +4563,7 @@ var data = {
       "labels": {
         "zh": "Satz des Pythagoras",
         "en": "Pythagorean Theorem",
-        "de": "勾股定理"
+        "de": "Satz des Pythagoras"
       },
       "group": "middle",
       "level": "high",
@@ -4625,7 +4625,7 @@ var data = {
       "labels": {
         "zh": "相似三角形",
         "en": "Similar Triangles",
-        "de": "相似三角形"
+        "de": "ähnliche Dreiecke"
       },
       "group": "middle",
       "level": "high",
@@ -4719,7 +4719,7 @@ var data = {
       "labels": {
         "zh": "平行四边形",
         "en": "Parallelogram",
-        "de": "平行四边形"
+        "de": "Parallelogramm"
       },
       "group": "middle",
       "level": "middle",
@@ -4741,7 +4741,7 @@ var data = {
       "labels": {
         "zh": "矩形",
         "en": "Rectangle",
-        "de": "长方形"
+        "de": "Rechteck"
       },
       "group": "middle",
       "level": "elementary",
@@ -4769,7 +4769,7 @@ var data = {
       "labels": {
         "zh": "菱形",
         "en": "Rhombus",
-        "de": "菱形"
+        "de": "Raute"
       },
       "group": "middle",
       "level": "middle",
@@ -4791,7 +4791,7 @@ var data = {
       "labels": {
         "zh": "线性变换的核",
         "en": "Kernel",
-        "de": "线性变换的核"
+        "de": "Kern einer linearen Abbildung"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -4825,7 +4825,7 @@ var data = {
       "labels": {
         "zh": "线性变换的像",
         "en": "Image",
-        "de": "线性变换的像"
+        "de": "Bild einer linearen Abbildung"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -4859,7 +4859,7 @@ var data = {
       "labels": {
         "zh": "线性变换的矩阵表示",
         "en": "Matrix Representation",
-        "de": "线性变换的矩阵表示"
+        "de": "Matrixdarstellung einer linearen Abbildung"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -4881,7 +4881,7 @@ var data = {
       "labels": {
         "zh": "内积",
         "en": "Inner Product",
-        "de": "数量积"
+        "de": "Skalarprodukt"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -4927,7 +4927,7 @@ var data = {
       "labels": {
         "zh": "内积空间",
         "en": "Inner Product Space",
-        "de": "内积空间"
+        "de": "Innenproduktraum"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -4954,8 +4954,8 @@ var data = {
       "name": "范数",
       "labels": {
         "zh": "范数",
-        "en": "范数",
-        "de": "范数"
+        "en": "norm",
+        "de": "Norm"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5045,7 +5045,7 @@ var data = {
       "labels": {
         "zh": "Gram-Schmidt",
         "en": "Gram-Schmidt Process",
-        "de": "Gram-Schmidt"
+        "de": "Gram-Schmidt-Verfahren"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5100,8 +5100,8 @@ var data = {
       "name": "最小二乘法",
       "labels": {
         "zh": "最小二乘法",
-        "en": "最小二乘法",
-        "de": "最小二乘法"
+        "en": "least squares method",
+        "de": "Methode der kleinsten Quadrate"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5135,7 +5135,7 @@ var data = {
       "labels": {
         "zh": "Jordan 块",
         "en": "Jordan Block",
-        "de": "Jordan 块"
+        "de": "Jordan-Block"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5157,7 +5157,7 @@ var data = {
       "labels": {
         "zh": "Jordan 标准形",
         "en": "Jordan Normal Form",
-        "de": "Jordan 标准形"
+        "de": "Jordansche Normalform"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5179,7 +5179,7 @@ var data = {
       "labels": {
         "zh": "最小多项式",
         "en": "Minimal Polynomial",
-        "de": "最小多项式"
+        "de": "Minimalpolynom"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5201,7 +5201,7 @@ var data = {
       "labels": {
         "zh": "Cayley-Hamilton 定理",
         "en": "Cayley-Hamilton Theorem",
-        "de": "Cayley-Hamilton 定理"
+        "de": "Satz von Cayley-Hamilton"
       },
       "group": "linear_algebra",
       "level": "college",
@@ -5223,7 +5223,7 @@ var data = {
       "labels": {
         "zh": "三角形",
         "en": "Triangle",
-        "de": "三角形"
+        "de": "Dreieck"
       },
       "group": "geometry",
       "level": "high",
@@ -5251,7 +5251,7 @@ var data = {
       "labels": {
         "zh": "圆",
         "en": "Circle",
-        "de": "圆"
+        "de": "Kreis"
       },
       "group": "geometry",
       "level": "high",
@@ -5285,7 +5285,7 @@ var data = {
       "labels": {
         "zh": "抛物线",
         "en": "Parabola",
-        "de": "抛物线"
+        "de": "Parabel"
       },
       "group": "geometry",
       "level": "middle",
@@ -5307,7 +5307,7 @@ var data = {
       "labels": {
         "zh": "面积",
         "en": "Area",
-        "de": "面积"
+        "de": "Flächeninhalt"
       },
       "group": "geometry",
       "level": "high",
@@ -5329,7 +5329,7 @@ var data = {
       "labels": {
         "zh": "体积",
         "en": "Volume",
-        "de": "体积"
+        "de": "Volumen"
       },
       "group": "geometry",
       "level": "high",
@@ -5357,7 +5357,7 @@ var data = {
       "labels": {
         "zh": "coordinate plane",
         "en": "Coordinate System",
-        "de": "平面直角坐标系"
+        "de": "Koordinatenebene"
       },
       "group": "geometry",
       "level": "middle",
@@ -5383,7 +5383,9 @@ var data = {
       "id": "math_unmatched_Grenzwerte",
       "name": "Grenzwerte",
       "labels": {
-        "de": "Grenzwerte"
+        "de": "Grenzwerte",
+        "zh": "极限",
+        "en": "limits"
       },
       "group": "general",
       "level": "college",
@@ -5403,7 +5405,9 @@ var data = {
       "id": "math_unmatched_Differentiation",
       "name": "Differentiation",
       "labels": {
-        "de": "Differentiation"
+        "de": "Differentiation",
+        "zh": "微分",
+        "en": "differentiation"
       },
       "group": "general",
       "level": "college",
@@ -5423,7 +5427,9 @@ var data = {
       "id": "math_unmatched_Monotonie",
       "name": "Monotonie",
       "labels": {
-        "de": "Monotonie"
+        "de": "Monotonie",
+        "zh": "单调性",
+        "en": "monotonicity"
       },
       "group": "general",
       "level": "college",
@@ -5443,7 +5449,9 @@ var data = {
       "id": "math_unmatched_Extrema",
       "name": "Extrema",
       "labels": {
-        "de": "Extrema"
+        "de": "Extrema",
+        "zh": "极值",
+        "en": "extrema"
       },
       "group": "general",
       "level": "college",
@@ -5463,7 +5471,9 @@ var data = {
       "id": "math_unmatched_Wendepunkte",
       "name": "Wendepunkte",
       "labels": {
-        "de": "Wendepunkte"
+        "de": "Wendepunkte",
+        "zh": "拐点",
+        "en": "inflection points"
       },
       "group": "general",
       "level": "college",
@@ -5483,7 +5493,9 @@ var data = {
       "id": "math_unmatched_Kurvendiskussion",
       "name": "Kurvendiskussion",
       "labels": {
-        "de": "Kurvendiskussion"
+        "de": "Kurvendiskussion",
+        "zh": "函数图像分析",
+        "en": "curve sketching"
       },
       "group": "general",
       "level": "college",
@@ -5509,7 +5521,9 @@ var data = {
       "id": "math_unmatched_Integration",
       "name": "Integration",
       "labels": {
-        "de": "Integration"
+        "de": "Integration",
+        "zh": "积分",
+        "en": "integration"
       },
       "group": "general",
       "level": "college",
@@ -5529,7 +5543,9 @@ var data = {
       "id": "math_unmatched_Partielle Integration",
       "name": "Partielle Integration",
       "labels": {
-        "de": "Partielle Integration"
+        "de": "Partielle Integration",
+        "zh": "分部积分",
+        "en": "integration by parts"
       },
       "group": "general",
       "level": "college",
@@ -5549,7 +5565,9 @@ var data = {
       "id": "math_unmatched_Substitutionsregel",
       "name": "Substitutionsregel",
       "labels": {
-        "de": "Substitutionsregel"
+        "de": "Substitutionsregel",
+        "zh": "换元积分法",
+        "en": "substitution rule for integrals"
       },
       "group": "general",
       "level": "college",
@@ -5569,7 +5587,9 @@ var data = {
       "id": "math_unmatched_Geradengleichung im Raum",
       "name": "Geradengleichung im Raum",
       "labels": {
-        "de": "Geradengleichung im Raum"
+        "de": "Geradengleichung im Raum",
+        "zh": "空间直线方程",
+        "en": "equation of a line in space"
       },
       "group": "general",
       "level": "college",
@@ -5589,7 +5609,9 @@ var data = {
       "id": "math_unmatched_Ebenengleichung",
       "name": "Ebenengleichung",
       "labels": {
-        "de": "Ebenengleichung"
+        "de": "Ebenengleichung",
+        "zh": "平面方程",
+        "en": "equation of a plane"
       },
       "group": "general",
       "level": "college",
@@ -5615,7 +5637,9 @@ var data = {
       "id": "math_unmatched_Eigenwerte",
       "name": "Eigenwerte",
       "labels": {
-        "de": "Eigenwerte"
+        "de": "Eigenwerte",
+        "zh": "特征值",
+        "en": "eigenvalues"
       },
       "group": "general",
       "level": "college",
@@ -5635,7 +5659,9 @@ var data = {
       "id": "math_unmatched_Eigenvektoren",
       "name": "Eigenvektoren",
       "labels": {
-        "de": "Eigenvektoren"
+        "de": "Eigenvektoren",
+        "zh": "特征向量",
+        "en": "eigenvectors"
       },
       "group": "general",
       "level": "college",
@@ -5655,7 +5681,9 @@ var data = {
       "id": "math_unmatched_Kegelschnitte",
       "name": "Kegelschnitte",
       "labels": {
-        "de": "Kegelschnitte"
+        "de": "Kegelschnitte",
+        "zh": "圆锥曲线",
+        "en": "conic sections"
       },
       "group": "general",
       "level": "college",
@@ -5675,7 +5703,9 @@ var data = {
       "id": "math_unmatched_Polarkoordinaten",
       "name": "Polarkoordinaten",
       "labels": {
-        "de": "Polarkoordinaten"
+        "de": "Polarkoordinaten",
+        "zh": "极坐标",
+        "en": "polar coordinates"
       },
       "group": "general",
       "level": "college",
@@ -5695,7 +5725,9 @@ var data = {
       "id": "math_unmatched_Permutationen",
       "name": "Permutationen",
       "labels": {
-        "de": "Permutationen"
+        "de": "Permutationen",
+        "zh": "排列",
+        "en": "permutations"
       },
       "group": "general",
       "level": "college",
@@ -5715,7 +5747,9 @@ var data = {
       "id": "math_unmatched_Kombinationen",
       "name": "Kombinationen",
       "labels": {
-        "de": "Kombinationen"
+        "de": "Kombinationen",
+        "zh": "组合",
+        "en": "combinations"
       },
       "group": "general",
       "level": "college",
@@ -5735,7 +5769,9 @@ var data = {
       "id": "math_unmatched_Bayes-Formel",
       "name": "Bayes-Formel",
       "labels": {
-        "de": "Bayes-Formel"
+        "de": "Bayes-Formel",
+        "zh": "贝叶斯公式",
+        "en": "Bayes' formula"
       },
       "group": "general",
       "level": "college",
@@ -5755,7 +5791,9 @@ var data = {
       "id": "math_unmatched_Trapezregel",
       "name": "Trapezregel",
       "labels": {
-        "de": "Trapezregel"
+        "de": "Trapezregel",
+        "zh": "梯形法则",
+        "en": "trapezoidal rule"
       },
       "group": "general",
       "level": "college",
@@ -5775,7 +5813,9 @@ var data = {
       "id": "math_unmatched_Simpson-Regel",
       "name": "Simpson-Regel",
       "labels": {
-        "de": "Simpson-Regel"
+        "de": "Simpson-Regel",
+        "zh": "辛普森法则",
+        "en": "Simpson's rule"
       },
       "group": "general",
       "level": "college",
@@ -5795,7 +5835,9 @@ var data = {
       "id": "math_unmatched_Newton-Verfahren",
       "name": "Newton-Verfahren",
       "labels": {
-        "de": "Newton-Verfahren"
+        "de": "Newton-Verfahren",
+        "zh": "牛顿法",
+        "en": "Newton's method"
       },
       "group": "general",
       "level": "college",
@@ -5815,7 +5857,9 @@ var data = {
       "id": "math_unmatched_lineare DGL 2. Ordnung",
       "name": "lineare DGL 2. Ordnung",
       "labels": {
-        "de": "lineare DGL 2. Ordnung"
+        "de": "lineare DGL 2. Ordnung",
+        "zh": "二阶线性微分方程",
+        "en": "second-order linear ODE"
       },
       "group": "general",
       "level": "college",
@@ -5835,7 +5879,9 @@ var data = {
       "id": "math_unmatched_Eigenwertmethode",
       "name": "Eigenwertmethode",
       "labels": {
-        "de": "Eigenwertmethode"
+        "de": "Eigenwertmethode",
+        "zh": "特征值法",
+        "en": "eigenvalue method"
       },
       "group": "general",
       "level": "college",
@@ -5855,7 +5901,9 @@ var data = {
       "id": "math_unmatched_Wellengleichung",
       "name": "Wellengleichung",
       "labels": {
-        "de": "Wellengleichung"
+        "de": "Wellengleichung",
+        "zh": "波动方程",
+        "en": "wave equation"
       },
       "group": "general",
       "level": "college",
@@ -5875,7 +5923,9 @@ var data = {
       "id": "math_unmatched_Wärmegleichung",
       "name": "Wärmegleichung",
       "labels": {
-        "de": "Wärmegleichung"
+        "de": "Wärmegleichung",
+        "zh": "热传导方程",
+        "en": "heat equation"
       },
       "group": "general",
       "level": "college",
@@ -5895,7 +5945,9 @@ var data = {
       "id": "math_unmatched_Laplace-Gleichung",
       "name": "Laplace-Gleichung",
       "labels": {
-        "de": "Laplace-Gleichung"
+        "de": "Laplace-Gleichung",
+        "zh": "拉普拉斯方程",
+        "en": "Laplace equation"
       },
       "group": "general",
       "level": "college",
@@ -5915,7 +5967,9 @@ var data = {
       "id": "math_unmatched_Euklidischer Raum",
       "name": "Euklidischer Raum",
       "labels": {
-        "de": "Euklidischer Raum"
+        "de": "Euklidischer Raum",
+        "zh": "欧几里得空间",
+        "en": "Euclidean space"
       },
       "group": "general",
       "level": "college",
@@ -5935,7 +5989,9 @@ var data = {
       "id": "math_unmatched_Gram-Schmidt 正交化",
       "name": "Gram-Schmidt 正交化",
       "labels": {
-        "de": "Gram-Schmidt 正交化"
+        "de": "Gram-Schmidt-Orthogonalisierung",
+        "zh": "Gram-Schmidt 正交化",
+        "en": "Gram-Schmidt orthogonalization"
       },
       "group": "general",
       "level": "college",
@@ -5961,7 +6017,9 @@ var data = {
       "id": "math_unmatched_常数法则",
       "name": "常数法则",
       "labels": {
-        "de": "常数法则"
+        "de": "Konstantenregel",
+        "en": "constant rule",
+        "zh": "常数法则"
       },
       "group": "general",
       "level": "college",
@@ -5981,7 +6039,9 @@ var data = {
       "id": "math_unmatched_幂法则",
       "name": "幂法则",
       "labels": {
-        "de": "幂法则"
+        "de": "Potenzregel",
+        "en": "power rule",
+        "zh": "幂法则"
       },
       "group": "general",
       "level": "college",
@@ -6013,7 +6073,9 @@ var data = {
       "id": "math_unmatched_指数法则",
       "name": "指数法则",
       "labels": {
-        "de": "指数法则"
+        "de": "Potenzgesetze",
+        "en": "laws of exponents",
+        "zh": "指数法则"
       },
       "group": "general",
       "level": "college",
@@ -6033,7 +6095,9 @@ var data = {
       "id": "math_unmatched_对数法则",
       "name": "对数法则",
       "labels": {
-        "de": "对数法则"
+        "de": "Logarithmengesetze",
+        "en": "laws of logarithms",
+        "zh": "对数法则"
       },
       "group": "general",
       "level": "college",
@@ -6053,7 +6117,9 @@ var data = {
       "id": "math_unmatched_正弦法则",
       "name": "正弦法则",
       "labels": {
-        "de": "正弦法则"
+        "de": "Sinussatz",
+        "en": "Law of Sines",
+        "zh": "正弦法则"
       },
       "group": "general",
       "level": "college",
@@ -6079,7 +6145,9 @@ var data = {
       "id": "math_unmatched_余弦法则",
       "name": "余弦法则",
       "labels": {
-        "de": "余弦法则"
+        "de": "Kosinussatz",
+        "en": "Law of Cosines",
+        "zh": "余弦法则"
       },
       "group": "general",
       "level": "college",
@@ -6105,7 +6173,9 @@ var data = {
       "id": "math_unmatched_导数运算法则",
       "name": "导数运算法则",
       "labels": {
-        "de": "导数运算法则"
+        "de": "Ableitungsregeln",
+        "en": "differentiation rules",
+        "zh": "导数运算法则"
       },
       "group": "general",
       "level": "college",
@@ -6125,7 +6195,9 @@ var data = {
       "id": "math_unmatched_Maclaurin-Reihe",
       "name": "Maclaurin-Reihe",
       "labels": {
-        "de": "Maclaurin-Reihe"
+        "de": "Maclaurin-Reihe",
+        "zh": "麦克劳林级数",
+        "en": "Maclaurin series"
       },
       "group": "general",
       "level": "college",
@@ -6145,7 +6217,9 @@ var data = {
       "id": "math_unmatched_Restglied",
       "name": "Restglied",
       "labels": {
-        "de": "Restglied"
+        "de": "Restglied",
+        "zh": "余项",
+        "en": "remainder term"
       },
       "group": "general",
       "level": "college",
@@ -6165,7 +6239,9 @@ var data = {
       "id": "math_unmatched_unbestimmte Formen",
       "name": "unbestimmte Formen",
       "labels": {
-        "de": "unbestimmte Formen"
+        "de": "unbestimmte Formen",
+        "zh": "未定式",
+        "en": "indeterminate forms"
       },
       "group": "general",
       "level": "college",
@@ -6185,7 +6261,9 @@ var data = {
       "id": "math_unmatched_partielle Ableitung",
       "name": "partielle Ableitung",
       "labels": {
-        "de": "partielle Ableitung"
+        "de": "partielle Ableitung",
+        "zh": "偏导数",
+        "en": "partial derivative"
       },
       "group": "general",
       "level": "college",
@@ -6205,7 +6283,9 @@ var data = {
       "id": "math_unmatched_Gradient",
       "name": "Gradient",
       "labels": {
-        "de": "Gradient"
+        "de": "Gradient",
+        "zh": "梯度",
+        "en": "gradient"
       },
       "group": "general",
       "level": "college",
@@ -6225,7 +6305,9 @@ var data = {
       "id": "math_unmatched_Richtungsableitung",
       "name": "Richtungsableitung",
       "labels": {
-        "de": "Richtungsableitung"
+        "de": "Richtungsableitung",
+        "zh": "方向导数",
+        "en": "directional derivative"
       },
       "group": "general",
       "level": "college",
@@ -6245,7 +6327,9 @@ var data = {
       "id": "math_unmatched_Lagrange-Multiplikatoren",
       "name": "Lagrange-Multiplikatoren",
       "labels": {
-        "de": "Lagrange-Multiplikatoren"
+        "de": "Lagrange-Multiplikatoren",
+        "zh": "拉格朗日乘数",
+        "en": "Lagrange multipliers"
       },
       "group": "general",
       "level": "college",
@@ -6265,7 +6349,9 @@ var data = {
       "id": "math_unmatched_Divergenz",
       "name": "Divergenz",
       "labels": {
-        "de": "Divergenz"
+        "de": "Divergenz",
+        "zh": "散度",
+        "en": "divergence"
       },
       "group": "general",
       "level": "college",
@@ -6285,7 +6371,9 @@ var data = {
       "id": "math_unmatched_Rotation",
       "name": "Rotation",
       "labels": {
-        "de": "Rotation"
+        "de": "Rotation",
+        "zh": "旋转",
+        "en": "rotation"
       },
       "group": "general",
       "level": "college",
@@ -6305,7 +6393,9 @@ var data = {
       "id": "math_unmatched_mehrdimensionale Kettenregel",
       "name": "mehrdimensionale Kettenregel",
       "labels": {
-        "de": "mehrdimensionale Kettenregel"
+        "de": "mehrdimensionale Kettenregel",
+        "zh": "多元链式法则",
+        "en": "multivariable chain rule"
       },
       "group": "general",
       "level": "college",
@@ -6325,7 +6415,9 @@ var data = {
       "id": "math_unmatched_Grundrechenarten",
       "name": "Grundrechenarten",
       "labels": {
-        "de": "Grundrechenarten"
+        "de": "Grundrechenarten",
+        "zh": "四则运算",
+        "en": "four basic operations"
       },
       "group": "general",
       "level": "high",
@@ -6345,7 +6437,9 @@ var data = {
       "id": "math_unmatched_Brüche",
       "name": "Brüche",
       "labels": {
-        "de": "Brüche"
+        "de": "Brüche",
+        "zh": "分数",
+        "en": "fractions"
       },
       "group": "general",
       "level": "high",
@@ -6365,7 +6459,9 @@ var data = {
       "id": "math_unmatched_Dezimalzahlen",
       "name": "Dezimalzahlen",
       "labels": {
-        "de": "Dezimalzahlen"
+        "de": "Dezimalzahlen",
+        "zh": "小数",
+        "en": "decimal numbers"
       },
       "group": "general",
       "level": "high",
@@ -6385,7 +6481,9 @@ var data = {
       "id": "math_unmatched_Viereck",
       "name": "Viereck",
       "labels": {
-        "de": "Viereck"
+        "de": "Viereck",
+        "zh": "四边形",
+        "en": "quadrilateral"
       },
       "group": "general",
       "level": "high",
@@ -6405,7 +6503,9 @@ var data = {
       "id": "math_unmatched_Gleichung",
       "name": "Gleichung",
       "labels": {
-        "de": "Gleichung"
+        "de": "Gleichung",
+        "zh": "方程",
+        "en": "equation"
       },
       "group": "general",
       "level": "high",
@@ -6425,7 +6525,9 @@ var data = {
       "id": "math_unmatched_Proportionalität",
       "name": "Proportionalität",
       "labels": {
-        "de": "Proportionalität"
+        "de": "Proportionalität",
+        "zh": "比例关系",
+        "en": "proportionality"
       },
       "group": "general",
       "level": "high",
@@ -6445,7 +6547,9 @@ var data = {
       "id": "math_unmatched_Durchschnitt",
       "name": "Durchschnitt",
       "labels": {
-        "de": "Durchschnitt"
+        "de": "Durchschnitt",
+        "zh": "平均数",
+        "en": "average"
       },
       "group": "general",
       "level": "high",
@@ -6465,7 +6569,9 @@ var data = {
       "id": "math_unmatched_Stellenwertsystem",
       "name": "Stellenwertsystem",
       "labels": {
-        "de": "Stellenwertsystem"
+        "de": "Stellenwertsystem",
+        "zh": "位值制",
+        "en": "place-value system"
       },
       "group": "general",
       "level": "high",
@@ -6485,7 +6591,9 @@ var data = {
       "id": "math_unmatched_schriftliches Rechnen",
       "name": "schriftliches Rechnen",
       "labels": {
-        "de": "schriftliches Rechnen"
+        "de": "schriftliches Rechnen",
+        "zh": "竖式计算",
+        "en": "written calculation"
       },
       "group": "general",
       "level": "high",
@@ -6505,7 +6613,9 @@ var data = {
       "id": "math_unmatched_Kopfrechnen",
       "name": "Kopfrechnen",
       "labels": {
-        "de": "Kopfrechnen"
+        "de": "Kopfrechnen",
+        "zh": "口算",
+        "en": "mental arithmetic"
       },
       "group": "general",
       "level": "high",
@@ -6525,7 +6635,9 @@ var data = {
       "id": "math_unmatched_Brüche vergleichen",
       "name": "Brüche vergleichen",
       "labels": {
-        "de": "Brüche vergleichen"
+        "de": "Brüche vergleichen",
+        "zh": "分数比较",
+        "en": "comparing fractions"
       },
       "group": "general",
       "level": "high",
@@ -6545,7 +6657,9 @@ var data = {
       "id": "math_unmatched_Brüche erweitern und kürzen",
       "name": "Brüche erweitern und kürzen",
       "labels": {
-        "de": "Brüche erweitern und kürzen"
+        "de": "Brüche erweitern und kürzen",
+        "zh": "分数扩分与约分",
+        "en": "expanding and reducing fractions"
       },
       "group": "general",
       "level": "high",
@@ -6565,7 +6679,9 @@ var data = {
       "id": "math_unmatched_Flächenberechnung",
       "name": "Flächenberechnung",
       "labels": {
-        "de": "Flächenberechnung"
+        "de": "Flächenberechnung",
+        "zh": "面积计算",
+        "en": "area calculation"
       },
       "group": "general",
       "level": "high",
@@ -6585,7 +6701,9 @@ var data = {
       "id": "math_unmatched_Volumenberechnung",
       "name": "Volumenberechnung",
       "labels": {
-        "de": "Volumenberechnung"
+        "de": "Volumenberechnung",
+        "zh": "体积计算",
+        "en": "volume calculation"
       },
       "group": "general",
       "level": "high",
@@ -6605,7 +6723,9 @@ var data = {
       "id": "math_unmatched_Oberflächenberechnung",
       "name": "Oberflächenberechnung",
       "labels": {
-        "de": "Oberflächenberechnung"
+        "de": "Oberflächenberechnung",
+        "zh": "表面积计算",
+        "en": "surface area calculation"
       },
       "group": "general",
       "level": "high",
@@ -6625,7 +6745,9 @@ var data = {
       "id": "math_unmatched_Achsensymmetrie",
       "name": "Achsensymmetrie",
       "labels": {
-        "de": "Achsensymmetrie"
+        "de": "Achsensymmetrie",
+        "zh": "轴对称",
+        "en": "axial symmetry"
       },
       "group": "general",
       "level": "high",
@@ -6645,7 +6767,9 @@ var data = {
       "id": "math_unmatched_Punktsymmetrie",
       "name": "Punktsymmetrie",
       "labels": {
-        "de": "Punktsymmetrie"
+        "de": "Punktsymmetrie",
+        "zh": "中心对称",
+        "en": "point symmetry"
       },
       "group": "general",
       "level": "high",
@@ -6665,7 +6789,9 @@ var data = {
       "id": "math_unmatched_Mittelwert",
       "name": "Mittelwert",
       "labels": {
-        "de": "Mittelwert"
+        "de": "Mittelwert",
+        "zh": "平均值",
+        "en": "mean"
       },
       "group": "general",
       "level": "high",
@@ -6685,7 +6811,9 @@ var data = {
       "id": "math_unmatched_Modalwert",
       "name": "Modalwert",
       "labels": {
-        "de": "Modalwert"
+        "de": "Modalwert",
+        "zh": "众数",
+        "en": "mode"
       },
       "group": "general",
       "level": "high",
@@ -6705,7 +6833,9 @@ var data = {
       "id": "math_unmatched_Median",
       "name": "Median",
       "labels": {
-        "de": "Median"
+        "de": "Median",
+        "zh": "中位数",
+        "en": "median"
       },
       "group": "general",
       "level": "high",
@@ -6725,7 +6855,9 @@ var data = {
       "id": "math_unmatched_Spannweite",
       "name": "Spannweite",
       "labels": {
-        "de": "Spannweite"
+        "de": "Spannweite",
+        "zh": "极差",
+        "en": "range"
       },
       "group": "general",
       "level": "high",
@@ -6745,7 +6877,9 @@ var data = {
       "id": "math_unmatched_Baumdiagramm",
       "name": "Baumdiagramm",
       "labels": {
-        "de": "Baumdiagramm"
+        "de": "Baumdiagramm",
+        "zh": "树形图",
+        "en": "tree diagram"
       },
       "group": "general",
       "level": "high",
@@ -6765,7 +6899,9 @@ var data = {
       "id": "math_unmatched_Lineare Gleichung",
       "name": "Lineare Gleichung",
       "labels": {
-        "de": "Lineare Gleichung"
+        "de": "Lineare Gleichung",
+        "zh": "线性方程",
+        "en": "linear equation"
       },
       "group": "general",
       "level": "high",
@@ -6785,7 +6921,9 @@ var data = {
       "id": "math_unmatched_Proportionale Zuordnung",
       "name": "Proportionale Zuordnung",
       "labels": {
-        "de": "Proportionale Zuordnung"
+        "de": "Proportionale Zuordnung",
+        "zh": "正比例对应",
+        "en": "proportional assignment"
       },
       "group": "general",
       "level": "high",
@@ -6805,7 +6943,9 @@ var data = {
       "id": "math_unmatched_Steigung",
       "name": "Steigung",
       "labels": {
-        "de": "Steigung"
+        "de": "Steigung",
+        "zh": "斜率",
+        "en": "slope"
       },
       "group": "general",
       "level": "high",
@@ -6825,7 +6965,9 @@ var data = {
       "id": "math_unmatched_Zinseszins",
       "name": "Zinseszins",
       "labels": {
-        "de": "Zinseszins"
+        "de": "Zinseszins",
+        "zh": "复利",
+        "en": "compound interest"
       },
       "group": "general",
       "level": "high",
@@ -6845,7 +6987,9 @@ var data = {
       "id": "math_unmatched_einfacher Zins",
       "name": "einfacher Zins",
       "labels": {
-        "de": "einfacher Zins"
+        "de": "einfacher Zins",
+        "zh": "单利",
+        "en": "simple interest"
       },
       "group": "general",
       "level": "high",
@@ -6865,7 +7009,9 @@ var data = {
       "id": "math_unmatched_Gewinn und Verlust",
       "name": "Gewinn und Verlust",
       "labels": {
-        "de": "Gewinn und Verlust"
+        "de": "Gewinn und Verlust",
+        "zh": "盈亏问题",
+        "en": "profit and loss"
       },
       "group": "general",
       "level": "high",
@@ -6885,7 +7031,9 @@ var data = {
       "id": "math_unmatched_期望",
       "name": "期望",
       "labels": {
-        "de": "期望"
+        "de": "Erwartungswert",
+        "en": "expectation",
+        "zh": "期望"
       },
       "group": "general",
       "level": "college",
@@ -6911,7 +7059,9 @@ var data = {
       "id": "math_unmatched_统计",
       "name": "统计",
       "labels": {
-        "de": "统计"
+        "de": "Statistik",
+        "en": "statistics",
+        "zh": "统计"
       },
       "group": "general",
       "level": "college",
@@ -6931,7 +7081,9 @@ var data = {
       "id": "math_unmatched_Fehler 1. Art",
       "name": "Fehler 1. Art",
       "labels": {
-        "de": "Fehler 1. Art"
+        "de": "Fehler 1. Art",
+        "zh": "第一类错误",
+        "en": "Type I error"
       },
       "group": "general",
       "level": "college",
@@ -6951,7 +7103,9 @@ var data = {
       "id": "math_unmatched_Fehler 2. Art",
       "name": "Fehler 2. Art",
       "labels": {
-        "de": "Fehler 2. Art"
+        "de": "Fehler 2. Art",
+        "zh": "第二类错误",
+        "en": "Type II error"
       },
       "group": "general",
       "level": "college",
@@ -6971,7 +7125,9 @@ var data = {
       "id": "math_unmatched_irrationale Zahlen",
       "name": "irrationale Zahlen",
       "labels": {
-        "de": "irrationale Zahlen"
+        "de": "irrationale Zahlen",
+        "zh": "无理数",
+        "en": "irrational numbers"
       },
       "group": "general",
       "level": "middle",
@@ -6991,7 +7147,9 @@ var data = {
       "id": "math_unmatched_komplexe Zahlen",
       "name": "komplexe Zahlen",
       "labels": {
-        "de": "komplexe Zahlen"
+        "de": "komplexe Zahlen",
+        "zh": "复数",
+        "en": "complex numbers"
       },
       "group": "general",
       "level": "middle",
@@ -7011,7 +7169,9 @@ var data = {
       "id": "math_unmatched_Logarithmusrechnung",
       "name": "Logarithmusrechnung",
       "labels": {
-        "de": "Logarithmusrechnung"
+        "de": "Logarithmusrechnung",
+        "zh": "对数运算",
+        "en": "working with logarithms"
       },
       "group": "general",
       "level": "middle",
@@ -7031,7 +7191,9 @@ var data = {
       "id": "math_unmatched_Polynomdivision",
       "name": "Polynomdivision",
       "labels": {
-        "de": "Polynomdivision"
+        "de": "Polynomdivision",
+        "zh": "多项式除法",
+        "en": "polynomial division"
       },
       "group": "general",
       "level": "middle",
@@ -7051,7 +7213,9 @@ var data = {
       "id": "math_unmatched_Restsatz",
       "name": "Restsatz",
       "labels": {
-        "de": "Restsatz"
+        "de": "Restsatz",
+        "zh": "余式定理",
+        "en": "polynomial remainder theorem"
       },
       "group": "general",
       "level": "middle",
@@ -7071,7 +7235,9 @@ var data = {
       "id": "math_unmatched_Umfassende Funktionsuntersuchung",
       "name": "Umfassende Funktionsuntersuchung",
       "labels": {
-        "de": "Umfassende Funktionsuntersuchung"
+        "de": "Umfassende Funktionsuntersuchung",
+        "zh": "函数综合分析",
+        "en": "comprehensive function analysis"
       },
       "group": "general",
       "level": "middle",
@@ -7091,7 +7257,9 @@ var data = {
       "id": "math_unmatched_Umkehrfunktion",
       "name": "Umkehrfunktion",
       "labels": {
-        "de": "Umkehrfunktion"
+        "de": "Umkehrfunktion",
+        "zh": "反函数",
+        "en": "inverse function"
       },
       "group": "general",
       "level": "middle",
@@ -7111,7 +7279,9 @@ var data = {
       "id": "math_unmatched_Geradengleichung",
       "name": "Geradengleichung",
       "labels": {
-        "de": "Geradengleichung"
+        "de": "Geradengleichung",
+        "zh": "直线方程",
+        "en": "equation of a line"
       },
       "group": "general",
       "level": "middle",
@@ -7131,7 +7301,9 @@ var data = {
       "id": "math_unmatched_Kreisgleichung",
       "name": "Kreisgleichung",
       "labels": {
-        "de": "Kreisgleichung"
+        "de": "Kreisgleichung",
+        "zh": "圆方程",
+        "en": "equation of a circle"
       },
       "group": "general",
       "level": "middle",
@@ -7151,7 +7323,9 @@ var data = {
       "id": "math_unmatched_Abstand Punkt-Gerade",
       "name": "Abstand Punkt-Gerade",
       "labels": {
-        "de": "Abstand Punkt-Gerade"
+        "de": "Abstand Punkt-Gerade",
+        "zh": "点到直线的距离",
+        "en": "distance from point to line"
       },
       "group": "general",
       "level": "middle",
@@ -7171,7 +7345,9 @@ var data = {
       "id": "math_unmatched_Stereometrie",
       "name": "Stereometrie",
       "labels": {
-        "de": "Stereometrie"
+        "de": "Stereometrie",
+        "zh": "立体几何",
+        "en": "solid geometry"
       },
       "group": "general",
       "level": "middle",
@@ -7191,7 +7367,9 @@ var data = {
       "id": "math_unmatched_Sinussatz",
       "name": "Sinussatz",
       "labels": {
-        "de": "Sinussatz"
+        "de": "Sinussatz",
+        "zh": "正弦定理",
+        "en": "Law of Sines"
       },
       "group": "general",
       "level": "middle",
@@ -7211,7 +7389,9 @@ var data = {
       "id": "math_unmatched_Kosinussatz",
       "name": "Kosinussatz",
       "labels": {
-        "de": "Kosinussatz"
+        "de": "Kosinussatz",
+        "zh": "余弦定理",
+        "en": "Law of Cosines"
       },
       "group": "general",
       "level": "middle",
@@ -7231,7 +7411,9 @@ var data = {
       "id": "math_unmatched_Additionstheoreme",
       "name": "Additionstheoreme",
       "labels": {
-        "de": "Additionstheoreme"
+        "de": "Additionstheoreme",
+        "zh": "加法定理",
+        "en": "addition theorems"
       },
       "group": "general",
       "level": "middle",
@@ -7251,7 +7433,9 @@ var data = {
       "id": "math_unmatched_Vektorprodukt",
       "name": "Vektorprodukt",
       "labels": {
-        "de": "Vektorprodukt"
+        "de": "Vektorprodukt",
+        "zh": "向量积",
+        "en": "vector product"
       },
       "group": "general",
       "level": "middle",
@@ -7271,7 +7455,9 @@ var data = {
       "id": "math_unmatched_Tangentengleichung",
       "name": "Tangentengleichung",
       "labels": {
-        "de": "Tangentengleichung"
+        "de": "Tangentengleichung",
+        "zh": "切线方程",
+        "en": "equation of tangent line"
       },
       "group": "general",
       "level": "middle",
@@ -7291,7 +7477,9 @@ var data = {
       "id": "math_unmatched_Kombinatorik",
       "name": "Kombinatorik",
       "labels": {
-        "de": "Kombinatorik"
+        "de": "Kombinatorik",
+        "zh": "组合数学",
+        "en": "combinatorics"
       },
       "group": "general",
       "level": "middle",
@@ -7311,7 +7499,9 @@ var data = {
       "id": "math_unmatched_one-sided limit",
       "name": "one-sided limit",
       "labels": {
-        "en": "one-sided limit"
+        "en": "one-sided limit",
+        "zh": "单侧极限",
+        "de": "einseitiger Grenzwert"
       },
       "group": "general",
       "level": "college",
@@ -7331,7 +7521,9 @@ var data = {
       "id": "math_unmatched_squeeze theorem",
       "name": "squeeze theorem",
       "labels": {
-        "en": "squeeze theorem"
+        "en": "squeeze theorem",
+        "zh": "夹逼定理",
+        "de": "Einschnürungssatz"
       },
       "group": "general",
       "level": "college",
@@ -7351,7 +7543,9 @@ var data = {
       "id": "math_unmatched_implicit differentiation",
       "name": "implicit differentiation",
       "labels": {
-        "en": "implicit differentiation"
+        "en": "implicit differentiation",
+        "zh": "隐函数求导",
+        "de": "implizites Differenzieren"
       },
       "group": "general",
       "level": "college",
@@ -7377,7 +7571,9 @@ var data = {
       "id": "math_unmatched_linearization",
       "name": "linearization",
       "labels": {
-        "en": "linearization"
+        "en": "linearization",
+        "zh": "线性化",
+        "de": "Linearisierung"
       },
       "group": "general",
       "level": "college",
@@ -7397,7 +7593,9 @@ var data = {
       "id": "math_unmatched_related rates",
       "name": "related rates",
       "labels": {
-        "en": "related rates"
+        "en": "related rates",
+        "zh": "相关变化率",
+        "de": "zusammenhängende Änderungsraten"
       },
       "group": "general",
       "level": "college",
@@ -7417,7 +7615,9 @@ var data = {
       "id": "math_unmatched_extrema",
       "name": "extrema",
       "labels": {
-        "en": "extrema"
+        "en": "extrema",
+        "zh": "极值",
+        "de": "Extrema"
       },
       "group": "general",
       "level": "college",
@@ -7437,7 +7637,9 @@ var data = {
       "id": "math_unmatched_critical point",
       "name": "critical point",
       "labels": {
-        "en": "critical point"
+        "en": "critical point",
+        "zh": "临界点",
+        "de": "kritischer Punkt"
       },
       "group": "general",
       "level": "college",
@@ -7457,7 +7659,9 @@ var data = {
       "id": "math_unmatched_inflection point",
       "name": "inflection point",
       "labels": {
-        "en": "inflection point"
+        "en": "inflection point",
+        "zh": "拐点",
+        "de": "Wendepunkt"
       },
       "group": "general",
       "level": "college",
@@ -7477,7 +7681,9 @@ var data = {
       "id": "math_unmatched_Mean Value Theorem",
       "name": "Mean Value Theorem",
       "labels": {
-        "en": "Mean Value Theorem"
+        "en": "Mean Value Theorem",
+        "zh": "中值定理",
+        "de": "Mittelwertsatz"
       },
       "group": "general",
       "level": "college",
@@ -7497,7 +7703,9 @@ var data = {
       "id": "math_unmatched_u-substitution",
       "name": "u-substitution",
       "labels": {
-        "en": "u-substitution"
+        "en": "u-substitution",
+        "zh": "u换元法",
+        "de": "u-Substitution"
       },
       "group": "general",
       "level": "college",
@@ -7517,7 +7725,9 @@ var data = {
       "id": "math_unmatched_integration by parts",
       "name": "integration by parts",
       "labels": {
-        "en": "integration by parts"
+        "en": "integration by parts",
+        "zh": "分部积分",
+        "de": "partielle Integration"
       },
       "group": "general",
       "level": "college",
@@ -7537,7 +7747,9 @@ var data = {
       "id": "math_unmatched_slope field",
       "name": "slope field",
       "labels": {
-        "en": "slope field"
+        "en": "slope field",
+        "zh": "斜率场",
+        "de": "Richtungsfeld"
       },
       "group": "general",
       "level": "college",
@@ -7557,7 +7769,9 @@ var data = {
       "id": "math_unmatched_separation of variables",
       "name": "separation of variables",
       "labels": {
-        "en": "separation of variables"
+        "en": "separation of variables",
+        "zh": "分离变量法",
+        "de": "Trennung der Variablen"
       },
       "group": "general",
       "level": "college",
@@ -7577,7 +7791,9 @@ var data = {
       "id": "math_unmatched_Taylor series",
       "name": "Taylor series",
       "labels": {
-        "en": "Taylor series"
+        "en": "Taylor series",
+        "zh": "泰勒级数",
+        "de": "Taylorreihe"
       },
       "group": "general",
       "level": "college",
@@ -7597,7 +7813,9 @@ var data = {
       "id": "math_unmatched_Taylor polynomial",
       "name": "Taylor polynomial",
       "labels": {
-        "en": "Taylor polynomial"
+        "en": "Taylor polynomial",
+        "zh": "泰勒多项式",
+        "de": "Taylorpolynom"
       },
       "group": "general",
       "level": "college",
@@ -7623,7 +7841,9 @@ var data = {
       "id": "math_unmatched_Lagrange error bound",
       "name": "Lagrange error bound",
       "labels": {
-        "en": "Lagrange error bound"
+        "en": "Lagrange error bound",
+        "zh": "拉格朗日误差界",
+        "de": "Lagrange-Fehlerabschätzung"
       },
       "group": "general",
       "level": "college",
@@ -7643,7 +7863,9 @@ var data = {
       "id": "math_unmatched_radius of convergence",
       "name": "radius of convergence",
       "labels": {
-        "en": "radius of convergence"
+        "en": "radius of convergence",
+        "zh": "收敛半径",
+        "de": "Konvergenzradius"
       },
       "group": "general",
       "level": "college",
@@ -7663,7 +7885,9 @@ var data = {
       "id": "math_unmatched_alternating series test",
       "name": "alternating series test",
       "labels": {
-        "en": "alternating series test"
+        "en": "alternating series test",
+        "zh": "交错级数判别法",
+        "de": "Leibniz-Kriterium"
       },
       "group": "general",
       "level": "college",
@@ -7683,7 +7907,9 @@ var data = {
       "id": "math_unmatched_ratio test",
       "name": "ratio test",
       "labels": {
-        "en": "ratio test"
+        "en": "ratio test",
+        "zh": "比值判别法",
+        "de": "Quotientenkriterium"
       },
       "group": "general",
       "level": "college",
@@ -7703,7 +7929,9 @@ var data = {
       "id": "math_unmatched_parametric equations",
       "name": "parametric equations",
       "labels": {
-        "en": "parametric equations"
+        "en": "parametric equations",
+        "zh": "参数方程",
+        "de": "Parameterdarstellung"
       },
       "group": "general",
       "level": "college",
@@ -7723,7 +7951,9 @@ var data = {
       "id": "math_unmatched_polar coordinates",
       "name": "polar coordinates",
       "labels": {
-        "en": "polar coordinates"
+        "en": "polar coordinates",
+        "zh": "极坐标",
+        "de": "Polarkoordinaten"
       },
       "group": "general",
       "level": "college",
@@ -7743,7 +7973,9 @@ var data = {
       "id": "math_unmatched_volume of revolution",
       "name": "volume of revolution",
       "labels": {
-        "en": "volume of revolution"
+        "en": "volume of revolution",
+        "zh": "旋转体体积",
+        "de": "Rotationsvolumen"
       },
       "group": "general",
       "level": "college",
@@ -7763,7 +7995,9 @@ var data = {
       "id": "math_unmatched_area between curves",
       "name": "area between curves",
       "labels": {
-        "en": "area between curves"
+        "en": "area between curves",
+        "zh": "曲线间面积",
+        "de": "Fläche zwischen Kurven"
       },
       "group": "general",
       "level": "college",
@@ -7783,7 +8017,9 @@ var data = {
       "id": "math_unmatched_arithmetic sequence",
       "name": "arithmetic sequence",
       "labels": {
-        "en": "arithmetic sequence"
+        "en": "arithmetic sequence",
+        "zh": "等差数列",
+        "de": "arithmetische Folge"
       },
       "group": "general",
       "level": "college",
@@ -7803,7 +8039,9 @@ var data = {
       "id": "math_unmatched_geometric sequence",
       "name": "geometric sequence",
       "labels": {
-        "en": "geometric sequence"
+        "en": "geometric sequence",
+        "zh": "等比数列",
+        "de": "geometrische Folge"
       },
       "group": "general",
       "level": "college",
@@ -7823,7 +8061,9 @@ var data = {
       "id": "math_unmatched_complex number",
       "name": "complex number",
       "labels": {
-        "en": "complex number"
+        "en": "complex number",
+        "zh": "复数",
+        "de": "komplexe Zahl"
       },
       "group": "general",
       "level": "college",
@@ -7843,7 +8083,9 @@ var data = {
       "id": "math_unmatched_modulus",
       "name": "modulus",
       "labels": {
-        "en": "modulus"
+        "en": "modulus",
+        "zh": "模",
+        "de": "Betrag"
       },
       "group": "general",
       "level": "college",
@@ -7863,7 +8105,9 @@ var data = {
       "id": "math_unmatched_argument",
       "name": "argument",
       "labels": {
-        "en": "argument"
+        "en": "argument",
+        "zh": "辐角",
+        "de": "Argument"
       },
       "group": "general",
       "level": "college",
@@ -7883,7 +8127,9 @@ var data = {
       "id": "math_unmatched_polar form",
       "name": "polar form",
       "labels": {
-        "en": "polar form"
+        "en": "polar form",
+        "zh": "极坐标形式",
+        "de": "Polarform"
       },
       "group": "general",
       "level": "college",
@@ -7903,7 +8149,9 @@ var data = {
       "id": "math_unmatched_rational function",
       "name": "rational function",
       "labels": {
-        "en": "rational function"
+        "en": "rational function",
+        "zh": "有理函数",
+        "de": "rationale Funktion"
       },
       "group": "general",
       "level": "college",
@@ -7923,7 +8171,9 @@ var data = {
       "id": "math_unmatched_asymptote",
       "name": "asymptote",
       "labels": {
-        "en": "asymptote"
+        "en": "asymptote",
+        "zh": "渐近线",
+        "de": "Asymptote"
       },
       "group": "general",
       "level": "college",
@@ -7943,7 +8193,9 @@ var data = {
       "id": "math_unmatched_discriminant",
       "name": "discriminant",
       "labels": {
-        "en": "discriminant"
+        "en": "discriminant",
+        "zh": "判别式",
+        "de": "Diskriminante"
       },
       "group": "general",
       "level": "college",
@@ -7963,7 +8215,9 @@ var data = {
       "id": "math_unmatched_dot product",
       "name": "dot product",
       "labels": {
-        "en": "dot product"
+        "en": "dot product",
+        "zh": "点积",
+        "de": "Skalarprodukt"
       },
       "group": "general",
       "level": "college",
@@ -7989,7 +8243,9 @@ var data = {
       "id": "math_unmatched_cross product",
       "name": "cross product",
       "labels": {
-        "en": "cross product"
+        "en": "cross product",
+        "zh": "叉积",
+        "de": "Kreuzprodukt"
       },
       "group": "general",
       "level": "college",
@@ -8015,7 +8271,9 @@ var data = {
       "id": "math_unmatched_inverse function",
       "name": "inverse function",
       "labels": {
-        "en": "inverse function"
+        "en": "inverse function",
+        "zh": "反函数",
+        "de": "Umkehrfunktion"
       },
       "group": "general",
       "level": "college",
@@ -8035,7 +8293,9 @@ var data = {
       "id": "math_unmatched_significant figures",
       "name": "significant figures",
       "labels": {
-        "en": "significant figures"
+        "en": "significant figures",
+        "zh": "有效数字",
+        "de": "signifikante Stellen"
       },
       "group": "general",
       "level": "high",
@@ -8055,7 +8315,9 @@ var data = {
       "id": "math_unmatched_standard form",
       "name": "standard form",
       "labels": {
-        "en": "standard form"
+        "en": "standard form",
+        "zh": "标准形",
+        "de": "Normalform"
       },
       "group": "general",
       "level": "high",
@@ -8075,7 +8337,9 @@ var data = {
       "id": "math_unmatched_bounds",
       "name": "bounds",
       "labels": {
-        "en": "bounds"
+        "en": "bounds",
+        "zh": "界",
+        "de": "Schranken"
       },
       "group": "general",
       "level": "high",
@@ -8095,7 +8359,9 @@ var data = {
       "id": "math_unmatched_simultaneous equations",
       "name": "simultaneous equations",
       "labels": {
-        "en": "simultaneous equations"
+        "en": "simultaneous equations",
+        "zh": "联立方程",
+        "de": "Gleichungssystem"
       },
       "group": "general",
       "level": "high",
@@ -8115,7 +8381,9 @@ var data = {
       "id": "math_unmatched_quadratic formula",
       "name": "quadratic formula",
       "labels": {
-        "en": "quadratic formula"
+        "en": "quadratic formula",
+        "zh": "求根公式",
+        "de": "Mitternachtsformel"
       },
       "group": "general",
       "level": "high",
@@ -8135,7 +8403,9 @@ var data = {
       "id": "math_unmatched_gradient",
       "name": "gradient",
       "labels": {
-        "en": "gradient"
+        "en": "gradient",
+        "zh": "梯度",
+        "de": "Gradient"
       },
       "group": "general",
       "level": "high",
@@ -8161,7 +8431,9 @@ var data = {
       "id": "math_unmatched_equation of line",
       "name": "equation of line",
       "labels": {
-        "en": "equation of line"
+        "en": "equation of line",
+        "zh": "直线方程",
+        "de": "Geradengleichung"
       },
       "group": "general",
       "level": "high",
@@ -8181,7 +8453,9 @@ var data = {
       "id": "math_unmatched_circle theorem",
       "name": "circle theorem",
       "labels": {
-        "en": "circle theorem"
+        "en": "circle theorem",
+        "zh": "圆定理",
+        "de": "Kreissatz"
       },
       "group": "general",
       "level": "high",
@@ -8201,7 +8475,9 @@ var data = {
       "id": "math_unmatched_tree diagram",
       "name": "tree diagram",
       "labels": {
-        "en": "tree diagram"
+        "en": "tree diagram",
+        "zh": "树形图",
+        "de": "Baumdiagramm"
       },
       "group": "general",
       "level": "high",
@@ -8221,7 +8497,9 @@ var data = {
       "id": "math_unmatched_mutually exclusive",
       "name": "mutually exclusive",
       "labels": {
-        "en": "mutually exclusive"
+        "en": "mutually exclusive",
+        "zh": "互斥",
+        "de": "unvereinbar"
       },
       "group": "general",
       "level": "high",
@@ -8241,7 +8519,9 @@ var data = {
       "id": "math_unmatched_cumulative frequency",
       "name": "cumulative frequency",
       "labels": {
-        "en": "cumulative frequency"
+        "en": "cumulative frequency",
+        "zh": "累积频率",
+        "de": "kumulierte Häufigkeit"
       },
       "group": "general",
       "level": "high",
@@ -8261,7 +8541,9 @@ var data = {
       "id": "math_unmatched_histogram",
       "name": "histogram",
       "labels": {
-        "en": "histogram"
+        "en": "histogram",
+        "zh": "直方图",
+        "de": "Histogramm"
       },
       "group": "general",
       "level": "high",
@@ -8281,7 +8563,9 @@ var data = {
       "id": "math_unmatched_factor theorem",
       "name": "factor theorem",
       "labels": {
-        "en": "factor theorem"
+        "en": "factor theorem",
+        "zh": "因式定理",
+        "de": "Faktorsatz"
       },
       "group": "general",
       "level": "high",
@@ -8301,7 +8585,9 @@ var data = {
       "id": "math_unmatched_remainder theorem",
       "name": "remainder theorem",
       "labels": {
-        "en": "remainder theorem"
+        "en": "remainder theorem",
+        "zh": "余数定理",
+        "de": "Restsatz"
       },
       "group": "general",
       "level": "high",
@@ -8321,7 +8607,9 @@ var data = {
       "id": "math_unmatched_kinematics",
       "name": "kinematics",
       "labels": {
-        "en": "kinematics"
+        "en": "kinematics",
+        "zh": "运动学",
+        "de": "Kinematik"
       },
       "group": "general",
       "level": "high",
@@ -8341,7 +8629,9 @@ var data = {
       "id": "math_unmatched_numerator",
       "name": "numerator",
       "labels": {
-        "en": "numerator"
+        "en": "numerator",
+        "zh": "分子",
+        "de": "Zähler"
       },
       "group": "general",
       "level": "high",
@@ -8361,7 +8651,9 @@ var data = {
       "id": "math_unmatched_denominator",
       "name": "denominator",
       "labels": {
-        "en": "denominator"
+        "en": "denominator",
+        "zh": "分母",
+        "de": "Nenner"
       },
       "group": "general",
       "level": "high",
@@ -8381,7 +8673,9 @@ var data = {
       "id": "math_unmatched_equivalent fractions",
       "name": "equivalent fractions",
       "labels": {
-        "en": "equivalent fractions"
+        "en": "equivalent fractions",
+        "zh": "等值分数",
+        "de": "gleichwertige Brüche"
       },
       "group": "general",
       "level": "high",
@@ -8401,7 +8695,9 @@ var data = {
       "id": "math_unmatched_factor",
       "name": "factor",
       "labels": {
-        "en": "factor"
+        "en": "factor",
+        "zh": "因数",
+        "de": "Faktor"
       },
       "group": "general",
       "level": "high",
@@ -8421,7 +8717,9 @@ var data = {
       "id": "math_unmatched_multiple",
       "name": "multiple",
       "labels": {
-        "en": "multiple"
+        "en": "multiple",
+        "zh": "倍数",
+        "de": "Vielfaches"
       },
       "group": "general",
       "level": "high",
@@ -8441,7 +8739,9 @@ var data = {
       "id": "math_unmatched_parallel",
       "name": "parallel",
       "labels": {
-        "en": "parallel"
+        "en": "parallel",
+        "zh": "平行",
+        "de": "parallel"
       },
       "group": "general",
       "level": "high",
@@ -8461,7 +8761,9 @@ var data = {
       "id": "math_unmatched_perpendicular",
       "name": "perpendicular",
       "labels": {
-        "en": "perpendicular"
+        "en": "perpendicular",
+        "zh": "垂直",
+        "de": "senkrecht"
       },
       "group": "general",
       "level": "high",
@@ -8481,7 +8783,9 @@ var data = {
       "id": "math_unmatched_multiplication concept",
       "name": "multiplication concept",
       "labels": {
-        "en": "multiplication concept"
+        "en": "multiplication concept",
+        "zh": "乘法概念",
+        "de": "Multiplikationsbegriff"
       },
       "group": "general",
       "level": "high",
@@ -8501,7 +8805,9 @@ var data = {
       "id": "math_unmatched_division concept",
       "name": "division concept",
       "labels": {
-        "en": "division concept"
+        "en": "division concept",
+        "zh": "除法概念",
+        "de": "Divisionsbegriff"
       },
       "group": "general",
       "level": "high",
@@ -8521,7 +8827,9 @@ var data = {
       "id": "math_unmatched_factor pairs",
       "name": "factor pairs",
       "labels": {
-        "en": "factor pairs"
+        "en": "factor pairs",
+        "zh": "因数对",
+        "de": "Faktorpaare"
       },
       "group": "general",
       "level": "high",
@@ -8541,7 +8849,9 @@ var data = {
       "id": "math_unmatched_multiples",
       "name": "multiples",
       "labels": {
-        "en": "multiples"
+        "en": "multiples",
+        "zh": "倍数",
+        "de": "Vielfache"
       },
       "group": "general",
       "level": "high",
@@ -8561,7 +8871,9 @@ var data = {
       "id": "math_unmatched_rounding",
       "name": "rounding",
       "labels": {
-        "en": "rounding"
+        "en": "rounding",
+        "zh": "四舍五入",
+        "de": "Runden"
       },
       "group": "general",
       "level": "high",
@@ -8581,7 +8893,9 @@ var data = {
       "id": "math_unmatched_expanded form",
       "name": "expanded form",
       "labels": {
-        "en": "expanded form"
+        "en": "expanded form",
+        "zh": "展开式",
+        "de": "ausgeschriebene Form"
       },
       "group": "general",
       "level": "high",
@@ -8601,7 +8915,9 @@ var data = {
       "id": "math_unmatched_mixed number",
       "name": "mixed number",
       "labels": {
-        "en": "mixed number"
+        "en": "mixed number",
+        "zh": "带分数",
+        "de": "gemischte Zahl"
       },
       "group": "general",
       "level": "high",
@@ -8621,7 +8937,9 @@ var data = {
       "id": "math_unmatched_improper fraction",
       "name": "improper fraction",
       "labels": {
-        "en": "improper fraction"
+        "en": "improper fraction",
+        "zh": "假分数",
+        "de": "unechter Bruch"
       },
       "group": "general",
       "level": "high",
@@ -8641,7 +8959,9 @@ var data = {
       "id": "math_unmatched_compare fractions",
       "name": "compare fractions",
       "labels": {
-        "en": "compare fractions"
+        "en": "compare fractions",
+        "zh": "分数比较",
+        "de": "Brüche vergleichen"
       },
       "group": "general",
       "level": "high",
@@ -8661,7 +8981,9 @@ var data = {
       "id": "math_unmatched_add fractions",
       "name": "add fractions",
       "labels": {
-        "en": "add fractions"
+        "en": "add fractions",
+        "zh": "分数加法",
+        "de": "Brüche addieren"
       },
       "group": "general",
       "level": "high",
@@ -8681,7 +9003,9 @@ var data = {
       "id": "math_unmatched_subtract fractions",
       "name": "subtract fractions",
       "labels": {
-        "en": "subtract fractions"
+        "en": "subtract fractions",
+        "zh": "分数减法",
+        "de": "Brüche subtrahieren"
       },
       "group": "general",
       "level": "high",
@@ -8701,7 +9025,9 @@ var data = {
       "id": "math_unmatched_multiply fraction by whole",
       "name": "multiply fraction by whole",
       "labels": {
-        "en": "multiply fraction by whole"
+        "en": "multiply fraction by whole",
+        "zh": "分数乘整数",
+        "de": "Bruch mal ganze Zahl"
       },
       "group": "general",
       "level": "high",
@@ -8721,7 +9047,9 @@ var data = {
       "id": "math_unmatched_area model",
       "name": "area model",
       "labels": {
-        "en": "area model"
+        "en": "area model",
+        "zh": "面积模型",
+        "de": "Flächenmodell"
       },
       "group": "general",
       "level": "high",
@@ -8741,7 +9069,9 @@ var data = {
       "id": "math_unmatched_number line",
       "name": "number line",
       "labels": {
-        "en": "number line"
+        "en": "number line",
+        "zh": "数轴",
+        "de": "Zahlenstrahl"
       },
       "group": "general",
       "level": "high",
@@ -8761,7 +9091,9 @@ var data = {
       "id": "math_unmatched_coordinate grid",
       "name": "coordinate grid",
       "labels": {
-        "en": "coordinate grid"
+        "en": "coordinate grid",
+        "zh": "坐标网格",
+        "de": "Koordinatengitter"
       },
       "group": "general",
       "level": "high",
@@ -8781,7 +9113,9 @@ var data = {
       "id": "math_unmatched_bar graph",
       "name": "bar graph",
       "labels": {
-        "en": "bar graph"
+        "en": "bar graph",
+        "zh": "条形图",
+        "de": "Balkendiagramm"
       },
       "group": "general",
       "level": "high",
@@ -8801,7 +9135,9 @@ var data = {
       "id": "math_unmatched_line plot",
       "name": "line plot",
       "labels": {
-        "en": "line plot"
+        "en": "line plot",
+        "zh": "线形图",
+        "de": "Liniendiagramm"
       },
       "group": "general",
       "level": "high",
@@ -8821,7 +9157,9 @@ var data = {
       "id": "math_unmatched_surface area",
       "name": "surface area",
       "labels": {
-        "en": "surface area"
+        "en": "surface area",
+        "zh": "表面积",
+        "de": "Oberfläche"
       },
       "group": "general",
       "level": "high",
@@ -8841,7 +9179,9 @@ var data = {
       "id": "math_unmatched_unit rate",
       "name": "unit rate",
       "labels": {
-        "en": "unit rate"
+        "en": "unit rate",
+        "zh": "单位比率",
+        "de": "Einheitsrate"
       },
       "group": "general",
       "level": "high",
@@ -8873,7 +9213,9 @@ var data = {
       "id": "math_unmatched_ratio",
       "name": "ratio",
       "labels": {
-        "en": "ratio"
+        "en": "ratio",
+        "zh": "比",
+        "de": "Verhältnis"
       },
       "group": "general",
       "level": "high",
@@ -8899,7 +9241,9 @@ var data = {
       "id": "math_unmatched_proportion",
       "name": "proportion",
       "labels": {
-        "en": "proportion"
+        "en": "proportion",
+        "zh": "比例",
+        "de": "Proportion"
       },
       "group": "general",
       "level": "high",
@@ -8919,7 +9263,9 @@ var data = {
       "id": "math_unmatched_greatest common factor",
       "name": "greatest common factor",
       "labels": {
-        "en": "greatest common factor"
+        "en": "greatest common factor",
+        "zh": "最大公因数",
+        "de": "größter gemeinsamer Teiler"
       },
       "group": "general",
       "level": "high",
@@ -8945,7 +9291,9 @@ var data = {
       "id": "math_unmatched_least common multiple",
       "name": "least common multiple",
       "labels": {
-        "en": "least common multiple"
+        "en": "least common multiple",
+        "zh": "最小公倍数",
+        "de": "kleinstes gemeinsames Vielfaches"
       },
       "group": "general",
       "level": "high",
@@ -8971,7 +9319,9 @@ var data = {
       "id": "math_unmatched_expression",
       "name": "expression",
       "labels": {
-        "en": "expression"
+        "en": "expression",
+        "zh": "代数式",
+        "de": "Term"
       },
       "group": "general",
       "level": "high",
@@ -8991,7 +9341,9 @@ var data = {
       "id": "math_unmatched_equation",
       "name": "equation",
       "labels": {
-        "en": "equation"
+        "en": "equation",
+        "zh": "方程",
+        "de": "Gleichung"
       },
       "group": "general",
       "level": "high",
@@ -9017,7 +9369,9 @@ var data = {
       "id": "math_unmatched_variable",
       "name": "variable",
       "labels": {
-        "en": "variable"
+        "en": "variable",
+        "zh": "变量",
+        "de": "Variable"
       },
       "group": "general",
       "level": "high",
@@ -9037,7 +9391,9 @@ var data = {
       "id": "math_unmatched_mean",
       "name": "mean",
       "labels": {
-        "en": "mean"
+        "en": "mean",
+        "zh": "平均值",
+        "de": "Mittelwert"
       },
       "group": "general",
       "level": "high",
@@ -9057,7 +9413,9 @@ var data = {
       "id": "math_unmatched_median",
       "name": "median",
       "labels": {
-        "en": "median"
+        "en": "median",
+        "zh": "中位数",
+        "de": "Median"
       },
       "group": "general",
       "level": "high",
@@ -9077,7 +9435,9 @@ var data = {
       "id": "math_unmatched_mode",
       "name": "mode",
       "labels": {
-        "en": "mode"
+        "en": "mode",
+        "zh": "众数",
+        "de": "Modalwert"
       },
       "group": "general",
       "level": "high",
@@ -9097,7 +9457,9 @@ var data = {
       "id": "math_unmatched_proportional relationship",
       "name": "proportional relationship",
       "labels": {
-        "en": "proportional relationship"
+        "en": "proportional relationship",
+        "zh": "比例关系",
+        "de": "proportionale Beziehung"
       },
       "group": "general",
       "level": "high",
@@ -9117,7 +9479,9 @@ var data = {
       "id": "math_unmatched_constant of proportionality",
       "name": "constant of proportionality",
       "labels": {
-        "en": "constant of proportionality"
+        "en": "constant of proportionality",
+        "zh": "比例常数",
+        "de": "Proportionalitätskonstante"
       },
       "group": "general",
       "level": "high",
@@ -9137,7 +9501,9 @@ var data = {
       "id": "math_unmatched_integer",
       "name": "integer",
       "labels": {
-        "en": "integer"
+        "en": "integer",
+        "zh": "整数",
+        "de": "ganze Zahl"
       },
       "group": "general",
       "level": "high",
@@ -9157,7 +9523,9 @@ var data = {
       "id": "math_unmatched_irrational number",
       "name": "irrational number",
       "labels": {
-        "en": "irrational number"
+        "en": "irrational number",
+        "zh": "无理数",
+        "de": "irrationale Zahl"
       },
       "group": "general",
       "level": "high",
@@ -9177,7 +9545,9 @@ var data = {
       "id": "math_unmatched_exponent",
       "name": "exponent",
       "labels": {
-        "en": "exponent"
+        "en": "exponent",
+        "zh": "指数",
+        "de": "Exponent"
       },
       "group": "general",
       "level": "high",
@@ -9197,7 +9567,9 @@ var data = {
       "id": "math_unmatched_square root",
       "name": "square root",
       "labels": {
-        "en": "square root"
+        "en": "square root",
+        "zh": "平方根",
+        "de": "Quadratwurzel"
       },
       "group": "general",
       "level": "high",
@@ -9217,7 +9589,9 @@ var data = {
       "id": "math_unmatched_numerical expression",
       "name": "numerical expression",
       "labels": {
-        "en": "numerical expression"
+        "en": "numerical expression",
+        "zh": "数值表达式",
+        "de": "numerischer Term"
       },
       "group": "general",
       "level": "high",
@@ -9237,7 +9611,9 @@ var data = {
       "id": "math_unmatched_slope",
       "name": "slope",
       "labels": {
-        "en": "slope"
+        "en": "slope",
+        "zh": "斜率",
+        "de": "Steigung"
       },
       "group": "general",
       "level": "high",
@@ -9257,7 +9633,9 @@ var data = {
       "id": "math_unmatched_y-intercept",
       "name": "y-intercept",
       "labels": {
-        "en": "y-intercept"
+        "en": "y-intercept",
+        "zh": "y截距",
+        "de": "y-Achsenabschnitt"
       },
       "group": "general",
       "level": "high",
@@ -9277,7 +9655,9 @@ var data = {
       "id": "math_unmatched_congruent figures",
       "name": "congruent figures",
       "labels": {
-        "en": "congruent figures"
+        "en": "congruent figures",
+        "zh": "全等图形",
+        "de": "kongruente Figuren"
       },
       "group": "general",
       "level": "high",
@@ -9297,7 +9677,9 @@ var data = {
       "id": "math_unmatched_similar figures",
       "name": "similar figures",
       "labels": {
-        "en": "similar figures"
+        "en": "similar figures",
+        "zh": "相似图形",
+        "de": "ähnliche Figuren"
       },
       "group": "general",
       "level": "high",
@@ -9317,7 +9699,9 @@ var data = {
       "id": "math_unmatched_dilation",
       "name": "dilation",
       "labels": {
-        "en": "dilation"
+        "en": "dilation",
+        "zh": "位似变换",
+        "de": "zentrische Streckung"
       },
       "group": "general",
       "level": "high",
@@ -9337,7 +9721,9 @@ var data = {
       "id": "math_unmatched_scatter plot",
       "name": "scatter plot",
       "labels": {
-        "en": "scatter plot"
+        "en": "scatter plot",
+        "zh": "散点图",
+        "de": "Streudiagramm"
       },
       "group": "general",
       "level": "high",
@@ -9357,7 +9743,9 @@ var data = {
       "id": "math_unmatched_line of best fit",
       "name": "line of best fit",
       "labels": {
-        "en": "line of best fit"
+        "en": "line of best fit",
+        "zh": "最佳拟合直线",
+        "de": "Ausgleichsgerade"
       },
       "group": "general",
       "level": "high",
@@ -9377,7 +9765,9 @@ var data = {
       "id": "math_unmatched_two-way table",
       "name": "two-way table",
       "labels": {
-        "en": "two-way table"
+        "en": "two-way table",
+        "zh": "列联表",
+        "de": "Vierfeldertafel"
       },
       "group": "general",
       "level": "high",
@@ -9397,7 +9787,9 @@ var data = {
       "id": "math_unmatched_complementary angles",
       "name": "complementary angles",
       "labels": {
-        "en": "complementary angles"
+        "en": "complementary angles",
+        "zh": "余角",
+        "de": "Komplementärwinkel"
       },
       "group": "general",
       "level": "high",
@@ -9417,7 +9809,9 @@ var data = {
       "id": "math_unmatched_supplementary angles",
       "name": "supplementary angles",
       "labels": {
-        "en": "supplementary angles"
+        "en": "supplementary angles",
+        "zh": "补角",
+        "de": "Supplementärwinkel"
       },
       "group": "general",
       "level": "high",
@@ -9437,7 +9831,9 @@ var data = {
       "id": "math_unmatched_vertical angles",
       "name": "vertical angles",
       "labels": {
-        "en": "vertical angles"
+        "en": "vertical angles",
+        "zh": "对顶角",
+        "de": "Scheitelwinkel"
       },
       "group": "general",
       "level": "high",
@@ -9457,7 +9853,9 @@ var data = {
       "id": "math_unmatched_translation",
       "name": "translation",
       "labels": {
-        "en": "translation"
+        "en": "translation",
+        "zh": "平移",
+        "de": "Verschiebung"
       },
       "group": "general",
       "level": "high",
@@ -9477,7 +9875,9 @@ var data = {
       "id": "math_unmatched_rotation",
       "name": "rotation",
       "labels": {
-        "en": "rotation"
+        "en": "rotation",
+        "zh": "旋转",
+        "de": "Rotation"
       },
       "group": "general",
       "level": "high",
@@ -9497,7 +9897,9 @@ var data = {
       "id": "math_unmatched_reflection",
       "name": "reflection",
       "labels": {
-        "en": "reflection"
+        "en": "reflection",
+        "zh": "对称变换",
+        "de": "Spiegelung"
       },
       "group": "general",
       "level": "high",
@@ -9517,7 +9919,9 @@ var data = {
       "id": "math_unmatched_mean absolute deviation",
       "name": "mean absolute deviation",
       "labels": {
-        "en": "mean absolute deviation"
+        "en": "mean absolute deviation",
+        "zh": "平均绝对偏差",
+        "de": "mittlere absolute Abweichung"
       },
       "group": "general",
       "level": "high",
@@ -9537,7 +9941,9 @@ var data = {
       "id": "math_unmatched_interquartile range",
       "name": "interquartile range",
       "labels": {
-        "en": "interquartile range"
+        "en": "interquartile range",
+        "zh": "四分位距",
+        "de": "Interquartilsabstand"
       },
       "group": "general",
       "level": "high",
@@ -9557,7 +9963,9 @@ var data = {
       "id": "math_unmatched_compound interest",
       "name": "compound interest",
       "labels": {
-        "en": "compound interest"
+        "en": "compound interest",
+        "zh": "复利",
+        "de": "Zinseszins"
       },
       "group": "general",
       "level": "high",
@@ -9577,7 +9985,9 @@ var data = {
       "id": "math_unmatched_simple interest",
       "name": "simple interest",
       "labels": {
-        "en": "simple interest"
+        "en": "simple interest",
+        "zh": "单利",
+        "de": "einfacher Zins"
       },
       "group": "general",
       "level": "high",
@@ -9597,7 +10007,9 @@ var data = {
       "id": "math_unmatched_counting",
       "name": "counting",
       "labels": {
-        "en": "counting"
+        "en": "counting",
+        "zh": "计数",
+        "de": "Zählen"
       },
       "group": "general",
       "level": "high",
@@ -9617,7 +10029,9 @@ var data = {
       "id": "math_unmatched_place value",
       "name": "place value",
       "labels": {
-        "en": "place value"
+        "en": "place value",
+        "zh": "位值",
+        "de": "Stellenwert"
       },
       "group": "general",
       "level": "high",
@@ -9637,7 +10051,9 @@ var data = {
       "id": "math_unmatched_length",
       "name": "length",
       "labels": {
-        "en": "length"
+        "en": "length",
+        "zh": "长度",
+        "de": "Länge"
       },
       "group": "general",
       "level": "high",
@@ -9657,7 +10073,9 @@ var data = {
       "id": "math_unmatched_shape",
       "name": "shape",
       "labels": {
-        "en": "shape"
+        "en": "shape",
+        "zh": "图形",
+        "de": "Form"
       },
       "group": "general",
       "level": "high",
@@ -9677,7 +10095,9 @@ var data = {
       "id": "math_unmatched_time",
       "name": "time",
       "labels": {
-        "en": "time"
+        "en": "time",
+        "zh": "时间",
+        "de": "Zeit"
       },
       "group": "general",
       "level": "high",
@@ -9697,7 +10117,9 @@ var data = {
       "id": "math_unmatched_money",
       "name": "money",
       "labels": {
-        "en": "money"
+        "en": "money",
+        "zh": "货币",
+        "de": "Geld"
       },
       "group": "general",
       "level": "high",
@@ -9717,7 +10139,9 @@ var data = {
       "id": "math_unmatched_data",
       "name": "data",
       "labels": {
-        "en": "data"
+        "en": "data",
+        "zh": "数据",
+        "de": "Daten"
       },
       "group": "general",
       "level": "high",
@@ -9737,7 +10161,9 @@ var data = {
       "id": "math_unmatched_second-order linear ODE",
       "name": "second-order linear ODE",
       "labels": {
-        "en": "second-order linear ODE"
+        "en": "second-order linear ODE",
+        "zh": "二阶线性微分方程",
+        "de": "lineare DGL 2. Ordnung"
       },
       "group": "general",
       "level": "college",
@@ -9757,7 +10183,9 @@ var data = {
       "id": "math_unmatched_eigenvalue method for systems",
       "name": "eigenvalue method for systems",
       "labels": {
-        "en": "eigenvalue method for systems"
+        "en": "eigenvalue method for systems",
+        "zh": "方程组的特征值法",
+        "de": "Eigenwertmethode für Systeme"
       },
       "group": "general",
       "level": "college",
@@ -9777,7 +10205,9 @@ var data = {
       "id": "math_unmatched_wave equation",
       "name": "wave equation",
       "labels": {
-        "en": "wave equation"
+        "en": "wave equation",
+        "zh": "波动方程",
+        "de": "Wellengleichung"
       },
       "group": "general",
       "level": "college",
@@ -9797,7 +10227,9 @@ var data = {
       "id": "math_unmatched_heat equation",
       "name": "heat equation",
       "labels": {
-        "en": "heat equation"
+        "en": "heat equation",
+        "zh": "热传导方程",
+        "de": "Wärmegleichung"
       },
       "group": "general",
       "level": "college",
@@ -9817,7 +10249,9 @@ var data = {
       "id": "math_unmatched_Laplace equation",
       "name": "Laplace equation",
       "labels": {
-        "en": "Laplace equation"
+        "en": "Laplace equation",
+        "zh": "拉普拉斯方程",
+        "de": "Laplace-Gleichung"
       },
       "group": "general",
       "level": "college",
@@ -9837,7 +10271,9 @@ var data = {
       "id": "math_unmatched_Type I error",
       "name": "Type I error",
       "labels": {
-        "en": "Type I error"
+        "en": "Type I error",
+        "zh": "第一类错误",
+        "de": "Fehler 1. Art"
       },
       "group": "general",
       "level": "college",
@@ -9857,7 +10293,9 @@ var data = {
       "id": "math_unmatched_Type II error",
       "name": "Type II error",
       "labels": {
-        "en": "Type II error"
+        "en": "Type II error",
+        "zh": "第二类错误",
+        "de": "Fehler 2. Art"
       },
       "group": "general",
       "level": "college",
@@ -9877,7 +10315,9 @@ var data = {
       "id": "math_unmatched_partial derivative",
       "name": "partial derivative",
       "labels": {
-        "en": "partial derivative"
+        "en": "partial derivative",
+        "zh": "偏导数",
+        "de": "partielle Ableitung"
       },
       "group": "general",
       "level": "college",
@@ -9897,7 +10337,9 @@ var data = {
       "id": "math_unmatched_directional derivative",
       "name": "directional derivative",
       "labels": {
-        "en": "directional derivative"
+        "en": "directional derivative",
+        "zh": "方向导数",
+        "de": "Richtungsableitung"
       },
       "group": "general",
       "level": "college",
@@ -9917,7 +10359,9 @@ var data = {
       "id": "math_unmatched_Lagrange multipliers",
       "name": "Lagrange multipliers",
       "labels": {
-        "en": "Lagrange multipliers"
+        "en": "Lagrange multipliers",
+        "zh": "拉格朗日乘数",
+        "de": "Lagrange-Multiplikatoren"
       },
       "group": "general",
       "level": "college",
@@ -9937,7 +10381,9 @@ var data = {
       "id": "math_unmatched_multivariable chain rule",
       "name": "multivariable chain rule",
       "labels": {
-        "en": "multivariable chain rule"
+        "en": "multivariable chain rule",
+        "zh": "多元链式法则",
+        "de": "mehrdimensionale Kettenregel"
       },
       "group": "general",
       "level": "college",
@@ -9957,7 +10403,9 @@ var data = {
       "id": "math_unmatched_Constant Multiple Rule",
       "name": "Constant Multiple Rule",
       "labels": {
-        "en": "Constant Multiple Rule"
+        "en": "Constant Multiple Rule",
+        "zh": "常数倍法则",
+        "de": "Faktorregel"
       },
       "group": "general",
       "level": "college",
@@ -9977,7 +10425,9 @@ var data = {
       "id": "math_unmatched_数e",
       "name": "数e",
       "labels": {
-        "en": "数e"
+        "en": "the number e",
+        "de": "die Zahl e",
+        "zh": "数e"
       },
       "group": "general",
       "level": "college",
@@ -9997,7 +10447,9 @@ var data = {
       "id": "math_unmatched_切线近似",
       "name": "切线近似",
       "labels": {
-        "en": "切线近似"
+        "en": "tangent line approximation",
+        "de": "Tangentenapproximation",
+        "zh": "切线近似"
       },
       "group": "general",
       "level": "college",
@@ -10017,7 +10469,9 @@ var data = {
       "id": "math_unmatched_高阶导数",
       "name": "高阶导数",
       "labels": {
-        "en": "高阶导数"
+        "en": "higher-order derivatives",
+        "de": "höhere Ableitungen",
+        "zh": "高阶导数"
       },
       "group": "general",
       "level": "college",
@@ -10037,7 +10491,9 @@ var data = {
       "id": "math_unmatched_二阶导数",
       "name": "二阶导数",
       "labels": {
-        "en": "二阶导数"
+        "en": "second derivative",
+        "de": "zweite Ableitung",
+        "zh": "二阶导数"
       },
       "group": "general",
       "level": "college",
@@ -10057,7 +10513,9 @@ var data = {
       "id": "math_unmatched_加速度",
       "name": "加速度",
       "labels": {
-        "en": "加速度"
+        "en": "acceleration",
+        "de": "Beschleunigung",
+        "zh": "加速度"
       },
       "group": "general",
       "level": "college",
@@ -10077,7 +10535,9 @@ var data = {
       "id": "math_unmatched_加加速度",
       "name": "加加速度",
       "labels": {
-        "en": "加加速度"
+        "en": "jerk",
+        "de": "Ruck",
+        "zh": "加加速度"
       },
       "group": "general",
       "level": "college",
@@ -10097,7 +10557,9 @@ var data = {
       "id": "math_unmatched_Maclaurin series",
       "name": "Maclaurin series",
       "labels": {
-        "en": "Maclaurin series"
+        "en": "Maclaurin series",
+        "zh": "麦克劳林级数",
+        "de": "Maclaurin-Reihe"
       },
       "group": "general",
       "level": "college",
@@ -10117,7 +10579,9 @@ var data = {
       "id": "math_unmatched_convergence of series",
       "name": "convergence of series",
       "labels": {
-        "en": "convergence of series"
+        "en": "convergence of series",
+        "zh": "级数收敛",
+        "de": "Reihenkonvergenz"
       },
       "group": "general",
       "level": "college",
@@ -10137,7 +10601,9 @@ var data = {
       "id": "math_unmatched_span",
       "name": "span",
       "labels": {
-        "en": "span"
+        "en": "span",
+        "zh": "张成",
+        "de": "lineare Hülle"
       },
       "group": "general",
       "level": "college",
@@ -10157,7 +10623,9 @@ var data = {
       "id": "math_unmatched_linear independence",
       "name": "linear independence",
       "labels": {
-        "en": "linear independence"
+        "en": "linear independence",
+        "zh": "线性无关",
+        "de": "lineare Unabhängigkeit"
       },
       "group": "general",
       "level": "college",
@@ -10177,7 +10645,9 @@ var data = {
       "id": "math_unmatched_nullity",
       "name": "nullity",
       "labels": {
-        "en": "nullity"
+        "en": "nullity",
+        "zh": "零度",
+        "de": "Nullität"
       },
       "group": "general",
       "level": "college",
@@ -10197,7 +10667,9 @@ var data = {
       "id": "math_unmatched_rank-nullity theorem",
       "name": "rank-nullity theorem",
       "labels": {
-        "en": "rank-nullity theorem"
+        "en": "rank-nullity theorem",
+        "zh": "秩-零度定理",
+        "de": "Rangsatz"
       },
       "group": "general",
       "level": "college",
@@ -10217,7 +10689,9 @@ var data = {
       "id": "math_unmatched_change of basis",
       "name": "change of basis",
       "labels": {
-        "en": "change of basis"
+        "en": "change of basis",
+        "zh": "基变换",
+        "de": "Basiswechsel"
       },
       "group": "general",
       "level": "college",
@@ -10237,7 +10711,9 @@ var data = {
       "id": "math_unmatched_eigenvalue equation",
       "name": "eigenvalue equation",
       "labels": {
-        "en": "eigenvalue equation"
+        "en": "eigenvalue equation",
+        "zh": "特征值方程",
+        "de": "Eigenwertgleichung"
       },
       "group": "general",
       "level": "college",
@@ -10257,7 +10733,9 @@ var data = {
       "id": "math_unmatched_similarity",
       "name": "similarity",
       "labels": {
-        "en": "similarity"
+        "en": "similarity",
+        "zh": "相似",
+        "de": "Ähnlichkeit"
       },
       "group": "general",
       "level": "college",
@@ -10277,7 +10755,9 @@ var data = {
       "id": "math_unmatched_波动方程",
       "name": "波动方程",
       "labels": {
-        "zh": "波动方程"
+        "zh": "波动方程",
+        "en": "wave equation",
+        "de": "Wellengleichung"
       },
       "group": "general",
       "level": "college",
@@ -10297,7 +10777,9 @@ var data = {
       "id": "math_unmatched_热传导方程",
       "name": "热传导方程",
       "labels": {
-        "zh": "热传导方程"
+        "zh": "热传导方程",
+        "en": "heat equation",
+        "de": "Wärmegleichung"
       },
       "group": "general",
       "level": "college",
@@ -10323,7 +10805,9 @@ var data = {
       "id": "math_unmatched_拉普拉斯方程",
       "name": "拉普拉斯方程",
       "labels": {
-        "zh": "拉普拉斯方程"
+        "zh": "拉普拉斯方程",
+        "en": "Laplace equation",
+        "de": "Laplace-Gleichung"
       },
       "group": "general",
       "level": "college",
@@ -10349,7 +10833,9 @@ var data = {
       "id": "math_unmatched_分离变量法",
       "name": "分离变量法",
       "labels": {
-        "zh": "分离变量法"
+        "zh": "分离变量法",
+        "en": "separation of variables",
+        "de": "Trennung der Variablen"
       },
       "group": "general",
       "level": "college",
@@ -10375,7 +10861,9 @@ var data = {
       "id": "math_unmatched_数轴",
       "name": "数轴",
       "labels": {
-        "zh": "数轴"
+        "zh": "数轴",
+        "en": "number line",
+        "de": "Zahlenstrahl"
       },
       "group": "general",
       "level": "middle",
@@ -10395,7 +10883,9 @@ var data = {
       "id": "math_unmatched_相反数",
       "name": "相反数",
       "labels": {
-        "zh": "相反数"
+        "zh": "相反数",
+        "en": "opposite number",
+        "de": "Gegenzahl"
       },
       "group": "general",
       "level": "middle",
@@ -10415,7 +10905,9 @@ var data = {
       "id": "math_unmatched_绝对值",
       "name": "绝对值",
       "labels": {
-        "zh": "绝对值"
+        "zh": "绝对值",
+        "en": "absolute value",
+        "de": "Absolutbetrag"
       },
       "group": "general",
       "level": "middle",
@@ -10435,7 +10927,9 @@ var data = {
       "id": "math_unmatched_单项式",
       "name": "单项式",
       "labels": {
-        "zh": "单项式"
+        "zh": "单项式",
+        "en": "monomial",
+        "de": "Monom"
       },
       "group": "general",
       "level": "middle",
@@ -10455,7 +10949,9 @@ var data = {
       "id": "math_unmatched_多项式",
       "name": "多项式",
       "labels": {
-        "zh": "多项式"
+        "zh": "多项式",
+        "en": "polynomial",
+        "de": "Polynom"
       },
       "group": "general",
       "level": "middle",
@@ -10475,7 +10971,9 @@ var data = {
       "id": "math_unmatched_解方程",
       "name": "解方程",
       "labels": {
-        "zh": "解方程"
+        "zh": "解方程",
+        "en": "solving equations",
+        "de": "Gleichungen lösen"
       },
       "group": "general",
       "level": "middle",
@@ -10495,7 +10993,9 @@ var data = {
       "id": "math_unmatched_实数",
       "name": "实数",
       "labels": {
-        "zh": "实数"
+        "zh": "实数",
+        "en": "real number",
+        "de": "reelle Zahl"
       },
       "group": "general",
       "level": "middle",
@@ -10515,7 +11015,9 @@ var data = {
       "id": "math_unmatched_平方根",
       "name": "平方根",
       "labels": {
-        "zh": "平方根"
+        "zh": "平方根",
+        "en": "square root",
+        "de": "Quadratwurzel"
       },
       "group": "general",
       "level": "middle",
@@ -10535,7 +11037,9 @@ var data = {
       "id": "math_unmatched_立方根",
       "name": "立方根",
       "labels": {
-        "zh": "立方根"
+        "zh": "立方根",
+        "en": "cube root",
+        "de": "Kubikwurzel"
       },
       "group": "general",
       "level": "middle",
@@ -10555,7 +11059,9 @@ var data = {
       "id": "math_unmatched_消元法",
       "name": "消元法",
       "labels": {
-        "zh": "消元法"
+        "zh": "消元法",
+        "en": "elimination method",
+        "de": "Eliminationsverfahren"
       },
       "group": "general",
       "level": "middle",
@@ -10575,7 +11081,9 @@ var data = {
       "id": "math_unmatched_求根公式",
       "name": "求根公式",
       "labels": {
-        "zh": "求根公式"
+        "zh": "求根公式",
+        "en": "quadratic formula",
+        "de": "Mitternachtsformel"
       },
       "group": "general",
       "level": "middle",
@@ -10595,7 +11103,9 @@ var data = {
       "id": "math_unmatched_判别式",
       "name": "判别式",
       "labels": {
-        "zh": "判别式"
+        "zh": "判别式",
+        "en": "discriminant",
+        "de": "Diskriminante"
       },
       "group": "general",
       "level": "middle",
@@ -10615,7 +11125,9 @@ var data = {
       "id": "math_unmatched_顶点",
       "name": "顶点",
       "labels": {
-        "zh": "顶点"
+        "zh": "顶点",
+        "en": "vertex",
+        "de": "Scheitel"
       },
       "group": "general",
       "level": "middle",
@@ -10635,7 +11147,9 @@ var data = {
       "id": "math_unmatched_旋转",
       "name": "旋转",
       "labels": {
-        "zh": "旋转"
+        "zh": "旋转",
+        "en": "rotation",
+        "de": "Rotation"
       },
       "group": "general",
       "level": "middle",
@@ -10661,7 +11175,9 @@ var data = {
       "id": "math_unmatched_中心对称",
       "name": "中心对称",
       "labels": {
-        "zh": "中心对称"
+        "zh": "中心对称",
+        "en": "central symmetry",
+        "de": "Punktsymmetrie"
       },
       "group": "general",
       "level": "middle",
@@ -10681,7 +11197,9 @@ var data = {
       "id": "math_unmatched_弧",
       "name": "弧",
       "labels": {
-        "zh": "弧"
+        "zh": "弧",
+        "en": "arc",
+        "de": "Bogen"
       },
       "group": "general",
       "level": "middle",
@@ -10701,7 +11219,9 @@ var data = {
       "id": "math_unmatched_弦",
       "name": "弦",
       "labels": {
-        "zh": "弦"
+        "zh": "弦",
+        "en": "chord",
+        "de": "Sehne"
       },
       "group": "general",
       "level": "middle",
@@ -10721,7 +11241,9 @@ var data = {
       "id": "math_unmatched_圆周角",
       "name": "圆周角",
       "labels": {
-        "zh": "圆周角"
+        "zh": "圆周角",
+        "en": "inscribed angle",
+        "de": "Peripheriewinkel"
       },
       "group": "general",
       "level": "middle",
@@ -10741,7 +11263,9 @@ var data = {
       "id": "math_unmatched_直角三角形",
       "name": "直角三角形",
       "labels": {
-        "zh": "直角三角形"
+        "zh": "直角三角形",
+        "en": "right triangle",
+        "de": "rechtwinkliges Dreieck"
       },
       "group": "general",
       "level": "middle",
@@ -10761,7 +11285,9 @@ var data = {
       "id": "math_unmatched_反比例函数",
       "name": "反比例函数",
       "labels": {
-        "zh": "反比例函数"
+        "zh": "反比例函数",
+        "en": "inverse proportional function",
+        "de": "indirekt proportionale Funktion"
       },
       "group": "general",
       "level": "middle",
@@ -10781,7 +11307,9 @@ var data = {
       "id": "math_unmatched_三角形内角和",
       "name": "三角形内角和",
       "labels": {
-        "zh": "三角形内角和"
+        "zh": "三角形内角和",
+        "en": "sum of interior angles of a triangle",
+        "de": "Innenwinkelsumme im Dreieck"
       },
       "group": "general",
       "level": "middle",
@@ -10801,7 +11329,9 @@ var data = {
       "id": "math_unmatched_全等判定",
       "name": "全等判定",
       "labels": {
-        "zh": "全等判定"
+        "zh": "全等判定",
+        "en": "congruence criteria",
+        "de": "Kongruenzsätze"
       },
       "group": "general",
       "level": "middle",
@@ -10821,7 +11351,9 @@ var data = {
       "id": "math_unmatched_轴对称",
       "name": "轴对称",
       "labels": {
-        "zh": "轴对称"
+        "zh": "轴对称",
+        "en": "axial symmetry",
+        "de": "Achsensymmetrie"
       },
       "group": "general",
       "level": "middle",
@@ -10847,7 +11379,9 @@ var data = {
       "id": "math_unmatched_等腰三角形",
       "name": "等腰三角形",
       "labels": {
-        "zh": "等腰三角形"
+        "zh": "等腰三角形",
+        "en": "isosceles triangle",
+        "de": "gleichschenkliges Dreieck"
       },
       "group": "general",
       "level": "middle",
@@ -10867,7 +11401,9 @@ var data = {
       "id": "math_unmatched_因式分解",
       "name": "因式分解",
       "labels": {
-        "zh": "因式分解"
+        "zh": "因式分解",
+        "en": "factorization",
+        "de": "Faktorisierung"
       },
       "group": "general",
       "level": "middle",
@@ -10887,7 +11423,9 @@ var data = {
       "id": "math_unmatched_分式",
       "name": "分式",
       "labels": {
-        "zh": "分式"
+        "zh": "分式",
+        "en": "rational expression",
+        "de": "rationaler Ausdruck"
       },
       "group": "general",
       "level": "middle",
@@ -10907,7 +11445,9 @@ var data = {
       "id": "math_unmatched_勾股定理逆定理",
       "name": "勾股定理逆定理",
       "labels": {
-        "zh": "勾股定理逆定理"
+        "zh": "勾股定理逆定理",
+        "en": "converse of Pythagoras' theorem",
+        "de": "Umkehrung des Satzes von Pythagoras"
       },
       "group": "general",
       "level": "middle",
@@ -10927,7 +11467,9 @@ var data = {
       "id": "math_unmatched_正比例函数",
       "name": "正比例函数",
       "labels": {
-        "zh": "正比例函数"
+        "zh": "正比例函数",
+        "en": "directly proportional function",
+        "de": "direkt proportionale Funktion"
       },
       "group": "general",
       "level": "middle",
@@ -10947,7 +11489,9 @@ var data = {
       "id": "math_unmatched_变量",
       "name": "变量",
       "labels": {
-        "zh": "变量"
+        "zh": "变量",
+        "en": "variable",
+        "de": "Variable"
       },
       "group": "general",
       "level": "middle",
@@ -10967,7 +11511,9 @@ var data = {
       "id": "math_unmatched_比大小",
       "name": "比大小",
       "labels": {
-        "zh": "比大小"
+        "zh": "比大小",
+        "en": "comparing numbers",
+        "de": "Zahlen vergleichen"
       },
       "group": "general",
       "level": "elementary",
@@ -10987,7 +11533,9 @@ var data = {
       "id": "math_unmatched_数位",
       "name": "数位",
       "labels": {
-        "zh": "数位"
+        "zh": "数位",
+        "en": "digit place",
+        "de": "Stelle"
       },
       "group": "general",
       "level": "elementary",
@@ -11007,7 +11555,9 @@ var data = {
       "id": "math_unmatched_凑十法",
       "name": "凑十法",
       "labels": {
-        "zh": "凑十法"
+        "zh": "凑十法",
+        "en": "make-ten method",
+        "de": "Zehnerergänzungs-Methode"
       },
       "group": "general",
       "level": "elementary",
@@ -11027,7 +11577,9 @@ var data = {
       "id": "math_unmatched_退位减法",
       "name": "退位减法",
       "labels": {
-        "zh": "退位减法"
+        "zh": "退位减法",
+        "en": "subtraction with borrowing",
+        "de": "Subtraktion mit Übertrag"
       },
       "group": "general",
       "level": "elementary",
@@ -11047,7 +11599,9 @@ var data = {
       "id": "math_unmatched_人民币",
       "name": "人民币",
       "labels": {
-        "zh": "人民币"
+        "zh": "人民币",
+        "en": "Chinese yuan",
+        "de": "Yuan"
       },
       "group": "general",
       "level": "elementary",
@@ -11067,7 +11621,9 @@ var data = {
       "id": "math_unmatched_分类",
       "name": "分类",
       "labels": {
-        "zh": "分类"
+        "zh": "分类",
+        "en": "classification",
+        "de": "Klassifikation"
       },
       "group": "general",
       "level": "elementary",
@@ -11087,7 +11643,9 @@ var data = {
       "id": "math_unmatched_100以内数",
       "name": "100以内数",
       "labels": {
-        "zh": "100以内数"
+        "zh": "100以内数",
+        "en": "numbers within 100",
+        "de": "Zahlen bis 100"
       },
       "group": "general",
       "level": "elementary",
@@ -11107,7 +11665,9 @@ var data = {
       "id": "math_unmatched_锐角",
       "name": "锐角",
       "labels": {
-        "zh": "锐角"
+        "zh": "锐角",
+        "en": "acute angle",
+        "de": "spitzer Winkel"
       },
       "group": "general",
       "level": "elementary",
@@ -11127,7 +11687,9 @@ var data = {
       "id": "math_unmatched_钝角",
       "name": "钝角",
       "labels": {
-        "zh": "钝角"
+        "zh": "钝角",
+        "en": "obtuse angle",
+        "de": "stumpfer Winkel"
       },
       "group": "general",
       "level": "elementary",
@@ -11147,7 +11709,9 @@ var data = {
       "id": "math_unmatched_平均分",
       "name": "平均分",
       "labels": {
-        "zh": "平均分"
+        "zh": "平均分",
+        "en": "equal sharing",
+        "de": "gleichmäßiges Aufteilen"
       },
       "group": "general",
       "level": "elementary",
@@ -11167,7 +11731,9 @@ var data = {
       "id": "math_unmatched_有余数除法",
       "name": "有余数除法",
       "labels": {
-        "zh": "有余数除法"
+        "zh": "有余数除法",
+        "en": "division with remainder",
+        "de": "Division mit Rest"
       },
       "group": "general",
       "level": "elementary",
@@ -11187,7 +11753,9 @@ var data = {
       "id": "math_unmatched_平移",
       "name": "平移",
       "labels": {
-        "zh": "平移"
+        "zh": "平移",
+        "en": "translation",
+        "de": "Verschiebung"
       },
       "group": "general",
       "level": "elementary",
@@ -11207,7 +11775,9 @@ var data = {
       "id": "math_unmatched_混合运算",
       "name": "混合运算",
       "labels": {
-        "zh": "混合运算"
+        "zh": "混合运算",
+        "en": "mixed operations",
+        "de": "gemischte Rechenarten"
       },
       "group": "general",
       "level": "elementary",
@@ -11227,7 +11797,9 @@ var data = {
       "id": "math_unmatched_万以内数",
       "name": "万以内数",
       "labels": {
-        "zh": "万以内数"
+        "zh": "万以内数",
+        "en": "numbers within 10,000",
+        "de": "Zahlen bis 10000"
       },
       "group": "general",
       "level": "elementary",
@@ -11247,7 +11819,9 @@ var data = {
       "id": "math_unmatched_克",
       "name": "克",
       "labels": {
-        "zh": "克"
+        "zh": "克",
+        "en": "gram",
+        "de": "Gramm"
       },
       "group": "general",
       "level": "elementary",
@@ -11267,7 +11841,9 @@ var data = {
       "id": "math_unmatched_随机试验",
       "name": "随机试验",
       "labels": {
-        "zh": "随机试验"
+        "zh": "随机试验",
+        "en": "random experiment",
+        "de": "Zufallsexperiment"
       },
       "group": "general",
       "level": "college",
@@ -11287,7 +11863,9 @@ var data = {
       "id": "math_unmatched_样本空间",
       "name": "样本空间",
       "labels": {
-        "zh": "样本空间"
+        "zh": "样本空间",
+        "en": "sample space",
+        "de": "Ergebnisraum"
       },
       "group": "general",
       "level": "college",
@@ -11307,7 +11885,9 @@ var data = {
       "id": "math_unmatched_随机事件",
       "name": "随机事件",
       "labels": {
-        "zh": "随机事件"
+        "zh": "随机事件",
+        "en": "random event",
+        "de": "Zufallsereignis"
       },
       "group": "general",
       "level": "college",
@@ -11327,7 +11907,9 @@ var data = {
       "id": "math_unmatched_古典概型",
       "name": "古典概型",
       "labels": {
-        "zh": "古典概型"
+        "zh": "古典概型",
+        "en": "classical probability model",
+        "de": "klassisches Wahrscheinlichkeitsmodell"
       },
       "group": "general",
       "level": "college",
@@ -11347,7 +11929,9 @@ var data = {
       "id": "math_unmatched_全概率公式",
       "name": "全概率公式",
       "labels": {
-        "zh": "全概率公式"
+        "zh": "全概率公式",
+        "en": "law of total probability",
+        "de": "Satz von der totalen Wahrscheinlichkeit"
       },
       "group": "general",
       "level": "college",
@@ -11367,7 +11951,9 @@ var data = {
       "id": "math_unmatched_事件的独立性",
       "name": "事件的独立性",
       "labels": {
-        "zh": "事件的独立性"
+        "zh": "事件的独立性",
+        "en": "independence of events",
+        "de": "Unabhängigkeit von Ereignissen"
       },
       "group": "general",
       "level": "college",
@@ -11387,7 +11973,9 @@ var data = {
       "id": "math_unmatched_离散型随机变量",
       "name": "离散型随机变量",
       "labels": {
-        "zh": "离散型随机变量"
+        "zh": "离散型随机变量",
+        "en": "discrete random variable",
+        "de": "diskrete Zufallsvariable"
       },
       "group": "general",
       "level": "college",
@@ -11407,7 +11995,9 @@ var data = {
       "id": "math_unmatched_连续型随机变量",
       "name": "连续型随机变量",
       "labels": {
-        "zh": "连续型随机变量"
+        "zh": "连续型随机变量",
+        "en": "continuous random variable",
+        "de": "stetige Zufallsvariable"
       },
       "group": "general",
       "level": "college",
@@ -11427,7 +12017,9 @@ var data = {
       "id": "math_unmatched_条件分布",
       "name": "条件分布",
       "labels": {
-        "zh": "条件分布"
+        "zh": "条件分布",
+        "en": "conditional distribution",
+        "de": "bedingte Verteilung"
       },
       "group": "general",
       "level": "college",
@@ -11447,7 +12039,9 @@ var data = {
       "id": "math_unmatched_二维随机变量",
       "name": "二维随机变量",
       "labels": {
-        "zh": "二维随机变量"
+        "zh": "二维随机变量",
+        "en": "two-dimensional random variable",
+        "de": "zweidimensionale Zufallsvariable"
       },
       "group": "general",
       "level": "college",
@@ -11467,7 +12061,9 @@ var data = {
       "id": "math_unmatched_随机变量的独立性",
       "name": "随机变量的独立性",
       "labels": {
-        "zh": "随机变量的独立性"
+        "zh": "随机变量的独立性",
+        "en": "independence of random variables",
+        "de": "Unabhängigkeit von Zufallsvariablen"
       },
       "group": "general",
       "level": "college",
@@ -11487,7 +12083,9 @@ var data = {
       "id": "math_unmatched_卷积公式",
       "name": "卷积公式",
       "labels": {
-        "zh": "卷积公式"
+        "zh": "卷积公式",
+        "en": "convolution formula",
+        "de": "Faltungsformel"
       },
       "group": "general",
       "level": "college",
@@ -11507,7 +12105,9 @@ var data = {
       "id": "math_unmatched_标准差",
       "name": "标准差",
       "labels": {
-        "zh": "标准差"
+        "zh": "标准差",
+        "en": "standard deviation",
+        "de": "Standardabweichung"
       },
       "group": "general",
       "level": "college",
@@ -11527,7 +12127,9 @@ var data = {
       "id": "math_unmatched_矩",
       "name": "矩",
       "labels": {
-        "zh": "矩"
+        "zh": "矩",
+        "en": "moment",
+        "de": "Moment"
       },
       "group": "general",
       "level": "college",
@@ -11547,7 +12149,9 @@ var data = {
       "id": "math_unmatched_依概率收敛",
       "name": "依概率收敛",
       "labels": {
-        "zh": "依概率收敛"
+        "zh": "依概率收敛",
+        "en": "convergence in probability",
+        "de": "Konvergenz in Wahrscheinlichkeit"
       },
       "group": "general",
       "level": "college",
@@ -11567,7 +12171,9 @@ var data = {
       "id": "math_unmatched_频率的稳定性",
       "name": "频率的稳定性",
       "labels": {
-        "zh": "频率的稳定性"
+        "zh": "频率的稳定性",
+        "en": "stability of frequency",
+        "de": "Stabilität der Häufigkeit"
       },
       "group": "general",
       "level": "college",
@@ -11587,7 +12193,9 @@ var data = {
       "id": "math_unmatched_总体",
       "name": "总体",
       "labels": {
-        "zh": "总体"
+        "zh": "总体",
+        "en": "population",
+        "de": "Grundgesamtheit"
       },
       "group": "general",
       "level": "college",
@@ -11607,7 +12215,9 @@ var data = {
       "id": "math_unmatched_样本",
       "name": "样本",
       "labels": {
-        "zh": "样本"
+        "zh": "样本",
+        "en": "sample",
+        "de": "Stichprobe"
       },
       "group": "general",
       "level": "college",
@@ -11627,7 +12237,9 @@ var data = {
       "id": "math_unmatched_样本均值",
       "name": "样本均值",
       "labels": {
-        "zh": "样本均值"
+        "zh": "样本均值",
+        "en": "sample mean",
+        "de": "Stichprobenmittelwert"
       },
       "group": "general",
       "level": "college",
@@ -11647,7 +12259,9 @@ var data = {
       "id": "math_unmatched_样本方差",
       "name": "样本方差",
       "labels": {
-        "zh": "样本方差"
+        "zh": "样本方差",
+        "en": "sample variance",
+        "de": "Stichprobenvarianz"
       },
       "group": "general",
       "level": "college",
@@ -11667,7 +12281,9 @@ var data = {
       "id": "math_unmatched_点估计",
       "name": "点估计",
       "labels": {
-        "zh": "点估计"
+        "zh": "点估计",
+        "en": "point estimation",
+        "de": "Punktschätzung"
       },
       "group": "general",
       "level": "college",
@@ -11687,7 +12303,9 @@ var data = {
       "id": "math_unmatched_矩估计",
       "name": "矩估计",
       "labels": {
-        "zh": "矩估计"
+        "zh": "矩估计",
+        "en": "moment estimation",
+        "de": "Momentenmethode"
       },
       "group": "general",
       "level": "college",
@@ -11707,7 +12325,9 @@ var data = {
       "id": "math_unmatched_似然函数",
       "name": "似然函数",
       "labels": {
-        "zh": "似然函数"
+        "zh": "似然函数",
+        "en": "likelihood function",
+        "de": "Likelihood-Funktion"
       },
       "group": "general",
       "level": "college",
@@ -11727,7 +12347,9 @@ var data = {
       "id": "math_unmatched_无偏性",
       "name": "无偏性",
       "labels": {
-        "zh": "无偏性"
+        "zh": "无偏性",
+        "en": "unbiasedness",
+        "de": "Erwartungstreue"
       },
       "group": "general",
       "level": "college",
@@ -11747,7 +12369,9 @@ var data = {
       "id": "math_unmatched_有效性",
       "name": "有效性",
       "labels": {
-        "zh": "有效性"
+        "zh": "有效性",
+        "en": "efficiency",
+        "de": "Effizienz"
       },
       "group": "general",
       "level": "college",
@@ -11767,7 +12391,9 @@ var data = {
       "id": "math_unmatched_一致性",
       "name": "一致性",
       "labels": {
-        "zh": "一致性"
+        "zh": "一致性",
+        "en": "consistency",
+        "de": "Konsistenz"
       },
       "group": "general",
       "level": "college",
@@ -11787,7 +12413,9 @@ var data = {
       "id": "math_unmatched_检验统计量",
       "name": "检验统计量",
       "labels": {
-        "zh": "检验统计量"
+        "zh": "检验统计量",
+        "en": "test statistic",
+        "de": "Prüfgröße"
       },
       "group": "general",
       "level": "college",
@@ -11807,7 +12435,9 @@ var data = {
       "id": "math_unmatched_拒绝域",
       "name": "拒绝域",
       "labels": {
-        "zh": "拒绝域"
+        "zh": "拒绝域",
+        "en": "rejection region",
+        "de": "Ablehnungsbereich"
       },
       "group": "general",
       "level": "college",
@@ -11827,7 +12457,9 @@ var data = {
       "id": "math_unmatched_第一类错误",
       "name": "第一类错误",
       "labels": {
-        "zh": "第一类错误"
+        "zh": "第一类错误",
+        "en": "Type I error",
+        "de": "Fehler 1. Art"
       },
       "group": "general",
       "level": "college",
@@ -11847,7 +12479,9 @@ var data = {
       "id": "math_unmatched_第二类错误",
       "name": "第二类错误",
       "labels": {
-        "zh": "第二类错误"
+        "zh": "第二类错误",
+        "en": "Type II error",
+        "de": "Fehler 2. Art"
       },
       "group": "general",
       "level": "college",
@@ -11867,7 +12501,9 @@ var data = {
       "id": "math_unmatched_Z检验",
       "name": "Z检验",
       "labels": {
-        "zh": "Z检验"
+        "zh": "Z检验",
+        "en": "Z-test",
+        "de": "Z-Test"
       },
       "group": "general",
       "level": "college",
@@ -11887,7 +12523,9 @@ var data = {
       "id": "math_unmatched_χ²检验",
       "name": "χ²检验",
       "labels": {
-        "zh": "χ²检验"
+        "zh": "χ²检验",
+        "en": "chi-square test",
+        "de": "Chi-Quadrat-Test"
       },
       "group": "general",
       "level": "college",
@@ -11907,7 +12545,9 @@ var data = {
       "id": "math_unmatched_二阶行列式",
       "name": "二阶行列式",
       "labels": {
-        "zh": "二阶行列式"
+        "zh": "二阶行列式",
+        "en": "second-order determinant",
+        "de": "Determinante zweiter Ordnung"
       },
       "group": "general",
       "level": "college",
@@ -11927,7 +12567,9 @@ var data = {
       "id": "math_unmatched_三阶行列式",
       "name": "三阶行列式",
       "labels": {
-        "zh": "三阶行列式"
+        "zh": "三阶行列式",
+        "en": "third-order determinant",
+        "de": "Determinante dritter Ordnung"
       },
       "group": "general",
       "level": "college",
@@ -11947,7 +12589,9 @@ var data = {
       "id": "math_unmatched_逆序数",
       "name": "逆序数",
       "labels": {
-        "zh": "逆序数"
+        "zh": "逆序数",
+        "en": "inversion number",
+        "de": "Inversionszahl"
       },
       "group": "general",
       "level": "college",
@@ -11967,7 +12611,9 @@ var data = {
       "id": "math_unmatched_对换",
       "name": "对换",
       "labels": {
-        "zh": "对换"
+        "zh": "对换",
+        "en": "transposition",
+        "de": "Transposition"
       },
       "group": "general",
       "level": "college",
@@ -11987,7 +12633,9 @@ var data = {
       "id": "math_unmatched_矩阵的幂",
       "name": "矩阵的幂",
       "labels": {
-        "zh": "矩阵的幂"
+        "zh": "矩阵的幂",
+        "en": "powers of a matrix",
+        "de": "Potenzen einer Matrix"
       },
       "group": "general",
       "level": "college",
@@ -12007,7 +12655,9 @@ var data = {
       "id": "math_unmatched_向量加法",
       "name": "向量加法",
       "labels": {
-        "zh": "向量加法"
+        "zh": "向量加法",
+        "en": "vector addition",
+        "de": "Vektoraddition"
       },
       "group": "general",
       "level": "college",
@@ -12027,7 +12677,9 @@ var data = {
       "id": "math_unmatched_数乘向量",
       "name": "数乘向量",
       "labels": {
-        "zh": "数乘向量"
+        "zh": "数乘向量",
+        "en": "scalar multiplication of vectors",
+        "de": "skalare Multiplikation"
       },
       "group": "general",
       "level": "college",
@@ -12047,7 +12699,9 @@ var data = {
       "id": "math_unmatched_向量的模",
       "name": "向量的模",
       "labels": {
-        "zh": "向量的模"
+        "zh": "向量的模",
+        "en": "magnitude of a vector",
+        "de": "Betrag eines Vektors"
       },
       "group": "general",
       "level": "college",
@@ -12067,7 +12721,9 @@ var data = {
       "id": "math_unmatched_向量积",
       "name": "向量积",
       "labels": {
-        "zh": "向量积"
+        "zh": "向量积",
+        "en": "vector product",
+        "de": "Vektorprodukt"
       },
       "group": "general",
       "level": "college",
@@ -12087,7 +12743,9 @@ var data = {
       "id": "math_unmatched_混合积",
       "name": "混合积",
       "labels": {
-        "zh": "混合积"
+        "zh": "混合积",
+        "en": "scalar triple product",
+        "de": "Spatprodukt"
       },
       "group": "general",
       "level": "college",
@@ -12107,7 +12765,9 @@ var data = {
       "id": "math_unmatched_方向余弦",
       "name": "方向余弦",
       "labels": {
-        "zh": "方向余弦"
+        "zh": "方向余弦",
+        "en": "direction cosines",
+        "de": "Richtungskosinus"
       },
       "group": "general",
       "level": "college",
@@ -12127,7 +12787,9 @@ var data = {
       "id": "math_unmatched_标准形",
       "name": "标准形",
       "labels": {
-        "zh": "标准形"
+        "zh": "标准形",
+        "en": "standard form",
+        "de": "Normalform"
       },
       "group": "general",
       "level": "college",
@@ -12147,7 +12809,9 @@ var data = {
       "id": "math_unmatched_正定二次型",
       "name": "正定二次型",
       "labels": {
-        "zh": "正定二次型"
+        "zh": "正定二次型",
+        "en": "positive definite quadratic form",
+        "de": "positiv definite quadratische Form"
       },
       "group": "general",
       "level": "college",
@@ -12167,7 +12831,9 @@ var data = {
       "id": "math_unmatched_合同变换",
       "name": "合同变换",
       "labels": {
-        "zh": "合同变换"
+        "zh": "合同变换",
+        "en": "congruent transformation",
+        "de": "Kongruenzabbildung"
       },
       "group": "general",
       "level": "college",
@@ -12187,7 +12853,9 @@ var data = {
       "id": "math_unmatched_实对称矩阵正交对角化",
       "name": "实对称矩阵正交对角化",
       "labels": {
-        "zh": "实对称矩阵正交对角化"
+        "zh": "实对称矩阵正交对角化",
+        "en": "orthogonal diagonalization of real symmetric matrices",
+        "de": "orthogonale Diagonalisierung reellsymmetrischer Matrizen"
       },
       "group": "general",
       "level": "college",
@@ -12207,7 +12875,9 @@ var data = {
       "id": "math_unmatched_线性变换的复合",
       "name": "线性变换的复合",
       "labels": {
-        "zh": "线性变换的复合"
+        "zh": "线性变换的复合",
+        "en": "composition of linear transformations",
+        "de": "Verkettung linearer Abbildungen"
       },
       "group": "general",
       "level": "college",
@@ -12227,7 +12897,9 @@ var data = {
       "id": "math_unmatched_常数函数的导数",
       "name": "常数函数的导数",
       "labels": {
-        "zh": "常数函数的导数"
+        "zh": "常数函数的导数",
+        "en": "derivative of constant function",
+        "de": "Ableitung der konstanten Funktion"
       },
       "group": "general",
       "level": "high",
@@ -12247,7 +12919,9 @@ var data = {
       "id": "math_unmatched_幂函数的导数",
       "name": "幂函数的导数",
       "labels": {
-        "zh": "幂函数的导数"
+        "zh": "幂函数的导数",
+        "en": "derivative of power function",
+        "de": "Ableitung der Potenzfunktion"
       },
       "group": "general",
       "level": "high",
@@ -12267,7 +12941,9 @@ var data = {
       "id": "math_unmatched_正弦函数的导数",
       "name": "正弦函数的导数",
       "labels": {
-        "zh": "正弦函数的导数"
+        "zh": "正弦函数的导数",
+        "en": "derivative of sine",
+        "de": "Ableitung des Sinus"
       },
       "group": "general",
       "level": "high",
@@ -12287,7 +12963,9 @@ var data = {
       "id": "math_unmatched_余弦函数的导数",
       "name": "余弦函数的导数",
       "labels": {
-        "zh": "余弦函数的导数"
+        "zh": "余弦函数的导数",
+        "en": "derivative of cosine",
+        "de": "Ableitung des Kosinus"
       },
       "group": "general",
       "level": "high",
@@ -12307,7 +12985,9 @@ var data = {
       "id": "math_unmatched_指数函数的导数",
       "name": "指数函数的导数",
       "labels": {
-        "zh": "指数函数的导数"
+        "zh": "指数函数的导数",
+        "en": "derivative of exponential function",
+        "de": "Ableitung der Exponentialfunktion"
       },
       "group": "general",
       "level": "high",
@@ -12327,7 +13007,9 @@ var data = {
       "id": "math_unmatched_对数函数的导数",
       "name": "对数函数的导数",
       "labels": {
-        "zh": "对数函数的导数"
+        "zh": "对数函数的导数",
+        "en": "derivative of logarithm",
+        "de": "Ableitung des Logarithmus"
       },
       "group": "general",
       "level": "high",
@@ -12347,7 +13029,9 @@ var data = {
       "id": "math_unmatched_可微",
       "name": "可微",
       "labels": {
-        "zh": "可微"
+        "zh": "可微",
+        "en": "differentiability",
+        "de": "Differenzierbarkeit"
       },
       "group": "general",
       "level": "high",
@@ -12367,7 +13051,9 @@ var data = {
       "id": "math_unmatched_微分的几何意义",
       "name": "微分的几何意义",
       "labels": {
-        "zh": "微分的几何意义"
+        "zh": "微分的几何意义",
+        "en": "geometric meaning of differential",
+        "de": "geometrische Bedeutung des Differenzials"
       },
       "group": "general",
       "level": "high",
@@ -12387,7 +13073,9 @@ var data = {
       "id": "math_unmatched_积分下限",
       "name": "积分下限",
       "labels": {
-        "zh": "积分下限"
+        "zh": "积分下限",
+        "en": "lower limit of integration",
+        "de": "untere Integrationsgrenze"
       },
       "group": "general",
       "level": "high",
@@ -12407,7 +13095,9 @@ var data = {
       "id": "math_unmatched_积分上限",
       "name": "积分上限",
       "labels": {
-        "zh": "积分上限"
+        "zh": "积分上限",
+        "en": "upper limit of integration",
+        "de": "obere Integrationsgrenze"
       },
       "group": "general",
       "level": "high",
@@ -12427,7 +13117,9 @@ var data = {
       "id": "math_unmatched_被积函数",
       "name": "被积函数",
       "labels": {
-        "zh": "被积函数"
+        "zh": "被积函数",
+        "en": "integrand",
+        "de": "Integrand"
       },
       "group": "general",
       "level": "high",
@@ -12447,7 +13139,9 @@ var data = {
       "id": "math_unmatched_曲边梯形",
       "name": "曲边梯形",
       "labels": {
-        "zh": "曲边梯形"
+        "zh": "曲边梯形",
+        "en": "curved trapezoid",
+        "de": "krummliniges Trapez"
       },
       "group": "general",
       "level": "high",
@@ -12467,7 +13161,9 @@ var data = {
       "id": "math_unmatched_线性性质",
       "name": "线性性质",
       "labels": {
-        "zh": "线性性质"
+        "zh": "线性性质",
+        "en": "linearity",
+        "de": "Linearität"
       },
       "group": "general",
       "level": "high",
@@ -12487,7 +13183,9 @@ var data = {
       "id": "math_unmatched_区间可加性",
       "name": "区间可加性",
       "labels": {
-        "zh": "区间可加性"
+        "zh": "区间可加性",
+        "en": "additivity over intervals",
+        "de": "Intervalladditivität"
       },
       "group": "general",
       "level": "high",
@@ -12507,7 +13205,9 @@ var data = {
       "id": "math_unmatched_估值定理",
       "name": "估值定理",
       "labels": {
-        "zh": "估值定理"
+        "zh": "估值定理",
+        "en": "estimation theorem",
+        "de": "Abschätzungssatz"
       },
       "group": "general",
       "level": "high",
@@ -12527,7 +13227,9 @@ var data = {
       "id": "math_unmatched_微分方程的阶",
       "name": "微分方程的阶",
       "labels": {
-        "zh": "微分方程的阶"
+        "zh": "微分方程的阶",
+        "en": "order of a differential equation",
+        "de": "Ordnung einer Differenzialgleichung"
       },
       "group": "general",
       "level": "high",
@@ -12547,7 +13249,9 @@ var data = {
       "id": "math_unmatched_一阶线性方程",
       "name": "一阶线性方程",
       "labels": {
-        "zh": "一阶线性方程"
+        "zh": "一阶线性方程",
+        "en": "first-order linear equation",
+        "de": "lineare Gleichung erster Ordnung"
       },
       "group": "general",
       "level": "high",
@@ -12567,7 +13271,9 @@ var data = {
       "id": "math_unmatched_无穷级数",
       "name": "无穷级数",
       "labels": {
-        "zh": "无穷级数"
+        "zh": "无穷级数",
+        "en": "infinite series",
+        "de": "unendliche Reihe"
       },
       "group": "general",
       "level": "high",
@@ -12587,7 +13293,9 @@ var data = {
       "id": "math_unmatched_收敛半径",
       "name": "收敛半径",
       "labels": {
-        "zh": "收敛半径"
+        "zh": "收敛半径",
+        "en": "radius of convergence",
+        "de": "Konvergenzradius"
       },
       "group": "general",
       "level": "high",
@@ -12607,7 +13315,9 @@ var data = {
       "id": "math_unmatched_高阶偏导数",
       "name": "高阶偏导数",
       "labels": {
-        "zh": "高阶偏导数"
+        "zh": "高阶偏导数",
+        "en": "higher-order partial derivatives",
+        "de": "höhere partielle Ableitungen"
       },
       "group": "general",
       "level": "high",
@@ -12627,7 +13337,9 @@ var data = {
       "id": "math_unmatched_向量场",
       "name": "向量场",
       "labels": {
-        "zh": "向量场"
+        "zh": "向量场",
+        "en": "vector field",
+        "de": "Vektorfeld"
       },
       "group": "general",
       "level": "high",
@@ -12647,7 +13359,9 @@ var data = {
       "id": "math_unmatched_保守场",
       "name": "保守场",
       "labels": {
-        "zh": "保守场"
+        "zh": "保守场",
+        "en": "conservative field",
+        "de": "konservatives Feld"
       },
       "group": "general",
       "level": "high",
@@ -12667,7 +13381,9 @@ var data = {
       "id": "math_unmatched_波方程",
       "name": "波方程",
       "labels": {
-        "zh": "波方程"
+        "zh": "波方程",
+        "en": "wave equation",
+        "de": "Wellengleichung"
       },
       "group": "general",
       "level": "high",
@@ -12687,7 +13403,9 @@ var data = {
       "id": "math_unmatched_边界条件",
       "name": "边界条件",
       "labels": {
-        "zh": "边界条件"
+        "zh": "边界条件",
+        "en": "boundary conditions",
+        "de": "Randbedingungen"
       },
       "group": "general",
       "level": "high",

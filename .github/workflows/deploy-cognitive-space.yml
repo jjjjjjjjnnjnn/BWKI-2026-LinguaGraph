@@ -36,6 +36,8 @@ jobs:
         run: |
           mkdir -p _deploy
           cp -r cognitive-space/web/* _deploy/
+          mkdir -p _deploy/web
+          cp -r cognitive-space/web/* _deploy/web/
           cp -r cognitive-space/portal _deploy/portal
           cp -r docs _deploy/docs
           cp README.md README_DE.md README_ZH.md _deploy/ 2>/dev/null || true
