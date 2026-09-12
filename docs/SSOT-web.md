@@ -181,3 +181,9 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Skill global: `~/.config/opencode/skills/pdf-reading/` (SKILL.md + scripts/pdf_extract.py + pdf_qc.py + QC-CHECKLIST.md + gpu_config.yaml). Engine: RapidOCR ONNX; CUDA-EP scheitert (cublasLt64_13.dll fehlt) → DirectML (flat flags det_use_dml!; nested dicts werden still ignoriert), warm ~0.5s/Seite (CPU 5s), RTX 5060 ~52%.
 - 9 Subagents parallel: 7 CN-Bücher (31 Kapitel-txts ~1.55MB, mean conf 0.95-0.985, Census je Buch OK, Front/Back-Matter an Kapiteln vermerkt), MIT-Bundle 712pp (Probe 0.9585, full 0.9512, 0 flagged; Bonus Ch27-29 extrahiert), OpenStax-Re-Verify (Vol2 781pp/1.75M chars, Vol3 597pp/1.39M, alle Keywords hit; USTC/UCAS text_layer OK).
 - Scan-Korrektur: Chemie-选必1 hat kein §1.3 — 化学反应的方向 = §2.3 (Mapping repariert, Alter-Eintrag gelöscht). QC-Reports: Temp/opencode/qc_*.md (9x). Offene Reste: resumed pages ohne conf-Werte, 5%-Samples tlw. ungeeyeballt, section-fact-Extraktion → source_references noch fällig.
+
+## v18e R-Grounding (2026-09-12)
+
+- `scripts/ground_refs.py` + `text_grounding_20260912.json` (545KB, tracked): substring-grounding ZH→51 CN-Kapitel, EN→101 OpenStax/MIT-Files. Physik 367: ZH 66.5 % / EN 33.8 %; Chemie 220: ZH 65.9 % / EN 25.5 %; DE = unavailable (LEIFI link-only, ehrlich).
+- Lücken-Audit → 4 Bücher nachgeladen (Phys/Chem 必修1/2, +526pp, GPU-OCR 0.95-0.98, 4 Subagents):斜抛/开普勒/宇宙速度 jetzt grounded; Rest = College-Knoten (83, erwartet) + OCR-Varianten + EN-Phrasen-Recall.
+- Mapping 7→11 Bücher (4 stubs,节 pending); Manifest + Portal-`src_local` (grounding-Raten, 3-sprachig); Skripte: `ground_refs.py` / `extend_mapping_bx.py` / `fetch_cn_pep_mirror.py` (+4 Jobs).
