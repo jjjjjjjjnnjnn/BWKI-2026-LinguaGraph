@@ -94,7 +94,11 @@ def fig3(pc, lang):
     labels = [lv[l] for l in ORDER]
     values = [math[l]["cds"] for l in ORDER]
     counts = [math[l]["nodes"] for l in ORDER]
-    assert abs(values[1] - 0.2705) < 1e-4 and abs(math["high"]["cds"] - 0.0731) < 1e-4, values
+    # FROZEN 2026-09-12 (fig3 forensic): values below are June-2026 dense-graph
+    # publications (middle 46/280, high 175/1113), NOT recomputable from the
+    # current archive. If this assert fails, the snapshot was overwritten again
+    # — see docs/fig3_cds_forensic.md, do NOT silently change the numbers.
+    assert abs(values[1] - 0.2705) < 1e-4 and abs(math["high"]["cds"] - 0.0731) < 1e-4, ("Fig3 frozen values broken — see docs/fig3_cds_forensic.md: " + str(values))
     colors = [LV_COLORS[l] for l in ORDER]
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={"width_ratios": [1.5, 1]})
     bars = ax1.bar(labels, values, color=colors, width=0.55, edgecolor="white", linewidth=0.5)

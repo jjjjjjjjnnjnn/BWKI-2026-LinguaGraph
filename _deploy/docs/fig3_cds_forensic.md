@@ -26,3 +26,29 @@ ist der Prüfpfad.
 2. Claim-Downgrade: nur Richtung ("Dichte fällt") ohne Zahlen behaupten.
 3. Weiter forensisch: verlorene Pipeline (525-Link-Graph) rekonstruieren —
    aufwendig, Erfolg unsicher.
+
+## Durchbruch 2026-09-12 abends (User-Order: Ursache finden oder löschen)
+
+Zwei unabhängige Agenten, Befund konvergent — **Ursache gefunden, kein Löschen**:
+
+- **Arithmetik**: middle n=46, e=280 → 2·280/(46·45)=0.2705→0.271 ✓;
+  high n=175, e=1113 → 2·1113/(175·174)=0.0731→0.073 ✓ (einzige
+  treffende Kombination; gerichtet halbiert 0.135/0.037 trifft nicht).
+- **Provenienz**: `eeca788` (2026-06-21) definiert CDS + Tabelle
+  (Middle 46|280|0.2705, High 193|1116|0.0602); `2ffd963` (2026-06-22)
+  publiziert erstmals exakt 0.271/0.073
+  (`scripts/generate_paper_figures.py::compute_cds`, Input
+  `cognitive-space/web/data.js`, LV-Partition, round4); `763b836`
+  friert ein + handgeschriebene ZH/EN/DE-Dreifach-0.271.
+- **Verlorene Pipeline**: dichter Graph (574-Knoten-Validierung →
+  556-Knoten/3375-Kanten-Terrain-Matrix in `cds-terrain.html:54`);
+  High-Partition unterwegs revidiert (193|1116 → 175|1113, unerklärt).
+  Ausgaben erschöpft: 16 (forensic) + 96 (aligned_data-Exhaustion) = keine
+  trifft; `figures_i18n.py`-Asserts beweisen, dass der Snapshot zur
+  Renderzeit noch die alten Werte trug (jetzt überschrieben:
+  0.0038/0.0025).
+- **Status**: Ursache = eingefrorene Publikation aus verlorener dichter
+  Pipeline. Entscheidung: **Option 1 umgesetzt** — Portal finding_a_body
+  (EN/DE/ZH), Story-F1-Zeile, `figures_i18n.py`-Assert-Meldungen mit
+  Forensik-Verweis versehen. `docs/paper/03_results.md` enthält kein 0.271
+  (nur Alt-Entwurf `03_results_text.md`, historisch).
