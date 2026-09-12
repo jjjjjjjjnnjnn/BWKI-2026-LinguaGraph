@@ -977,16 +977,6 @@
               "match_method": "keyword:反应热计算~盖斯定律",
               "section": "1.2 反应热的计算",
               "uncertain": false
-            },
-            {
-              "maps_to": [
-                "chem_化学反应方向判据",
-                "chem_吉布斯自由能",
-                "chem_熵变"
-              ],
-              "match_method": "keyword:反应方向~方向判据",
-              "section": "1.3 化学反应方向",
-              "uncertain": false
             }
           ]
         },
@@ -1015,10 +1005,12 @@
             },
             {
               "maps_to": [
-                "chem_平衡常数"
+                "chem_化学反应方向判据",
+                "chem_吉布斯自由能",
+                "chem_熵变"
               ],
-              "match_method": "keyword:平衡计算~平衡常数",
-              "section": "2.3 化学平衡的计算",
+              "match_method": "scan-verified 2026-09-12: §2.3为化学反应的方向(p47-49); 原1.3条目系目录误植已删; 平衡常数为§2.2内目二",
+              "section": "2.3 化学反应的方向",
               "uncertain": false
             },
             {
@@ -1412,9 +1404,11 @@
     "match_method_legend": "exact=节标题与节点名完全对应; substring=节标题含节点名子串; keyword=课程标准关键词匹配; keyword(weak)=弱关联(应用/背景); none(gap)=无对应节点(缺口)",
     "note": "节标题来自课程标准与PEP公开目录知识;未爬取smartedu;实验类/措辞存疑节标uncertain:true;maps_to仅用full文件现有节点名",
     "staging": true,
-    "text_available": false,
+    "text_available": true,
     "version": "staging-2026-09-12",
-    "pdfs_local": "7/7 mirror scans arrived 2026-09-12 (OCR pending)"
+    "pdfs_local": "7/7 mirror scans arrived 2026-09-12",
+    "ocr_done": "2026-09-12 RapidOCR DirectML 150dpi fact-level: 31 chapter txts (~1.55MB) + per-page txts in data/textbook/pages/ (gitignored); mean conf ~0.95-0.985; scan-corrected: 选必1化学 §2.3=化学反应的方向 (原1.3误植删除)",
+    "qc_reports": "Temp/opencode/qc_zh_*.md"
   },
   "spec": "{book, chapters:[{chapter, sections:[{section, uncertain, maps_to}]}]} + match_method"
 }

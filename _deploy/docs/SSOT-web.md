@@ -175,3 +175,9 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - Format: **Scans ohne Textlayer** (264 Bild-XObjects, 0 ToUnicode, 48 Fonts) → OCR pending (keine lokale Engine); Cover + TOC-Seiten visuell verifiziert (2019-Prüfsiegel + PEP-Imprint, 2 Covers vom Modell gelesen).
 - Ablage `data/textbook/cn_mirror/` (gitignored, nie committed); Manifest-8-Felder + `cn_textbook_mapping` + `local_evidence` 7/7 (`text_available` bleibt False bis OCR); Portal-`src_local` aktualisiert (3-sprachig).
 - Skripte: `fetch_cn_pep_mirror.py` (URL-Encoding-Fix dokumentiert) / `render_cn_covers.py` / `update_cn_mapping_local_evidence.py`.
+
+## v18d GPU-OCR-Vollmenge (2026-09-12, pdf-reading-Skill + DirectML)
+
+- Skill global: `~/.config/opencode/skills/pdf-reading/` (SKILL.md + scripts/pdf_extract.py + pdf_qc.py + QC-CHECKLIST.md + gpu_config.yaml). Engine: RapidOCR ONNX; CUDA-EP scheitert (cublasLt64_13.dll fehlt) → DirectML (flat flags det_use_dml!; nested dicts werden still ignoriert), warm ~0.5s/Seite (CPU 5s), RTX 5060 ~52%.
+- 9 Subagents parallel: 7 CN-Bücher (31 Kapitel-txts ~1.55MB, mean conf 0.95-0.985, Census je Buch OK, Front/Back-Matter an Kapiteln vermerkt), MIT-Bundle 712pp (Probe 0.9585, full 0.9512, 0 flagged; Bonus Ch27-29 extrahiert), OpenStax-Re-Verify (Vol2 781pp/1.75M chars, Vol3 597pp/1.39M, alle Keywords hit; USTC/UCAS text_layer OK).
+- Scan-Korrektur: Chemie-选必1 hat kein §1.3 — 化学反应的方向 = §2.3 (Mapping repariert, Alter-Eintrag gelöscht). QC-Reports: Temp/opencode/qc_*.md (9x). Offene Reste: resumed pages ohne conf-Werte, 5%-Samples tlw. ungeeyeballt, section-fact-Extraktion → source_references noch fällig.
