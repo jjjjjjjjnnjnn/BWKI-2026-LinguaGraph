@@ -455,7 +455,7 @@ graph LR
 <!-- ==================== SOURCES ==================== -->
 <section id="sources" class="fade-in">
   <h2 class="section-title" data-i18n="src_title">Sources</h2>
-  <p class="section-sub" data-i18n="src_intro">Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (202 titles).</p>
+  <p class="section-sub" data-i18n="src_intro">Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).</p>
   <details style="margin:12px 0">
     <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_math_sum">Mathematics · 32 titles</summary>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
@@ -499,7 +499,7 @@ graph LR
     </div>
   </details>
   <details style="margin:12px 0">
-    <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_phys_sum">Physics · 81 titles</summary>
+    <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_phys_sum">Physics · 83 titles</summary>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
       <table class="gold roster" style="margin-top:0">
         <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Title</th><th>Lang</th><th>Refs</th></tr></thead>
@@ -544,7 +544,9 @@ graph LR
 <tr><td>Klett: Physik</td><td>de</td><td class="mnum">93</td></tr>
 <tr><td>Lambacher Schwere: Physik</td><td>de</td><td class="mnum">186</td></tr>
 <tr><td>Landau Lifshitz: Mechanics</td><td>en</td><td class="mnum">127</td></tr>
+<tr><td>LEIFIphysik Induktion</td><td>de</td><td class="mnum">1</td></tr>
 <tr><td>National Geographic: Force, Motion, and Simple Machines</td><td>en</td><td class="mnum">10</td></tr>
+<tr><td>NPTEL Sensor Technologies</td><td>en</td><td class="mnum">1</td></tr>
 <tr><td>Pearson: Prentice Hall Science Explorer</td><td>en</td><td class="mnum">93</td></tr>
 <tr><td>Schiff: Quantenmechanik</td><td>de</td><td class="mnum">127</td></tr>
 <tr><td>Schrödinger: Quantum Mechanics</td><td>en</td><td class="mnum">127</td></tr>
@@ -755,7 +757,7 @@ graph LR
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K shows convergence (ZH-DE 0.519, ZH-EN 0.934, DE-EN 0.938) — an observation consistent with curriculum tradition; the core signal is ΔLDS.</div>
-    <p data-i18n="finding_c_body">Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.</p>
+    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97) either way.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.519</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (0.519)</div></div>
@@ -767,8 +769,12 @@ graph LR
       <img src="figures/fig4_null_model.png" alt="Fig 4: Null Model Suite — Full vs Structure Null" onclick="openLightbox(this.src)" loading="lazy">
       <div class="fig-label" data-i18n="finding_c_fig"><strong>Fig 4</strong> — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation</div>
     </div>
+    <div class="figure-box" style="max-width:600px;margin:16px auto">
+      <img src="figures/fig8_lds_decontamination.png" alt="Fig 8: LDS-K decontamination — convergence collapses after label cleaning" onclick="openLightbox(this.src)" loading="lazy">
+      <div class="fig-label" data-i18n="finding_c_fig8"><strong>Fig 8</strong> — Decontamination (T1): removing CJK-contaminated de-labels collapses ZH-DE 0.52 → 0.99. Verdict: artifact</div>
+    </div>
     <div class="meta"><a class="tag tag-cyan" href="#methodology" data-i18n="finding_c_tag1">Metric: LDS</a> <a class="tag tag-blue" href="#finding-c" data-i18n="finding_c_tag2">F4, F5</a> <a class="tag tag-yellow" href="#research" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</a></div>
-    <p class="honesty" data-i18n="finding_c_honesty">Honesty note (P2 recheck): math nodes are alignment labels, not independently extracted concepts — size-matching to Wikipedia scale reverses the pattern. The 0.519 convergence is partly a representation/size artifact (paper §3.8).</p>
+    <p class="honesty" data-i18n="finding_c_honesty">Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).</p>
   </div>
 
 </section>
@@ -1505,17 +1511,18 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
-    finding_c_body: 'Textbook knowledge structures converge across languages more than random expectation. ZH-DE (LDS-K = 0.519) shows <strong>substantial convergence</strong> — far below the within-language noise floor (0.97). ZH-EN (0.934) and DE-EN (0.938) are near this noise floor, meaning cross-language and within-language differences are comparable for these pairs.',
+    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97) either way.',
     finding_c_body2: 'The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.',
     finding_c_ev1: 'ZH–DE (0.519)',
     finding_c_ev2: 'DE–EN (0.938)',
     finding_c_ev3: 'ZH–EN (0.934)',
     finding_c_ev4: 'Topic variance',
     finding_c_fig: 'Fig 4 — Null Model Suite: Full vs Structure Null. Textbook structures converge more than random expectation',
+    finding_c_fig8: 'Fig 8 — Decontamination (T1): removing CJK-contaminated de-labels collapses ZH-DE 0.52 → 0.99. Verdict: artifact',
     finding_c_tag1: 'Metric: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
-    finding_c_honesty: 'Honesty note (P2 recheck): math nodes are alignment labels, not independently extracted concepts — size-matching to Wikipedia scale reverses the pattern. The 0.519 convergence is partly a representation/size artifact (paper §3.8).',
+    finding_c_honesty: 'Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).',
     finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. Consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation.',
     finding_d_ev1: 'China (highest)',
     finding_d_ev2: 'UK',
@@ -1626,9 +1633,9 @@ const TRANSLATIONS = {
     mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, every run p<0.01. Sorted descending; nothing rescaled.',
     mm_margin_read: 'Reading. Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
     src_title: 'Sources',
-    src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (202 titles).',
+    src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
     src_math_sum: 'Mathematics · 32 titles',
-    src_phys_sum: 'Physics · 81 titles',
+    src_phys_sum: 'Physics · 83 titles',
     src_chem_sum: 'Chemistry · 89 titles',
     src_book_h: 'Title', src_lang_h: 'Lang', src_refs_h: 'Refs',
     src_note: 'Refs = citations across concepts. New textbooks are appended here on ingestion (see docs/physics_sourcing.md for the gap list). Raw excerpts live in data/textbook/.',
@@ -1656,17 +1663,18 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
-    finding_c_body: 'Textbuch-Wissensstrukturen konvergieren über Sprachen hinweg stärker als zufällig erwartet. ZH-DE (LDS-K = 0,519) zeigt <strong>substanzielle Konvergenz</strong> — weit unter der sprachinternen Rauschschwelle (0,97). ZH-EN (0,934) und DE-EN (0,938) liegen nahe dieser Rauschschwelle, was bedeutet, dass sprachübergreifende und sprachinterne Unterschiede für diese Paare vergleichbar sind.',
+    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,934) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97).',
     finding_c_body2: 'Das Muster ist auch themenabhaengig: innerhalb jedes Sprachpaars variiert der LDS um bis zu 0,2 zwischen den 5 analysierten Sozialthemen.',
     finding_c_ev1: 'ZH–DE (0,519)',
     finding_c_ev2: 'DE–EN (0,938)',
     finding_c_ev3: 'ZH–EN (0,934)',
     finding_c_ev4: 'Themenvarianz',
     finding_c_fig: 'Abb. 4 — Null Model Suite: Full vs Structure Null. Lehrbuchstrukturen konvergieren stärker als zufällig erwartet',
+    finding_c_fig8: 'Abb. 8 — Dekontamination (T1): Entfernen CJK-kontaminierter de-Labels lässt ZH-DE 0,52 → 0,99 kollabieren. Fazit: Artefakt',
     finding_c_tag1: 'Metrik: LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
-    finding_c_honesty: 'Ehrlichkeitshinweis (P2-Recheck): Mathe-Knoten sind Alignierungs-Labels, keine unabhängig extrahierten Konzepte — Size-Matching auf Wikipedia-Größe kehrt das Muster um. Die 0,519-Konvergenz ist teils Darstellungs-/Größen-Artefakt (Paper §3.8).',
+    finding_c_honesty: 'Ehrlichkeitshinweis (T1-Dekontamination, 2026-09): ZH-DE J_node 0,556 → 0,020 nach Entfernen CJK-kontaminierter de-Labels; Size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um. Fazit: Label-Artefakt (Paper §3.8, Fig. 8).',
     finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung. Konsistent mit Governance (Hypothese, Paper §8.6) — Granularität (A) bleibt die sicherste Interpretation.',
     finding_d_ev1: 'China (hoechste)',
     finding_d_ev2: 'GB',
@@ -1853,9 +1861,9 @@ const TRANSLATIONS = {
     mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, jeder Run p<0,01. Absteigend sortiert; nichts reskaliert.',
     mm_margin_read: 'Lesart. Balken = Marge, alle 55 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
     src_title: 'Quellen',
-    src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (202 Titel).',
+    src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
     src_math_sum: 'Mathematik · 32 Titel',
-    src_phys_sum: 'Physik · 81 Titel',
+    src_phys_sum: 'Physik · 83 Titel',
     src_chem_sum: 'Chemie · 89 Titel',
     src_book_h: 'Titel', src_lang_h: 'Spr.', src_refs_h: 'Refs',
     src_note: 'Refs = Zitierungen über Konzepte. Neue Lehrbücher werden hier bei Ingestion ergänzt (Lückenliste: docs/physics_sourcing.md). Rohauszüge liegen in data/textbook/.',
@@ -1959,17 +1967,18 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
-    finding_c_body: '教材知识结构跨语言趋同程度超过随机预期。中德（LDS-K=0.519）呈现<strong>显著趋同</strong>——远低于语内噪声底线（0.97）。中英（0.934）和德英（0.938）接近此底线，跨语言差异与语内差异相当。',
+    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.934）与德英（0.938）本来就贴着语内噪声底线（0.97）。',
     finding_c_body2: '这种模式也受主题影响：在每个语言对内，LDS 在所分析的 5 个社会议题中可变动达 0.2，表明某些知识领域受文化影响更大。',
     finding_c_ev1: 'ZH–DE（0.519）',
     finding_c_ev2: 'DE–EN (0.938)',
     finding_c_ev3: 'ZH–EN（0.934）',
     finding_c_ev4: '主题差异',
     finding_c_fig: '图 4 — Null Model Suite：Full vs Structure Null。教材结构趋同程度超过随机预期',
+    finding_c_fig8: '图 8 — 去污染（T1）：去掉含中文德语标签后中德 0.52→0.99 坍塌。结论：伪影',
     finding_c_tag1: '指标：LDS',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
-    finding_c_honesty: '诚实注（P2 复核）：数学节点是对齐标签，而非独立提取的概念——按维基规模做 size-matching 会翻转模式。0.519 的趋同部分是表征/规模假象（论文 §3.8）。',
+    finding_c_honesty: '诚实注（T1 去污染，2026-09）：去掉含中文德语标签后中德 J_node 0.556→0.020；size-matched 下维基比较各 k 全逆转。结论：标签伪影（论文 §3.8，图 8）。',
     finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。与治理结构一致（假设，论文 §8.6）——但粒度（A）仍是最稳妥的解读。',
     finding_d_ev1: '中国（最高）',
     finding_d_ev2: '英国',
@@ -2080,9 +2089,9 @@ curr_explanations_title: '三种竞争性解释',
     mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，全部 p<0.01。降序排列，无重缩放。',
     mm_margin_read: '怎么读。柱＝边际，55 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
-    src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（202 种）。',
+    src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
     src_math_sum: '数学 · 32 种',
-    src_phys_sum: '物理 · 81 种',
+    src_phys_sum: '物理 · 83 种',
     src_chem_sum: '化学 · 89 种',
     src_book_h: '书名', src_lang_h: '语言', src_refs_h: '引用',
     src_note: '引用＝跨概念引用计数。新教材入库即追加（缺口清单见 docs/physics_sourcing.md）。原始摘录在 data/textbook/。',
@@ -2235,7 +2244,7 @@ function setLanguage(lang) {
     }
   }
   // Figure language variants (fig5 stays EN: source superseded, see docs/SSOT-web.md)
-  var figBases = ['fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model'];
+  var figBases = ['fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {

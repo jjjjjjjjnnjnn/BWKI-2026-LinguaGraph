@@ -1,6 +1,6 @@
 ## 6. Fächerübergreifende Validierung: Physik und Chemie
 
-Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **366 Konzepte**, **383 Relationen**, 94 Verlagsausgaben) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 6 Verlage pro Sprache).
+Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **367 Konzepte**, **386 Relationen**, 81 Lehrbuchtitel mit 94 Belegen) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 89 Lehrbuchtitel).
 
 ### 6.1 Konzeptdichtestruktur (CDS)
 
@@ -59,7 +59,7 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 | Bestand | Konzepte | Relationen | Status |
 |-------|:--------:|:---------:|:------:|
 | Mathe-Wissensgraph | 556 | 525 | Vollständig |
-| Physik-Wissensgraph | 366 | 383 | Vollständig |
+| Physik-Wissensgraph | 367 | 386 | Vollständig |
 | Chemie-Wissensgraph | 220 | 215 | Vollständig |
 
 > Weitere Lehrplangraphen (z. B. NRW, chinesische Lehrpläne) liegen außerhalb des Fokus dieser Arbeit.

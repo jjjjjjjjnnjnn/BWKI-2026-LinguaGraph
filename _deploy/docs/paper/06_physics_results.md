@@ -1,6 +1,6 @@
 ## 6. Fächerübergreifende Validierung: Physik und Chemie
 
-Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **366 Konzepte**, **383 Relationen**, 94 Verlagsausgaben) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 6 Verlage pro Sprache).
+Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **367 Konzepte**, **386 Relationen**, 81 Lehrbuchtitel mit 94 Belegen) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 89 Lehrbuchtitel).
 
 ### 6.1 Konzeptdichtestruktur (CDS)
 
@@ -11,7 +11,7 @@ Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern l
 | Oberstufe | 0,013 | 0,073 | 0,17 |
 | Hochschule | 0,011 | 0,042 | 0,26 |
 
-**Befund F6**: Der Physik-CDS **erreicht seinen Höhepunkt in der Grundschule** (0,222), während der Mathe-CDS in der Mittelstufe (0,271) kulminiert. Beide Disziplinen zeigen Dichtespitzen in frühen Bildungsstufen, jedoch auf unterschiedlichen Niveaus:
+**◆ Befund F6**: Der Physik-CDS **erreicht seinen Höhepunkt in der Grundschule** (0,222), während der Mathe-CDS in der Mittelstufe (0,271) kulminiert. Beide Disziplinen zeigen Dichtespitzen in frühen Bildungsstufen, jedoch auf unterschiedlichen Niveaus:
 
 - **Physik**: Mechanik-Konzepte der Grundstufe (Kraft, Masse, Geschwindigkeit, Dichte, Druck) sind hochgradig miteinander verbunden — nahezu jedes Konzept bezieht sich auf Kraft oder Bewegung. Dies spiegelt den fundamentalen Charakter der klassischen Mechanik wider.
 - **Mathematik**: Die Mittelstufe markiert die Integration von Arithmetik, Algebra, Geometrie und Wahrscheinlichkeitsrechnung zu einem kohärenten Netzwerk, bevor die Aufspaltung in spezialisierte Teilgebiete erfolgt.
@@ -26,7 +26,7 @@ Der 3,7-fache Abfall von Physik-Grundschule (0,222) zur Oberstufe (0,013) spiege
 | Mittlere Tiefe | **0,85** | 0,40 |
 | Wurzelkonzepte | 219 (60 %) | 459 (83 %) |
 
-**Befund F7**: Physik weist **tiefere Voraussetzungsketten** auf (mittlerer HDS 0,85 vs. Mathe 0,40). Dies spiegelt den kumulativen Charakter physikalischen Wissens wider: Das Verständnis elektromagnetischer Induktion erfordert zuerst die Beherrschung von elektrischer Ladung → Strom → Magnetfeld → Faradaysches Gesetz — eine Kette von 4+ Konzepten. Die Mathematik hingegen verfügt über mehr unabhängige Einstiegspunkte (83 % Wurzeln).
+**◆ Befund F7**: Physik weist **tiefere Voraussetzungsketten** auf (mittlerer HDS 0,85 vs. Mathe 0,40). Dies spiegelt den kumulativen Charakter physikalischen Wissens wider: Das Verständnis elektromagnetischer Induktion erfordert zuerst die Beherrschung von elektrischer Ladung → Strom → Magnetfeld → Faradaysches Gesetz — eine Kette von 4+ Konzepten. Die Mathematik hingegen verfügt über mehr unabhängige Einstiegspunkte (83 % Wurzeln).
 
 ### 6.3 Verlagsabdeckung
 
@@ -52,14 +52,14 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 
 ### 6.5 Abbildungen
 
-- Abbildung 6: CDS-Vergleich — Mathematik vs. Physik nach Bildungsstufe (outputs/figures/fig6_cds_comparison.png)
+- Abbildung 6: CDS-Vergleich — Mathematik vs. Physik nach Bildungsstufe (cognitive-space/figures/fig6_cds_comparison.png; Spiegel: cognitive-space/web/figures/, _deploy/figures/)
 
 ### 6.6 Datenbestände
 
 | Bestand | Konzepte | Relationen | Status |
 |-------|:--------:|:---------:|:------:|
 | Mathe-Wissensgraph | 556 | 525 | Vollständig |
-| Physik-Wissensgraph | 366 | 383 | Vollständig |
+| Physik-Wissensgraph | 367 | 386 | Vollständig |
 | Chemie-Wissensgraph | 220 | 215 | Vollständig |
 
 > Weitere Lehrplangraphen (z. B. NRW, chinesische Lehrpläne) liegen außerhalb des Fokus dieser Arbeit.
@@ -80,4 +80,4 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 | Mittlere Tiefe | 0,20 | 0,85 | 0,40 |
 | Wurzelkonzepte | 184 (84 %) | 219 (60 %) | 459 (83 %) |
 
-**Befund F8**: Der Chemie-CDS erreicht seine Spitze in der **Mittelstufe** (0,042) — dasselbe „Integriere früh, trenne spät"-Muster wie die Mathematik (0,271), jedoch auf deutlich niedrigerem Niveau. Die geringere Dichte und die flache Hierarchie (maximale Tiefe 3, 84 % Wurzelkonzepte) reflektieren den kleineren, weniger kumulativen Korpus (220 Konzepte, keine Grundstufe). Damit bestätigen die Chemie-Daten die Befunde F6 (Physik: Spitze in der Grundschule) und F7 (Physik: tiefere Voraussetzungsketten) als disziplinübergreifend konsistent: Die Wissensorganisation ist **disziplinabhängig** (Dichtespitzen auf verschiedenen Bildungsstufen), folgt aber in allen drei MINT-Disziplinen demselben frühen Integrationsmuster.
+**◆ Befund F8**: Der Chemie-CDS erreicht seine Spitze in der **Mittelstufe** (0,042) — dasselbe „Integriere früh, trenne spät"-Muster wie die Mathematik (0,271), jedoch auf deutlich niedrigerem Niveau. Die geringere Dichte und die flache Hierarchie (maximale Tiefe 3, 84 % Wurzelkonzepte) reflektieren den kleineren, weniger kumulativen Korpus (220 Konzepte, keine Grundstufe). Damit bestätigen die Chemie-Daten die Befunde F6 (Physik: Spitze in der Grundschule) und F7 (Physik: tiefere Voraussetzungsketten) als disziplinübergreifend konsistent: Die Wissensorganisation ist **disziplinabhängig** (Dichtespitzen auf verschiedenen Bildungsstufen), folgt aber in allen drei MINT-Disziplinen demselben frühen Integrationsmuster.

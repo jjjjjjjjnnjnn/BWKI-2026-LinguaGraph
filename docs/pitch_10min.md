@@ -68,9 +68,9 @@ CURRICULUM ALIGNMENT (4 systems)
 | Discipline | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |-----------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **Mathematics** | 574 | 3,538 | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
-| **Physics** | 366 | 383 | 81 titles (94 refs) | ZH/EN/DE | NRW 38% |
+| **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW 38% |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
-| **Total** | **1,160+** | **4,100+** | **238** | **3** | **4 systems** |
+| **Total** | **1,160+** | **4,100+** | **240** | **3** | **4 systems** |
 
 Textbooks span K-12 through university level: Chinese national curriculum (Renjiao), English (Stewart, Khan Academy, AP, IB), German (Lambacher Schweizer, Duden, Cornelsen).
 

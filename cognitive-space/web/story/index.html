@@ -402,7 +402,7 @@ flowchart TB
       <div class="rq-icon">🌐</div>
       <h3>RQ1: Language</h3>
       <p><strong>Question:</strong> How do different languages organize the same knowledge?</p>
-      <div class="rq-answer">Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).</div>
+      <div class="rq-answer">Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938). Decontamination (T1) falsifies the convergence reading: 0.52 → 0.99 after removing CJK-contaminated de-labels — label artifact (see Fig 8 in the Research Portal).</div>
       <div class="rq-metric">LDS: 0.519–0.938</div>
     </div>
     <div class="rq-card">
@@ -437,7 +437,7 @@ flowchart TB
     </div>
     <div class="card">
       <h3>⚡ Physics</h3>
-      <p>366 concepts, 383 relations grounded in 81 textbook titles (94 references). Covers mechanics through quantum physics. Cross-validated with NRW curriculum.</p>
+      <p>367 concepts, 386 relations grounded in 81 textbook titles (94 references). Covers mechanics through quantum physics. Cross-validated with NRW curriculum.</p>
       <div class="meta">CDS peak: 0.222 (Elementary) · HDS max: 6</div>
     </div>
     <div class="card">
@@ -608,7 +608,7 @@ flowchart TB
       </tr>
       <tr class="fhighlight">
         <td class="fnum">F4</td>
-        <td><strong>Textbook structures converge between ZH and DE (LDS=0.519); DE–EN diverges most (0.938)</strong><br><span style="color:var(--text2);font-size:.82rem">ZH–DE convergence contradicts simple language-family expectations</span></td>
+        <td><strong>Textbook structures converge between ZH and DE (LDS=0.519); DE–EN diverges most (0.938)</strong><br><span style="color:var(--text2);font-size:.82rem">Apparent ZH–DE convergence falsified by T1 decontamination (label artifact)</span></td>
         <td>ZH–DE: 0.519<br>DE–EN: 0.938<br>ZH–EN: 0.934</td>
         <td><span class="tag tag-cyan">LDS</span></td>
       </tr>
@@ -666,7 +666,7 @@ flowchart TB
 
   <div class="figure-box">
     <img src="../figures/fig4_null_model.png" alt="Fig 4: Null Model Suite — Full vs Structure Null" onclick="openLightbox(this.src)" loading="lazy">
-    <div class="fig-label"><strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938).</div>
+    <div class="fig-label"><strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938). T1 decontamination falsifies the convergence: 0.52 → 0.99 (Fig 8, Research Portal).</div>
   </div>
 
   <div class="figure-box">
@@ -714,7 +714,7 @@ timeline
     title LinguaGraph Development
     Phase 0 : Concept & Pilot : 3 students : Pilot LDS analysis : 20 gold labels
     Phase 1 : Math Knowledge Graph : 556 concepts : 525 relations : 68 textbooks : CDS/HDS/LDS
-    Phase 2 : Physics Expansion : 366 concepts : 383 relations : 81 titles (94 refs) : Cross-disciplinary validation
+    Phase 2 : Physics Expansion : 367 concepts : 386 relations : 81 titles (94 refs) : Cross-disciplinary validation
     Phase 3 : Chemistry Expansion : 220 concepts : 215 relations : 18 versions : Three-discipline comparison
     Phase 4 : Curriculum Layer : NRW curriculum : UK curriculum : US curriculum : CN curriculum
     Phase 5 : Coverage Score : 12.7%–95.4% range : F9/F10 findings : System philosophy analysis
@@ -911,7 +911,7 @@ var TRANSLATIONS = {
     story_mm_read: 'Big numbers = corpus size, not claims. Claims live in Findings F1–F12; every chart on this page links back to its portal evidence.',
     section_rqs_title: 'Research Questions', section_rqs_sub: 'Three complementary lenses on knowledge organization',
     rq1_title: 'RQ1: Language', rq1_question: '<strong>Question:</strong> How do different languages organize the same knowledge?',
-    rq1_answer: 'Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938).',
+    rq1_answer: 'Null Model analysis reveals textbook structure convergence between ZH and DE (LDS=0.519), contradicting language-family expectations. ZH–EN and DE–EN remain widely divergent (0.934, 0.938). Decontamination (T1) falsifies the convergence reading: 0.52 → 0.99 after removing CJK-contaminated de-labels.',
     rq1_metric: 'LDS: 0.519–0.938',
     rq2_title: 'RQ2: Discipline', rq2_question: '<strong>Question:</strong> How do different subjects organize their knowledge?',
     rq2_answer: 'Knowledge density peaks early (middle/elementary) then declines. Depth is bounded at HDS ≤ 8. Physics has 2.1× more sequential depth than math.',
@@ -921,7 +921,7 @@ var TRANSLATIONS = {
     rq3_metric: 'CS: 12.7%–95.4%',
     section_dataset_title: 'Dataset', section_dataset_sub: '180 textbooks across 3 languages, 3 disciplines, 4 education systems',
     math_title: 'Mathematics', math_desc: '556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus.',
-    physics_title: 'Physics', physics_desc: '366 concepts, 383 relations grounded in 81 textbook titles (94 references). Covers mechanics through quantum physics.',
+    physics_title: 'Physics', physics_desc: '367 concepts, 386 relations grounded in 81 textbook titles (94 references). Covers mechanics through quantum physics.',
     chemistry_title: 'Chemistry', chemistry_desc: '220 concepts, 215 relations grounded in 89 textbook titles. Covers general chemistry through organic chemistry.',
     curr_title: 'Curriculum Standards',
     th_system: 'System', th_country: 'Country', th_disciplines: 'Disciplines',
@@ -947,7 +947,7 @@ var TRANSLATIONS = {
     th_fnum: '#', th_finding: 'Finding', th_evidence: 'Evidence', th_metric: 'Metric',
     section_figures_title: 'Figures', section_figures_sub: 'Key visualizations from the LinguaGraph analysis',
     fig3_caption: '<strong>Fig 3</strong> — Concept Density Score (CDS) across education levels for Mathematics. CDS peaks at Middle school (0.271), then declines 3.7x to High school (0.073).',
-    fig4_caption: '<strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938).',
+    fig4_caption: '<strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938). T1 decontamination falsifies the convergence (0.52 → 0.99, Fig 8).',
     fig5_caption: '<strong>Fig 5</strong> — Hierarchy Depth Score (HDS) distribution. Maximum chain depth is 8; 83% of concepts are root nodes with no prerequisites.',
     fig6_caption: '<strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.',
     fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds universally.',
@@ -987,7 +987,7 @@ var TRANSLATIONS = {
     story_mm_read: 'Große Zahlen = Korpusgröße, keine Claims. Claims stehen in Findings F1–F12; jede Grafik verlinkt zurück auf ihre Portal-Evidenz.',
     section_rqs_title: 'Forschungsfragen', section_rqs_sub: 'Drei komplementaere Perspektiven auf Wissensorganisation',
     rq1_title: 'FF1: Sprache', rq1_question: '<strong>Frage:</strong> Wie organisieren verschiedene Sprachen das gleiche Wissen?',
-    rq1_answer: 'Nullmodell-Analyse zeigt Konvergenz der Lehrbuchstrukturen zwischen ZH und DE (LDS=0,519), entgegen sprachfamilienbasierter Erwartungen. ZH–EN und DE–EN bleiben stark divergent (0,934; 0,938).',
+    rq1_answer: 'Nullmodell-Analyse zeigt Konvergenz der Lehrbuchstrukturen zwischen ZH und DE (LDS=0,519), entgegen sprachfamilienbasierter Erwartungen. ZH–EN und DE–EN bleiben stark divergent (0,934; 0,938). Dekontamination (T1) falsifiziert die Konvergenzlesart: 0,52 → 0,99 nach Entfernen CJK-kontaminierter de-Labels.',
     rq1_metric: 'LDS: 0,519–0,938',
     rq2_title: 'FF2: Disziplin', rq2_question: '<strong>Frage:</strong> Wie organisieren verschiedene Faecher ihr Wissen?',
     rq2_answer: 'Wissensdichte erreicht frueh ihren Hoehepunkt, dann Abfall. Die Tiefe ist auf HDS ≤ 8 begrenzt. Physik hat die 2,1-fache Tiefe von Mathematik.',
@@ -997,7 +997,7 @@ var TRANSLATIONS = {
     rq3_metric: 'CS: 12,7%–95,4%',
     section_dataset_title: 'Datensatz', section_dataset_sub: '180 Lehrbuecher in 3 Sprachen, 3 Disziplinen, 4 Bildungssystemen',
     math_title: 'Mathematik', math_desc: '556 Konzepte, 525 Beziehungen aus 68 Lehrbuechern. Von Arithmetik bis zur hoheren Analysis.',
-    physics_title: 'Physik', physics_desc: '366 Konzepte, 383 Beziehungen aus 81 Lehrbuchtiteln (94 Belege). Von Mechanik bis Quantenphysik.',
+    physics_title: 'Physik', physics_desc: '367 Konzepte, 386 Beziehungen aus 81 Lehrbuchtiteln (94 Belege). Von Mechanik bis Quantenphysik.',
     chemistry_title: 'Chemie', chemistry_desc: '220 Konzepte, 215 Beziehungen aus 89 Lehrbuchtiteln. Von allgemeiner bis organischer Chemie.',
     curr_title: 'Lehrplanstandards',
     th_system: 'System', th_country: 'Land', th_disciplines: 'Faecher',
@@ -1023,7 +1023,7 @@ var TRANSLATIONS = {
     th_fnum: '#', th_finding: 'Erkenntnis', th_evidence: 'Belege', th_metric: 'Metrik',
     section_figures_title: 'Abbildungen', section_figures_sub: 'Wichtige Visualisierungen aus der LinguaGraph-Analyse',
     fig3_caption: '<strong>Abb. 3</strong> — Concept Density Score (CDS) nach Bildungsstufe fuer Mathematik. CDS erreicht Hoehepunkt in der Mittelstufe (0,271), dann 3,7-facher Abfall zur Oberstufe (0,073).',
-    fig4_caption: '<strong>Abb. 4</strong> — LDS Null Model Suite ueber ZH/EN/DE. ZH–DE konvergiert (0,519); DE–EN divergiert am staerksten (0,938).',
+    fig4_caption: '<strong>Abb. 4</strong> — LDS Null Model Suite ueber ZH/EN/DE. ZH–DE konvergiert (0,519); DE–EN divergiert am staerksten (0,938). T1-Dekontamination falsifiziert die Konvergenz (0,52 → 0,99, Abb. 8).',
     fig5_caption: '<strong>Abb. 5</strong> — Hierarchietiefe (HDS) Verteilung. Maximale Kettentiefe ist 8; 83% der Konzepte sind Wurzelknoten.',
     fig6_caption: '<strong>Abb. 6</strong> — CDS-Vergleich: Math vs. Physik. Physik erreicht frueheren Hoehepunkt (Grundschule), beide folgen demselben Muster.',
     fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt universell.',
@@ -1063,7 +1063,7 @@ var TRANSLATIONS = {
     story_mm_read: '大数字＝语料规模，不是结论。结论在发现 F1–F12；本页每张图都链回门户证据。',
     section_rqs_title: '研究问题', section_rqs_sub: '理解知识组织的三个互补视角',
     rq1_title: '问题1：语言', rq1_question: '<strong>问题：</strong>不同语言如何组织相同的知识？',
-    rq1_answer: '零模型分析显示，中德教材结构趋同（LDS=0.519），这与语系预期相反。中英、德英之间仍高度分歧（0.934、0.938）。',
+    rq1_answer: '零模型分析显示，中德教材结构趋同（LDS=0.519），这与语系预期相反。中英、德英之间仍高度分歧（0.934、0.938）。去污染（T1）证伪了趋同读法：去掉含中文德语标签后 0.52→0.99 坍塌，系标签伪影。',
     rq1_metric: 'LDS：0.519–0.938',
     rq2_title: '问题2：学科', rq2_question: '<strong>问题：</strong>不同学科如何组织知识？',
     rq2_answer: '知识密度在小学/初中早期达到峰值，然后下降。深度上限为 HDS ≤ 8。物理的顺序深度是数学的 2.1 倍。',
@@ -1073,7 +1073,7 @@ var TRANSLATIONS = {
     rq3_metric: 'CS：12.7%–95.4%',
     section_dataset_title: '数据集', section_dataset_sub: '3 种语言、3 个学科、4 个教育体系中的 180 本教材',
     math_title: '数学', math_desc: '556 个概念，525 条关系，来自 68 本教材。从算术到高等微积分。',
-    physics_title: '物理', physics_desc: '366 个概念，383 条关系，基于 81 种教材题名（94 条引用）。从力学到量子物理。',
+    physics_title: '物理', physics_desc: '367 个概念，386 条关系，基于 81 种教材题名（94 条引用）。从力学到量子物理。',
     chemistry_title: '化学', chemistry_desc: '220 个概念，215 条关系，基于 89 种教材题名。从普通化学到有机化学。',
     curr_title: '课程标准',
     th_system: '体系', th_country: '国家', th_disciplines: '学科',
@@ -1099,7 +1099,7 @@ var TRANSLATIONS = {
     th_fnum: '#', th_finding: '发现', th_evidence: '证据', th_metric: '指标',
     section_figures_title: '图表', section_figures_sub: 'LinguaGraph 分析的关键可视化',
     fig3_caption: '<strong>图 3</strong> — 数学概念密度得分（CDS）按教育阶段分布。CDS 在初中达到峰值（0.271），然后下降 3.7 倍至高中（0.073）。',
-    fig4_caption: '<strong>图 4</strong> — LDS 零模型套件跨 ZH/EN/DE。中德趋同（0.519），德英差异最大（0.938）。',
+    fig4_caption: '<strong>图 4</strong> — LDS 零模型套件跨 ZH/EN/DE。中德趋同（0.519），德英差异最大（0.938）。T1 去污染证伪趋同（0.52→0.99，图 8）。',
     fig5_caption: '<strong>图 5</strong> — 层次深度得分（HDS）分布。最大链深度为 8；83% 的概念是无前提知识的根节点。',
     fig6_caption: '<strong>图 6</strong> — CDS 对比：数学 vs 物理。物理峰值更早（小学），两者都遵循相同的先峰后降模式。',
     fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式具有普遍性。',
