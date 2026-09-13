@@ -75,3 +75,13 @@ OR-Kette 2026-09-13: ultra 8->16, nano 3, laguna 2, north 0, tiny 12 (unveraende
 (offiziell 429, drip-scheduler 10-min-Takt via scripts/run_mistral_drip.cmd);
 Zen-free-IDs (-free-Suffix) derzeit Backend-500 via HTTP+Terminal -> NEUE Identitaeten,
 nicht mit bestehenden mischen; spaeter retry.
+
+## Local-Welle 2026-09-13 (laeuft): 7 LM-Studio-Modelle, Provider lmstudio
+Supervisor: scripts/supervise_local_p1.py v2 (detached, Popen direkt, stall-relaunch 12min).
+Queue: phi-4-mini -> qwen2.5-0.5b -> gemma-3-270m -> [sauerkraut-8b + hy-mt2-1.8b parallel] -> qwen3-8b -> qwen3.5-9b.
+API http://127.0.0.1:1234/v1 (WICHTIG: localhost löst zu ::1 auf, LM Studio hört nur IPv4!).
+Stand: phi 3/30 gut (~2min/unit). Logs: AppData/Local/Temp/opencode/p1local/j-<tag>.log + supervisor.log.
+Fixes: unload ohne --yes; lms unload --all unzuverlässig; Server-Restart stellt alle Loads wieder her;
+Dubletten (:2/:3) meiden. Remote-Collector ALLE gestoppt (User: keine Zeit) inkl. mistral-drip-Loop.
+Nächste Schritte: multi_model rerun -> Roster-Local-Zeilen -> SSOT/Handoff -> commit/push/Pages.
+Nomic-Embed NICHT als P1-Subjekt (nur Generation zählt).
