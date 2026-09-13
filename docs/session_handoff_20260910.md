@@ -71,7 +71,7 @@ README EN neu + ZH/DE portiert (204=32+83+89).
 P1-Stand: grok-4.6 30/30 DONE (20260913, \.23); llama-3.3-70b 30/30 DONE (CF, war schon voll);
 spark-1.3 30/30 DONE (20260913, alle mit Konzepten); qwen-max 26/30 PARKED (DashScope free quota exhausted,
 AllocationQuota.FreeTierOnly; 3 junk-ERROR-units in Tagesfile, nur good-units zaehlen);
-OR-Kette laeuft (ultra 8->Ziel 30, dann nano/laguna/north/tiny); mistral-medium 0 good PARKED
+OR-Kette 2026-09-13: ultra 8->16, nano 3, laguna 2, north 0, tiny 12 (unveraendert) - ABBRUCH durch OR free-models-per-day-Quota (code 429/42). Retry nach Mitternacht-Reset via scripts/run_openrouter_batch.py (pollt Quota).; mistral-medium 0 good PARKED
 (offiziell 429, drip-scheduler 10-min-Takt via scripts/run_mistral_drip.cmd);
 Zen-free-IDs (-free-Suffix) derzeit Backend-500 via HTTP+Terminal -> NEUE Identitaeten,
 nicht mit bestehenden mischen; spaeter retry.
