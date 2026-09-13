@@ -1056,22 +1056,22 @@ graph LR
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_bench_sum">Details · how the benchmark chart is made</summary>
         <p style="margin:8px 0" data-i18n="mm_bench_src"><b>Source.</b> 19 models scored on 92 gold labels (model-selection benchmark, Validation section).</p>
         <p style="margin:8px 0" data-i18n="mm_bench_calc"><b>Method.</b> F1 on gold labels; the production extraction model was selected by overall F1. Range 0.55–0.67.</p>
-        <p style="margin:8px 0" data-i18n="mm_bench_read"><b>Reading.</b> Bar = F1 per model. Used <b>only</b> for extractor selection — never for language claims (that is the 55-run replication below).</p>
+        <p style="margin:8px 0" data-i18n="mm_bench_read"><b>Reading.</b> Bar = F1 per model. Used <b>only</b> for extractor selection — never for language claims (that is the 58-run replication below).</p>
       </details>
-      <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 55 full runs + 31 collecting (file truth 56/51/168 incl. qwen-max n=26/30 (parked))</h3>
+      <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 58 full runs + 24 collecting (file truth 59/54/177 incl. qwen-max n=26/30 (parked))</h3>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
-        <div style="position:relative;height:1080px"><canvas id="marginChart"></canvas></div>
+        <div style="position:relative;height:1140px"><canvas id="marginChart"></canvas></div>
       </div>
-      <div style="font-size:.76rem;color:var(--text2);margin:6px 0 8px" data-i18n="margin_legend"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)</div>
-      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 55 ZH-DE p&lt;0.01; 8 EN n.s. among 165 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=26/30 (parked), per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.</p>
+      <div style="font-size:.76rem;color:var(--text2);margin:6px 0 8px" data-i18n="margin_legend"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (10)</div>
+      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 58 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 58 ZH-DE p&lt;0.01; 8 EN n.s. among 174 (500 permutations). Western runs in red. The 24 collecting runs (incl. qwen-max n=26/30 (parked), per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.</p>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_margin_sum">Details · how the margin chart is made</summary>
-        <p style="margin:8px 0" data-i18n="mm_margin_src"><b>Source.</b> 55 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — the same rows as the Margin Proof view and the roster table below. 31 collecting runs (n&lt;30) withhold margins.</p>
-        <p style="margin:8px 0" data-i18n="mm_margin_calc"><b>Method.</b> Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 55 ZH-DE p&lt;0.01; 8 EN n.s. among 165. Sorted descending; nothing rescaled.</p>
-        <p style="margin:8px 0" data-i18n="mm_margin_read"><b>Reading.</b> Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.</p>
+        <p style="margin:8px 0" data-i18n="mm_margin_src"><b>Source.</b> 58 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — the same rows as the Margin Proof view and the roster table below. 24 collecting runs (n&lt;30) withhold margins.</p>
+        <p style="margin:8px 0" data-i18n="mm_margin_calc"><b>Method.</b> Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 58 ZH-DE p&lt;0.01; 8 EN n.s. among 174. Sorted descending; nothing rescaled.</p>
+        <p style="margin:8px 0" data-i18n="mm_margin_read"><b>Reading.</b> Bar = margin, all 58 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.</p>
       </details>
       <details style="margin:12px 0">
-        <summary style="cursor:pointer;font-size:.85rem;color:var(--accent)" data-i18n="roster_details">Full 55-row margin table (collecting runs listed below)</summary>
+        <summary style="cursor:pointer;font-size:.85rem;color:var(--accent)" data-i18n="roster_details">Full 58-row margin table (collecting runs listed below)</summary>
       <div style="margin:12px 0;overflow-x:auto;max-height:560px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
         <table class="gold roster" style="margin-top:0">
           <thead style="position:sticky;top:0;background:var(--surface)"><tr><th>Model</th><th>Origin</th><th>ZH-DE margin</th><th>Signif.</th></tr></thead>
@@ -1106,6 +1106,8 @@ graph LR
 <tr><td>glm-4.7</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
 <tr><td>kimi-k2.6 · dashscope</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
 <tr><td>MiniMax-M2.1</td><td><span class="tag">CN</span></td><td class="mnum">+0.13</td><td>p&lt;0.01</td></tr>
+<tr><td>muse-spark-1.3-contributor</td><td><span class="tag tag-west">West · origin disclosed</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
+<tr><td>llama-3.3-70b-instruct-fp8-fast</td><td><span class="tag tag-west">West · Meta-weights · US</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
 <tr><td>kimi-k2.5</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
 <tr><td>kimi-k2.7-code</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
 <tr><td>qwen3.5-27b</td><td><span class="tag">CN</span></td><td class="mnum">+0.12</td><td>p&lt;0.01</td></tr>
@@ -1120,6 +1122,7 @@ graph LR
 <tr><td>qwen3.5-flash</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
 <tr><td>qwen3.5-122b-a10b</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
 <tr><td>kimi-k2-thinking</td><td><span class="tag">CN</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
+<tr><td>grok-4.6</td><td><span class="tag tag-west">West · xAI · US</span></td><td class="mnum">+0.09</td><td>p&lt;0.01</td></tr>
 <tr><td>qwen3.6-35b-a3b</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
 <tr><td>deepseek-v4-flash · direct</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
 <tr><td>qwen3-235b-a22b</td><td><span class="tag">CN</span></td><td class="mnum">+0.08</td><td>p&lt;0.01</td></tr>
@@ -1141,12 +1144,10 @@ graph LR
           <tbody>
 <tr class="collect-head"><td colspan="4">Collecting — incomplete runs (n&lt;30, margin withheld):</td></tr>
 <tr class="collect"><td>qwen-max</td><td><span class="tag">repo</span></td><td class="mnum">n=26/30</td><td><span class="pulse">parked · quota</span></td></tr>
+<tr class="collect"><td>phi-4-mini-instruct</td><td><span class="tag">repo</span></td><td class="mnum">n=25/30</td><td><span class="pulse">collecting · local</span></td></tr>
 <tr class="collect"><td>gpt-oss-20b</td><td><span class="tag">repo</span></td><td class="mnum">n=20/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>grok-4.6</td><td><span class="tag">repo</span></td><td class="mnum">n=30/30</td><td>margin ZH-DE +0.092 · promotion pending</td></tr>
-<tr class="collect"><td>llama-3.3-70b-instruct-fp8-fast</td><td><span class="tag">repo</span></td><td class="mnum">n=30/30</td><td>margin ZH-DE +0.123 · promotion pending</td></tr>
-<tr class="collect"><td>ling-3.0-tiny</td><td><span class="tag">repo</span></td><td class="mnum">n=12/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=16/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>mistral-medium-latest</td><td><span class="tag">repo</span></td><td class="mnum">n=0/30</td><td><span class="pulse">rate-limited · drip running</span></td></tr>
+<tr class="collect"><td>nemotron-3-ultra-550b-a55b · openrouter</td><td><span class="tag">repo</span></td><td class="mnum">n=19/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>ling-3.0-tiny</td><td><span class="tag">repo</span></td><td class="mnum">n=15/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>nemotron-3-nano-30b-a3b</td><td><span class="tag">repo</span></td><td class="mnum">n=6/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>laguna-s-2.1</td><td><span class="tag">repo</span></td><td class="mnum">n=5/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>north-mini-code</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
@@ -1159,23 +1160,18 @@ graph LR
 <tr class="collect"><td>qwq-plus</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>gemma-4-26b-a4b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>gemma-4-31b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>ling-3.0-tiny</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>nemotron-3-super-120b-a12b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>ling-3.0-tiny · inclusionai</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-super-120b-a12b · nvidia</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
+<tr class="collect"><td>nemotron-3-ultra-550b-a55b · nvidia</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>laguna-xs-2.1</td><td><span class="tag">repo</span></td><td class="mnum">n=3/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>gemini-3.8-flash</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>mistral-large</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>gemma-4-31b-it</td><td><span class="tag">repo</span></td><td class="mnum">n=2/30</td><td><span class="pulse">collecting</span></td></tr>
 <tr class="collect"><td>mistral-small-3.1-24b-instruct</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>mistral-small-latest</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>nemotron-3-ultra-550b-a55b</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>gpt-oss-120b</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">collecting</span></td></tr>
-<tr class="collect"><td>muse-spark-1.3-contributor</td><td><span class="tag">repo</span></td><td class="mnum">n=30/30</td><td>margin ZH-DE +0.124 · promotion pending</td></tr>
+<tr class="collect"><td>mistral-medium-latest</td><td><span class="tag">repo</span></td><td class="mnum">n=1/30</td><td><span class="pulse">rate-limited · drip running</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_note">Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=26/30 (parked), margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.</p>
-      <div style="margin-top:8px;font-size:.82rem;color:var(--text2)" data-i18n="val_replication_note">Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.</div>
+      <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_note">Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (58 runs, language signal) ≠ collecting (24 incomplete incl. qwen-max n=26/30 (parked), margin withheld). Families per paper §5.10: Qwen 19 · DeepSeek 12 (incl. 3 R1-Distill-Qwen) · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna · grok · llama · spark.</p>
+      <div style="margin-top:8px;font-size:.82rem;color:var(--text2)" data-i18n="val_replication_note">Extended replication (2026-09, paper §5.10): 58 measurements / 53 models — all 58 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.</div>
     </div>
   </div>
 </section>
@@ -1189,14 +1185,14 @@ graph LR
     <div class="card" style="text-align:center">
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
-      <p data-i18n="paper_abstract_text">LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (55 runs, 50 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).</p>
-      <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a> · <a href="../docs/submission/LinguaGraph_BWKI2026.pdf">PDF (217 KB)</a></div>
+      <p data-i18n="paper_abstract_text">LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (58 runs, 53 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).</p>
+      <div class="meta"><a href="../docs/paper/01_abstract_introduction.md">Read Abstract</a> · <a href="../docs/submission/LinguaGraph_BWKI2026.pdf">PDF (224 KB)</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
       <p data-i18n="paper_sections_text">Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis</p>
-      <div class="meta">9 files · ~161 KB md · 217 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta">9 files · ~161 KB md · 224 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -1406,10 +1402,10 @@ new Chart(document.getElementById('benchmarkChart'), {
   }
 });
 
-// Chart.js — Fused replication margins (55 full runs, desc; generated from roster table)
-const MARGIN_LABELS = ['command-a-03-2025', 'deepseek-v3.1', 'qwen-turbo', 'qwen3-max', 'deepseek-v3', 'gpt-5.6-luna', 'qwen3.8-max', 'glm-5', 'qwen3.5-397b-a17b', 'qwen3.7-max', 'glm-5.2-fast-preview', 'qwen3.5-plus', 'nemotron-3-super-120b-a12b', 'deepseek-v3.2', 'nemotron-3-ultra', 'deepseek-v4-flash · dashscope', 'MiniMax-M2.5', 'qwen3.6-plus', 'glm-5.2 · direct', 'qwen3.7-plus', 'glm-4.6', 'glm-5.1', 'longcat-2.0', 'kimi-k2.6 · direct', 'gpt-oss-20b', 'glm-4.7', 'kimi-k2.6 · dashscope', 'MiniMax-M2.1', 'kimi-k2.5', 'kimi-k2.7-code', 'qwen3.5-27b', 'glm-5.2 · dashscope', 'qwen3.6-27b', 'deepseek-v4-pro · dashscope', 'qwen-flash', 'laguna-s-2.1 · direct', 'Kimi-K2-Instruct', 'deepseek-r1-distill-qwen-14b', 'qwen-plus', 'qwen3.5-35b-a3b', 'qwen3.5-flash', 'qwen3.5-122b-a10b', 'kimi-k2-thinking', 'qwen3.6-35b-a3b', 'deepseek-v4-flash · direct', 'qwen3-235b-a22b', 'mimo-v2.5', 'laguna-s-2.1 · kilo', 'deepseek-v4-pro · direct', 'qwen3.7-flash', 'deepseek-r1-distill-qwen-32b', 'qwen3.6-flash', 'deepseek-r1', 'deepseek-r1-distill-qwen-7b', 'deepseek-r1-0528'];
-const MARGIN_VALUES = [0.42, 0.29, 0.25, 0.24, 0.24, 0.22, 0.21, 0.19, 0.18, 0.18, 0.18, 0.18, 0.17, 0.17, 0.16, 0.16, 0.16, 0.16, 0.16, 0.15, 0.15, 0.14, 0.14, 0.14, 0.13, 0.13, 0.13, 0.13, 0.12, 0.12, 0.12, 0.12, 0.11, 0.11, 0.11, 0.10, 0.10, 0.10, 0.10, 0.10, 0.09, 0.09, 0.09, 0.08, 0.08, 0.08, 0.08, 0.07, 0.07, 0.07, 0.07, 0.05, 0.05, 0.04, 0.03];
-const MARGIN_WEST = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0];
+// Chart.js — Fused replication margins (58 full runs, desc; generated from roster table)
+const MARGIN_LABELS = ['command-a-03-2025', 'deepseek-v3.1', 'qwen-turbo', 'qwen3-max', 'deepseek-v3', 'gpt-5.6-luna', 'qwen3.8-max', 'glm-5', 'qwen3.5-397b-a17b', 'qwen3.7-max', 'glm-5.2-fast-preview', 'qwen3.5-plus', 'nemotron-3-super-120b-a12b', 'deepseek-v3.2', 'nemotron-3-ultra', 'deepseek-v4-flash · dashscope', 'MiniMax-M2.5', 'qwen3.6-plus', 'glm-5.2 · direct', 'qwen3.7-plus', 'glm-4.6', 'glm-5.1', 'longcat-2.0', 'kimi-k2.6 · direct', 'gpt-oss-20b', 'glm-4.7', 'kimi-k2.6 · dashscope', 'MiniMax-M2.1', 'muse-spark-1.3-contributor', 'llama-3.3-70b-instruct-fp8-fast', 'kimi-k2.5', 'kimi-k2.7-code', 'qwen3.5-27b', 'glm-5.2 · dashscope', 'qwen3.6-27b', 'deepseek-v4-pro · dashscope', 'qwen-flash', 'laguna-s-2.1 · direct', 'Kimi-K2-Instruct', 'deepseek-r1-distill-qwen-14b', 'qwen-plus', 'qwen3.5-35b-a3b', 'qwen3.5-flash', 'qwen3.5-122b-a10b', 'kimi-k2-thinking', 'grok-4.6', 'qwen3.6-35b-a3b', 'deepseek-v4-flash · direct', 'qwen3-235b-a22b', 'mimo-v2.5', 'laguna-s-2.1 · kilo', 'deepseek-v4-pro · direct', 'qwen3.7-flash', 'deepseek-r1-distill-qwen-32b', 'qwen3.6-flash', 'deepseek-r1', 'deepseek-r1-distill-qwen-7b', 'deepseek-r1-0528'];
+const MARGIN_VALUES = [0.42, 0.29, 0.25, 0.24, 0.24, 0.22, 0.21, 0.19, 0.18, 0.18, 0.18, 0.18, 0.17, 0.17, 0.16, 0.16, 0.16, 0.16, 0.16, 0.15, 0.15, 0.14, 0.14, 0.14, 0.13, 0.13, 0.13, 0.13, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.11, 0.11, 0.11, 0.10, 0.10, 0.10, 0.10, 0.10, 0.09, 0.09, 0.09, 0.09, 0.08, 0.08, 0.08, 0.08, 0.07, 0.07, 0.07, 0.07, 0.05, 0.05, 0.04, 0.03];
+const MARGIN_WEST = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0];
 new Chart(document.getElementById('marginChart'), {
   type: 'bar',
   data: {
@@ -1601,14 +1597,14 @@ const TRANSLATIONS = {
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
     val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
-    val_replication_note: 'Extended replication (2026-09, paper §5.10): 55 measurements / 50 models — all 55 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
-    val_roster_title: 'Replication roster: 55 full runs + 31 collecting (file truth 56/51/168 incl. qwen-max n=26/30 (parked))',
-    val_roster_desc: 'Fused view — all 55 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 55 ZH-DE p<0.01; 8 EN n.s. among 165 (500 permutations). Western runs in red. The 31 collecting runs (incl. qwen-max n=26/30 (parked), per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.',
-    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (7)',
-    roster_details: 'Full 55-row margin table (collecting runs listed below)',
-    val_roster_note: 'Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (55 runs, language signal) ≠ collecting (31 incomplete incl. qwen-max n=26/30 (parked), margin withheld). Families per paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
+    val_replication_note: 'Extended replication (2026-09, paper §5.10): 58 measurements / 53 models — all 58 ZH-DE pairs significant (margin +0.03…+0.42); 8 EN-pair tests n.s.',
+    val_roster_title: 'Replication roster: 58 full runs + 24 collecting (file truth 59/54/177 incl. qwen-max n=26/30 (parked))',
+    val_roster_desc: 'Fused view — all 58 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 58 ZH-DE p<0.01; 8 EN n.s. among 174 (500 permutations). Western runs in red. The 24 collecting runs (incl. qwen-max n=26/30 (parked), per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>western run (10)',
+    roster_details: 'Full 58-row margin table (collecting runs listed below)',
+    val_roster_note: 'Scope note: F1-benchmark (19 models, gold-label model selection) ≠ replication (58 runs, language signal) ≠ collecting (24 incomplete incl. qwen-max n=26/30 (parked), margin withheld). Families per paper §5.10: Qwen 19 · DeepSeek 12 (incl. 3 R1-Distill-Qwen) · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna · grok · llama · spark.',
     paper_abstract_title: 'Abstract',
-    paper_abstract_text: 'LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (55 runs, 50 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).',
+    paper_abstract_text: 'LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 525 relations, 219 groups) and LLM-as-subject (58 runs, 53 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).',
     paper_sections_title: 'Sections',
     paper_sections_text: 'Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis',
     paper_cite_title: 'Cite this work',
@@ -1664,11 +1660,11 @@ const TRANSLATIONS = {
     mm_bench_sum: 'Details · how the benchmark chart is made',
     mm_bench_src: 'Source. 19 models scored on 92 gold labels (model-selection benchmark, Validation section).',
     mm_bench_calc: 'Method. F1 on gold labels; the production extraction model was selected by overall F1. Range 0.55–0.67.',
-    mm_bench_read: 'Reading. Bar = F1 per model. Used only for extractor selection — never for language claims (that is the 55-run replication below).',
+    mm_bench_read: 'Reading. Bar = F1 per model. Used only for extractor selection — never for language claims (that is the 58-run replication below).',
     mm_margin_sum: 'Details · how the margin chart is made',
-    mm_margin_src: 'Source. 55 full runs from data/lds_c/llm_subject/multi_model_replication_20260913.json — the same rows as the Margin Proof view and the roster table below. 31 collecting runs (n<30) withhold margins.',
-    mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 55 ZH-DE p<0.01; 8 EN n.s. among 165. Sorted descending; nothing rescaled.',
-    mm_margin_read: 'Reading. Bar = margin, all 55 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
+    mm_margin_src: 'Source. 58 full runs from data/lds_c/llm_subject/multi_model_replication_20260913.json — the same rows as the Margin Proof view and the roster table below. 24 collecting runs (n<30) withhold margins.',
+    mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 58 ZH-DE p<0.01; 8 EN n.s. among 174. Sorted descending; nothing rescaled.',
+    mm_margin_read: 'Reading. Bar = margin, all 58 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
     src_title: 'Sources',
     src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
     src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).',
@@ -1767,14 +1763,14 @@ const TRANSLATIONS = {
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
     val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
-    val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 55 Messungen / 50 Modelle — alle 55 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
-    val_roster_title: 'Replikations-Roster: 55 vollständige Runs + 31 laufend (file truth 56/51/168 incl. qwen-max n=26/30 (parked))',
-    val_roster_desc: 'Gesamtansicht — alle 55 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 55 ZH-DE p<0,01; 8 EN n.s. unter 165 (500 Permutationen). Westliche Runs in Rot. Die 31 laufenden Runs (inkl. qwen-max n=26/30 (parked), per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + Paper §5.10.',
-    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN-Run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>westlicher Run (7)',
-    roster_details: 'Vollständige 55-Zeilen-Margentabelle (laufende Runs unten)',
-    val_roster_note: 'Scope-Hinweis: F1-Benchmark (19 Modelle, Goldlabel-Auswahl) ≠ Replikation (55 Runs, Sprachsignal) ≠ laufend (31 unvollständig inkl. qwen-max n=26/30 (parked), Marge zurückgehalten). Familien per Paper §5.10: Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
+    val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 58 Messungen / 53 Modelle — alle 58 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 8 EN-Paar-Tests n.s.',
+    val_roster_title: 'Replikations-Roster: 58 vollständige Runs + 24 laufend (file truth 59/54/177 incl. qwen-max n=26/30 (parked))',
+    val_roster_desc: 'Gesamtansicht — alle 58 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 58 ZH-DE p<0,01; 8 EN n.s. unter 174 (500 Permutationen). Westliche Runs in Rot. Die 24 laufenden Runs (inkl. qwen-max n=26/30 (parked), per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + Paper §5.10.',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>CN-Run &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>westlicher Run (10)',
+    roster_details: 'Vollständige 58-Zeilen-Margentabelle (laufende Runs unten)',
+    val_roster_note: 'Scope-Hinweis: F1-Benchmark (19 Modelle, Goldlabel-Auswahl) ≠ Replikation (58 Runs, Sprachsignal) ≠ laufend (24 unvollständig inkl. qwen-max n=26/30 (parked), Marge zurückgehalten). Familien per Paper §5.10: Qwen 19 · DeepSeek 12 (inkl. 3 R1-Distill-Qwen) · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna · grok · llama · spark.',
     paper_abstract_title: 'Zusammenfassung',
-    paper_abstract_text: 'LinguaGraph fragt, ob Sprache die strukturelle Organisation von Wissen prägt. Zwei Pipelines — Lehrbuchgraphen (556 Konzepte, 525 Relationen, 219 Gruppen) und LLM-as-Subject (55 Runs, 50 Modelle) — isolieren das Sprachsignal ΔLDS: N=15 falsifiziert es between-subject; within-subject zeigt es klar (Paper §5).',
+    paper_abstract_text: 'LinguaGraph fragt, ob Sprache die strukturelle Organisation von Wissen prägt. Zwei Pipelines — Lehrbuchgraphen (556 Konzepte, 525 Relationen, 219 Gruppen) und LLM-as-Subject (58 Runs, 53 Modelle) — isolieren das Sprachsignal ΔLDS: N=15 falsifiziert es between-subject; within-subject zeigt es klar (Paper §5).',
     paper_sections_title: 'Abschnitte',
     paper_sections_text: 'Drei Schlussfolgerungen · Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Ergebnisse · LPA-Analyse',
     paper_cite_title: 'Diese Arbeit zitieren',
@@ -1906,11 +1902,11 @@ const TRANSLATIONS = {
     mm_bench_sum: 'Details · wie das Benchmark-Chart entsteht',
     mm_bench_src: 'Quelle. 19 Modelle auf 92 Gold-Labels (Modellauswahl-Benchmark, Validation).',
     mm_bench_calc: 'Methode. F1 auf Gold-Labels; das Produktions-Extraktionsmodell wurde per Gesamt-F1 gewählt. Spanne 0,55–0,67.',
-    mm_bench_read: 'Lesart. Balken = F1 pro Modell. Nur für die Extraktorauswahl — nie für Sprachclaims (das ist die 55-Run-Replikation unten).',
+    mm_bench_read: 'Lesart. Balken = F1 pro Modell. Nur für die Extraktorauswahl — nie für Sprachclaims (das ist die 58-Run-Replikation unten).',
     mm_margin_sum: 'Details · wie das Margin-Chart entsteht',
-    mm_margin_src: 'Quelle. 55 vollständige Runs aus data/lds_c/llm_subject/multi_model_replication_20260913.json — dieselben Zeilen wie Margin-Beleg und Roster-Tabelle unten. 31 laufende Runs (n<30) halten Margen zurück.',
-    mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, alle 55 ZH-DE p<0,01; 8 EN n.s. unter 165. Absteigend sortiert; nichts reskaliert.',
-    mm_margin_read: 'Lesart. Balken = Marge, alle 55 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
+    mm_margin_src: 'Quelle. 58 vollständige Runs aus data/lds_c/llm_subject/multi_model_replication_20260913.json — dieselben Zeilen wie Margin-Beleg und Roster-Tabelle unten. 24 laufende Runs (n<30) halten Margen zurück.',
+    mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, alle 58 ZH-DE p<0,01; 8 EN n.s. unter 174. Absteigend sortiert; nichts reskaliert.',
+    mm_margin_read: 'Lesart. Balken = Marge, alle 58 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
     src_title: 'Quellen',
     src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
     src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (semantische Schicht; Substring 33,8/25,5) (College-Knoten außerhalb Schul-Scope; DE nur Link).',
@@ -2085,14 +2081,14 @@ curr_explanations_title: '三种竞争性解释',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
     val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
-    val_replication_note: '扩展复刻（2026-09，论文 §5.10）：55 次测量 / 50 个模型 —— 55 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
-    val_roster_title: '复刻名录：55 次完整运行 ＋ 31 次收集中(file truth 56/51/168 incl. qwen-max n=26/30 (parked))',
-    val_roster_desc: '融合视图——55 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），55 个 ZH-DE 全部 p<0.01；165 中 8 个 EN n.s.（500 置换）；西方运行标红。31 个收集中运行（含 qwen-max n=26/30 (parked)，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',
-    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>中国模型运行 &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>西方运行 (7)',
-    roster_details: '55 行完整边际表（收集中运行见下表）',
-    val_roster_note: '口径说明：F1 基准（19 模型，金标选型）≠ 复刻（55 运行，语言信号）≠ 收集中（31 未完成，含 qwen-max n=26/30 (parked)，边际不公布）。家族划分见论文 §5.10：Qwen 20 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna.',
+    val_replication_note: '扩展复刻（2026-09，论文 §5.10）：58 次测量 / 53 个模型 —— 58 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
+    val_roster_title: '复刻名录：58 次完整运行 ＋ 24 次收集中(file truth 59/54/177 incl. qwen-max n=26/30 (parked))',
+    val_roster_desc: '融合视图——58 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），58 个 ZH-DE 全部 p<0.01；174 中 8 个 EN n.s.（500 置换）；西方运行标红。24 个收集中运行（含 qwen-max n=26/30 (parked)，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',
+    margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>中国模型运行 &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>西方运行 (10)',
+    roster_details: '58 行完整边际表（收集中运行见下表）',
+    val_roster_note: '口径说明：F1 基准（19 模型，金标选型）≠ 复刻（58 运行，语言信号）≠ 收集中（24 未完成，含 qwen-max n=26/30 (parked)，边际不公布）。家族划分见论文 §5.10：Qwen 19 · DeepSeek 12 · GLM 7 · Kimi 6 · MiniMax 2 · mimo · laguna · longcat · nemotron · gpt-oss · command-a · luna · grok · llama · spark.',
     paper_abstract_title: '摘要',
-    paper_abstract_text: 'LinguaGraph 追问语言是否塑造知识的结构组织。双管线——教材图谱（556 概念、525 关系、219 分组）与 LLM-as-subject（55 运行、50 模型）——分离语言信号 ΔLDS：N=15 在被试间设计下证伪它，被试内设计清晰显示它（论文 §5）。',
+    paper_abstract_text: 'LinguaGraph 追问语言是否塑造知识的结构组织。双管线——教材图谱（556 概念、525 关系、219 分组）与 LLM-as-subject（58 运行、53 模型）——分离语言信号 ΔLDS：N=15 在被试间设计下证伪它，被试内设计清晰显示它（论文 §5）。',
     paper_sections_title: '章节结构',
     paper_sections_text: '三大结论 · 引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理结果 · LPA 分析',
     paper_cite_title: '引用本作品',
@@ -2148,11 +2144,11 @@ curr_explanations_title: '三种竞争性解释',
     mm_bench_sum: '详细 · 基准图是怎么做的',
     mm_bench_src: '数据来源。19 个模型在 92 个 gold 标签上的 F1（模型选型基准，Validation 区）。',
     mm_bench_calc: '计算口径。gold 标签 F1；生产抽取模型按总体 F1 选中。区间 0.55–0.67。',
-    mm_bench_read: '怎么读。柱＝单模型 F1。只用于选抽取器——不用于语言结论（那是下面的 55 运行复刻）。',
+    mm_bench_read: '怎么读。柱＝单模型 F1。只用于选抽取器——不用于语言结论（那是下面的 58 运行复刻）。',
     mm_margin_sum: '详细 · 边际图是怎么做的',
-    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 55 个完整运行——与边际实证视图、下方名录表同行。31 个收集中运行（n<30）边际暂扣。',
-    mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，55 个 ZH-DE 全部 p<0.01；165 中 8 个 EN n.s.。降序排列，无重缩放。',
-    mm_margin_read: '怎么读。柱＝边际，55 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
+    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 55 个完整运行——与边际实证视图、下方名录表同行。24 个收集中运行（n<30）边际暂扣。',
+    mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，58 个 ZH-DE 全部 p<0.01；174 中 8 个 EN n.s.。降序排列，无重缩放。',
+    mm_margin_read: '怎么读。柱＝边际，58 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
     src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
     src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（语义层；substring 33.8/25.5）（大学节点超出高中范围；DE 仅链接）。',

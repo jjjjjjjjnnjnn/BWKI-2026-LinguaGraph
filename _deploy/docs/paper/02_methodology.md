@@ -91,7 +91,7 @@ Die Alignierung wird durch zwei Strategien erreicht:
 1. **Explizite Abbildung**: Lehrbücher, die dasselbe mathematische Konzept behandeln, werden über Kapitelverweise gemappt (z. B. Stewart Kapitel 2 ↔ Forster Kapitel 4 ↔ Renjiao选修2-2).
 2. **Semantische Inferenz**: Konzepte mit übereinstimmenden Nachbarschaftsbeziehungen im Graphen werden als äquivalent betrachtet.
 
-Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
+Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten; Gruppen ≠ Konzepte, s. §3-Fußnote) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
 
 > **Fünf-Schritte-Titel, frozen EN-Baseline 2026-09-12 (Portal-Mermaid dreisprachig)**: §2.1 **Overview — From textbook text to structural insights in five steps** · §2.2 **Textbook Corpus** · §2.3 **Concept Extraction (MIMO)** · §2.4 **Graph Construction and Fusion** · §2.5 **Cross-lingual Alignment**. Deutsche Titel oben bleiben maßgeblich; DE/ZH-Portal-Labels sind Übersetzungen genau dieser EN-Baseline (keine neuen Schritte, keine neuen Zahlen).
 
@@ -207,7 +207,7 @@ Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scrip
 | Vereinigte Staaten (US) | 17,2 % | alle Stufen (17,9 %) | — |
 | NRW (DE) | **12,7 %** | Grundschule 1–4 (höchste) | Sekundarstufe II (niedrigste) |
 
-Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während chinesische Lehrbücher den nationalen Lehrplan nahezu vollständig abdecken (95,4 %), liegt die Abdeckung für NRW bei nur 12,7 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
+Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während chinesische Lehrbücher den nationalen Lehrplan nahezu vollständig abdecken (95,4 %), liegt die Abdeckung für NRW bei nur 12,7 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne (Lehrplankonzepte: CN 87 vs. US 2124 vs. NRW 299 — Keyword-Matching begünstigt grobe Lehrpläne) oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
 
 ### 2.11 Baseline-Glossar
 
@@ -219,7 +219,7 @@ Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Port
 4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
 5. **Human N=15 floor** — Between-Subject-Marge +0,015.
 6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
-7. **Permutation test** — z. B. ZH-DE 55/55 (file-truth 56/56) bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
+7. **Permutation test** — z. B. ZH-DE 58/58 (file-truth 59/59) bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
 8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
 9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
 

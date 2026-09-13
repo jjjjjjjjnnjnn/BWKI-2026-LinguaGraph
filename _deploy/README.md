@@ -5,7 +5,7 @@
 ---
 
 <p align="center">
-  <img src="web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
+  <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -173,7 +173,7 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 - **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
 - Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
 
-> **LLM-as-subject dual accounting:** public convention **55 complete measurements / 50 unique models / 165 pairs** excludes the partial qwen-max run (n=29/30, ZH–DE likewise significant); file-truth is **56 / 51 / 168**. **31 collecting** = 30 error + qwen-max (paper §8.15: 86 started, 55 complete). See [🧪 Model Benchmark](#-model-benchmark).
+> **LLM-as-subject dual accounting:** public convention **58 complete measurements / 53 unique models / 174 pairs** excludes the partial qwen-max run (n=26/30, ZH–DE likewise significant); file-truth is **59 / 54 / 177**. **24 collecting** = 22 error + qwen-max + phi-4-mini (paper §8.15: 81 started, 58+1 complete). See [🧪 Model Benchmark](#-model-benchmark).
 
 > See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
 
@@ -258,7 +258,7 @@ Own contribution: design, LDS definition, all finding/falsification analyses. Di
 
 Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
 
-> Dual accounting: published **55/50/165** excludes the partial qwen-max run (n=29/30); file-truth **56/51/168**. Collecting: **31** = 30 error + qwen-max.
+> Dual accounting: published **58/53/174** excludes the partial qwen-max run (n=26/30); file-truth **59/54/177**. Collecting: **24** = 22 error + qwen-max + phi-4-mini (n=25).
 
 ---
 

@@ -23,7 +23,7 @@ Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beei
 | **Dichte (CDS)** | ALLE Disziplinen erreichen Höhepunkt in frühen Stufen, dann Abfall | Mathe: 0,271 @ Mittelstufe; Physik: 0,222 @ Grundschule; Chemie: 0,042 @ Mittelstufe |
 | **Tiefe (HDS)** | Voraussetzungsketten sind universell begrenzt | Max 8 (Mathe am tiefsten bei 8, Physik bei 6) |
 | **Divergenz (LDS-K)** | Heterogen: ZH-DE roh 0,52 (T1-falsifiziert, decontaminiert 0,99); ZH-EN und DE-EN auf Rauschniveau (0,93–0,94) | Sprachinterne Rauschschwelle: ~0,97 |
-| **Abdeckung (CS)** | Lehrbuch-Lehrplan-Abgleich variiert nach Governance-Modell | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% |
+| **Abdeckung (CS)** | Lehrbuch-Lehrplan-Abgleich variiert nach Governance-Modell (Hypothese; Messung stark) | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% (Keyword-Matching; Granularität: CN 87 vs. US 2124 vs. NRW 299 Lehrplankonzepte) |
 
 > **Frozen-Hinweis**: CDS/HDS-Werte (F2/F7) stammen aus dem dichten Juni-2026-Graphen und sind aus dem aktuellen Archiv nicht rekonstruierbar — s. `docs/fig3_cds_forensic.md`, `docs/fig5_hds_forensic.md`.
 
@@ -49,7 +49,7 @@ Wir stellen LinguaGraph vor, ein Framework, das:
 2. **Strukturelle Muster** mittels vier graphbasierter Metriken (CDS, HDS, LDS, CS) quantifiziert
 3. **Eine Nullmodell-Grundlage** zur Interpretation von LDS bereitstellt, die heterogene sprachübergreifende Strukturbeziehungen statt eines uniformen Spracheffekts aufdeckt
 4. **Über drei MINT-Disziplinen** (Mathematik, Physik, Chemie) kreuzvalidiert
-5. **Lehrplanabgleich** über vier Bildungssysteme integriert (NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4%)
+5. **Lehrplanabgleich** über vier Bildungssysteme integriert (NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% — Messung stark, Governance-Deutung nur Hypothese; Granularität CN 87 vs. US 2124 vs. NRW 299)
 6. **19 mehrsprachige LLMs** für Konzeptextraktion benchmarkt (F1-Bereich 0,55–0,67) und so die modellübergreifende Robustheit bestätigt
 
 ### 9.5 Einschränkungen
@@ -85,7 +85,7 @@ Der Output ist ein **interpretierbarer Divergenzbericht** pro Modell und Sprachp
 | **Regulierer** | Transparenz- und Dokumentationspflichten (z. B. EU AI Act) | Nachweis sprachabhängiger Modellstrukturierung |
 | **Forscher** | Studie kultureller Werte in KI | Quantitative, interpretierbare Divergenzmessung |
 
-**▲ Ehrliche Abgrenzung**: Die Arbeit ist ein **Messverfahren** (Methodik) mit **breiter, aber begrenzter Evidenz**: Das Within-Subject-Experiment zeigt ein robustes Sprachsignal im Basismodell (deepseek-v4-flash), und die modellübergreifende Replikation (§5.10) bestätigt es in 55 Messungen (50 eindeutige Modelle, ~87 % chinesische Anbieter, sieben westliche Messungen aus US/CA-Herstellern; alle ZH-DE-Paare signifikant, 8 englisch-haltige Paare nicht; Kulturrichtung über Zufallsniveau). Die Arbeit ist jedoch **kein fertiges Audit-Instrument**: Eine produktive Anwendung erfordert die Definition eines Schwellenwerts für „kritische" Divergenz, die Erweiterung auf westliche Modelle und weitere Konzepte/Sprachen sowie die normative Klärung, ob sprachspezifische Rahmung als „Drift" oder als kulturadäquate Anpassung zu werten ist — dies ist Gegenstand zukünftiger Arbeit (§9.6).
+**▲ Ehrliche Abgrenzung**: Die Arbeit ist ein **Messverfahren** (Methodik) mit **breiter, aber begrenzter Evidenz**: Das Within-Subject-Experiment zeigt ein robustes Sprachsignal im Basismodell (deepseek-v4-flash), und die modellübergreifende Replikation (§5.10) bestätigt es in 58 Messungen (53 eindeutige Modelle, ~83 % chinesische Anbieter, zehn westliche Messungen aus US/CA-Herstellern; alle ZH-DE-Paare signifikant, 8 englisch-haltige Paare nicht; Kulturrichtung über Zufallsniveau). Die Arbeit ist jedoch **kein fertiges Audit-Instrument**: Eine produktive Anwendung erfordert die Definition eines Schwellenwerts für „kritische" Divergenz, die Erweiterung auf westliche Modelle und weitere Konzepte/Sprachen sowie die normative Klärung, ob sprachspezifische Rahmung als „Drift" oder als kulturadäquate Anpassung zu werten ist — dies ist Gegenstand zukünftiger Arbeit (§9.6).
 
 ### Abschlusserklärung
 

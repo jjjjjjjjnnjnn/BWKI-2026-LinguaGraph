@@ -4,6 +4,26 @@
 
 ---
 
+## [2026-09-13] v23f-replication58 — grok/llama/spark n=30 Promotion (58/53/174)
+
+### Overview
+
+09-13-Replikation löst 09-10 ab (`multi_model_replication_20260913.json`, 10:01). **Neu formal**: grok-4.6 (+0.09), llama-3.3-70b (+0.12, Meta-Gewichte = Western), muse-spark (+0.12) → **58 n=30 (53 Identitäten, 5 Dual-Host)** + qwen-max n=26/30 (3 Quota-Leerläufe gestrippt, LDS stabil) + phi-4-mini n=25 (ZH-DE-Voter). Datei-Wahrheit **59/54/177**, publiziert **58/53/174**, 81 Keys (6 Dubletten bereinigt).
+
+Nachzählung per Skript (nicht per Hand): EN n.s. weiter **8/174** (alle EN-haltig; R1/Distill 6/10, EN-Boden 0.844 vs 0.775); Strata CN 48/48 mean 0.130 vs West 10/10 mean 0.162 (ohne luna 9/9 mean 0.155, CN-Anteil ~83 %); Votes ≥10: **236 vs 156±4** (Heimat:safety 48 DE; physical space 45 ZH; equal opportunity 45); dedup 53/53 mean 0.138; Youden-Optimum 0.12 (CI 0.12–0.13) → Heuristik 0.10 bleibt sensitiv-inklusiv; Familien Qwen 19 (+3 R1-Distill-Qwen → DeepSeek 12) · GLM 7 · Kimi 6 · +grok/llama/spark. `sw_fix_analyses.py` auf 09-13 umgestellt (WESTERN_MARKERS +llama), `sw_fix_analyses_20260913.json` neu.
+
+Angefasst: Portal-Roster (58-row, MARGIN 58, strikt desc sortiert, Collecting 24 neu aus 09-13-Keys), Margin-Galaxie (58 Balken + gpt-oss-Sortfix), cspace-Galeriekarte, SSOT-web (+v23f-Abschnitt), Paper 01/02/03/04/05, Plattform §6 (58/53, West 10, Marge 0.162; feld_mapping §6 = 1684/1700), final/README + declaration, Root-README-Trio Doppelbilanz, evidence C19, PDF-Kurzfassung. PDF neu **229964B** ×3 Orte. Validierung: pytest 84/84, Wave-2 ALL OK, Portal-Counts verifiziert (58/58/10, 24 collecting).
+
+### Files
+
+- Portal: `cognitive-space/portal/index.html`, `cspace.html`, `cognitive-space/web/margin-galaxy.html`
+- Paper: `docs/paper/` 01/02/03/04/05 + PDF×3 · SSOT-web · evidence_register · declaration (docs + final)
+- Submission: `plattform_antworten.md`, `feld_mapping.md`, `README.md`, `declaration_of_support.md`
+- Code: `scripts/sw_fix_analyses.py`, `scripts/build_paper_pdf.py` (Kurzfassung), `data/lds_c/llm_subject/sw_fix_analyses_20260913.json`
+- READMEs: `README.md`, `README_DE.md`, `README_ZH.md` (+ `_deploy`-Spiegel aller geänderten Dateien)
+
+---
+
 ## [2026-09-13] v23e-audit — 全仓对齐（论文/门户/图表/提交包）
 
 ### Overview

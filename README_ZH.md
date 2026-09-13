@@ -173,7 +173,7 @@
 - **所有语对的 Full < Structure** — 添加边关系并未放大分歧，反而缩小了分歧
 - 分类（共享概念组织）解释了大部分方差；语言特定关系呈现趋同
 
-> **LLM 被试双账：**公开口径 **55 完成测量 / 50 独立模型 / 165 配对**剔除了部分 qwen-max 运行（n=29/30，中德同样显著）；文件实情为 **56 / 51 / 168**。**31 collecting** = 30 error + qwen-max（论文 §8.15：86 启动，55 完成）。见 [🧪 模型基准测试](#-模型基准测试)。
+> **LLM 被试双账：**公开口径 **58 完成测量 / 53 独立模型 / 174 配对**剔除了部分 qwen-max 运行（n=26/30，中德同样显著）；文件实情为 **59 / 54 / 177**。**24 collecting** = 22 error + qwen-max + phi-4-mini（论文 §8.15：81 启动，58+1 完成）。见 [🧪 模型基准测试](#-模型基准测试)。
 
 > 完整方法论参见 [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md)，人类分析脚本参见 [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py)，模拟基线脚本参见 [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py)。
 
@@ -257,7 +257,7 @@ python scripts/figures/fig8_lds_decontamination.py
 
 完整结果：[`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
 
-> 双账：已发表 **55/50/165** 剔除部分 qwen-max 运行（n=29/30）；文件实情 **56/51/168**。Collecting：**31** = 30 error + qwen-max。
+> 双账：已发表 **58/53/174** 剔除部分 qwen-max 运行（n=26/30）；文件实情 **59/54/177**。Collecting：**24** = 22 error + qwen-max + phi-4-mini。
 
 ---
 

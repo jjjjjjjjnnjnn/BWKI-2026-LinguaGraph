@@ -24,7 +24,7 @@ from scipy import stats
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA = PROJECT_ROOT / "data" / "lds_c" / "llm_subject"
-REPL = DATA / "multi_model_replication_20260910.json"
+REPL = DATA / "multi_model_replication_20260913.json"
 
 rng = np.random.default_rng(20260908)
 
@@ -78,11 +78,12 @@ complete = {k: v for k, v in models.items() if v.get("n") == 30}
 
 # Western-origin models (vendor-based, honest grouping): NVIDIA/Nemotron,
 # Poolside/Laguna (US), OpenAI-weight gpt-oss (US), Cohere/Command (CA),
+# Meta-llama weights (US), grok/xAI (US), muse-spark (Herkunft offengelegt),
 # gpt-5.6-luna (opencode-go, Herkunft ungeklärt — als westlich gezählt,
 # im Paper offengelegt). DeepSeek-R1-Distill(Llama) bleibt CN (Hersteller).
 # Everything else in the complete set is a CN-vendor family.
 WESTERN_MARKERS = ("nemotron", "laguna", "gpt-oss", "command", "luna",
-                   "gemma", "grok", "muse-spark", "mistral")
+                   "gemma", "grok", "muse-spark", "mistral", "llama")
 
 
 def vendor(key: str) -> str:
@@ -111,10 +112,10 @@ for v, s in strata.items():
         "sig_zh_de": f"{s['sig_zh_de']}/{len(arr)}",
     }
 sw2["note"] = (
-    "Complete-case set (n==30 units): 55 models (50 unique identities, "
-    "5 dual-host pairs). Western stratum (US/CA vendors + luna/Herkunft "
-    "offengelegt) vs CN-vendor; reported for transparency, not as a "
-    "vendor comparison. Supports the registered model-matrix extension."
+    "Complete-case set (n==30 units): 58 models (53 unique identities, "
+    "5 dual-host pairs). Western stratum (US/CA vendors + luna/spark "
+    "Herkunft offengelegt) vs CN-vendor; reported for transparency, not "
+    "as a vendor comparison. Supports the registered model-matrix extension."
 )
 sw2["complete_models"] = sorted(complete.keys())
 
