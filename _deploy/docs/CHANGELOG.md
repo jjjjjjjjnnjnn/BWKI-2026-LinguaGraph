@@ -4,6 +4,21 @@
 
 ---
 
+## [2026-09-13] v23e-audit — 全仓对齐（论文/门户/图表/提交包）
+
+### Overview
+
+三路只读审计 → 九轨并行执行（Commit `f19149e`，41 文件，已推送）。**P0**：论文 7 处（F1 Sozial 标签；物理 Wurzeln 64%→60%；81→83 Titel；qwen-plus 作用域；覆盖率粒度 confound CN 87/US 2124/NRW 299 + 治理降级假设；219 Gruppen≠Konzepte；46/56 file-truth 标签 + p=0.08 SE/CI 诚实注）；PDF 漂移修复（三处 229717B/172010 chars 同步 + 防再犯规则）。**P1**：B7 四组死翻译启用（figBases，Fig5 三语取证注）；门户小键（wasd/366→367/化学 live/徽章翻译/截图路径）；`_deploy` 清理 3 杂散 + workflow 排除；`plattform_antworten` 2 overclaim（§7 收敛→T1；§5 stark→konsistent）；`feld_mapping` 重测（§6=1682，距 1700 仅 18）；`docs/submission` 双镜像同步；`code_einreichung` 去 statsmodels。**P2**：C2/C3 时间戳差异证 benign（Wave-2 `--check` MAE=0.000）；页脚乱码证无（0 U+FFFD）；mono bug 保持冻结。验证：pytest 84/84，freeze 0.9336/0.9382/0.5188 精确，manifest 零漂移，退役断言零命中。本地波次未碰（`*_20260913.json` 未提交）。交接：`docs/session_handoff_20260913.md`。
+
+### Files
+
+- 论文：`docs/paper/` 7 文件（00/01/02/03/04/05/06）+ PDF×3
+- 门户：`cognitive-space/portal/index.html`（figBases+图注）、`cspace.html`、`web/index.html`、`portal/README.md`、`README_DE/ZH.md`
+- 提交：`submission/final/`（antworten/feld_mapping/code_guide/README）+ `docs/submission/` 镜像 + `_deploy/` 镜像
+- 码：`requirements.txt`（+markdown/fpdf2）、`.github/workflows/deploy-cognitive-space.yml`（排除+截图路径）、`docs/SSOT-web.md`
+
+---
+
 ## [2026-09-10] v0.14.2-audit-repair — 全仓审计修复（P0/P1/P2）
 
 ### Overview

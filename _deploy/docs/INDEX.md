@@ -1,6 +1,6 @@
 # docs/ Index
 
-> Stand: v0.14.1 (2026-09-10) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 55 Messungen / 50 Modelle (multi_model_replication_20260910.json)
+> Stand: v23e-audit (2026-09-13, f19149e) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 55 Messungen / 50 Modelle (multi_model_replication_20260910.json) · PDF 229717B ×3 Orte
 > Lesereihenfolge Paper: `paper/` → ORDER in `scripts/build_paper_pdf.py`
 > (01_abstract → 02_related_work → 02_methodology → 03_results → 06_physics → 07_lpa → 04_discussion → 05_conclusion → 00_three_conclusions)
 
@@ -58,7 +58,7 @@
 - `planning/research_directions_20260808.md` (D1–D4; D5/D6 entfernt)
 - `planning/r1_within_subject_protocol.md` (R1-Arm)
 - `PRIORITIES.md`, `experiment-design.md`, `experiment_conductor.md`
-- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md`
+- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md`, `session_handoff_20260910.md`, `session_handoff_20260913.md` (aktuell, v23e-audit)
 - `planning/` — Detailpläne; `findings/`, `compose/`, `demo/`, `images/`, `lingua-core/` — Arbeitsbereiche
 
 ## Analyse-Notizen (einzelne Befunde)
