@@ -769,7 +769,7 @@ graph LR
     </div>
     <div class="figure-box" style="max-width:700px;margin:16px auto">
       <img src="../figures/fig5_hds_distribution.png" alt="Fig 5: HDS Distribution" onclick="openLightbox(this.src)" loading="lazy">
-      <div class="fig-label" data-i18n="finding_b_fig"><strong>Fig 5</strong> — HDS distribution: most concepts have zero depth; the longest chain reaches only 8</div>
+      <div class="fig-label" data-i18n="finding_b_fig"><strong>Fig 5</strong> — HDS distribution: most concepts have zero depth; the longest chain reaches only 8 (published bars frozen; source graph superseded, see docs/fig5_hds_forensic.md)</div>
     </div>
     <div class="meta"><a class="tag tag-green" href="#methodology" data-i18n="finding_b_tag1">Metric: HDS</a> <a class="tag tag-blue" href="#finding-b" data-i18n="finding_b_tag2">F3, F7</a> <a class="tag tag-yellow" href="#research" data-i18n="finding_b_tag3">Disciplines: Math, Physics</a></div>
   </div>
@@ -1532,7 +1532,7 @@ const TRANSLATIONS = {
     finding_b_ev2: 'Math HDS (mean)',
     finding_b_ev3: 'Root concepts (Math)',
     finding_b_ev4: 'Physics depth vs Math',
-    finding_b_fig: 'Fig 5 — HDS distribution: most concepts have zero depth; the longest chain reaches only 8',
+    finding_b_fig: 'Fig 5 — HDS distribution: most concepts have zero depth; the longest chain reaches only 8 (published bars frozen; source graph superseded, see docs/fig5_hds_forensic.md)',
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
@@ -1698,7 +1698,7 @@ const TRANSLATIONS = {
     finding_b_ev2: 'Math HDS (Mittel)',
     finding_b_ev3: 'Wurzelkonzepte (Math)',
     finding_b_ev4: 'Physik vs Math Tiefe',
-    finding_b_fig: 'Abb. 5 — HDS-Verteilung: die meisten Konzepte haben keine Tiefe',
+    finding_b_fig: 'Abb. 5 — HDS-Verteilung: die meisten Konzepte haben keine Tiefe (publizierte Balken frozen; Quellgraph superseded, s. docs/fig5_hds_forensic.md)',
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
@@ -2016,7 +2016,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_ev2: '数学 HDS（平均）',
     finding_b_ev3: '根概念（数学）',
     finding_b_ev4: '物理 vs 数学深度',
-    finding_b_fig: '图 5 — HDS 分布：多数概念深度为零，最长链只达到 8',
+    finding_b_fig: '图 5 — HDS 分布：多数概念深度为零，最长链只达到 8（发表柱形已冻结；源图已更替，见 docs/fig5_hds_forensic.md）',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
@@ -2369,8 +2369,10 @@ function setLanguage(lang) {
       window.coverageChart.update();
     }
   }
-  // Figure language variants (fig5_hds/fig6_cds/fig4_heatmap/fig_wikipedia stay EN: frozen/partial/superseded, see docs/SSOT-web.md)
-  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity'];
+  // Figure language variants (B7 2026-09-13: all 4 enabled; _de/_zh PNGs exist in web/figures/).
+  // Evidence grading: fig_wikipedia_lds = method control only (gloss without human spot-check, evidence-insufficient, never a formal claim);
+  // fig5_hds_distribution = published bars frozen, source graph superseded, disclosure via docs/fig5_hds_forensic.md (see fig label note).
+  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity', 'fig_wikipedia_lds', 'fig4_lds_heatmap', 'fig5_hds_distribution', 'fig6_cds_comparison'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {

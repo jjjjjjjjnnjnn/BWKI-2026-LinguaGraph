@@ -47,7 +47,7 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="Human Validation N=15">
+  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="人工验证 N=15">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
@@ -134,7 +134,7 @@
 | 学科 | 概念 | 关系 | 教材 | 语言 | 课程覆盖率 |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **数学** | 556 | 525 直接（+约3000条传递） | 68（32 图内引用） | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
-| **物理** | 367 | 386 | 83 书名（96 引用） | ZH/EN/DE | NRW 覆盖 NA |
+| **物理** | 367 | 386 | 83 书名（96 引用） | ZH/EN/DE | NRW 覆盖暂无 |
 | **化学** | 220 | 215 | 89 书名 | ZH/EN/DE | NRW 36% |
 | **总计** | **1,140+** | **1,100+ 直接** | **204** | **3 种语言** | **4 个教育体系** |
 

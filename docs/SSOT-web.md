@@ -19,7 +19,7 @@
 | Concepts (total) | 1,140+ | 全项目 Math 556 + Physics 367 + Chemistry 220 | `README.md` L131-134 | portal hero |
 | Relations (total) | 1,100+ direct | 同上 (525 + 386 + 215) | `README.md` L131-134 | portal hero |
 | Math nodes / relations / groups | 556 / 525 / 219 | 数学子图 (= 3D可视化数据) | `manifest.json` graph/alignment | 视频 SSOT · CognitiveSpace段 (`556 nodes · 525 relations`) |
-| Textbooks | 180+ (68 math + 94 phys + 18 chem) | 全项目 | `README.md` L131-134 | portal contributions |
+| Textbooks | 204 titles (32 math in-graph + 83 phys + 89 chem) | 全项目 Titel-Summe, Portal `#sources` | `02_methodology.md` 计数口径 (68/72/32) | portal contributions |
 | Gold labels | 92 (social 72, math 20) | 全项目 | `README.md` L142 | validation |
 | F1 | social 0.939 / weighted 0.881 | 全项目 | `README.md` L144+ | hero + validation |
 | LLM replication | 55 Messungen / 50 Modelle | LLM-as-subject (§5) | `data/lds_c/llm_subject/` | 视频 S04, portal Finding E |
@@ -45,7 +45,7 @@
 | 5 | Paper-Karten | 56 KB · 19+ refs | **153 KB md · 293 KB PDF · 54 refs** | gemessen (`docs/paper/`, `docs/submission/`) — Update 2026-09-11: **~161 KB md · 217 KB PDF** (deutsche Offenlegung + Strukturmarker) |
 | 6 | Fig4 | alte Heatmap (6-22) | **fig4_null_model.png** (6-30), Caption unverändert | `outputs/figures/fig4_null_model_data.csv` |
 | 7 | Validation | nur 19-Benchmark | **+55/50-Satz** (paper §5.10, EN/DE/ZH) | `multi_model_replication_20260910.json` |
-| 8 | Kleinigkeiten | 180+ · 816 KB | **180** (68+94+18) · **956 KB** (8 PNGs) | README §Dataset · gemessen |
+| 8 | Kleinigkeiten | 180+ · 816 KB | **204 Titel-Summe (32+83+89, P2b#8 alt 180 = 68+94+18 Volumen-Mix, retired)** · **956 KB** (8 PNGs) | README §Dataset · gemessen |
 
 ## P2c Modell-Roster + Academic-Honesty (2026-09-11)
 - 56 complete-Aggregat = **55 (n=30) + qwen-max (n=29/30)**; 30 error + qwen-max = **31 collecting** (paper §8.15: 86 begonnen, 55 vollständig).
@@ -54,13 +54,15 @@
 - LDS-Formel: `1 − mean(J_node, J_edge)` (README Metrics; portal vorher GED-veraltet).
 - Governance-Downgrade: B = Hypothese, A (Granularität) sicherste Lesart (paper §8.6); ZH-E-Titel Falsifikations-Wording; P2-Recheck-Note an Finding C; Youden 0.13-Zeile; Paper-Sektion real (Abstract/Sections/BibTeX/PDF-Link); Footer +Schule/Autor; Figures 7→8.
 
-## D Figure-i18n (2026-09-11, scripts/figures_i18n.py)
+## D Figure-i18n (2026-09-11, scripts/figures_i18n.py; Wave 2 2026-09-12 scripts/figures_i18n_wave2.py)
+
+> Freshness-Note (2026-09-13 verifiziert): CSV neuer als EN-PNG (wiki/heatmap/figure1/figure3, CSV 09-12 vs PNG 06-19/06-22) ist **kein Drift** — Wave-2-Skript schreibt fehlende CSVs aus frozen EN-Werten (EN-PNGs sind die Quelle, nie überschrieben) + EN-Pixel-Gate (MAE=0.000, `--check` 2026-09-13 ALL OK). EN-PNGs bleiben maßgeblich; _de/_zh sind Chrome-Übersetzungen identischer Balken.
 
 - fig3/fig7 DE+ZH aus Archiv-Snapshots (outputs/physics_comparison.json + chemistry_comparison.json):
   math-mid 0.2705, phys-elem 0.2222, chem-mid 0.0415 — identisch mit EN-Figuren + Portal-Text (asserts im Skript).
 - fig4 DE+ZH deterministisch neu gerechnet (seeded) + assert ZH-DE 0.519; Legende/Conditions bleiben EN (Fachbegriffe).
-- fig5 EN-ONLY: Recompute aus aligned_data.json ergibt 442/270/6/0.72 vs publiziert 556/459/8/0.40
-  (Quellgraph superseded) — Re-Render würde Balken fälschen. Caption bleibt dreisprachig.
+- fig5 EN/DE/ZH alle live (B7 2026-09-13 in figBases aktiviert): publizierte Balken frozen, Quellgraph superseded — kein Re-Render, Disclosure via docs/fig5_hds_forensic.md (Portal-Caption trägt den Hinweis dreisprachig).
+- fig_wikipedia_lds DE+ZH ebenfalls aktiviert (Dateien vorhanden), aber methodische Kontrolle only (Gloss ohne Human-Spot-Check, Ledger §7 needs_review) — nie als formaler Beleg.
 - Level-Mapping DE: Grundschule/Mittelstufe/Oberstufe/Hochschule; ZH: 小学/初中/高中/大学.
 - Portal tauscht img-src per Sprache (fig5 bleibt EN); Coverage-Chart-Labels dreisprachig.
 

@@ -15,7 +15,7 @@ Die Methodik basiert auf zwei komplementären Pipelines:
 
 1. **LinguaGraph Pipeline**: Extraktion von Konzepten aus Probandentexten (ZH/DE/EN), Konstruktion kognitiver Graphen und Berechnung des *Linguistic Divergence Score* (LDS) — eines neuartigen metrischen Maßes für strukturelle Divergenz zwischen Sprachen.
 
-2. **CognitiveSpace Pipeline**: Automatisierte Extraktion eines mathematischen Wissensgraphen aus 68 Lehrbüchern (39 ZH, 18 EN, 11 DE) mit **556 Konzepten und 525 Relationen** über vier Bildungsstufen (Grundschule bis Universität). Die sprachübergreifende Alignierung erzielt 219 dreisprachig abgedeckte Konzeptgruppen (39 %) bei null strukturellen Konflikten.
+2. **CognitiveSpace Pipeline**: Automatisierte Extraktion eines mathematischen Wissensgraphen aus 68 Lehrbüchern (39 ZH, 18 EN, 11 DE) mit **556 Konzepten und 525 Relationen** über vier Bildungsstufen (Grundschule bis Universität). Die sprachübergreifende Alignierung erzielt 219 dreisprachig abgedeckte Konzeptgruppen (39 % von 556 Konzepten; Gruppen ≠ Konzepte) bei null strukturellen Konflikten.
 
 Der CognitiveSpace-Graph wird als **3D-Kugelschalenvisualisierung** dargestellt, die die Wissensexpansion von der Kernmathematik zur Hochschulmathematik sichtbar macht — mit interaktiven Sprachfiltern (ZH/EN/DE).
 

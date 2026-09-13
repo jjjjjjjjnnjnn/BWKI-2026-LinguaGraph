@@ -5,7 +5,7 @@
 ---
 
 <p align="center">
-  <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
+  <img src="web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>

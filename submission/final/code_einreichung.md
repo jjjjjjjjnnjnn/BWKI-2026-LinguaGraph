@@ -68,7 +68,7 @@ Alle Skripte schreiben datierte JSON-Ausgaben nach `data/lds_c/` inkl. Nachvollz
 | **Datensatz: Wikipedia** | Soziale Konzepte (ZH/DE/EN), CC-BY-SA | `data/wikipedia_extractions/` |
 | **Datensatz: Menschliche Fragebögen** | N=15 (6 DE · 6 ZH · 3 EN), GDPR-Einwilligung, anonymisiert | `freeze/` (SSOT), `participant_data/` (PII, nicht eingereicht) |
 | **Datensatz: Mathematik-Lehrbücher** | Institutionelle Kontrolldomäne | `data/corpus/` |
-| **Bibliotheken** | numpy, scipy, statsmodels, pytest | `requirements.txt` |
+| **Bibliotheken** | numpy, scipy, scikit-learn, pytest (+ markdown, fpdf2 für Paper-PDF) | `requirements.txt` |
 | **Netzwerke/Graphen** | NetworkX, 3d-force-graph (CognitiveSpace-Rendering) | Paper §2.12 |
 | **Figuren** | matplotlib (deterministische Skripte `scripts/figures/`) | reproduzierbar |
 | **Textextraktion** | pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill) | Scan-OCR, Layer getrennt |

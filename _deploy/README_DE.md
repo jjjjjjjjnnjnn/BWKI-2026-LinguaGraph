@@ -5,7 +5,7 @@
 ---
 
 <p align="center">
-  <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
+  <img src="web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -47,7 +47,7 @@
   <img src="https://img.shields.io/badge/languages-ZH%20%7C%20EN%20%7C%20DE-green?style=flat-square" alt="ZH/EN/DE">
   <img src="https://img.shields.io/badge/subjects-Math%20%7C%20Physics%20%7C%20Chemistry-orange?style=flat-square" alt="Math/Physics/Chemistry">
   <img src="https://img.shields.io/badge/coverage-NRW%2012.7%25%20%7C%20UK%2037.3%25%20%7C%20US%2017.2%25%20%7C%20CN%2095.4%25-yellow?style=flat-square" alt="Coverage Scores">
-  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="Human Validation N=15">
+  <img src="https://img.shields.io/badge/human_validation-N%3D15-purple?style=flat-square" alt="Human-Validierung N=15">
   <img src="https://img.shields.io/badge/simulation-300-blue?style=flat-square" alt="300 Simulation Baseline">
 </p>
 
@@ -134,7 +134,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
 | **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 (32 im Graph zitiert) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
-| **Physik** | 367 | 386 | 83 Titel (96 Refs) | ZH/EN/DE | NRW coverage NA |
+| **Physik** | 367 | 386 | 83 Titel (96 Refs) | ZH/EN/DE | NRW-Abdeckung n. v. |
 | **Chemie** | 220 | 215 | 89 Titel | ZH/EN/DE | NRW 36% |
 | **Gesamt** | **1.140+** | **1.100+ direkt** | **204** | **3 Sprachen** | **4 Bildungssysteme** |
 

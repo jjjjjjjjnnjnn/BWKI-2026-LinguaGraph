@@ -44,6 +44,10 @@ jobs:
           cp -r cognitive-space/portal _deploy/portal
           cp -r docs _deploy/docs
           cp README.md README_DE.md README_ZH.md _deploy/ 2>/dev/null || true
+          # Dev-only files must not ship to Pages (B6 2026-09-13):
+          rm -f _deploy/sync_readmes.py _deploy/portal/fix_portal.py _deploy/portal/fix_bugs.txt
+          # Fix _deploy README screenshot path (no _deploy/cognitive-space/ tree):
+          sed -i 's|"cognitive-space/web/screenshot.png"|"web/screenshot.png"|g' _deploy/README.md _deploy/README_DE.md _deploy/README_ZH.md
           # Site root serves the portal (same rule as scripts/mirror_root.py):
           # flatten one-level ../x refs to x for the root copy.
           cp cognitive-space/portal/index.html _deploy/index.html

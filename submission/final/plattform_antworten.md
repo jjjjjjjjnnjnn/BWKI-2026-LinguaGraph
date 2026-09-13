@@ -43,7 +43,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 
 ## 5. Fehlerquellen — Was hat nicht funktioniert und warum?
 
-1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **stark auf die aggregationsbedingte Sparsity als Mechanismus zurückgeführt** (Signal-Marge +0,014 ≈ menschlich +0,015; kausale Zuschreibung bleibt Hypothese, siehe Paper §8).
+1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **konsistent auf die aggregationsbedingte Sparsity als Mechanismus zurückgeführt** (Signal-Marge +0,014 ≈ menschlich +0,015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung, siehe Paper §8).
 2. **Alignment-Artefakt**: Chinesische Konzepte ohne lateinische Tokens (canonical_key) erzeugten leere Schlüssel → falsche Divergenz. Fix: Glossierung chinesischer Konzepte ins Englische vor der Alignierung, mit expliziter Fehlermeldung bei fehlenden Glosses.
 3. **Wikipedia-LDS=1.0-Artefakt**: Leere Mengen erzeugten still die maximale Divergenz. Fix: leere-Menge-Konvention (∅=∅ identisch; ∅ vs. nicht-leer = NaN, kein stilles Maximum) + Testabdeckung.
 4. **Modellabhängige Extraktionsqualität**: Die Extraktionsqualität variiert nach Domäne (soziale Konzepte F1≈0.94, deutsche Mathematik F1≈0.51). Dies betrifft die Lehrbuch-Kontrolldomäne, nicht das LLM-as-Subject-Kernexperiment.
@@ -62,7 +62,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 
 Start (Juni 2026): **Sprachübergreifende Wissensstruktur in Bildungstexten** (Mathematik-Lehrbücher, ZH/EN/DE). Zwischenbefund: Lehrbuchwissen konvergiert strukturell, Nullmodelle falsifizieren eine sprachgetriebene Lehrbuchdivergenz.
 
-Drehung (Juli 2026): Der Fokus verschob sich von der Wissensstruktur zur **kognitiven Konzeptstruktur** und — durch das LLM-as-Subject-Design — zur **Prüfung des KI-Systems selbst**. Die Lehrbuch-Analyse blieb als Domänen-Kontrollbefund erhalten (institutionelles Wissen konvergiert → das kulturelle Signal ist kein Artefakt).
+Drehung (Juli 2026): Der Fokus verschob sich von der Wissensstruktur zur **kognitiven Konzeptstruktur** und — durch das LLM-as-Subject-Design — zur **Prüfung des KI-Systems selbst**. Die Lehrbuch-Analyse blieb als Domänen-Kontrollbefund erhalten (scheinbare institutionelle Konvergenz, T1-falsifiziert als Label-Artefakt: ZH-DE 0,52 → 0,99 — das kulturelle Signal ist damit kein Lehrbuch-Artefakt).
 
 Dieser Wandel ist ausdrücklich erlaubt und dokumentiert ("Idee darf sich im Laufe der Bearbeitung verändern"): Das Projekt begann als Textbuch-Analyse und wurde zu einem Werkzeug zur KI-Validierung.
 
