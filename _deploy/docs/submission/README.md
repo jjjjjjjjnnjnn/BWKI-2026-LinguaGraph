@@ -14,7 +14,7 @@
 | F1–F3 | CDS-Gipfel Mittelstufe (0,271); HDS ≤ 8; flaches Netz | Deskriptiv, ohne CI |
 | F5 | Nullmodell: Full < Structure (alle Paare) — LDS-K misst **keine** Sprachdivergenz | Stärkste, ehrlichste Evidenz |
 | F11 | N=15 falsifiziert ΔLDS > 0 between-subject | Pilot N=8 nicht repliziert |
-| F12 | LLM-within-subject Signal +0,08–0,09 (58 Messungen, 53 Modelle; file truth 59/54/177 incl. qwen-max n=26/30) | ~83 % CN-Anbieter; 8 EN-Paare n. s. |
+| F12 | LLM-within-subject Signal +0,08–0,09 (59 Messungen, 54 Modelle; file truth 62/57/186 incl. qwen-max n=26/30) | ~81 % CN-Anbieter; 9 EN-Paare n. s. |
 | C1 | ZH-DE-Konvergenz (0,519) | **Indikativ** (P2-Recheck: Alignierungs-Labels) |
 | F9/F10 | CS 12,7 %–95,4 % | Messung stark, Governance nur Hypothese |
 

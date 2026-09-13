@@ -4,6 +4,27 @@
 
 ---
 
+## [2026-09-13] v23g-smallmodel — phi-4-mini转正 (59/54/177) + 小模型边界专区
+
+### Overview
+
+本地波次落定：4 收全（phi/qwen2.5/hy-mt2/gemma 皆 n=30）+ sauerkraut 作废删除。证据分级执行：仅 **phi-4-mini** (Microsoft, 3.8B) 达正式标准（ZH-DE +0.087, p<0.01, 提取稠密 ~140/语言）→ 转正 **59/54/177**，file-truth **62/57/186**（61×n=30 + qwen-max n=26/30）。其余三项降级边界区：**qwen2.5-0.5b** ZH-DE n.s. (p=0.168) + 稀疏致 floor NaN；**hy-mt2-1.8b** 整 topic 集为空（zh Freiheit/Heimat/Erfolg = 0）→ floor 全 NaN，其 ZH-EN LDS=1.0 系空集 Artefakt（已退役类别）；**gemma-3-270m** JSON 抽取格式不兼容（str 概念、无 en-gloss、缺 Erfolg）→ 隔离至 `Temp/opencode/quarantine/` 待重跑（其格式曾致 `lds_c_multi_model.py` 崩溃，隔离后重跑通过）。
+
+核算（发表集 59 = n=30 + ZH-DE 显著 + margin 非 NaN，`sw_fix_analyses.py` complete 规则已收紧）：ZH-DE 59/59；EN n.s. **9/177**（+phi ZH-EN p=0.224）；Strata CN 48/48 (0.130) vs West 11/11 (0.155，去 luna 10/10 0.148)；dedup 54/54 (0.137)；Youden 59：最优 0.12，CI 0.12–0.13；votes（62 voter）：≥10: **237 vs 157±4**，Heimat:safety 48 → "48 von 62"；家族 Qwen 19 · DeepSeek 12（含 3 R1-Distill）· GLM 7 · Kimi 6 · MiniMax 2 + 13；R1 EN-floor 0.844 vs 其余 0.778。
+
+门户：59-row（phi 严格降序插入 kimi-k2-thinking/grok 之后）、MARGIN 59、collecting 表 26 行（23 incomplete + qwen2.5/hy-mt2 边界 + gemma 隔离）、**小模型专区**（4 卡片 + densityChart + smallSigChart + 三语 i18n）。星系图 59 柱 + phi 配色。§6 压缩 1684→1087（含 phi/边界/Youden 0.12）。PDF **231718B** ×3。
+
+### Files
+
+- Portal: `cognitive-space/portal/index.html`（专区+双图）, `cspace.html`, `cognitive-space/web/margin-galaxy.html`
+- Paper: `docs/paper/` 01/02/03/04（+边界段落）/05 + PDF×3 · SSOT-web（+v23g）· evidence C19 · declaration
+- Submission: `plattform_antworten.md` §6, `feld_mapping.md`, `README.md`, `declaration_of_support.md`
+- Code/Data: `scripts/sw_fix_analyses.py`（发表过滤+phi 标记）, `sw_fix_analyses_20260913.json`, `multi_model_replication_20260913.json`（同名再生，62 voter）
+- READMEs: `README.md`, `README_DE.md`, `README_ZH.md`（+ `_deploy` 全镜像）
+- Quarantäne/Retired: gemma-3-270m（Temp/quarantine）, sauerkrautlm-8b（删除，用户指令"作废"）
+
+---
+
 ## [2026-09-13] v23f-replication58 — grok/llama/spark n=30 Promotion (58/53/174)
 
 ### Overview

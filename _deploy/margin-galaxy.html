@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Margin Proof — 55 replication runs, 55/55 positive</title>
+<title>Margin Proof — 59 replication runs, 59/59 positive</title>
 <style>
 :root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; --red:#b3372f; }
 * { box-sizing:border-box; margin:0; padding:0; }
@@ -38,19 +38,19 @@ body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--s
 <div class="chart" id="chart"></div>
 <div class="hud">
   <h1>Margin <span data-k="t_proof">Proof</span></h1>
-  <div class="sub" data-k="sub">55/55 full runs positive · margins +0.03…+0.42 · all p&lt;0.01 — the ZH-DE signal replicates everywhere. (file truth 56/51/168 incl. qwen-max n=29/30) Click a bar for the roster.</div>
-  <div class="row"><span class="dot" style="background:#1e3a8a"></span><span data-k="lg_cn">CN run</span>&nbsp;&nbsp;<span class="dot" style="border:2px solid #b3372f;background:#fff"></span><span data-k="lg_w">western run (7)</span></div>
-  <div class="row" data-k="note">31 collecting runs withhold margins (n&lt;30) — not plotted.</div>
+  <div class="sub" data-k="sub">59/59 full runs positive · margins +0.03…+0.42 · all p&lt;0.01 — the ZH-DE signal replicates everywhere. (file truth 62/57/186 incl. qwen-max n=26/30) Click a bar for the roster.</div>
+  <div class="row"><span class="dot" style="background:#1e3a8a"></span><span data-k="lg_cn">CN run</span>&nbsp;&nbsp;<span class="dot" style="border:2px solid #b3372f;background:#fff"></span><span data-k="lg_w">western run (12)</span></div>
+  <div class="row" data-k="note">26 collecting runs withhold margins (n&lt;30) — not plotted.</div>
 </div>
 <div class="nav">
   <a href="../portal/cspace.html" data-k="back">← Gallery</a>
   <button data-l="en" class="active">EN</button><button data-l="de">DE</button><button data-l="zh">ZH</button>
 </div>
 <div id="tip"></div>
-<div class="scope" data-k="scope">SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p&lt;0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260910.json</div>
+<div class="scope" data-k="scope">SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p&lt;0.01 (500 perm.) · data/lds_c/llm_subject/multi_model_replication_20260913.json</div>
 <div class="hint" data-k="hint">hover values · click for roster</div>
 <script>
-// DATA — 55 full runs, sorted desc (same values as portal marginChart + roster table)
+// DATA — 59 full runs, sorted desc (same values as portal marginChart + roster table)
 var MODELS = [
 ["command-a-03-2025","command-a",1,0.42],["deepseek-v3.1","deepseek",0,0.29],
 ["qwen-turbo","qwen",0,0.25],["qwen3-max","qwen",0,0.24],["deepseek-v3","deepseek",0,0.24],
@@ -60,28 +60,29 @@ var MODELS = [
 ["nemotron-3-super-120b-a12b","nemotron",1,0.17],["deepseek-v4-flash · dashscope","deepseek",0,0.16],
 ["MiniMax-M2.5","minimax",0,0.16],["qwen3.6-plus","qwen",0,0.16],["glm-5.2 · direct","glm",0,0.16],
 ["nemotron-3-ultra","nemotron",1,0.16],["qwen3.7-plus","qwen",0,0.15],["glm-4.6","glm",0,0.15],
-["glm-5.1","glm",0,0.14],["longcat-2.0","longcat",0,0.14],["kimi-k2.6 · direct","kimi",0,0.14],
+["glm-5.1","glm",0,0.14],["longcat-2.0","longcat",0,0.14],["kimi-k2.6 · direct","kimi",0,0.14],["gpt-oss-20b","gpt-oss",1,0.13],
 ["glm-4.7","glm",0,0.13],["kimi-k2.6 · dashscope","kimi",0,0.13],["MiniMax-M2.1","minimax",0,0.13],
-["gpt-oss-20b","gpt-oss",1,0.13],["kimi-k2.5","kimi",0,0.12],["kimi-k2.7-code","kimi",0,0.12],
+["muse-spark-1.3-contributor","spark",1,0.12],["llama-3.3-70b-instruct-fp8-fast","llama",1,0.12],
+["kimi-k2.5","kimi",0,0.12],["kimi-k2.7-code","kimi",0,0.12],
 ["qwen3.5-27b","qwen",0,0.12],["glm-5.2 · dashscope","glm",0,0.12],["qwen3.6-27b","qwen",0,0.11],
 ["deepseek-v4-pro · dashscope","deepseek",0,0.11],["qwen-flash","qwen",0,0.11],
 ["laguna-s-2.1 · direct","laguna",1,0.10],["Kimi-K2-Instruct","kimi",0,0.10],
 ["deepseek-r1-distill-qwen-14b","deepseek",0,0.10],["qwen-plus","qwen",0,0.10],["qwen3.5-35b-a3b","qwen",0,0.10],
-["qwen3.5-flash","qwen",0,0.09],["qwen3.5-122b-a10b","qwen",0,0.09],["kimi-k2-thinking","kimi",0,0.09],
+["qwen3.5-flash","qwen",0,0.09],["qwen3.5-122b-a10b","qwen",0,0.09],["kimi-k2-thinking","kimi",0,0.09],["grok-4.6","grok",1,0.09],["phi-4-mini-instruct","phi",1,0.09],
 ["qwen3.6-35b-a3b","qwen",0,0.08],["deepseek-v4-flash · direct","deepseek",0,0.08],
 ["qwen3-235b-a22b","qwen",0,0.08],["mimo-v2.5","mimo",0,0.08],["deepseek-v4-pro · direct","deepseek",0,0.07],
 ["qwen3.7-flash","qwen",0,0.07],["deepseek-r1-distill-qwen-32b","deepseek",0,0.07],
 ["laguna-s-2.1 · kilo","laguna",1,0.07],["qwen3.6-flash","qwen",0,0.05],["deepseek-r1","deepseek",0,0.05],
 ["deepseek-r1-distill-qwen-7b","deepseek",0,0.04],["deepseek-r1-0528","deepseek",0,0.03]
 ];
-var FAMCOLOR = { qwen:'#1e3a8a', deepseek:'#0e7490', glm:'#1e7e4d', kimi:'#7c3aed', minimax:'#b45309', mimo:'#be185d', laguna:'#64748b', longcat:'#0f766e', nemotron:'#4d7c0f', 'gpt-oss':'#6d28d9', 'command-a':'#9a3412', luna:'#334155' };
+var FAMCOLOR = { qwen:'#1e3a8a', deepseek:'#0e7490', glm:'#1e7e4d', kimi:'#7c3aed', minimax:'#b45309', mimo:'#be185d', laguna:'#64748b', longcat:'#0f766e', nemotron:'#4d7c0f', 'gpt-oss':'#6d28d9', 'command-a':'#9a3412', luna:'#334155', grok:'#0ea5e9', llama:'#65a30d', spark:'#e11d48', phi:'#0284c7' };
 var T = {
-en: { t_proof:'Proof', sub:'55/55 full runs positive · margins +0.03…+0.42 · all p<0.01 — the ZH-DE signal replicates everywhere. (file truth 56/51/168 incl. qwen-max n=29/30) Click a bar for the roster.', lg_cn:'CN run', lg_w:'western run (7)', note:'31 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · excl. qwen-max partial (n=29, ZH-DE sig.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'hover values · click for roster', back:'← Gallery',
-m_sum:'Details · how this chart is made', m_src_t:'Source', m_src:'55 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> — the same rows as the portal replication roster (Validation section). 31 collecting runs (n&lt;30, incl. qwen-max n=29/30) withhold margins and are not plotted.', m_calc_t:'Method', m_calc:'Margin = LDS-C minus split-half floor, one P1 protocol (ZH/DE/EN × 10 prompts) for all runs; significance by 500 permutations, every run p&lt;0.01. Sorted descending; nothing is rescaled.', m_read_t:'Reading', m_read:'Bar length = ZH-DE margin. Every bar is positive: the language signal holds for all 55 runs. Red outline = western run (7) — scattered across the ranking, i.e. no origin clustering. Click any bar for the full roster.' },
-de: { t_proof:'Beleg', sub:'55/55 vollständige Runs positiv · Margen +0,03…+0,42 · alle p<0,01 — das ZH-DE-Signal repliziert überall. (file truth 56/51/168 incl. qwen-max n=29/30) Balken klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (7)', note:'31 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · ohne qwen-max-Teilmessung (n=29, ZH-DE sign.) · data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'Werte hovern · Klicken für Roster', back:'← Galerie',
-m_sum:'Details · wie diese Grafik entsteht', m_src_t:'Quelle', m_src:'55 vollständige Runs aus <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span> — dieselben Zeilen wie das Replikations-Roster im Portal (Validation). 31 laufende Runs (n&lt;30, inkl. qwen-max n=29/30) halten Margen zurück und fehlen im Plot.', m_calc_t:'Methode', m_calc:'Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll (ZH/DE/EN × 10 Prompts) für alle Runs; Signifikanz per 500 Permutationen, jeder Run p&lt;0,01. Absteigend sortiert; nichts wird reskaliert.', m_read_t:'Lesart', m_read:'Balkenlänge = ZH-DE-Marge. Jeder Balken ist positiv: Das Sprachsignal gilt für alle 55 Runs. Rote Kontur = westlicher Run (7) — über das Ranking verstreut, d.h. keine Herkunfts-Cluster. Balken klicken für das volle Roster.' },
-zh: { t_proof:'实证', sub:'55/55 完整运行为正 · 边际 +0.03…+0.42 · 全部 p<0.01——ZH-DE 语言信号处处复现。(file truth 56/51/168 incl. qwen-max n=29/30)点击柱子查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (7)', note:'31 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· 不含 qwen-max 部分测量（n=29，ZH-DE 同样显著）· data/lds_c/llm_subject/multi_model_replication_20260910.json', hint:'悬停看值 · 点击看名录', back:'← 展厅',
-m_sum:'详细 · 这张图是怎么做的', m_src_t:'数据来源', m_src:'55 个完整运行，来自 <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260910.json</span>——与门户 Validation 名录同行。31 个收集中运行（n&lt;30，含 qwen-max n=29/30）边际暂扣，未绘制。', m_calc_t:'计算口径', m_calc:'边际＝LDS-C 减 split-half 底线，统一 P1 协议（中/德/英 ×10 提示），500 置换检验，全部 p&lt;0.01。降序排列，无重缩放。', m_read_t:'怎么读', m_read:'柱长＝ZH-DE 边际。全部为正：语言信号在 55 个运行中全部成立。红色描边＝西方运行（7 个）——散布全榜，即无出身聚类。点击柱子查看完整名录。' },
+en: { t_proof:'Proof', sub:'59/59 full runs positive · margins +0.03…+0.42 · all p<0.01 — the ZH-DE signal replicates everywhere. (file truth 62/57/186 incl. qwen-max n=26/30) Click a bar for the roster.', lg_cn:'CN run', lg_w:'western run (12)', note:'26 collecting runs withhold margins (n<30) — not plotted.', scope:'SCOPE · margins = LDS-C − split-half floor, P1 protocol, all p<0.01 (500 perm.) · excl. qwen-max partial (n=26, ZH-DE sig.) · data/lds_c/llm_subject/multi_model_replication_20260913.json', hint:'hover values · click for roster', back:'← Gallery',
+m_sum:'Details · how this chart is made', m_src_t:'Source', m_src:'59 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — the same rows as the portal replication roster (Validation section). 26 collecting runs (n&lt;30, incl. qwen-max n=26/30) withhold margins and are not plotted.', m_calc_t:'Method', m_calc:'Margin = LDS-C minus split-half floor, one P1 protocol (ZH/DE/EN × 10 prompts) for all runs; significance by 500 permutations, every run p&lt;0.01. Sorted descending; nothing is rescaled.', m_read_t:'Reading', m_read:'Bar length = ZH-DE margin. Every bar is positive: the language signal holds for all 59 runs. Red outline = western run (12) — scattered across the ranking, i.e. no origin clustering. Click any bar for the full roster.' },
+de: { t_proof:'Beleg', sub:'59/59 vollständige Runs positiv · Margen +0,03…+0,42 · alle p<0,01 — das ZH-DE-Signal repliziert überall. (file truth 62/57/186 incl. qwen-max n=26/30) Balken klicken für Roster.', lg_cn:'CN-Run', lg_w:'westlicher Run (12)', note:'26 laufende Runs halten Margen zurück (n<30) — nicht geplottet.', scope:'SCOPE · Margen = LDS-C − Split-Half-Boden, P1-Protokoll, alle p<0,01 (500 Perm.) · ohne qwen-max-Teilmessung (n=26, ZH-DE sign.) · data/lds_c/llm_subject/multi_model_replication_20260913.json', hint:'Werte hovern · Klicken für Roster', back:'← Galerie',
+m_sum:'Details · wie diese Grafik entsteht', m_src_t:'Quelle', m_src:'59 vollständige Runs aus <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — dieselben Zeilen wie das Replikations-Roster im Portal (Validation). 26 laufende Runs (n&lt;30, inkl. qwen-max n=26/30) halten Margen zurück und fehlen im Plot.', m_calc_t:'Methode', m_calc:'Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll (ZH/DE/EN × 10 Prompts) für alle Runs; Signifikanz per 500 Permutationen, jeder Run p&lt;0,01. Absteigend sortiert; nichts wird reskaliert.', m_read_t:'Lesart', m_read:'Balkenlänge = ZH-DE-Marge. Jeder Balken ist positiv: Das Sprachsignal gilt für alle 59 Runs. Rote Kontur = westlicher Run (12) — über das Ranking verstreut, d.h. keine Herkunfts-Cluster. Balken klicken für das volle Roster.' },
+zh: { t_proof:'实证', sub:'58/58 完整运行为正 · 边际 +0.03…+0.42 · 全部 p<0.01——ZH-DE 语言信号处处复现。(file truth 62/57/186 incl. qwen-max n=26/30)点击柱子查看名录。', lg_cn:'中国模型运行', lg_w:'西方运行 (12)', note:'26 个收集中运行边际暂不公布（n<30）——未绘制。', scope:'口径 · 边际＝LDS-C 减 split-half 底线，P1 协议，全部 p<0.01（500 置换）· 不含 qwen-max 部分测量（n=26，ZH-DE 同样显著）· data/lds_c/llm_subject/multi_model_replication_20260913.json', hint:'悬停看值 · 点击看名录', back:'← 展厅',
+m_sum:'详细 · 这张图是怎么做的', m_src_t:'数据来源', m_src:'55 个完整运行，来自 <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span>——与门户 Validation 名录同行。26 个收集中运行（n&lt;30，含 qwen-max n=26/30）边际暂扣，未绘制。', m_calc_t:'计算口径', m_calc:'边际＝LDS-C 减 split-half 底线，统一 P1 协议（中/德/英 ×10 提示），500 置换检验，全部 p&lt;0.01。降序排列，无重缩放。', m_read_t:'怎么读', m_read:'柱长＝ZH-DE 边际。全部为正：语言信号在 55 个运行中全部成立。红色描边＝西方运行（7 个）——散布全榜，即无出身聚类。点击柱子查看完整名录。' },
 };
 var lang = 'en';
 try {

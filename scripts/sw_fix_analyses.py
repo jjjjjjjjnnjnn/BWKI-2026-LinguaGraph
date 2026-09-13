@@ -74,16 +74,31 @@ sw1["note"] = (
 # ---------------------------------------------------------------- SW2 strata
 rep = json.loads(REPL.read_text(encoding="utf-8"))
 models = rep["models"]
-complete = {k: v for k, v in models.items() if v.get("n") == 30}
+# Formal set ("publiziert"): complete units (n==30) AND a significant ZH-DE
+# pair AND a non-NaN ZH-DE margin. Sparse small models (qwen2.5-0.5b: ZH-DE
+# n.s.; hy-mt2-1.8b: empty-set floor -> NaN margin) stay in the replication
+# file but outside the formal headline; they are reported in the small-model
+# boundary section (portal + paper S8.15f).
+import math
+complete = {
+    k: v for k, v in models.items()
+    if v.get("n") == 30
+    and v.get("by_pair", {}).get("ZH-DE", {}).get("perm_p", 1.0) < 0.05
+    and not (
+        isinstance(v["by_pair"]["ZH-DE"].get("margin"), float)
+        and math.isnan(v["by_pair"]["ZH-DE"]["margin"])
+    )
+}
 
 # Western-origin models (vendor-based, honest grouping): NVIDIA/Nemotron,
 # Poolside/Laguna (US), OpenAI-weight gpt-oss (US), Cohere/Command (CA),
 # Meta-llama weights (US), grok/xAI (US), muse-spark (Herkunft offengelegt),
 # gpt-5.6-luna (opencode-go, Herkunft ungeklärt — als westlich gezählt,
 # im Paper offengelegt). DeepSeek-R1-Distill(Llama) bleibt CN (Hersteller).
-# Everything else in the complete set is a CN-vendor family.
+# Everything else in the formal set is a CN-vendor family (qwen2.5/hy-mt2 are
+# CN-origin but excluded from the formal set by the rule above).
 WESTERN_MARKERS = ("nemotron", "laguna", "gpt-oss", "command", "luna",
-                   "gemma", "grok", "muse-spark", "mistral", "llama")
+                   "gemma", "grok", "muse-spark", "mistral", "llama", "phi")
 
 
 def vendor(key: str) -> str:
@@ -112,10 +127,13 @@ for v, s in strata.items():
         "sig_zh_de": f"{s['sig_zh_de']}/{len(arr)}",
     }
 sw2["note"] = (
-    "Complete-case set (n==30 units): 58 models (53 unique identities, "
-    "5 dual-host pairs). Western stratum (US/CA vendors + luna/spark "
-    "Herkunft offengelegt) vs CN-vendor; reported for transparency, not "
-    "as a vendor comparison. Supports the registered model-matrix extension."
+    "Formal set (n==30 units, ZH-DE significant, margin non-NaN): 59 models "
+    "(54 unique identities, 5 dual-host pairs). Sparse small-model runs "
+    "(qwen2.5-0.5b, hy-mt2-1.8b) excluded from the headline, reported in "
+    "the small-model boundary section. Western stratum (US/CA vendors + "
+    "luna/spark Herkunft offengelegt) vs CN-vendor; reported for "
+    "transparency, not as a vendor comparison. Supports the registered "
+    "model-matrix extension."
 )
 sw2["complete_models"] = sorted(complete.keys())
 

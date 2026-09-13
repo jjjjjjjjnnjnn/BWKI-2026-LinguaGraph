@@ -4,7 +4,7 @@
 > Alle Abschnitte ≤ 1700 Zeichen — für typische Plattform-Limits unkritisch.
 > Beim Eintragen: 1:1 kopieren; falls ein Feld kürzer limitiert ist, zuerst
 > die Tabellen kompaktieren, dann Fließtext kürzen (Zahlen nie runden).
-> Korrekturen 09-13 (spät): §7 Konvergenz-Overclaim → T1-Falsifikations-Wording; §5 "stark" → "konsistent"; §6 Replikation 55→58/53, Strata 7→10 West, Marge 0,182→0,162 (alle +2 Zeichen, §6 = 1684/1700).
+> Korrekturen 09-13 (spät): §7 Konvergenz-Overclaim → T1-Falsifikations-Wording; §5 "stark" → "konsistent"; §6 Replikation 55→58/53, Strata 7→10 West, Marge 0,182→0,162 (alle +2 Zeichen, §6 = 1684/1700). v23g: §6 komprimiert + phi/Kleinstmodell-Grenze (59/54, West 11, Youden 0,12) → §6 = 1087.
 
 | Plattform-Feld (08-09-Mail) | Antwort in `plattform_antworten.md` | Umfang |
 |---|---|---|
@@ -13,7 +13,7 @@
 | Umsetzung | §3 Umsetzung — technisch realisiert? | 845 |
 | Ergebnisse | §4 Ergebnisse — Was wurde gefunden? | 1225 |
 | Fehlerquellen (was nicht funktioniert hat) | §5 Fehlerquellen (4 dokumentierte) | 1339 |
-| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1684 |
+| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1087 |
 | Entwicklung der Idee | §7 Projektentwicklung (Textbuch → Audit-Werkzeug) | 892 |
 | Unterstützung/Offenlegung | §8 + `declaration_of_support.md` (Anhang) | 681 |
 

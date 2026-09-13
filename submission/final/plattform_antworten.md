@@ -51,13 +51,13 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 ## 6. Kritische Einschätzung — Grenzen und nächste Schritte
 
 **Ehrliche Grenzen**:
-- **Beweisumfang**: Das Sprachsignal ist im Basismodell und in einer **58-Messungs-Replikation** (53 eindeutige Modelle, alle ZH-DE-Paare signifikant, Kulturrichtung über Zufallsniveau) nachgewiesen — allerdings mit ~83 % chinesischen Anbietern (zehn westliche Messungen) und einigen nicht-signifikanten englisch-haltigen Paaren. Anbieter-stratifiziert (58 vollständige Messungen): CN 48/48 signifikant (Marge 0,130), West 10/10 (Marge 0,162) — richtungskonsistent, aber als Anbietervergleich weiter unterpowert. Die schwächeren EN-Paare sind mit der Englisch-Zentriertheit aktueller Modelle konsistent (Paper §2.5, [43]–[45]). Eine produktive Anwendung als Audit-Instrument erfordert die Erweiterung auf westliche Modelle, weitere Konzepte/Sprachen.
-- **5 Konzepte, 3 Sprachen**: Die Breite der Wertekonzepte ist begrenzt; weitere Konzepte und Sprachen (z. B. Französisch, Japanisch) stehen aus.
-- **Heuristischer Schwellenwert (Vorschlag)**: ZH-DE-Marge ≥ 0.10 = "hohe sprachübergreifende Divergenz" (trennt hoch-divergente von niedrig-divergenten Modellen über die beobachtete Spanne +0.03 bis +0.42); als anwendbare Faustregel, keine validierte Validitätsgrenze. Youden-Kalibrierung: Trennung bei 0,13 (CI 0,13–0,14); 0,10 sensitiv-inklusiv (Paper §8.15, [46]).
-- **Interpretation der Richtung**: Die Divergenztreiber (DE: Autonomie; ZH: Raum/Anspruch) sind deskriptiv; ihre kulturelle Deutung ist Hypothese, keine kausale Erklärung.
+- **Beweisumfang**: Sprachsignal in **59-Messungs-Replikation** (54 Modelle, alle ZH-DE sig., Richtung über Zufall) — aber ~81 % CN-Anbieter (elf westliche), 9 n.s. EN-Paare. Stratifiziert: CN 48/48 (0,130), West 11/11 (0,155) — als Anbietervergleich unterpowert.
+- **Kleinstmodell-Grenze**: nur phi-4-mini (3,8B, +0,09, p<0,01) repliziert; qwen2.5-0.5b null (p=0,168), hy-mt2 NaN (leere Sets), gemma Quarantäne — Kette bricht bei Extraktion (Paper §8.15).
+- **5 Konzepte, 3 Sprachen**: Breite begrenzt; weitere Konzepte/Sprachen (z. B. Französisch, Japanisch) stehen aus.
+- **Schwelle (Vorschlag)**: ZH-DE-Marge ≥ 0.10 = „hoch divergent" (Spanne +0.03…+0.42); Youden 0,12 (CI 0,12–0,13) — Faustregel, keine validierte Grenze.
+- **Interpretation der Richtung**: Treiber (DE: Autonomie; ZH: Raum/Anspruch) deskriptiv; kulturelle Deutung Hypothese, keine kausale Erklärung.
 
-**Nächste Schritte**: Modell-Matrix (westliche Modelle), Konzept- und Spracherweiterung, kalibrierte Schwellenwert-Validierung, Interpretation mit Kulturwissenschaft.
-
+**Nächste Schritte**: Modell-Matrix (West-Modelle), Konzept-/Spracherweiterung, Schwellen-Validierung, Kleinstmodell-Extraktionsschiene.
 ## 7. Projektentwicklung — Wie hat sich die Idee entwickelt?
 
 Start (Juni 2026): **Sprachübergreifende Wissensstruktur in Bildungstexten** (Mathematik-Lehrbücher, ZH/EN/DE). Zwischenbefund: Lehrbuchwissen konvergiert strukturell, Nullmodelle falsifizieren eine sprachgetriebene Lehrbuchdivergenz.

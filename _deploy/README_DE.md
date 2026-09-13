@@ -173,7 +173,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 - **Full < Structure für alle Paare** — das Hinzufügen von Kantenbeziehungen verringert eher die Divergenz, als sie zu verstärken
 - Die Taxonomie (gemeinsame Konzeptorganisation) erklärt den Großteil der Varianz; sprachspezifische Beziehungen sind konvergent
 
-> **LLM-als-Proband-Doppelbilanz:** öffentliche Konvention **58 vollständige Messungen / 53 eindeutige Modelle / 174 Paare** schließt den partiellen qwen-max-Lauf aus (n=26/30, ZH–DE ebenfalls signifikant); Datei-Wahrheit ist **59 / 54 / 177**. **24 collecting** = 22 Fehler + qwen-max + phi-4-mini (Paper §8.15: 81 gestartet, 58+1 vollständig). Siehe [🧪 Modellvergleich](#-modellvergleich).
+> **LLM-als-Proband-Doppelbilanz:** öffentliche Konvention **59 vollständige Messungen / 54 eindeutige Modelle / 177 Paare** schließt den partiellen qwen-max-Lauf aus (n=26/30, ZH–DE ebenfalls signifikant); Datei-Wahrheit ist **62 / 57 / 186**. **26 collecting** = 23 Fehler + 2 spärliche Kleinstmodell-Grenzläufe + 1 Quarantäne (Paper §8.15: 84 gestartet, 61×n=30). Siehe [🧪 Modellvergleich](#-modellvergleich).
 
 > Vollständige Methodik siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md), Humananalyse siehe [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) und Simulation siehe [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py).
 
@@ -247,7 +247,7 @@ Eigener Beitrag: Design, LDS-Definition, alle Findings-/Falsifikationsanalysen. 
 
 ## 🧪 Modellvergleich
 
-**58 vollständige Messungen (53 eindeutige Modelle)** über DashScope (42), Bare-Hosts (zen/OpenRouter/D1: 8) + Kilo (2), Cohere (1), NIM (1), Cloudflare (1) und opencode-go (3) mit identischem P1-Protokoll (3 Sprachen × k=10), plus 19-Modell-Extraktionsbenchmark (F1-Bereich 0,55–0,67) — beste Extraktionsergebnisse unten. Replikation: [`data/lds_c/llm_subject/multi_model_replication_20260913.json`](data/lds_c/llm_subject/multi_model_replication_20260913.json); alle 58 ZH–DE-Paare signifikant (p<0,05), 8 englisch-haltige Paare nicht (alle EN-bezogen, meist R1/Distill).
+**59 vollständige Messungen (54 eindeutige Modelle)** über DashScope (42), Bare-Hosts (zen/OpenRouter/D1: 8) + Kilo (2), Cohere (1), NIM (1), Cloudflare (1), LM-Studio-lokal (1) und opencode-go (3) mit identischem P1-Protokoll (3 Sprachen × k=10), plus 19-Modell-Extraktionsbenchmark (F1-Bereich 0,55–0,67) — beste Extraktionsergebnisse unten. Replikation: [`data/lds_c/llm_subject/multi_model_replication_20260913.json`](data/lds_c/llm_subject/multi_model_replication_20260913.json); alle 59 ZH–DE-Paare signifikant (p<0,05), 9 englisch-haltige Paare nicht (8× R1/Distill + phi-4-mini ZH-EN).
 
 | Modell | Bereich | ZH F1 | DE F1 | EN F1 | Geschwindigkeit |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
@@ -258,7 +258,7 @@ Eigener Beitrag: Design, LDS-Definition, alle Findings-/Falsifikationsanalysen. 
 
 Vollständige Ergebnisse: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
 
-> Doppelbilanz: publiziert **58/53/174** schließt den partiellen qwen-max-Lauf aus (n=26/30); Datei-Wahrheit **59/54/177**. Collecting: **24** = 22 Fehler + qwen-max + phi-4-mini.
+> Doppelbilanz: publiziert **59/54/177** schließt den partiellen qwen-max-Lauf aus (n=26/30); Datei-Wahrheit **62/57/186**. Collecting: **26** = 23 Fehler + 2 Grenzläufe + 1 Quarantäne.
 
 ---
 

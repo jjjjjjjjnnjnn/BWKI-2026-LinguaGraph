@@ -38,7 +38,7 @@ TITLE_PAGE = """# LinguaGraph — Prüfung mehrsprachiger KI: Messung sprachübe
 
 **Autor**: Teilnehmer/in (Eigenarbeit)
 
-**Kurzfassung**: LinguaGraph misst, ob mehrsprachige KI-Systeme wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) sprachübergreifend unterschiedlich strukturieren. Ein Within-Subject-Experiment (LLM-as-Subject) und eine Replikation über 58 Messungen (53 eindeutige Modelle) zeigen: Alle ZH-DE-Paare signifikant, die Kulturrichtung (DE Autonomie/Regeln vs. ZH Raum/Anspruch) übersteigt ein Zufalls-Nullmodell. Der Bericht ordnet die Befunde ehrlich ein (Grenzen: ~83 % chinesische Anbieter, zehn westliche Messungen, 8 nicht-signifikante englisch-haltige Paare, Alignierungs-Artefakte der Domänen-Kontrolle). Vollständige Unterstützungs-Offenlegung im Anhang.
+**Kurzfassung**: LinguaGraph misst, ob mehrsprachige KI-Systeme wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) sprachübergreifend unterschiedlich strukturieren. Ein Within-Subject-Experiment (LLM-as-Subject) und eine Replikation über 59 Messungen (54 eindeutige Modelle) zeigen: Alle ZH-DE-Paare signifikant, die Kulturrichtung (DE Autonomie/Regeln vs. ZH Raum/Anspruch) übersteigt ein Zufalls-Nullmodell. Der Bericht ordnet die Befunde ehrlich ein (Grenzen: ~81 % chinesische Anbieter, elf westliche Messungen, 9 nicht-signifikante englisch-haltige Paare, Kleinstmodell-Grenze: nur phi-4-mini repliziert, Alignierungs-Artefakte der Domänen-Kontrolle). Vollständige Unterstützungs-Offenlegung im Anhang.
 
 ---
 

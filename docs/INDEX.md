@@ -1,6 +1,6 @@
 # docs/ Index
 
-> Stand: v23f-replication58 (2026-09-13) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 58 Messungen / 53 Modelle / 174 Tests (multi_model_replication_20260913.json) · PDF 229964B ×3 Orte
+> Stand: v23g-smallmodel (2026-09-13) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 59 Messungen / 54 Modelle / 177 Tests (multi_model_replication_20260913.json) · PDF 231718B ×3 Orte
 > Lesereihenfolge Paper: `paper/` → ORDER in `scripts/build_paper_pdf.py`
 > (01_abstract → 02_related_work → 02_methodology → 03_results → 06_physics → 07_lpa → 04_discussion → 05_conclusion → 00_three_conclusions)
 

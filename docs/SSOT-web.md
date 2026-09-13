@@ -22,7 +22,7 @@
 | Textbooks | 204 titles (32 math in-graph + 83 phys + 89 chem) | 全项目 Titel-Summe, Portal `#sources` | `02_methodology.md` 计数口径 (68/72/32) | portal contributions |
 | Gold labels | 92 (social 72, math 20) | 全项目 | `README.md` L142 | validation |
 | F1 | social 0.939 / weighted 0.881 | 全项目 | `README.md` L144+ | hero + validation |
-| LLM replication | 58 Messungen / 53 Modelle (174 Tests; file-truth 59/54/177) | LLM-as-subject (§5) | `data/lds_c/llm_subject/` | 视频 S04, portal Finding E |
+| LLM replication | 59 Messungen / 54 Modelle (177 Tests; file-truth 62/57/186) | LLM-as-subject (§5) | `data/lds_c/llm_subject/` | 视频 S04, portal Finding E |
 | Benchmark | 19 models (Bailian free-quota, gold 92) | 模型选型基准 | portal #validation | portal hero "19-model benchmark" |
 | Human study | N=15 (6 DE + 6 ZH + 3 EN), ΔLDS≈0 | between-subject | `docs/paper/` | portal Finding E + 视频 S05 |
 
@@ -31,7 +31,7 @@
 1. hero 保留 1,140+ / 1,100+,下方加一行 scope 注脚:
    `Math 556 · Physics 367 · Chemistry 220 — full project graph (README.md §dataset)`.
 2. CognitiveSpace 段保留 `556 nodes · 525 relations · 219 groups`,标注 `mathematics subgraph (manifest.json)`.
-3. "19-model benchmark" 旁标注 `model-selection benchmark on 92 gold labels`,与 §5 的 58/53 区分。
+3. "19-model benchmark" 旁标注 `model-selection benchmark on 92 gold labels`,与 §5 的 59/54 区分。
 4. 禁止新数字;物理/化学数只用 README 已有值,不反查 legacy pipeline。
 
 ## P2b 数据修正 (2026-09-11, v0.14.2-Abgleich)
@@ -44,15 +44,24 @@
 | 4 | Limitations UK-Granularität | 186 | **397** (NRW 299 · US 2.124 · CN 87) | `04_discussion.md` §8 |
 | 5 | Paper-Karten | 56 KB · 19+ refs | **153 KB md · 293 KB PDF · 54 refs** | gemessen (`docs/paper/`, `docs/submission/`) — Update 2026-09-11: **~161 KB md · 217 KB PDF** (deutsche Offenlegung + Strukturmarker) |
 | 6 | Fig4 | alte Heatmap (6-22) | **fig4_null_model.png** (6-30), Caption unverändert | `outputs/figures/fig4_null_model_data.csv` |
-| 7 | Validation | nur 19-Benchmark | **+58/53-Satz** (paper §5.10, EN/DE/ZH) | `multi_model_replication_20260913.json` |
+| 7 | Validation | nur 19-Benchmark | **+59/54-Satz** (paper §5.10, EN/DE/ZH) | `multi_model_replication_20260913.json` |
 | 8 | Kleinigkeiten | 180+ · 816 KB | **204 Titel-Summe (32+83+89, P2b#8 alt 180 = 68+94+18 Volumen-Mix, retired)** · **956 KB** (8 PNGs) | README §Dataset · gemessen |
 
 ## P2c Modell-Roster + Academic-Honesty (2026-09-11)
-- 59 complete-Aggregat = **58 (n=30) + qwen-max (n=26/30)**; 22 error + qwen-max + phi-4-mini (n=25, ZH-DE-Voter) = **24 collecting** (paper §8.15: 81 begonnen, 58+1 vollständig).
--西方 10 Messungen / 9 Identitäten (NVIDIA×2, Poolside×2 Hosts, OpenAI-Gewichte, Cohere, Meta-Gewichte, xAI, luna, spark) — rote West-Badges, nach Margin sortiert.
-- Alle 58 ZH-DE p<0.004 (<0.01; 500-perm. resolution limit), Marge 0.033–0.424 = paper +0.03…+0.42 (§5.10).
+- 59 complete-Aggregat = **59 (n=30, ZH-DE sig., Marge non-NaN)**; 22 error + qwen-max + phi-vorher-n25 + 2 boundary + 1 Quarantäne = **26 collecting** (paper §8.15: 84 begonnen, 61×n=30).
+-西方 11 Messungen / 10 Identitäten (NVIDIA×2, Poolside×2 Hosts, OpenAI-Gewichte, Cohere, Meta-Gewichte, xAI, Microsoft-lokal, luna, spark) — rote West-Badges, nach Margin sortiert.
+- Alle 59 ZH-DE p<0.004 (<0.01; 500-perm. resolution limit), Marge 0.033–0.424 = paper +0.03…+0.42 (§5.10).
 - LDS-Formel: `1 − mean(J_node, J_edge)` (README Metrics; portal vorher GED-veraltet).
-- Governance-Downgrade: B = Hypothese, A (Granularität) sicherste Lesart (paper §8.6); ZH-E-Titel Falsifikations-Wording; P2-Recheck-Note an Finding C; Youden 0.12-Zeile (58 Margen, CI 0.12–0.13); Paper-Sektion real (Abstract/Sections/BibTeX/PDF-Link); Footer +Schule/Autor; Figures 7→8.
+- Governance-Downgrade: B = Hypothese, A (Granularität) sicherste Lesart (paper §8.6); ZH-E-Titel Falsifikations-Wording; P2-Recheck-Note an Finding C; Youden 0.12-Zeile (59 Margen, CI 0.12–0.13); Paper-Sektion real (Abstract/Sections/BibTeX/PDF-Link); Footer +Schule/Autor; Figures 7→8.
+
+## v23g Small-Model-Boundary (2026-09-13 spät, lokale Welle)
+- phi-4-mini (Microsoft, 3.8B, lokal) **promoviert**: ZH-DE +0.087, p<0.01, dichte Extraktion (~140/Konzepte pro Sprache vs ~295 Baseline) → formal **59/54/177**, file-truth **62/57/186** (61×n=30 + qwen-max n=26/30).
+- qwen2.5-0.5b (Alibaba, 0.5B): ZH-DE **n.s. (p=0.168)**, floor NaN (ZH-EN/ZH-DE), zh nur 36 Konzepte → ehrliche Null, boundary (nicht gezählt).
+- hy-mt2-1.8b (Tencent Hunyuan, Übersetzungs-Spezialist): ganze Topic-Sets leer (zh Freiheit/Heimat/Erfolg = 0) → floor NaN überall, Marge undefiniert; ZH-EN LDS=1.0 = Leermengen-Artefakt (retired Kategorie), boundary.
+- gemma-3-270m-it (Google, 0.27B): JSON-Extraktionsschema nicht befolgt (String-Konzepte, kein en-gloss, 4/5 Topics) → Quarantäne (`Temp/opencode/quarantine/`), Re-Run ausstehend. Crash-Fund: `lds_c_multi_model.py` stürzte auf String-Konzepten ab (AttributeError) → Datei isoliert, Repro danach grün.
+- sauerkrautlm-8b: n=1 + zh-Mojibake → **gelöscht** (User-Entscheidung "作废").
+- Strata formal: CN 48/48 (0.130) vs West 11/11 (0.155, ohne luna 10/10 0.148); EN n.s. 9/177 (+phi ZH-EN p=0.224); dedup 54/54 (0.137); Youden 59: Optimum 0.12, CI 0.12–0.13; Votes (62 Voter): ≥10: 237 vs 157±4; Heimat:safety 48 DE → „48 von 62".
+- Portal: Small-Model-Panel (4 Karten) + densityChart (Baseline 294/299/293 vs phi ~140 vs qwen2.5 zh36 vs hy-mt2 zh17) + smallSigChart (Median 0.123 vs phi 0.087 vs n.s./NaN/n-a); Collecting-Tabelle 26 Zeilen (23 incomplete + qwen2.5/hy-mt2-boundary + gemma-Quarantäne).
 
 ## v23f Replication-58 (2026-09-13, 09-13-Replikation löst 09-10 ab)
 - Quelle: `multi_model_replication_20260913.json` (10:01) — 81 Keys (6 Dubletten bereinigt: mistral-/nvidia-nim-/gemma-Prefixe), **58 n=30 (53 Identitäten, 5 Dual-Host)** + qwen-max n=26/30 (3 Quota-Leerläufe gestrippt, LDS stabil) + phi-4-mini n=25 (ZH-DE-Voter, min-units=5).
@@ -99,7 +108,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - HSHL raus (Portal-Footer 3-sprachig, Root-READMEs, sync-mappings); Story-BibTeX Rongjing→Rong+Lan.
 - qwen-plus Branding→neutrale Rollenbegriffe (Footer/Methodik/Flussdiagramm/Stat-Karte, Portal+Story+READMEs);
   Datenlabels bleiben (Roster-Zeile, Bench-Chart, Medaillen-Tabelle, CLI, Paper-Methoden).
-- Fusionschart: 58 ZH-DE-Margen als horizontale Balken (desc, West rot) per Chart.js — Daten per Skript aus Roster-Tabelle extrahiert;
+- Fusionschart: 59 ZH-DE-Margen als horizontale Balken (desc, West rot) per Chart.js — Daten per Skript aus Roster-Tabelle extrahiert;
   19er-F1-Chart unverändert (andere Metrik/Achse); P1-Protokoll als Kleindruck unter dem Chart;
   55-Zeilen-Tabelle in <details>, Collecting-Tabelle separat sichtbar.
 - Cover zurück auf Direkt-3D (`../web/index.html`); cspace.html geparkt für Redesign.

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T13:25:25",
+  "generated_at": "2026-09-13T16:15:08",
   "source": "multi_model_replication_20260913.json",
   "SW1_post_hoc_power": {
     "designs": {
@@ -28,14 +28,14 @@
   },
   "SW2_provider_stratification": {
     "Western": {
-      "n": 10,
-      "mean_margin_zh_de": 0.1615,
-      "sd_margin_zh_de": 0.1018,
+      "n": 11,
+      "mean_margin_zh_de": 0.1548,
+      "sd_margin_zh_de": 0.0992,
       "range_margin_zh_de": [
         0.0719,
         0.4242
       ],
-      "sig_zh_de": "10/10"
+      "sig_zh_de": "11/11"
     },
     "CN-vendor": {
       "n": 48,
@@ -47,7 +47,7 @@
       ],
       "sig_zh_de": "48/48"
     },
-    "note": "Complete-case set (n==30 units): 58 models (53 unique identities, 5 dual-host pairs). Western stratum (US/CA vendors + luna/spark Herkunft offengelegt) vs CN-vendor; reported for transparency, not as a vendor comparison. Supports the registered model-matrix extension.",
+    "note": "Formal set (n==30 units, ZH-DE significant, margin non-NaN): 59 models (54 unique identities, 5 dual-host pairs). Sparse small-model runs (qwen2.5-0.5b, hy-mt2-1.8b) excluded from the headline, reported in the small-model boundary section. Western stratum (US/CA vendors + luna/spark Herkunft offengelegt) vs CN-vendor; reported for transparency, not as a vendor comparison. Supports the registered model-matrix extension.",
     "complete_models": [
       "cloudflare:@cf/meta/llama-3.3-70b-instruct-fp8-fast",
       "cohere:command-a-03-2025",
@@ -100,6 +100,7 @@
       "kilo:poolside/laguna-s-2.1:free",
       "kimi-k2.6",
       "laguna-s-2.1-free",
+      "lmstudio:phi-4-mini-instruct",
       "longcat-2.0-free",
       "mimo-v2.5-free",
       "nemotron-3-ultra-free",
@@ -110,12 +111,12 @@
     ]
   },
   "SW4_youden_calibration": {
-    "n_models": 58,
+    "n_models": 59,
     "margin_span": [
       0.0332,
       0.4242
     ],
-    "median_margin": 0.1234,
+    "median_margin": 0.123,
     "youden_optimal_thresholds": [
       0.1238
     ],
