@@ -67,6 +67,10 @@
 - 产物：`sw_fix_analyses_20260910.json` span 0.033-0.424，median 0.126，0.10 在 CI 外（自标启发式）。
 - 依赖 §2.2/§5 缺失的 CI → CI 补齐前悬置，不可作审计阈值引用。
 
+## §10 Fig4 / Fig8 frozen figure values（2026-09-12，可引用绘图快照）
+- **Fig4**（`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model_data.csv` + `fig4_null_model{,_de,_zh}.png`）：Full 基线 **0.9336 / 0.9382 / 0.5188**（ZH-EN / DE-EN / ZH-DE；快照 `outputs/figures/reproduce_lds_binary.log`，发表取整 0.934/0.938/0.519）；Structure Null 0.9571/0.9546/0.7142；Within-Lang floor 0.9695/0.9744/0.9615；Label-Permute 0.8407/0.8701/0.6704（seed 42+999=1041）。复现：`python scripts/figures/fig4_null_model.py`。
+- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。
+
 ## 补实验优先级
 - P0：§2.2 多 seed 分布、§5 floor/perm 200× 分布 + CI、§2.3 n_iter≥1000 重算。
 - P1：§7 gloss 抽检 + 交叉、§6 排序冻结重跑、Mono bug 修复。

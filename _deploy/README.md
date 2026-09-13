@@ -70,7 +70,7 @@
 - [🚀 Quick Start](#-quick-start)
 - [🧪 Model Benchmark](#-model-benchmark)
 - [📁 Project Structure](#-project-structure)
-- [📚 Key References](#-key-references)
+- [📚 Key References](#-references)
 - [📜 Citation](#-citation)
 - [📜 License & Compliance](#-license--compliance)
 - [🤝 Contact](#-contact)
@@ -85,12 +85,13 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 
 **LinguaGraph is the first automated framework that:**
 
-- 🧩 Constructs **multilingual knowledge graphs** from textbooks at scale (1,160+ concepts, 3 languages)
+- 🧩 Constructs **multilingual knowledge graphs** from textbooks at scale (1,140+ concepts, 3 languages)
 - 📏 Quantifies **structural differences** between languages, education systems, and disciplines
 - 🎯 Measures **textbook-curriculum alignment** across 4 educational systems (Germany, UK, US, China)
 - ✅ Validates extraction quality with **92 gold-standard annotations** (weighted F1 = 0.881; social subset F1 = 0.939)
+- 🔬 Falsifies its own readings: the T1 decontamination test collapses the headline ZH–DE convergence (0.52 → 0.99), and the result is reported — see [🏆 12 Findings](#-12-findings-f1f12) (F4/F5) and [📊 Dataset](#-dataset)
 
-> **It turns the invisible structure of knowledge into visible, measurable metrics.**
+> **It turns the invisible structure of knowledge into visible, measurable metrics — including the measurements that disagree with it.**
 
 ---
 
@@ -103,6 +104,8 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **LDS** | Linguistic Divergence Score (LDS) | 1 − (Jaccard_node + Jaccard_edge) / 2 | Cross-language structural (dis)similarity |
 | **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Textbook-curriculum alignment (updated: CN 95.4%, NRW 12.7%, UK 37.3%, US 17.2%) |
 
+> LDS uses the frozen v3 formula (2 components, node + edge Jaccard). The 3-component variant in `src/scoring.py` does not reproduce the published values — see `docs/BASELINE_LEDGER.md` §8.
+
 ---
 
 ## 🏆 12 Findings (F1–F12)
@@ -112,9 +115,9 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
 | **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
 | **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 525 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | Direct computation on textbook graphs | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | Direct computation on textbook graphs (freeze: 0.9336/0.9382/0.5188, `outputs/figures/reproduce_lds_binary.log`) | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS is **topic-dependent**; **Null Model** confirms Full < Structure for all pairs | ~0.2 variation within pairs; Full LDS-K=0.73, Structure LDS-K=0.77 | Cross-language divergence varies by knowledge domain; taxonomy alone explains most variance |
-| **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 366 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
+| **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 367 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
 | **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
 | **F8** | **Chemistry** peaks at Middle (0.042), 6.5× lower than Math | 220 chemistry concepts | Consistent with, but not confirming, the cross-subject density pattern (small absolute gap 0.012, no test) |
 | **F9** | **Coverage Score** varies dramatically across systems | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% (keyword matching; granularity confound: CN 87 vs US 2124 vs NRW 299 curriculum concepts) | Measurement strong, governance attribution weak — CS gap is primarily a hypothesis (see F10) |
@@ -122,18 +125,22 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 | **F11** | **N=15 falsifies ΔLDS > 0 under between-subject design**; **ΔLDS** retained as metric for within-subject use | N=15 (6 DE · 6 ZH · 3 EN): LDS-C 0.93–0.96 ≈ split-half floor; pilot N=8 not replicated | Between-subject designs cannot separate language from participant variance; within-subject design required |
 | **F12** | Concept-level **ΔLDS ≈ 0** (−0.05…+0.05); relation-level Δ not comparable | N=15 + LLM within-subject (LDS-C ≫ floor +0.08–0.09) | Language signal exists within-subject (LLM), absent between-subject (human) — design artefact, not proof of no effect; earlier sim comparison withdrawn |
 
+> **T1 decontamination (Fig8):** dropping German labels containing CJK text (167/219, 52 kept) collapses ZH–DE convergence 0.52 → 0.99 — the F4 "convergence" is a label artefact, **falsified**. Chart: `outputs/figures/fig8_lds_decontamination.png` (+`_de`/`_zh`, CSV alongside), script `scripts/figures/fig8_lds_decontamination.py`. Fig4 null-model suite: `scripts/figures/fig4_null_model.py`.
+
 ---
 
 ## 📊 Dataset
 
 | Subject | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
-| **Total** | **1,140+** | **1,100+ direct** | **240** | **3 languages** | **4 educational systems** |
+| **Total** | **1,140+** | **1,100+ direct** | **204** | **3 languages** | **4 educational systems** |
 
-> SSOT: math-graph counts from `manifest.json` (556 nodes / 525 direct relations / 219 trilingual groups). Physics/chemistry counts from legacy pipelines (see `docs/review/rnd_project_review_20260811.md` §7).
+> **Counting convention (frozen 2026-09-12):** math has three levels — **68** input-corpus volumes (75 JSON extraction files incl. chapter splits) / **72** raw-library titles (pre-dedup catalogue) / **32** in-graph cited titles (`source_references`, the only citable layer). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)** = Portal `#sources`. Physics 367/386 includes the Sensor node (`physics_em_传感器` + 3 requires-links); chemistry 220/215 is the post-backfill baseline (218+2, 0 dangling).
+
+> SSOT: math-graph counts from `manifest.json` (556 nodes / 525 direct relations / 219 trilingual groups). Physics/chemistry counts from legacy pipelines (see `docs/review/rnd_project_review_20260811.md` §7). Full caliber table: `docs/SSOT-web.md` (口径冻结).
 
 ---
 
@@ -165,6 +172,8 @@ Mathematical truth is universal, but the way it is organized in textbooks varies
 - Structure-only (taxonomy) LDS-K: **0.77** (mean)
 - **Full < Structure for all pairs** — adding edge relations reduces rather than amplifies divergence
 - Taxonomy (shared concept organization) accounts for most variance; language-specific relations are convergent
+
+> **LLM-as-subject dual accounting:** public convention **55 complete measurements / 50 unique models / 165 pairs** excludes the partial qwen-max run (n=29/30, ZH–DE likewise significant); file-truth is **56 / 51 / 168**. **31 collecting** = 30 error + qwen-max (paper §8.15: 86 started, 55 complete). See [🧪 Model Benchmark](#-model-benchmark).
 
 > See [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md) for full methodology, [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) for human analysis, and [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py) for simulation.
 
@@ -213,6 +222,27 @@ python scripts/batch_process_responses.py --model qwen-plus --gold-only
 python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 ```
 
+### Methodology in five steps (EN baseline, cf. `docs/paper/02_methodology.md` §§2.1–2.5)
+1. **Overview** — from textbook text to structural insights in five steps
+2. **Textbook Corpus** — 68 math volumes (+ physics 367-node / chemistry 220-node graphs), ZH/EN/DE
+3. **Concept Extraction (MIMO)** — structured LLM prompts → 75 JSON files → 556 concepts, 525 relations
+4. **Graph Construction and Fusion** — merge → dedup (556) → directed graph (+~3000 transitive edges)
+5. **Cross-lingual Alignment** — 30 shared IDs → 219 trilingual groups (39%) → CDS/HDS/LDS/CS metrics
+
+### Reproduce Fig4 / Fig8 (frozen values)
+```bash
+# LDS-K freeze: ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188 (→ 0.934/0.938/0.519 published)
+python scripts/figures/reproduce_lds_binary.py
+# Fig4 null-model suite (Full / Structure Null / Within-Lang / Label-Permute)
+python scripts/figures/fig4_null_model.py
+# Fig8 decontamination (deterministic snapshot, T1 FilterA)
+python scripts/figures/fig8_lds_decontamination.py
+```
+Products: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`, `fig8_lds_decontamination_data.csv` (+ PNGs, mirrored to `cognitive-space/web/figures/`). Ledger: `docs/BASELINE_LEDGER.md` §8/§10.
+
+### Tool layering (paper §2.12, Eigenständigkeit)
+Own contribution: design, LDS definition, all finding/falsification analyses. Disclosed aids, booked as separate layers (never mixed with string-match counts): **networks/graphs** NetworkX + 3d-force-graph · **figures** matplotlib (`scripts/figures/`) · **text extraction** pymupdf + RapidOCR-ONNX (DirectML-GPU) · **semantics** nomic-embed-v1.5 prefilter + Muse-Spark adjudication (temp-0, `scripts/semantic_ground_en.py`) · **concept extraction (D1)** qwen-plus via Bailian API (gold N=92, social F1 0.939).
+
 ---
 
 ## 🧪 Model Benchmark
@@ -228,6 +258,8 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 
 Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
 
+> Dual accounting: published **55/50/165** excludes the partial qwen-max run (n=29/30); file-truth **56/51/168**. Collecting: **31** = 30 error + qwen-max.
+
 ---
 
 ## 📁 Project Structure
@@ -235,10 +267,13 @@ Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](d
 ```
 ├── scripts/              # Analysis pipelines (batch extraction, evaluation, benchmark)
 │   ├── math_graph_pipeline/  # Canonical pipeline (SSOT: merge→align→export→validate)
+│   ├── figures/              # Deterministic figure scripts (Fig2/Fig4/Fig8 + freeze + utils)
 │   ├── release.py            # Unified release (gates→export→manifest→bundle)
 │   └── build_paper_pdf.py    # Paper assembly (docs/paper → submission PDF)
 ├── docs/
 │   ├── INDEX.md          # Navigation for all 83 docs
+│   ├── SSOT-web.md       # Portal/3D number conventions + caliber freeze (口径冻结)
+│   ├── BASELINE_LEDGER.md # Baseline ledger (8 baselines + Fig4/Fig8 frozen values)
 │   ├── paper/            # Full research paper (reading order: see ORDER in build_paper_pdf.py)
 │   ├── review/           # Quality audits & critical assessments
 │   ├── ethics/           # GDPR compliance & consent forms
@@ -284,7 +319,7 @@ Full results: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](d
 |---------|-------|---------|
 | [openai/openai-python](https://github.com/openai/openai-python) | LLM API client for concept extraction | MIT |
 | [networkx/networkx](https://github.com/networkx/networkx) | Graph construction and analysis (CDS, HDS) | BSD-3 |
-| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Figure generation (Fig 3-7) | PSF |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Figure generation (Fig 2/4/8 et al.) | PSF |
 | [numpy/numpy](https://github.com/numpy/numpy) | Numerical computation, similarity metrics | BSD-3 |
 | [scipy/scipy](https://github.com/scipy/scipy) | Statistical analysis, correlation tests | BSD-3 |
 | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Baseline models and evaluation | BSD-3 |

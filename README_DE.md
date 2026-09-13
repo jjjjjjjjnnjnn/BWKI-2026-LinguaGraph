@@ -60,10 +60,10 @@
 ## 📑 Inhaltsverzeichnis
 
 <details>
-<summary><b>Click to expand / collapse</b></summary>
+<summary><b>Klicken zum Erweitern/Einklappen</b></summary>
 
 - [🔥 Warum LinguaGraph?](#-warum-linguagraph)
-- [📐 Metriken im Uberblick](#-metriken-im-uberblick)
+- [📐 Metriken im Überblick](#-metriken-im-überblick)
 - [🏆 12 Erkenntnisse (F1–F12)](#-12-erkenntnisse-f1f12)
 - [📊 Datensatz](#-datensatz)
 - [✅ Extraktion und Humanvalidierung](#-extraktion-und-humanvalidierung)
@@ -85,12 +85,13 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 **LinguaGraph ist das erste automatisierte Framework, das:**
 
-- 🧩 **Mehrsprachige Wissensgraphen** aus Lehrbüchern in großem Maßstab erstellt (1.160+ Konzepte, 3 Sprachen)
+- 🧩 **Mehrsprachige Wissensgraphen** aus Lehrbüchern in großem Maßstab erstellt (1.140+ Konzepte, 3 Sprachen)
 - 📏 **Strukturelle Unterschiede** zwischen Sprachen, Bildungssystemen und Disziplinen quantifiziert
 - 🎯 **Lehrbuch-Lehrplan-Abgleich** über 4 Bildungssysteme hinweg misst (Deutschland, Großbritannien, USA, China)
 - ✅ Extraktionsqualität mit **92 Goldstandard-Annotationen** validiert (gewichtetes F1 = 0,881; Sozial-Subset F1 = 0,939)
+- 🔬 Falsifiziert eigene Lesarten: Der T1-Dekontaminationstest kollabiert die headline ZH–DE-Konvergenz (0,52 → 0,99), und das Ergebnis wird berichtet — siehe [🏆 12 Erkenntnisse](#-12-erkenntnisse-f1f12) (F4/F5) und [📊 Datensatz](#-datensatz)
 
-> **Es verwandelt die unsichtbare Struktur von Wissen in sichtbare, messbare Metriken.**
+> **Es verwandelt die unsichtbare Struktur von Wissen in sichtbare, messbare Metriken — einschließlich der Messungen, die ihm widersprechen.**
 
 ---
 
@@ -100,8 +101,10 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 |--------|-----------|---------|-----------------|
 | **CDS** | Concept Density Score | 2\|E\|/(\|V\|·(\|V\|−1)) | Vernetzungsdichte des Wissens pro Bildungsstufe |
 | **HDS** | Hierarchy Depth Score | BFS on prerequisite graph | Maximale Länge der Voraussetzungskette |
-| **LDS** | Linguistic Divergence Score (LDS) | 1 − (Jaccard_node + Jaccard_edge) / 2 | Cross-language structural (dis)similarity |
+| **LDS** | Linguistic Divergence Score (LDS) | 1 − (Jaccard_node + Jaccard_edge) / 2 | Strukturelle (Un-)Ähnlichkeit über Sprachen hinweg |
 | **CS** | Coverage Score | \|V_textbook ∩ V_curriculum\| / \|V_curriculum\| | Lehrbuch-Lehrplan-Abgleich (updated: CN 95.4%, NRW 12.7%, UK 37.3%, US 17.2%) |
+
+> LDS nutzt die eingefrorene v3-Formel (2 Komponenten, Knoten- + Kanten-Jaccard). Die 3-Komponenten-Variante in `src/scoring.py` reproduziert die publizierten Werte nicht — siehe `docs/BASELINE_LEDGER.md` §8.
 
 ---
 
@@ -112,9 +115,9 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
 | **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
 | **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 525 direkten Relationen (+~3000 transitiv) | Mathematik ist ein flaches Netz, kein tiefer Baum |
-| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | Direkte Berechnung auf Lehrbuchgraphen | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab — aber Nullmodell (F5) falsifiziert die Sprachlesart; Matheknoten teils Alignierungs-Artefakte (s. `docs/p2_methodology_rechecks.md`) |
+| **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | Direkte Berechnung auf Lehrbuchgraphen (Freeze: 0.9336/0.9382/0.5188, `outputs/figures/reproduce_lds_binary.log`) | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab — aber Nullmodell (F5) falsifiziert die Sprachlesart; Matheknoten teils Alignierungs-Artefakte (s. `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS ist **themenabhängig**; **Nullmodell** bestätigt Full < Structure für alle Paare | ~0,2 Variation innerhalb der Paare; Full LDS-K=0,73, Structure LDS-K=0,77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; Taxonomie allein erklärt den Großteil der Varianz |
-| **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 366 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
+| **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 367 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
 | **F7** | Physik hat **2,1× tiefere** Voraussetzungsketten | HDS-Mittelwert 0,85 vs. 0,40 | Physikwissen ist kumulativer und sequenzieller |
 | **F8** | **Chemie** erreicht Höhepunkt in Mittelstufe (0,042), 6,5× niedriger als Mathe | 220 Chemiekonzepte | Konsistent mit, aber kein Beleg für das fächerübergreifende Dichtemuster (kleine absolute Differenz 0,012, kein Test) |
 | **F9** | **Abdeckungsgrad** variiert dramatisch zwischen Systemen | NRW 12,7%, UK 37,3%, US 17,2%, CN 95,4% (Keyword-Matching; Granularitäts-Confound: CN 87 vs. US 2124 vs. NRW 299 Curriculums-konzepte) | Messung stark, Governance-Zuschreibung schwach — CS-Lücke primär Hypothese (s. F10) |
@@ -122,18 +125,22 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **F11** | **N=15 falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen**; **ΔLDS** bleibt Metrik für Within-Subject-Nutzung | N=15 (6 DE · 6 ZH · 3 EN): LDS-C 0,93–0,96 ≈ Split-Half-Boden; Pilot N=8 nicht repliziert | Between-Subject-Designs trennen Sprache nicht von Teilnehmervarianz; Within-Subject-Design erforderlich |
 | **F12** | Konzept-**ΔLDS ≈ 0** (−0,05…+0,05); Relationsebene nicht vergleichbar | N=15 + LLM-Within-Subject (LDS-C ≫ Boden +0,08–0,09) | Sprachsignal within-subject vorhanden (LLM), between-subject abwesend (Mensch) — Design-Artefakt-Hypothese, kein Beleg für Nulleffekt; früherer Sim-Vergleich zurückgezogen |
 
+> **T1-Dekontamination (Abb. 8):** Entfernen deutscher Labels mit CJK-Text (167/219, 52 behalten) kollabiert die ZH–DE-Konvergenz 0,52 → 0,99 — die F4-„Konvergenz" ist ein Label-Artefakt, **falsifiziert**. Chart: `outputs/figures/fig8_lds_decontamination.png` (+`_de`/`_zh`, CSV daneben), Skript `scripts/figures/fig8_lds_decontamination.py`. Abb.4-Nullmodell-Suite: `scripts/figures/fig4_null_model.py`.
+
 ---
 
 ## 📊 Datensatz
 
 | Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
-| **Physik** | 366 | 383 | 94 Ausgaben | ZH/EN/DE | NRW coverage NA |
-| **Chemie** | 220 | 215 | 18 Ausgaben | ZH/EN/DE | NRW 36% |
-| **Gesamt** | **1.140+** | **1.100+ direkt** | **180** | **3 Sprachen** | **4 Bildungssysteme** |
+| **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 (32 im Graph zitiert) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Physik** | 367 | 386 | 83 Titel (96 Refs) | ZH/EN/DE | NRW coverage NA |
+| **Chemie** | 220 | 215 | 89 Titel | ZH/EN/DE | NRW 36% |
+| **Gesamt** | **1.140+** | **1.100+ direkt** | **204** | **3 Sprachen** | **4 Bildungssysteme** |
 
-> SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 525 direkte Relationen / 219 trilinguale Gruppen). Physik/Chemie aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7).
+> **Zählkonvention (eingefroren 2026-09-12):** Mathe dreistufig — **68** Input-Korpus-Bände (75 JSON-Extraktionsdateien inkl. Kapitelsplits) / **72** Rohbibliothek-Titel (Vordedup-Katalog) / **32** im Graph zitierte Titel (`source_references`, einzige zitierfähige Schicht). Titel gesamt **204 = 32 (Mathe) + 83 (Physik) + 89 (Chemie)** = Portal `#sources`. Physik 367/386 inkl. Sensorknoten (`physics_em_传感器` + 3 Requires-Links); Chemie 220/215 ist die Post-Backfill-Baseline (218+2, 0 dangling).
+
+> SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 525 direkte Relationen / 219 trilinguale Gruppen). Physik-/Chemiezahlen aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7). Vollständige Kalibertabelle: `docs/SSOT-web.md` (Portaleinfrierung).
 
 ---
 
@@ -166,6 +173,8 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 - **Full < Structure für alle Paare** — das Hinzufügen von Kantenbeziehungen verringert eher die Divergenz, als sie zu verstärken
 - Die Taxonomie (gemeinsame Konzeptorganisation) erklärt den Großteil der Varianz; sprachspezifische Beziehungen sind konvergent
 
+> **LLM-als-Proband-Doppelbilanz:** öffentliche Konvention **55 vollständige Messungen / 50 eindeutige Modelle / 165 Paare** schließt den partiellen qwen-max-Lauf aus (n=29/30, ZH–DE ebenfalls signifikant); Datei-Wahrheit ist **56 / 51 / 168**. **31 collecting** = 30 Fehler + qwen-max (Paper §8.15: 86 gestartet, 55 vollständig). Siehe [🧪 Modellvergleich](#-modellvergleich).
+
 > Vollständige Methodik siehe [`docs/paper/02_methodology.md`](docs/paper/02_methodology.md), Humananalyse siehe [`scripts/analyze_human_pilot.py`](scripts/analyze_human_pilot.py) und Simulation siehe [`scripts/analyze_sim_baseline.py`](scripts/analyze_sim_baseline.py).
 
 ---
@@ -173,54 +182,17 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 ## 🚀 Selbst hosten
 
-Das Forschungsportal ist eine **Zero-Build-Statikseite**. Überall bereitstellen:
+Das Forschungsportal ist eine **Zero-Build-Statikseite**, publiziert aus `_deploy/` via GitHub Pages
+(`.github/workflows/deploy-cognitive-space.yml` bei Push auf master):
 
-| Plattform | Veröffentlichungsverzeichnis |
-|----------|------------------|
-| **GitHub Pages** | Bereitstellungsbundle-Inhalt:
-_deploy/data.js
-_deploy/docs/annotation_guideline_v1.md
-_deploy/docs/annotation_guideline_v2.md
-_deploy/docs/ARCHITECTURE.md
-_deploy/docs/audit-report.md
-_deploy/docs/bwki-compliance-review.md
-_deploy/docs/bwki_paper_outline.md
-_deploy/docs/bwki_paper_outline_v2.md
-_deploy/docs/CHANGELOG.md
-_deploy/docs/cognitive_metrics_framework.md
-_deploy/docs/CONSOLIDATION_REPORT.md
-_deploy/docs/CONTRIBUTORS.md
-_deploy/docs/corpus-status.md
-_deploy/docs/coverage_score_definition.md
-_deploy/docs/creative_submission.md
-_deploy/docs/curriculum_layer_plan.md
-_deploy/docs/data_arrival_checklist.md
-_deploy/docs/data_expansion_task.md
-_deploy/docs/demo_script.md
-_deploy/docs/error_analysis.md
-_deploy/docs/evidence_milestones.md
-_deploy/docs/experiment-design.md
-_deploy/docs/experiment_conductor.md
-_deploy/docs/figure_plan.md
-_deploy/docs/gold_dataset_schema_v1.md
-_deploy/docs/handoff_multi_subject.md
-_deploy/docs/infrastructure_audit.md
-_deploy/docs/judge_qa.md
-_deploy/docs/limitations.md
-_deploy/docs/literature_matrix.md
-_deploy/docs/logos_integration.md
-_deploy/docs/mcl_definition.md
-_deploy/docs/methodology.md
-_deploy/docs/metrics_validation_report.md
-_deploy/docs/mimo_prompt.md
-_deploy/docs/model_strategy.md
-_deploy/docs/paper_results_skeleton.md
-_deploy/docs/pilot-study.md
-_deploy/docs/pilot_quality_report.md
-_deploy/docs/pitch_10min.md (auto) |
-| **Cloudflare Pages** |  |
-| **Vercel** |  |
-| **Local** | Open  |
+| Quelle | Veröffentlicht als | Hinweis |
+|--------|-------------|-------|
+| `cognitive-space/web/*` | `_deploy/`-Wurzel | 3D-Visualisierung + `data.js` (via `scripts/release.py`) |
+| `cognitive-space/portal/` | `_deploy/portal/` | Forschungsportal (Finding E: N=15-Narrativ) |
+| `docs/` | `_deploy/docs/` | Paper + Reviews (gespiegelt; s. `docs/INDEX.md`) |
+| `README*.md` | `_deploy/README*.md` | Dreisprachige Spiegel (via `sync_readmes.py`) |
+
+Lokale Vorschau: `cognitive-space/portal/index.html` oder `cognitive-space/web/index.html` im Browser öffnen.
 
 
 ## 🚀 Schnellstart
@@ -244,18 +216,38 @@ python scripts/extract_all_via_api.py
 python scripts/compute_lds_from_db.py
 ```
 
-#
-## Test any model
+### Beliebiges Modell testen
 ```bash
 python scripts/batch_process_responses.py --model qwen-plus --gold-only
 python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 ```
 
+### Methodik in fünf Schritten (EN-Baseline, vgl. `docs/paper/02_methodology.md` §§2.1–2.5)
+1. **Überblick** — vom Lehrbuchtext zu Struktur-Einsichten in fünf Schritten
+2. **Lehrbuchkorpus** — 68 Mathebände (+ Physik-367-Knoten- / Chemie-220-Knoten-Graphen), ZH/EN/DE
+3. **Konzeptextraktion (MIMO)** — strukturierte LLM-Prompts → 75 JSON-Dateien → 556 Konzepte, 525 Relationen
+4. **Graphaufbau und Fusion** — mergen → dedup (556) → gerichteter Graph (+~3000 transitive Kanten)
+5. **Cross-linguale Alignierung** — 30 geteilte IDs → 219 trilinguale Gruppen (39%) → CDS/HDS/LDS/CS-Metriken
+
+### Abb. 4 / Abb. 8 reproduzieren (eingefrorene Werte)
+```bash
+# LDS-K-Freeze: ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188 (→ publiziert 0.934/0.938/0.519)
+python scripts/figures/reproduce_lds_binary.py
+# Abb.4-Nullmodell-Suite (Full / Structure Null / Within-Lang / Label-Permute)
+python scripts/figures/fig4_null_model.py
+# Abb.8-Dekontamination (deterministischer Snapshot, T1 FilterA)
+python scripts/figures/fig8_lds_decontamination.py
+```
+Produkte: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`, `fig8_lds_decontamination_data.csv` (+ PNGs, gespiegelt nach `cognitive-space/web/figures/`). Ledger: `docs/BASELINE_LEDGER.md` §8/§10.
+
+### Werkzeugschichtung (Paper §2.12, Eigenständigkeit)
+Eigener Beitrag: Design, LDS-Definition, alle Findings-/Falsifikationsanalysen. Deklarierte Hilfsmittel, als getrennte Schichten verbucht (nie mit String-Match-Zählungen vermischt): **networks/graphs** NetworkX + 3d-force-graph · **figures** matplotlib (`scripts/figures/`) · **Textextraktion** pymupdf + RapidOCR-ONNX (DirectML-GPU) · **Semantik** nomic-embed-v1.5-Prefilter + Muse-Spark-Adjudikation (temp-0, `scripts/semantic_ground_en.py`) · **Konzept-extraktion (D1)** qwen-plus via Bailian-API (Gold N=92, Sozial-F1 0,939).
+
 ---
 
 ## 🧪 Modellvergleich
 
-**55 vollständige Messungen (50 eindeutige Modelle)** über DashScope (42), zen/OpenRouter (7) + D1-Baseline, Kilo (2), Cohere (1), NIM (1) und opencode-go (1) mit identischem P1-Protokoll (3 Sprachen × k=10), plus 19-Modell-Extraktionsbenchmark (F1-Bereich 0,55–0,67) — beste Extraktionsergebnisse unten. Replikation: [`data/lds_c/llm_subject/multi_model_replication_20260910.json`](data/lds_c/llm_subject/multi_model_replication_20260910.json); alle 55 ZH–DE-Paare signifikant (p<0,05), 8 englisch-haltige Paare nicht.
+**55 vollständige Messungen (50 eindeutige Modelle)** über DashScope (42), zen/OpenRouter (7) + D1-Baseline, Kilo (2), Cohere (1), NIM (1) und opencode-go (1) mit identischem P1-Protokoll (3 Sprachen × k=10), plus 19-Modell-Extraktionsbenchmark (F1-Bereich 0,55–0,67) — beste Extraktionsergebnisse unten. Replikation: [`data/lds_c/llm_subject/multi_model_replication_20260910.json`](data/lds_c/llm_subject/multi_model_replication_20260910.json); alle 55 ZH–DE-Paare signifikant (p<0,05), 8 englisch-haltige Paare nicht (alle EN-bezogen, meist R1/Distill).
 
 | Modell | Bereich | ZH F1 | DE F1 | EN F1 | Geschwindigkeit |
 |-------|--------|:-----:|:-----:|:-----:|:-----:|
@@ -264,7 +256,9 @@ python scripts/batch_process_responses.py --model glm-4.6 --gold-only
 | qwen3.7-max | Math | 0.980 | 0.551 | 0.778 | 2-3s |
 | glm-4.6 | Math | 0.951 | 0.595 | 0.689 | 10-20s |
 
-Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](research/findings/bailian_benchmark_complete.json)
+Vollständige Ergebnisse: [`data/lds_c/llm_subject/multi_model_replication_20260810.json`](data/lds_c/llm_subject/multi_model_replication_20260810.json)
+
+> Doppelbilanz: publiziert **55/50/165** schließt den partiellen qwen-max-Lauf aus (n=29/30); Datei-Wahrheit **56/51/168**. Collecting: **31** = 30 Fehler + qwen-max.
 
 ---
 
@@ -272,49 +266,60 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 
 ```
 ├── scripts/              # Analyse-Pipelines (Batch-Extraktion, Evaluation, Benchmark)
+│   ├── math_graph_pipeline/  # Kanonische Pipeline (SSOT: Mergen→Alignieren→Export→Validieren)
+│   ├── figures/              # Deterministische Abbildungsskripte (Fig2/Fig4/Fig8 + Freeze + Utils)
+│   ├── release.py            # Einheitliches Release (Gates→Export→Manifest→Bundle)
+│   └── build_paper_pdf.py    # Paper-Assemblierung (docs/paper → Submission-PDF)
 ├── docs/
-│   ├── paper/            # Vollständiges Forschungspapier (Abstract → Fazit)
+│   ├── INDEX.md          # Navigation für alle 83 Docs
+│   ├── SSOT-web.md       # Portal-/3D-Zahlenkonventionen + Portaleinfrierung
+│   ├── BASELINE_LEDGER.md # Baseline-Ledger (8 Baselines + Fig4-/Fig8-Freeze-Werte)
+│   ├── paper/            # Vollständiges Forschungspapier (Lesereihenfolge: s. ORDER in build_paper_pdf.py)
 │   ├── review/           # Qualitätsaudits & kritische Bewertungen
 │   ├── ethics/           # DSGVO-Compliance & Einwilligungsformulare
-│   └── creative_submission.md  # BWKI-Wettbewerbseinreichung
+│   └── submission/       # BWKI-Einreichung (PDF + Plattformantworten + Checkliste)
+├── submission/
+│   ├── final/            # Finalpaket (PDF + Antworten + Offenlegung + Code-Guide)
+│   ├── pitch/            # Video-Pitch (Skript v2 + Storyboard; Aufnahme separat)
+│   └── idea/             # Ideenanmeldung 28.06. (historisch)
 ├── config/
-│   ├── expert_graphs/    # Wissensgraphen (JSON) — Mathematik, Physik, Chemie, Lehrpläne
-│   └── concept_mapping.json    # 174 sprachübergreifende Konzeptzuordnungen
-├── cognitive-space/      # 3D-Wissensgraph-Visualisierung (Three.js)
-├── research/findings/    # Benchmark-Ergebnisse, Evaluationsberichte
-└── .gitignore            # API-Schlüssel, DB, PII ausgeschlossen
+│   ├── expert_graphs/    # Wissensgraphen (JSON) — Mathe, Physik, Chemie, Lehrpläne
+│   └── cross_language_mapping.json  # 30 geteilte Konzept-IDs (eingefroren)
+├── cognitive-space/      # 3D-Visualisierung (Three.js) + portal/
+├── research_lab/         # Sandbox-Experimente (gitignorierte skills/)
+├── release/              # Unveränderlicher Snapshot (Manifest + data.js + Checksums)
+├── freeze/               # Eingefrorene Survey-Samples (unveränderlich)
+└── manifest.json         # SSOT-Zahlen (556/525/219)
 ```
 
 ---
 
 ## 📚 Literaturverzeichnis
 
-#
-## Wissenschaftliche Publikationen
+### Wissenschaftliche Publikationen
 
-| # | Referenz | Relevanz |
+| # | Referenz | Paper | Relevanz |
 |---|-----------|-----------|
-| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | Grundlegend — Concept-Mapping-Theorie als Grundlage von CDS/HDS |
-| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |
-| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | TIMSS-Lehrplankohärenz — Inspiration für den Coverage Score |
-| 4 | **Liang, S. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(5), 743-756. | Internationale Lehrbuchvergleichsmethodik |
-| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(2). | Sprachliche Relativität — Kontext der Forschungsfrage |
-| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | Netzwerkanalyse kognitiver/bildungsbezogener Strukturen |
-| 7 | **Ain, Q. U., Chatti, M. A., & Qussa, J.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv:2509.05392. | Direkt relevanteste EKG-Pipeline-Methodik |
-| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, N.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv:2509.05393. | Voraussetzungsinferenz — unterstützt HDS-Metrik |
-| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ESM. | Internationale Lehrbuch-Problemanalyse |
-| 10 | **OECD.** (2025). *Education at a Glance 2025.* OECD Publishing. | Internationale Lehrplanstrukturdaten |
-| 11 | **IEA.** (2023). *TIMSS 2023 International Results in Mathematik und Science.* | Methodik der Lehrplanabdeckungsanalyse |
-| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | Transformer-Architektur — grundlegend für verwendete LLMs |
+| 1 | **Novak, J. D. & Cañas, A. J.** (2008). *The theory underlying concept maps and how to construct and use them.* | [13] | Grundlegend — Concept-Mapping-Theorie als Grundlage von CDS/HDS |
+| 2 | **Ausubel, D. P.** (1963). *The psychology of meaningful verbal learning.* Grune & Stratton. | [12] | Assimilationstheorie — Wissen ist strukturiert, nicht aufgelistet |
+| 3 | **Schmidt, W. H. et al.** (2001). *Why schools matter: A cross-national comparison of curriculum and learning.* Jossey-Bass. | [54] | TIMSS-Lehrplankohärenz — Inspiration für den Coverage Score |
+| 4 | **Liang, S. & Heckmann, K.** (2013). *Comparing German and Chinese mathematics textbooks.* ZDM, 45(5), 743–756. | [8] | Internationale Lehrbuchvergleichsmethodik |
+| 5 | **Boroditsky, L.** (2001). *Does language shape thought?: Mandarin and English speakers' conceptions of time.* Cognitive Psychology, 43(2). | [53] | Sprachliche Relativität — Kontext der Forschungsfrage |
+| 6 | **Siew, C. S. Q.** (2019). *Applications of network science to education research.* In: Network Science in Education. Springer. | — (Hintergrund) | Netzwerkanalyse kognitiver/bildungsbezogener Strukturen |
+| 7 | **Ain, Q. U., Chatti, M. A., & Qussa, J.** (2025). *An optimized pipeline for automatic educational knowledge graph construction.* arXiv:2509.05392. | [3] | Direkt relevanteste EKG-Pipeline-Methodik |
+| 8 | **Alatrash, R., Chatti, M. A., & Wibowo, N.** (2025). *Inferring prerequisite knowledge concepts in educational knowledge graphs.* arXiv:2509.05393. | [5] | Voraussetzungsinferenz — unterstützt HDS-Metrik |
+| 9 | **Fan, L., Zhu, Y., & Miao, Z.** (2013). *Textbook research in mathematics education.* ICMT. | [9] | Internationale Lehrbuch-Problemanalyse |
+| 10 | **OECD.** (2025). *Education at a Glance 2025.* OECD Publishing. | [32] | Internationale Lehrplanstrukturdaten |
+| 11 | **IEA.** (2023). *TIMSS 2023.* | [6] / [30] | Methodik der Lehrplanabdeckungsanalyse |
+| 12 | **Vaswani, A. et al.** (2017). *Attention Is All You Need.* NeurIPS. | — (Hintergrund) | Transformer-Architektur — grundlegend für verwendete LLMs |
 
-#
-## Open-Source-Bibliotheken
+### Open-Source-Bibliotheken
 
 | Bibliothek | Verwendung | Lizenz |
 |---------|-------|---------|
 | [openai/openai-python](https://github.com/openai/openai-python) | LLM-API-Client zur Konzeptextraktion | MIT |
 | [networkx/networkx](https://github.com/networkx/networkx) | Graphenkonstruktion und -analyse (CDS, HDS) | BSD-3 |
-| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Abbildungserstellung (Fig 3-7) | PSF |
+| [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | Abbildungserstellung (Fig 2/4/8 et al.) | PSF |
 | [numpy/numpy](https://github.com/numpy/numpy) | Numerische Berechnung, Ähnlichkeitsmetriken | BSD-3 |
 | [scipy/scipy](https://github.com/scipy/scipy) | Statistische Analyse, Korrelationstests | BSD-3 |
 | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | Basislinienmodelle und Evaluierung | BSD-3 |
@@ -322,8 +327,7 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | [Flask](https://github.com/pallets/flask) | Workbench-Webanwendung | BSD-3 |
 | [seaborn/seaborn](https://github.com/mwaskom/seaborn) | Statistische Datenvisualisierung | BSD-3 |
 
-#
-## Lehrplanstandards (Primärquellen)
+### Lehrplanstandards (Primärquellen)
 
 | Standard | Herausgeber |
 |----------|-----------|
@@ -332,8 +336,7 @@ Vollständige Ergebnisse: [`research/findings/bailian_benchmark_complete.json`](
 | US Next Generation Science Standards (NGSS) | NGSS Lead States |
 | Chinese National Curriculum Standards (数学/物理/化学) | MoE China |
 
-#
-## Lehrbuchkorpora
+### Lehrbuchkorpora
 
 Textbook content used for knowledge graph construction (academic research, fair use). Full attribution in graph metadata files.
 
@@ -343,8 +346,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
 
 **DE** (27+ publishers): Duden, Lambacher Schwere, Westermann, Cornelsen, Klett, Auer, Dorn-Bader, Kern, Thieme, Tipler, Demtröder, Jackson, Papula, Fischer
 
-#
-## Danksagungen
+### Danksagungen
 
 - **BWKI 2026** — Wettbewerbsplattform und Rahmen
 - **Schloss Heessen** — Internatsschule in Hamm, Deutschland; institutionelle Unterstützung und Bildungsberatung
@@ -394,7 +396,7 @@ Textbook content used for knowledge graph construction (academic research, fair 
     🧠 LinguaGraph Forschungsportal →
   </a>
   <br>
-  <span style="color:#94a3b8;font-size:0,85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
+  <span style="color:#94a3b8;font-size:0.85rem">Forschungsfragen · Erkenntnisse · Interaktives 3D · Validierung · Paper</span>
 </p>
 
 

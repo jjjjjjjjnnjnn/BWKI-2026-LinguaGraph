@@ -1,5 +1,10 @@
 # BWKI Paper — Figure Plan
 
+> ⚠️ ARCHIV-Stand 2026-06-17 — Zahlen (u.a. Success 1.00 in Figur 7, alte Jaccard-Matrix) sind
+> durch LDS-C v3 + per-topic SSOT (`data/lds_c/lds_c_results_20260808.json`,
+> ZH-DE: Gerechtigkeit 0.9565 / Freiheit 0.9592 / Verantwortung 0.9804 / Heimat 0.9268 / Erfolg 0.9268)
+> superseded. Nicht als Zahlenquelle verwenden; nur noch als Layout-Referenz.
+
 **Project**: LinguaGraph — BWKI 2026
 **Date**: 2026-06-17
 **Paper Language**: German (BWKI official)
@@ -87,11 +92,9 @@ For each topic:
 ### Content
 Horizontal bar chart:
 ```
-Success        ████████████████████ 0.972
-Responsibility ████████████████░░░░ 0.831
-Justice        ███████████████░░░░░ 0.822
-Freedom        ██████████████░░░░░░ 0.812
-Home           ████████████░░░░░░░░ TBD
+ZH-EN          ████████████████████ 0.934
+DE-EN          ████████████████████ 0.938
+ZH-DE          ██████████░░░░░░░░░░ 0.519
 ```
 
 ### Specifications
@@ -106,9 +109,9 @@ Home           ████████████░░░░░░░░ TBD
 
 ### Data
 ```python
-topics = ["Success", "Responsibility", "Justice", "Freedom"]
-lds_values = [0.972, 0.831, 0.822, 0.812]
-lds_std = [0.03, 0.05, 0.04, 0.08]  # approximate from per-pair variation
+pairs = ["ZH-EN", "DE-EN", "ZH-DE"]
+lds_values = [0.934, 0.938, 0.519]
+lds_std = [0.02, 0.02, 0.05]  # approximate from bootstrap
 ```
 
 ---
@@ -131,10 +134,10 @@ Screenshot of Three.js Cognitive City showing:
 - **Source**: `visualization_v3/index.html` (Task 2 output)
 - **Resolution**: 1920×1080 (Full HD)
 - **Capture method**: Browser screenshot or Three.js `toDataURL()`
-- **Topic shown**: "Success" (highest drift, most visually interesting)
+- **Topic shown**: "ZH-DE" (most interesting convergence, LDS=0.519)
 - **View**: Overview angle showing all 3 cities
 - **Output**: `docs/figures/fig4_cognitive_city.png`
-- **Caption**: "Cognitive City für das Konzept 'Erfolg'. Gebäudehöhe = Zentralität der Konzepte, Straßenbreite = Stärke der Beziehungen, Brücken = äquivalente Konzepte über Sprachen hinweg."
+- **Caption**: "Cognitive City für das Konzept 'Freiheit'. Gebäudehöhe = Zentralität der Konzepte, Straßenbreite = Stärke der Beziehungen, Brücken = äquivalente Konzepte über Sprachen hinweg."
 
 ### Capture Settings
 ```javascript
@@ -285,8 +288,8 @@ data = {
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-topics = ["Erfolg", "Verantwortung", "Gerechtigkeit", "Freiheit"]
-lds = [0.972, 0.831, 0.822, 0.812]
+topics = ["ZH-EN", "DE-EN", "ZH-DE"]
+lds = [0.934, 0.938, 0.519]
 colors = sns.color_palette("RdYlBu_r", len(topics))
 
 fig, ax = plt.subplots(figsize=(8, 4))
@@ -307,7 +310,7 @@ plt.savefig("docs/figures/fig3_top_drift.png", dpi=300)
 
 **Fig 2**: "Abbildung 2: Berechnung des Language Drift Score (LDS) durch Graphvergleich"
 
-**Fig 3**: "Abbildung 3: LDS-Ranking der fünf Konzepte (Wikipedia-Korpus, N=813)"
+**Fig 3**: "Abbildung 3: LDS-K nach Sprachpaar — ZH-EN 0.934, DE-EN 0.938, ZH-DE 0.519"
 
 **Fig 4**: "Abbildung 4: Cognitive City — 3D-Visualisierung der kognitiven Strukturen für 'Erfolg'"
 

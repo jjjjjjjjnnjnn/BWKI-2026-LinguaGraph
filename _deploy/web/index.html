@@ -14,6 +14,8 @@
     if (typeof COGNITIVE_DATA_EXT === 'undefined' && typeof data !== 'undefined' && data && data.nodes) { var COGNITIVE_DATA_EXT = data; }
     </script>
     <script src="i18n.js"></script>
+<script src="grounding_lookup.js"></script>
+<script src="node-detail-ext.js"></script>
     <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
@@ -721,7 +723,7 @@
             '<div style="margin:5px 0 3px;font-size:.6rem;color:#7a9aff;font-weight:500">'+i18n.tr('detail.graph.profile', {count: (gd?gd.nodes.length:ND.length)})+'</div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.cds')+'</span><span class="val">'+((gd?2*gd.links.length/(gd.nodes.length*(gd.nodes.length-1)):0.0215)).toFixed(4)+'</span></div>'+
             '<div class="row"><span class="label">'+i18n.tr('detail.avg_degree')+'</span><span class="val">'+avgDegree.toFixed(1)+'</span></div>'+
-            ldsRows;
+            ldsRows+(window.nodeExtraHTML?window.nodeExtraHTML(n.name):'');
         document.getElementById('focusBtn').addEventListener('click', function(ev){ ev.preventDefault(); focusNode(n); });
 
         document.getElementById('dnote').innerHTML =

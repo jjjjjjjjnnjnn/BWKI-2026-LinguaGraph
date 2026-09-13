@@ -1,5 +1,11 @@
 # Cognitive Metrics Framework v1.0
 
+> ⚠️ SUPERSEDED: This file defined an early version of LDS with a GED-based formula.
+> See `lds_formal_definition.md` for the canonical Jaccard-based LDS definition.
+> The values here (0.50/0.44/0.51) are NOT compatible with current pipeline LDS-K values (0.52-0.94).
+>
+> **Status**: ❌ SUPERSEDED — See `docs/lds_formal_definition.md` for canonical definition
+>
 > **🇬🇧 EN**: Formal definitions for quantifying knowledge structure characteristics — LDS · CDS · HDS
 > **🇩🇪 DE**: Formale Definitionen zur Quantifizierung von Wissensstrukturmerkmalen
 > **🇨🇳 ZH**: 用于量化知识结构特征的正式定义
@@ -9,7 +15,7 @@
 
 ---
 
-## 1. Language Distance Score (LDS)
+## 1. Linguistic Divergence Score (LDS)
 
 ### 1.1 Definition
 

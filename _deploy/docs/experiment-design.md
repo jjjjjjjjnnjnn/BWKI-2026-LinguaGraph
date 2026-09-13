@@ -1,8 +1,11 @@
-# LinguaGraph 实验设计方案
+# [已过时] LinguaGraph 实验设计方案
 
+> **警告：此文件已过时。当前实验使用 5 个社会主题（Freiheit, Gerechtigkeit, Erfolg, Verantwortung, Heimat-Zuhause），与此处的旧主题列表（自由, 知识, 时间, 身份, 社会）完全不同。**
+> 请参考实际问卷数据（data/questionnaires/）和论文文档（docs/paper/）获取当前实验方案。
+>
 > 基于 CCKG (Cultural Commonsense Knowledge Graph, EACL 2026) 方法论借鉴
 
-## 1. 实验目标
+## 1. 实验目标（仍有效）
 
 验证核心假设：**不同语言是否会塑造不同的思维结构？**
 
@@ -76,7 +79,7 @@
 
 | 指标 | 定义 | 预期 |
 |------|------|------|
-| Language Drift Score (LDS) | 1 - mean(GED, Jaccard, Cosine) | 0.3-0.7 |
+| Linguistic Divergence Score (LDS) | 1 - mean(GED, Jaccard, Cosine) | 0.3-0.7 |
 | Concept Overlap | 三语共有概念比例 | ≥ 30% |
 | Conceptual Stability | 概念跨语言一致性 | 0.5-0.9 |
 
@@ -86,7 +89,7 @@
 |--------|----------|
 | 跨语言认知图比较 | LDS 在不同语言对上有显著差异 |
 | LLM 概念提取一致性 | 三语提取的 Concept F1 差异 < 10% |
-| Language Drift Score | LDS 与 Conceptualizer baseline 相关性 > 0.5 |
+| Linguistic Divergence Score | LDS 与 Conceptualizer baseline 相关性 > 0.5 |
 
 ## 4. 时间线
 

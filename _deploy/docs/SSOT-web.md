@@ -3,12 +3,21 @@
 > 核验方法: `manifest.json` + `release/manifest.json` + `README.md` L130-136 实读。
 > 结论:两组数字都是真,属**不同scope**。重排版时加scope标注,不改任何数字。
 
+## 口径冻结 (2026-09-12, frozen — 三学科对照, 不改历史行只定当前值)
+
+| 学科 | 口径 | 值 | 说明 |
+|---|---|---|---|
+| Math | 输入语料 / 原始库题名 / 入图引用 | **68 / 72 / 32** | 68册输入语料(75 JSON, 含章节拆分)；72原始库题名(含版次重复, 清洗前)；32入图引用(`source_references`, 唯一可引用层) |
+| Physics | concepts / relations | **367 / 386** | 含Sensor节点`physics_em_传感器`+3 requires-边；Video baked 366冻结不改 |
+| Chemistry | concepts / relations | **220 / 215** | Backfill后基线(218+2, 0 dangling) |
+| Titles总量 | Math + Phys + Chem | **204 = 32 + 83 + 89** | Portal `#sources`实测三数之和；README Total以此为准(旧240退役) |
+
 ## 双口径对照
 
 | 数字 | 值 | Scope | 来源 | 用处 |
 |---|---|---|---|---|
-| Concepts (total) | 1,140+ | 全项目 Math 556 + Physics 366 + Chemistry 220 | `README.md` L131-134 | portal hero |
-| Relations (total) | 1,100+ direct | 同上 (525 + 383 + 215) | `README.md` L131-134 | portal hero |
+| Concepts (total) | 1,140+ | 全项目 Math 556 + Physics 367 + Chemistry 220 | `README.md` L131-134 | portal hero |
+| Relations (total) | 1,100+ direct | 同上 (525 + 386 + 215) | `README.md` L131-134 | portal hero |
 | Math nodes / relations / groups | 556 / 525 / 219 | 数学子图 (= 3D可视化数据) | `manifest.json` graph/alignment | 视频 SSOT · CognitiveSpace段 (`556 nodes · 525 relations`) |
 | Textbooks | 180+ (68 math + 94 phys + 18 chem) | 全项目 | `README.md` L131-134 | portal contributions |
 | Gold labels | 92 (social 72, math 20) | 全项目 | `README.md` L142 | validation |
@@ -20,7 +29,7 @@
 ## 重排版执行规则
 
 1. hero 保留 1,140+ / 1,100+,下方加一行 scope 注脚:
-   `Math 556 · Physics 366 · Chemistry 220 — full project graph (README.md §dataset)`.
+   `Math 556 · Physics 367 · Chemistry 220 — full project graph (README.md §dataset)`.
 2. CognitiveSpace 段保留 `556 nodes · 525 relations · 219 groups`,标注 `mathematics subgraph (manifest.json)`.
 3. "19-model benchmark" 旁标注 `model-selection benchmark on 92 gold labels`,与 §5 的 55/50 区分。
 4. 禁止新数字;物理/化学数只用 README 已有值,不反查 legacy pipeline。

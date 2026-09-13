@@ -1,15 +1,18 @@
-# LinguaGraph — 30-Second Elevator Pitch
+# LinguaGraph — 30-Second Elevator Pitch (v2, AI-Audit-Framing)
 
-> For judges, random hallway conversations, or written abstracts
-
----
-
-**Mathematics, physics, and chemistry knowledge follow different density trajectories, respect a universal depth bound, are organized differently across languages, and align with official curricula at rates ranging from 34% to 82%.**
-
-LinguaGraph makes these invisible structural patterns visible, measurable, and comparable across **3 disciplines**, **3 languages**, and **4 educational systems** — using 1,160+ concepts, 4,100+ relations, and 92 gold-validated labels (F1 = 0.939).
-
-**The surprising finding?** Knowledge density peaks at middle school, not university. Cross-language divergence is driven by curriculum tradition, not language family. And the UK curriculum covers 82% of textbook concepts while Germany covers only 34% — revealing fundamentally different educational philosophies.
+> For judges, hallway conversations, or written abstracts
+> **Stand:** 2026-08-09 | ersetzt v1 (Textbuch-Rahmen, überholt)
 
 ---
 
-*Read the full story at [cognitive-space/web/story/](cognitive-space/web/story/index.html)*
+**Multilingual AI is trained mostly on English — but nobody checks whether its understanding of value-laden concepts stays consistent across languages.**
+
+LinguaGraph turns the AI itself into a measured subject: we prompt the same model in Chinese, German, and English on the same five concepts (justice, freedom, responsibility, home, success), extract its concept graph per language, and measure divergence with our new metric, the **Linguistic Divergence Score (LDS)**.
+
+On a real model we find a **significant, culturally-patterned signal**: German frames freedom as autonomy and rules, Chinese as space and boundary — while institutional knowledge converges. That asymmetry is the control proving the signal is cultural, not noise.
+
+The output is an **interpretable divergence report** — a new audit tool for developers deploying multilingual models, regulators demanding transparency (EU AI Act), and researchers studying cultural values in AI.
+
+---
+
+*Full story: `docs/video_script.md` · Paper: `docs/paper/` · Disclosure: `docs/declaration_of_support.md`*

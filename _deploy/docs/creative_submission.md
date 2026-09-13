@@ -12,9 +12,9 @@
 **Abstract**:
 Spricht man verschiedene Sprachen, denkt man vielleicht auch unterschiedlich. In diesem Projekt untersuche ich, ob Chinesisch, Deutsch und Englisch die Art und Weise beeinflussen, wie Menschen über abstrakte Konzepte wie Freiheit, Gerechtigkeit und Erfolg denken.
 
-Mithilfe von KI (Large Language Models) extrahiere ich aus Antworten von Probanden kognitive Konzepte und deren Beziehungen, erstelle daraus Wissensgraphen und vergleiche diese über Sprachen hinweg. Ein neu entwickelter Metrik, der Language Drift Score (LDS), quantifiziert, wie stark sich die kognitiven Strukturen zwischen Sprachen unterscheiden.
+Mithilfe von KI (Large Language Models) extrahiere ich aus Antworten von Probanden kognitive Konzepte und deren Beziehungen, erstelle daraus Wissensgraphen und vergleiche diese über Sprachen hinweg. Eine neu entwickelte Metrik, der Linguistic Divergence Score (LDS), quantifiziert, wie stark sich die kognitiven Strukturen zwischen Sprachen unterscheiden.
 
-Ergebnisse einer Pilotstudie mit Wikipedia-Texten zeigen: Das Konzept "Erfolg" weist mit LDS=0.97 die größten sprachabhängigen Unterschiede auf, während "Freiheit" mit LDS=0.81 vergleichsweise ähnlicher strukturiert ist. Diese Arbeit verbindet KI-Methoden mit kognitiver Linguistik und eröffnet neue Wege, den Einfluss von Sprache auf das Denken messbar zu machen.
+Eine Nullmodell-Analyse mit 68 Mathematiklehrbüchern (574 Konzepte) zeigt: LDS-K Werte reichen von 0,519 (ZH-DE) bis 0,938 (DE-EN) — wobei Lehrbuchwissen sprachübergreifend konvergiert, nicht divergiert. Der Kernbeitrag liegt in ΔLDS = LDS-C − LDS-K, das den sprachspezifischen Anteil der Kognition isoliert. Eine erste Humanstudie (N=8) bestätigt LDS-C im Bereich 0,70–0,75. Diese Arbeit verbindet KI-Methoden mit kognitiver Linguistik und eröffnet neue Wege, den Einfluss von Sprache auf das Denken messbar zu machen.
 
 ---
 
@@ -43,22 +43,21 @@ Der LinguaGraph-Pipeline besteht aus vier Schritten:
 3. **Graphkonstruktion**: Aus den extrahierten Konzepten und Relationen werden gerichtete Wissensgraphen erstellt. Knoten repräsentieren Konzepte, Kanten repräsentieren Beziehungen (z.B. "impliziert", "ist Teil von", "steht im Gegensatz zu").
 
 4. **Sprachvergleich**: Ein neu entwickeltes Concept-Mapping-System gleicht sprachspezifische Konzepte auf eine gemeinsame Bedeutungsebene ab (z.B. "Freiheit", "自由" und "freedom" → CONCEPT_FREEDOM). Anschließend werden drei Metriken berechnet:
-   - **Language Drift Score (LDS)**: Ähnlichkeit der Graphstrukturen
+   - **Linguistic Divergence Score (LDS)**: Ähnlichkeit der Graphstrukturen
    - **Concept Shift**: Unterschiede in den verwendeten Konzeptmengen
    - **Relation Shift**: Unterschiede in den Beziehungsmustern
 
 ### Pilotstudie
 
-In einer Pilotstudie mit Wikipedia-Artikeln zu fünf Konzepten in drei Sprachen (15 Texte) wurde der Pipeline getestet:
+In einer Pilotstudie mit 68 Mathematiklehrbüchern aus drei Sprachräumen (574 Konzepte, 3538 Relationen) wurde der Pipeline getestet:
 
-| Konzept | LDS (Mittel) | Höchste Drift |
-|---------|-------------|---------------|
-| Erfolg | 0.972 | ZH: Familie + Anstrengung; DE: Karriere + Kompetenz; EN: Opportunity |
-| Verantwortung | 0.831 | ZH: Pflicht + Gesellschaft; DE: Kausalität + Gesetz |
-| Gerechtigkeit | 0.822 | ZH: soziale Harmonie; DE: Verfahren + Recht |
-| Freiheit | 0.812 | ZH: Verantwortung + Gesellschaft; DE: positive/negative Freiheit |
+| Sprachpaar | LDS-K | Interpretation |
+|-----------|:-----:|----------------|
+| ZH-EN | 0.934 | Strukturelle Konvergenz nahe Rauschniveau |
+| DE-EN | 0.938 | Strukturelle Konvergenz nahe Rauschniveau |
+| ZH-DE | 0.519 | Deutliche Konvergenz — chinesische und deutsche Lehrbücher sind ähnlicher als erwartet |
 
-Die Rangfolge der Konzepte (Success > Responsibility > Justice > Freedom) erwies sich als stabil über mehrere Methodenversionen hinweg.
+Die Nullmodell-Analyse zeigt: LDS-K < Structure Null für alle drei Sprachpaare. Lehrbuchwissen konvergiert sprachübergreifend — der wissenschaftliche Kernbeitrag verschiebt sich zu ΔLDS (LDS-C − LDS-K), der die sprachspezifische kognitive Divergenz isoliert. Eine erste Humanstudie (N=8) zeigt LDS-C Werte zwischen 0.70 und 0.75.
 
 ### Geplante Humanstudie
 
@@ -110,9 +109,10 @@ Sprachen. Auf Chinesisch steht Erfolg im Zusammenhang mit
 Familie und Anstrengung. Auf Deutsch mit Karriere und
 Kompetenz. Auf Englisch mit Opportunity und Choice.
 
-Ein neu entwickelter Wert, der Language Drift Score,
-macht diesen Unterschied messbar: von 0,81 bei "Freiheit"
-bis 0,97 bei "Erfolg".
+Ein neu entwickelter Wert, der Linguistic Divergence Score (LDS),
+macht diese Unterschiede messbar: von 0,52 (Chinesisch–Deutsch)
+bis 0,94 (Deutsch–Englisch) für Lehrbuchwissen, und 0,70–0,75
+für die menschliche Kognition.
 
 [2:15-2:45] — Nächste Schritte
 Jetzt beginnt der wichtigste Teil: Echte Probanden.
@@ -203,23 +203,20 @@ Das Herzstück ist ein Concept-Mapping-System. Es gleicht
 sprachspezifische Konzepte auf eine gemeinsame Bedeutungsebene ab.
 "Freiheit", "自由" und "freedom" werden als dasselbe Konzept
 erkannt — erst dann wird der Vergleich fair und aussagekräftig.
-Mit dem Language Drift Score (LDS) wird die Ähnlichkeit der
+Mit dem Linguistic Divergence Score (LDS) wird die Ähnlichkeit der
 Graphstrukturen quantifiziert.
 
 [3:30-4:15] — Ergebnisse der Pilotstudie
-In einer Pilotstudie habe ich 15 Wikipedia-Artikel zu
-fünf Konzepten in drei Sprachen analysiert:
+In einer Pilotstudie mit 68 Mathematiklehrbüchern aus drei Sprachräumen
+(574 Konzepte) analysiert:
 
-| Konzept | LDS | Wichtigster Unterschied |
-|---------|-----|------------------------|
-| Erfolg | 0.97 | ZH: Familie; DE: Karriere; EN: Opportunity |
-| Verantwortung | 0.83 | ZH: Pflicht; DE: Kausalität |
-| Gerechtigkeit | 0.82 | ZH: soziale Harmonie; DE: Verfahren |
-| Freiheit | 0.81 | ZH: Verantwortung; DE: Selbstbestimmung |
-| Heimat | TBD | Noch nicht abgeschlossen |
+| Sprachpaar | LDS-K | Interpretation |
+|:----------:|:-----:|----------------|
+| ZH-EN | 0.934 | Strukturelle Konvergenz nahe Rauschniveau |
+| DE-EN | 0.938 | Strukturelle Konvergenz nahe Rauschniveau |
+| ZH-DE | 0.519 | Deutliche Konvergenz — ZH+DE am ähnlichsten |
 
-Die Rangfolge blieb stabil, als ich die Methode veränderte —
-ein Zeichen dafür, dass der LDS ein verlässliches Maß ist.
+Die Nullmodell-Analyse bestätigt: LDS-K < Structure Null für alle drei Sprachpaare — Lehrbuchwissen konvergiert sprachübergreifend. Der Kernbeitrag verschiebt sich zu ΔLDS (LDS-C − LDS-K), der den sprachspezifischen Anteil der Kognition isoliert.
 
 [4:15-4:45] — Geplante Humanstudie
 Jetzt beginnt der wichtigste Teil:
@@ -262,15 +259,14 @@ Sprache ist, wie wir denken.
 ├──────────┼──────────────────────────────────────────┤
 │ LINKS    │ RECHTS: Forschungsergebnisse               │
 │          │                                           │
-│ Problem  │ Top Drift Ranking:                        │
+│ Problem  │ LDS-K Ergebnisse:                             │
 │ Sprache  │ ┌──────────┬──────┬──────────────────┐   │
-│ formt    │ │ Konzept  │ LDS  │ Haupterkenntnis   │   │
+│ formt    │ │ Paar     │ LDS  │ Interpretation    │   │
 │ Denken?  │ ├──────────┼──────┼──────────────────┤   │
-│          │ │ Erfolg   │ 0.97 │ Familie vs. Kar. │   │
-│ Bisher:  │ │ Verantw. │ 0.83 │ Pflicht vs. Ges. │   │
-│ Farben,  │ │ Gerecht  │ 0.82 │ Harmonie vs. Ver.│   │
-│ Raum     │ │ Freiheit │ 0.81 │ Verantw. vs. Sel.│   │
-│          │ └──────────┴──────┴──────────────────┘   │
+│          │ │ ZH-EN    │ 0.934│ Nahe Rauschniveau │   │
+│ Bisher:  │ │ DE-EN    │ 0.938│ Nahe Rauschniveau │   │
+│ Farben,  │ │ ZH-DE    │ 0.519│ Deutl. Konvergenz │   │
+│ Raum     │ └──────────┴──────┴──────────────────┘   │
 │ Jetzt:   │                                           │
 │ Soziale  │ Geplante Humanstudie:                     │
 │ Konzepte │ 30 Probanden (10 ZH, 10 DE, 10 EN)        │
@@ -329,7 +325,7 @@ Der Schlüssel ist ein Concept-Mapping-System: Es stellt sicher, dass 'Freiheit'
 **Visual**: Balkendiagramm: LDS-Werte für 4 Konzepte. Dann drei Mini-Cities nebeneinander.
 
 **Audio**:
-"Meine Pilotstudie mit Wikipedia-Texten zeigt klare Unterschiede: 'Erfolg' hat den höchsten Language Drift Score — 0,97. Im Chinesischen ist Erfolg mit Familie verbunden, im Deutschen mit Karriere, im Englischen mit Opportunity. 'Freiheit' liegt bei 0,81 — ähnlicher, aber immer noch deutlich unterschiedlich strukturiert."
+"Der Linguistic Divergence Score (LDS) quantifiziert diese Unterschiede. Für Lehrbuchwissen reichen die Werte von 0,52 (ZH-DE) bis 0,94 (DE-EN). Erste Ergebnisse mit menschlichen Probanden (N=8) zeigen LDS-C Werte zwischen 0,70 und 0,75."
 
 ### Szene 5: Ausblick (2:20-2:50)
 

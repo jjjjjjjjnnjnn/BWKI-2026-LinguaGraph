@@ -1,50 +1,54 @@
-# LinguaGraph — 3-Minute Pitch
+# LinguaGraph — 3-Minute Pitch (v2, AI-Audit-Framing)
 
-> For project presentations, lab meetings, or short talks
+> For project presentations, lab meetings, short talks
+> **Stand:** 2026-08-09 | ersetzt v1 (Textbuch-Rahmen, überholt)
+> **Narrativer Kern:** LinguaGraph ist ein Audit-Werkzeug für mehrsprachige KI — es misst, ob ein Modell wertbeladene Konzepte sprachübergreifend konsistent versteht, und wo genau nicht.
 
 ---
 
 ## 1. The Problem (30s)
 
-Mathematics is universal. But the way knowledge is organized in textbooks — what comes first, what connects to what, how deep the chain goes — varies dramatically across languages and education systems. Existing curriculum analysis tools are qualitative, manual, and cannot scale across languages or disciplines.
+AI systems are deployed to billions of people in dozens of languages — but they are trained mostly on English data. Does a model's understanding of value-laden concepts — justice, freedom, responsibility — stay consistent across languages?
 
-**We need a way to measure these structural differences quantitatively.**
+Standard AI evaluation measures **task performance**, not conceptual consistency. If a model in a loan-decision or content-moderation system frames "fairness" differently in German than in Chinese, users get inconsistent treatment depending on language. **That blind spot is unmeasured.**
 
-## 2. The Framework (45s)
+## 2. The Method (45s)
 
-LinguaGraph builds multi-lingual knowledge graphs from textbook corpora using LLM-based concept extraction (qwen-plus, 92 gold labels, F1=0.939). We then measure four structural indicators:
+How do you measure something invisible like a model's concept structure? **Ask the AI itself.**
 
-| Metric | What it measures | Range |
-|--------|-----------------|-------|
-| **CDS** | How densely connected knowledge is | 0.042–0.271 |
-| **HDS** | How deep prerequisite chains go | Max 8 |
-| **LDS** | How different languages structure the same topic | 0.80–0.91 |
-| **CS** | How well textbooks cover official curricula | 8%–82% |
+LinguaGraph makes the LLM a controlled experimental subject (**LLM-as-Subject**, within-subject design): the same model, the same five concepts (justice, freedom, responsibility, home, success), prompted in Chinese, German, and English. Because it is the same model, **language is the only variable.**
 
-## 3. The Surprising Findings (60s)
+We extract a concept graph per language and measure divergence with our new metric, the **Linguistic Divergence Score (LDS)** — over shared concepts and relations. And we go beyond a single number: we name **which concept components** diverge, in **which domains**, and whether the divergence lives in concept choice or in the relations between concepts.
 
-**F1:** Knowledge density peaks at **middle school** (CDS=0.271), not college. The transition to high school brings a **3.7× drop**. Both physics and chemistry follow the same early-peak-later-decline pattern.
+## 3. The Findings (60s)
 
-**F4:** Chinese and German textbooks show the **highest structural divergence** (LDS=0.907), while Chinese and English are surprisingly close (0.802). Curriculum tradition, not language family, drives this.
+On a state-of-the-art multilingual model the language signal is **real and significant** (permutation test p<0.01):
 
-**F9:** Coverage scores range from **8% (China) to 82% (UK)**. But China's low score reflects selective depth, not poor alignment — their textbooks go deeper on fewer topics.
+| What | Result |
+|------|--------|
+| LDS-C (signal) | 0.93–0.96 |
+| Within-language floor | 0.85–0.87 → signal clearly above noise |
+| German framing | freedom → autonomy, rules, one's own goals |
+| Chinese framing | freedom → space, boundaries, what one deserves |
 
-## 4. The Big Picture (45s)
+The decisive **control**: institutional knowledge (e.g. mathematics) *converges* across languages, while cultural concepts *diverge*. The instrument finds convergence where convergence is expected and divergence where divergence is expected — so the cultural signal is not a measurement artifact. Even the **relations** between concepts organize language-specifically.
 
-LinguaGraph is the first framework that can automatically:
-- Build multilingual knowledge graphs from textbooks
-- Quantify structural differences across languages and disciplines
-- Measure textbook-curriculum alignment at scale
+**Why humans couldn't give us this:** in human between-subject data, language is confounded with individual differences — one person speaks one language. The AI removes that noise source, which is exactly what an audit needs.
 
-**Three disciplines, three languages, four education systems. One framework.**
+## 4. The Application (45s)
+
+LinguaGraph is a **new kind of AI audit**. The output is an interpretable **divergence report** per model and language pair:
+
+- **Developers** — pre-deployment check: does my multilingual model drift on value-laden terms, and where? → targeted calibration.
+- **Regulators** — transparency evidence (EU AI Act) for cross-lingual model behavior.
+- **Researchers** — a quantitative, interpretable way to study cultural values in AI.
 
 ## 5. Next Steps
 
-- Deepen the Coverage Score analysis across all subjects
-- Expand to additional education systems (France, Japan, Singapore)
-- Develop interactive exploration tools for education researchers
-- Publish the full framework as an open educational resource
+- Extend the audit to more models, concepts, and languages
+- Define a threshold for "critical" divergence
+- Open the divergence-report as a reusable evaluation tool
 
 ---
 
-*Read the full paper at `docs/paper/` · Explore the data at `config/expert_graphs/` · Interactive 3D: `cognitive-space/web/story/`*
+*Read the paper at `docs/paper/` · Evidence at `data/lds_c/` · Disclosure at `docs/declaration_of_support.md`*

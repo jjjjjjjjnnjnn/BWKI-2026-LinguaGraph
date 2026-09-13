@@ -409,18 +409,18 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   <p class="section-sub" data-i18n="method_sub">From textbook text to structural insights in five steps</p>
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
-    <div class="mermaid">
+    <div class="mermaid" id="methodMermaid">
 %%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[180 Textbooks<br/>ZH · EN · DE] --> MIMO[LLM API<br/>Concept Extraction]
-    MIMO --> KG[Knowledge Graph<br/>1,140+ Concepts · 1,100+ Relations]
-      GL[92 Gold Labels<br/>F1 = 0.939 social / 0.881 weighted] -.->|Validate| KG
-    KG --> CDS[CDS: Concept Density]
-    KG --> HDS[HDS: Hierarchy Depth]
-    KG --> LDS[LDS: Language Divergence]
-    KG --> CURR[4 Curricula<br/>NRW · UK · US · CN]
+    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
+    MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 525 Relations]
+    GL[92 Gold Labels<br/>F1 0.939 social 0.881 overall] -.->|Validate| KG
+    KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
+    KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
+    KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
+    KG --> CURR[Step 4 Curricula §2.5<br/>NRW UK US CN]
     CURR --> CS[Coverage Score]
-    CDS --> INSIGHTS[Educational Insights<br/>F1–F12]
+    CDS --> INSIGHTS[Step 5 Insights §2.1<br/>Pipeline B Findings F1-F12]
     HDS --> INSIGHTS
     LDS --> INSIGHTS
     CS --> INSIGHTS
@@ -481,6 +481,7 @@ graph LR
   <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).</p>
   <details style="margin:12px 0">
     <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_math_sum">Mathematics · 32 titles</summary>
+    <p style="font-size:.8rem;color:var(--text2);margin:8px 0" data-i18n="src_math_note">Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts).</p>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
       <table class="gold roster" style="margin-top:0">
         <thead style="position:sticky;top:0;background:var(--surface)"><tr><th data-i18n="src_book_h">Title</th><th data-i18n="src_lang_h">Lang</th><th data-i18n="src_refs_h">Refs</th></tr></thead>
@@ -798,6 +799,7 @@ graph LR
     </div>
     <div class="meta"><a class="tag tag-cyan" href="#methodology" data-i18n="finding_c_tag1">Metric: LDS</a> <a class="tag tag-blue" href="#finding-c" data-i18n="finding_c_tag2">F4, F5</a> <a class="tag tag-yellow" href="#research" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</a></div>
     <p class="honesty" data-i18n="finding_c_honesty">Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).</p>
+    <div class="method_box" style="font-size:.8rem;color:var(--text2);border:1px solid var(--border);border-left:3px solid #0e7490;border-radius:8px;padding:10px 12px;margin-top:12px;line-height:1.6" data-i18n="finding_c_methodbox">Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Frozen: ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188.</div>
   </div>
 
 </section>
@@ -1546,6 +1548,7 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
     finding_c_honesty: 'Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).',
+    finding_c_methodbox: 'Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Frozen: ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188.',
     finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. Consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation.',
     finding_d_ev1: 'China (highest)',
     finding_d_ev2: 'UK',
@@ -1670,6 +1673,7 @@ const TRANSLATIONS = {
     src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
     src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).',
     src_math_sum: 'Mathematics · 32 titles',
+    src_math_note: 'Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts).',
     src_phys_sum: 'Physics · 83 titles',
     src_chem_sum: 'Chemistry · 89 titles',
     src_book_h: 'Title', src_lang_h: 'Lang', src_refs_h: 'Refs',
@@ -1710,6 +1714,7 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
     finding_c_honesty: 'Ehrlichkeitshinweis (T1-Dekontamination, 2026-09): ZH-DE J_node 0,556 → 0,020 nach Entfernen CJK-kontaminierter de-Labels; Size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um. Fazit: Label-Artefakt (Paper §3.8, Fig. 8).',
+    finding_c_methodbox: 'Methode: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Abb. 4 Full-vs-Structure Null → Abb. 8 T1-Dekontamination. Freeze: ZH-EN 0,9336 · DE-EN 0,9382 · ZH-DE 0,5188.',
     finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung. Konsistent mit Governance (Hypothese, Paper §8.6) — Granularität (A) bleibt die sicherste Interpretation.',
     finding_d_ev1: 'China (hoechste)',
     finding_d_ev2: 'GB',
@@ -1910,6 +1915,7 @@ const TRANSLATIONS = {
     src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
     src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (semantische Schicht; Substring 33,8/25,5) (College-Knoten außerhalb Schul-Scope; DE nur Link).',
     src_math_sum: 'Mathematik · 32 Titel',
+    src_math_note: 'Umfangsnotiz: 68 Eingangskorpora / 72 Rohbibliothekstitel / 32 im Graph zitierte Titel (Refs = Zitierungen über Konzepte).',
     src_phys_sum: 'Physik · 83 Titel',
     src_chem_sum: 'Chemie · 89 Titel',
     src_book_h: 'Titel', src_lang_h: 'Spr.', src_refs_h: 'Refs',
@@ -2026,6 +2032,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
     finding_c_honesty: '诚实注（T1 去污染，2026-09）：去掉含中文德语标签后中德 J_node 0.556→0.020；size-matched 下维基比较各 k 全逆转。结论：标签伪影（论文 §3.8，图 8）。',
+    finding_c_methodbox: '方法：<span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span>（<span class="mono">scripts/figures/_lds_utils.py</span>）→ 图4 Full-vs-Structure Null → 图8 T1去污染。冻值：ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188。',
     finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。与治理结构一致（假设，论文 §8.6）——但粒度（A）仍是最稳妥的解读。',
     finding_d_ev1: '中国（最高）',
     finding_d_ev2: '英国',
@@ -2150,6 +2157,7 @@ curr_explanations_title: '三种竞争性解释',
     src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
     src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（语义层；substring 33.8/25.5）（大学节点超出高中范围；DE 仅链接）。',
     src_math_sum: '数学 · 32 种',
+    src_math_note: '口径注：68 输入语料 / 72 原始库题名 / 32 入图引用（Refs＝跨概念引用计数）。',
     src_phys_sum: '物理 · 83 种',
     src_chem_sum: '化学 · 89 种',
     src_book_h: '书名', src_lang_h: '语言', src_refs_h: '引用',
@@ -2159,6 +2167,64 @@ curr_explanations_title: '三种竞争性解释',
 };
 
 
+// W4: trilingual methodology graph. Five steps map to paper §2.1-§2.5:
+// Step1 corpus=T1(§2.2), Step2 extraction=MIMO(§2.3), Step3 fusion=KG(§2.4),
+// Step4 alignment+metrics=CDS/HDS/LDS/CURR/CS(§2.5), Step5 insights=INSIGHTS(§2.1 Pipeline B).
+// Node ids identical across languages; static EN above is the no-JS fallback.
+var METHOD_GRAPHS = {
+  en: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
+graph LR
+    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
+    MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 525 Relations]
+    GL[92 Gold Labels<br/>F1 0.939 social 0.881 overall] -.->|Validate| KG
+    KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
+    KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
+    KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
+    KG --> CURR[Step 4 Curricula §2.5<br/>NRW UK US CN]
+    CURR --> CS[Coverage Score]
+    CDS --> INSIGHTS[Step 5 Insights §2.1<br/>Pipeline B Findings F1-F12]
+    HDS --> INSIGHTS
+    LDS --> INSIGHTS
+    CS --> INSIGHTS
+    style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4`,
+  de: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
+graph LR
+    T1[Schritt 1 Korpus §2.2<br/>68 Lehrbuecher ZH EN DE] --> MIMO[Schritt 2 Extraktion §2.3<br/>MIMO LLM Konzepte]
+    MIMO --> KG[Schritt 3 Graph §2.4<br/>556 Konzepte 525 Relationen]
+    GL[92 Gold-Labels<br/>F1 0.939 sozial 0.881 gesamt] -.->|Validierung| KG
+    KG --> CDS[Schritt 4 CDS §2.5<br/>Konzeptdichte]
+    KG --> HDS[Schritt 4 HDS §2.5<br/>Hierarchietiefe]
+    KG --> LDS[Schritt 4 LDS §2.5<br/>Sprachdivergenz]
+    KG --> CURR[Schritt 4 Curricula §2.5<br/>NRW UK US CN]
+    CURR --> CS[Coverage-Score]
+    CDS --> INSIGHTS[Schritt 5 Erkenntnisse §2.1<br/>Pipeline B Befunde F1-F12]
+    HDS --> INSIGHTS
+    LDS --> INSIGHTS
+    CS --> INSIGHTS
+    style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4`,
+  zh: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
+graph LR
+    T1[步骤1 语料 §2.2<br/>68 教材 ZH EN DE] --> MIMO[步骤2 抽取 §2.3<br/>MIMO LLM 概念]
+    MIMO --> KG[步骤3 图谱 §2.4<br/>556 概念 525 关系]
+    GL[92 金标<br/>F1 0.939 社会 0.881 总体] -.->|验证| KG
+    KG --> CDS[步骤4 CDS §2.5<br/>概念密度]
+    KG --> HDS[步骤4 HDS §2.5<br/>层次深度]
+    KG --> LDS[步骤4 LDS §2.5<br/>语言差异]
+    KG --> CURR[步骤4 课程 §2.5<br/>NRW UK US CN]
+    CURR --> CS[覆盖率]
+    CDS --> INSIGHTS[步骤5 洞察 §2.1<br/>Pipeline B 发现 F1-F12]
+    HDS --> INSIGHTS
+    LDS --> INSIGHTS
+    CS --> INSIGHTS
+    style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4`
+};
+function renderMethod(lang) {
+  var el = document.getElementById('methodMermaid');
+  if (!el) return;
+  el.textContent = METHOD_GRAPHS[lang] || METHOD_GRAPHS.en;
+  el.removeAttribute('data-processed');
+  if (window.mermaid) { try { mermaid.run({ querySelector: '#methodMermaid' }).catch(function(){}); } catch (e) {} }
+}
 function setLanguage(lang) {
   var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.title = t.page_title;
@@ -2280,11 +2346,12 @@ function setLanguage(lang) {
   // data-i18n fallback (skip nav elements)
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
-    if (t[key] && !el.closest('nav') && !el.closest('.mermaid')) el.innerHTML = t[key];
+    if (t[key] && !el.closest('nav')) el.innerHTML = t[key];
   });
 
   // Lang buttons
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase() === lang); });
+  renderMethod(lang);
   localStorage.setItem('portal_lang', lang);
   document.documentElement.lang = lang;
 
@@ -2302,8 +2369,8 @@ function setLanguage(lang) {
       window.coverageChart.update();
     }
   }
-  // Figure language variants (fig5 stays EN: source superseded, see docs/SSOT-web.md)
-  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination'];
+  // Figure language variants (fig5_hds/fig6_cds/fig4_heatmap/fig_wikipedia stay EN: frozen/partial/superseded, see docs/SSOT-web.md)
+  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {

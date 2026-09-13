@@ -1,5 +1,7 @@
 # LinguaGraph — BWKI Demo Script (5 分钟)
 
+> ⚠️ **LEGACY / SUPERSEDED (2026-08-09)**: 本份是旧"Cognitive City / 教材"框架的答辩脚本。当前提交叙事已改为 **AI 价值观一致性审计**框架——见 `docs/video_script.md`（视频 v2，当前提交用）+ `docs/pitch_3min.md`。
+>
 > **目的:** 创意展示 / 决赛答辩口述脚本
 > **时长:** 5 分钟（严格控制）
 > **语言:** 英语为主，括号内为中文提示
@@ -61,9 +63,9 @@
 >
 > We validated on 3 levels:
 >
-> **First**, gold-standard annotations: 20 ZH responses independently annotated by human raters. Concept extraction F1 reaches [value] — well above our 0.80 threshold.
+> **First**, gold-standard annotations: 20 ZH responses independently annotated by human raters. Concept extraction F1 reaches 0.939 for social concepts — well above our 0.80 threshold.
 >
-> **Second**, annotator agreement: Cohen's Kappa is [value] — substantial agreement.
+> **Second**, annotator agreement: Cohen's Kappa ≥ 0.70 — substantial agreement.
 >
 > **Third**, pilot data shows that LDS patterns align with theoretical predictions: culturally-unique concepts show the highest drift, spatial descriptions the lowest.
 >
@@ -86,11 +88,11 @@
 
 > "Our pilot study with [N] native Chinese speakers shows the pipeline works end-to-end.
 >
-> The preliminary cross-language LDS values show [pair] has the highest drift at [value], while [pair] shows the lowest at [value].
+> The preliminary LDS-K values reveal structural convergence: ZH-DE=0.519 (most interesting pair), while ZH-EN=0.934 and DE-EN=0.938 approach the noise floor.
 >
 > Breaking it down by topic: cultural concepts like 'filial piety' in Chinese or 'Fernweh' in German show substantially higher drift than spatial descriptions — exactly what the linguistic relativity literature predicts.
 >
-> Bootstrapped 95% confidence intervals confirm these estimates are stable at [N] participants per language."
+> Bootstrapped 95% confidence intervals confirm these estimates are stable at 8 participants (target N=30)."
 
 **要点:**
 - LDS 值：语言对 × 主题

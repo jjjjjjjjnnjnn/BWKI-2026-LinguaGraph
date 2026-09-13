@@ -1,10 +1,10 @@
 # LinguaGraph Methodology
 
-## Language Drift Score (LDS)
+## Linguistic Divergence Score (LDS)
 
 ### Definition
 
-The Language Drift Score quantifies how differently two languages organize the same conceptual space. It is defined as:
+The Linguistic Divergence Score quantifies how differently two languages organize the same conceptual space. It is defined as:
 
 ```
 LDS(L1, L2) = 1 - mean(GED_sim, Jaccard_node, Jaccard_edge)

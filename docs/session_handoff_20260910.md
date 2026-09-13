@@ -60,3 +60,18 @@ OPENAI_API_KEY (zen, tot).
 2. Video (separater Workflow, Assets fehlen)
 3. Tag `v1.0-bwki-submission` nach Eintragung
 4. Optional: Mistral-Retry (429-Cooldown), OR-nemotron-Resume (User hat abgelehnt — nur bei Meinungsänderung)
+
+## Wave 2026-09-13 (v23): portal-i18n + P1-fill (laufend)
+
+Portal: W0 grounding-Panel (lookup 587 keys, badges+details, i18n 7 keys x3) in web/index.html#showDetail;
+W1 68/72/32-Dreischicht; W4 Mermaid renderMethod(de/zh); W2 Finding-C-Methodbox (0.9336/0.9382/0.5188);
+W3 15 Abb. x de/zh (figBases 5->16; fig_wikipedia/fig4_heatmap/fig5_hds/fig6_cds bleiben EN);
+README EN neu + ZH/DE portiert (204=32+83+89).
+
+P1-Stand: grok-4.6 30/30 DONE (20260913, \.23); llama-3.3-70b 30/30 DONE (CF, war schon voll);
+spark-1.3 30/30 DONE (20260913, alle mit Konzepten); qwen-max 26/30 PARKED (DashScope free quota exhausted,
+AllocationQuota.FreeTierOnly; 3 junk-ERROR-units in Tagesfile, nur good-units zaehlen);
+OR-Kette laeuft (ultra 8->Ziel 30, dann nano/laguna/north/tiny); mistral-medium 0 good PARKED
+(offiziell 429, drip-scheduler 10-min-Takt via scripts/run_mistral_drip.cmd);
+Zen-free-IDs (-free-Suffix) derzeit Backend-500 via HTTP+Terminal -> NEUE Identitaeten,
+nicht mit bestehenden mischen; spaeter retry.

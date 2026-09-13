@@ -1,5 +1,11 @@
 # Cognitive Metrics Validation Report
 
+> ⚠️ **LDS values below (0.44–0.51) are from an early GED-based formula.**
+> Current pipeline uses Jaccard-only LDS-K: ZH-EN=0.934, DE-EN=0.938, ZH-DE=0.519.
+> CDS and HDS findings in this report remain valid.
+>
+> See `docs/lds_formal_definition.md` for the canonical LDS definition.
+
 > **Generated**: 2026-06-21
 > **Data**: CognitiveSpace graph (574 nodes, 3538 edges, 68 textbooks)
 > **Metrics**: LDS, CDS, HDS

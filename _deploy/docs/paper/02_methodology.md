@@ -33,6 +33,8 @@ Die Grundlage des CognitiveSpace-Wissensgraphen bildet ein Korpus von **68 Lehrb
 
 Die Lehrbücher decken ein breites mathematisches Spektrum ab: Arithmetik, Algebra, Geometrie, Analysis, Lineare Algebra, Differentialgleichungen, Wahrscheinlichkeitstheorie und Statistik. CN-Physik/Chemie-Ergänzung (PEP 2019, 7+4=11 Bände, s. DATA_MANIFEST): Drittspiegel (TapXWorld/ChinaTextbook) provenance unverified, nie committed, smartedu-offizielle Fassung maßgeblich.
 
+> **Zählkonvention Mathematik — drei Ebenen, frozen 2026-09-12**: **68** = Bände des Eingabekorpus (physische Lehrbuch-Bände, Extraktionsebene, 75 JSON-Dateien wegen Kapitel-Splits); **72** = Titel der Rohbibliothek (Katalogebene, inkl. Auflagen-/Band-Dubletten vor Katalog-Bereinigung); **32** = zitierte Titel im Graphen (`source_references`, Nachweisebene, Portal `#sources`). Nur die 32er-Ebene ist zitierfähig. Portal-Summe **204 = 32 (Math) + 83 (Physik) + 89 (Chemie)**. Physik/Chemie-Korpusgrößen s. SSOT-web 口径冻结 (phys 367/386, chem 220/215).
+
 ### 2.3 Konzeptextraktion (MIMO-Verfahren)
 
 Die Extraktion mathematischer Konzepte und ihrer Relationen erfolgte mittels eines strukturierten LLM-Prompts ("MIMO"-Verfahren):
@@ -91,6 +93,8 @@ Die Alignierung wird durch zwei Strategien erreicht:
 
 Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
 
+> **Fünf-Schritte-Titel, frozen EN-Baseline 2026-09-12 (Portal-Mermaid dreisprachig)**: §2.1 **Overview — From textbook text to structural insights in five steps** · §2.2 **Textbook Corpus** · §2.3 **Concept Extraction (MIMO)** · §2.4 **Graph Construction and Fusion** · §2.5 **Cross-lingual Alignment**. Deutsche Titel oben bleiben maßgeblich; DE/ZH-Portal-Labels sind Übersetzungen genau dieser EN-Baseline (keine neuen Schritte, keine neuen Zahlen).
+
 ### 2.6 CognitiveSpace 3D-Visualisierung
 
 Die Visualisierung erfolgt als **interaktiver 3D-Graph** mittels der Bibliothek `3d-force-graph` (v1.80.0).
@@ -145,6 +149,8 @@ wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und
 **Null-Modell-Rahmen**: Um Struktureffekte von Spracheffekten zu trennen, werden drei Null-Modelle eingesetzt (Details in `docs/lds_formal_definition.md` §3): (1) **Within-Language Split-Half** — Aufteilung einer Sprache in zwei Hälften → Bodenniveau der Teilnehmervariabilität; (2) **Label-Permutation** — Permutation der Sprachlabels → formales p-Wert für das getragene Sprachsignal; (3) **Cross-Source Null** — Textbuch vs. Wikipedia derselben Sprache → Trennung von Quell- und Spracheffekt. Alle LDS-Berechnungen verwenden die frozen v3-Formel; die Ergebnisse der Human- und LLM-Analyse (§4, §5) stützen sich auf denselben Rahmen.
 
 > **Formel-Verdict (2026-09-12, vgl. `docs/BASELINE_LEDGER.md` §8)**: verifiziert — publizierte LDS-K-Werte stammen aus der 2-Komponenten-Pipeline (`scripts/figures/_lds_utils.py::lds_jaccard`; Freeze-Skript `scripts/figures/reproduce_lds_binary.py`, Log `outputs/figures/reproduce_lds_binary.log`). Die 3-Komponenten-Variante in `src/scoring.py` (exaktes GED auf 219 Knoten intractable, Fallback 0,5) reproduziert sie nicht; obiger frozen-v3-Text (2 Komponenten) ist damit die maßgebliche Definition.
+
+> **Fig4/Fig8-Zeichenmethode, frozen 2026-09-12**: **Fig4** (`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model{,_de,_zh}.png` + `fig4_null_model_data.csv`): Full-Baseline = Freeze-Werte **ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188** (Snapshot `outputs/figures/reproduce_lds_binary.log`, publiziert gerundet 0.934/0.938/0.519); Structure Null (grad-erhaltend) 0.9571/0.9546/0.7142; Within-Language-Floor 0.9695/0.9744/0.9615; Label-Permute 0.8407/0.8701/0.6704 (Seed 42+999=1041). **Fig8** (`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination{,_de,_zh}.png` + `fig8_lds_decontamination_data.csv`, deterministischer Snapshot ohne Recompute): Full 0.934/0.938/0.519 (Paper §3.7) vs Structure Null 0.957/0.957/0.717 vs Dekontaminiert (T1 FilterA, 167/219 CJK-de-Labels raus, 52 behalten) 0.985/0.985/0.990 — ZH-DE-Pfeil +0.47. Spiegel beider Figuren unter `cognitive-space/web/figures/`.
 
 ### 2.8 LLM-Extraktionsqualität
 
