@@ -8,6 +8,12 @@
   <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
+<p align="center">
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero.png" alt="Forschungsportal — Live-Screenshot" width="49%"></a>
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview.png" alt="STEAM-Überblick — alle Fächer fusioniert in 3D" width="49%"></a>
+  <br><sub>Links: Forschungsportal · Rechts: STEAM-Überblick (1.143 Knoten · 849 Kanten · 10 Brücken) — klicken zum Öffnen</sub>
+</p>
+
 <h1 align="center">🧠 LinguaGraph</h1>
 
 
@@ -72,6 +78,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | Einstieg | Was es gibt | Für wen |
 |-------|--------------|----------|
 | [🧠 Forschungsportal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Erkenntnisse F1–F12, Replikations-Roster (**59/54/177**), Margin-Galaxie, Validierung | **Jury & Reviewer — hier starten** |
+| [🌐 STEAM-Überblick](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | Alle 3 Fächer in einem 3D-Graphen (1.143 Knoten · 849 Kanten · 10 Brücken) + Vergleichs-Panel | Fächerübergreifender Vergleich |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Vollständiges Paper, eingefrorene Abbildungen + Werte | Akademische Lektüre, Zitation |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interaktiver 3D-Wissensgraph (1.140+ Konzepte) | Live-Demo, Publikum |
 | [`submission/final/`](submission/final/) | BWKI-Einreichungspaket (Antworten, Disclosure, Code-Guide) | Wettbewerbseinreichung |

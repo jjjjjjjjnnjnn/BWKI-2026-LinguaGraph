@@ -9,11 +9,63 @@
     <script src="data.js"></script>
     <script src="data_physics.js"></script>
     <script src="data_chemistry.js"></script>
+    <script src="data_steam.js"></script>
     <script>
     /* release.py schreibt `var data`; der Viewer erwartet COGNITIVE_DATA(_EXT) — Shim, kein Generator-Eingriff */
     if (typeof COGNITIVE_DATA_EXT === 'undefined' && typeof data !== 'undefined' && data && data.nodes) { var COGNITIVE_DATA_EXT = data; }
     </script>
     <script src="i18n.js"></script>
+<script>
+/* STEAM fused-graph keys — extends i18n.js TRANSLATIONS inline (i18n.js untouched, zero regression) */
+(function(){
+    if (typeof TRANSLATIONS === 'undefined') return;
+    var X = {
+        en: {
+            'disc.steam': 'All',
+            'steam.filter': 'Disciplines',
+            'steam.color.level': 'Color: level',
+            'steam.color.disc': 'Color: discipline',
+            'legend.bridge': 'Bridge (cross-discipline)',
+            'steam.panel': 'STEAM overview',
+            'steam.nodes': 'nodes',
+            'steam.edges': 'edges',
+            'steam.density': 'density',
+            'steam.bridges': 'Bridges',
+            'steam.levels': 'Levels',
+            'about.body_steam': 'STEAM fused graph: <b>1143</b> concepts (math 556 · physics 367 · chemistry 220) · <b>849</b> relations incl. <b>10</b> cross-discipline bridges (gold). Node size = degree (connections); colour = education level, or discipline via the colour toggle. Untick a discipline to hide its nodes; a bridge shows only while both endpoint disciplines are visible. Full methods in the <a href="../portal/index.html#methodology" target="_blank">Research Portal</a>.'
+        },
+        de: {
+            'disc.steam': 'Alle',
+            'steam.filter': 'Disziplinen',
+            'steam.color.level': 'Farbe: Stufe',
+            'steam.color.disc': 'Farbe: Disziplin',
+            'legend.bridge': 'Brücke (disziplinübergreifend)',
+            'steam.panel': 'STEAM-Überblick',
+            'steam.nodes': 'Konzepte',
+            'steam.edges': 'Kanten',
+            'steam.density': 'Dichte',
+            'steam.bridges': 'Brücken',
+            'steam.levels': 'Stufen',
+            'about.body_steam': 'STEAM-Fusionsgraph: <b>1143</b> Konzepte (Mathe 556 · Physik 367 · Chemie 220) · <b>849</b> Relationen inkl. <b>10</b> disziplinübergreifenden Brücken (gold). Knotengröße = Grad (Verbindungen); Farbe = Bildungsstufe oder Disziplin per Farbumschalter. Eine abgewählte Disziplin blendet ihre Knoten aus; eine Brücke erscheint nur, solange beide End-Disziplinen sichtbar sind. Volle Methodik im <a href="../portal/index.html#methodology" target="_blank">Forschungsportal</a>.'
+        },
+        zh: {
+            'disc.steam': '全部',
+            'steam.filter': '学科显隐',
+            'steam.color.level': '颜色：学段',
+            'steam.color.disc': '颜色：学科',
+            'legend.bridge': '桥接边（跨学科）',
+            'steam.panel': 'STEAM 总览',
+            'steam.nodes': '节点',
+            'steam.edges': '边',
+            'steam.density': '密度',
+            'steam.bridges': '桥接边',
+            'steam.levels': '学段',
+            'about.body_steam': 'STEAM 融合总图：<b>1143</b> 个概念（数学 556 · 物理 367 · 化学 220）· <b>849</b> 条关系（含 <b>10</b> 条跨学科桥接边，金色）。节点大小＝度（连接数）；颜色默认为学段，可切换为学科色。取消勾选即隐藏该学科节点；桥接边仅在两端学科都可见时显示。完整方法见<a href="../portal/index.html#methodology" target="_blank">研究门户</a>。'
+        }
+    };
+    Object.keys(X).forEach(function(l){ if (TRANSLATIONS[l]) Object.keys(X[l]).forEach(function(k){ TRANSLATIONS[l][k] = X[l][k]; }); });
+})();
+</script>
 <script src="grounding_lookup.js"></script>
 <script src="node-detail-ext.js"></script>
     <style>
@@ -165,6 +217,25 @@
     #about .mono{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
     #aboutClose{ float:right; border:1px solid #c6cdd6; background:#f1f3f5; border-radius:4px; font-size:.55rem; padding:2px 8px; cursor:pointer; color:#4a5a78; font-family:inherit; }
 
+    /* STEAM fused-graph panel + controls (visible in steam mode only) */
+    #steamPanel {
+        position:absolute; top:64px; right:16px; z-index:100;
+        background:rgba(248,250,252,.94); backdrop-filter:blur(14px);
+        border:1px solid #c6cdd6; border-radius:8px;
+        padding:10px 12px; width:236px; max-width:calc(100vw - 32px);
+        box-shadow:0 1px 0 #c6cdd6, 0 8px 24px rgba(10,31,61,.12);
+        font-size:.58rem; color:#0a1f3d; line-height:1.5;
+    }
+    #steamPanel .sp-title{ font-size:.62rem; font-weight:600; color:#0a1f3d; margin-bottom:6px; }
+    #steamPanel .sp-row{ display:flex; align-items:center; gap:5px; padding:1px 0; }
+    #steamPanel .sp-dot{ width:7px; height:7px; border-radius:50%; flex:none; }
+    #steamPanel .sp-num{ margin-left:auto; color:#4a5a78; font-feature-settings:"tnum"; white-space:nowrap; }
+    #steamPanel .sp-sec{ font-size:.52rem; color:#8595ad; text-transform:uppercase; letter-spacing:.6px; margin:6px 0 2px; }
+    #steamPanel .sp-bar{ height:5px; border-radius:3px; margin-top:2px; }
+    #steamPanel a{ color:#1e3a8a; }
+    #steamToggles label{ cursor:pointer; }
+    #steamToggles input{ accent-color:#1e3a8a; }
+
     /* Diffusion ring animation (legend-consistent indigo) */
     .ripple-ring {
         position: fixed;
@@ -215,9 +286,19 @@
         </div>
         <div class="ulab" data-i18n="disc.label">Discipline</div>
         <div class="br" id="db">
+            <button class="b d" data-d="steam" data-i18n="disc.steam">All</button>
             <button class="b d a" data-d="math" data-i18n="disc.math">Math</button>
             <button class="b d" data-d="physics" data-i18n="disc.physics">Physics</button>
             <button class="b d" data-d="chemistry" data-i18n="disc.chemistry">Chemistry</button>
+        </div>
+        <div id="steamToggles" style="display:none;margin-bottom:5px">
+            <div class="ulab" data-i18n="steam.filter">Disciplines</div>
+            <label class="li" style="font-size:.55rem;margin-right:6px"><input type="checkbox" value="math" checked> <span data-i18n="disc.math">Math</span></label>
+            <label class="li" style="font-size:.55rem;margin-right:6px"><input type="checkbox" value="physics" checked> <span data-i18n="disc.physics">Physics</span></label>
+            <label class="li" style="font-size:.55rem"><input type="checkbox" value="chemistry" checked> <span data-i18n="disc.chemistry">Chemistry</span></label>
+        </div>
+        <div id="steamColor" style="display:none;margin-bottom:5px">
+            <button id="steamColorBtn" class="b" style="font-size:.5rem" data-i18n="steam.color.level">Color: level</button>
         </div>
         <div class="br" style="margin-bottom:0">
             <button id="arBtn" class="b" data-ar="off" style="font-size:.5rem" data-i18n="auto.rotate">⟳ Auto Rotate</button>
@@ -230,6 +311,10 @@
             <span class="li"><span class="ld" style="background:#0e7490"></span><span data-i18n="level.middle">Middle</span></span>
             <span class="li"><span class="ld" style="background:#1e3a8a"></span><span data-i18n="level.high">High</span></span>
             <span class="li"><span class="ld" style="background:#6d28d9"></span><span data-i18n="level.college">College</span></span>
+            <span class="li leg-steam" style="display:none"><span class="ld" style="background:#1e3a8a"></span><span data-i18n="disc.math">Math</span></span>
+            <span class="li leg-steam" style="display:none"><span class="ld" style="background:#ea580c"></span><span data-i18n="disc.physics">Physics</span></span>
+            <span class="li leg-steam" style="display:none"><span class="ld" style="background:#15803d"></span><span data-i18n="disc.chemistry">Chemistry</span></span>
+            <span class="li leg-steam" style="display:none"><span style="display:inline-block;width:10px;height:2px;background:#d4a017;vertical-align:middle"></span><span data-i18n="legend.bridge">Bridge (cross-discipline)</span></span>
         </div>
         <div class="li" style="margin-top:3px"><span data-i18n="legend.size">Size = degree (connections)</span></div>
     </div>
@@ -239,6 +324,8 @@
         <h2 data-i18n="about.title">About this graph</h2>
         <div data-i18n="about.body"></div>
     </div>
+
+    <div id="steamPanel" style="display:none"></div>
 
     <div id="detail">
         <h3 id="dn"></h3>
@@ -281,6 +368,11 @@
         college:    { c:'#6d28d9', l:'College' },
     };
     const MT = { universe:'UNIVERSE', spacefill:'SPACE-FILL', compare:'COMPARE' };
+    /* STEAM fused graph — state only read when graph==='steam' (zero regression otherwise) */
+    const DISC_C = { math:'#1e3a8a', physics:'#ea580c', chemistry:'#15803d' };
+    let steamVis = { math:true, physics:true, chemistry:true };
+    let steamColorMode = 'level'; // 'level' (legacy default) | 'discipline'
+    let STEAM_FULL_N = [], STEAM_FULL_L = [], STEAM_DISC = new Map();
 
     let G, ND=[], LK=[], ADJ=new Map();
     let mode='universe', graph='math', rT=null, _autoRotate=false, _wasd=true;
@@ -291,7 +383,95 @@
         math: { data: () => (typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT : (typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null)) },
         physics: { data: () => (typeof data_physics !== 'undefined' ? data_physics : null) },
         chemistry: { data: () => (typeof data_chemistry !== 'undefined' ? data_chemistry : null) },
+        steam: { data: () => (typeof data_steam !== 'undefined' ? data_steam : null) },
     };
+    /* STEAM helpers (pure 3d-force-graph API; no THREE refs) */
+    function steamLinkEnds(l){
+        const s = (l.source && typeof l.source==='object') ? l.source.id : l.source;
+        const t = (l.target && typeof l.target==='object') ? l.target.id : l.target;
+        return [s, t];
+    }
+    function steamVisible(){
+        const vis = steamVis;
+        const nodes = STEAM_FULL_N.filter(n => vis[n.discipline || 'math']);
+        const ids = new Set(nodes.map(n => n.id));
+        const links = STEAM_FULL_L.filter(l => {
+            const se = steamLinkEnds(l);
+            if (!ids.has(se[0]) || !ids.has(se[1])) return false;
+            if (l.cross_discipline) {
+                return !!vis[STEAM_DISC.get(se[0]) || 'math'] && !!vis[STEAM_DISC.get(se[1]) || 'math'];
+            }
+            return true;
+        });
+        return { nodes, links };
+    }
+    function steamDensity(V, E){ return V > 1 ? (2*E/(V*(V-1))) : 0; }
+    function linkColorCB(l) {
+        if (l && l.cross_discipline) return '#d4a017';
+        return l && l.inferred ? '#b9c7d8' : '#7aa3c8';
+    }
+    function linkWidthCB(l) { return (l && l.cross_discipline) ? 1.4 : 0.35; }
+    function updateSteamUI(){
+        const on = (graph === 'steam');
+        ['steamToggles','steamColor','steamPanel'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = on ? '' : 'none';
+        });
+        document.querySelectorAll('.leg-steam').forEach(el => { el.style.display = on ? '' : 'none'; });
+        document.querySelectorAll('#steamToggles input[type=checkbox]').forEach(cb => { cb.checked = !!steamVis[cb.value]; });
+        const cb2 = document.getElementById('steamColorBtn');
+        if (cb2) { cb2.textContent = i18n.tr(steamColorMode === 'discipline' ? 'steam.color.disc' : 'steam.color.level'); cb2.classList.toggle('a', steamColorMode === 'discipline'); }
+    }
+    function refreshSteamPanel(){
+        const el = document.getElementById('steamPanel');
+        if (!el || graph !== 'steam') return;
+        const disp = steamVisible();
+        const nodes = disp.nodes, links = disp.links;
+        const discs = ['math','physics','chemistry'];
+        const dname = d => i18n.tr('disc.'+d);
+        let html = '<div class="sp-title">'+i18n.tr('steam.panel')+'</div>';
+        discs.forEach(d => {
+            const V = nodes.filter(n => (n.discipline||'math') === d).length;
+            const E = links.filter(l => !l.cross_discipline && (l.discipline||'') === d).length;
+            html += '<div class="sp-row"><span class="sp-dot" style="background:'+DISC_C[d]+'"></span><span>'+dname(d)+'</span>'+
+                '<span class="sp-num">'+V+' '+i18n.tr('steam.nodes')+' · '+E+' '+i18n.tr('steam.edges')+' · '+i18n.tr('steam.density')+' '+steamDensity(V,E).toFixed(4)+'</span></div>';
+        });
+        const bridges = links.filter(l => l.cross_discipline).length;
+        html += '<div class="sp-row"><span style="display:inline-block;width:10px;height:2px;background:#d4a017;flex:none"></span><span>'+i18n.tr('steam.bridges')+'</span>'+
+            '<span class="sp-num">'+bridges+'</span></div>';
+        const lvOrder = ['elementary','middle','high','college'];
+        const lvCounts = {}; lvOrder.forEach(lv => lvCounts[lv] = nodes.filter(n => (n.level||'college')===lv).length);
+        let maxLv = 1;
+        lvOrder.forEach(lv => { if (lvCounts[lv] > maxLv) maxLv = lvCounts[lv]; });
+        html += '<div class="sp-sec">'+i18n.tr('steam.levels')+'</div>';
+        lvOrder.forEach(lv => {
+            const pct = (100 * lvCounts[lv] / maxLv).toFixed(1);
+            html += '<div class="sp-row"><span style="width:52px;flex:none">'+i18n.tr('level.'+lv)+'</span>'+
+                '<div style="flex:1;background:#e7ebef;border-radius:3px"><div class="sp-bar" style="width:'+pct+'%;background:'+(LV[lv]||LV.college).c+'"></div></div>'+
+                '<span class="sp-num">'+lvCounts[lv]+'</span></div>';
+        });
+        html += '<div class="sp-sec">Findings</div>'+
+            '<div class="sp-row"><span><a href="../portal/index.html#finding-a-content" target="_blank" rel="noopener">'+i18n.tr('finding.a')+'</a> · '+
+            '<a href="../portal/index.html#finding-b" target="_blank" rel="noopener">'+i18n.tr('finding.b')+'</a></span></div>';
+        el.innerHTML = html;
+    }
+    function applySteamFilter(){
+        if (graph !== 'steam' || !G) return;
+        const disp = steamVisible();
+        hideDetail(); clearRipple();
+        buildAdjFrom(disp.nodes, disp.links);
+        document.getElementById('sC').textContent = disp.nodes.length;
+        document.getElementById('sR').textContent = disp.links.length;
+        document.getElementById('sL').textContent = new Set(disp.nodes.map(n=>n.level||'')).size;
+        setMode(mode);
+        refreshSteamPanel();
+    }
+    function steamRecolor(){
+        if (graph !== 'steam' || !G) return;
+        STEAM_FULL_N.forEach(n => { n.color = colorCB(n); });
+        const disp = steamVisible();
+        G.nodeColor('color').graphData({ nodes: disp.nodes, links: disp.links });
+    }
     function switchGraph(g, pushState) {
         if (!GRAPHS[g] || !G) return;
         const d = GRAPHS[g].data();
@@ -299,15 +479,28 @@
         graph = g;
         ND = d.nodes; LK = d.links;
         assignAnchors(ND);
-        document.getElementById('sC').textContent = ND.length;
-        document.getElementById('sR').textContent = LK.length;
-        document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
+        if (g === 'steam') {
+            STEAM_FULL_N = ND; STEAM_FULL_L = LK;
+            STEAM_DISC = new Map(ND.map(n => [n.id, n.discipline || 'math']));
+            const disp0 = steamVisible();
+            document.getElementById('sC').textContent = disp0.nodes.length;
+            document.getElementById('sR').textContent = disp0.links.length;
+            document.getElementById('sL').textContent = new Set(disp0.nodes.map(n=>n.level||'')).size;
+        } else {
+            document.getElementById('sC').textContent = ND.length;
+            document.getElementById('sR').textContent = LK.length;
+            document.getElementById('sL').textContent = new Set(ND.map(n=>n.level||'')).size;
+        }
         document.querySelectorAll('[data-d]').forEach(x=>x.classList.toggle('a', x.dataset.d === g));
         document.getElementById('search').value = '';
         document.getElementById('searchMeta').innerHTML = '';
         hideDetail(); clearRipple();
-        buildAdj();
+        if (g === 'steam') { const disp = steamVisible(); buildAdjFrom(disp.nodes, disp.links); }
+        else buildAdj();
+        updateSteamUI();
         setMode(mode);
+        refreshAbout();
+        refreshSteamPanel();
         try { if (pushState !== false && window.history && history.replaceState) history.replaceState(null, '', g === 'math' ? location.pathname : '?graph=' + g); } catch(e) {}
     }
 
@@ -344,7 +537,7 @@
         // Deep link: ?graph=physics / ?graph=chemistry
         try {
             const q = new URLSearchParams(location.search).get('graph');
-            if (q === 'physics' || q === 'chemistry') switchGraph(q, false);
+            if (q === 'physics' || q === 'chemistry' || q === 'steam') switchGraph(q, false);
         } catch(e) {}
 
         // Hide loading
@@ -358,12 +551,14 @@
     }
 
     /* ─── Adjacency ───────────────────────────────────────────────── */
-    function buildAdj() {
+    function buildAdj() { buildAdjFrom(ND, LK); }
+    function buildAdjFrom(nodes, links) {
         ADJ.clear();
-        ND.forEach(n => ADJ.set(n.id, new Set()));
-        LK.forEach(l => {
-            const s = typeof l.source==='object' ? l.source.id : l.source;
-            const t = typeof l.target==='object' ? l.target.id : l.target;
+        nodes.forEach(n => ADJ.set(n.id, new Set()));
+        links.forEach(l => {
+            const se = (typeof steamLinkEnds === 'function') ? steamLinkEnds(l) : null;
+            const s = se ? se[0] : (typeof l.source==='object' ? l.source.id : l.source);
+            const t = se ? se[1] : (typeof l.target==='object' ? l.target.id : l.target);
             if (ADJ.has(s) && ADJ.has(t)) { ADJ.get(s).add(t); ADJ.get(t).add(s); }
         });
     }
@@ -377,6 +572,7 @@
             return d === 0 ? '#1e3a8a' : d === 1 ? '#0e7490' : d === 2 ? '#b45309' : '#c6cdd6';
         }
         if (n._h) return '#dbe2ea';
+        if (graph === 'steam' && steamColorMode === 'discipline' && DISC_C[n.discipline]) return DISC_C[n.discipline];
         return (LV[n.level] || LV.college).c;
     }
     function opacityCB(n) {
@@ -466,8 +662,8 @@
             .nodeLabel(n => nodeLabel(n))
             .nodeResolution(16)
             .nodeRelSize(8)
-            .linkColor(l => l.inferred ? '#b9c7d8' : '#7aa3c8')
-            .linkWidth(0.35)
+            .linkColor(linkColorCB)
+            .linkWidth(linkWidthCB)
             .linkOpacity(0.35)
             .linkDirectionalParticles(0)
             .backgroundColor('#f1f3f5')
@@ -629,10 +825,17 @@
         return (t && t.charAt(0) !== '[') ? t : g;
     }
     // Every node is trilingual, so counts never change with language.
+    // STEAM mode prefixes a discipline badge that follows the UI language.
     function nodeLabel(n){
         const lbs = (n && n.labels) || {};
         const l = (typeof i18n !== 'undefined' && i18n.lang) || 'en';
-        return lbs[l] || n.name || n.id;
+        const base = lbs[l] || n.name || n.id;
+        if (graph === 'steam' && n && n.discipline) {
+            const B = { math:{en:'[M]',de:'[M]',zh:'[数]'}, physics:{en:'[P]',de:'[Ph]',zh:'[物]'}, chemistry:{en:'[C]',de:'[Ch]',zh:'[化]'} };
+            const b = ((B[n.discipline] || {})[l]) || ((B[n.discipline] || {}).en) || '';
+            if (b) return b + ' ' + base;
+        }
+        return base;
     }
     function showDetail(n) {
         lastNode = n;
@@ -705,8 +908,8 @@
             : (role === i18n.tr('role.hub') ? 'finding-a-content' : 'finding-c');
         const fkey = fanchor === 'finding-b' ? 'b' : (fanchor === 'finding-a-content' ? 'a' : 'c');
 
-        // LDS textbook values are mathematics-pipeline only — hidden on physics/chemistry
-        const ldsRows = (graph === 'physics' || graph === 'chemistry')
+        // LDS textbook values are mathematics-pipeline only — hidden on physics/chemistry/steam
+        const ldsRows = (graph === 'physics' || graph === 'chemistry' || graph === 'steam')
             ? '<div class="row"><span class="label">'+i18n.tr('detail.graph_level')+'</span><span class="val" style="font-weight:400">'+i18n.tr('detail.no_lds')+'</span></div>'
             : '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhen')+'</span><span class="val">0.934</span></div>'+
               '<div class="row"><span class="label">'+i18n.tr('detail.lds_zhde')+'</span><span class="val">0.519</span></div>'+
@@ -747,7 +950,9 @@
 
         // Dynamic view update: re-create graph data with mode-specific values
         // (lang is display-only since v15 — the full dataset always stays loaded)
-        const fn = ND, fl = LK;
+        // STEAM: feed the currently visible discipline subset (zero impact on math/physics/chemistry)
+        let fn = ND, fl = LK;
+        if (graph === 'steam') { const disp = steamVisible(); fn = disp.nodes; fl = disp.links; }
 
         // Geometry per mode (deterministic):
         // universe  = free force layout, reset to shell anchors (drift fix);
@@ -770,7 +975,8 @@
          .nodeVal('val')
          .nodeRelSize(8)
          .nodeOpacity(1)
-         .linkWidth(0.35)
+         .linkColor(linkColorCB)
+         .linkWidth(linkWidthCB)
          .linkOpacity(0.35)
          .linkDirectionalParticles(0)
          .graphData({ nodes: fn, links: fl });
@@ -788,7 +994,7 @@
     /* ─── About panel (innerHTML — i18n.apply uses textContent) ── */
     function refreshAbout() {
         const el = document.querySelector('[data-i18n="about.body"]');
-        if (el) el.innerHTML = i18n.tr(graph === 'physics' ? 'about.body_physics' : graph === 'chemistry' ? 'about.body_chemistry' : 'about.body');
+        if (el) el.innerHTML = i18n.tr(graph === 'physics' ? 'about.body_physics' : graph === 'chemistry' ? 'about.body_chemistry' : graph === 'steam' ? 'about.body_steam' : 'about.body');
     }
 
     /* ─── UI ──────────────────────────────────────────────────────── */
@@ -804,6 +1010,21 @@
         });
         document.getElementById('rbtn').addEventListener('click', ()=>{
             hideDetail(); clearRipple();
+        });
+        // STEAM-only controls (visible only in steam mode; no-op otherwise)
+        document.querySelectorAll('#steamToggles input[type=checkbox]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                steamVis[cb.value] = cb.checked;
+                if (!steamVis.math && !steamVis.physics && !steamVis.chemistry) { steamVis[cb.value] = true; cb.checked = true; return; }
+                applySteamFilter();
+            });
+        });
+        const scb = document.getElementById('steamColorBtn');
+        if (scb) scb.addEventListener('click', () => {
+            steamColorMode = (steamColorMode === 'level') ? 'discipline' : 'level';
+            scb.textContent = i18n.tr(steamColorMode === 'discipline' ? 'steam.color.disc' : 'steam.color.level');
+            scb.classList.toggle('a', steamColorMode === 'discipline');
+            steamRecolor();
         });
         // Auto Rotate toggle
         document.getElementById('arBtn').addEventListener('click', function() {
@@ -826,6 +1047,7 @@
                 i18n.setLanguage(b.dataset.u);
                 i18n.apply();
                 refreshAbout(); refreshModeCap(); window.__paintWasd(); refreshCounts();
+                updateSteamUI(); refreshSteamPanel();
                 document.getElementById('mode-tag').textContent = i18n.tr('mode.'+mode);
                 // Hot-switch: open card + search dropdown follow the new UI language
                 // ('all' display mode reads i18n.lang, so tooltip follows on next hover)
@@ -854,6 +1076,7 @@
         function matchNodes(q){
             q = (q || '').trim().toLowerCase();
             if (!q) return [];
+            if (graph === 'steam') { const disp = steamVisible(); return disp.nodes.filter(n => matchLang(n, q).length > 0); }
             return ND.filter(n => matchLang(n, q).length > 0);
         }
         function paintSel(i){

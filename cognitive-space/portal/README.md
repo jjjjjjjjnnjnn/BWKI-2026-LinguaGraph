@@ -44,7 +44,7 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 ## Numbers (SSOT: `docs/SSOT-web.md`)
 
 - Hero totals = full project: Math 556 + Physics 367 + Chemistry 220 = 1,140+ concepts.
-- 3D section = mathematics subgraph only: 556 nodes · 525 relations · 219 groups (`manifest.json`).
+- 3D section = mathematics subgraph default (556 nodes · 525 relations · 219 groups, `manifest.json`) + STEAM fused view (`?graph=steam`: 1143 nodes · 849 links · 10 bridges, `scripts/build_steam_graph.py`).
 - 12 findings (F1–F12, paper §discussion); 19-model benchmark (chart has 19 labels).
 
 ## Deployment (`_deploy/` = Pages root mirror)
