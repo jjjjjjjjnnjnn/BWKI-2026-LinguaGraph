@@ -12,6 +12,12 @@
 | Chemistry | concepts / relations | **220 / 215** | Backfill后基线(218+2, 0 dangling) |
 | Titles总量 | Math + Phys + Chem | **204 = 32 + 83 + 89** | Portal `#sources`实测三数之和；README Total以此为准(旧240退役) |
 
+## v26 Bridges-Retirement + Portal-Zahlen (2026-09-14)
+
+- STEAM: **1143 nodes / 839 intra-discipline links / 0 bridges** (`steam-v2`); 10 hand-picked Bridges retiriert → `research/steam_bridges_retired_2026-09-14.json` (Details v24-Note unten).
+- Portal-Wording EN/DE/ZH: Math "556 nodes · 238 rendered links (of 525 aligned relations) · 219 groups"; Totals exakt **1,143**; Scope-Note nennt STEAM-Vergleichsansicht.
+- Steam-Panel: abgeblendete Disziplin zeigt `(hidden)`-Tag (DE `(ausgeblendet)` / ZH `（已隐藏）`); Bridge-Zeile/Legende entfernt. Shots 7 neu. pytest 84/84.
+
 ## v25 Gold-Provenance-Härtung (2026-09-14)
 
 - G1 金标三段披露：Gold-N=92 = Batch A 数学20真人工 (`annotator_1`, Mature/C9a) + Batch B 社会72机器预提+人工接受 (`auto_accepted`, Developing/C9b)；目标100实得92 (8空丢弃)；`research/gold_review/` 缺失已记录。

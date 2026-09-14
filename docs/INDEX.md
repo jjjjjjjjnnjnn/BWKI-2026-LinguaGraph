@@ -58,7 +58,7 @@
 - `planning/research_directions_20260808.md` (D1–D4; D5/D6 entfernt)
 - `planning/r1_within_subject_protocol.md` (R1-Arm)
 - `PRIORITIES.md`, `experiment-design.md`, `experiment_conductor.md`
-- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md`, `session_handoff_20260910.md`, `session_handoff_20260913.md` (aktuell, v23e-audit)
+- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md` (superseded — Expansion längst erledigt), `session_handoff_20260910.md`, `session_handoff_20260913.md`, `session_handoff_20260913_v23f.md`, `session_handoff_20260913_v23g.md`, `session_handoff_20260914_v26.md` (aktuell, v26-nobridges)
 - `planning/` — Detailpläne; `findings/`, `compose/`, `demo/`, `images/`, `lingua-core/` — Arbeitsbereiche
 
 ## Analyse-Notizen (einzelne Befunde)
