@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero.png" alt="Research Portal — live screenshot" width="49%"></a>
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview.png" alt="STEAM overview — all disciplines fused in 3D" width="49%"></a>
-  <br><sub>Left: Research Portal · Right: STEAM overview (1,143 nodes · 849 links · 10 bridges) — click either to open live</sub>
+  <br><sub>Left: Research Portal · Right: STEAM overview (1,143 nodes · 839 links, no cross-links) — click either to open live</sub>
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -58,7 +58,7 @@
 
 ## 🔥 Why LinguaGraph?
 
-Mathematical truth is universal, but its organization in textbooks varies dramatically across languages and educational systems. **LinguaGraph is the first automated framework** that builds trilingual knowledge graphs at scale (1,140+ concepts), quantifies structural differences, measures curriculum alignment across 4 systems — validates extraction against **92 gold labels** — and **falsifies its own readings** (T1 decontamination, reported not hidden).
+Mathematical truth is universal, but its organization in textbooks varies dramatically across languages and educational systems. **LinguaGraph is the first automated framework** that builds trilingual knowledge graphs at scale (1,143 concepts), quantifies structural differences, measures curriculum alignment across 4 systems — validates extraction against **92 gold labels** — and **falsifies its own readings** (T1 decontamination, reported not hidden).
 
 ---
 
@@ -67,9 +67,9 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 | Entry | What you get | Best for |
 |-------|--------------|----------|
 | [🧠 Research Portal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Findings F1–F12, replication roster (**59/54/177**), margin galaxy, validation section | **Judges & reviewers — start here** |
-| [🌐 STEAM overview](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | All 3 disciplines fused in one 3D graph (1,143 nodes · 849 links · 10 bridges) + compare panel | Cross-subject comparison |
+| [🌐 STEAM overview](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | All 3 disciplines side-by-side in one 3D graph (1,143 nodes · 839 links, no cross-links) + compare panel | Cross-subject comparison |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Full paper, frozen figures + values | Academic reading, citation |
-| [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interactive 3D knowledge graph (1,140+ concepts) | Live demo, audience |
+| [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interactive 3D knowledge graph (1,143 concepts) | Live demo, audience |
 | [`submission/final/`](submission/final/) | BWKI submission package (answers, disclosure, code guide) | Competition submission |
 | [`docs/`](docs/) | 80+ docs — paper sources, audits, ledger ([`INDEX.md`](docs/INDEX.md)) | Deep dive, verification |
 
@@ -81,7 +81,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 - **Extraction quality**: 92 gold labels — social F1 **0.939**† (n=72, Batch B Developing — see note below), math F1 0.674 (n=20), weighted overall **0.881**.
 - **Self-falsification (T1)**: dropping German labels containing CJK text (167/219) collapses ZH–DE "convergence" 0.52 → 0.99 — the F4 convergence reading is a label artefact, and we report it.
 - **Human study (N=15)**: no separable language signal under between-subject design (LDS-C ≈ floor) — language effects require within-subject designs (LLM: +0.08–0.09 ≫ floor).
-- **Scale**: 1,140+ concepts · 1,100+ relations · 204 textbooks · 4 curricula (CN 95.4% · UK 37.3% · US 17.2% · NRW 12.7%).
+- **Scale**: 1,143 concepts · 1,100+ relations · 204 textbooks · 4 curricula (CN 95.4% · UK 37.3% · US 17.2% · NRW 12.7%).
 
 ---
 
@@ -134,7 +134,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 | **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
-| **Total** | **1,140+** | **1,100+ direct** | **204** | **3 languages** | **4 educational systems** |
+| **Total** | **1,143** | **1,100+ direct** | **204** | **3 languages** | **4 educational systems** |
 
 > SSOT: math counts from `manifest.json` (556/525/219). Full caliber table: `docs/SSOT-web.md` (口径冻结). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)**.
 

@@ -70,9 +70,9 @@
 - Strata formal: CN 48/48 (0.130) vs West 11/11 (0.155, ohne luna 10/10 0.148); EN n.s. 9/177 (+phi ZH-EN p=0.224); dedup 54/54 (0.137); Youden 59: Optimum 0.12, CI 0.12–0.13; Votes (62 Voter): ≥10: 237 vs 157±4; Heimat:safety 48 DE → „48 von 62".
 - Portal: Small-Model-Panel (4 Karten) + densityChart (Baseline 294/299/293 vs phi ~140 vs qwen2.5 zh36 vs hy-mt2 zh17) + smallSigChart (Median 0.123 vs phi 0.087 vs n.s./NaN/n-a); Collecting-Tabelle 26 Zeilen (23 incomplete + qwen2.5/hy-mt2-boundary + gemma-Quarantäne).
 
-## v24 STEAM fused 3D (2026-09-14)
-- Quelle: `scripts/build_steam_graph.py` (viewer-Tripel → `web/data_steam.js`, `var data_steam`): **1143 nodes (556+367+220) / 849 links (238+386+215 + 10 Bridges)**. ID-Disjointheit per Assert (keine Kollision); `discipline`-Tag pro Node/Link.
-- Bridges: `data/steam_bridge_dict.json` (frozen 2026-09-14, 10 Paare, en-Label-Deckung): Thermo-Gesetze phys-chem (3), Resonanz/SHM/Kinematik math-phys (5), Avogadro/Brown phys-chem (2, chem-seitig `_chem`-Suffix-IDs), significant figures math-chem (1). Typ `analogy`, `cross_discipline:true, inferred:true`, gold dargestellt.
+## v24 STEAM fused 3D (2026-09-14; bridges retired same day)
+- Quelle: `scripts/build_steam_graph.py` (viewer-Tripel → `web/data_steam.js`, `var data_steam`): **1143 nodes (556+367+220) / 839 links (238+386+215 intra-discipline, 0 bridges)**. ID-Disjointheit per Assert (keine Kollision); `discipline`-Tag pro Node/Link.
+- Bridges RETIRED 2026-09-14: 10 hand-picked pairs (shared en-labels, `analogy` type) removed from viewer + script; archived at `research/steam_bridges_retired_2026-09-14.json` with reason (no systematic cross-discipline mining → would imply undiscovered structure). STEAM = side-by-side comparison view, no cross-discipline claim. Panel row/legend/about-text removed; per-discipline rows show `(hidden)`-tag when unticked.
 - Viewer (`web/index.html`, +241/-18): Tab **全部/Alle/All** an erster Stelle + Fach-Toggles (Brücke nur bei beiden Enden sichtbar) + Farbmodus Stufen (Default, null Regression) / Fächer + Vergleichs-Panel (Dichten live: math 0.0015 / phys 0.0057 / chem 0.0089, Stufen-Balken 36/196/388/523, Finding-A/B-Anker) + `?graph=steam`-Deep-Link. Verifiziert: headless Chrome, 3 Modi je 0 JS-Errors.
 - Einstiege: Portal-CS-Sektion `STEAM 3D`-Button (`cs_view_steam`, EN/DE/ZH) + Galerie-Karte (steam_t/s/d, EN/DE/ZH) + r_disc-Update; README-Nav + Hero-Thumbnails; Screenshots `portal_hero/full.png` + `steam_overview.png`.
 

@@ -2,13 +2,16 @@
 """Build STEAM fused viewer graph (math + physics + chemistry).
 
 Reads the three viewer-level sources (the same files index.html loads),
-tags every node/link with `discipline`, asserts ID-disjointness, adds
-frozen cross-discipline bridge links (see BRIDGE_ALLOWLIST), and writes
-cognitive-space/web/data_steam.js (var data_steam) + the frozen bridge
-dictionary data/steam_bridge_dict.json.
+tags every node/link with `discipline`, asserts ID-disjointness, and writes
+cognitive-space/web/data_steam.js (var data_steam).
+
+No cross-discipline links: the former hand-picked 10-bridge allowlist was
+retired 2026-09-14 (insufficient systematic evidence; archived at
+research/steam_bridges_retired_2026-09-14.json). STEAM is a side-by-side
+comparison view, not a claim of cross-discipline structure.
 
 SSOT counts: 556 + 367 + 220 = 1143 nodes; 238 + 386 + 215 = 839
-intra-discipline links + len(BRIDGE_ALLOWLIST) bridge links.
+intra-discipline links.
 
 Usage: python scripts/build_steam_graph.py
 """
@@ -26,23 +29,6 @@ SOURCES = [
     ("physics", WEB / "data_physics.js"),
     ("chemistry", WEB / "data_chemistry.js"),
 ]
-
-# Frozen bridge allowlist: normalized en-label -> explicit (source_id, target_id).
-# Reviewed 2026-09-14: 10 high-confidence shared-concept pairs (thermo laws,
-# resonance/SHM/kinematics math-physics, Avogadro/Brownian phys-chem,
-# significant figures math-chem). Frozen: edits require re-review + rerun.
-BRIDGE_ALLOWLIST = {
-    "acceleration": ("math_unmatched_加速度", "physics_mechanics_加速度"),
-    "avogadro's number": ("physics_thermo_阿伏伽德罗常数", "chem_阿伏伽德罗常数"),
-    "brownian motion": ("physics_thermo_布朗运动", "chem_布朗运动_chem"),
-    "first law of thermodynamics": ("physics_thermo_热力学第一定律", "chem_热力学第一定律_chem"),
-    "resonance": ("math_calculus_共振", "physics_mechanics_共振"),
-    "second law of thermodynamics": ("physics_thermo_热力学第二定律", "chem_热力学第二定律_chem"),
-    "significant figures": ("math_unmatched_significant figures", "chem_有效数字"),
-    "simple harmonic motion": ("math_calculus_简谐运动", "physics_mechanics_简谐运动"),
-    "time": ("math_unmatched_time", "physics_mechanics_时间"),
-    "velocity": ("math_calculus_速度", "physics_mechanics_速度"),
-}
 
 
 def load_viewer(path: Path) -> dict:
@@ -73,43 +59,25 @@ def main() -> int:
         for lk in ls:
             lk = dict(lk)
             lk["discipline"] = disc
-            lk["cross_discipline"] = False
             links.append(lk)
         stats[disc] = {"nodes": len(ns), "links": len(ls)}
         print(f"{disc}: {len(ns)} nodes / {len(ls)} links")
 
-    by_id = {n["id"]: n for n in nodes}
-    bridges = []
-    for label, (src, tgt) in BRIDGE_ALLOWLIST.items():
-        missing = [i for i in (src, tgt) if i not in by_id]
-        if missing:
-            raise SystemExit(f"bridge '{label}' references missing ids: {missing}")
-        bridges.append(
-            {
-                "source": src,
-                "target": tgt,
-                "type": "analogy",
-                "importance": 0.9,
-                "known": True,
-                "evidence": f"STEAM bridge: shared en-label '{label}' (frozen allowlist)",
-                "discipline": "cross",
-                "cross_discipline": True,
-                "inferred": True,
-            }
-        )
-    links.extend(bridges)
-
     assert len(nodes) == 1143, f"node count drift: {len(nodes)}"
-    assert len(links) == 839 + len(bridges), f"link count drift: {len(links)}"
-    assert len(bridges) == 10, f"bridge count drift: {len(bridges)}"
+    assert len(links) == 839, f"link count drift: {len(links)}"
 
     payload = {
-        "version": "steam-v1",
+        "version": "steam-v2",
         "disciplines": ["math", "physics", "chemistry"],
-        "bridge_count": len(bridges),
+        "bridge_count": 0,
         "nodes": nodes,
         "links": links,
-        "metadata": {"sources": stats, "bridge_allowlist": "data/steam_bridge_dict.json"},
+        "metadata": {
+            "sources": stats,
+            "bridges_retired": "2026-09-14: hand-picked 10-bridge allowlist removed "
+            "(insufficient systematic evidence); archived at "
+            "research/steam_bridges_retired_2026-09-14.json",
+        },
     }
     out = WEB / "data_steam.js"
     with io.open(out, "w", encoding="utf-8", newline="") as fh:
@@ -119,18 +87,8 @@ def main() -> int:
         json.dump(payload, fh, ensure_ascii=False)
         fh.write(";\n")
 
-    bdict = ROOT / "data" / "steam_bridge_dict.json"
-    with io.open(bdict, "w", encoding="utf-8", newline="") as fh:
-        json.dump(
-            {"frozen": "2026-09-14", "bridges": BRIDGE_ALLOWLIST},
-            fh,
-            ensure_ascii=False,
-            indent=2,
-        )
-        fh.write("\n")
-
-    print(f"OK: {len(nodes)} nodes / {len(links)} links ({len(bridges)} bridges)")
-    print(f"wrote {out} + {bdict}")
+    print(f"OK: {len(nodes)} nodes / {len(links)} links (0 bridges)")
+    print(f"wrote {out}")
     return 0
 
 

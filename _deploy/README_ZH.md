@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero_zh.png" alt="研究门户——实拍截图" width="49%"></a>
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview_zh.png" alt="STEAM总览——三学科融合3D" width="49%"></a>
-  <br><sub>左：研究门户 · 右：STEAM总览（1,143节点 · 849边 · 10桥）——点击直达 live</sub>
+  <br><sub>左：研究门户 · 右：STEAM总览（1,143节点 · 839边，无跨学科桥）——点击直达 live</sub>
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -63,7 +63,7 @@
 
 **LinguaGraph 是首个实现以下功能的自动化框架：**
 
-- 🧩 从教材中大规模构建**多语言知识图谱**（1,140+ 概念，3 种语言）
+- 🧩 从教材中大规模构建**多语言知识图谱**（1,143 概念，3 种语言）
 - 📏 量化语言、教育体系和学科之间的**结构差异**
 - 🎯 衡量跨4个教育体系（德国、英国、美国、中国）的**教材-课程对齐度**
 - ✅ 使用 **92 个黄金标准标注**验证提取质量（加权 F1 = 0.881；社会概念子集 F1 = 0.939）
@@ -78,9 +78,9 @@
 | 入口 | 内容 | 适合谁 |
 |-------|--------------|----------|
 | [🧠 研究门户](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | 发现 F1–F12、复刻名录（**59/54/177**）、边际星系图、验证区 | **评委与审稿人——从这里开始** |
-| [🌐 STEAM 总览](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | 三学科同一 3D 图（1,143 节点 · 849 边 · 10 桥）+ 对比面板 | 跨学科对比 |
+| [🌐 STEAM 总览](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | 三学科并置 3D 图（1,143 节点 · 839 边，无跨学科桥）+ 对比面板 | 跨学科对比 |
 | [📄 论文（PDF）](submission/final/LinguaGraph_BWKI2026.pdf) | 论文全文，冻结图表 + 数值 | 学术阅读、引用 |
-| [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | 交互式 3D 知识图谱（1,140+ 概念） | 现场演示、观众 |
+| [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | 交互式 3D 知识图谱（1,143 概念） | 现场演示、观众 |
 | [`submission/final/`](submission/final/) | BWKI 提交包（平台回答、披露、代码指南） | 竞赛提交 |
 | [`docs/`](docs/) | 80+ 文档——论文源文件、审计、台账（[`INDEX.md`](docs/INDEX.md)） | 深入研究、验证 |
 
@@ -92,7 +92,7 @@
 - **提取质量**：92 个黄金标注——社会概念 F1 **0.939**†（n=72，Batch B Developing——见下注），数学 F1 0.674（n=20），加权总体 **0.881**。
 - **自我证伪（T1）**：剔除含 CJK 文字的德语标签（167/219）后，中德"趋同" 0.52 → 0.99 崩塌——F4 解读是标签伪影，如实报告。
 - **人类研究（N=15）**：被试间设计下无可分离语言信号（LDS-C ≈ 底线）——语言效应需要被试内设计（LLM：+0.08–0.09 ≫ 底线）。
-- **规模**：1,140+ 概念 · 1,100+ 关系 · 204 本教材 · 4 套课程（中国 95.4% · 英国 37.3% · 美国 17.2% · 北威州 12.7%）。
+- **规模**：1,143 概念 · 1,100+ 关系 · 204 本教材 · 4 套课程（中国 95.4% · 英国 37.3% · 美国 17.2% · 北威州 12.7%）。
 
 ---
 
@@ -151,7 +151,7 @@
 | **数学** | 556 | 525 直接（+约3000条传递） | 68（32 图内引用） | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **物理** | 367 | 386 | 83 书名（96 引用） | ZH/EN/DE | NRW 覆盖暂无 |
 | **化学** | 220 | 215 | 89 书名 | ZH/EN/DE | NRW 36% |
-| **总计** | **1,140+** | **1,100+ 直接** | **204** | **3 种语言** | **4 个教育体系** |
+| **总计** | **1,143** | **1,100+ 直接** | **204** | **3 种语言** | **4 个教育体系** |
 
 > **计数口径（2026-09-12 冻结）：**数学三层——**68** 输入语料册数（75 JSON 提取文件，含章节拆分）/ **72** 原始馆藏书名（去重前目录）/ **32** 图内引用书名（`source_references`，唯一可引用层）。书名总数 **204 = 32（数学）+ 83（物理）+ 89（化学）** = 门户 `#sources`。物理 367/386 含 Sensor 节点（`physics_em_传感器` + 3 条 requires 链接）；化学 220/215 为回填后基线（218+2，0 悬空）。
 
