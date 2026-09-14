@@ -5,12 +5,12 @@
 ---
 
 <p align="center">
-  <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
+  <img src="cognitive-space/web/screenshot_zh.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero.png" alt="研究门户——实拍截图" width="49%"></a>
-  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview.png" alt="STEAM总览——三学科融合3D" width="49%"></a>
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero_zh.png" alt="研究门户——实拍截图" width="49%"></a>
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview_zh.png" alt="STEAM总览——三学科融合3D" width="49%"></a>
   <br><sub>左：研究门户 · 右：STEAM总览（1,143节点 · 849边 · 10桥）——点击直达 live</sub>
 </p>
 

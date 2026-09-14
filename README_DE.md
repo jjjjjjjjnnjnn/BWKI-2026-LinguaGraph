@@ -5,12 +5,12 @@
 ---
 
 <p align="center">
-  <img src="cognitive-space/web/screenshot.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
+  <img src="cognitive-space/web/screenshot_de.png" alt="LinguaGraph — Cross-Lingual Knowledge Structure Analysis" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero.png" alt="Forschungsportal — Live-Screenshot" width="49%"></a>
-  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview.png" alt="STEAM-Überblick — alle Fächer fusioniert in 3D" width="49%"></a>
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero_de.png" alt="Forschungsportal — Live-Screenshot" width="49%"></a>
+  <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview_de.png" alt="STEAM-Überblick — alle Fächer fusioniert in 3D" width="49%"></a>
   <br><sub>Links: Forschungsportal · Rechts: STEAM-Überblick (1.143 Knoten · 849 Kanten · 10 Brücken) — klicken zum Öffnen</sub>
 </p>
 
