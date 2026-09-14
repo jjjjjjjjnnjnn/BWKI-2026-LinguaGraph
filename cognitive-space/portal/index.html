@@ -1052,6 +1052,7 @@ graph LR
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
+        <br>† Social F1 0.939 = Developing (seed-evaluation same-source, blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
       </div>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_bench_sum">Details · how the benchmark chart is made</summary>
@@ -1660,7 +1661,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematics',
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
-    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>',
+    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong><br>† Social F1 0.939 = Developing (seed-evaluation same-source, blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 59 measurements / 54 models — all 59 ZH-DE pairs significant (margin +0.03…+0.42); 9 EN-pair tests n.s.',
     val_roster_title: 'Replication roster: 59 full runs + 26 collecting (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Fused view — all 59 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 59 ZH-DE p<0.01; 9 EN n.s. among 177 (500 permutations). Western runs in red. The 26 collecting runs (incl. qwen-max n=26/30 (parked), 2 sparse small-model boundary runs and 1 format-quarantined run, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.',
@@ -1834,7 +1835,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematik',
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
-    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong>',
+    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong><br>† Sozial-F1 0,939 = Developing (Seed-Evaluierung same-source, Blind-Review ausstehend; unabhängiger Harness ~0,65 vs. DB-Pfad 0,939 — s. G3-Notiz research/gold_deconfound_2026-09-14.md).',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 59 Messungen / 54 Modelle — alle 59 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 9 EN-Paar-Tests n.s.',
     val_roster_title: 'Replikations-Roster: 59 vollständige Runs + 26 laufend (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Gesamtansicht — alle 59 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 59 ZH-DE p<0,01; 9 EN n.s. unter 177 (500 Permutationen). Westliche Runs in Rot. Die 26 laufenden Runs (inkl. qwen-max n=26/30 (parked), 2 spärliche Kleinstmodell-Grenzläufe und 1 Format-Quarantäne-Lauf, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + Paper §5.10.',
@@ -2160,7 +2161,7 @@ curr_explanations_title: '三种竞争性解释',
     val_math: '数学',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
-    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong>',
+    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源，72 条盲审待补；独立 harness 复算约 0.65 vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：59 次测量 / 54 个模型 —— 59 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
     val_roster_title: '复刻名录：59 次完整运行 ＋ 26 次收集中(file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: '融合视图——59 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.（500 置换）；西方运行标红。26 个收集中运行（含 qwen-max n=26/30 (parked)，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',

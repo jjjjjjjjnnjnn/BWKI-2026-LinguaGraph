@@ -2,7 +2,7 @@
 
 > **Purpose**: Maps each scientific claim to its supporting evidence, maturity level, and confidence.
 > **Principle**: All claims must be traceable to evidence. Claims without sufficient evidence are labeled as such.
-> **Updated**: 2026-09-12 (C16-C20 added; C3/C7/C8 downgraded)
+> **Updated**: 2026-09-14 (C9 split C9a/C9b; social F1 Developing pending 72-label blind review)
 
 ---
 
@@ -18,7 +18,8 @@
 | C6 | LDS-K cannot be interpreted as "language-driven divergence" | LDS-K | All three language pairs at or below within-language noise floor | **Mature** | **High** | Core narrative shift |
 | C7 | ΔLDS = LDS-C − LDS-K shows heterogeneous patterns across language pairs | LDS-C + LDS-K | Pilot N=8: DE-ZH ΔLDS=+0.232, ZH-EN ΔLDS=−0.230, DE-EN ΔLDS=−0.211 | **Developing** | **Medium** | DOWNGRADED 2026-09-12: N=8 pilot superseded by N=15 (C17); do not cite without C17 |
 | C8 | Human concept structures vary systematically across languages | LDS-C | N=8 pilot: DE-ZH=0.751, DE-EN=0.727, ZH-EN=0.704 | **Developing** | **Low** | DOWNGRADED 2026-09-12: superseded by N=15 null result (C17); N>=30 still ausstehend |
-| C9 | Gold-standard extraction quality is domain-dependent | LDS-K / LDS-C | Social F1=0.939 (n=72), Math F1=0.674 (n=20), DE Math F1=0.506 (n=20) | **Mature** | **High** | 92 gold labels, qwen-plus extraction |
+| C9a | Gold-standard extraction quality, math batch (clean) | LDS-K / LDS-C | Math F1=0.674 (n=20: 7 ZH / 7 DE / 6 EN), hand-annotated from scratch (`annotator_1`) | **Mature** | **High** | Batch A; no seed-evaluation overlap |
+| C9b | Gold-standard extraction quality, social batch (seed-confounded) | LDS-K / LDS-C | Social F1=0.939† (n=72: 29 ZH / 22 DE / 21 EN), machine-seeded (qwen-plus temp 0.3) + human-accepted (`auto_accepted`); target 100 → realized 92 (8 empty dropped); independent harness social ~0.65 vs DB path 0.939 (qwen-plus math 0.7244/social 0.6497; qwen-max 0.7068/0.6483; ranking +0.0176 holds on clean math) | **Developing** | **Medium** | DOWNGRADED 2026-09-14 (2B): pending full 72-label blind review; `research/gold_review/` missing (documented gap); details G3 `research/gold_deconfound_2026-09-14.md` |
 | C10 | 19 LLMs show consistent F1 ranking across API platforms | Method | hy3-preview 0.6741, mimo-v2.5-pro 0.6735, qwen-plus 0.6659; range 0.55–0.67 | **Mature** | **High** | 3 API platforms, identical 40 gold labels |
 | C11 | Curriculum–textbook coverage varies dramatically by educational governance | LDS-K | NRW 12.7%, UK 37.3%, US 17.2%, CN 95.4% | **Mature** | **High** | Coverage Score methodology |
 | C12 | Spatial granularity varies substantially within a single language | LPA | DE pilot N=6: SGS criteria 3/9–9/9 | **Exploratory** | **Low** | IRR pending; N=6 only |
@@ -37,9 +38,11 @@
 
 | Stream | Total Claims | Mature | Developing | Exploratory |
 |--------|:-----------:|:------:|:----------:|:-----------:|
-| **LDS-K** | C1–C6, C9, C11, C16, C20 | **10** | 0 | 0 |
+| **LDS-K** | C1–C6, C9a, C9b, C11, C16, C20 | **10** | **1** | 0 |
 | **LDS-C** | C7–C8, C17–C19 | **1** | **3** | 0 |
 | **LPA** | C12–C15 | 0 | 0 | **4** |
+
+> LDS-K total 11 (10 Mature + 1 Developing: C9b social batch pending blind review) — v25 Gold-Provenance-Härtung 2026-09-14.
 
 ---
 

@@ -12,6 +12,13 @@
 | Chemistry | concepts / relations | **220 / 215** | Backfill后基线(218+2, 0 dangling) |
 | Titles总量 | Math + Phys + Chem | **204 = 32 + 83 + 89** | Portal `#sources`实测三数之和；README Total以此为准(旧240退役) |
 
+## v25 Gold-Provenance-Härtung (2026-09-14)
+
+- G1 金标三段披露：Gold-N=92 = Batch A 数学20真人工 (`annotator_1`, Mature/C9a) + Batch B 社会72机器预提+人工接受 (`auto_accepted`, Developing/C9b)；目标100实得92 (8空丢弃)；`research/gold_review/` 缺失已记录。
+- C9 拆 C9a (Mature/High) / C9b (Developing/Medium，待72条全量盲审)；LDS-K 台账 Total 11 = Mature 10 + Developing 1。
+- G3 去亲缘双值 (同一qwen-plus)：DB提取路径社会F1=0.939 vs 独立harness社会~0.65 (数学0.7244/社会0.6497；qwen-max 0.7068/0.6483)；排序 qwen-plus>qwen-max 在干净数学标上同样成立 (+0.0176)。
+- B8A 盲审前社会F1即刻降 Developing (02 §2.8 表†注、portal `val_bench_note` 三语注、README 三份注)；盲审通过再升回。
+
 ## 双口径对照
 
 | 数字 | 值 | Scope | 来源 | 用处 |

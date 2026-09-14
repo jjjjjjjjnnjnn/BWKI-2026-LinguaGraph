@@ -125,6 +125,8 @@ def calculate_lds_score(
     12-node subgraphs); the ged_sim=0.5 fallback does not reproduce
     published values. This function is kept for small-graph use;
     do NOT cite it as the source of published LDS-K numbers.
+    GED路线正式放弃 (2026-09-14, 用户决策): 三元家族欠定不可证伪,
+    不再寻求近似; 二元冻结为唯一发表管线.
 
     Args:
         graph_l1: First language graph

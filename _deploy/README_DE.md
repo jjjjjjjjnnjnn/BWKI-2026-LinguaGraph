@@ -89,7 +89,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 ## 🎯 Kernergebnisse (30 Sekunden)
 
 - **59/54/177-Replikation**: 59 vollständige Messungen (54 eindeutige Modelle) unter einem P1-Protokoll (ZH/DE/EN × 10 Prompts) — jedes ZH–DE-Paar signifikant (p<0,05); Datei-Wahrheit 62/57/186 inkl. partiellem qwen-max-Lauf (n=26/30).
-- **Extraktionsqualität**: 92 Goldlabels — sozial F1 **0,939** (n=72), Mathe F1 0,674 (n=20), gewichtet gesamt **0,881**.
+- **Extraktionsqualität**: 92 Goldlabels — sozial F1 **0,939**† (n=72, Batch B Developing — s. Hinweis unten), Mathe F1 0,674 (n=20), gewichtet gesamt **0,881**.
 - **Selbst-Falsifikation (T1)**: Entfernen deutscher Labels mit CJK-Text (167/219) kollabiert die ZH–DE-„Konvergenz" 0,52 → 0,99 — die F4-Lesart ist ein Label-Artefakt, und wir berichten es.
 - **Humanstudie (N=15)**: kein separierbares Sprachsignal unter Between-Subject-Bedingungen (LDS-C ≈ Boden) — Spracheffekte brauchen Within-Subject-Designs (LLM: +0,08–0,09 ≫ Boden).
 - **Skala**: 1.140+ Konzepte · 1.100+ Relationen · 204 Lehrbücher · 4 Curricula (CN 95,4% · UK 37,3% · US 17,2% · NRW 12,7%).
@@ -106,7 +106,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | **Mathematik** | 0,857 | 0,506 | 0,711 | 0,674 | 20 |
 | **Alle (gewichtet)** | 0,951 | 0,842 | 0,844 | **0,881** | **92** |
 
-> Gesamt = domänengewichtetes Mittel ((72×0,939+20×0,674)/92≈0,881). Die Kopfzahl 0,939 gilt nur für die Sozial-Subgruppe. Caveats: 72 Soziallabels sind maschinell akzeptiert (`auto_accepted`); Mathe-DE (0,506) ist n=7, hohe Varianz.
+> Gesamt = domänengewichtetes Mittel ((72×0,939+20×0,674)/92≈0,881). Die Kopfzahl 0,939 gilt nur für die Sozial-Subgruppe. Caveats: 72 Soziallabels sind maschinell akzeptiert (`auto_accepted`); Mathe-DE (0,506) ist n=7, hohe Varianz. Provenienz: Batch A Mathe 20 hand-annotiert (Mature/C9a); Batch B Sozial 72 machine-seeded/human-accepted (Developing/C9b, 72er-Blind-Review ausstehend; unabhängiger Harness ~0,65 vs. DB-Pfad 0,939 — s. G3-Notiz `research/gold_deconfound_2026-09-14.md`).
 
 <p align="center">
   <img src="cognitive-space/web/figures/fig8_lds_decontamination_de.png" alt="Abb. 8 — T1-Dekontamination: ZH-DE-Konvergenz kollabiert 0,52 auf 0,99" width="85%">

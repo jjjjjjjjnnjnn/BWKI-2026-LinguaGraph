@@ -20,7 +20,8 @@ Usage:
     python scripts/figures/fig4_null_model.py
 """
 
-import csv, json, random, sys
+import argparse
+import csv, json, random, statistics, sys
 from pathlib import Path
 
 import matplotlib
@@ -39,6 +40,13 @@ from _lds_utils import (
     degree_preserving_rewire,
     RANDOM_SEED,
 )
+import _lds_utils as _lds_utils_mod
+
+DEFAULT_SEEDS = "42,999,2026,7,1234"
+
+
+def parse_seeds(s: str) -> list[int]:
+    return [int(x.strip()) for x in s.split(",") if x.strip()]
 
 
 # ── Null model conditions ──
@@ -52,15 +60,27 @@ def condition_full(lang_nodes, lang_edges) -> dict:
     return results
 
 
-def condition_structure_null(lang_nodes, lang_edges) -> dict:
+def condition_structure_null(lang_nodes, lang_edges, seed: int = RANDOM_SEED) -> dict:
     """Structure null: degree-preserving rewiring.
 
     H0: LDS is entirely explained by degree distribution.
     If true, rewired graphs should have the same LDS as real graphs.
+    seed: degree_preserving_rewire() pins random.seed(RANDOM_SEED) internally,
+    so we temporarily override _lds_utils.RANDOM_SEED per multi-seed iteration.
+    B6-class fix: edge lists are sorted by repr before rewiring because
+    list(set) order is PYTHONHASHSEED-dependent and the double-edge-swap
+    outcome is order-sensitive (same seed=42 gave ZH-DE 0.7177 vs 0.7166
+    under PYTHONHASHSEED=1 vs 2). sorted() makes the point value hash-stable;
+    residual seed-to-seed spread is reported via --seeds mean±SD rows.
     """
-    rewired: dict[str, list] = {}
-    for lang in ["zh", "en", "de"]:
-        rewired[lang] = degree_preserving_rewire(list(lang_edges[lang]))
+    prev = _lds_utils_mod.RANDOM_SEED
+    _lds_utils_mod.RANDOM_SEED = seed
+    try:
+        rewired: dict[str, list] = {}
+        for lang in ["zh", "en", "de"]:
+            rewired[lang] = degree_preserving_rewire(sorted(list(lang_edges[lang]), key=repr))
+    finally:
+        _lds_utils_mod.RANDOM_SEED = prev
 
     results = {}
     for pair_name, (la, lb) in [("ZH-EN", ("zh", "en")), ("DE-EN", ("de", "en")), ("ZH-DE", ("zh", "de"))]:
@@ -69,13 +89,13 @@ def condition_structure_null(lang_nodes, lang_edges) -> dict:
     return results
 
 
-def condition_node_permuted(lang_nodes, lang_edges) -> dict:
+def condition_node_permuted(lang_nodes, lang_edges, seed: int = RANDOM_SEED) -> dict:
     """Node-permuted null: shuffle node labels within each language.
 
     H0: specific label-to-concept assignments carry no language signal.
     If true, permuted labels yield same LDS as real labels.
     """
-    random.seed(RANDOM_SEED)
+    random.seed(seed)
     permuted: dict[str, list] = {}
     for lang in ["zh", "en", "de"]:
         nodes = list(lang_nodes[lang])
@@ -89,13 +109,13 @@ def condition_node_permuted(lang_nodes, lang_edges) -> dict:
     return results
 
 
-def condition_random_graph(lang_nodes, lang_edges) -> dict:
+def condition_random_graph(lang_nodes, lang_edges, seed: int = RANDOM_SEED) -> dict:
     """Complete random: Erdős–Rényi with same N, E per language.
 
     H0: any graph with these node/edge counts produces same LDS.
     If true, real LDS is meaningless.
     """
-    random.seed(RANDOM_SEED)
+    random.seed(seed)
     results = {}
     for pair_name, (la, lb) in [("ZH-EN", ("zh", "en")), ("DE-EN", ("de", "en")), ("ZH-DE", ("zh", "de"))]:
         n_a, n_b = len(lang_nodes[la]), len(lang_nodes[lb])
@@ -119,7 +139,7 @@ def condition_random_graph(lang_nodes, lang_edges) -> dict:
 # ADVERSARIAL NULL MODELS (added per reviewer feedback)
 # ═══════════════════════════════════════════════════════════
 
-def condition_within_language(lang_nodes, lang_edges) -> dict:
+def condition_within_language(lang_nodes, lang_edges, seed: int = RANDOM_SEED) -> dict:
     """ADVERSARIAL: Within-language baseline.
 
     Split ONE language's graph into two random halves and compute LDS
@@ -132,8 +152,12 @@ def condition_within_language(lang_nodes, lang_edges) -> dict:
     Report: LDS(ZH_splitA, ZH_splitB), LDS(EN_splitA, EN_splitB),
     LDS(DE_splitA, DE_splitB) — then show cross-language vs within
     in the interpretation.
+
+    NOTE (B5): single deterministic split-half per seed; multi-seed
+    distribution is obtained by looping this function over --seeds
+    (see main()); do NOT treat one split as a CI.
     """
-    random.seed(RANDOM_SEED)
+    random.seed(seed)
     results = {}
     for lang in ["zh", "en", "de"]:
         nodes = list(lang_nodes[lang])
@@ -152,7 +176,8 @@ def condition_within_language(lang_nodes, lang_edges) -> dict:
 
 def condition_cross_discipline(lang_nodes: dict, lang_edges: dict,
                                discipline_nodes: dict | None = None,
-                               discipline_edges: dict | None = None) -> dict:
+                               discipline_edges: dict | None = None,
+                               seed: int = RANDOM_SEED) -> dict:
     """ADVERSARIAL: Cross-discipline LDS within the same language.
 
     Compute LDS between Math and Physics FOR THE SAME LANGUAGE.
@@ -173,7 +198,7 @@ def condition_cross_discipline(lang_nodes: dict, lang_edges: dict,
         edges = list(lang_edges[lang_code])
         # Split nodes into two random subsets to simulate different "disciplines"
         # within the same language
-        random.seed(RANDOM_SEED)
+        random.seed(seed)
         shuffled_nodes = list(nodes)
         random.shuffle(shuffled_nodes)
         mid = max(1, len(shuffled_nodes) // 2)
@@ -193,7 +218,7 @@ def condition_cross_discipline(lang_nodes: dict, lang_edges: dict,
     return results
 
 
-def condition_language_label_permutation(lang_nodes, lang_edges, aligned) -> dict:
+def condition_language_label_permutation(lang_nodes, lang_edges, aligned, seed: int = RANDOM_SEED + 999) -> dict:
     """ADVERSARIAL: Language-label permutation at group level.
 
     For each aligned concept group, randomly reassign which label
@@ -205,7 +230,7 @@ def condition_language_label_permutation(lang_nodes, lang_edges, aligned) -> dic
     H0 (threatening): Permuted labels produce the same LDS as real labels.
     → LDS measures structural properties of the GROUPS, not language.
     """
-    random.seed(RANDOM_SEED + 999)
+    random.seed(seed)
     groups = aligned.get("aligned_groups", [])
     gid_to_labels: dict[str, dict] = {g["id"]: g.get("labels", {}) for g in groups}
 
@@ -239,7 +264,7 @@ def condition_language_label_permutation(lang_nodes, lang_edges, aligned) -> dic
     return results
 
 
-def condition_monolingual_control(lang_nodes, lang_edges) -> dict:
+def condition_monolingual_control(lang_nodes, lang_edges, seed: int = RANDOM_SEED) -> dict:
     """ADVERSARIAL: Monolingual textbook-pair control.
 
     LDS(ZH_textbook_1, ZH_textbook_2) — two different textbooks
@@ -253,7 +278,7 @@ def condition_monolingual_control(lang_nodes, lang_edges) -> dict:
     Since we only have one combined graph per language, we simulate:
     random split → treat each half as a separate "textbook".
     """
-    random.seed(RANDOM_SEED)
+    random.seed(seed)
     results = {}
     for lang in ["zh", "en", "de"]:
         nodes = list(lang_nodes[lang])
@@ -343,8 +368,46 @@ def plot_results(conditions: dict[str, dict], adversarial: dict[str, dict] | Non
 
 # ── Main ──
 
-def main():
+def _mean_sd_rows(runs: list[dict], keys: list[str]) -> tuple[dict, dict]:
+    """Per-key mean and SD across multi-seed runs (B1/B2/B5)."""
+    mean: dict = {}
+    sd: dict = {}
+    for k in keys:
+        vals = [r[k] for r in runs if k in r and r[k] == r[k]]
+        if vals:
+            mean[k] = round(statistics.mean(vals), 4)
+            sd[k] = round(statistics.stdev(vals), 4) if len(vals) > 1 else 0.0
+    return mean, sd
+
+
+def _adv_cell(row: dict, pair: str, cond_name: str) -> object:
+    """B5 fix: key mapping for adversarial rows.
+
+    Within-Lang keys are ZH/EN/DE (legacy mapping kept for compat:
+    ZH-EN<-ZH, DE-EN<-DE, ZH-DE<-EN).
+    Mono Control keys are ZH-ZH/EN-EN/DE-DE (previously unmapped → empty
+    columns); fixed mapping is positional: ZH-EN<-ZH-ZH, DE-EN<-EN-EN,
+    ZH-DE<-DE-DE.
+    """
+    if "Mono Control" in cond_name:
+        mono_map = {"ZH-EN": "ZH-ZH", "DE-EN": "EN-EN", "ZH-DE": "DE-DE"}
+        v = row.get(mono_map[pair], "")
+        if v == "":
+            # fallback: positional zh/en/de order
+            fall = {"ZH-EN": "ZH", "DE-EN": "EN", "ZH-DE": "DE"}
+            v = row.get(fall[pair], "")
+        return v
+    return row.get(pair, row.get({"ZH-EN": "ZH", "DE-EN": "DE", "ZH-DE": "EN"}[pair], ""))
+
+
+def main(argv: list[str] | None = None):
+    ap = argparse.ArgumentParser(description="Fig 4 null-model suite (B1/B2/B5: --seeds multi-seed)")
+    ap.add_argument("--seeds", type=str, default=DEFAULT_SEEDS,
+                    help=f"comma-separated seeds for null distributions (default {DEFAULT_SEEDS})")
+    args = ap.parse_args(argv)
+    seeds = parse_seeds(args.seeds)
     print("Fig 4: Null Model Suite")
+    print(f"  seeds: {seeds}")
     print("  Loading aligned data...")
     aligned = load_aligned()
     lang_nodes, lang_edges = get_lang_graphs(aligned)
@@ -362,14 +425,17 @@ def main():
     # ═══ Adversarial conditions ═══
     adv_funcs: list[tuple[str, callable, dict | None]] = [
         ("Within-Lang\n(same split)", condition_within_language, None),
-        ("Label Permute\n(group-level)", lambda ln, le: condition_language_label_permutation(ln, le, aligned), None),
+        ("Label Permute\n(group-level)", lambda ln, le, seed=RANDOM_SEED + 999: condition_language_label_permutation(ln, le, aligned, seed=seed), None),
         ("Mono Control\n(same lang)", condition_monolingual_control, None),
     ]
 
     results: dict[str, dict] = {}
     for name, func in funcs:
         print(f"  {name}...")
-        results[name] = func(lang_nodes, lang_edges)
+        if "Structure Null" in name:
+            results[name] = func(lang_nodes, lang_edges, seed=RANDOM_SEED)
+        else:
+            results[name] = func(lang_nodes, lang_edges)
 
     adversarial: dict[str, dict] = {}
     for name, func, _ in adv_funcs:
@@ -380,9 +446,28 @@ def main():
             print(f"    [SKIP] {e}")
             adversarial[name] = {}
 
+    # ═══ B1/B2/B5: multi-seed distributions (legacy single-seed rows above untouched) ═══
+    print(f"  [MULTI-SEED] structure-null × {len(seeds)} seeds ...")
+    struct_runs = [condition_structure_null(lang_nodes, lang_edges, seed=s) for s in seeds]
+    struct_mean, struct_sd = _mean_sd_rows(struct_runs, PAIRS)
+    print(f"  [MULTI-SEED] label-permute × {len(seeds)} seeds ...")
+    perm_runs = [condition_language_label_permutation(lang_nodes, lang_edges, aligned, seed=s) for s in seeds]
+    perm_mean, perm_sd = _mean_sd_rows(perm_runs, PAIRS)
+    # B5: within-lang split-half is one deterministic split per seed → same --seeds loop
+    print(f"  [MULTI-SEED] within-lang split-half × {len(seeds)} seeds ...")
+    within_runs = [condition_within_language(lang_nodes, lang_edges, seed=s) for s in seeds]
+    within_mean, within_sd = _mean_sd_rows(within_runs, ["ZH", "EN", "DE"])
+    print(f"  [MULTI-SEED] mono control × {len(seeds)} seeds ...")
+    mono_runs = [condition_monolingual_control(lang_nodes, lang_edges, seed=s) for s in seeds]
+    mono_mean, mono_sd = _mean_sd_rows(mono_runs, ["ZH-ZH", "EN-EN", "DE-DE"])
+    print(f"    struct mean={struct_mean} sd={struct_sd}")
+    print(f"    perm   mean={perm_mean} sd={perm_sd}")
+    print(f"    within mean={within_mean} sd={within_sd}")
+    print(f"    mono   mean={mono_mean} sd={mono_sd}")
+
     plot_results(results, adversarial)
 
-    # CSV — standard conditions
+    # CSV — standard conditions (legacy single-seed rows first, untouched for old asserts)
     csv_path = OUTPUT_DIR / "fig4_null_model_data.csv"
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -394,11 +479,34 @@ def main():
                        results[name].get("ZH-DE", ""), ""])
         for name, _, _ in adv_funcs:
             row = adversarial.get(name, {})
-            w.writerow([name.replace("\n", " "), "adversarial",
-                       row.get("ZH-EN", row.get("ZH", "")),
-                       row.get("DE-EN", row.get("DE", "")),
-                       row.get("ZH-DE", row.get("EN", "")),
+            disp = name.replace("\n", " ")
+            w.writerow([disp, "adversarial",
+                       _adv_cell(row, "ZH-EN", disp),
+                       _adv_cell(row, "DE-EN", disp),
+                       _adv_cell(row, "ZH-DE", disp),
                        "adversarial null — tests threaten language claim"])
+        # B1/B2/B5: appended multi-seed mean±SD rows (new; legacy rows above unchanged)
+        seed_tag = f"n={len(seeds)}, seeds={','.join(map(str, seeds))}"
+        w.writerow(["Structure Null (5-seed mean±SD)", "standard-multiseed",
+                    struct_mean.get("ZH-EN", ""), struct_mean.get("DE-EN", ""),
+                    struct_mean.get("ZH-DE", ""),
+                    f"mean±SD over {seed_tag}; SD ZH-EN={struct_sd.get('ZH-EN','')} "
+                    f"DE-EN={struct_sd.get('DE-EN','')} ZH-DE={struct_sd.get('ZH-DE','')}"])
+        w.writerow(["Label Permute (5-seed mean±SD)", "adversarial-multiseed",
+                    perm_mean.get("ZH-EN", ""), perm_mean.get("DE-EN", ""),
+                    perm_mean.get("ZH-DE", ""),
+                    f"mean±SD over {seed_tag}; SD ZH-EN={perm_sd.get('ZH-EN','')} "
+                    f"DE-EN={perm_sd.get('DE-EN','')} ZH-DE={perm_sd.get('ZH-DE','')}"])
+        w.writerow(["Within-Lang (5-seed mean±SD)", "adversarial-multiseed",
+                    within_mean.get("ZH", ""), within_mean.get("DE", ""),
+                    within_mean.get("EN", ""),
+                    f"mean±SD over {seed_tag} (cols map ZH-EN<-ZH, DE-EN<-DE, ZH-DE<-EN); "
+                    f"SD ZH={within_sd.get('ZH','')} DE={within_sd.get('DE','')} EN={within_sd.get('EN','')}"])
+        w.writerow(["Mono Control (5-seed mean±SD)", "adversarial-multiseed",
+                    mono_mean.get("ZH-ZH", ""), mono_mean.get("EN-EN", ""),
+                    mono_mean.get("DE-DE", ""),
+                    f"mean±SD over {seed_tag} (cols map ZH-EN<-ZH-ZH, DE-EN<-EN-EN, ZH-DE<-DE-DE; B5 fix); "
+                    f"SD ZH-ZH={mono_sd.get('ZH-ZH','')} EN-EN={mono_sd.get('EN-EN','')} DE-DE={mono_sd.get('DE-DE','')}"])
     print(f"  [OK] {csv_path}")
 
     print("\n  Standard Results:")

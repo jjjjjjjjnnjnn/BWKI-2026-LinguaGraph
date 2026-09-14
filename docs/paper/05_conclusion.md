@@ -34,7 +34,7 @@ Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache
 1. **LDS allein ist unzureichend** — die Nullmodell-Suite zeigt, dass LDS-K-Werte gegen mehrere Basislinien interpretiert werden müssen (Struktur-Null, sprachinterne Rauschschwelle, kompletter Zufall)
 2. **LDS-K zeigt scheinbare Konvergenz, keine belastbare Divergenz-Aussage** — alle drei Sprachpaare zeigen LDS-K-Rohwerte auf oder unterhalb ihrer sprachinternen Rauschschwellen; der ZH-DE-Rohwert (0,52) ist T1-falsifiziert (Kontaminations-Artefakt, decontaminiert 0,99, s. Fig8)
 3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen** — die erweiterte N=15-Analyse zeigt jedoch **ΔLDS ≈ 0** auf Konzeptebene (−0.05 bis +0.05); die Relationsebene ist über unterschiedliche Sparsity-Regime hinweg nicht vergleichbar (ZH-DE +0.445 als Dichte-Artefakt, s. §5.9.4)
-4. **Die N=15-Humanvalidierung (6 DE · 6 ZH · 3 EN) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen** (Konzeptebene LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 ≈ Label-Permutation 0.94; Themenebene χ² p=0.52; Relationsebene Edge-Jaccard ≈ 0). Die früheren N=8-Pilotdaten (DE-ZH +0,232) werden nicht repliziert.
+4. **Die N=15-Humanvalidierung (6 DE · 6 ZH · 3 EN) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen** (C7 → C17; Konzeptebene LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 ≈ Label-Permutation 0.94; Themenebene χ² p=0.52; Relationsebene Edge-Jaccard ≈ 0). Die früheren N=8-Pilotdaten (DE-ZH +0,232) werden nicht repliziert.
 5. **Das LLM-as-Subject-Experiment (Within-Subject, §5) weist das Sprachsignal nach** — und stützt die Design-Artefakt-Hypothese für den Human-Negativebefund (Exklusion + Konsistenz-Demonstration; keine quantitative Kausalzuordnung, s. §8.14.4): Derselbe LDS-C-Messrahmen liefert unter Within-Subject-Bedingungen LDS-C 0.93–0.96 ≫ Boden 0.85–0.87, mit Sprachcode als dominantem Organisator (LMM: same_lang +0.038, p<0.001; same_frame +0.001, p=0.90).
 
 Die zentrale methodologische Lehre: **Between-Subject-Designs können sprachgetriebene Divergenz nicht von individueller Variabilität trennen; ein Within-Subject-Design ist hierfür erforderlich.**
@@ -56,11 +56,11 @@ Wir stellen LinguaGraph vor, ein Framework, das:
 
 Die Studie hat fünf wesentliche Einschränkungen:
 
-1. **Extraktionsqualität variiert nach Domäne**: Soziale Konzeptextraktion erreicht ZH F1=0,974, DE F1=0,949, EN F1=0,882 (72 Goldlabels im sozialen Bereich; 92 insgesamt inkl. Mathematik). Die mathematische Domänenextraktion ist niedriger (DE F1=0,506, 20 Goldlabels), was domänenspezifische Variation bestätigt.
+1. **Extraktionsqualität variiert nach Domäne**: Soziale Konzeptextraktion erreicht ZH F1=0,974†, DE F1=0,949†, EN F1=0,882† (72 Goldlabels im sozialen Bereich, Batch B machine-seeded/human-accepted, **Developing (C9b)**; 92 insgesamt inkl. Mathematik). Die mathematische Domänenextraktion ist niedriger (DE F1=0,506, 20 Goldlabels), was domänenspezifische Variation bestätigt.
 2. **Stichprobengröße und Design der menschlichen Validierung**: Die erweiterte Humanstudie (N=15, 6 DE · 6 ZH · 3 EN) in einem Between-Subject-Design zeigt, dass Teilnehmervariabilität die LDS-C dominiert — sprachgetriebene Divergenz ist von individueller Variabilität nicht trennbar. Eine populationsbezogene Aussage erfordert ein Within-Subject-Design oder N ≥ 30 pro Sprachgruppe.
 3. **Umfang des Nullmodells**: Das graderhaltende Nullmodell ist konservativ — es testet Kantenanordnung jenseits der Gradstruktur, aber nicht, ob die Gradstruktur selbst sprachbeeinflusst ist.
 4. **Lehrplanvergleich**: Der Coverage Score verwendet keyword-basiertes Matching; zukünftige Versionen sollten semantische Alignierung integrieren.
-5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
+5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt (Batch A 20 hand-annotiert, **Mature (C9a)**; Batch B 72 machine-seeded/human-accepted, **Developing (C9b)**, 72er-Blind-Review ausstehend) liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
 
 ### 9.6 Zukünftige Arbeit
 

@@ -294,12 +294,19 @@ def bootstrap_ci(records: List[dict], n_iter: int = 1000) -> Dict[str, dict]:
 
 # ── Null models ────────────────────────────────────────────
 
-def within_language_split_half(records: List[dict], n_iter: int = 100) -> Dict[str, float]:
+def within_language_split_half(records: List[dict], n_iter: int = 200,
+                               return_stats: bool = False) -> Dict[str, float]:
     """Noise floor from participant variability: for each language, randomly split
     participants into two halves, aggregate each half's concepts, compute LDS
     between the two aggregates. Average over iterations. This measures how much
     within-language participant variability inflates LDS (NOT a concept-set
-    partition, which always yields LDS=1.0)."""
+    partition, which always yields LDS=1.0).
+
+    B3: reports mean±SD. Default return stays {pair: mean} for backward
+    compat (callers: lds_c_design_effect.signal_table, lds_c_llm_analyze,
+    lds_c_r3_robustness, fig_a7_core); pass return_stats=True to get
+    {pair: {"mean":.., "std":.., "n":..}}.
+    """
     random.seed(_ACTIVE_SEED)
     by_lang: Dict[str, List[dict]] = defaultdict(list)
     for r in records:
@@ -324,18 +331,41 @@ def within_language_split_half(records: List[dict], n_iter: int = 100) -> Dict[s
             if vals:
                 pair_floors[pair].append(statistics.mean(vals))
 
+    if return_stats:
+        stats = {}
+        for pair, vals in pair_floors.items():
+            vals = [v for v in vals if v == v]
+            if not vals:
+                continue
+            stats[pair] = {
+                "mean": round(statistics.mean(vals), 4),
+                "std": round(statistics.stdev(vals), 4) if len(vals) > 1 else 0.0,
+                "n": len(vals),
+            }
+        return stats
     floors = {}
     for pair, vals in pair_floors.items():
+        vals = [v for v in vals if v == v]
+        if not vals:
+            continue
         floors[pair] = round(statistics.mean(vals), 4)
     return floors
 
 
-def label_permutation_null(records: List[dict], n_iter: int = 200,
+def label_permutation_null(records: List[dict], n_iter: int = 1000,
                            observed: Optional[Dict[str, float]] = None) -> Dict[str, dict]:
     """Permute language labels across responses; if observed LDS differs from
     permuted distribution, labels carry signal. Reports a formal two-sided
     p-value: fraction of permutations at least as extreme as the observed LDS
-    (audit M2)."""
+    (audit M2).
+
+    B3: default n_iter 200→1000. Binomial SE of the p estimate:
+    SE(p) = sqrt(p*(1-p)/n_iter); e.g. p=0.08, n=200 → SE≈0.019 (95%CI
+    [0.042,0.118] crosses 0.05 — no significance claim); n=1000 → SE≈0.0086.
+    Callers pass explicit n_iter (design_effect n_floor, llm_analyze 200/500,
+    multi_model 500, tests 100) — those explicit values are respected; only
+    the default and the build_report clamp changed (see build_report).
+    """
     random.seed(_ACTIVE_SEED)
     langs = [r.get("language", "") for r in records]
     if not langs:
@@ -387,7 +417,14 @@ def cohens_d_for_delta(delta_mean: float, delta_std: float, n_pairs: int) -> dic
 # ── Report ─────────────────────────────────────────────────
 
 def build_report(records: List[dict], extractions_path: Path, aligned_path: Path,
-                 iterations: int, extract_meta: Optional[dict] = None) -> dict:
+                 iterations: int, extract_meta: Optional[dict] = None,
+                 floor_iter: Optional[int] = None,
+                 perm_iter: Optional[int] = None) -> dict:
+    """B3 decoupling: floor_iter/perm_iter override the legacy
+    max(100, iterations//10) / max(200, iterations//5) clamps, which made
+    `--iterations` unable to raise the permutation null above ~200 at the
+    default 1000 (1000//5=200). Explicit CLI flags now take effect; when None
+    the legacy derivation is kept for backward compat (floor default ≥200)."""
     agg = aggregate_languages(records)
     pairwise = compute_pairwise(agg)
 
@@ -398,10 +435,13 @@ def build_report(records: List[dict], extractions_path: Path, aligned_path: Path
     # Bootstrap CI for pooled LDS-C
     ci = bootstrap_ci(records, iterations)
 
-    # Null models
-    split_half = within_language_split_half(records, max(100, iterations // 10))
+    # Null models (B3: decoupled; explicit iters win over legacy clamp)
+    _floor_n = floor_iter if floor_iter is not None else max(200, iterations // 10)
+    _perm_n = perm_iter if perm_iter is not None else max(200, iterations // 5)
+    split_half = within_language_split_half(records, _floor_n)
+    split_half_stats = within_language_split_half(records, _floor_n, return_stats=True)
     observed_lds = {p: v.get("ALL") for p, v in pairwise.items()}
-    perm_null = label_permutation_null(records, max(200, iterations // 5),
+    perm_null = label_permutation_null(records, _perm_n,
                                        observed=observed_lds)
 
     # ΔLDS (pooled LDS-C − LDS-K concept)
@@ -433,7 +473,10 @@ def build_report(records: List[dict], extractions_path: Path, aligned_path: Path
         "lds_k_concept_level": lds_k_concept,
         "bootstrap_ci": ci,
         "delta_lds": delta,
-        "null_models": {"within_language_split_half": split_half, "label_permutation": perm_null},
+        "null_models": {"within_language_split_half": split_half,
+                        "within_language_split_half_stats": split_half_stats,
+                        "label_permutation": perm_null,
+                        "null_iters": {"floor_n": _floor_n, "perm_n": _perm_n}},
         "n_iterations": iterations,
     }
 
@@ -469,6 +512,10 @@ def main() -> None:
     ap.add_argument("--canonical", type=str, default=None,
                     help="LLM gloss->canonical mapping JSON (from lds_c_canonicalize.py)")
     ap.add_argument("--iterations", type=int, default=1000)
+    ap.add_argument("--floor-iters", type=int, default=None,
+                    help="B3: split-half iterations (default: max(200, iterations//10))")
+    ap.add_argument("--perm-iters", type=int, default=None,
+                    help="B3: label-permutation iterations (default: max(200, iterations//5); use >=1000)")
     ap.add_argument("--seed", type=int, default=RANDOM_SEED)
     ap.add_argument("--fuzzy", action="store_true", help="Enable fuzzy matching (slower)")
     args = ap.parse_args()
@@ -494,7 +541,8 @@ def main() -> None:
                     if raw.get(k) is not None}
 
     report = build_report(records, path, aligned_path, args.iterations,
-                          extract_meta=extract_meta)
+                          extract_meta=extract_meta,
+                          floor_iter=args.floor_iters, perm_iter=args.perm_iters)
     print("\n" + format_table(report))
 
     # audit M9: write to data/lds_c/ (tracked by git) as the canonical output,

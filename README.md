@@ -78,7 +78,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 ## 🎯 Key results (30 seconds)
 
 - **59/54/177 replication**: 59 complete measurements (54 unique models) on one P1 protocol (ZH/DE/EN × 10 prompts) — every ZH–DE pair significant (p<0.05); file-truth 62/57/186 incl. partial qwen-max run (n=26/30).
-- **Extraction quality**: 92 gold labels — social F1 **0.939** (n=72), math F1 0.674 (n=20), weighted overall **0.881**.
+- **Extraction quality**: 92 gold labels — social F1 **0.939**† (n=72, Batch B Developing — see note below), math F1 0.674 (n=20), weighted overall **0.881**.
 - **Self-falsification (T1)**: dropping German labels containing CJK text (167/219) collapses ZH–DE "convergence" 0.52 → 0.99 — the F4 convergence reading is a label artefact, and we report it.
 - **Human study (N=15)**: no separable language signal under between-subject design (LDS-C ≈ floor) — language effects require within-subject designs (LLM: +0.08–0.09 ≫ floor).
 - **Scale**: 1,140+ concepts · 1,100+ relations · 204 textbooks · 4 curricula (CN 95.4% · UK 37.3% · US 17.2% · NRW 12.7%).
@@ -95,7 +95,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 | **Mathematics** | 0.857 | 0.506 | 0.711 | 0.674 | 20 |
 | **All (weighted)** | 0.951 | 0.842 | 0.844 | **0.881** | **92** |
 
-> Overall = weighted mean over domains ((72×0.939+20×0.674)/92≈0.881). The headline 0.939 applies to the social subset only. Caveats: 72 social labels are machine-accepted (`auto_accepted`); math-DE (0.506) is n=7, high variance.
+> Overall = weighted mean over domains ((72×0.939+20×0.674)/92≈0.881). The headline 0.939 applies to the social subset only. Caveats: 72 social labels are machine-accepted (`auto_accepted`); math-DE (0.506) is n=7, high variance. Provenance: Batch A math 20 hand-annotated (Mature/C9a); Batch B social 72 machine-seeded+human-accepted (Developing/C9b, 72-label blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note `research/gold_deconfound_2026-09-14.md`).
 
 <p align="center">
   <img src="cognitive-space/web/figures/fig8_lds_decontamination.png" alt="Fig8 — T1 decontamination: ZH-DE convergence collapses 0.52 to 0.99" width="85%">

@@ -142,16 +142,18 @@ def fig_null_models() -> None:
     human = load("data/lds_c/lds_c_results_20260807.json")
     fig4_csv = PROJECT_ROOT / "outputs" / "figures" / "fig4_null_model_data.csv"
 
-    # read structure null + full from fig4 CSV (committed, reproducible)
+    # read structure null + full from fig4 CSV (committed, reproducible);
+    # first-match-wins: legacy point rows precede multiseed mean rows,
+    # so the frozen point snapshot (not the mean) feeds fig_a7_3.
     null = {"ZH-EN": {}, "DE-EN": {}, "ZH-DE": {}}
     if fig4_csv.exists():
         with fig4_csv.open(encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 cond = row.get("condition", "")
                 for p in PAIRS:
-                    if "Structure" in cond and p in row:
+                    if "Structure" in cond and p in row and "structure" not in null[p]:
                         null[p]["structure"] = float(row[p])
-                    elif "Full" in cond and p in row:
+                    elif "Full" in cond and p in row and "full" not in null[p]:
                         null[p]["full"] = float(row[p])
     # fall back to deep-dive math pooled if fig4 CSV missing
     for p in PAIRS:

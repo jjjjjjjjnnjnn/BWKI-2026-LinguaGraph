@@ -354,7 +354,7 @@ FROZEN = {
     },
     "a3": {
         "full": {"ZH-EN": 0.9336, "DE-EN": 0.9382, "ZH-DE": 0.5188},
-        "structure": {"ZH-EN": 0.9571, "DE-EN": 0.9546, "ZH-DE": 0.7142},
+        "structure": {"ZH-EN": 0.9571, "DE-EN": 0.9568, "ZH-DE": 0.7154},
         "floor": {"ZH-EN": 0.9582, "DE-EN": 0.9233, "ZH-DE": 0.9219},
     },
     "a4": {
@@ -1232,7 +1232,7 @@ def render_a2(lang, path=None):
 def check_a3():
     fr = FROZEN["a3"]
     rows = {r["pair"]: r for r in read_en_csv("fig_a7_3_null_models.csv")}
-    assert abs(float(rows["ZH-DE"]["Structure Null"]) - 0.7142) < 1e-9
+    assert abs(float(rows["ZH-DE"]["Structure Null"]) - 0.7154) < 1e-9
     assert abs(float(rows["ZH-EN"]["Within-lang floor"]) - 0.9582) < 1e-9
     assert abs(fr["full"]["ZH-DE"] - 0.5188) < 1e-9
 
