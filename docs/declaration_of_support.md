@@ -38,13 +38,13 @@ Das Projekt nutzt große Sprachmodelle (LLMs) in **zwei klar getrennten Rollen**
 
 ### 1.2 Extraktionsqualität und F1-Zahlen (v1-Verwechslung korrigiert)
 
-- **Human-validierte F1 (Extraktion sozialer Konzepte)**: ZH 0,974 / DE 0,949 / EN 0,882, sozial gesamt **0,939** (72 soziale Gold-Annotationen), gewichtet über Domänen **0,881** (n=92) — dies validiert, ob der Extraktor humane Konzeptannotationen wiederherstellt.
+- **Human-validierte F1 (Extraktion sozialer Konzepte)**: ZH 0,974 / DE 0,949 / EN 0,882, sozial gesamt **0,939†** (72 soziale Gold-Annotationen, **machine-seeded/human-accepted, Developing C9b** — Blind-Review ausstehend; unabhängiger Harness ~0,65), gewichtet über Domänen **0,881** (n=92, davon 20 hand-annotierte Mathe-Labels C9a) — dies validiert, ob der Extraktor humane Konzeptannotationen wiederherstellt.
 - **19-Modell-Extraktionsbenchmark**: F1-Spanne **0,55–0,67** über Modellfamilien (`data/model_comparison/`) — zur Modellauswahl, kein berichteter Projektwert.
 - **v1-Fehler**: v1 vermischte beides zu einem einzigen „0,939 (19-Modell-Benchmark)" — korrigiert. Papier §8.7/§8.9 entsprechen den beiden obigen Zahlengruppen.
 
 ### 1.3 offengelegte Methodenentscheidung: Extraktionsmodell = Versuchsmodell
 
-In der Mehrmodell-Replikation **extrahiert jedes Versuchsmodell die Konzepte aus seinen eigenen Antworten selbst** (`lds_c_llm_subject.py`, zwei Stufen: Antworten → Extraktion durch dasselbe Modell). Dies hält die „Konzeptstruktur desselben Modells" konsistent, bedeutet aber auch, dass die gemessene sprachübergreifende Divergenz Extraktionverhaltensunterschiede je Sprache enthält. Papier §5 legt diese Konfundierung offen; Extraktionsdichte und Divergenzmarge sind unkorreliert (corr −0,23), und die Domänenkontrolle (institutionelle Konvergenz vs. kulturelle Divergenz) mildert sie teilweise.
+In der Mehrmodell-Replikation **extrahiert jedes Versuchsmodell die Konzepte aus seinen eigenen Antworten selbst** (`lds_c_llm_subject.py`, zwei Stufen: Antworten → Extraktion durch dasselbe Modell). Dies hält die „Konzeptstruktur desselben Modells" konsistent, bedeutet aber auch, dass die gemessene sprachübergreifende Divergenz Extraktionsverhaltensunterschiede je Sprache enthält. Papier §5 legt diese Konfundierung offen; Extraktionsdichte und Divergenzmarge sind unkorreliert (corr −0,23), und die Domänenkontrolle (institutionelle Konvergenz vs. kulturelle Divergenz) mildert sie teilweise.
 
 ### 1.4 Leerergebnisse und Wiederholungen
 
@@ -62,7 +62,8 @@ In der Mehrmodell-Replikation **extrahiert jedes Versuchsmodell die Konzepte aus
 | **Figuren** | matplotlib (deterministische Skripte `scripts/figures/`) | alle Figuren reproduzierbar |
 | **Textextraktion** | pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill) | Scan-OCR, Layer getrennt gebucht |
 | **Semantik** | nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (EN-Grounding-Layer, temp-0-Protokoll in `scripts/semantic_ground_en.py`) | EN-Grounding, kein Mix mit String-Match |
-| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92-human-annotiert (F1 sozial 0,939) | Extraktion, Layer getrennt gebucht |
+| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92 (20 hand-annotiert C9a + 72 machine-seeded/human-accepted C9b, sozial F1 0,939† Developing) | Extraktion, Layer getrennt gebucht |
+| **Gold-Blind-Review (v25)** | `scripts/gold_blind_audit.py` (deterministisch, seed 20260914) + 72er Review-Template `research/gold_review_v2/` | laufend, kein Modell-Einsatz als Annotator |
 
 **Hinweis**: Claude Code wirkte als KI-Programmierassistent bei Skriptentwicklung, Datenanalyse und Dokumentenlayout mit. **Wissenschaftliche Urteile, Versuchsdesign-Entscheidungen und Ergebnisinterpretation wurden von den teilnehmenden Schülern eigenständig erbracht** und werden gemäß Wettbewerbsregeln transparent offengelegt.
 

@@ -10,7 +10,7 @@ Open `index.html` in any browser. No build step required.
 
 | # | Section | Content |
 |---|---------|---------|
-| 1 | Hero | Research question, stat wall (1,140+ concepts, F1=0.939), scope footnote, CTAs |
+| 1 | Hero | Research question, stat wall (1,140+ concepts, F1=0.939† Developing social), scope footnote, CTAs |
 | 2 | Research Questions | RQ1 (Language), RQ2 (Discipline), RQ3 (Education System) |
 | 3 | Contributions | 4 core contributions of the project |
 | 4 | Methodology | Pipeline diagram + 4 metric definitions (CDS/HDS/LDS/CS) |
@@ -44,6 +44,7 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 ## Numbers (SSOT: `docs/SSOT-web.md`)
 
 - Hero totals = full project: Math 556 + Physics 367 + Chemistry 220 = 1,140+ concepts.
+- Gold: 92 labels = 20 hand-annotated math (C9a, Mature) + 72 machine-seeded/human-accepted social (C9b, Developing — blind audit pending); DB-path social F1 0.939†, independent harness ~0.65 (`research/gold_deconfound_2026-09-14.md`).
 - 3D section = mathematics subgraph default (556 nodes · 525 relations · 219 groups, `manifest.json`) + STEAM fused view (`?graph=steam`: 1143 nodes · 849 links · 10 bridges, `scripts/build_steam_graph.py`).
 - 12 findings (F1–F12, paper §discussion); 19-model benchmark (chart has 19 labels).
 

@@ -63,7 +63,7 @@
 >
 > We validated on 3 levels:
 >
-> **First**, gold-standard annotations: 20 ZH responses independently annotated by human raters. Concept extraction F1 reaches 0.939 for social concepts — well above our 0.80 threshold.
+> **First**, gold-standard annotations in two batches: Batch A — 20 math responses hand-annotated from scratch (clean); Batch B — 72 social responses machine-pre-extracted and human-accepted (honest caveat: seed-evaluation same-source, Developing, blind audit pending). Concept extraction F1 reaches 0.939 on social (DB path; independent harness ~0.65) — above our 0.80 threshold on the DB path, provisional until the audit.
 >
 > **Second**, annotator agreement: Cohen's Kappa ≥ 0.70 — substantial agreement.
 >

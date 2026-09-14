@@ -52,7 +52,7 @@ LLM 组内 floor（split-half 0.85–0.87）度量"同一模型两次作答的�
 ## 2. 分析管线（脚本待数据到达后运行，可先备好）
 
 ### 2.1 复用（冻结，零改动）
-- 提取：qwen-plus（F1=0.939 验证）
+- 提取：qwen-plus（F1=0.939† 社会，Developing C9b，盲审待补）
 - 概念规范化：`canonical_key`
 - LDS：冻结 v3（`lds_concept` / `lds_c_compute.py`）
 

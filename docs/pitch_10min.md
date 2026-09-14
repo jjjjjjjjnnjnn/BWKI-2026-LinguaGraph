@@ -48,7 +48,7 @@ LinguaGraph builds on four research traditions:
 TEXTBOOKS (ZH/EN/DE STEM)
   ↓ qwen-plus API · MIMO Prompt
 CONCEPT EXTRACTION (1,160+ concepts, 4,100+ relations)
-  ↓ Gold Labels (72 social, F1=0.939)
+  ↓ Gold Labels (72 social machine-seeded, F1=0.939† Developing)
 KNOWLEDGE GRAPHS (Math · Physics · Chemistry)
   ↓ CDS ↓ HDS ↓ LDS
 STRUCTURAL INSIGHTS
@@ -59,7 +59,7 @@ CURRICULUM ALIGNMENT (4 systems)
 **Pipeline A (Cognitive):** Student survey responses → LLM extraction → cognitive graphs → LDS
 **Pipeline B (Textbook):** 180+ textbooks → knowledge graphs → CDS/HDS/LDS/CS → Educational insights
 
-**Validation:** 92 gold standard labels across 3 languages. 20-model benchmark (qwen-plus selected as production model, F1=0.939 for social concepts).
+**Validation:** 92 gold standard labels across 3 languages (20 hand-annotated math + 72 machine-seeded/human-accepted social, Developing). 19-model benchmark (qwen-plus selected as production model: full N=92 coverage, F1=0.666 harness / 0.939† DB-path social).
 
 ---
 
@@ -165,12 +165,14 @@ Aligns textbook concept graphs against curriculum concept sets.
 |--------|:--:|:--:|:--:|:-------:|
 | Social Concepts | **0.974** | **0.949** | **0.882** | **0.939** |
 | Mathematics | 0.857 | 0.506 | 0.711 | 0.674 |
-| **All** | **0.974** | **0.949** | **0.882** | **0.939** |
+| **All (weighted)** | **0.951** | **0.842** | **0.844** | **0.881** |
+
+Note: All-row is the n-weighted mean over both domains (not a copy of the social row). Social rows carry † Developing (machine-seeded, blind audit pending).
 
 Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in German textbooks. Social concept extraction is uniformly strong.
 
 ### Model Benchmark (20 models)
-- **Production model:** qwen-plus (F1=0.939 for social concepts, 72 labels)
+- **Production model:** qwen-plus (F1=0.939† Developing for social concepts, 72 machine-seeded labels; harness ~0.65)
 - **Best free alternative:** qwen3-30b-a3b (F1=0.858)
 - **Best non-Qwen:** glm-4.6 (F1=0.819)
 
@@ -205,7 +207,7 @@ The dominant error type is **structural** — missing or incorrect prerequisite 
 - First framework combining LLM-based extraction with multi-lingual knowledge graph analysis
 - Four novel quantitative metrics (CDS, HDS, LDS, CS)
 - Comprehensive dataset: 1,160+ concepts, 4,100+ relations, 3 languages, 4 education systems
-- Gold-validated extraction pipeline (F1=0.939 for social concepts)
+- Gold-validated extraction pipeline (F1=0.939† Developing for social concepts)
 - 10 findings spanning density, depth, language, and coverage
 
 ---
@@ -213,7 +215,7 @@ The dominant error type is **structural** — missing or incorrect prerequisite 
 ## Q&A Preparation
 
 **"Why did you use LLMs? Aren't they unreliable?"**
-We validated with 92 gold labels. qwen-plus achieves F1=0.939 on social concepts. LLM extraction is faster, more scalable, and more consistent than human annotation — and we can prove it with our gold standard.
+We validated with 92 gold labels (20 hand-annotated + 72 machine-seeded/human-accepted, Developing). qwen-plus achieves F1=0.939† on social concepts (DB path). LLM extraction is faster, more scalable, and more consistent than human annotation — and we can prove it with our gold standard.
 
 **"Isn't coverage score just measuring curriculum density?"**
 No. We explicitly tested this (Explanation A) and found it counter-indicated. The densest curriculum (China) has the lowest coverage. The pattern reflects educational philosophy, not mere density.

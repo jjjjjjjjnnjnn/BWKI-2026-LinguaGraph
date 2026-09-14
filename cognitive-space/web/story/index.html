@@ -310,7 +310,7 @@ graph LR
     subgraph Extraction["🧩 Concept Extraction"]
         LLM["LLM API<br/>MIMO Prompt"]
         CG["Concept Graphs<br/>1160+ nodes"]
-        GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939)"]
+        GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939† Developing)"]
     end
 
     subgraph Analysis["📊 Structural Analysis"]
@@ -524,7 +524,7 @@ flowchart TB
         <td><span class="tag tag-green">0.974</span></td>
         <td><span class="tag tag-green">0.949</span></td>
         <td><span class="tag tag-green">0.882</span></td>
-        <td><strong>0.939</strong></td>
+        <td><strong>0.939<sup>†</sup></strong></td>
         <td>72</td>
       </tr>
       <tr>
@@ -545,6 +545,8 @@ flowchart TB
       </tr>
     </tbody>
   </table>
+
+  <p style="font-size:.82rem;color:var(--text2)">† Social F1 = Developing (C9b): machine-seeded/human-accepted, blind audit of all 72 labels pending; independent harness ~0.65 vs DB path 0.939 — see research/gold_deconfound_2026-09-14.md.</p>
 
   <h3 style="margin:40px 0 16px">Model Benchmark (19 Models)</h3>
   <table class="data-table">
@@ -757,7 +759,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 6 — Validation</div>
       <h4>Gold Standard Validation & Model Benchmark</h4>
-      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. Production extraction model selected (F1=0.939 social, F1=0.881 weighted).</p>
+      <p>Expanded from 20 to 92 gold labels. Benchmarked 19 models. Production extraction model selected (F1=0.939† Developing social, F1=0.881 weighted).</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 7 — Publication</div>

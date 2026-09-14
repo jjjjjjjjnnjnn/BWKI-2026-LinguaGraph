@@ -125,14 +125,17 @@ def import_scores(path: Path):
             continue
         agr_all.append(agr)
         agr_by_lang.setdefault(lang, []).append(agr)
-        if dec != "reject" and edited:
+        # Rejects count as F1 = 0.0 (dropping hard items must not inflate F1).
+        if dec == "reject":
+            f1s.append(0.0)
+        elif edited:
             _, _, f1 = prf(edited, qpred.get(sid, []))
             f1s.append(f1)
 
     agr_mean = sum(agr_all) / len(agr_all) if agr_all else 0.0
     by_lang = {k: round(sum(v) / len(v), 4) for k, v in sorted(agr_by_lang.items())}
     f1_mean = sum(f1s) / len(f1s) if f1s else 0.0
-    verdict = "pass (may mature)" if (f1_mean >= PASS_F1 and agr_mean >= PASS_AGR) else "maintain (stay pilot)"
+    verdict = "pass (may mature)" if (f1_mean >= PASS_F1 and agr_mean >= PASS_AGR) else "maintain (stay Developing, C9b)"
     report = {
         "n_reviewed": len(agr_all),
         "n_reject": n_reject,

@@ -7,8 +7,14 @@
 3. Blinding: template carries NO gold concepts (`concepts_blank` is always
    empty); reviewer never sees current gold or model outputs. No AI
    pre-labeling is allowed at any step.
-4. Second annotator: one rater, not the original auto-accept pipeline
-   operator; fluent in zh/de/en (items span zh=29, de=22, en=21).
+4. Second annotator: one NAMED external rater (record name+date in the
+   report), not the original auto-accept pipeline operator; fluent in
+   zh/de/en (items span zh=29, de=22, en=21). Gold-file access is revoked
+   for the rater during review (sample_ids alone must not de-blind:
+   treat `review_72.json` as the only source). If no external rater is
+   available, a delayed self re-rating (≥14 days, shuffled) is allowed
+   but capped: verdict can never exceed "maintain" — upgrade requires
+   external confirmation.
 5. Task per item: read question+text, write your own concept list into
    `edited_concepts`, set `reviewer` name, set `decision`:
    accept (= my list stands as gold) | edit (= gold needs my corrected
@@ -18,9 +24,14 @@
    computes (1) Jaccard agreement vs current gold (overall + by language),
    reject counts as 0; (2) qwen-plus social F1 with v2 as gold, using
    `predicted_concepts` from `data/model_comparison/qwen-plus_results.json`
-   (rejects excluded from F1).
-8. Grading line: F1 >= 0.85 AND agreement >= 0.8 -> pass (gold may mature
-   to Mature); otherwise verdict = maintain (social stays Developing, C9b).
+   (rejects count as F1 = 0.0 — dropping hard items must not inflate F1).
+8. Grading line: F1 >= 0.85 AND agreement >= 0.8 overall AND >= 0.7 in
+   every language (zh/de/en) -> pass (gold may mature to Mature);
+   otherwise verdict = maintain (social stays Developing, C9b).
+   Rationale: 0.85 = DB-path claim (0.939) minus a 0.09 honesty margin
+   (covers the harness gap direction); 0.8 = substantial-agreement
+   floor (cf. IRR kappa bar 0.70 + margin); per-language floor blocks
+   averaging-out a failed subgroup (DE n=22).
 9. On pass: freeze the v2 concept lists as new gold and re-run all
    model F1s. On maintain: keep current gold, file the report, do not
    upgrade any maturity claim.

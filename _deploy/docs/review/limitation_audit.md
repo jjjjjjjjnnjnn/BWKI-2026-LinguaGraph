@@ -37,7 +37,7 @@
 
 | Limitation | Impact | Severity | Mitigation |
 |-----------|--------|----------|------------|
-| Extraction quality varies by domain: social concepts (F1=0.939) >> math DE (F1=0.506) | Cross-domain LDS comparisons may be affected by extraction quality differences | **Medium** | Social concept LDS uses validated extraction; math LDS is caveated in paper |
+| Extraction quality varies by domain: social concepts (F1=0.939† Developing, machine-seeded) >> math DE (F1=0.506) | Cross-domain LDS comparisons may be affected by extraction quality differences | **Medium** | Social concept LDS uses provisionally validated extraction (C9b, blind audit pending); math LDS is caveated in paper |
 | Human extraction produced concepts only (no relations) | Full 3-component LDS cannot be applied; results driven by Node Jaccard | **Medium** | Acknowledged in Discussion; metric is conservative (no edge contribution) |
 | Relations inferred via transitive closure (~3000 added) | May introduce artificial edges that inflate CDS | **Low** | Transitive inference is deterministic and consistent across languages |
 

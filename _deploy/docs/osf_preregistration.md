@@ -62,7 +62,7 @@ All responses → LLM concept extraction → graph construction:
 
 | Step | Method | Tool |
 |------|--------|------|
-| Concept extraction | LLM (qwen-plus, validated F1=0.939) | `scripts/run_one_model.py` |
+| Concept extraction | LLM (qwen-plus, validated F1=0.939 social†) | `scripts/run_one_model.py` |
 | Graph construction | Node set = unique concepts per participant | `scripts/math_graph_pipeline/` |
 | Cross-language alignment | Shared concept group IDs | `aligned_data.json` |
 | LDS computation | J(V_a,V_b) + J(E_a,E_b) / 2 | `docs/lds_formal_definition.md` |

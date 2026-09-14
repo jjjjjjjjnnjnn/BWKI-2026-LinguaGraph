@@ -383,7 +383,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="contrib-card">
       <div class="num">1</div>
       <h3 data-i18n="contrib1_title">A multilingual STEM knowledge graph</h3>
-      <p data-i18n="contrib1_desc">1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).</p>
+      <p data-i18n="contrib1_desc">1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939† Developing, machine-seeded; weighted overall 0.881).</p>
     </div>
     <div class="contrib-card">
       <div class="num">2</div>
@@ -414,7 +414,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 graph LR
     T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
     MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 525 Relations]
-    GL[92 Gold Labels<br/>F1 0.939 social 0.881 overall] -.->|Validate| KG
+    GL[92 Gold Labels<br/>F1 0.939† social 0.881 overall] -.->|Validate| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
     KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
@@ -951,7 +951,7 @@ graph LR
     </div>
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> <span data-i18n="limitations4_title">LLM Extraction Reliability</span></h3>
-      <p data-i18n="limitations4_desc">Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939 on social concepts, the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <p data-i18n="limitations4_desc">Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939† on social concepts (machine-seeded, Developing — blind audit pending), the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
@@ -1525,7 +1525,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Three structural metrics for knowledge organization',
     contrib3_title: 'Curriculum coverage analysis framework',
     contrib4_title: 'Empirical findings across 4 education systems',
-    contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939; weighted overall 0.881).',
+    contrib1_desc: '1,140+ concepts and 1,100+ direct relations across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and validated against 92 gold-standard annotations (social F1 = 0.939† Developing, machine-seeded; weighted overall 0.881).',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings_title: 'Findings',
     section_findings: 'Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals',
@@ -1899,7 +1899,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Drei strukturelle Metriken fuer Wissensorganisation',
     contrib3_title: 'Rahmen fuer Lehrplanabdeckungsanalyse',
     contrib4_title: 'Empirische Ergebnisse aus 4 Bildungssystemen',
-    contrib1_desc: '1.140+ Konzepte und 1.100+ direkte Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180 Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (sozial F1 = 0,939; gewichtet gesamt 0,881).',
+    contrib1_desc: '1.140+ Konzepte und 1.100+ direkte Beziehungen in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180 Lehrbüchern und validiert mit 92 Goldstandard-Annotationen (sozial F1 = 0,939† Developing, machine-seeded; gewichtet gesamt 0,881).',
     section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
     section_findings_title: 'Erkenntnisse',
     section_findings: 'Fünf Findings-Abschnitte mit zwölf nummerierten Ergebnissen (F1–F12): Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
@@ -2025,7 +2025,7 @@ const TRANSLATIONS = {
     contrib2_title: '知识组织的三项结构指标',
     contrib3_title: '课程覆盖分析框架',
     contrib4_title: '跨四个教育体系的实证发现',
-    contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939；加权总体 0.881）。',
+    contrib1_desc: '1,140+ 个概念和 1,100+ 条直接关系，涵盖数学、物理和化学三种语言——从 180 本教材中提取，经 92 个黄金标准标注验证（社会概念 F1 = 0.939† Developing，机器预提；加权总体 0.881）。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings_title: '研究发现',
     section_findings: '五个发现小节，十二项编号结果（F1–F12）：知识如何在学科、语言、教育体系和个人之间组织',
@@ -2147,7 +2147,7 @@ curr_explanations_title: '三种竞争性解释',
     limitations3_desc: '课程文件的粒度差异巨大：美国数学课程包含 2,124 个概念，而英国科学课程有 397 个（论文 §8：NRW 299 · UK 397 · US 2,124 · CN 87）。更高的粒度会机械地降低覆盖率得分。这通过按课程归一化部分缓解，但跨系统比较仍为近似。',
     limitations3_mit: '缓解措施：分析聚焦于体系内轨迹，而非绝对值',
     limitations4_title: 'LLM 提取可靠性',
-    limitations4_desc: '概念提取依赖于单一生产模型。尽管社会概念的 F1 = 0.939，但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
+    limitations4_desc: '概念提取依赖于单一生产模型。尽管社会概念的 F1 = 0.939†（机器预提，Developing，盲审待补），但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
     limitations4_mit: '缓解措施：92 个黄金标签确保可测量的质量边界',
     limitations5_title: '语言覆盖漏洞',
     limitations5_desc: '仅分析了三种语言（ZH, EN, DE）。这仅代表两个语系（汉藏语系、日尔曼语系）和一个教育传统聚类（西欧 + 东亚）。框架对罗曼语系、斯拉夫语系、阿拉伯语系等的适用性尚待测试。',
@@ -2261,7 +2261,7 @@ var METHOD_GRAPHS = {
 graph LR
     T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
     MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 525 Relations]
-    GL[92 Gold Labels<br/>F1 0.939 social 0.881 overall] -.->|Validate| KG
+    GL[92 Gold Labels<br/>F1 0.939† social 0.881 overall] -.->|Validate| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
     KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
@@ -2276,7 +2276,7 @@ graph LR
 graph LR
     T1[Schritt 1 Korpus §2.2<br/>68 Lehrbuecher ZH EN DE] --> MIMO[Schritt 2 Extraktion §2.3<br/>MIMO LLM Konzepte]
     MIMO --> KG[Schritt 3 Graph §2.4<br/>556 Konzepte 525 Relationen]
-    GL[92 Gold-Labels<br/>F1 0.939 sozial 0.881 gesamt] -.->|Validierung| KG
+    GL[92 Gold-Labels<br/>F1 0.939† sozial 0.881 gesamt] -.->|Validierung| KG
     KG --> CDS[Schritt 4 CDS §2.5<br/>Konzeptdichte]
     KG --> HDS[Schritt 4 HDS §2.5<br/>Hierarchietiefe]
     KG --> LDS[Schritt 4 LDS §2.5<br/>Sprachdivergenz]
@@ -2291,7 +2291,7 @@ graph LR
 graph LR
     T1[步骤1 语料 §2.2<br/>68 教材 ZH EN DE] --> MIMO[步骤2 抽取 §2.3<br/>MIMO LLM 概念]
     MIMO --> KG[步骤3 图谱 §2.4<br/>556 概念 525 关系]
-    GL[92 金标<br/>F1 0.939 社会 0.881 总体] -.->|验证| KG
+    GL[92 金标<br/>F1 0.939† 社会 0.881 总体] -.->|验证| KG
     KG --> CDS[步骤4 CDS §2.5<br/>概念密度]
     KG --> HDS[步骤4 HDS §2.5<br/>层次深度]
     KG --> LDS[步骤4 LDS §2.5<br/>语言差异]

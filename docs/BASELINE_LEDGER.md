@@ -28,6 +28,7 @@
 - 代码：`scripts/lds_c_compute.py:355-401`（默认 n_iter **200→1000**；p 值二项 SE 注释 `SE(p)=sqrt(p(1-p)/n)` 已加：p=0.08 在 n=200 时 SE≈0.019、n=1000 时 SE≈0.0086）；`build_report:419-481` 解耦（新增 `floor_iter/perm_iter` 参数 + CLI `--floor-iters/--perm-iters`，替代 legacy `max(200,iterations//5)` 钳制；显式 n_iter 的调用方 `lds_c_llm_analyze:190-192`/`lds_c_multi_model:96`/`design_effect:112`/`r3:71` 不受影响，签名兼容已冒烟验证）
 - 产物（未变）：`data/lds_c/lds_c_results_20260808.json:95-109` → p=0.08/1.0/1.0
 - 缺口：p=0.08 的 SE=0.019，95%CI [0.042,0.118] 跨 0.05 线 → **不得做显著性解读**（维持）；≥1000 置换重算 **blocked**（全量 LDS-C 重跑贵 + 写盘涉 `data/lds_c/`，B 组未执行，只做了 `--help`/单函数签名冒烟 + 37 个相关单测全绿）。
+- 默认路径漂移声明：已发表 p=0.08/1.0/1.0 仅在显式 `n_iter=200` 下复现；新默认（perm 1000 / floor 200）裸调用不再复现旧值 —— 复现有旧行为请显式传参。
 - 转正条件：跑 `python scripts/lds_c_compute.py --perm-iters 1000 --floor-iters 200` 并更新产物 JSON。
 
 ## §3 Human N=15 floor — needs_review（代码就绪，实验 blocked）
@@ -55,7 +56,7 @@
   - k=15：math **0.030±0.029** vs wiki **0.053±0.037**，gap **−0.023**
   - k=25：math **0.048±0.032** vs wiki **0.101±0.037**，gap **−0.053**
   - k=35：math **0.069±0.030** vs wiki **0.149±0.030**，gap **−0.080**
-  - 全尺寸参照（同跑输出）：math 0.556 vs wiki 0.200（注意：与 `p2_size_match.py` docstring 旧数 0.444/0.800 不符，旧数疑为过期数据版本，待 A 组核对；本行新数为当前提交数据实测）
+  - 全尺寸参照（同跑输出，2026-09-14 核对）：ZH-DE **LDS math 0.519 vs wiki 0.819**（J_node math 0.556 vs wiki 0.200；docstring 已按此重写：旧 0.444 系 node-only ablation ZH-DE 值 `figures_i18n_wave2.py:372`，旧 0.800 系过期 wiki 口径，已退役并在 docstring 注明出处）
 - 复现：`$env:PYTHONHASHSEED=0; python scripts/p2_size_match.py`（k=45/60/100 因 wiki 每语言 ≤47 节点自动跳过）
 - 结论：wiki>math、gap 全负，方向成立；点值 exact reproducibility 成立（守卫 + 排序冻结 + 双跑一致）。旧"跨进程抖 ±0.002"已消除。
 
@@ -79,7 +80,9 @@
 
 ## §10 Fig4 / Fig8 frozen figure values（2026-09-14 更新，B1/B2/B5 重跑，可引用绘图快照）
 - **Fig4**（`$env:PYTHONHASHSEED=0; python scripts/figures/fig4_null_model.py [--seeds "42,999,2026,7,1234"]` → `outputs/figures/fig4_null_model_data.csv` + `fig4_null_model{,_de,_zh}.png`）：Full 基线 **0.9336 / 0.9382 / 0.5188**（ZH-EN / DE-EN / ZH-DE；发表取整 0.934/0.938/0.519）；Structure Null 点值 **0.9571/0.9568/0.7154**（sorted 冻结，旧快照 0.9571/0.9546/0.7142 见 §1 差异说明）+ 5-seed 均值±SD **0.9562±0.0010 / 0.9555±0.0024 / 0.7170±0.0013**；Within-Lang floor 点值 0.9695/0.9744/0.9615 + 5-seed 均值 0.9700/0.9692/0.9682（±0.0061/0.0055/0.0085）；Label-Permute 点值 0.8407/0.8701/0.6704 + 5-seed 均值 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069；Mono Control 列已填（点值 0.9695/0.9615/0.9744，5-seed 均值 0.9700/0.9682/0.9692）。
-- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。
+- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
+- **fig_a7_3 语义**（2026-09-14）：`fig_a7_core.py` 改首行胜出 → fig_a7_3 取 legacy point（非 multiseed 均值）；EN/DE/ZH 三图已按此重建（`fig_a7_3_null_models{,_de,_zh}.png`）。
+- **档案声明**：`data/lds_c/**` 历史 JSON（如 `metric_robustness_20260811.json`、`multi_model_replication_202608*.json` 内 0.9546）保留冻结前值为档案，**不得引用**；引用以本台账 §1/§10 为准。
 
 ## 补实验优先级
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。

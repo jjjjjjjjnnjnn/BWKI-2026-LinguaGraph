@@ -65,7 +65,7 @@ Zur Absicherung haben wir eine Computersimulation mit 300 KI-generierten Antwort
 
 ### 2:00–2:30 — Die Qualitätssicherung (Trust)
 
-"Die Qualität der KI-Extraktion haben wir mit 92 manuell annotierten Goldlabels überprüft. Der Gesamt-F1-Wert beträgt 0,939 — das heißt, 94 von 100 Konzepten werden korrekt erkannt. Für die Hauptdomäne soziale Konzepte liegt die deutsche Extraktion bei F1=0,949, die chinesische bei 0,974.
+"Die Qualität der KI-Extraktion haben wir mit 92 Goldlabels überprüft: 20 hand-annotierte Mathe-Labels plus 72 maschinell vorextrahierte und menschlich angenommene Sozial-Labels. Der gewichtete Gesamt-F1 beträgt 0,881 — das heißt, etwa 88 von 100 Konzepten werden korrekt erkannt. Für die Hauptdomäne soziale Konzepte liegt die deutsche Extraktion bei F1=0,949, die chinesische bei 0,974. Ehrlichkeitshalber: Der Sozial-Wert 0,939 trägt ein Developing-Siegel — die 72 Labels wurden von derselben Modellfamilie vorextrahiert, ein unabhängiges Blind-Review läuft gerade.
 
 Ein Modellvergleich über 20 verschiedene KI-Modelle zeigt, dass qwen-plus (Alibaba Cloud) die beste Leistung erbringt."
 
