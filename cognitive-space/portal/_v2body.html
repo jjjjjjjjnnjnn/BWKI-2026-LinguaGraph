@@ -1,0 +1,171 @@
+<nav>
+  <div class="brand">LinguaGraph</div>
+  <a href="#home" data-i18n="nav_home">Top</a>
+  <a href="#validation" data-i18n="nav_validation">Evidence</a>
+  <a href="#findings" data-i18n="nav_findings">Findings</a>
+  <a href="#methodology" data-i18n="nav_method">Method</a>
+  <a href="#limitations" data-i18n="nav_limits">Limits</a>
+  <a href="#sources" data-i18n="nav_sources">Sources</a>
+  <a href="#curriculum" data-i18n="nav_curriculum">Curriculum</a>
+  <a href="#cognitivespace" data-i18n="nav_cogspace">3D Graph</a>
+  <a href="#paper" data-i18n="nav_paper">Paper</a>
+  <a href="#open-science" data-i18n="nav_open">Open Science</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" title="English">EN</button>
+    <button class="lang-btn" title="Deutsch">DE</button>
+    <button class="lang-btn" title="中文">ZH</button>
+  </div>
+</nav>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" alt="Enlarged"></div>
+<div class="tooltip" id="tooltip">Copied!</div>
+
+<!-- ==================== HERO (30 seconds) ==================== -->
+<section id="home" class="hero">
+  <div class="kicker" data-i18n="hero_kicker">BWKI 2026 · Multilingual AI Audit</div>
+  <h1 data-i18n="hero_title">How do different languages organize the <em>same knowledge?</em></h1>
+  <p class="subtitle" data-i18n="hero_sub">Textbook knowledge graphs (Chinese, German, English) measured against open-weight vector baselines — with every limit printed next to every number.</p>
+  <div class="hero stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;max-width:1000px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:10px;">
+    <div class="stat" style="padding:20px 16px;"><div class="stat-num">59/54</div><div class="stat-label" data-i18n="stat_rep">replication runs / models (file-truth 62/57/186)</div></div>
+    <div class="stat" style="padding:20px 16px;border-left:1px solid var(--border)"><div class="stat-num">556·525·219</div><div class="stat-label" data-i18n="stat_graph">nodes · relations · groups (238 rendered)</div></div>
+    <div class="stat" style="padding:20px 16px;border-left:1px solid var(--border)"><div class="stat-num">F1†</div><div class="stat-label" data-i18n="stat_f1">social ≈0.94 Developing · harness ≈0.65 · blind review pending</div></div>
+  </div>
+  <p class="scope-note" data-i18n="hero_scope">frozen = citable · placeholder = shape only, no significance · pending = not yet measured. Nothing on this page upgrades itself.</p>
+  <div class="ctas">
+    <a href="#validation" class="btn btn-solid" data-i18n="cta_evidence">See the evidence →</a>
+    <a href="#findings" class="btn btn-ghost" data-i18n="cta_findings">Findings A–E</a>
+    <a href="#cognitivespace" class="btn btn-ghost" data-i18n="cta_3d">3D Knowledge Graph</a>
+  </div>
+</section>
+
+<!-- ==================== VALIDATION (evidence first) ==================== -->
+<section id="validation" class="fade-in">
+  <div class="kicker" data-i18n="kick_evidence">Evidence</div>
+  <h2 class="section-title" data-i18n="validation_title">Validation</h2>
+  <p class="section-sub" data-i18n="validation_sub">Trust first: what was checked, on how much data, with which limits.</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="val_gold_t">Gold labels: 92</h3><p data-i18n="val_gold_d">20 hand-annotated math (Mature C9a) + 72 machine-seeded social (Developing C9b, agent-panel-reviewed, human-review pending).</p><div class="meta"><span class="tag tag-yellow" data-i18n="tag_developing">Developing</span></div></div>
+    <div class="card"><h3 data-i18n="val_bench_t">Extraction benchmark: 19 models</h3><p data-i18n="val_bench_d">F1 range 0.55–0.67, used only for extractor selection — never for language claims.</p></div>
+    <div class="card"><h3 data-i18n="val_roster_t">Replication roster: 59 + 26</h3><p data-i18n="val_roster_d">59 full runs (54 models, all ZH-DE significant) + 26 collecting (qwen-max n=26/30 parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.</p><div class="meta"><span class="tag tag-cyan">59/54/177</span> <span class="tag">62/57/186 file-truth</span></div></div>
+    <div class="card"><h3 data-i18n="val_margin_t">Margin: 59/59, p&lt;0.01</h3><p data-i18n="val_margin_d">500 permutations; 9 of 177 EN-involving tests n.s. West 11/11 (0.155; without luna 10/10, 0.148), CN 48/48 (0.130) — underpowered as vendor comparison.</p></div>
+  </div>
+</section>
+
+<!-- ==================== FINDINGS A–E ==================== -->
+<section id="findings" class="fade-in">
+  <div class="kicker" data-i18n="kick_findings">Findings</div>
+  <h2 class="section-title" data-i18n="findings_title">Findings A–E</h2>
+  <p class="section-sub" data-i18n="findings_sub">Five claims, each with its limit attached. Preliminary until stated otherwise.</p>
+  <div class="finding-card" style="border-left:4px solid var(--accent)">
+    <h3 data-i18n="fa_t">A · Density peaks early</h3>
+    <div class="lead" data-i18n="fa_lead">Curriculum graphs densify in middle school, then thin out (CDS 0.271 → 0.073, 3.7×).</div>
+    <p class="honesty" data-i18n="fa_frozen">Frozen snapshot: computed on the June-2026 dense pipeline (574-node generation, dense code path since lost). Kept frozen, never recomputed — see forensic notes.</p>
+  </div>
+  <div class="finding-card" style="border-left:4px solid var(--green)">
+    <h3 data-i18n="fb_t">B · Shallow hierarchies</h3>
+    <div class="lead" data-i18n="fb_lead">Concept depth ≤ 8 (math ≤ 6); 83% of concepts are hierarchy roots.</div>
+    <p class="honesty" data-i18n="fb_frozen">Frozen snapshot, same provenance as A.</p>
+  </div>
+  <div class="finding-card" style="border-left:4px solid #0e7490">
+    <h3 data-i18n="fc_t">C · Language separates structure</h3>
+    <div class="lead" data-i18n="fc_lead">Textbook LDS-K: zh-de 0.519 far below EN-involving ≈0.93 (0.934 / 0.938). The raw zh-de closeness was falsified as a label artifact (T1 decontamination 0.556 → 0.020).</div>
+    <details style="margin-top:12px"><summary class="mono" data-i18n="fc_tier_sum">Two-Tier control: what vectors (don't) show</summary>
+      <p style="margin-top:8px" data-i18n="fc_tier_d">Open-weight embeddings (nomic-embed-text-v1.5, 768 dims, 934 terms) compress all three pairs into 0.48–0.52 (spread 0.0445) and do not reproduce the textbook split (spread 0.419). Rank order only — never raw values. Vectors are the control baseline, never the evidence.</p>
+      <div class="meta"><span class="tag tag-cyan">Tier-1: 0.519 / 0.934 / 0.938</span> <span class="tag tag-blue">Tier-2: 0.4804 / 0.5249 / 0.4888</span></div>
+    </details>
+  </div>
+  <div class="finding-card" style="border-left:4px solid var(--yellow)">
+    <h3 data-i18n="fd_t">D · Systems differ in coverage</h3>
+    <div class="lead" data-i18n="fd_lead">Textbook–curriculum coverage varies widely — granularity (safest reading) and governance (hypothesis) both fit.</div>
+  </div>
+  <div class="finding-card" style="border-left:4px solid var(--purple)">
+    <h3 data-i18n="fe_t">E · Humans can't separate it (between-subject)</h3>
+    <div class="lead" data-i18n="fe_lead">N=15 falsifies ΔLDS &gt; 0 between-subject (human LDS-C ≈ split-half floor); the LLM within-subject margin (+0.08–0.09) shows the signal exists. Earlier simulation comparison withdrawn.</div>
+    <details style="margin-top:12px"><summary class="mono" data-i18n="fe_probe_sum">Humanities falsification probe (one-way only)</summary>
+      <p style="margin-top:8px" data-i18n="fe_probe_d">An independent humanities slice can weaken the "curriculum-specific" claim but never confirm the math result. Pass: math splits, humanities doesn't → curriculum-specific. Alarm: both split → downgrade to "shared cross-domain". Current: pilot N=8 (0.704/0.727/0.751) placeholder — no pass/alarm call.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ==================== METHODOLOGY ==================== -->
+<section id="methodology" class="fade-in">
+  <div class="kicker" data-i18n="kick_method">Method</div>
+  <h2 class="section-title" data-i18n="method_title">Methodology in five steps</h2>
+  <p class="section-sub" data-i18n="method_sub">Extract → align → measure (LDS) → null-test (500 permutations) → replicate (59 models).</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="m1_t">1 · Extract</h3><p data-i18n="m1_d">68 textbook files → 741 concepts / 665 relations, temperature=0, multi-model audit.</p></div>
+    <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p></div>
+    <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.934 / 0.938.</p></div>
+    <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p></div>
+    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): 42 DashScope, 8 bare-hosts, 2 Kilo, Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
+  </div>
+  <p class="honesty" data-i18n="method_prov">Provenance: HF model SHAs are today's HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).</p>
+</section>
+
+<!-- ==================== LIMITATIONS ==================== -->
+<section id="limitations" class="fade-in">
+  <div class="kicker" data-i18n="kick_limits">Limits</div>
+  <h2 class="section-title" data-i18n="limits_title">Limitations</h2>
+  <p class="section-sub" data-i18n="limits_sub">Every limit, before the conclusions. No silent upgrades.</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="l1_t">Chunking boundaries</h3><p data-i18n="l1_d">Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.</p></div>
+    <div class="card"><h3 data-i18n="l2_t">Hard-match penalty</h3><p data-i18n="l2_d">Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.</p></div>
+    <div class="card"><h3 data-i18n="l3_t">Sparse annotation</h3><p data-i18n="l3_d">Human pilot N=8 is a shape placeholder; powered design is N=30. 219 aligned vs 359 unaligned groups.</p></div>
+    <div class="card"><h3 data-i18n="l4_t">temperature=0 is not deterministic</h3><p data-i18n="l4_d">Ensemble intra self-agreement only 0.59–0.73 (≈27–41% run disagreement). Single-run values are snapshots with fluctuation bands.</p></div>
+    <div class="card"><h3 data-i18n="l5_t">Snapshot instability</h3><p data-i18n="l5_d">Vote totals mix two threshold scales and must be shown split; inter means across refills are not comparable — no trend claims.</p></div>
+    <div class="card"><h3 data-i18n="l6_t">Small samples</h3><p data-i18n="l6_d">92 gold labels suffice for overall F1, not for per-language per-domain splits. German math F1 (0.506) has high variance.</p></div>
+  </div>
+</section>
+
+<!-- ==================== SOURCES ==================== -->
+<section id="sources" class="fade-in">
+  <div class="kicker" data-i18n="kick_sources">Sources</div>
+  <h2 class="section-title" data-i18n="sources_title">Sources</h2>
+  <p class="section-sub" data-i18n="sources_sub">204 textbook titles: 32 math · 83 physics · 89 chemistry. Full table in v1 archive.</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="src_math_t">Mathematics · 32</h3><p data-i18n="src_math_d">CN / DE / UK / US textbooks, section-level JSON.</p></div>
+    <div class="card"><h3 data-i18n="src_phys_t">Physics · 83</h3><p data-i18n="src_phys_d">Exploratory stream; physics LDS as discipline control.</p></div>
+    <div class="card"><h3 data-i18n="src_chem_t">Chemistry · 89</h3><p data-i18n="src_chem_d">Exploratory stream; chemistry LDS as discipline control.</p></div>
+  </div>
+</section>
+
+<!-- ==================== CURRICULUM ==================== -->
+<section id="curriculum" class="fade-in">
+  <div class="kicker" data-i18n="kick_curr">Curriculum</div>
+  <h2 class="section-title" data-i18n="curr_title">Curriculum analysis</h2>
+  <p class="section-sub" data-i18n="curr_sub">Coverage: NRW 12.7% → CN 95.4%. Three competing explanations — granularity (safest) fits best.</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="curr_a_t">A · Granularity ✕</h3><p data-i18n="curr_a_d">Finer-grained standards list more concepts — rejected as sole cause.</p></div>
+    <div class="card"><h3 data-i18n="curr_b_t">B · Governance ✓</h3><p data-i18n="curr_b_d">Centralized systems cover more — hypothesis, paper §8.6.</p></div>
+    <div class="card"><h3 data-i18n="curr_c_t">C · Division !</h3><p data-i18n="curr_c_d"> tracked vs comprehensive splits — open question.</p></div>
+  </div>
+</section>
+
+<!-- ==================== 3D GRAPH ==================== -->
+<section id="cognitivespace" class="fade-in" style="text-align:center">
+  <div class="kicker" data-i18n="kick_cs">Explore</div>
+  <h2 class="section-title" data-i18n="cs_title">Interactive CognitiveSpace</h2>
+  <p class="section-sub" style="margin-left:auto;margin-right:auto" data-i18n="cs_sub">Mathematics subgraph: 556 nodes · 238 rendered links (of 525) · 219 groups.</p>
+  <div class="ctas" style="justify-content:center"><a href="../web/index.html" class="btn btn-solid" data-i18n="cs_open">Open the 3D graph →</a></div>
+</section>
+
+<!-- ==================== PAPER ==================== -->
+<section id="paper" class="fade-in">
+  <div class="kicker" data-i18n="kick_paper">Paper</div>
+  <h2 class="section-title" data-i18n="paper_title">Paper</h2>
+  <p class="section-sub" data-i18n="paper_sub">Nine core chapters (~161KB) + PDF (243KB). Appendix W is exploratory and outside the review evidence.</p>
+  <div class="ctas"><a href="../docs/submission/LinguaGraph_BWKI2026.pdf" class="btn btn-solid" data-i18n="paper_pdf">Download PDF</a></div>
+</section>
+
+<!-- ==================== OPEN SCIENCE ==================== -->
+<section id="open-science" class="fade-in">
+  <div class="kicker" data-i18n="kick_open">Open Science</div>
+  <h2 class="section-title" data-i18n="open_title">Open Science</h2>
+  <p class="section-sub" data-i18n="open_sub">Code, data, figures — and contact.</p>
+  <div class="card-grid">
+    <div class="card"><h3 data-i18n="open_code_t">Code</h3><p data-i18n="open_code_d">84 pytest suite; reproduction guide in submission docs; weight vectors via GitHub Release.</p></div>
+    <div class="card"><h3 data-i18n="open_data_t">Dataset</h3><p data-i18n="open_data_d">68 math extractions + lds_c measurements; PII excluded from the submission package.</p></div>
+    <div class="card"><h3 data-i18n="open_contact_t">Contact</h3><p data-i18n="open_contact_d">Via school supervisor (see ethics consent). Reviews and second ratings welcome.</p></div>
+  </div>
+  <p class="scope-note">LinguaGraph · BWKI 2026 · <span data-i18n="footer_note">Full detail table in the v1 archive.</span> <a href="index.v1-20260916.html">v1</a></p>
+</section>
