@@ -11,7 +11,7 @@
 |---|-------------|--------|----------------|--------|
 | 1 | **Projektdokumentation** (Plattform-Fragen) | 🟡 Final-Entwürfe in `submission/final/`; Plattform-Felderabgleich offen | Du | 9/13 |
 | 2 | **Code** (lauffähig + strukturiert) | 🟡 Pipeline ✅; Guide ✅ (84 tests); Reproduktions-Smoke-Test offen | Du | 9/10 |
-| 3 | **Video-Pitch** (2–4 Min) | 🔴 Skript v2 fertig; **nicht aufgenommen** (separater Workflow) | Du | 9/13 |
+| 3 | **Video-Pitch** (2–4 Min) | 🟢 4K-Master + EN/ZH-Subs + DE/EN-srt (09-12, ftyp-verifiziert); Narrativ-Abgleich vs v26 offen | Du | 9/13 |
 
 ---
 
@@ -28,15 +28,15 @@
 - [x] Datasets/Modelle/Frameworks offengelegt (Code-Guide §3 + declaration_of_support.md)
 - [x] PII/API-Keys von Einreichung ausgeschlossen (vermerkt)
 - [x] README enthält BWKI-Reproduktionspfad (Project Structure + Quick Start)
-- [ ] `requirements.txt` Install-Smoke-Test (frisch installieren + pytest — bis 9/10)
-- [ ] CI-Erstlauf auf GitHub Actions prüfen (`.github/workflows/ci.yml`, neu)
+- [x] `requirements.txt` Install-Smoke-Test (deps-import-ok + pytest 84 green 2026-09-16; frische Venv-Installation ausstehend, optional)
+- [ ] CI-Erstlauf auf GitHub Actions prüfen (`.github/workflows/ci.yml` vorhanden; läuft erst bei Push — origin/master 15 Commits zurück, Push-Entscheidung beim User)
 
 ## Bestandteil 3: Video-Pitch (separater Workflow — siehe `submission/pitch/README.md`)
 
 - [x] `docs/video_script.md` v2 (AI-Audit-Framing, ~3 Min, DE-Narration + EN-Untertitel, Fakten-Check-Tabelle)
 - [x] Storyboard + Fakten-Check (v0.13.2) in `submission/pitch/README.md`
-- [ ] **Aufnahme**: Screen-Recording der Konzeptgraphen + LDS-Balken + Treiberliste + Divergenzbericht-Mockup
-- [ ] Schnitt auf 2–4 Min · 1080p · H.264
+- [x] **Aufnahme**: vorhanden seit 09-12 (`LinguaGraph_BWKI2026_Pitch_4K.mp4` 15MB ftyp-verifiziert + subs_en/subs_zh + subtitles_de/en.srt); Narrativ-Abgleich vs v26-Paper ausstehend
+- [x] Schnitt 2–4 Min · 1080p · H.264 (4K-Master + Untertitel-Varianten vorhanden)
 - [ ] Musik/Assets-Lizenz dokumentieren (falls verwendet)
 - [ ] `submission/pitch/assets/` beschaffen (Screenshots, LDS-Diagramm, Mockup)
 
