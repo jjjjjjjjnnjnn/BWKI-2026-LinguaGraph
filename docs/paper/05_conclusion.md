@@ -60,7 +60,7 @@ Die Studie hat fünf wesentliche Einschränkungen:
 2. **Stichprobengröße und Design der menschlichen Validierung**: Die erweiterte Humanstudie (N=15, 6 DE · 6 ZH · 3 EN) in einem Between-Subject-Design zeigt, dass Teilnehmervariabilität die LDS-C dominiert — sprachgetriebene Divergenz ist von individueller Variabilität nicht trennbar. Eine populationsbezogene Aussage erfordert ein Within-Subject-Design oder N ≥ 30 pro Sprachgruppe.
 3. **Umfang des Nullmodells**: Das graderhaltende Nullmodell ist konservativ — es testet Kantenanordnung jenseits der Gradstruktur, aber nicht, ob die Gradstruktur selbst sprachbeeinflusst ist.
 4. **Lehrplanvergleich**: Der Coverage Score verwendet keyword-basiertes Matching; zukünftige Versionen sollten semantische Alignierung integrieren.
-5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt (Batch A 20 hand-annotiert, **Mature (C9a)**; Batch B 72 machine-seeded/human-accepted, **Developing (C9b)**, 72er-Blind-Review ausstehend) liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
+5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt (Batch A 20 hand-annotiert, **Mature (C9a)**; Batch B 72 machine-seeded/human-accepted, **Developing (C9b)**, agent-panel-reviewed (verdict maintain, human-review pending)) liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
 
 ### 9.6 Zukünftige Arbeit
 

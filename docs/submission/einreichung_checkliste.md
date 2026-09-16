@@ -43,7 +43,7 @@
 ## Bestandteil 4 (Supporting): Wissenschaftliche Arbeit → PDF
 
 - [x] Narrative reframed: Abstract + Einleitung + Schlussfolgerung + 3-Schlussfolgerungen (AI-Audit-Framing) ✅
-- [x] **PDF-Assemblierung**: `scripts/build_paper_pdf.py` (fpdf2) → `docs/submission/` + `submission/final/` + `_deploy/docs/submission/` (drei Orte, Bytes-identisch; Stand 2026-09-14: 235200B/36p) ✅
+- [x] **PDF-Assemblierung**: `scripts/build_paper_pdf.py` (fpdf2) → `docs/submission/` + `submission/final/` + `_deploy/docs/submission/` (drei Orte, Bytes-identisch; Stand 2026-09-16: 242583B, inkl. agent-panel-Wording) ✅
 - [ ] Formatprüfung (Konsistenz der Zahlen, Diagramme, Referenzen) — bis 9/13
 - **PDF-Regel (ab 2026-09-13, kein erneuter Drift)**: jede `docs/paper/*`-Änderung → `python scripts/build_paper_pdf.py` + `Copy-Item docs/submission/LinguaGraph_BWKI2026.pdf submission/final/LinguaGraph_BWKI2026.pdf -Force` + `Copy-Item docs/submission/LinguaGraph_BWKI2026.pdf _deploy/docs/submission/LinguaGraph_BWKI2026.pdf -Force` → Commit-Message `PDF rebuilt XXXXB/YYp` (Format wie v22-pdf).
 - [x] Manifest-Zahlen abgeglichen (556/525/219 SSOT, v0.13.2) ✅
