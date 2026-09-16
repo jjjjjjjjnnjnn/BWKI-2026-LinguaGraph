@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero_zh.png" alt="研究门户——实拍截图" width="49%"></a>
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview_zh.png" alt="STEAM总览——三学科融合3D" width="49%"></a>
-  <br><sub>左：研究门户 · 右：STEAM总览（1,143节点 · 839边，无跨学科桥）——点击直达 live</sub>
+  <br><sub>左：研究门户 · 右：STEAM总览（1,143节点 · 834边，无跨学科桥）——点击直达 live</sub>
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -78,7 +78,7 @@
 | 入口 | 内容 | 适合谁 |
 |-------|--------------|----------|
 | [🧠 研究门户](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | 发现 F1–F12、复刻名录（**59/54/177**）、边际星系图、验证区 | **评委与审稿人——从这里开始** |
-| [🌐 STEAM 总览](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | 三学科并置 3D 图（1,143 节点 · 839 边，无跨学科桥）+ 对比面板 | 跨学科对比 |
+| [🌐 STEAM 总览](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | 三学科并置 3D 图（1,143 节点 · 834 边，无跨学科桥）+ 对比面板 | 跨学科对比 |
 | [📄 论文（PDF）](submission/final/LinguaGraph_BWKI2026.pdf) | 论文全文，冻结图表 + 数值 | 学术阅读、引用 |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | 交互式 3D 知识图谱（1,143 概念） | 现场演示、观众 |
 | [`submission/final/`](submission/final/) | BWKI 提交包（平台回答、披露、代码指南） | 竞赛提交 |
@@ -148,14 +148,14 @@
 
 | 学科 | 概念 | 关系 | 教材 | 语言 | 课程覆盖率 |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **数学** | 556 | 525 直接（+约3000条传递） | 68（32 图内引用） | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **数学** | 556 | 517 直接（+约3000条传递） | 68（32 图内引用） | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **物理** | 367 | 386 | 83 书名（96 引用） | ZH/EN/DE | NRW 覆盖暂无 |
 | **化学** | 220 | 215 | 89 书名 | ZH/EN/DE | NRW 36% |
 | **总计** | **1,143** | **1,100+ 直接** | **204** | **3 种语言** | **4 个教育体系** |
 
 > **计数口径（2026-09-12 冻结）：**数学三层——**68** 输入语料册数（75 JSON 提取文件，含章节拆分）/ **72** 原始馆藏书名（去重前目录）/ **32** 图内引用书名（`source_references`，唯一可引用层）。书名总数 **204 = 32（数学）+ 83（物理）+ 89（化学）** = 门户 `#sources`。物理 367/386 含 Sensor 节点（`physics_em_传感器` + 3 条 requires 链接）；化学 220/215 为回填后基线（218+2，0 悬空）。
 
-> SSOT：数学图谱数字来自 `manifest.json`（556 节点 / 525 直接关系 / 219 三语组）。物理/化学数字来自旧管线（见 `docs/review/rnd_project_review_20260811.md` §7）。完整口径表：`docs/SSOT-web.md`（口径冻结）。
+> SSOT：数学图谱数字来自 `manifest.json`（556 节点 / 517 直接关系 / 219 三语组）。物理/化学数字来自旧管线（见 `docs/review/rnd_project_review_20260811.md` §7）。完整口径表：`docs/SSOT-web.md`（口径冻结）。
 
 ---
 
@@ -181,8 +181,8 @@
 |---|---------|----------|--------|
 | **F1** | CDS 在**初中**达到峰值（0.271），而非小学 | 在中文、英文、德文中独立确认 | 挑战"知识随阶段增长而变密"的假设 |
 | **F2** | **密度下降 3.7 倍**从初中到高中 | 0.271 → 0.073；概念数量 4.2 倍 | 整合枢纽后的课程多样化 |
-| **F3** | HDS ≤ **8**（均值 0.40）；83% 的概念是根节点 | 对 525 条直接关系进行 BFS（+约3000条传递关系） | 数学是一个浅层网络，而非深层树状结构 |
-| **F4** | **LDS-K 揭示异质性趋同**：中德 (0.519) 趋同；中英 (0.934)、德英 (0.938) 接近噪声底线 | 教材图直接计算（冻结值：0.9336/0.9382/0.5188，`outputs/figures/reproduce_lds_binary.log`） | 知识结构 LDS 与表层语言预期不一致——但 Null Model（F5）证伪了语言解读；多数数学节点是对齐标签产物（见 `docs/p2_methodology_rechecks.md`） |
+| **F3** | HDS ≤ **8**（均值 0.40）；83% 的概念是根节点 | 对 517 条直接关系进行 BFS（+约3000条传递关系） | 数学是一个浅层网络，而非深层树状结构 |
+| **F4** | **LDS-K 揭示异质性趋同**：中德 (0.519) 趋同；中英 (0.933)、德英 (0.938) 接近噪声底线 | 教材图直接计算（冻结值：0.9330/0.9378/0.5190（2026-09-16 重冻，Δ≤0.001），`outputs/figures/reproduce_lds_binary.log`） | 知识结构 LDS 与表层语言预期不一致——但 Null Model（F5）证伪了语言解读；多数数学节点是对齐标签产物（见 `docs/p2_methodology_rechecks.md`） |
 | **F5** | LDS 与**话题相关**；**Null Model** 确认所有语对的 Full < Structure | 语对内部差异约 0.2；Full LDS-K=0.73, Structure LDS-K=0.77 | 跨语言差异因知识领域而异；分类本身解释了大部分方差 |
 | **F6** | **物理**在**小学**达到峰值（0.222），数学在初中（0.271） | 367 个物理概念，3 种语言 | 两者都遵循"早期整合，后期分化"的模式 |
 | **F7** | 物理的前提知识链**深 2.1 倍** | HDS 均值 0.85 对比 0.40 | 物理知识更具累积性和顺序性 |
@@ -223,7 +223,7 @@ python scripts/figures/fig8_lds_decontamination.py
 
 ### 方法论五步（参见 `docs/paper/02_methodology.md` §§2.1–2.5）
 1. **教材语料**——68 册数学（+ 物理 367 节点 / 化学 220 节点图），中/英/德
-2. **概念提取（MIMO）**——结构化 LLM 提示词 → 75 JSON 文件 → 556 概念、525 关系
+2. **概念提取（MIMO）**——结构化 LLM 提示词 → 75 JSON 文件 → 556 概念、517 关系
 3. **图构建与融合**——合并 → 去重（556）→ 有向图（+约3000条传递边）
 4. **跨语言对齐**——30 共享 ID → 219 三语组（39%）→ CDS/HDS/LDS/CS 指标
 5. **验证与证伪**——92 黄金标注、N=15 人类研究、零模型套件、T1 去污染
@@ -260,7 +260,7 @@ python scripts/figures/fig8_lds_decontamination.py
 ├── research_lab/         # 沙盒实验（gitignored skills/）
 ├── release/              # 不可变快照（manifest + data.js + 校验和）
 ├── freeze/               # 冻结调研样本（不可变）
-└── manifest.json         # SSOT 数字（556/525/219）
+└── manifest.json         # SSOT 数字（556/517/219）
 ```
 
 ---

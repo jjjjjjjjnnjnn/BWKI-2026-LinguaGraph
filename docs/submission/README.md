@@ -20,7 +20,7 @@
 
 ## Zahlen (SSOT `manifest.json`, Build 2026-09-08)
 
-- 556 Konzepte / 525 direkte Relationen (+~3000 transitiv) / 219 trilinguale Gruppen (39,4 %)
+- 556 Konzepte / 517 direkte Relationen (+~3000 transitiv) / 219 trilinguale Gruppen (39,4 %)
 - Physik 367 / Chemie 220 (Legacy-Pipelines) → gesamt 1.140+ Konzepte
 - Gold: 92 (sozial F1 0,939; gewichtet gesamt 0,881)
 - Human: N=15 (Between, Δ≈0) + LLM-within (Signal)

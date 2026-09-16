@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero_de.png" alt="Forschungsportal — Live-Screenshot" width="49%"></a>
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview_de.png" alt="STEAM-Überblick — alle Fächer fusioniert in 3D" width="49%"></a>
-  <br><sub>Links: Forschungsportal · Rechts: STEAM-Überblick (1.143 Knoten · 839 Kanten, keine Brücken) — klicken zum Öffnen</sub>
+  <br><sub>Links: Forschungsportal · Rechts: STEAM-Überblick (1.143 Knoten · 834 Kanten, keine Brücken) — klicken zum Öffnen</sub>
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -78,7 +78,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 | Einstieg | Was es gibt | Für wen |
 |-------|--------------|----------|
 | [🧠 Forschungsportal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Erkenntnisse F1–F12, Replikations-Roster (**59/54/177**), Margin-Galaxie, Validierung | **Jury & Reviewer — hier starten** |
-| [🌐 STEAM-Überblick](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | Alle 3 Fächer nebeneinander in einem 3D-Graphen (1.143 Knoten · 839 Kanten, keine Brücken) + Vergleichs-Panel | Fächerübergreifender Vergleich |
+| [🌐 STEAM-Überblick](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | Alle 3 Fächer nebeneinander in einem 3D-Graphen (1.143 Knoten · 834 Kanten, keine Brücken) + Vergleichs-Panel | Fächerübergreifender Vergleich |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Vollständiges Paper, eingefrorene Abbildungen + Werte | Akademische Lektüre, Zitation |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interaktiver 3D-Wissensgraph (1.140+ Konzepte) | Live-Demo, Publikum |
 | [`submission/final/`](submission/final/) | BWKI-Einreichungspaket (Antworten, Disclosure, Code-Guide) | Wettbewerbseinreichung |
@@ -148,14 +148,14 @@ Vollständige Ergebnisse: [`data/lds_c/llm_subject/multi_model_replication_20260
 
 | Fach | Konzepte | Beziehungen | Lehrbücher | Sprachen | Lehrplanabdeckung |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematik** | 556 | 525 direkt (+~3000 transitiv) | 68 (32 im Graph zitiert) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematik** | 556 | 517 direkt (+~3000 transitiv) | 68 (32 im Graph zitiert) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physik** | 367 | 386 | 83 Titel (96 Refs) | ZH/EN/DE | NRW-Abdeckung n. v. |
 | **Chemie** | 220 | 215 | 89 Titel | ZH/EN/DE | NRW 36% |
 | **Gesamt** | **1.140+** | **1.100+ direkt** | **204** | **3 Sprachen** | **4 Bildungssysteme** |
 
 > **Zählkonvention (eingefroren 2026-09-12):** Mathe dreistufig — **68** Input-Korpus-Bände (75 JSON-Extraktionsdateien inkl. Kapitelsplits) / **72** Rohbibliothek-Titel (Vordedup-Katalog) / **32** im Graph zitierte Titel (`source_references`, einzige zitierfähige Schicht). Titel gesamt **204 = 32 (Mathe) + 83 (Physik) + 89 (Chemie)** = Portal `#sources`. Physik 367/386 inkl. Sensorknoten (`physics_em_传感器` + 3 Requires-Links); Chemie 220/215 ist die Post-Backfill-Baseline (218+2, 0 dangling).
 
-> SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 525 direkte Relationen / 219 trilinguale Gruppen). Physik-/Chemiezahlen aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7). Vollständige Kalibertabelle: `docs/SSOT-web.md` (Portaleinfrierung).
+> SSOT: Mathe-Graphenzahlen aus `manifest.json` (556 Knoten / 517 direkte Relationen / 219 trilinguale Gruppen). Physik-/Chemiezahlen aus Legacy-Pipelines (s. `docs/review/rnd_project_review_20260811.md` §7). Vollständige Kalibertabelle: `docs/SSOT-web.md` (Portaleinfrierung).
 
 ---
 
@@ -181,7 +181,7 @@ Vollständige Ergebnisse: [`data/lds_c/llm_subject/multi_model_replication_20260
 |---|---------|----------|--------|
 | **F1** | CDS erreicht Höhepunkt in **Mittelstufe** (0,271), nicht in Grundschule | Unabhängig bestätigt in ZH, EN, DE | Stellt die Annahme "Wissen wird mit der Stufe dichter" in Frage |
 | **F2** | **3,7× Dichteabfall** von Mittel- zur Oberstufe | 0,271 → 0,073; Konzeptanzahl 4,2× | Lehrplandiversifizierung nach Integrationsknotenpunkt |
-| **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 525 direkten Relationen (+~3000 transitiv) | Mathematik ist ein flaches Netz, kein tiefer Baum |
+| **F3** | HDS ≤ **8** (Mittel 0,40); 83% der Konzepte sind Wurzeln | BFS auf 517 direkten Relationen (+~3000 transitiv) | Mathematik ist ein flaches Netz, kein tiefer Baum |
 | **F4** | **LDS-K zeigt heterogene Konvergenz**: ZH-DE (0,519) konvergiert; ZH-EN (0,934), DE-EN (0,938) nahe Rauschschwelle | Direkte Berechnung auf Lehrbuchgraphen (Freeze: 0.9336/0.9382/0.5188, `outputs/figures/reproduce_lds_binary.log`) | Wissensstruktur-LDS weicht von oberflächlichen Spracherwartungen ab — aber Nullmodell (F5) falsifiziert die Sprachlesart; Matheknoten teils Alignierungs-Artefakte (s. `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS ist **themenabhängig**; **Nullmodell** bestätigt Full < Structure für alle Paare | ~0,2 Variation innerhalb der Paare; Full LDS-K=0,73, Structure LDS-K=0,77 | Sprachübergreifende Divergenz variiert nach Wissensdomäne; Taxonomie allein erklärt den Großteil der Varianz |
 | **F6** | **Physik** erreicht Höhepunkt in **Grundschule** (0,222), Mathe in Mittelstufe (0,271) | 367 Physikkonzepte, 3 Sprachen | Beide folgen dem Muster "früh integrieren, spät divergieren" |
@@ -223,7 +223,7 @@ Produkte: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`
 
 ### Methodik in fünf Schritten (vgl. `docs/paper/02_methodology.md` §§2.1–2.5)
 1. **Lehrbuchkorpus** — 68 Mathebände (+ Physik-367-Knoten- / Chemie-220-Knoten-Graphen), ZH/EN/DE
-2. **Konzeptextraktion (MIMO)** — strukturierte LLM-Prompts → 75 JSON-Dateien → 556 Konzepte, 525 Relationen
+2. **Konzeptextraktion (MIMO)** — strukturierte LLM-Prompts → 75 JSON-Dateien → 556 Konzepte, 517 Relationen
 3. **Graphaufbau und Fusion** — mergen → dedup (556) → gerichteter Graph (+~3000 transitive Kanten)
 4. **Cross-linguale Alignierung** — 30 geteilte IDs → 219 trilinguale Gruppen (39%) → CDS/HDS/LDS/CS-Metriken
 5. **Validierung & Falsifikation** — 92 Goldlabels, N=15-Humanstudie, Nullmodell-Suite, T1-Dekontamination
@@ -260,7 +260,7 @@ Eigener Beitrag: Design, LDS-Definition, alle Findings-/Falsifikationsanalysen. 
 ├── research_lab/         # Sandbox-Experimente (gitignorierte skills/)
 ├── release/              # Unveränderlicher Snapshot (Manifest + data.js + Checksums)
 ├── freeze/               # Eingefrorene Survey-Samples (unveränderlich)
-└── manifest.json         # SSOT-Zahlen (556/525/219)
+└── manifest.json         # SSOT-Zahlen (556/517/219)
 ```
 
 ---

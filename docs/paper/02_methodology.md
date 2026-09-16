@@ -19,7 +19,7 @@ Pipeline B (Lehrbuch-Wissensgraph):
 Lehrbuchkorpus → MIMO Extraktion → Alignierung → CognitiveSpace 3D
 ```
 
-Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 556 Konzepte, 525 Relationen.
+Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 556 Konzepte, 517 Relationen.
 
 ### 2.2 Lehrbuchkorpus (Pipeline B)
 
@@ -71,7 +71,7 @@ Die Roh-Extraktionen durchlaufen eine mehrstufige Zusammenführung (Dedup + Alig
 
 **Step 2 — Deduplizierung**: Konzepte mit identischer ID oder nachgewiesener Synonymie werden fusioniert. Nach der Deduplizierung verbleiben **556 eindeutige Konzepte**.
 
-**Step 3 — Relationsextraktion**: Aus den extrahierten Abhängigkeiten wird ein gerichteter Graph konstruiert. Zusätzlich zu den 525 direkt extrahierten Relationen werden ~3000 transitive Inferenzen zur Sicherstellung der Konnektivität hinzugefügt.
+**Step 3 — Relationsextraktion**: Aus den extrahierten Abhängigkeiten wird ein gerichteter Graph konstruiert. Zusätzlich zu den 517 direkt extrahierten Relationen werden ~3000 transitive Inferenzen zur Sicherstellung der Konnektivität hinzugefügt.
 
 ### 2.5 Sprachübergreifende Alignierung
 

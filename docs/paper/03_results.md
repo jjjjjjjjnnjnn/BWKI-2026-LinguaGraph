@@ -19,7 +19,7 @@ Die Extraktion und Zusammenführung (Alignierungs-Labels, P2-vorbehalten) der 68
 | Metrik | Wert |
 |--------|------|
 | Gesamtkonzepte | 556 (eindeutige Konzepte) |
-| Gesamtrelationen | 525 (direkte Relationen) |
+| Gesamtrelationen | 517 (direkte Relationen) |
 | Lehrbuchquellen | 68 (39 ZH + 18 EN + 11 DE) |
 | Bildungsstufen | 4 (Grundschule → Universität) |
 | Dichte | 0,0015 |
@@ -58,7 +58,7 @@ Die relativ hohe exklusive ZH-Abdeckung (21,6 %) ist auf die spezifischeren chin
 
 Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
-1. **Konnektivität**: Der Graph ist dünn verknüpft (238 Links auf 556 Knoten, Dichte 0,0015, 388 Zusammenhangskomponenten): 381 Knoten (68,5 %) haben keine ausgehenden Kanten; die größte Komponente umfasst 121 Knoten. Die Struktur folgt einem Kern-Peripherie-Muster mit wenigen zentralen Ankerkonzepten und vielen peripheren Einträgen.
+1. **Konnektivität**: Der Graph ist dünn verknüpft (233 Links auf 556 Knoten, Dichte 0,0015, 388 Zusammenhangskomponenten): 381 Knoten (68,5 %) haben keine ausgehenden Kanten; die größte Komponente umfasst 121 Knoten. Die Struktur folgt einem Kern-Peripherie-Muster mit wenigen zentralen Ankerkonzepten und vielen peripheren Einträgen.
 
 2. **Hierarchische Struktur**: Grundschulkonzepte haben einen hohen Zentralitätsgrad und dienen als Anker für zahlreiche Oberstufen- und Universitätskonzepte. Dies bestätigt das erwartete "Knowledge Core → Expansion"-Muster.
 
@@ -78,7 +78,7 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 ### 3.6 CognitiveSpace-Screenshot
 
 [Abbildung: CognitiveSpace-3D-Visualisierung — 556 Konzepte in konzentrischen Kugelschalen,
-vier farbcodierte Bildungsstufen, sichtbare 238 Links (von 525 Relationen) als blaue Verbindungslinien]
+vier farbcodierte Bildungsstufen, sichtbare 233 Links (von 517 Relationen) als blaue Verbindungslinien]
 
 ### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
 
@@ -86,7 +86,7 @@ Die Pipeline-basierte LDS-K Analyse der Mathematik-Lehrbücher (556 Konzepte, 3 
 
 | Sprachpaar | LDS-K |
 |:----------:|:-----:|
-| ZH-EN | 0.934 |
+| ZH-EN | 0.933 |
 | DE-EN | 0.938 |
 | ZH-DE | 0.519 |
 
@@ -94,9 +94,9 @@ Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbü
 
 | Bedingung | ZH-EN | DE-EN | ZH-DE |
 |:----------|:-----:|:-----:|:-----:|
-| Full (LDS-K baseline) | 0.934 | 0.938 | 0.519 |
+| Full (LDS-K baseline) | 0.933 | 0.938 | 0.519 |
 | Structure Null (degree-preserving) | **0.957** | **0.957** | **0.717** |
-| Node-Permuted Null | 0.934 | 0.938 | 0.519 |
+| Node-Permuted Null | 0.933 | 0.938 | 0.519 |
 | Complete Random | 1.000 | 1.000 | 1.000 |
 
 **Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare (frozen v3). Unter degree-preserving Randomisierung sind die randomisierten Graphen deskriptiv unterschiedlicher als die echten Graphen. Lesart T1-falsifiziert: scheinbare ZH-DE-Ähnlichkeit 0.519→0.990 nach Dekontamination; kein Konvergenz-Beleg.
@@ -119,7 +119,7 @@ Die LDS-K-Ergebnisse wurden vertieft (reproduzierbar via `scripts/lds_k_deepen.p
 
 | Quelle | ZH-EN | DE-EN | ZH-DE |
 |:------|:-----:|:-----:|:-----:|
-| Mathematik-Lehrbücher | 0.934 | 0.938 | **0.519** |
+| Mathematik-Lehrbücher | 0.933 | 0.938 | **0.519** |
 | Wikipedia (sozial, aligniert) | 0.698 | 0.723 | **0.819** |
 
 **Zentraler Befund (mit Einschränkung)**: Die Struktur sozialer Konzepte (Freiheit, Gerechtigkeit, Verantwortung, Heimat, Erfolg) weist eine höhere sprachübergreifende Divergenz auf als die Mathematik-Labels — und das Muster ist **umgekehrt**: Während ZH-DE in Mathematik am stärksten konvergiert (0.52), ist es in der sozialen Domäne am divergentesten (0.82). **Einschränkung (P2-Recheck)**: Dieser Vergleich ist **kein belastbarer Beleg unabhängiger sprachübergreifender Konvergenz**. Die Mathematik-Knoten sind **Alignierungs-Labels** (keine unabhängig extrahierten Konzepte), das `de`-Label-Feld enthält teils chinesische Texte, und ein Size-Matching auf die Wikipedia-Größe **kehrt das Muster um** (bei k=15–35 ist der Wikipedia-J_node höher; Details: `docs/p2_methodology_rechecks.md`). Die Mathematik-"Konvergenz" (0.519) ist daher teilweise ein Darstellungs-/Größen-Artefakt; die Aussage ist nur als "die **Alignierungs-Labels** institutionellen Wissens stimmen sprachübergreifend besser überein als die unabhängig extrahierten sozialen Konzepte" zu lesen — nicht als Beleg, dass institutionelles Wissen "inhaltlich" konvergiert. **T1-Dekontamination (2026-09) verschärft dies zur Falsifikation**: Nach Entfernen CJK-kontaminierter de-Labels (167/219) kollabiert ZH-DE J_node 0,556 → 0,020 (LDS 0,52 → 0,99); der size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um (Fig. 8: `outputs/figures/fig8_lds_decontamination.png`). CDS/HDS frozen from June dense graph, see forensic notes.
@@ -198,7 +198,7 @@ Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahiert
 
 | Sprachpaar | LDS v3 | 95 %-CI | Node-Jaccard | Edge-Jaccard | LDS-K (v3) | ΔLDS | Split-Half-Boden |
 |:----------:|:------:|:-------:|:------------:|:------------:|:----------:|:----:|:----------------:|
-| ZH-EN | 0.977 | [0.962, 0.992] | 0.037 | 0.010 | 0.934 | +0.043 | 0.979 |
+| ZH-EN | 0.977 | [0.962, 0.992] | 0.037 | 0.010 | 0.933 | +0.043 | 0.979 |
 | DE-EN | 0.966 | [0.949, 0.993] | 0.068 | **0.000** | 0.938 | +0.028 | 0.959 |
 | ZH-DE | 0.964 | [0.948, 0.980] | 0.064 | 0.008 | 0.519 | +0.445 | 0.958 |
 

@@ -40,6 +40,9 @@ def main():
                       "that is the 58-run replication below"],
                   ["59 full runs", "59"])
     errs += check(p, [], ["file-truth 62/62"])
+    for r in ("README.md", "README_ZH.md", "README_DE.md"):
+        errs += check(r, ["556/525/219", "556 concepts, 525 relations"],
+                      ["556/517/219"])
     errs += check("scripts/build_paper_pdf.py", ["55-Messungs-Replikation"],
                   ["59 Messungen (54 eindeutige Modelle)"])
     for q in ("docs/submission/plattform_antworten.md",

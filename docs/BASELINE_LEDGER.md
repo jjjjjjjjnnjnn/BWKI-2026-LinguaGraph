@@ -61,7 +61,7 @@
 - 结论：wiki>math、gap 全负，方向成立；点值 exact reproducibility 成立（守卫 + 排序冻结 + 双跑一致）。旧"跨进程抖 ±0.002"已消除。
 
 ## §7 Wikipedia control — needs_review
-- 对齐后：`data/lds_c/lds_k_deep/lds_k_deepen_20260808.json` → wiki 0.698/0.723/0.819 vs math 0.934/0.938/0.519（公式字段自标 frozen v3 二元）。
+- 对齐后：`data/lds_c/lds_k_deep/lds_k_deepen_20260808.json` → wiki 0.698/0.723/0.819 vs math 0.933/0.938/0.519（公式字段自标 frozen v3 二元）。
 - 旧 1.0（`fig_wikipedia_lds_data.csv` 全 1.0）为 Latin-only 对齐伪影，作废；旧 CSV 无 git 历史，待移 `_archive/`。
 - 缺口：96 条 gloss 系 deepseek-v4-flash 英文化，无人工抽检、无第二模型交叉 → 补盲抽 ≥30/96 + qwen-plus 交叉 gloss，否则不得作内容证据。
 
@@ -80,7 +80,7 @@
 
 ## §10 Fig4 / Fig8 frozen figure values（2026-09-14 更新，B1/B2/B5 重跑，可引用绘图快照）
 - **Fig4**（`$env:PYTHONHASHSEED=0; python scripts/figures/fig4_null_model.py [--seeds "42,999,2026,7,1234"]` → `outputs/figures/fig4_null_model_data.csv` + `fig4_null_model{,_de,_zh}.png`）：Full 基线 **0.9336 / 0.9382 / 0.5188**（ZH-EN / DE-EN / ZH-DE；发表取整 0.934/0.938/0.519）；Structure Null 点值 **0.9571/0.9568/0.7154**（sorted 冻结，旧快照 0.9571/0.9546/0.7142 见 §1 差异说明）+ 5-seed 均值±SD **0.9562±0.0010 / 0.9555±0.0024 / 0.7170±0.0013**；Within-Lang floor 点值 0.9695/0.9744/0.9615 + 5-seed 均值 0.9700/0.9692/0.9682（±0.0061/0.0055/0.0085）；Label-Permute 点值 0.8407/0.8701/0.6704 + 5-seed 均值 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069；Mono Control 列已填（点值 0.9695/0.9615/0.9744，5-seed 均值 0.9700/0.9682/0.9692）。
-- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
+- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.933/0.938/0.519 (re-freeze 2026-09-16) vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
 - **fig_a7_3 语义**（2026-09-14）：`fig_a7_core.py` 改首行胜出 → fig_a7_3 取 legacy point（非 multiseed 均值）；EN/DE/ZH 三图已按此重建（`fig_a7_3_null_models{,_de,_zh}.png`）。
 - **档案声明**：`data/lds_c/**` 历史 JSON（如 `metric_robustness_20260811.json`、`multi_model_replication_202608*.json` 内 0.9546）保留冻结前值为档案，**不得引用**；引用以本台账 §1/§10 为准。
 
@@ -104,6 +104,7 @@
  （https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/releases/tag/data-weight-vectors-20260916），
   仓库内保持 HELD 未入库）；SSOT `research/numbers_ssot_20260916.json`＋
   门禁 `scripts/tools/numbers_audit.py`；portal W 指针（paper §9 结论章，评审证据外）。
+- 再冻结 2026-09-16（ring/prune 修复后 pipeline 重算）：merged relations 525→517，vis links 238→233（密度0.0015/分量388/零度381/最大分量121 不变），Full LDS-K 0.9336/0.9382/0.5188→0.9330/0.9378/0.5190(发表0.933/0.938/0.519，δ≤0.001舍入容限内)，STEAM 839→834；CI guard 与 SSOT 同步；10 条减表12 条增均可追溯至审计修复。
 
 ## 补实验优先级
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。

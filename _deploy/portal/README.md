@@ -10,7 +10,7 @@ Open `index.html` in any browser. No build step required.
 
 | # | Section | Content |
 |---|---------|---------|
-| 1 | Hero | Research question, stat wall (1,140+ concepts, F1=0.939† Developing social), scope footnote, CTAs |
+| 1 | Hero | Research question, stat wall (1,143 concepts, F1=0.939† Developing social), scope footnote, CTAs |
 | 2 | Research Questions | RQ1 (Language), RQ2 (Discipline), RQ3 (Education System) |
 | 3 | Contributions | 4 core contributions of the project |
 | 4 | Methodology | Pipeline diagram + 4 metric definitions (CDS/HDS/LDS/CS) |
@@ -21,7 +21,7 @@ Open `index.html` in any browser. No build step required.
 | 9 | Finding E | "N=15 falsifies between-subject ΔLDS" — human validation (F11–F12) |
 | 10 | CognitiveSpace | Click-to-load 3D viewer (porcelain cover, saves 429KB first paint) |
 | 11 | Curriculum | Coverage scores by education system + 3 competing explanations |
-| 12 | Validation | Gold dataset F1 table + 19-model benchmark chart + 55-margin fused replication chart (collecting table separate) |
+| 12 | Validation | Gold dataset F1 table + 19-model benchmark chart + 59-measurement fused replication chart (file-truth 62/57/186) (collecting table separate) |
 | 13 | Limitations | 6 methodological boundaries with mitigations |
 | 14 | Paper | Citation, BibTeX with copy button |
 | 15 | Open Science | Links to code, data, paper, figures, benchmarks |
@@ -43,9 +43,9 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 
 ## Numbers (SSOT: `docs/SSOT-web.md`)
 
-- Hero totals = full project: Math 556 + Physics 367 + Chemistry 220 = 1,140+ concepts.
+- Hero totals = full project: Math 556 + Physics 367 + Chemistry 220 = 1,143 concepts.
 - Gold: 92 labels = 20 hand-annotated math (C9a, Mature) + 72 machine-seeded/human-accepted social (C9b, Developing — blind audit pending); DB-path social F1 0.939†, independent harness ~0.65 (`research/gold_deconfound_2026-09-14.md`).
-- 3D section = mathematics subgraph default (556 nodes · 525 relations · 219 groups, `manifest.json`) + STEAM fused view (`?graph=steam`: 1143 nodes · 849 links · 10 bridges, `scripts/build_steam_graph.py`).
+- 3D section = mathematics subgraph default (556 nodes · 238 rendered links of 525 aligned relations · 219 groups, `manifest.json`) + STEAM comparison view (`?graph=steam`: 1143 nodes · 839 intra-discipline links, 0 bridges — 10 hand-picked bridges retired 2026-09-14, `scripts/build_steam_graph.py`).
 - 12 findings (F1–F12, paper §discussion); 19-model benchmark (chart has 19 labels).
 
 ## Deployment (`_deploy/` = Pages root mirror)

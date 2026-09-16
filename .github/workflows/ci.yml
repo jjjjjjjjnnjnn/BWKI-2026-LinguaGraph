@@ -29,15 +29,15 @@ jobs:
       - name: Release dry-run (gates must pass)
         run: python scripts/release.py --dry-run
 
-      - name: Manifest SSOT guard (556/525/219)
+      - name: Manifest SSOT guard (556/517/219)
         run: |
           python - <<'EOF'
           import json
           m = json.load(open("manifest.json"))
           assert m["graph"]["total_nodes"] == 556, m["graph"]
-          assert m["alignment"]["total_relations"] == 525, m["alignment"]
+          assert m["alignment"]["total_relations"] == 517, m["alignment"]
           assert m["alignment"]["trilingual_groups"] == 219, m["alignment"]
-          print("manifest SSOT OK: 556/525/219")
+          print("manifest SSOT OK: 556/517/219")
           EOF
 
       - name: Forbidden-numbers guard (stale claims)

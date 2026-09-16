@@ -131,12 +131,12 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 
 | Subject | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematics** | 556 | 517 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
 | **Total** | **1,143** | **1,100+ direct** | **204** | **3 languages** | **4 educational systems** |
 
-> SSOT: math counts from `manifest.json` (556/525/219). Full caliber table: `docs/SSOT-web.md` (口径冻结). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)**.
+> SSOT: math counts from `manifest.json` (556/517/219). Full caliber table: `docs/SSOT-web.md` (口径冻结). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)**.
 
 ---
 
@@ -162,8 +162,8 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 |---|---------|----------|--------|
 | **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
 | **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
-| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 525 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | Direct computation on textbook graphs (freeze: 0.9336/0.9382/0.5188, `outputs/figures/reproduce_lds_binary.log`) | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
+| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 517 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.933), DE-EN (0.938) near noise floor | Direct computation on textbook graphs (freeze: 0.9330/0.9378/0.5190 (re-freeze 2026-09-16, Δ≤0.001), `outputs/figures/reproduce_lds_binary.log`) | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS is **topic-dependent**; **Null Model** confirms Full < Structure for all pairs | ~0.2 variation within pairs; Full LDS-K=0.73, Structure LDS-K=0.77 | Cross-language divergence varies by knowledge domain; taxonomy alone explains most variance |
 | **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 367 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
 | **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
@@ -204,10 +204,13 @@ Products: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`
 
 ### Methodology in five steps (cf. `docs/paper/02_methodology.md` §§2.1–2.5)
 1. **Textbook Corpus** — 68 math volumes (+ physics 367-node / chemistry 220-node graphs), ZH/EN/DE
-2. **Concept Extraction (MIMO)** — structured LLM prompts → 75 JSON files → 556 concepts, 525 relations
+2. **Concept Extraction (MIMO)** — structured LLM prompts → 75 JSON files → 556 concepts, 517 relations
 3. **Graph Construction and Fusion** — merge → dedup (556) → directed graph (+~3000 transitive edges)
 4. **Cross-lingual Alignment** — 30 shared IDs → 219 trilingual groups (39%) → CDS/HDS/LDS/CS metrics
 5. **Validation & Falsification** — 92 gold labels, N=15 human study, null-model suite, T1 decontamination
+
+### Tool layering (paper §2.12, Eigenständigkeit)
+Own contributions: design, LDS definition, all findings/falsification analyses. Disclosed auxiliary tooling (not mixed with string-match counts): **networks/graphs** NetworkX + 3d-force-graph · **figures** matplotlib (`scripts/figures/`) · **text extraction** pymupdf + RapidOCR-ONNX (DirectML-GPU) · **semantics** nomic-embed-v1.5 pre-screen + Muse-Spark adjudication (temp-0, `scripts/semantic_ground_en.py`) · **concept extraction (D1)** Bailian API qwen-plus (gold N=92, social F1 0.939).
 
 ---
 
@@ -238,7 +241,7 @@ Products: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`
 ├── research_lab/         # Sandboxed experiments (gitignored skills/)
 ├── release/              # Immutable snapshot (manifest + data.js + checksums)
 ├── freeze/               # Frozen survey samples (immutable)
-└── manifest.json         # SSOT numbers (556/525/219)
+└── manifest.json         # SSOT numbers (556/517/219)
 ```
 
 ---

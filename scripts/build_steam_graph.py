@@ -10,7 +10,7 @@ retired 2026-09-14 (insufficient systematic evidence; archived at
 research/steam_bridges_retired_2026-09-14.json). STEAM is a side-by-side
 comparison view, not a claim of cross-discipline structure.
 
-SSOT counts: 556 + 367 + 220 = 1143 nodes; 238 + 386 + 215 = 839
+SSOT counts: 556 + 367 + 220 = 1143 nodes; 233 + 386 + 215 = 834
 intra-discipline links.
 
 Usage: python scripts/build_steam_graph.py
@@ -64,7 +64,7 @@ def main() -> int:
         print(f"{disc}: {len(ns)} nodes / {len(ls)} links")
 
     assert len(nodes) == 1143, f"node count drift: {len(nodes)}"
-    assert len(links) == 839, f"link count drift: {len(links)}"
+    assert len(links) == 834, f"link count drift: {len(links)}"
 
     payload = {
         "version": "steam-v2",

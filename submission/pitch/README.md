@@ -27,7 +27,7 @@
 
 ## Fakten-Check (Pflicht vor Upload — v0.13.2-Zahlen)
 
-- 556 Konzepte / 525 Relationen / 219 Gruppen; F1 sozial 0,939, gewichtet 0,881
+- 556 Konzepte / 517 Relationen / 219 Gruppen; F1 sozial 0,939, gewichtet 0,881
 - N=15 Δ≈0 (Between); LLM-within +0,08–0,09; 59 Messungen/54 Modelle; ~81 % CN
 - Kein §8.17-N=1-Fall; kein p=0,05-Sim-Vergleich; Schwelle ≥0,10 heuristisch
 - Musik/Assets-Lizenzen dokumentieren (falls verwendet)

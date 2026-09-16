@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/"><img src="cognitive-space/web/portal_hero.png" alt="Research Portal — live screenshot" width="49%"></a>
   <a href="https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam"><img src="cognitive-space/web/steam_overview.png" alt="STEAM overview — all disciplines fused in 3D" width="49%"></a>
-  <br><sub>Left: Research Portal · Right: STEAM overview (1,143 nodes · 839 links, no cross-links) — click either to open live</sub>
+  <br><sub>Left: Research Portal · Right: STEAM overview (1,143 nodes · 834 links, no cross-links) — click either to open live</sub>
 </p>
 
 <h1 align="center">🧠 LinguaGraph</h1>
@@ -67,7 +67,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 | Entry | What you get | Best for |
 |-------|--------------|----------|
 | [🧠 Research Portal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Findings F1–F12, replication roster (**59/54/177**), margin galaxy, validation section | **Judges & reviewers — start here** |
-| [🌐 STEAM overview](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | All 3 disciplines side-by-side in one 3D graph (1,143 nodes · 839 links, no cross-links) + compare panel | Cross-subject comparison |
+| [🌐 STEAM overview](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | All 3 disciplines side-by-side in one 3D graph (1,143 nodes · 834 links, no cross-links) + compare panel | Cross-subject comparison |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Full paper, frozen figures + values | Academic reading, citation |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interactive 3D knowledge graph (1,143 concepts) | Live demo, audience |
 | [`submission/final/`](submission/final/) | BWKI submission package (answers, disclosure, code guide) | Competition submission |
@@ -131,12 +131,12 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 
 | Subject | Concepts | Relations | Textbooks | Languages | Curriculum Coverage |
 |---------|:--------:|:---------:|:---------:|:---------:|:------------------:|
-| **Mathematics** | 556 | 525 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
+| **Mathematics** | 556 | 517 direct (+~3000 transitive) | 68 (32 cited in-graph) | ZH/EN/DE | NRW 12.7% · UK 37.3% · US 17.2% · CN 95.4% |
 | **Physics** | 367 | 386 | 83 titles (96 refs) | ZH/EN/DE | NRW coverage NA |
 | **Chemistry** | 220 | 215 | 89 titles | ZH/EN/DE | NRW 36% |
 | **Total** | **1,143** | **1,100+ direct** | **204** | **3 languages** | **4 educational systems** |
 
-> SSOT: math counts from `manifest.json` (556/525/219). Full caliber table: `docs/SSOT-web.md` (口径冻结). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)**.
+> SSOT: math counts from `manifest.json` (556/517/219). Full caliber table: `docs/SSOT-web.md` (口径冻结). Titles total **204 = 32 (math) + 83 (physics) + 89 (chemistry)**.
 
 ---
 
@@ -162,8 +162,8 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 |---|---------|----------|--------|
 | **F1** | CDS peaks at **Middle school** (0.271), not Elementary | Confirmed independently in ZH, EN, DE | Challenges "knowledge gets denser with level" assumption |
 | **F2** | **3.7× density drop** from Middle to High school | 0.271 → 0.073; concept count 4.2× | Curriculum diversification after integration hub |
-| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 525 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
-| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.934), DE-EN (0.938) near noise floor | Direct computation on textbook graphs (freeze: 0.9336/0.9382/0.5188, `outputs/figures/reproduce_lds_binary.log`) | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
+| **F3** | HDS ≤ **8** (mean 0.40); 83% of concepts are roots | BFS on 517 direct relations (+~3000 transitive) | Mathematics is a shallow web, not a deep tree |
+| **F4** | **LDS-K reveals heterogeneous convergence**: ZH-DE (0.519) converges; ZH-EN (0.933), DE-EN (0.938) near noise floor | Direct computation on textbook graphs (freeze: 0.9330/0.9378/0.5190 (re-freeze 2026-09-16, Δ≤0.001), `outputs/figures/reproduce_lds_binary.log`) | Knowledge-structure LDS diverges from surface-language expectations — but Null Model (F5) falsifies the language reading; math nodes are partly alignment-label artefacts (see `docs/p2_methodology_rechecks.md`) |
 | **F5** | LDS is **topic-dependent**; **Null Model** confirms Full < Structure for all pairs | ~0.2 variation within pairs; Full LDS-K=0.73, Structure LDS-K=0.77 | Cross-language divergence varies by knowledge domain; taxonomy alone explains most variance |
 | **F6** | **Physics** peaks at **Elementary** (0.222), Math at Middle (0.271) | 367 physics concepts, 3 languages | Both follow "integrate-early, diverge-late" pattern |
 | **F7** | Physics has **2.1× deeper** prerequisite chains | HDS mean 0.85 vs 0.40 | Physics knowledge is more cumulative and sequential |
@@ -204,7 +204,7 @@ Products: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`
 
 ### Methodology in five steps (cf. `docs/paper/02_methodology.md` §§2.1–2.5)
 1. **Textbook Corpus** — 68 math volumes (+ physics 367-node / chemistry 220-node graphs), ZH/EN/DE
-2. **Concept Extraction (MIMO)** — structured LLM prompts → 75 JSON files → 556 concepts, 525 relations
+2. **Concept Extraction (MIMO)** — structured LLM prompts → 75 JSON files → 556 concepts, 517 relations
 3. **Graph Construction and Fusion** — merge → dedup (556) → directed graph (+~3000 transitive edges)
 4. **Cross-lingual Alignment** — 30 shared IDs → 219 trilingual groups (39%) → CDS/HDS/LDS/CS metrics
 5. **Validation & Falsification** — 92 gold labels, N=15 human study, null-model suite, T1 decontamination
@@ -241,7 +241,7 @@ Own contributions: design, LDS definition, all findings/falsification analyses. 
 ├── research_lab/         # Sandboxed experiments (gitignored skills/)
 ├── release/              # Immutable snapshot (manifest + data.js + checksums)
 ├── freeze/               # Frozen survey samples (immutable)
-└── manifest.json         # SSOT numbers (556/525/219)
+└── manifest.json         # SSOT numbers (556/517/219)
 ```
 
 ---

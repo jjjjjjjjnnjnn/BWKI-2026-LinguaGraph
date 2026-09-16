@@ -2,7 +2,7 @@
 
 > **Status**: Final (2026-09-08, v0.13.2) | **Sprache**: Deutsch (BWKI-Einreichsprache)
 > **Zweck**: Antwortentwürfe für die Fragen in der Einreicheplattform (Idee, Methoden, Umsetzung, Ergebnisse, Fehlerquellen, kritische Einschätzung, Entwicklung, Offenlegung)
-> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` und der Arbeit `docs/paper/` (SSOT: `manifest.json` — 556 Konzepte / 525 Relationen / 219 Gruppen).
+> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` und der Arbeit `docs/paper/` (SSOT: `manifest.json` — 556 Konzepte / 517 Relationen / 219 Gruppen).
 > **Vollständige Unterstützungs-Offenlegung**: `docs/declaration_of_support.md`
 
 ---
