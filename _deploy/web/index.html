@@ -252,6 +252,14 @@
     #steamToggles label{ cursor:pointer; }
     #steamToggles input{ accent-color:#1e3a8a; }
 
+    /* Graph toast (porcelain tokens; reuses HUD border/shadow) */
+    #graphToast{
+        position:fixed; bottom:64px; left:50%; transform:translateX(-50%); z-index:300;
+        background:rgba(248,250,252,.96); border:1px solid #1e3a8a; border-radius:8px;
+        color:#0a1f3d; font-size:.62rem; padding:8px 14px; display:none;
+        box-shadow:0 18px 48px rgba(10,31,61,.25); max-width:calc(100vw - 32px); text-align:center;
+    }
+
     /* Diffusion ring animation (legend-consistent indigo) */
     .ripple-ring {
         position: fixed;
@@ -363,6 +371,7 @@
         <div class="rf" id="dr"></div>
         <div id="chainWalk"></div>
     </div>
+    <div id="graphToast" role="status" aria-live="polite"></div>
     <div id="mode-tag" data-i18n="mode.universe">UNIVERSE</div>
     <div id="topbar">
         <span id="topbar-label" data-i18n="ui.topbar">Language</span>
@@ -494,10 +503,19 @@
         const disp = steamVisible();
         G.nodeColor('color').graphData({ nodes: disp.nodes, links: disp.links });
     }
+    let toastT = null;
+    function toastGraph(msg) {
+        const el = document.getElementById('graphToast');
+        if (!el) return;
+        el.textContent = msg;
+        el.style.display = 'block';
+        if (toastT) clearTimeout(toastT);
+        toastT = setTimeout(() => { el.style.display = 'none'; }, 2600);
+    }
     function switchGraph(g, pushState) {
         if (!GRAPHS[g] || !G) return;
         const d = GRAPHS[g].data();
-        if (!d || !d.nodes || !d.nodes.length) return;
+        if (!d || !d.nodes || !d.nodes.length) { toastGraph(i18n.tr('error.data')); return; }
         graph = g;
         ND = d.nodes; LK = d.links;
         assignAnchors(ND);
@@ -703,7 +721,15 @@
 
         // ── WASD keyboard controls ──
         const keys = {};
-        document.addEventListener('keydown', e => { keys[e.key.toLowerCase()] = true; });
+        document.addEventListener('keydown', e => {
+            const k = e.key.toLowerCase();
+            keys[k] = true;
+            // Don't scroll the page while flying (ignored while typing in search)
+            if (_wasd && document.activeElement && document.activeElement.id !== 'search') {
+                if (k === 'w' || k === 'a' || k === 's' || k === 'd' || k === 'q' || k === 'e' ||
+                    k === 'arrowup' || k === 'arrowdown' || k === 'arrowleft' || k === 'arrowright') e.preventDefault();
+            }
+        });
         document.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
 
         // ── onEngineTick: lighting + WASD + breathing ──
@@ -788,7 +814,8 @@
             const {i,d} = q.shift(); dist.set(i,d);
             if (d<5) (ADJ.get(i)||[]).forEach(nid => { if (!vs.has(nid)) { vs.add(nid); q.push({i:nid,d:d+1}); } });
         }
-        gd.nodes.forEach(n => { n._r = dist.has(n.id)?dist.get(n.id):99; n._h = false; });
+        gd.nodes.forEach(n => { n._r = dist.has(n.id)?dist.get(n.id):99; n._h = false; n.color = colorCB(n); });
+        if (G) G.nodeColor('color');
         document.getElementById('rbtn').style.display = 'block';
         if (rT) clearTimeout(rT);
         rT = setTimeout(clearRipple, 5000);
@@ -836,6 +863,13 @@
         const gd = G && G.graphData();
         if (gd && gd.nodes) gd.nodes.forEach(n => { n._r = null; });
         ND.forEach(n => { n._r = null; });
+        // Repaint so the ripple highlight actually shows/clears (Chain Walker owns colors while active)
+        if (typeof chainState !== 'undefined' && chainState && chainState.active && typeof chainApplyHighlight === 'function') { chainApplyHighlight(); }
+        else {
+            if (gd && gd.nodes) gd.nodes.forEach(n => { n.color = colorCB(n); });
+            ND.forEach(n => { n.color = colorCB(n); });
+            if (G) G.nodeColor('color');
+        }
         document.getElementById('rbtn').style.display = 'none';
     }
 
@@ -1244,6 +1278,10 @@
         }
         renderChainUI();
     }
+    // Per-discipline chain scope note (math numbers frozen: 233 rendered of 517 relations)
+    function chainNote(){
+        return i18n.tr(graph === 'physics' ? 'detail.chain_note_phys' : graph === 'chemistry' ? 'detail.chain_note_chem' : graph === 'steam' ? 'detail.chain_note_steam' : 'detail.chain_note');
+    }
     function chainDirBar(){
         const upOn = chainState.dir === 'up';
         return '<div class="cw-dir"><button class="b'+(upOn?' a':'')+'" data-cw-dir="up">'+i18n.tr('detail.chain_up')+'</button>'+
@@ -1258,7 +1296,7 @@
         const root = chainNodeById(chainState.rootId);
         if (!root){
             box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
-                '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+                '<div class="cw-note">'+chainNote()+'</div>';
             return;
         }
         if (!chainState.levels.length){
@@ -1268,7 +1306,7 @@
                 chainDirBar()+
                 '<div class="cw-note">'+i18n.tr('detail.chain_none')+'</div>'+
                 demoBtn+
-                '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+                '<div class="cw-note">'+chainNote()+'</div>';
             chainBindDirBar(box);
             const dm = box.querySelector('[data-cw-demo]');
             if (dm) dm.addEventListener('click', chainGotoDemo);
@@ -1294,7 +1332,7 @@
             '<div class="cw-nav"><button class="b" data-cw-prev="1"'+(atStart?' disabled':'')+'>'+i18n.tr('detail.chain_prev')+'</button>'+
             '<button class="b" data-cw-next="1"'+(atEnd?' disabled':'')+'>'+i18n.tr('detail.chain_next')+'</button>'+
             '<button class="b" data-cw-exit="1">'+i18n.tr('detail.chain_exit')+'</button></div>'+
-            '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+            '<div class="cw-note">'+chainNote()+'</div>';
         chainBindDirBar(box);
         box.querySelectorAll('[data-cw-lvl]').forEach(b => b.addEventListener('click', () => chainSelectLevel(+b.getAttribute('data-cw-lvl'))));
         const all = box.querySelector('[data-cw-all]');
@@ -1323,7 +1361,7 @@
         // universe  = free force layout, reset to shell anchors (drift fix);
         // spacefill = pinned to auto-fit education-level shells;
         // compare   = one pinned ball per education level.
-        const S = computeShells(ND);
+        const S = computeShells(fn); // shells from the visible (possibly discipline-filtered) subset
         const counts = {elementary:0, middle:0, high:0, college:0};
         fn.forEach(n => { counts[n.level || 'college']++; });
         fn.forEach(n => {

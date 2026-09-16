@@ -24,7 +24,9 @@ Der 3,7-fache Abfall von Physik-Grundschule (0,222) zur Oberstufe (0,013) spiege
 |--------|:-------:|:----:|
 | Maximale Tiefe | **6** | 8 |
 | Mittlere Tiefe | **0,85** | 0,40 |
-| Wurzelkonzepte | 219 (60 %) | 459 (83 %) |
+| Wurzelkonzepte | 233 (64 %) | 459 (83 %) |
+
+> Physik-Wurzelwert 233 aus `outputs/physics_comparison.json:30` (`hds.root_count`); 219 ist der eingefrorene June-dense-Wert, s. `docs/submission/fig5_hds_forensic.md`.
 
 **◆ Befund F7**: Physik weist **tiefere Voraussetzungsketten** auf (mittlerer HDS 0,85 vs. Mathe 0,40). Dies spiegelt den kumulativen Charakter physikalischen Wissens wider: Das Verständnis elektromagnetischer Induktion erfordert zuerst die Beherrschung von elektrischer Ladung → Strom → Magnetfeld → Faradaysches Gesetz — eine Kette von 4+ Konzepten. Die Mathematik hingegen verfügt über mehr unabhängige Einstiegspunkte (83 % Wurzeln).
 
@@ -58,7 +60,7 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 
 | Bestand | Konzepte | Relationen | Status |
 |-------|:--------:|:---------:|:------:|
-| Mathe-Wissensgraph | 556 | 525 | Vollständig |
+| Mathe-Wissensgraph | 556 | 517 | Vollständig |
 | Physik-Wissensgraph | 367 | 386 | Vollständig |
 | Chemie-Wissensgraph | 220 | 215 | Vollständig |
 
@@ -78,6 +80,6 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 |-----------|:------:|:-----:|:-----:|
 | Maximale Tiefe | 3 | 6 | 8 |
 | Mittlere Tiefe | 0,20 | 0,85 | 0,40 |
-| Wurzelkonzepte | 184 (84 %) | 219 (60 %) | 459 (83 %) |
+| Wurzelkonzepte | 184 (84 %) | 233 (64 %) | 459 (83 %) |
 
 **◆ Befund F8**: Der Chemie-CDS erreicht seine Spitze in der **Mittelstufe** (0,042) — dasselbe „Integriere früh, trenne spät"-Muster wie die Mathematik (0,271), jedoch auf deutlich niedrigerem Niveau. Die geringere Dichte und die flache Hierarchie (maximale Tiefe 3, 84 % Wurzelkonzepte) reflektieren den kleineren, weniger kumulativen Korpus (220 Konzepte, keine Grundstufe). Damit bestätigen die Chemie-Daten die Befunde F6 (Physik: Spitze in der Grundschule) und F7 (Physik: tiefere Voraussetzungsketten) als disziplinübergreifend konsistent: Die Wissensorganisation ist **disziplinabhängig** (Dichtespitzen auf verschiedenen Bildungsstufen), folgt aber in allen drei MINT-Disziplinen demselben frühen Integrationsmuster.

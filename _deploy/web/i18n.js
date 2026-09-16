@@ -127,6 +127,9 @@ const TRANSLATIONS = {
         'detail.chain_complete': 'Complete',
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': 'Chain limited to rendered links (233 of 517).',
+        'detail.chain_note_phys': 'Chain limited to rendered links (386).',
+        'detail.chain_note_chem': 'Chain limited to rendered links (215).',
+        'detail.chain_note_steam': 'Chain limited to rendered links (834).',
         'detail.chain_exit': 'Exit',
         'detail.chain_up': 'Prerequisites',
         'detail.chain_down': 'Dependents',
@@ -181,6 +184,8 @@ const TRANSLATIONS = {
         'disc.math': 'Mathe',
         'disc.physics': 'Physik',
         'disc.chemistry': 'Chemie',
+        // STEAM panel title (EN/ZH live in the index.html STEAM block; DE added here — inline merge preserves it)
+        'steam.panel': 'STEAM-Übersicht',
 
         // Konzeptgruppen (Karten-Domänenzeile)
         'group.general': 'Allgemein', 'group.calculus': 'Analysis',
@@ -270,6 +275,9 @@ const TRANSLATIONS = {
         'detail.chain_complete': 'Komplett',
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': 'Kette nur aus gerenderten Links (233 von 517).',
+        'detail.chain_note_phys': 'Kette nur aus gerenderten Links (386).',
+        'detail.chain_note_chem': 'Kette nur aus gerenderten Links (215).',
+        'detail.chain_note_steam': 'Kette nur aus gerenderten Links (834).',
         'detail.chain_exit': 'Beenden',
         'detail.chain_up': 'Voraussetzungen',
         'detail.chain_down': 'Folgen',
@@ -408,6 +416,9 @@ const TRANSLATIONS = {
         'detail.chain_complete': '全部展开',
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': '链路仅基于已渲染边（517 中的 233）。',
+        'detail.chain_note_phys': '链路仅基于已渲染边（386）。',
+        'detail.chain_note_chem': '链路仅基于已渲染边（215）。',
+        'detail.chain_note_steam': '链路仅基于已渲染边（834）。',
         'detail.chain_exit': '退出',
         'detail.chain_up': '上游前提',
         'detail.chain_down': '下游后继',

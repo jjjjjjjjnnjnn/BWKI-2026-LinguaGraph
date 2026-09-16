@@ -29,14 +29,14 @@
 > Die maximale Tiefe der Voraussetzungsketten ist auf **HDS ≤ 8** beschränkt, unabhängig von der Disziplin. Die mittlere Tiefe unterscheidet sich je nach Disziplin (Mathe: 0,40, Physik: 0,85).
 
 **Warum es relevant ist**:
-> Pädagogisches Wissen scheint einer natürlichen Tiefengrenze für Voraussetzungsstrukturen zu unterliegen. Beide Disziplinen teilen dieselbe Obergrenze. Physik weist eine **2,1-fach höhere sequenzielle Tiefe** auf als Mathematik (60 % Wurzeln in Physik vs. 83 % in Mathe), jedoch nicht die zuvor mit einer kleineren Stichprobe geschätzten 2,8-fache.
+> Pädagogisches Wissen scheint einer natürlichen Tiefengrenze für Voraussetzungsstrukturen zu unterliegen. Beide Disziplinen teilen dieselbe Obergrenze. Physik weist eine **2,1-fach höhere sequenzielle Tiefe** auf als Mathematik (64 % Wurzeln in Physik, 233/367, vs. 83 % in Mathe), jedoch nicht die zuvor mit einer kleineren Stichprobe geschätzten 2,8-fache.
 
 **Evidenz**:
 | Metrik | Mathe | Physik |
 |--------|:----:|:-------:|
 | Max. HDS | 8 | 6 |
 | Mittlere HDS | 0,40 | 0,85 |
-| Wurzelkonzepte | 83 % | 60 % |
+| Wurzelkonzepte | 83 % | 64 % (233/367) |
 | Strukturtyp | Flaches Netz | Tiefere Kette |
 
 ---

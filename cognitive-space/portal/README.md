@@ -45,7 +45,7 @@ Noto Serif SC (CN display), IBM Plex Sans (body), IBM Plex Mono (kickers).
 
 - Hero totals = full project: Math 556 + Physics 367 + Chemistry 220 = 1,143 concepts.
 - Gold: 92 labels = 20 hand-annotated math (C9a, Mature) + 72 machine-seeded/human-accepted social (C9b, Developing — blind audit pending); DB-path social F1 0.939†, independent harness ~0.65 (`research/gold_deconfound_2026-09-14.md`).
-- 3D section = mathematics subgraph default (556 nodes · 238 rendered links of 525 aligned relations · 219 groups, `manifest.json`) + STEAM comparison view (`?graph=steam`: 1143 nodes · 839 intra-discipline links, 0 bridges — 10 hand-picked bridges retired 2026-09-14, `scripts/build_steam_graph.py`).
+- 3D section = mathematics subgraph default (556 nodes · 233 rendered links of 517 aligned relations · 219 groups, `manifest.json`) + STEAM comparison view (`?graph=steam`: 1143 nodes · 834 intra-discipline links, 0 bridges — 10 hand-picked bridges retired 2026-09-14, `scripts/build_steam_graph.py`).
 - 12 findings (F1–F12, paper §discussion); 19-model benchmark (chart has 19 labels).
 
 ## Deployment (`_deploy/` = Pages root mirror)
