@@ -253,6 +253,15 @@
             transform: translate(-50%, -50%) scale(3);
         }
     }
+
+    /* Chain Walker (additive — detail panel stepper) */
+    #chainWalk{ margin-top:6px; padding-top:6px; border-top:1px solid #c6cdd6; font-size:.6rem; }
+    #chainWalk .cw-t{ font-size:.6rem; color:#7a9aff; font-weight:500; margin-bottom:4px; }
+    #chainWalk .cw-chips{ display:flex; gap:3px; flex-wrap:wrap; margin-bottom:4px; }
+    #chainWalk .cw-chip.a{ background:rgba(30,58,138,.12); border-color:#1e3a8a; color:#1e3a8a; font-weight:600; }
+    #chainWalk .cw-step{ color:#0a1f3d; margin-bottom:4px; line-height:1.4; }
+    #chainWalk .cw-nav{ display:flex; gap:3px; margin-bottom:4px; }
+    #chainWalk .cw-note{ font-size:.55rem; color:#8595ad; line-height:1.4; }
     </style>
 </head>
 <body>
@@ -329,6 +338,7 @@
         <div class="metrics" id="dmetrics"></div>
         <div class="note" id="dnote"></div>
         <div class="rf" id="dr"></div>
+        <div id="chainWalk"></div>
     </div>
     <div id="mode-tag" data-i18n="mode.universe">UNIVERSE</div>
     <div id="topbar">
@@ -927,9 +937,213 @@
         const refs = n.cross_references||[];
         document.getElementById('dr').innerHTML = refs.length?refs.slice(0,3).map(r=>'<span style="color:#3a3a5a">'+(r.textbook||'')+(r.section?' §'+r.section:'')+(r.language?' <em style="color:#7a9aff">['+String(r.language).toUpperCase()+']</em>':'')+'</span>').join('<br>'):'';
         e.style.display = 'block';
+        renderChainIntro(n);
         clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000);
     }
-    function hideDetail() { document.getElementById('detail').style.display = 'none'; }
+    function hideDetail() { exitChainMode(); document.getElementById('detail').style.display = 'none'; }
+
+    /* ─── Chain Walker (additive; directed prerequisite/requires BFS on rendered links) ─── */
+    const chainState = { active:false, rootId:null, levels:[], flat:[], flatDepth:[], idx:0, showAll:false, prevAuto:null, prevColors:null, bound:false };
+    // Directed adjacency restricted to prerequisite + requires (mirrors the HDS block in showDetail)
+    function chainAdjacency(gd){
+        const adj = {};
+        gd.nodes.forEach(nn => { adj[nn.id] = []; });
+        const seen = new Set();
+        gd.links.forEach(l => {
+            const s = typeof l.source==='object'?l.source.id:l.source;
+            const t = typeof l.target==='object'?l.target.id:l.target;
+            if (((l.type||'')==='prerequisite'||(l.type||'')==='requires') && adj[s] && adj[t] !== undefined) {
+                const k = s+'>'+t;
+                if (!seen.has(k)) { seen.add(k); adj[s].push(t); }
+            }
+        });
+        return adj;
+    }
+    function chainBuildLevels(rootId, gd){
+        const adj = chainAdjacency(gd);
+        const visited = new Set([rootId]);
+        let frontier = [rootId];
+        const levels = [];
+        while (frontier.length){
+            const lvl = [], next = [];
+            frontier.forEach(id => { (adj[id]||[]).forEach(nb => { if(!visited.has(nb)){ visited.add(nb); lvl.push(nb); next.push(nb); } }); });
+            if (!lvl.length) break;
+            levels.push(lvl);
+            frontier = next;
+        }
+        return levels;
+    }
+    function chainNodeById(id){
+        const gd = G && G.graphData ? G.graphData() : null;
+        if (gd && gd.nodes){ for (let i=0;i<gd.nodes.length;i++) if (gd.nodes[i].id===id) return gd.nodes[i]; }
+        for (let i=0;i<ND.length;i++) if (ND[i].id===id) return ND[i];
+        return null;
+    }
+    function chainDepthOfIdx(){
+        return (chainState.flatDepth.length && chainState.idx < chainState.flatDepth.length) ? chainState.flatDepth[chainState.idx] : chainState.levels.length;
+    }
+    // Camera flight reuses the focusNode() formula (same offset, same duration) — no new flight logic.
+    function chainFlyTo(n){
+        if (!G || !n || n.x == null) return;
+        const r = Math.hypot(n.x || 0, n.y || 0, n.z || 0) || 200;
+        const f = (r + 150) / r;
+        G.cameraPosition({ x: (n.x || 0) * f, y: (n.y || 0) * f, z: (n.z || 0) * f },
+            { x: n.x || 0, y: n.y || 0, z: n.z || 0 }, 900);
+    }
+    function chainPaintAutoBtn(){
+        const ar = document.getElementById('arBtn');
+        if (ar){ ar.dataset.ar = _autoRotate ? 'on' : 'off'; ar.classList.toggle('a', _autoRotate); }
+    }
+    function chainEnsureModeBinding(){
+        if (chainState.bound) return;
+        chainState.bound = true;
+        // Mode switches rebake node colors inside setMode() — drop chain state without restoring stale colors.
+        document.querySelectorAll('[data-m]').forEach(b => {
+            b.addEventListener('click', () => {
+                if (chainState.active){ chainState.active = false; chainState.prevColors = null; chainState.prevAuto = null; }
+                if (lastNode) renderChainIntro(lastNode);
+            });
+        });
+    }
+    function chainEnterIfNeeded(){
+        if (chainState.active) return;
+        chainState.active = true;
+        chainState.showAll = false;
+        chainState.prevAuto = _autoRotate;
+        if (_autoRotate){ _autoRotate = false; chainPaintAutoBtn(); }
+    }
+    // restore=true repaints pre-chain colors; mode switches pass false via the [data-m] hook (setMode already rebaked).
+    function exitChainMode(restore){
+        if (restore === undefined) restore = true;
+        if (!chainState.active && !chainState.prevColors && chainState.prevAuto === null) return;
+        if (restore) chainRestoreColors();
+        chainState.prevColors = null;
+        if (chainState.prevAuto !== null){ _autoRotate = chainState.prevAuto; chainPaintAutoBtn(); chainState.prevAuto = null; }
+        chainState.active = false;
+        chainState.showAll = false;
+    }
+    function chainRestoreColors(){
+        const prev = chainState.prevColors;
+        if (!prev) return;
+        const gd = G && G.graphData ? G.graphData() : null;
+        if (gd && gd.nodes) gd.nodes.forEach(n => { if (prev.has(n.id)) n.color = prev.get(n.id); });
+        if (G) G.nodeColor('color');
+    }
+    function chainApplyHighlight(){
+        const gd = G && G.graphData ? G.graphData() : null;
+        if (!gd || !gd.nodes) return;
+        if (!chainState.prevColors){
+            chainState.prevColors = new Map();
+            gd.nodes.forEach(n => chainState.prevColors.set(n.id, n.color));
+        }
+        const depth = chainState.showAll ? chainState.levels.length : chainDepthOfIdx();
+        const inChain = new Set([chainState.rootId]);
+        chainState.levels.slice(0, depth).forEach(lvl => lvl.forEach(id => inChain.add(id)));
+        const curId = (!chainState.showAll && chainState.flat.length) ? chainState.flat[chainState.idx] : null;
+        gd.nodes.forEach(n => {
+            if (inChain.has(n.id)) n.color = (n.id === curId) ? '#f59e0b' : (chainState.prevColors.get(n.id) || colorCB(n));
+            else n.color = '#e2e8f0';
+        });
+        G.nodeColor('color');
+    }
+    function chainTouchTimer(){
+        const e = document.getElementById('detail');
+        if (e){ clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000); }
+    }
+    function chainGoto(i){
+        if (!chainState.flat.length) return;
+        chainEnterIfNeeded();
+        chainState.showAll = false;
+        chainState.idx = Math.max(0, Math.min(chainState.flat.length - 1, i));
+        chainApplyHighlight();
+        const n = chainNodeById(chainState.flat[chainState.idx]);
+        if (n) chainFlyTo(n);
+        renderChainUI();
+        chainTouchTimer();
+    }
+    function chainSelectLevel(li){
+        chainEnterIfNeeded();
+        chainState.showAll = false;
+        let target = 0;
+        for (let i=0;i<chainState.flatDepth.length;i++){ if (chainState.flatDepth[i] === li + 1){ target = i; break; } }
+        chainState.idx = target;
+        chainApplyHighlight();
+        const n = chainNodeById(chainState.flat[chainState.idx]);
+        if (n) chainFlyTo(n);
+        renderChainUI();
+        chainTouchTimer();
+    }
+    function chainSelectComplete(){
+        if (!chainState.flat.length) return;
+        chainEnterIfNeeded();
+        chainState.showAll = true;
+        chainApplyHighlight();
+        renderChainUI();
+        chainTouchTimer();
+    }
+    function chainExitToIntro(){
+        exitChainMode(true);
+        renderChainUI();
+        chainTouchTimer();
+    }
+    // Entry hook called at the end of showDetail(n) — renders only into #chainWalk.
+    function renderChainIntro(n){
+        chainEnsureModeBinding();
+        const box = document.getElementById('chainWalk');
+        if (!box || !G) return;
+        if (chainState.active && chainState.rootId !== n.id){ exitChainMode(true); }
+        if (!(chainState.active && chainState.rootId === n.id)){
+            chainState.rootId = n.id;
+            chainState.active = false;
+            chainState.showAll = false;
+            chainState.idx = 0;
+            const gd = G.graphData();
+            chainState.levels = gd ? chainBuildLevels(n.id, gd) : [];
+            chainState.flat = [];
+            chainState.flatDepth = [];
+            chainState.levels.forEach((lvl, li) => lvl.forEach(id => { chainState.flat.push(id); chainState.flatDepth.push(li + 1); }));
+        }
+        renderChainUI();
+    }
+    function renderChainUI(){
+        const box = document.getElementById('chainWalk');
+        if (!box) return;
+        const root = chainNodeById(chainState.rootId);
+        if (!root || !chainState.levels.length){
+            box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
+                '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+            return;
+        }
+        const total = chainState.flat.length;
+        const effIdx = chainState.showAll ? total - 1 : chainState.idx;
+        const curNode = chainNodeById(chainState.flat[effIdx]);
+        const curLabel = curNode ? nodeLabel(curNode) : '';
+        const cur = chainState.showAll ? total : (chainState.idx + 1);
+        let chips = '';
+        chainState.levels.forEach((lvl, li) => {
+            const on = chainState.active && !chainState.showAll && chainDepthOfIdx() === li + 1;
+            chips += '<button class="b cw-chip'+(on?' a':'')+'" data-cw-lvl="'+li+'">'+i18n.tr('detail.chain_chip', {n: li + 1})+'</button>';
+        });
+        chips += '<button class="b cw-chip'+(chainState.showAll?' a':'')+'" data-cw-all="1">'+i18n.tr('detail.chain_complete')+'</button>';
+        const atStart = !chainState.showAll && chainState.idx <= 0;
+        const atEnd = !chainState.showAll && chainState.idx >= total - 1;
+        box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
+            '<div class="cw-chips">'+chips+'</div>'+
+            '<div class="cw-step">'+i18n.tr('detail.chain_step', {cur: cur, total: total, label: curLabel})+'</div>'+
+            '<div class="cw-nav"><button class="b" data-cw-prev="1"'+(atStart?' disabled':'')+'>'+i18n.tr('detail.chain_prev')+'</button>'+
+            '<button class="b" data-cw-next="1"'+(atEnd?' disabled':'')+'>'+i18n.tr('detail.chain_next')+'</button>'+
+            '<button class="b" data-cw-exit="1">'+i18n.tr('detail.chain_exit')+'</button></div>'+
+            '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+        box.querySelectorAll('[data-cw-lvl]').forEach(b => b.addEventListener('click', () => chainSelectLevel(+b.getAttribute('data-cw-lvl'))));
+        const all = box.querySelector('[data-cw-all]');
+        if (all) all.addEventListener('click', chainSelectComplete);
+        const pv = box.querySelector('[data-cw-prev]');
+        if (pv) pv.addEventListener('click', () => chainGoto(chainState.idx - 1));
+        const nx = box.querySelector('[data-cw-next]');
+        if (nx) nx.addEventListener('click', () => chainGoto(chainState.idx + 1));
+        const ex = box.querySelector('[data-cw-exit]');
+        if (ex) ex.addEventListener('click', chainExitToIntro);
+    }
 
     /* ─── View Mode ───────────────────────────────────────────────── */
     function setMode(m) {

@@ -429,35 +429,50 @@ graph LR
   </div>
 
   <div class="card" style="padding:16px 18px;margin-bottom:24px">
-    <div style="display:flex;flex-wrap:wrap;gap:20px">
-      <div style="flex:1;min-width:230px">
-        <div style="font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2)" data-i18n="try_norm_title">Ausprobieren: Normalisierung</div>
-        <div style="margin:8px 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <input id="tryNormIn" value="Straße" style="border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-family:var(--font-mono);font-size:.8rem;background:var(--surface);color:var(--text);max-width:140px">
-          <span class="mono" id="tryNormOut" style="font-size:.8rem">Straße → straße → strasse</span>
-        </div>
-        <div style="font-size:.78rem;color:var(--text2)" data-i18n="try_norm_hint">Kleinschreibung + ß→ss + Leer-/Bindestriche entfernen.</div>
-      </div>
-      <div style="flex:1;min-width:230px">
-        <div style="font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2)" data-i18n="try_perm_title">Ausprobieren: 50 Permutationen</div>
-        <div style="margin:8px 0">
-          <button id="tryPermBtn" style="background:transparent;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.75rem;color:var(--text2);cursor:pointer" data-i18n="try_perm_btn">50 Permutationen ausführen</button>
-        </div>
-        <div id="tryPermBars" style="display:flex;align-items:flex-end;gap:3px;height:34px;margin:8px 0" aria-hidden="true"></div>
-        <div style="font-size:.78rem;color:var(--text2)" data-i18n="try_perm_note">Gefroren: p&lt;0,004 (Aufloesung 1/500); Boden 0,033 (ZH-DE-Marge, positiv).</div>
-      </div>
+    <div style="font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2)" data-i18n="shuf_title">Shuffle-Theater: was ein Permutationstest tut</div>
+    <p style="font-size:.78rem;color:var(--text2);margin:6px 0" data-i18n="shuf_hint">Gefroren: 59/59 positiv, Margen +0,03…+0,42, 500 Permutationen, p&lt;0,01, Boden 0,033. Zwei Reihen: 10 ZH-Punkte + 10 DE-Punkte auf einer Margen-Achse.</p>
+    <div style="font-family:var(--font-mono);font-size:.66rem;color:var(--text2);display:flex;justify-content:space-between;margin-top:8px"><span>ZH ×10</span><span>+0.03 … +0.42</span><span>DE ×10</span></div>
+    <div id="shufZh" style="display:flex;gap:5px;flex-wrap:wrap;padding:6px 2px;border-bottom:1px solid var(--border);transition:opacity .3s"></div>
+    <div id="shufDe" style="display:flex;gap:5px;flex-wrap:wrap;padding:6px 2px;border-bottom:1px solid var(--border);transition:opacity .3s"></div>
+    <div style="display:flex;gap:10px;align-items:center;margin:10px 0 4px;flex-wrap:wrap">
+      <button id="shufBtn" style="background:transparent;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.75rem;color:var(--text2);cursor:pointer" data-i18n="shuf_btn">Mischen</button>
+      <span class="mono" id="shufDiff" style="font-size:.8rem">toy +0.00 · n=0</span>
     </div>
+    <div id="shufHist" style="display:flex;align-items:flex-end;gap:3px;min-height:42px;border-left:1px solid var(--border);border-bottom:1px solid var(--border);padding:4px 6px;background:var(--surface);border-radius:0 0 0 6px" aria-hidden="true"></div>
+    <div style="font-size:.78rem;color:var(--text2);margin-top:6px" data-i18n="shuf_hist">Null-Histogramm: jeder Klick legt eine permutierte Differenz dazu (wiederholt klicken).</div>
+    <div style="font-size:.78rem;color:var(--text2)" data-i18n="shuf_marker">Indigo-Markierung: reale Differenz, fixiert am Boden +0,033.</div>
+    <div style="font-size:.78rem;color:var(--text2);font-weight:600;margin-top:2px" data-i18n="shuf_note">p wird gezählt, nicht berechnet.</div>
   </div>
   <script>
-function normTry(s){return s.toLowerCase().replace(/ß/g,'ss').replace(/[\s\-_]/g,'');}
-var nI=document.getElementById('tryNormIn'),nO=document.getElementById('tryNormOut');
-function updTry(){if(nI&&nO)nO.textContent=nI.value+' → '+nI.value.toLowerCase()+' → '+normTry(nI.value);}
-if(nI){nI.addEventListener('input',updTry);updTry();}
-document.getElementById('tryPermBtn').addEventListener('click',function(){
-var b=document.getElementById('tryPermBars');b.innerHTML='';
-var v=[0.42,0.31,0.27,0.22,0.19,0.16,0.14,0.12,0.10,0.09,0.07,0.05,0.04,0.033];
-v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.round(h*80)+'px';d.style.width='8px';d.style.background='rgba(30,58,138,.5)';d.style.borderRadius='2px';b.appendChild(d);});
+(function(){
+var zh=document.getElementById('shufZh'),de=document.getElementById('shufDe');
+var btn=document.getElementById('shufBtn'),out=document.getElementById('shufDiff');
+var hist=document.getElementById('shufHist'),n=0;
+function dot(c){var s=document.createElement('span');
+s.style.cssText='width:10px;height:10px;border-radius:50%;background:'+c+';border:1px solid var(--border);display:inline-block;transition:transform .45s,opacity .45s';return s;}
+var Z=[],D=[],i;
+for(i=0;i<10;i++){Z.push(dot('var(--accent)'));D.push(dot('var(--red)'));}
+Z.forEach(function(d){zh.appendChild(d);});D.forEach(function(d){de.appendChild(d);});
+var pool=[0.03,0.04,0.05,0.07,0.08,0.09,0.10,0.11,0.12,0.13,0.14,0.16,0.17,0.18,0.21,0.22,0.24,0.25,0.29,0.42];
+function mean(a){var s=0,k;for(k=0;k<a.length;k++)s+=a[k];return s/a.length;}
+function shuffled(a){var b=a.slice(),k,t,j;for(k=b.length-1;k>0;k--){j=Math.floor(Math.random()*(k+1));t=b[k];b[k]=b[j];b[j]=t;}return b;}
+btn.addEventListener('click',function(){
+n++;zh.style.opacity=.2;de.style.opacity=.2;
+setTimeout(function(){zh.style.opacity=1;de.style.opacity=1;},300);
+var all=shuffled(Z.concat(D)),k;
+zh.innerHTML='';de.innerHTML='';
+for(k=0;k<10;k++){zh.appendChild(all[k]);de.appendChild(all[k+10]);}
+var v=shuffled(pool),d=Math.abs(mean(v.slice(0,10))-mean(v.slice(10,20)));
+if(out)out.textContent='toy +'+d.toFixed(2)+' · n='+n;
+var bar=document.createElement('div');
+bar.style.cssText='width:8px;border-radius:2px;background:var(--text2);opacity:.55;height:'+Math.max(4,Math.round(d*90))+'px';
+bar.title='+'+d.toFixed(2);hist.appendChild(bar);
+if(!document.getElementById('shufMark')){
+var mk=document.createElement('div');mk.id='shufMark';
+mk.style.cssText='width:8px;border-radius:2px;background:var(--accent);height:8px;align-self:flex-end';
+mk.title='floor +0.033';hist.appendChild(mk);}
 });
+})();
   </script>
 
   <div class="metric-grid">
@@ -778,7 +793,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
     </div>
     <details style="margin:12px auto;max-width:700px;font-size:.82rem;color:var(--text2)">
       <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_fig37_sum">Details · how Fig 3 / Fig 7 are made</summary>
-      <p style="margin:8px 0" data-i18n="mm_fig37_src"><b>Source.</b> CDS per level from the math graph (Fig 3) and the three-discipline matrix (<span class="mono">outputs/physics_comparison.json</span> + <span class="mono">chemistry_comparison.json</span>, Fig 7) — the same numbers as the CDS Terrain view.</p>
+      <p style="margin:8px 0" data-i18n="mm_fig37_src"><b>Source.</b> CDS per level from the math graph (Fig 3) and the three-discipline matrix (<span class="mono">outputs/physics_comparison.json</span> + <span class="mono">chemistry_comparison.json</span>, Fig 7) — the same numbers formerly shown in the retired CDS Terrain view (archived 2026-09-16).</p>
       <p style="margin:8px 0" data-i18n="mm_fig37_calc"><b>Method.</b> CDS = 2|E|/(|V|·(|V|−1)) per level cell; the math graph renders 233 of 517 relations. Nothing is rescaled.</p>
       <p style="margin:8px 0" data-i18n="mm_fig37_read"><b>Reading.</b> Height = density; an early peak then decline in all three subjects (math middle 0.271, physics elementary 0.222, chemistry middle 0.042).</p>
     </details>
@@ -854,49 +869,49 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
 
 <section id="two-tier" class="fade-in">
   <div class="finding-card" style="border-left:4px solid #0e7490">
-    <h3><i class="bi bi-layers" style="color:#0e7490"></i> <span>Textbook Pedagogy vs Latent Model Representations (Two-Tier, 2026-09-14)</span></h3>
-    <div class="lead">Open-weight vectors compress three pairs into a 0.48&ndash;0.52 narrow band (spread 0.0445) and do not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93). The two tiers measure different things.</div>
+    <h3><i class="bi bi-layers" style="color:#0e7490"></i> <span data-i18n="twotier_title">Textbook Pedagogy vs Latent Model Representations (Two-Tier, 2026-09-14)</span></h3>
+    <div class="lead" data-i18n="twotier_lead">Open-weight vectors compress three pairs into a 0.48&ndash;0.52 narrow band (spread 0.0445) and do not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93). The two tiers measure different things.</div>
     <div class="table-container" style="margin:16px 0;overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:.85rem">
         <thead>
           <tr style="background:var(--surface2);border-bottom:2px solid #0e7490">
-            <th style="padding:8px 12px;text-align:left">Dimension</th>
-            <th style="padding:8px 12px;text-align:left">Tier-1 Textbook explicit graph (main evidence)</th>
-            <th style="padding:8px 12px;text-align:left">Tier-2 Latent vectors (control baseline, this batch)</th>
+            <th style="padding:8px 12px;text-align:left" data-i18n="twotier_h_dim">Dimension</th>
+            <th style="padding:8px 12px;text-align:left" data-i18n="twotier_h_t1">Tier-1 Textbook explicit graph (main evidence)</th>
+            <th style="padding:8px 12px;text-align:left" data-i18n="twotier_h_t2">Tier-2 Latent vectors (control baseline, this batch)</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Source</strong></td>
-            <td style="padding:8px 12px">Textbook concept/relation tables (68 files, 741 concepts / 665 relations, human + multi-model audit)</td>
-            <td style="padding:8px 12px">Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)</td>
+            <td style="padding:8px 12px"><strong data-i18n="twotier_r_src">Source</strong></td>
+            <td style="padding:8px 12px" data-i18n="twotier_src_t1">Textbook concept/relation tables (68 files, 741 concepts / 665 relations, human + multi-model audit)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_src_t2">Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>What is measured</strong></td>
-            <td style="padding:8px 12px">Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")</td>
-            <td style="padding:8px 12px">Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")</td>
+            <td style="padding:8px 12px"><strong data-i18n="twotier_r_what">What is measured</strong></td>
+            <td style="padding:8px 12px" data-i18n="twotier_what_t1">Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")</td>
+            <td style="padding:8px 12px" data-i18n="twotier_what_t2">Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Topology</strong></td>
-            <td style="padding:8px 12px">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)</td>
-            <td style="padding:8px 12px">Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)</td>
+            <td style="padding:8px 12px"><strong data-i18n="twotier_r_topo">Topology</strong></td>
+            <td style="padding:8px 12px" data-i18n="twotier_topo_t1">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_topo_t2">Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Interpretability</strong></td>
-            <td style="padding:8px 12px">High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)</td>
-            <td style="padding:8px 12px">Low: a single value is not traceable to a curriculum fact; distribution-level statements only</td>
+            <td style="padding:8px 12px"><strong data-i18n="twotier_r_interp">Interpretability</strong></td>
+            <td style="padding:8px 12px" data-i18n="twotier_interp_t1">High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_interp_t2">Low: a single value is not traceable to a curriculum fact; distribution-level statements only</td>
           </tr>
           <tr>
-            <td style="padding:8px 12px"><strong>Role</strong></td>
-            <td style="padding:8px 12px"><strong>Main evidence</strong>: carries the macro language-separability signal (LDS-C, p&lt;0.004)</td>
-            <td style="padding:8px 12px"><strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.</td>
+            <td style="padding:8px 12px"><strong data-i18n="twotier_r_role">Role</strong></td>
+            <td style="padding:8px 12px" data-i18n="twotier_role_t1"><strong>Main evidence</strong>: carries the macro language-separability signal (LDS-C, p&lt;0.004)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_role_t2"><strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p style="margin-top:8px"><strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.</p>
-    <p class="honesty">Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).</p>
-    <div class="meta"><span class="tag tag-cyan">Tier-1: LDS-K 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow">Source: research/two_tier_benchmark_20260914.md</span></div>
+    <p style="margin-top:8px" data-i18n="twotier_key"><strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.</p>
+    <p class="honesty" data-i18n="twotier_scale">Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).</p>
+    <div class="meta"><span class="tag tag-cyan" data-i18n="twotier_meta1">Tier-1: LDS-K 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue" data-i18n="twotier_meta2">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow" data-i18n="twotier_meta3">Source: research/two_tier_benchmark_20260914.md</span></div>
   </div>
 </section>
 
@@ -920,7 +935,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
     </div>
     <details style="margin:12px auto;max-width:700px;font-size:.82rem;color:var(--text2)">
       <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_fig8_sum">Details · how Fig 8 is made</summary>
-      <p style="margin:8px 0" data-i18n="mm_fig8_src"><b>Source.</b> Overall column of <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> (paper §8.5) — the same table behind the coverage cards and Coverage Towers.</p>
+      <p style="margin:8px 0" data-i18n="mm_fig8_src"><b>Source.</b> Overall column of <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> (paper §8.5) — the same table behind the coverage cards above.</p>
       <p style="margin:8px 0" data-i18n="mm_fig8_calc"><b>Method.</b> Keyword bridge + 2-overlap threshold; overall = matched/total across all stages per system.</p>
       <p style="margin:8px 0" data-i18n="mm_fig8_read"><b>Reading.</b> Bar = system overall; the gap runs China 95.4% down to NRW 12.7%.</p>
     </details>
@@ -996,46 +1011,46 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
 
 <section id="falsification-probe" class="fade-in">
   <div class="finding-card" style="border-left:4px solid var(--purple)">
-    <h3><i class="bi bi-eyedropper" style="color:var(--purple)"></i> <span>Humanities "falsification probe" (asymmetric, pre-registered logic)</span></h3>
-    <div class="lead">The humanities/social-topic subset of the questionnaire is independent of the math graph and serves one-way falsification only &mdash; it can weaken the "curriculum-specific" claim but can never confirm the math result on its own.</div>
-    <p><strong>Pass:</strong> math-domain LDS splits significantly while the humanities subset on the same pair does not (or flips sign) &rarr; supports "effect is math-curriculum-specific", against a generic-language-distance reading. <strong>Alarm:</strong> humanities subset reproduces the same split &rarr; math LDS significance stands (different test objects), but the "curriculum-specific" claim is downgraded to "shared cross-domain split" and the generic factor must be chased. <strong>Never:</strong> the humanities subset alone confirms the math conclusion (different domains, no transfer). Execute at N=30: full-set LDS-C first, then the humanities slice under the same pipeline and alpha with independent Bonferroni correction; report both tables side by side, never only the favorable half. Current state: pilot N=8 social-topic values (0.704/0.727/0.751) are implanted as the probe baseline placeholder &mdash; no pass/alarm call today.</p>
+    <h3><i class="bi bi-eyedropper" style="color:var(--purple)"></i> <span data-i18n="fals_title">Humanities "falsification probe" (asymmetric, pre-registered logic)</span></h3>
+    <div class="lead" data-i18n="fals_lead">The humanities/social-topic subset of the questionnaire is independent of the math graph and serves one-way falsification only &mdash; it can weaken the "curriculum-specific" claim but can never confirm the math result on its own.</div>
+    <p data-i18n="fals_body"><strong>Pass:</strong> math-domain LDS splits significantly while the humanities subset on the same pair does not (or flips sign) &rarr; supports "effect is math-curriculum-specific", against a generic-language-distance reading. <strong>Alarm:</strong> humanities subset reproduces the same split &rarr; math LDS significance stands (different test objects), but the "curriculum-specific" claim is downgraded to "shared cross-domain split" and the generic factor must be chased. <strong>Never:</strong> the humanities subset alone confirms the math conclusion (different domains, no transfer). Execute at N=30: full-set LDS-C first, then the humanities slice under the same pipeline and alpha with independent Bonferroni correction; report both tables side by side, never only the favorable half. Current state: pilot N=8 social-topic values (0.704/0.727/0.751) are implanted as the probe baseline placeholder &mdash; no pass/alarm call today.</p>
     <div class="table-container" style="margin:16px 0;overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:.85rem">
         <thead>
           <tr style="background:var(--surface2);border-bottom:2px solid var(--purple)">
-            <th style="padding:8px 12px;text-align:left">Reviewer question</th>
-            <th style="padding:8px 12px;text-align:left">Standard answer (read verbatim)</th>
+            <th style="padding:8px 12px;text-align:left" data-i18n="fals_qh">Reviewer question</th>
+            <th style="padding:8px 12px;text-align:left" data-i18n="fals_ah">Standard answer (read verbatim)</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>N=8 and you report human conclusions?</strong></td>
-            <td style="padding:8px 12px">No. N=8 is a pipeline demo placeholder; the powered design is N=30 (86% power for &Delta;LDS&gt;0). The human column registers shape only, no significance claim.</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q1">N=8 and you report human conclusions?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a1">No. N=8 is a pipeline demo placeholder; the powered design is N=30 (86% power for &Delta;LDS&gt;0). The human column registers shape only, no significance claim.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Vectors or graphs &mdash; which is right?</strong></td>
-            <td style="padding:8px 12px">Not a right/wrong relation but two measurement layers: graphs measure curriculum structure (main evidence), vectors measure distributional proximity (control baseline). Vector uniformity is exactly what shows the graph's structure is not generic semantic noise.</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q2">Vectors or graphs &mdash; which is right?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a2">Not a right/wrong relation but two measurement layers: graphs measure curriculum structure (main evidence), vectors measure distributional proximity (control baseline). Vector uniformity is exactly what shows the graph's structure is not generic semantic noise.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>zh-de 0.48 vs 0.52 &mdash; mutual confirmation?</strong></td>
-            <td style="padding:8px 12px">No. Different scales (cosine distance vs GED+Jaccard synthesis); closeness is coincidence. Rank order only, never raw values.</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q3">zh-de 0.48 vs 0.52 &mdash; mutual confirmation?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a3">No. Different scales (cosine distance vs GED+Jaccard synthesis); closeness is coincidence. Rank order only, never raw values.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>What if the humanities probe alarms?</strong></td>
-            <td style="padding:8px 12px">Downgrade "curriculum-specific" to "shared cross-domain", chase the generic factor; do not retract math LDS significance (different test objects, see blue-team D5 layering).</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q4">What if the humanities probe alarms?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a4">Downgrade "curriculum-specific" to "shared cross-domain", chase the generic factor; do not retract math LDS significance (different test objects, see blue-team D5 layering).</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
-            <td style="padding:8px 12px"><strong>Is 500-perm p&lt;0.004 fished?</strong></td>
-            <td style="padding:8px 12px">It is the resolution limit at 500 permutations (minimum reportable p); 59/59 pass with margin floor 0.033 &gt; 0; micro noise does not move the macro margin order (see blue_defense_20260914.md &sect;D5).</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q5">Is 500-perm p&lt;0.004 fished?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a5">It is the resolution limit at 500 permutations (minimum reportable p); 59/59 pass with margin floor 0.033 &gt; 0; micro noise does not move the macro margin order (see blue_defense_20260914.md &sect;D5).</td>
           </tr>
           <tr>
-            <td style="padding:8px 12px"><strong>temperature=0 reproducible?</strong></td>
-            <td style="padding:8px 12px">Judge calls use temperature=0, max_tokens=5; embeddings have no sampling randomness (same word, same vector) &mdash; rerun the script for the same table; only an LM Studio model-version change forces re-registration.</td>
+            <td style="padding:8px 12px"><strong data-i18n="fals_q6">temperature=0 reproducible?</strong></td>
+            <td style="padding:8px 12px" data-i18n="fals_a6">Judge calls use temperature=0, max_tokens=5; embeddings have no sampling randomness (same word, same vector) &mdash; rerun the script for the same table; only an LM Studio model-version change forces re-registration.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="meta"><span class="tag tag-purple">Probe baseline (pilot, placeholder): 0.704 / 0.727 / 0.751</span> <span class="tag tag-yellow">Source: research/human_vs_machine_20260914.md &sect;3&ndash;4</span></div>
+    <div class="meta"><span class="tag tag-purple" data-i18n="fals_meta1">Probe baseline (pilot, placeholder): 0.704 / 0.727 / 0.751</span> <span class="tag tag-yellow" data-i18n="fals_meta2">Source: research/human_vs_machine_20260914.md &sect;3&ndash;4</span></div>
   </div>
 </section>
 
@@ -1063,17 +1078,15 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
     <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_math">Math 3D</a>
     <a href="../web/index.html?graph=steam" target="_blank" class="btn btn-ghost" data-i18n="cs_view_steam">STEAM 3D</a>
     <a href="../web/index.html?graph=physics" target="_blank" class="btn btn-ghost" data-i18n="cs_view_physics">Physics 3D</a>
-    <a href="../web/signal-playground.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_signal">Signal Playground</a>
-    <a href="../web/coverage-race.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_race">Coverage Race</a>
     <a href="../web/lost-in-translation.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_trans">Lost in Translation</a>
-    <a href="../web/chain-walker.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_chain">Chain Walker</a>
+    <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_chain">Chain Walker</a>
     <a href="../web/null-slot.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_null">Null Slot</a>
   </div>
 </section>
 
 <!-- ==================== LIMITATIONS ==================== -->
 <section id="limitations" class="fade-in">
-  <h2 class="section-title">Limitations</h2>
+  <h2 class="section-title" data-i18n="section_limitations">Limitations</h2>
   <p class="section-sub" data-i18n="limitations_sub">Transparent assessment of methodological boundaries and potential biases</p>
 
   <div class="card-grid">
@@ -1114,16 +1127,16 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
       <div class="meta" data-i18n="limitations6_mit">Mitigation: Social concept results (n=72) are statistically robust</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-scissors" style="color:var(--yellow)"></i> <span>Chunking boundaries (section-level granularity)</span></h3>
-       <p>Textbook extraction chunks by section (<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>); cross-section co-reference is merged only at the alignment table, and edges pointing to concepts established elsewhere count as dangling (244 in-file / 51 unresolved cross-file, see blue-team D3). The bias is one-sided and conservative: node/edge Jaccard can only underestimate cross-lingual overlap and overestimate drift. Conclusions rest on "cross-lingual distance significantly above the null model" (margin floor 0.033 &gt; 0), not on absolute LDS values; chunking applies symmetrically across languages. Future work: chapter-level rerun as sensitivity analysis.</p>
+      <h3><i class="bi bi-scissors" style="color:var(--yellow)"></i> <span data-i18n="lim_chunk_title">Chunking boundaries (section-level granularity)</span></h3>
+       <p data-i18n="lim_chunk_body">Textbook extraction chunks by section (<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>); cross-section co-reference is merged only at the alignment table, and edges pointing to concepts established elsewhere count as dangling (244 in-file / 51 unresolved cross-file, see blue-team D3). The bias is one-sided and conservative: node/edge Jaccard can only underestimate cross-lingual overlap and overestimate drift. Conclusions rest on "cross-lingual distance significantly above the null model" (margin floor 0.033 &gt; 0), not on absolute LDS values; chunking applies symmetrically across languages. Future work: chapter-level rerun as sensitivity analysis.</p>
       <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis7">If this limit were off, you would misread overestimated drift (244 in-file / 51 unresolved dangling) as true cross-lingual distance.</p>
-      <div class="meta">Source: research/limitations_20260914.md L1</div>
+      <div class="meta" data-i18n="lim_chunk_meta">Source: research/limitations_20260914.md L1</div>
     </div>
     <div class="card">
-      <h3><i class="bi bi-type" style="color:var(--orange)"></i> <span>Hard-match penalty (normalization + exact alignment)</span></h3>
-       <p>Audit and alignment use hard matching (lowercase + strip spaces/hyphens/underscores + &szlig;&rarr;ss + synonym map). Synonymous-but-differently-spelled pairs (e.g. Bayes-Formel vs Satz von Bayes) are penalized by construction; quantified sensitivity is single-digit (unresolved 50 vs 51, cross-file renaming 53 vs 38). The vector audit inherits the same constraint: of 219 alignment groups, 32 are surface-identical in all three languages and zh-de keeps only 65 effective pairs with the widest error bar (mean 0.4804, std 0.1274). Report normalization rules alongside every recall/LDS number; vector level stays distribution-level, no single-pair claims. Soft matching (embedding-threshold alignment) is future work with pre-registered thresholds.</p>
+      <h3><i class="bi bi-type" style="color:var(--orange)"></i> <span data-i18n="lim_hard_title">Hard-match penalty (normalization + exact alignment)</span></h3>
+       <p data-i18n="lim_hard_body">Audit and alignment use hard matching (lowercase + strip spaces/hyphens/underscores + &szlig;&rarr;ss + synonym map). Synonymous-but-differently-spelled pairs (e.g. Bayes-Formel vs Satz von Bayes) are penalized by construction; quantified sensitivity is single-digit (unresolved 50 vs 51, cross-file renaming 53 vs 38). The vector audit inherits the same constraint: of 219 alignment groups, 32 are surface-identical in all three languages and zh-de keeps only 65 effective pairs with the widest error bar (mean 0.4804, std 0.1274). Report normalization rules alongside every recall/LDS number; vector level stays distribution-level, no single-pair claims. Soft matching (embedding-threshold alignment) is future work with pre-registered thresholds.</p>
       <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis8">If this penalty were off, you would misread a Bayes-Formel vs Satz von Bayes spelling split as real divergence (zh-de 65 pairs, mean 0.4804).</p>
-      <div class="meta">Source: research/limitations_20260914.md L2</div>
+      <div class="meta" data-i18n="lim_hard_meta">Source: research/limitations_20260914.md L2</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-people" style="color:var(--pink)"></i> <span>Sparse annotation (N=8 pilot + alignment coverage) &middot; temperature=0 &middot; 500-perm p&lt;0.004</span></h3>
@@ -1185,9 +1198,9 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
   </div>
   <details style="margin:0 0 32px;font-size:.82rem;color:var(--text2);max-width:760px">
     <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_cover_sum">Details · how the coverage cards are made</summary>
-    <p style="margin:8px 0" data-i18n="mm_cover_src"><b>Source.</b> Per-stage rows of <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> — the same table behind Coverage Towers.</p>
+    <p style="margin:8px 0" data-i18n="mm_cover_src"><b>Source.</b> Per-stage rows of <span class="mono">config/expert_graphs/coverage_all_curricula.json</span> — the same table behind the coverage cards above.</p>
     <p style="margin:8px 0" data-i18n="mm_cover_calc"><b>Method.</b> Keyword bridge + 2-overlap threshold (≥2 shared keywords = covered); card headline = system overall.</p>
-    <p style="margin:8px 0" data-i18n="mm_cover_read"><b>Reading.</b> Each card narrates one system; the numbers match the bright overall bars in Coverage Towers.</p>
+    <p style="margin:8px 0" data-i18n="mm_cover_read"><b>Reading.</b> Each card narrates one system; the numbers match the card headlines above.</p>
   </details>
 
   <h3 style="margin-bottom:16px;font-size:1.2rem" data-i18n="three_explanations">Three Competing Explanations</h3>
@@ -1209,7 +1222,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
 
 <!-- ==================== VALIDATION ==================== -->
 <section id="validation" class="fade-in">
-  <h2 class="section-title">Validation</h2>
+  <h2 class="section-title" data-i18n="section_validation">Validation</h2>
   <p class="section-sub" data-i18n="validation_sub">Gold standard annotations and model benchmarks</p>
 
   <div class="card-grid" style="margin-bottom:40px;grid-template-columns:1fr">
@@ -1254,7 +1267,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
       <p style="font-size:.78rem;color:var(--text2)" data-i18n="val_roster_desc">Fused view — all 59 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 59 ZH-DE p&lt;0.01; 9 EN n.s. among 177 (500 permutations). Western runs in red. The 26 collecting runs (incl. qwen-max n=26/30 (parked), 2 sparse small-model boundary runs and 1 format-quarantined run, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.</p>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_margin_sum">Details · how the margin chart is made</summary>
-        <p style="margin:8px 0" data-i18n="mm_margin_src"><b>Source.</b> 59 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — the same rows as the Margin Proof view and the roster table below. 26 collecting runs (n&lt;30, sparse-boundary or quarantined) withhold margins.</p>
+        <p style="margin:8px 0" data-i18n="mm_margin_src"><b>Source.</b> 59 full runs from <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> — the same rows as the roster table below. 26 collecting runs (n&lt;30, sparse-boundary or quarantined) withhold margins.</p>
         <p style="margin:8px 0" data-i18n="mm_margin_calc"><b>Method.</b> Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 59 ZH-DE p&lt;0.01; 9 EN n.s. among 177. Sorted descending; nothing rescaled.</p>
         <p style="margin:8px 0" data-i18n="mm_margin_read"><b>Reading.</b> Bar = margin, all 59 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.</p>
       </details>
@@ -1385,7 +1398,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
 
 <!-- ==================== PAPER ==================== -->
 <section id="paper" class="fade-in">
-  <h2 class="section-title">Paper</h2>
+  <h2 class="section-title" data-i18n="section_paper">Paper</h2>
   <p class="section-sub" data-i18n="paper_sub">Preprint manuscript available in the repository</p>
 
   <div class="card-grid" style="margin-bottom:32px">
@@ -1419,7 +1432,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
 
 <!-- ==================== OPEN SCIENCE ==================== -->
 <section id="open-science" class="fade-in">
-  <h2 class="section-title">Open Science</h2>
+  <h2 class="section-title" data-i18n="section_openscience">Open Science</h2>
   <p class="section-sub" data-i18n="openscience_sub">All data, code and results are publicly available</p>
 
   <div class="card-grid">
@@ -1893,9 +1906,8 @@ const TRANSLATIONS = {
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
     cs_view_gallery: 'Interactive Gallery', cs_view_math: 'Math 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physics 3D',
-    cs_view_cds: 'CDS Terrain', cs_view_galaxy: 'Margin Proof', cs_view_towers: 'Coverage Towers',
     cs_load: 'Load interactive graph →',
-    cs_view_signal: 'Signal Playground', cs_view_race: 'Coverage Race', cs_view_trans: 'Lost in Translation', cs_view_chain: 'Chain Walker', cs_view_null: 'Null Slot',
+    cs_view_trans: 'Lost in Translation', cs_view_chain: 'Chain Walker (3D)', cs_view_null: 'Null Slot',
     paper_sec_meta: '10 files · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a>',
     paper_fig_meta: '10 files · 54 references',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
@@ -1942,23 +1954,23 @@ const TRANSLATIONS = {
     glos_8: 'Consistency demonstration, not a causal proof of the human null.',
     glos_9: 'Operational heuristic for audit use, not a validated boundary.',
     mm_fig37_sum: 'Details · how Fig 3 / Fig 7 are made',
-    mm_fig37_src: 'Source. CDS per level from the math graph (Fig 3) and the three-discipline matrix (outputs/physics_comparison.json + chemistry_comparison.json, Fig 7) — the same numbers as the CDS Terrain view.',
+    mm_fig37_src: 'Source. CDS per level from the math graph (Fig 3) and the three-discipline matrix (outputs/physics_comparison.json + chemistry_comparison.json, Fig 7) — the same numbers formerly shown in the retired CDS Terrain view (archived 2026-09-16).',
     mm_fig37_calc: 'Method. CDS = 2|E|/(|V|·(|V|−1)) per level cell; the math graph renders 233 of 517 relations. Nothing is rescaled.',
     mm_fig37_read: 'Reading. Height = density; an early peak then decline in all three subjects (math middle 0.271, physics elementary 0.222, chemistry middle 0.042).',
     mm_fig8_sum: 'Details · how Fig 8 is made',
-    mm_fig8_src: 'Source. Overall column of config/expert_graphs/coverage_all_curricula.json (paper §8.5) — the same table behind the coverage cards and Coverage Towers.',
+    mm_fig8_src: 'Source. Overall column of config/expert_graphs/coverage_all_curricula.json (paper §8.5) — the same table behind the coverage cards above.',
     mm_fig8_calc: 'Method. Keyword bridge + 2-overlap threshold; overall = matched/total across all stages per system.',
     mm_fig8_read: 'Reading. Bar = system overall; the gap runs China 95.4% down to NRW 12.7%.',
     mm_cover_sum: 'Details · how the coverage cards are made',
-    mm_cover_src: 'Source. Per-stage rows of config/expert_graphs/coverage_all_curricula.json — the same table behind Coverage Towers.',
+    mm_cover_src: 'Source. Per-stage rows of config/expert_graphs/coverage_all_curricula.json — the same table behind the coverage cards above.',
     mm_cover_calc: 'Method. Keyword bridge + 2-overlap threshold (≥2 shared keywords = covered); card headline = system overall.',
-    mm_cover_read: 'Reading. Each card narrates one system; the numbers match the bright overall bars in Coverage Towers.',
+    mm_cover_read: 'Reading. Each card narrates one system; the numbers match the card headlines above.',
     mm_bench_sum: 'Details · how the benchmark chart is made',
     mm_bench_src: 'Source. 19 models scored on 92 gold labels (model-selection benchmark, Validation section).',
     mm_bench_calc: 'Method. F1 on gold labels; the production extraction model was selected by overall F1. Range 0.55–0.67.',
     mm_bench_read: 'Reading. Bar = F1 per model. Used only for extractor selection — never for language claims (that is the 59-run replication below).',
     mm_margin_sum: 'Details · how the margin chart is made',
-    mm_margin_src: 'Source. 59 full runs from data/lds_c/llm_subject/multi_model_replication_20260913.json — the same rows as the Margin Proof view and the roster table below. 26 collecting runs (n<30, sparse-boundary or quarantined) withhold margins.',
+    mm_margin_src: 'Source. 59 full runs from data/lds_c/llm_subject/multi_model_replication_20260913.json — the same rows as the roster table below. 26 collecting runs (n<30, sparse-boundary or quarantined) withhold margins.',
     mm_margin_calc: 'Method. Margin = LDS-C minus split-half floor, one P1 protocol for all runs; 500 permutations, all 59 ZH-DE p<0.01; 9 EN n.s. among 177. Sorted descending; nothing rescaled.',
     mm_margin_read: 'Reading. Bar = margin, all 59 positive. Red = western (scattered = no origin clustering). The roster table below lists every row.',
     src_title: 'Sources',
@@ -1970,6 +1982,62 @@ const TRANSLATIONS = {
     src_chem_sum: 'Chemistry · 89 titles',
     src_book_h: 'Title', src_lang_h: 'Lang', src_refs_h: 'Refs',
     src_note: 'Refs = citations across concepts. New textbooks are appended here on ingestion (see docs/physics_sourcing.md for the gap list). Raw excerpts live in data/textbook/.',
+    twotier_title: 'Textbook Pedagogy vs Latent Model Representations (Two-Tier, 2026-09-14)',
+    twotier_lead: 'Open-weight vectors compress three pairs into a 0.48&ndash;0.52 narrow band (spread 0.0445) and do not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93). The two tiers measure different things.',
+    twotier_h_dim: 'Dimension',
+    twotier_h_t1: 'Tier-1 Textbook explicit graph (main evidence)',
+    twotier_h_t2: 'Tier-2 Latent vectors (control baseline, this batch)',
+    twotier_r_src: 'Source',
+    twotier_r_what: 'What is measured',
+    twotier_r_topo: 'Topology',
+    twotier_r_interp: 'Interpretability',
+    twotier_r_role: 'Role',
+    twotier_src_t1: 'Textbook concept/relation tables (68 files, 741 concepts / 665 relations, human + multi-model audit)',
+    twotier_src_t2: 'Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)',
+    twotier_what_t1: 'Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")',
+    twotier_what_t2: 'Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")',
+    twotier_topo_t1: 'Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)',
+    twotier_topo_t2: 'Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)',
+    twotier_interp_t1: 'High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)',
+    twotier_interp_t2: 'Low: a single value is not traceable to a curriculum fact; distribution-level statements only',
+    twotier_role_t1: '<strong>Main evidence</strong>: carries the macro language-separability signal (LDS-C, p&lt;0.004)',
+    twotier_role_t2: '<strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.',
+    twotier_key: '<strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.',
+    twotier_scale: 'Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
+    twotier_meta1: 'Tier-1: LDS-K 0.519 / 0.933 / 0.938',
+    twotier_meta2: 'Tier-2: 0.4804 / 0.5249 / 0.4888',
+    twotier_meta3: 'Source: research/two_tier_benchmark_20260914.md',
+    fals_title: 'Humanities "falsification probe" (asymmetric, pre-registered logic)',
+    fals_lead: 'The humanities/social-topic subset of the questionnaire is independent of the math graph and serves one-way falsification only &mdash; it can weaken the "curriculum-specific" claim but can never confirm the math result on its own.',
+    fals_body: '<strong>Pass:</strong> math-domain LDS splits significantly while the humanities subset on the same pair does not (or flips sign) &rarr; supports "effect is math-curriculum-specific", against a generic-language-distance reading. <strong>Alarm:</strong> humanities subset reproduces the same split &rarr; math LDS significance stands (different test objects), but the "curriculum-specific" claim is downgraded to "shared cross-domain split" and the generic factor must be chased. <strong>Never:</strong> the humanities subset alone confirms the math conclusion (different domains, no transfer). Execute at N=30: full-set LDS-C first, then the humanities slice under the same pipeline and alpha with independent Bonferroni correction; report both tables side by side, never only the favorable half. Current state: pilot N=8 social-topic values (0.704/0.727/0.751) are implanted as the probe baseline placeholder &mdash; no pass/alarm call today.',
+    fals_qh: 'Reviewer question',
+    fals_ah: 'Standard answer (read verbatim)',
+    fals_q1: 'N=8 and you report human conclusions?',
+    fals_a1: 'No. N=8 is a pipeline demo placeholder; the powered design is N=30 (86% power for &Delta;LDS&gt;0). The human column registers shape only, no significance claim.',
+    fals_q2: 'Vectors or graphs &mdash; which is right?',
+    fals_a2: 'Not a right/wrong relation but two measurement layers: graphs measure curriculum structure (main evidence), vectors measure distributional proximity (control baseline). Vector uniformity is exactly what shows the graph’s structure is not generic semantic noise.',
+    fals_q3: 'zh-de 0.48 vs 0.52 &mdash; mutual confirmation?',
+    fals_a3: 'No. Different scales (cosine distance vs GED+Jaccard synthesis); closeness is coincidence. Rank order only, never raw values.',
+    fals_q4: 'What if the humanities probe alarms?',
+    fals_a4: 'Downgrade "curriculum-specific" to "shared cross-domain", chase the generic factor; do not retract math LDS significance (different test objects, see blue-team D5 layering).',
+    fals_q5: 'Is 500-perm p&lt;0.004 fished?',
+    fals_a5: 'It is the resolution limit at 500 permutations (minimum reportable p); 59/59 pass with margin floor 0.033 &gt; 0; micro noise does not move the macro margin order (see blue_defense_20260914.md &sect;D5).',
+    fals_q6: 'temperature=0 reproducible?',
+    fals_a6: 'Judge calls use temperature=0, max_tokens=5; embeddings have no sampling randomness (same word, same vector) &mdash; rerun the script for the same table; only an LM Studio model-version change forces re-registration.',
+    fals_meta1: 'Probe baseline (pilot, placeholder): 0.704 / 0.727 / 0.751',
+    fals_meta2: 'Source: research/human_vs_machine_20260914.md &sect;3&ndash;4',
+    lim_chunk_title: 'Chunking boundaries (section-level granularity)',
+    lim_chunk_body: 'Textbook extraction chunks by section (<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>); cross-section co-reference is merged only at the alignment table, and edges pointing to concepts established elsewhere count as dangling (244 in-file / 51 unresolved cross-file, see blue-team D3). The bias is one-sided and conservative: node/edge Jaccard can only underestimate cross-lingual overlap and overestimate drift. Conclusions rest on "cross-lingual distance significantly above the null model" (margin floor 0.033 &gt; 0), not on absolute LDS values; chunking applies symmetrically across languages. Future work: chapter-level rerun as sensitivity analysis.',
+    lim_chunk_meta: 'Source: research/limitations_20260914.md L1',
+    lim_hard_title: 'Hard-match penalty (normalization + exact alignment)',
+    lim_hard_body: 'Audit and alignment use hard matching (lowercase + strip spaces/hyphens/underscores + &szlig;&rarr;ss + synonym map). Synonymous-but-differently-spelled pairs (e.g. Bayes-Formel vs Satz von Bayes) are penalized by construction; quantified sensitivity is single-digit (unresolved 50 vs 51, cross-file renaming 53 vs 38). The vector audit inherits the same constraint: of 219 alignment groups, 32 are surface-identical in all three languages and zh-de keeps only 65 effective pairs with the widest error bar (mean 0.4804, std 0.1274). Report normalization rules alongside every recall/LDS number; vector level stays distribution-level, no single-pair claims. Soft matching (embedding-threshold alignment) is future work with pre-registered thresholds.',
+    lim_hard_meta: 'Source: research/limitations_20260914.md L2',
+    shuf_title: 'Shuffle theater: what a permutation test does',
+    shuf_hint: 'Frozen: 59/59 positive, margins +0.03…+0.42, 500 perms, p&lt;0.01, floor 0.033. Two rows: 10 ZH dots + 10 DE dots along a margin axis.',
+    shuf_btn: 'Shuffle',
+    shuf_hist: 'Null histogram: each click adds one permuted diff (click repeatedly).',
+    shuf_marker: 'Indigo marker: real diff pinned at floor +0.033.',
+    shuf_note: 'p is counted, not computed.',
     nav_sources: 'Sources', section_sources: 'Sources',
   },
   de: {
@@ -2104,9 +2172,8 @@ const TRANSLATIONS = {
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Erkunden Sie den Graphen in drei Sprachen oder wechseln Sie die Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
     cs_view_gallery: 'Interaktive Galerie', cs_view_math: 'Mathe 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physik 3D',
-    cs_view_cds: 'CDS-Terrain', cs_view_galaxy: 'Margin-Beleg', cs_view_towers: 'Coverage-Türme',
     cs_load: 'Interaktiven Graphen laden →',
-    cs_view_signal: 'Signal-Spielplatz', cs_view_race: 'Coverage-Rennen', cs_view_trans: 'Lost in Translation', cs_view_chain: 'Ketten-Walker', cs_view_null: 'Null-Slot',
+    cs_view_trans: 'Lost in Translation', cs_view_chain: 'Ketten-Walker (3D)', cs_view_null: 'Null-Slot',
     paper_sec_meta: '10 Dateien · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Methodik lesen</a>',
     paper_fig_meta: '10 Dateien · 54 Referenzen',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
@@ -2229,23 +2296,23 @@ const TRANSLATIONS = {
     glos_8: 'Konsistenz-Demonstration, kein kausaler Beweis der menschlichen Null.',
     glos_9: 'Operative Heuristik fuer Audit-Nutzung, keine validierte Grenze.',
     mm_fig37_sum: 'Details · wie Abb. 3 / Abb. 7 entstehen',
-    mm_fig37_src: 'Quelle. CDS pro Stufe aus dem Mathe-Graphen (Abb. 3) und der Drei-Faecher-Matrix (outputs/physics_comparison.json + chemistry_comparison.json, Abb. 7) — dieselben Zahlen wie CDS-Terrain.',
+    mm_fig37_src: 'Quelle. CDS pro Stufe aus dem Mathe-Graphen (Abb. 3) und der Drei-Faecher-Matrix (outputs/physics_comparison.json + chemistry_comparison.json, Abb. 7) — dieselben Zahlen wie das archivierte CDS-Terrain (Archiv 2026-09-16).',
     mm_fig37_calc: 'Methode. CDS = 2|E|/(|V|·(|V|−1)) pro Stufenzelle; der Mathe-Graph zeigt 233 von 517 Relationen. Nichts wird reskaliert.',
     mm_fig37_read: 'Lesart. Höhe = Dichte; frühe Spitze, dann Abfall in allen drei Fächern (Mathe Mittelstufe 0,271, Physik Grundschule 0,222, Chemie Mittelstufe 0,042).',
     mm_fig8_sum: 'Details · wie Abb. 8 entsteht',
-    mm_fig8_src: 'Quelle. Gesamt-Spalte aus config/expert_graphs/coverage_all_curricula.json (Paper §8.5) — dieselbe Tabelle wie Coverage-Karten und Coverage-Türme.',
+    mm_fig8_src: 'Quelle. Gesamt-Spalte aus config/expert_graphs/coverage_all_curricula.json (Paper §8.5) — dieselbe Tabelle wie die Coverage-Karten oben.',
     mm_fig8_calc: 'Methode. Keyword-Brücke + 2-Overlap-Schwelle; gesamt = Treffer/Gesamt über alle Stufen pro System.',
     mm_fig8_read: 'Lesart. Balken = System gesamt; die Spanne reicht von China 95,4 % bis NRW 12,7 %.',
     mm_cover_sum: 'Details · wie die Coverage-Karten entstehen',
-    mm_cover_src: 'Quelle. Stufen-Zeilen aus config/expert_graphs/coverage_all_curricula.json — dieselbe Tabelle wie Coverage-Türme.',
+    mm_cover_src: 'Quelle. Stufen-Zeilen aus config/expert_graphs/coverage_all_curricula.json — dieselbe Tabelle wie die Coverage-Karten oben.',
     mm_cover_calc: 'Methode. Keyword-Brücke + 2-Overlap-Schwelle (≥2 gemeinsame Keywords = abgedeckt); Karten-Headline = System gesamt.',
-    mm_cover_read: 'Lesart. Jede Karte erzählt ein System; die Zahlen passen zu den hellen Gesamt-Balken in Coverage-Türme.',
+    mm_cover_read: 'Lesart. Jede Karte erzählt ein System; die Zahlen passen zu den Karten-Headlines oben.',
     mm_bench_sum: 'Details · wie das Benchmark-Chart entsteht',
     mm_bench_src: 'Quelle. 19 Modelle auf 92 Gold-Labels (Modellauswahl-Benchmark, Validation).',
     mm_bench_calc: 'Methode. F1 auf Gold-Labels; das Produktions-Extraktionsmodell wurde per Gesamt-F1 gewählt. Spanne 0,55–0,67.',
     mm_bench_read: 'Lesart. Balken = F1 pro Modell. Nur für die Extraktorauswahl — nie für Sprachclaims (das ist die 59-Run-Replikation unten).',
     mm_margin_sum: 'Details · wie das Margin-Chart entsteht',
-    mm_margin_src: 'Quelle. 59 vollständige Runs aus data/lds_c/llm_subject/multi_model_replication_20260913.json — dieselben Zeilen wie Margin-Beleg und Roster-Tabelle unten. 26 laufende Runs (n<30, spärlich-Grenze oder Quarantäne) halten Margen zurück.',
+    mm_margin_src: 'Quelle. 59 vollständige Runs aus data/lds_c/llm_subject/multi_model_replication_20260913.json — dieselben Zeilen wie die Roster-Tabelle unten. 26 laufende Runs (n<30, spärlich-Grenze oder Quarantäne) halten Margen zurück.',
     mm_margin_calc: 'Methode. Marge = LDS-C minus Split-Half-Boden, ein P1-Protokoll für alle Runs; 500 Permutationen, alle 59 ZH-DE p<0,01; 9 EN n.s. unter 177. Absteigend sortiert; nichts reskaliert.',
     mm_margin_read: 'Lesart. Balken = Marge, alle 59 positiv. Rot = westlich (verstreut = kein Herkunfts-Cluster). Die Roster-Tabelle unten listet jede Zeile.',
     src_title: 'Quellen',
@@ -2257,6 +2324,62 @@ const TRANSLATIONS = {
     src_chem_sum: 'Chemie · 89 Titel',
     src_book_h: 'Titel', src_lang_h: 'Spr.', src_refs_h: 'Refs',
     src_note: 'Refs = Zitierungen über Konzepte. Neue Lehrbücher werden hier bei Ingestion ergänzt (Lückenliste: docs/physics_sourcing.md). Rohauszüge liegen in data/textbook/.',
+    twotier_title: 'Lehrbuch-Pädagogik vs latente Modellrepräsentationen (Two-Tier, 2026-09-14)',
+    twotier_lead: 'Offene Vektoren komprimieren drei Paare in ein schmales Band 0,48&ndash;0,52 (Streuung 0,0445) und reproduzieren die strukturierte Spaltung des Lehrbuch-LDS-K nicht (Streuung 0,419; zh-de 0,519 &#8810; EN-beteiligt &asymp;0,93). Die zwei Ebenen messen Verschiedenes.',
+    twotier_h_dim: 'Dimension',
+    twotier_h_t1: 'Tier-1 Lehrbuch-Explizitgraph (Hauptbeleg)',
+    twotier_h_t2: 'Tier-2 Latente Vektoren (Kontrollbaseline, dieser Batch)',
+    twotier_r_src: 'Quelle',
+    twotier_r_what: 'Was gemessen wird',
+    twotier_r_topo: 'Topologie',
+    twotier_r_interp: 'Interpretierbarkeit',
+    twotier_r_role: 'Rolle',
+    twotier_src_t1: 'Lehrbuch-Konzept/Relationstabellen (68 Dateien, 741 Konzepte / 665 Relationen, Human- + Multi-Modell-Audit)',
+    twotier_src_t2: 'Offene Embeddings derselben Konzeptnamen (nomic-embed-text-v1.5, 768 dims, 934 Einträge, 434 primäre Paare)',
+    twotier_what_t1: 'Curriculumstruktur: GED-Ähnlichkeit + Knoten/Kanten-Jaccard-Synthese („was gelehrt wird, wie es verknüpft ist“)',
+    twotier_what_t2: 'Distributionelle Paraphrasen-Nähe: Kosinusdistanz synonymer sprachübergreifender Namen („wie ähnlich es im Pretraining klingt“)',
+    twotier_topo_t1: 'Strukturiert, hohe Varianz: Streuung 0,419; zh-de 0,519 weit unter EN-beteiligt &asymp;0,93 (0,933 / 0,938)',
+    twotier_topo_t2: 'Uniform, niedrige Varianz: Streuung 0,0445; gesamt 0,5029&plusmn;0,1058; zh-de 0,4804 (n=65) / zh-en 0,5249 (n=184) / de-en 0,4888 (n=185)',
+    twotier_interp_t1: 'Hoch: rückverfolgbar auf Konzepte / Kanten / Dangling-Refs (51 global ungelöst, s. Blue-Team-Defense)',
+    twotier_interp_t2: 'Niedrig: ein einzelner Wert ist auf kein Curriculumfaktum rückverfolgbar; nur verteilungsbezogene Aussagen',
+    twotier_role_t1: '<strong>Hauptbeleg</strong>: trägt das Makro-Sprachtrennbarkeitssignal (LDS-C, p&lt;0,004)',
+    twotier_role_t2: '<strong>Kontrollbaseline (Falsifikations-Probe)</strong>: existiert ein Effekt auf Graphebene, aber verschwindet auf Vektorebene, ist er Curriculumstruktur, keine generische Semantik. Nie ein eigenständiger Befund, nie austauschbar.',
+    twotier_key: '<strong>Kernsatz:</strong> der offene Vektorraum komprimiert die drei Synonym-Paardistanzen in das schmale Band 0,48&ndash;0,52 (Streuung 0,0445) und reproduziert die strukturierte Spaltung des Lehrbuch-LDS-K nicht (Streuung 0,419; zh-de 0,519 &#8810; EN-beteiligt &asymp;0,93) &mdash; der Graph ist der Hauptbeleg für Curriculumstruktur, Vektoren sind die Kontrollbaseline für distributionelle Nähe; komplementär, nicht austauschbar.',
+    twotier_scale: 'Skalenwarnung: Kosinusdistanz und 1 &minus; mean(GED_sim, Knoten/Kanten-Jaccard) sind verschiedene Größen &mdash; nur Rangfolge vergleichen, nie Rohwerte. Die zh-de-Nähe (&minus;0,04) ist ein Skalenzufall; nicht berichten „Vektoren bestätigen den zh-de-LDS-K-Wert“. Reproduktion: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
+    twotier_meta1: 'Tier-1: LDS-K 0,519 / 0,933 / 0,938',
+    twotier_meta2: 'Tier-2: 0,4804 / 0,5249 / 0,4888',
+    twotier_meta3: 'Quelle: research/two_tier_benchmark_20260914.md',
+    fals_title: 'Geisteswissenschaftliche „Falsifikations-Probe“ (asymmetrisch, präregistrierte Logik)',
+    fals_lead: 'Die Geistes-/Sozialthemen-Teilmenge des Fragebogens ist unabhängig vom Mathegraphen und dient nur einseitiger Falsifikation &mdash; sie kann den „curriculumspezifisch“-Claim schwächen, aber das Matheergebnis nie allein bestätigen.',
+    fals_body: '<strong>Pass:</strong> Mathe-LDS spaltet signifikant, während die Geistes-Teilmenge beim selben Paar nicht spaltet (oder das Vorzeichen dreht) &rarr; stützt „Effekt ist mathecurriculumspezifisch“, gegen eine generische Sprachdistanz-Lesart. <strong>Alarm:</strong> Geistes-Teilmenge reproduziert dieselbe Spaltung &rarr; Mathe-LDS-Signifikanz bleibt (verschiedene Testobjekte), aber der „curriculumspezifisch“-Claim wird auf „geteilte domänenübergreifende Spaltung“ herabgestuft und der generische Faktor muss verfolgt werden. <strong>Nie:</strong> die Geistes-Teilmenge allein bestätigt das Matheergebnis (verschiedene Domänen, kein Transfer). Ausführung bei N=30: erst Full-Set-LDS-C, dann die Geistes-Scheibe unter derselben Pipeline und Alpha mit unabhängiger Bonferroni-Korrektur; beide Tabellen nebeneinander berichten, nie nur die gefällige Hälfte. Stand: Pilot-N=8-Sozialwerte (0,704/0,727/0,751) als Probe-Baseline-Platzhalter implantiert &mdash; heute kein Pass/Alarm-Urteil.',
+    fals_qh: 'Reviewer-Frage',
+    fals_ah: 'Standardantwort (wörtlich lesen)',
+    fals_q1: 'N=8 und ihr berichtet Human-Befunde?',
+    fals_a1: 'Nein. N=8 ist ein Pipeline-Demo-Platzhalter; das gepowerte Design ist N=30 (86% Power für &Delta;LDS&gt;0). Die Human-Spalte registriert nur Form, keinen Signifikanz-Claim.',
+    fals_q2: 'Vektoren oder Graphen &mdash; was stimmt?',
+    fals_a2: 'Kein Richtig/Falsch-Verhältnis, sondern zwei Messebenen: Graphen messen Curriculumstruktur (Hauptbeleg), Vektoren messen distributionelle Nähe (Kontrollbaseline). Vektoruniformität zeigt gerade, dass die Graphstruktur kein generisches Semantikrauschen ist.',
+    fals_q3: 'zh-de 0,48 vs 0,52 &mdash; wechselseitige Bestätigung?',
+    fals_a3: 'Nein. Verschiedene Skalen (Kosinusdistanz vs GED+Jaccard-Synthese); Nähe ist Zufall. Nur Rangfolge, nie Rohwerte.',
+    fals_q4: 'Was, wenn die Geistes-Probe Alarm schlägt?',
+    fals_a4: '„Curriculumspezifisch“ auf „geteilt domänenübergreifend“ herabstufen, generischen Faktor verfolgen; Mathe-LDS-Signifikanz nicht zurückziehen (verschiedene Testobjekte, s. Blue-Team D5-Schichtung).',
+    fals_q5: 'Ist 500-perm p&lt;0,004 gefischt?',
+    fals_a5: 'Es ist das Auflösungslimit bei 500 Permutationen (kleinstes berichtbares p); 59/59 Pass mit Marge-Boden 0,033 &gt; 0; Mikrorauschen bewegt die Makro-Margenordnung nicht (s. blue_defense_20260914.md &sect;D5).',
+    fals_q6: 'temperature=0 reproduzierbar?',
+    fals_a6: 'Judge-Calls nutzen temperature=0, max_tokens=5; Embeddings haben keine Sampling-Zufälligkeit (gleiches Wort, gleicher Vektor) &mdash; Skript für dieselbe Tabelle erneut laufen lassen; nur ein LM-Studio-Modellversionswechsel erzwingt Neuregistrierung.',
+    fals_meta1: 'Probe-Baseline (Pilot, Platzhalter): 0,704 / 0,727 / 0,751',
+    fals_meta2: 'Quelle: research/human_vs_machine_20260914.md &sect;3&ndash;4',
+    lim_chunk_title: 'Chunking-Grenzen (Granularität auf Abschnittsebene)',
+    lim_chunk_body: 'Lehrbuchextraktion chunkt pro Abschnitt (<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>); abschnittsübergreifende Koreferenz wird erst in der Alignierungstabelle zusammengeführt, und Kanten auf anderswo etablierte Konzepte zählen als dangling (244 in-file / 51 ungelöst cross-file, s. Blue-Team D3). Die Verzerrung ist einseitig und konservativ: Knoten/Kanten-Jaccard kann sprachübergreifende Überlappung nur unterschätzen und Drift nur überschätzen. Befunde ruhen auf „sprachübergreifende Distanz signifikant über Nullmodell“ (Marge-Boden 0,033 &gt; 0), nicht auf absoluten LDS-Werten; Chunking wirkt symmetrisch über Sprachen. Folgearbeit: Chapter-Rerun als Sensitivitätsanalyse.',
+    lim_chunk_meta: 'Quelle: research/limitations_20260914.md L1',
+    lim_hard_title: 'Hard-Match-Strafe (Normalisierung + exaktes Alignment)',
+    lim_hard_body: 'Audit und Alignment nutzen hartes Matching (Kleinbuchstaben + Leer/Bindestrich/Unterstrich entfernen + &szlig;&rarr;ss + Synonymkarte). Synonyme, aber verschieden geschriebene Paare (z.B. Bayes-Formel vs Satz von Bayes) werden per Konstruktion bestraft; quantifizierte Sensitivität ist einstellig (ungelöst 50 vs 51, Cross-File-Umbenennung 53 vs 38). Das Vektoraudit erbt dieselbe Schranke: von 219 Alignmentgruppen sind 32 in allen drei Sprachen oberflächenidentisch und zh-de behält nur 65 effektive Paare mit dem breitesten Fehlerbalken (Mittel 0,4804, std 0,1274). Normalisierungsregeln zu jeder Recall/LDS-Zahl berichten; Vektorebene bleibt verteilungsbezogen, keine Einzelpaar-Claims. Weiches Matching (Embedding-Schwellen-Alignment) ist Folgearbeit mit präregistrierten Schwellen.',
+    lim_hard_meta: 'Quelle: research/limitations_20260914.md L2',
+    shuf_title: 'Shuffle-Theater: was ein Permutationstest tut',
+    shuf_hint: 'Gefroren: 59/59 positiv, Margen +0,03…+0,42, 500 Permutationen, p&lt;0,01, Boden 0,033. Zwei Reihen: 10 ZH-Punkte + 10 DE-Punkte auf einer Margen-Achse.',
+    shuf_btn: 'Mischen',
+    shuf_hist: 'Null-Histogramm: jeder Klick legt eine permutierte Differenz dazu (wiederholt klicken).',
+    shuf_marker: 'Indigo-Markierung: reale Differenz, fixiert am Boden +0,033.',
+    shuf_note: 'p wird gezählt, nicht berechnet.',
     nav_sources: 'Quellen', section_sources: 'Quellen',
   },
   zh: {
@@ -2467,9 +2590,8 @@ curr_explanations_title: '三种竞争性解释',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。以三种语言浏览图谱或切换学科。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
     cs_view_gallery: '交互展厅', cs_view_math: '数学 3D', cs_view_steam: 'STEAM 总览', cs_view_physics: '物理 3D',
-    cs_view_cds: 'CDS 地形', cs_view_galaxy: '边际实证', cs_view_towers: '覆盖塔群',
     cs_load: '加载交互图谱 →',
-    cs_view_signal: '信号游乐场', cs_view_race: '覆盖率赛跑', cs_view_trans: '译海迷踪', cs_view_chain: '前提链漫步', cs_view_null: '零模型拉杆',
+    cs_view_trans: '译海迷踪', cs_view_chain: '链漫步（3D）', cs_view_null: '零模型拉杆',
     paper_sec_meta: '10 个文件 · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">阅读方法章</a>',
     paper_fig_meta: '10 个文件 · 54 篇引用',
     section_pitch: '宣讲', pitch_badge: '[▶ 演示 · 2:53]',
@@ -2516,23 +2638,23 @@ curr_explanations_title: '三种竞争性解释',
     glos_8: '一致性演示，不是人类零结果的因果证明。',
     glos_9: '审计用操作启发式，非验证过的边界。',
     mm_fig37_sum: '详细 · 图 3 / 图 7 是怎么做的',
-    mm_fig37_src: '数据来源。数学图谱分学段 CDS（图 3）与三学科矩阵（outputs/physics_comparison.json ＋ chemistry_comparison.json，图 7）——与 CDS 地形同数。',
+    mm_fig37_src: '数据来源。数学图谱分学段 CDS（图 3）与三学科矩阵（outputs/physics_comparison.json ＋ chemistry_comparison.json，图 7）——与已退役 CDS 地形同数（2026-09-16 归档）。',
     mm_fig37_calc: '计算口径。CDS = 2|E|/(|V|·(|V|−1))，逐学段格计算；数学图谱渲染 517 条中的 233 条。无重缩放。',
     mm_fig37_read: '怎么读。柱高＝密度；三学科都是先峰后降（数学初中 0.271，物理小学 0.222，化学初中 0.042）。',
     mm_fig8_sum: '详细 · 图 8 是怎么做的',
-    mm_fig8_src: '数据来源。config/expert_graphs/coverage_all_curricula.json 总体列（论文 §8.5）——与覆盖率卡片、覆盖塔群同表。',
+    mm_fig8_src: '数据来源。config/expert_graphs/coverage_all_curricula.json 总体列（论文 §8.5）——与上方覆盖率卡片同表。',
     mm_fig8_calc: '计算口径。关键词桥接＋2 重叠阈值；总体＝各体系全学段命中/总数。',
     mm_fig8_read: '怎么读。柱＝体系总体；从中国 95.4% 一路到北威州 12.7%。',
     mm_cover_sum: '详细 · 覆盖率卡片是怎么做的',
-    mm_cover_src: '数据来源。config/expert_graphs/coverage_all_curricula.json 分学段行——与覆盖塔群同表。',
+    mm_cover_src: '数据来源。config/expert_graphs/coverage_all_curricula.json 分学段行——与上方覆盖率卡片同表。',
     mm_cover_calc: '计算口径。关键词桥接＋2 重叠阈值（≥2 共享关键词即覆盖）；卡片标题＝体系总体。',
-    mm_cover_read: '怎么读。每卡讲一个体系；数字与覆盖塔群亮色总体柱一致。',
+    mm_cover_read: '怎么读。每卡讲一个体系；数字与上方卡片标题一致。',
     mm_bench_sum: '详细 · 基准图是怎么做的',
     mm_bench_src: '数据来源。19 个模型在 92 个 gold 标签上的 F1（模型选型基准，Validation 区）。',
     mm_bench_calc: '计算口径。gold 标签 F1；生产抽取模型按总体 F1 选中。区间 0.55–0.67。',
     mm_bench_read: '怎么读。柱＝单模型 F1。只用于选抽取器——不用于语言结论（那是下面的 59 运行复刻）。',
     mm_margin_sum: '详细 · 边际图是怎么做的',
-    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 59 个完整运行——与边际实证视图、下方名录表同行。26 个收集中运行（n<30）边际暂扣。',
+    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 59 个完整运行——与下方名录表同行。26 个收集中运行（n<30）边际暂扣。',
     mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.。降序排列，无重缩放。',
     mm_margin_read: '怎么读。柱＝边际，59 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
@@ -2544,6 +2666,62 @@ curr_explanations_title: '三种竞争性解释',
     src_chem_sum: '化学 · 89 种',
     src_book_h: '书名', src_lang_h: '语言', src_refs_h: '引用',
     src_note: '引用＝跨概念引用计数。新教材入库即追加（缺口清单见 docs/physics_sourcing.md）。原始摘录在 data/textbook/。',
+    twotier_title: '教材教学法 vs 潜在模型表征（双层，2026-09-14）',
+    twotier_lead: '开源向量把三个语言对压缩进 0.48&ndash;0.52 窄带（ spread 0.0445），复现不了教材 LDS-K 的结构化分裂（spread 0.419，中德 0.519 &#8810; 含英对 &asymp;0.93）。两层度量的不是同一东西。',
+    twotier_h_dim: '维度',
+    twotier_h_t1: '第一层 教材显式图谱（主要证据）',
+    twotier_h_t2: '第二层 潜在向量（对照基线，本批次）',
+    twotier_r_src: '来源',
+    twotier_r_what: '度量对象',
+    twotier_r_topo: '拓扑',
+    twotier_r_interp: '可解释性',
+    twotier_r_role: '角色',
+    twotier_src_t1: '教材概念/关系表（68 文件，741 概念 / 665 关系，人工＋多模型审计）',
+    twotier_src_t2: '同名概念的开源嵌入（nomic-embed-text-v1.5，768 维，934 条目，434 主配对）',
+    twotier_what_t1: '课程结构：GED 相似度＋节点/边 Jaccard 合成（“教什么、怎么连”）',
+    twotier_what_t2: '分布 paraphrase 相近度：同义跨语言名称的余弦距离（“在预训练里听起来多像”）',
+    twotier_topo_t1: '结构化、高方差：spread 0.419；中德 0.519 远低于含英对 &asymp;0.93（0.933 / 0.938）',
+    twotier_topo_t2: '均匀、低方差：spread 0.0445；总体 0.5029&plusmn;0.1058；中德 0.4804（n=65）/ 中英 0.5249（n=184）/ 德英 0.4888（n=185）',
+    twotier_interp_t1: '高：可追溯到概念/边/悬挂引用（全局未解决 51，见 blue-team defense）',
+    twotier_interp_t2: '低：单个值追溯不到任何课程事实，只能做分布层面陈述',
+    twotier_role_t1: '<strong>主要证据</strong>：承载宏观语言可分信号（LDS-C，p&lt;0.004）',
+    twotier_role_t2: '<strong>对照基线（证伪探针）</strong>：若效应在图层存在、在向量层消失，则它是课程结构而非通用语义。绝不单独成结论，绝不可互换。',
+    twotier_key: '<strong>关键句：</strong>开源向量空间把三对同义距离压缩进 0.48&ndash;0.52 窄带（spread 0.0445），复现不了教材 LDS-K 的结构化分裂（spread 0.419，中德 0.519 &#8810; 含英对 &asymp;0.93）&mdash;图谱是课程结构的主要证据，向量是分布相近度的对照基线；互补，不可互换。',
+    twotier_scale: '量纲警告：余弦距离与 1 &minus; mean(GED_sim，节点/边 Jaccard) 是不同量纲&mdash;只比排序，不比原始值。中德接近（&minus;0.04）只是量纲巧合；不得报道“向量证实了中德 LDS-K 值”。复现：<span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span>（LM Studio 在线）。',
+    twotier_meta1: '第一层：LDS-K 0.519 / 0.933 / 0.938',
+    twotier_meta2: '第二层：0.4804 / 0.5249 / 0.4888',
+    twotier_meta3: '来源：research/two_tier_benchmark_20260914.md',
+    fals_title: '人文学科“证伪探针”（非对称、预注册逻辑）',
+    fals_lead: '问卷中的人文/社会议题子集独立于数学图谱，只做单向证伪&mdash;它可以削弱“课程特异”断言，但永远无法单独证实数学结论。',
+    fals_body: '<strong>通过：</strong>数学域 LDS 显著分裂，而同一语言对的人文子集不分裂（或反号）&rarr;支持“效应是数学课程特异”，反对通用语言距离解读。<strong>报警：</strong>人文子集复现出同样分裂&rarr;数学 LDS 显著性成立（检验对象不同），但“课程特异”断言降级为“共享跨域分裂”，须追查通用因子。<strong>绝不：</strong>人文子集单独证实数学结论（域不同，不可迁移）。N=30 执行：先全集 LDS-C，再同一管线同一 alpha 下做人文切片＋独立 Bonferroni 校正；两表并列报道，绝不只报好看的一半。现状：N=8 试点社会议题值（0.704/0.727/0.751）作为探针基线占位植入&mdash;今日不做通过/报警判定。',
+    fals_qh: '评审问题',
+    fals_ah: '标准回答（逐字读）',
+    fals_q1: 'N=8 就报人类结论？',
+    fals_a1: '不报。N=8 只是管线演示占位；有功效设计是 N=30（&Delta;LDS&gt;0 功效 86%）。人类列只登记形态，不做显著性断言。',
+    fals_q2: '向量还是图谱&mdash;谁对？',
+    fals_a2: '不是对错关系，而是两个测量层：图谱度量课程结构（主要证据），向量度量分布相近度（对照基线）。向量均匀恰恰说明图谱结构不是通用语义噪声。',
+    fals_q3: '中德 0.48 vs 0.52&mdash;互相印证？',
+    fals_a3: '否。量纲不同（余弦距离 vs GED+Jaccard 合成）；接近只是巧合。只看排序，不看原始值。',
+    fals_q4: '人文探针报警怎么办？',
+    fals_a4: '“课程特异”降级为“共享跨域”，追查通用因子；不撤回数学 LDS 显著性（检验对象不同，见 blue-team D5 分层）。',
+    fals_q5: '500 置换 p&lt;0.004 是钓出来的？',
+    fals_a5: '它是 500 置换下的分辨率极限（最小可报 p）；59/59 通过，边际底线 0.033 &gt; 0；微观噪声搬不动宏观边际排序（见 blue_defense_20260914.md &sect;D5）。',
+    fals_q6: 'temperature=0 可复现？',
+    fals_a6: '判官调用 temperature=0、max_tokens=5；嵌入无采样随机（同词同向量）&mdash;重跑脚本即得同表；只有 LM Studio 模型版本变更才须重新登记。',
+    fals_meta1: '探针基线（试点，占位）：0.704 / 0.727 / 0.751',
+    fals_meta2: '来源：research/human_vs_machine_20260914.md &sect;3&ndash;4',
+    lim_chunk_title: '分块边界（章节内粒度）',
+    lim_chunk_body: '教材抽取按节分块（<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>）；跨节共指只在对齐表合并，指向别处概念的边计为悬挂（244 文件内 / 51 跨文件未解决，见 blue-team D3）。偏差单向且保守：节点/边 Jaccard 只会低估跨语言重叠、高估漂移。结论立足“跨语言距离显著高于零模型”（边际底线 0.033 &gt; 0），不立足绝对 LDS 值；分块对各语言对称。后续工作：章级重跑做敏感性分析。',
+    lim_chunk_meta: '来源：research/limitations_20260914.md L1',
+    lim_hard_title: '硬匹配惩罚（归一化＋精确对齐）',
+    lim_hard_body: '审计与对齐用硬匹配（小写＋去空格/连字符/下划线＋&szlig;&rarr;ss＋同义词表）。同义异写配对（如 Bayes-Formel vs Satz von Bayes）按构造被惩罚；量化敏感度为个位数（未解决 50 vs 51，跨文件改名 53 vs 38）。向量审计继承同一约束：219 对齐组中 32 组三语表层全同，中德只剩 65 有效对、误差棒最宽（均值 0.4804，std 0.1274）。每个 recall/LDS 数须并列报道归一规则；向量层只做分布层面陈述，不做单对断言。软匹配（嵌入阈值对齐）是后续工作，阈值须预注册。',
+    lim_hard_meta: '来源：research/limitations_20260914.md L2',
+    shuf_title: '洗牌剧场：置换检验在做什么',
+    shuf_hint: '冻结值：59/59 为正，边际 +0.03…+0.42，500 次置换，p&lt;0.01，底线 0.033。两行：10 个中文点＋10 个德语点，沿边际轴排布。',
+    shuf_btn: '洗牌',
+    shuf_hist: '零假设直方图：每次点击增加一个置换差值（可重复点击）。',
+    shuf_marker: '靛蓝标记：真实差值，固定在底线 +0.033。',
+    shuf_note: 'p 是数出来的，不是算出来的。',
     nav_sources: '来源', section_sources: '来源',
   },
 };

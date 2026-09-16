@@ -119,6 +119,16 @@ const TRANSLATIONS = {
         'detail.src_more': '+{n} more',
         'detail.cn_map': 'CN textbook mapping',
 
+        // Chain Walker (detail panel stepper; rendered-links scope only)
+        'detail.chain_title': 'Prerequisite chain',
+        'detail.chain_step': 'Step {cur} of {total}: {label}',
+        'detail.chain_prev': '← Prev',
+        'detail.chain_next': 'Next →',
+        'detail.chain_complete': 'Complete',
+        'detail.chain_chip': 'L{n}',
+        'detail.chain_note': 'Chain limited to rendered links (233 of 517).',
+        'detail.chain_exit': 'Exit',
+
         // Detail values
         'connections': 'connections',
         'levels': 'levels',
@@ -246,6 +256,16 @@ const TRANSLATIONS = {
         'detail.src_more': '+{n} weitere',
         'detail.cn_map': 'CN-Lehrbuchzuordnung',
 
+        // Chain Walker (Detail-Panel-Stepper; nur gerenderte Links)
+        'detail.chain_title': 'Voraussetzungskette',
+        'detail.chain_step': 'Schritt {cur} von {total}: {label}',
+        'detail.chain_prev': '← Zurück',
+        'detail.chain_next': 'Weiter →',
+        'detail.chain_complete': 'Komplett',
+        'detail.chain_chip': 'L{n}',
+        'detail.chain_note': 'Kette nur aus gerenderten Links (233 von 517).',
+        'detail.chain_exit': 'Beenden',
+
         'connections': 'Verbindungen',
         'levels': 'Ebenen',
         'textbooks': 'Lehrbücher',
@@ -367,6 +387,16 @@ const TRANSLATIONS = {
         'detail.src_list': '来源教材',
         'detail.src_more': '更多（+{n}）',
         'detail.cn_map': 'CN教材映射',
+
+        // Chain Walker（详情面板步进器；仅已渲染边）
+        'detail.chain_title': '前提链',
+        'detail.chain_step': '第 {cur} 步 / 共 {total}：{label}',
+        'detail.chain_prev': '← 上一步',
+        'detail.chain_next': '下一步 →',
+        'detail.chain_complete': '全部展开',
+        'detail.chain_chip': 'L{n}',
+        'detail.chain_note': '链路仅基于已渲染边（517 中的 233）。',
+        'detail.chain_exit': '退出',
 
         'connections': '条连接',
         'levels': '层',
