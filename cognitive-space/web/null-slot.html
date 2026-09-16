@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Null-Slot — Toy-Demo der Null-Suite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6; --accent:#1e3a8a; --pink:#ec4899; --teal:#0e7490; --amber:#f59e0b; --violet:#7c3aed; --green:#1e7e4d; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); }
+.stage { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:120px 20px 90px; gap:18px; }
+.machine { width:640px; max-width:94vw; background:var(--surface2); border:1px solid var(--rule); border-radius:14px; box-shadow:0 18px 48px rgba(10,31,61,.12); padding:22px 24px 18px; }
+.machine h2 { font-family:"Playfair Display","Noto Serif SC",Georgia,serif; font-weight:500; font-size:1.35rem; margin-bottom:4px; }
+.machine h2 em { font-style:italic; color:var(--pink); }
+canvas#felt { width:100%; height:240px; display:block; background:#0a1f3d; border-radius:10px; margin:12px 0 6px; }
+.leverrow { display:flex; align-items:center; gap:16px; margin:10px 0 4px; }
+.lever { width:34px; height:96px; background:#dbe2ea; border:1px solid var(--rule); border-radius:17px; position:relative; cursor:pointer; flex:0 0 auto; }
+.lever .knob { position:absolute; left:50%; top:6px; transform:translateX(-50%); width:24px; height:24px; border-radius:50%; background:var(--pink); box-shadow:0 3px 0 #9d2462; transition:top 120ms ease; }
+.lever.down .knob { top:62px; }
+.pullbtn { font-family:inherit; font-weight:600; font-size:.95rem; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:8px; padding:13px 30px; cursor:pointer; transition:transform 120ms ease, background 120ms ease; }
+.pullbtn:hover { background:var(--text); }
+.pullbtn:active { transform:translateY(1px) scale(.99); }
+.counters { display:flex; gap:18px; font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--text2); flex-wrap:wrap; }
+.counters b { color:var(--text); font-size:.85rem; }
+.track { position:relative; height:118px; background:#e8edf2; border:1px solid var(--rule); border-radius:10px; margin:14px 0 6px; padding:10px 12px 10px 150px; }
+.barrow { position:relative; height:26px; margin:8px 0; }
+.barrow .blabel { position:absolute; left:-142px; top:0; width:134px; text-align:right; font-size:.6rem; color:var(--text2); line-height:1.35; }
+.barrow .blabel b { color:var(--text); }
+.bar { position:absolute; left:0; top:3px; height:20px; border-radius:6px; width:0%; transition:none; }
+.bar.real { background:linear-gradient(90deg,#f9a8d4,var(--pink)); box-shadow:0 0 0 1px #9d2462 inset; }
+.bar.null { background:linear-gradient(90deg,#67e8f9,var(--teal)); box-shadow:0 0 0 1px #155e75 inset; }
+.barrow .bval { position:absolute; top:3px; font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--text); white-space:nowrap; }
+.mark { position:absolute; top:6px; bottom:6px; width:2px; background:var(--violet); opacity:.8; }
+.mark small { position:absolute; top:-4px; left:4px; font-family:"IBM Plex Mono",monospace; font-size:.56rem; color:var(--violet); white-space:nowrap; }
+.t1strip { display:flex; align-items:center; gap:10px; font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--text2); background:#fdf6ec; border:1px dashed var(--amber); border-radius:8px; padding:8px 12px; margin-top:8px; flex-wrap:wrap; }
+.t1strip .t1bar { height:12px; border-radius:4px; display:inline-block; vertical-align:middle; }
+.honest { font-size:.66rem; color:var(--text2); line-height:1.6; border-left:3px solid var(--amber); padding-left:10px; margin-top:10px; }
+.honest b { color:var(--text); }
+.method { width:640px; max-width:94vw; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; font-size:.62rem; color:var(--text2); }
+.method summary { cursor:pointer; padding:10px 14px; font-weight:600; color:var(--accent); }
+.method .msec { padding:0 14px 10px; line-height:1.6; }
+.method .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
+.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; max-width:370px; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
+.hud h1 { font-family:"Playfair Display","Noto Serif SC",Georgia,serif; font-size:.95rem; font-weight:500; }
+.hud h1 span { color:var(--pink); font-style:italic; }
+.hud .sub { font-size:.6rem; color:var(--text2); margin-top:4px; line-height:1.55; }
+.nav { position:absolute; top:16px; right:16px; z-index:10; display:flex; gap:6px; }
+.nav a, .nav button { font-size:.62rem; color:var(--accent); background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:6px; padding:6px 12px; text-decoration:none; cursor:pointer; font-family:inherit; font-weight:600; }
+.nav button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.scope { position:fixed; bottom:12px; left:16px; z-index:10; font-size:.56rem; color:var(--text2); font-family:ui-monospace,Menlo,Consolas,monospace; max-width:62vw; line-height:1.6; background:rgba(248,250,252,.9); padding:4px 8px; border-radius:6px; border:1px solid var(--rule); }
+.hint { position:fixed; bottom:12px; right:16px; z-index:10; font-size:.58rem; color:var(--text2); }
+@media (prefers-reduced-motion: reduce) { .lever .knob { transition:none; } }
+</style>
+</head>
+<body>
+<div class="hud">
+  <h1>Null-Slot <span data-k="t_toy">Toy</span></h1>
+  <div class="sub" data-k="sub"></div>
+</div>
+<div class="nav">
+  <a href="../portal/cspace.html" data-k="back">← Galerie</a>
+  <button data-l="en">EN</button><button data-l="de" class="active">DE</button><button data-l="zh">ZH</button>
+</div>
+<div class="stage">
+  <div class="machine">
+    <h2 data-k="m_title">Null-Modell <em>Slot Machine</em></h2>
+    <canvas id="felt" width="600" height="240"></canvas>
+    <div class="leverrow">
+      <div class="lever" id="lever" role="button" tabindex="0" aria-label="pull"><div class="knob"></div></div>
+      <button class="pullbtn" id="pull" data-k="pull">Hebel ziehen</button>
+      <div class="counters">
+        <span><span data-k="c_pulls">Züge</span>: <b id="nPulls">0</b></span>
+        <span><span data-k="c_surv">echt überlebt</span>: <b id="nSurv">0/0</b></span>
+        <span><span data-k="c_seed">Demo-Seed</span>: <b id="nSeed">—</b></span>
+      </div>
+    </div>
+    <div class="track" id="track">
+      <div class="mark" style="left:calc(150px + (100% - 162px)*0.933)"><small>0.933</small></div>
+      <div class="mark" style="left:calc(150px + (100% - 162px)*0.938)"><small>0.938</small></div>
+      <div class="barrow"><span class="blabel" data-k="l_real"><b>echt · ZH-DE 0.519</b><br>frozen</span><div class="bar real" id="barReal"></div><span class="bval" id="valReal">0.519</span></div>
+      <div class="barrow"><span class="blabel" data-k="l_null"><b>Null-Demo</b><br>dieser Zug</span><div class="bar null" id="barNull"></div><span class="bval" id="valNull">—</span></div>
+    </div>
+    <div class="t1strip"><span data-k="l_t1">T1-Entgiftung (frozen): J</span><span class="t1bar" style="width:111px;background:var(--amber)"></span><b>0.556</b><span>→</span><span class="t1bar" style="width:8px;background:var(--green)"></span><b>0.020</b></div>
+    <div class="honest" data-k="honest"></div>
+  </div>
+  <details class="method">
+    <summary data-k="m_sum"></summary>
+    <div class="msec"><p data-k="m_how"></p></div>
+    <div class="msec"><p class="mono" data-k="m_src"></p></div>
+  </details>
+</div>
+<div class="scope" data-k="scope"></div>
+<div class="hint" data-k="hint"></div>
+<script>
+var REAL = { zhde: 0.519, zhen: 0.933, deen: 0.938, t1a: 0.556, t1b: 0.020 };
+var T = {
+de: { t_toy:'Toy', back:'← Galerie',
+  sub:'Ziehe den Hebel: Der Automat würfelt ein zufälliges Demo-Graphenpaar (Seed-RNG, Canvas) und lässt die Null-LDS gegen die eingefrorenen Werte antreten: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938. Die echte Zahl überlebt jeden Zug.',
+  m_title:'Null-Modell <em>Slot Machine</em>', pull:'Hebel ziehen', c_pulls:'Züge', c_surv:'echt überlebt', c_seed:'Demo-Seed',
+  l_real:'<b>echt · ZH-DE 0.519</b><br>frozen', l_null:'<b>Null-Demo</b><br>dieser Zug', l_t1:'T1-Entgiftung (frozen): J',
+  honest:'<b>Ehrlich-Etikett:</b> Spielzeug-Demo der echten Null-Suite, nicht die Suite selbst. Der Null-Balken ist Zufall pro Zug (Seed unten); alle Textzahlen sind eingefroren: LDS-K 0.519 / 0.933 / 0.938, T1 J 0.556 → 0.020, 219 Gruppen, 500 Permutationen, p &lt; 0.004, Boden 0.033.',
+  scope:'SCOPE · Toy-Demo der Null-Suite (nicht die Suite) · frozen: LDS-K 0.519/0.933/0.938 · T1 J 0.556→0.020 · 219 Gruppen · 500 Perm., p<0.004, Boden 0.033 · research/numbers_ssot_20260916.json + Portal finding_cx / falsification-probe',
+  hint:'ziehen · Balken beobachten', m_sum:'Details · wie diese Demo funktioniert',
+  m_how:'Pro Zug würfelt ein Seed-Zufallsgenerator (mulberry32, Seed = Zugnummer) einen kleinen Demo-Graphen mit 14 Knoten und zeichnet ihn aufs Canvas; der Null-Balken springt auf einen zufälligen Demo-Wert nahe der oberen Skala und zeigt: Zufallsgraphen kollabieren nicht auf 0.519. Der echte Balken bleibt fixiert — Tally „echt überlebt N/N“. Reduzierte Bewegung wird respektiert (keine Animation).',
+  m_src:'Quellen: research/numbers_ssot_20260916.json (lds_k_tier1, macro_perm, frozen_figures) · Portal finding_cx (219 Gruppen, T1 0.556→0.020) · Portal falsification-probe (500 Perm., p<0.004, Boden 0.033)' },
+en: { t_toy:'Toy', back:'← Gallery',
+  sub:'Pull the lever: the machine rolls a random demo graph pair (seeded RNG, canvas) and pits the null LDS against the frozen values: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938. The real number survives every pull.',
+  m_title:'Null-Model <em>Slot Machine</em>', pull:'Pull the lever', c_pulls:'pulls', c_surv:'real survives', c_seed:'demo seed',
+  l_real:'<b>real · ZH-DE 0.519</b><br>frozen', l_null:'<b>null demo</b><br>this pull', l_t1:'T1 decontamination (frozen): J',
+  honest:'<b>Honest label:</b> toy demo of the real null suite, not the suite itself. The null bar is random per pull (seed below); every printed number is frozen: LDS-K 0.519 / 0.933 / 0.938, T1 J 0.556 → 0.020, 219 groups, 500 permutations, p &lt; 0.004, floor 0.033.',
+  scope:'SCOPE · toy demo of the null suite (not the suite) · frozen: LDS-K 0.519/0.933/0.938 · T1 J 0.556→0.020 · 219 groups · 500 perm., p<0.004, floor 0.033 · research/numbers_ssot_20260916.json + portal finding_cx / falsification-probe',
+  hint:'pull · watch the bars', m_sum:'Details · how this demo works',
+  m_how:'Each pull rolls a seeded RNG (mulberry32, seed = pull number) for a small 14-node demo graph drawn on canvas; the null bar jumps to a random demo value near the top of the scale, showing random graphs never collapse to 0.519. The real bar stays pinned — tally “real survives N/N”. Reduced motion is respected (no animation).',
+  m_src:'Sources: research/numbers_ssot_20260916.json (lds_k_tier1, macro_perm, frozen_figures) · portal finding_cx (219 groups, T1 0.556→0.020) · portal falsification-probe (500 perm., p<0.004, floor 0.033)' },
+zh: { t_toy:'玩具', back:'← 展厅',
+  sub:'拉杆：机器用种子随机数掷出一对演示图（Canvas），让零模型 LDS 与冻结值对打：中德 0.519 · 中英 0.933 · 德英 0.938。真值每次都活下来。',
+  m_title:'零模型<em>槽机</em>', pull:'拉杆', c_pulls:'拉动次数', c_surv:'真值存活', c_seed:'演示种子',
+  l_real:'<b>真值 · 中德 0.519</b><br>冻结', l_null:'<b>零演示</b><br>本轮', l_t1:'T1 去污染（冻结）：J',
+  honest:'<b>诚实标签：</b>这是真实零模型套件的玩具演示，不是套件本身。零柱为每轮随机数（种子见下）；所有文字数字均为冻结值：LDS-K 0.519 / 0.933 / 0.938，T1 J 0.556 → 0.020，219 组，500 置换，p &lt; 0.004，地板值 0.033。',
+  scope:'口径 · 零模型套件的玩具演示（非套件本身）· 冻结：LDS-K 0.519/0.933/0.938 · T1 J 0.556→0.020 · 219 组 · 500 置换，p<0.004，地板 0.033 · research/numbers_ssot_20260916.json + 门户 finding_cx / falsification-probe',
+  hint:'拉杆 · 看柱子', m_sum:'详细 · 这个演示怎么工作',
+  m_how:'每拉一次，种子随机数（mulberry32，种子＝拉动序号）生成一个 14 节点演示图并画到 Canvas；零柱跳到靠近量表顶部的随机演示值，说明随机图永远塌不到 0.519。真柱固定不动——计数“真值存活 N/N”。尊重减少动态偏好（无动画）。',
+  m_src:'来源：research/numbers_ssot_20260916.json（lds_k_tier1、macro_perm、frozen_figures）· 门户 finding_cx（219 组，T1 0.556→0.020）· 门户 falsification-probe（500 置换，p<0.004，地板 0.033）' }
+};
+var lang = 'de';
+try {
+  lang = localStorage.getItem('viz_lang') || localStorage.getItem('cspace_lang') || localStorage.getItem('portal_lang') || null;
+  if (!lang) { var nv = (navigator.language || 'de').toLowerCase(); lang = nv.indexOf('zh') === 0 ? 'zh' : (nv.indexOf('en') === 0 ? 'en' : 'de'); }
+} catch (e) { lang = 'de'; }
+if (!T[lang]) lang = 'de';
+function setL(l) {
+  lang = T[l] ? l : 'de';
+  try { localStorage.setItem('viz_lang', lang); } catch (e) {}
+  var t = T[lang];
+  document.querySelectorAll('[data-k]').forEach(function (elm) {
+    var k = elm.getAttribute('data-k');
+    if (t[k] !== undefined) elm.innerHTML = t[k];
+  });
+  document.querySelectorAll('.nav button[data-l]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-l') === lang); });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+}
+document.querySelectorAll('.nav button[data-l]').forEach(function (b) {
+  b.addEventListener('click', function () { setL(b.getAttribute('data-l')); });
+});
+function rng32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+var CANDY = ['#ec4899', '#0e7490', '#f59e0b', '#7c3aed', '#1e7e4d', '#e11d48', '#0284c7', '#65a30d'];
+var pulls = 0, surv = 0, nullV = null, animId = null;
+var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var felt = document.getElementById('felt'), ctx = felt.getContext('2d');
+var barReal = document.getElementById('barReal'), barNull = document.getElementById('barNull');
+var valReal = document.getElementById('valReal'), valNull = document.getElementById('valNull');
+function barGeom() {
+  var track = document.getElementById('track');
+  return { pad: 150, w: track.clientWidth - 162 };
+}
+function placeBar(elm, valEl, v) {
+  var g = barGeom();
+  var x = g.pad, w = Math.max(3, v * g.w);
+  elm.style.left = x + 'px'; elm.style.width = w + 'px';
+  valEl.style.left = (x + w + 8) + 'px'; valEl.textContent = v.toFixed(3);
+}
+function drawGraph(seed) {
+  var r = rng32(seed), W = felt.width, H = felt.height;
+  ctx.clearRect(0, 0, W, H);
+  var n = 14, pts = [], i, j;
+  for (i = 0; i < n; i++) {
+    var a = (i / n) * Math.PI * 2 + (r() - 0.5) * 0.5;
+    var rad = Math.min(W, H) * 0.36 + (r() - 0.5) * 30;
+    pts.push([W / 2 + Math.cos(a) * rad * 1.5, H / 2 + Math.sin(a) * rad, CANDY[i % CANDY.length]]);
+  }
+  ctx.lineWidth = 1.2;
+  for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+    if (r() < 0.28) {
+      ctx.strokeStyle = 'rgba(148,184,220,0.55)';
+      ctx.beginPath(); ctx.moveTo(pts[i][0], pts[i][1]); ctx.lineTo(pts[j][0], pts[j][1]); ctx.stroke();
+    }
+  }
+  for (i = 0; i < n; i++) {
+    ctx.fillStyle = pts[i][2];
+    ctx.beginPath(); ctx.arc(pts[i][0], pts[i][1], 9, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = '9px "IBM Plex Mono",monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(String(i + 1), pts[i][0], pts[i][1]);
+  }
+  ctx.fillStyle = 'rgba(232,237,242,0.85)'; ctx.font = '10px "IBM Plex Mono",monospace'; ctx.textAlign = 'left';
+  ctx.fillText('demo graph · seed ' + seed + ' · toy only', 10, H - 12);
+  return r;
+}
+function animateNull(from, to) {
+  if (animId) cancelAnimationFrame(animId);
+  if (reduced) { nullV = to; placeBar(barNull, valNull, to); return; }
+  var t0 = null;
+  function step(ts) {
+    if (!t0) t0 = ts;
+    var p = Math.min(1, (ts - t0) / 650), e = 1 - Math.pow(1 - p, 3);
+    var v = from + (to - from) * e;
+    placeBar(barNull, valNull, v);
+    if (p < 1) animId = requestAnimationFrame(step); else nullV = to;
+  }
+  animId = requestAnimationFrame(step);
+}
+function pull() {
+  pulls++;
+  var r = drawGraph(pulls);
+  var toy = 0.86 + r() * 0.12;
+  toy = Math.round(toy * 1000) / 1000;
+  animateNull(nullV === null ? 0 : nullV, toy);
+  if (toy > REAL.zhde) surv++;
+  document.getElementById('nPulls').textContent = String(pulls);
+  document.getElementById('nSurv').textContent = surv + '/' + pulls;
+  document.getElementById('nSeed').textContent = '#' + pulls;
+  var lv = document.getElementById('lever');
+  lv.classList.add('down');
+  setTimeout(function () { lv.classList.remove('down'); }, reduced ? 0 : 160);
+}
+document.getElementById('pull').addEventListener('click', pull);
+var lever = document.getElementById('lever');
+lever.addEventListener('click', pull);
+lever.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(); } });
+window.addEventListener('resize', function () {
+  placeBar(barReal, valReal, REAL.zhde);
+  if (nullV !== null) placeBar(barNull, valNull, nullV);
+});
+setL(lang);
+placeBar(barReal, valReal, REAL.zhde);
+drawGraph(0);
+</script>
+</body>
+</html>

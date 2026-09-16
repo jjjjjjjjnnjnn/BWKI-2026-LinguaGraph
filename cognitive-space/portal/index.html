@@ -1049,24 +1049,25 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
       <button class="cs-cover" id="cs-cover" aria-label="Load 3D graph">
         <span class="cs-title">CognitiveSpace · 3D</span>
         <span class="cs-meta" data-i18n="cognitivespace_meta">556 nodes · 233 rendered links · 219 groups · 3 languages</span>
-        <span class="btn btn-solid" style="pointer-events:none">Load interactive graph →</span>
+        <span class="btn btn-solid" style="pointer-events:none" data-i18n="cs_load">Load interactive graph →</span>
       </button>
     </div>
   </div>
   <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="../web/index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> Open Full Screen</a>
+    <a href="../web/index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> <span data-i18n="cognitivespace_open">Open Full Screen</span></a>
     <a href="cspace.html" class="btn btn-solid" data-i18n="cs_view_gallery">Gallery</a>
     <span class="btn btn-ghost" style="cursor:default"><i class="bi bi-database"></i> 556 nodes · 233 rendered links · 219 groups</span>
   </div>
   <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-    <a href="cspace.html" class="btn btn-ghost" data-i18n="cs_view_gallery">Gallery</a>
     <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_math">Math 3D</a>
     <a href="../web/index.html?graph=steam" target="_blank" class="btn btn-ghost" data-i18n="cs_view_steam">STEAM 3D</a>
     <a href="../web/index.html?graph=physics" target="_blank" class="btn btn-ghost" data-i18n="cs_view_physics">Physics 3D</a>
-    <a href="../web/cds-terrain.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_cds">CDS Terrain</a>
-    <a href="../web/margin-galaxy.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_galaxy">Margin Proof</a>
-    <a href="../web/coverage-towers.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_towers">Coverage Towers</a>
+    <a href="../web/signal-playground.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_signal">Signal Playground</a>
+    <a href="../web/coverage-race.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_race">Coverage Race</a>
+    <a href="../web/lost-in-translation.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_trans">Lost in Translation</a>
+    <a href="../web/chain-walker.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_chain">Chain Walker</a>
+    <a href="../web/null-slot.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_null">Null Slot</a>
   </div>
 </section>
 
@@ -1398,7 +1399,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
       <p data-i18n="paper_sections_text">Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis</p>
-      <div class="meta">9 files · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta" data-i18n="paper_sec_meta">10 files · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -1438,7 +1439,7 @@ v.forEach(function(h){var d=document.createElement('span');d.style.height=Math.r
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
       <p>Full manuscript with 3 research questions, 4 metrics, 12 findings and error analysis.</p>
-      <div class="meta">9 files · 54 references</div>
+      <div class="meta" data-i18n="paper_fig_meta">10 files · 54 references</div>
     </a>
     <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/tree/master/cognitive-space/web/figures" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-image" style="font-size:2.2rem;color:var(--yellow);display:block;margin-bottom:8px"></i>
@@ -1893,6 +1894,10 @@ const TRANSLATIONS = {
     cognitivespace_open: 'Open Full Screen',
     cs_view_gallery: 'Interactive Gallery', cs_view_math: 'Math 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physics 3D',
     cs_view_cds: 'CDS Terrain', cs_view_galaxy: 'Margin Proof', cs_view_towers: 'Coverage Towers',
+    cs_load: 'Load interactive graph →',
+    cs_view_signal: 'Signal Playground', cs_view_race: 'Coverage Race', cs_view_trans: 'Lost in Translation', cs_view_chain: 'Chain Walker', cs_view_null: 'Null Slot',
+    paper_sec_meta: '10 files · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a>',
+    paper_fig_meta: '10 files · 54 references',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
     pitch_de: 'DE', pitch_en: 'EN subs', pitch_zh: 'ZH subs',
     pitch_note: 'Same 173s cut — switching keeps your position.',
@@ -2100,6 +2105,10 @@ const TRANSLATIONS = {
     cognitivespace_open: 'Vollbild oeffnen',
     cs_view_gallery: 'Interaktive Galerie', cs_view_math: 'Mathe 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physik 3D',
     cs_view_cds: 'CDS-Terrain', cs_view_galaxy: 'Margin-Beleg', cs_view_towers: 'Coverage-Türme',
+    cs_load: 'Interaktiven Graphen laden →',
+    cs_view_signal: 'Signal-Spielplatz', cs_view_race: 'Coverage-Rennen', cs_view_trans: 'Lost in Translation', cs_view_chain: 'Ketten-Walker', cs_view_null: 'Null-Slot',
+    paper_sec_meta: '10 Dateien · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Methodik lesen</a>',
+    paper_fig_meta: '10 Dateien · 54 Referenzen',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
     pitch_de: 'DE', pitch_en: 'EN-UT', pitch_zh: 'ZH-UT',
     pitch_note: 'Gleicher 173-s-Schnitt — Position bleibt.',
@@ -2459,6 +2468,10 @@ curr_explanations_title: '三种竞争性解释',
     cognitivespace_open: '打开全屏',
     cs_view_gallery: '交互展厅', cs_view_math: '数学 3D', cs_view_steam: 'STEAM 总览', cs_view_physics: '物理 3D',
     cs_view_cds: 'CDS 地形', cs_view_galaxy: '边际实证', cs_view_towers: '覆盖塔群',
+    cs_load: '加载交互图谱 →',
+    cs_view_signal: '信号游乐场', cs_view_race: '覆盖率赛跑', cs_view_trans: '译海迷踪', cs_view_chain: '前提链漫步', cs_view_null: '零模型拉杆',
+    paper_sec_meta: '10 个文件 · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">阅读方法章</a>',
+    paper_fig_meta: '10 个文件 · 54 篇引用',
     section_pitch: '宣讲', pitch_badge: '[▶ 演示 · 2:53]',
     pitch_de: '德语', pitch_en: '英字', pitch_zh: '中字',
     pitch_note: '同一切片，切换不断播。',

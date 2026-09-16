@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chain Walker — der längste Voraussetzungspfad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0a1f3d; --ink2:#4a5a78; --paper:#f4fbf6; --card:#ffffff; --rule:#bfe3c9;
+  --candy1:#12b886; --candy2:#4dabf7; --candy3:#ffa94d; --candy4:#ff6b9d; --accent:#1e3a8a; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; color:var(--ink);
+  background:linear-gradient(160deg,#f4fbf6 0%,#eef7fd 55%,#fdf6ec 100%); min-height:100vh; }
+.wrap { max-width:860px; margin:0 auto; padding:64px 24px 90px; }
+h1 { font-family:"Playfair Display","Noto Serif SC",Georgia,serif; font-weight:500; font-size:clamp(1.9rem,4.5vw,2.7rem); letter-spacing:-.02em; }
+h1 em { font-style:italic; background:linear-gradient(90deg,var(--candy1),var(--candy2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.sub { color:var(--ink2); margin:8px 0 6px; font-size:.92rem; line-height:1.7; }
+.frozen { font-family:"IBM Plex Mono",monospace; font-size:.7rem; background:var(--card);
+  border:1px solid var(--rule); border-radius:8px; padding:10px 14px; margin:14px 0 22px; line-height:1.7;
+  box-shadow:0 10px 30px rgba(18,184,134,.14); }
+.frozen b { color:var(--candy1); }
+.card { background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:22px 24px; margin-bottom:18px;
+  box-shadow:0 14px 40px rgba(10,31,61,.08); }
+.card h2 { font-family:"Playfair Display",Georgia,serif; font-weight:500; font-size:1.25rem; margin-bottom:4px; }
+.card .desc { font-size:.82rem; color:var(--ink2); line-height:1.7; margin-bottom:14px; }
+.rail { display:flex; align-items:center; gap:6px; margin:16px 0 6px; }
+.node { flex:1 1 0; text-align:center; border-radius:12px; padding:10px 6px; font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem; border:2px solid #dbe2ea; background:#f8fafc; color:var(--ink2); cursor:pointer;
+  transition:transform .25s ease, border-color .25s ease; line-height:1.5; }
+.node small { display:block; font-size:.6rem; opacity:.7; }
+.node.done { border-color:var(--candy1); background:#e9f9f0; color:var(--ink); }
+.node.now { border-color:var(--candy4); background:#fff0f5; color:var(--ink); font-weight:700;
+  transform:scale(1.06); box-shadow:0 8px 24px rgba(255,107,157,.25); animation:pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow:0 8px 24px rgba(255,107,157,.25);} 50% { box-shadow:0 8px 32px rgba(255,107,157,.5);} }
+.link { color:var(--candy1); font-weight:700; font-size:1.1rem; }
+.stepper { display:flex; align-items:center; gap:10px; margin:16px 0 4px; }
+.stepper button { font-family:inherit; font-weight:600; font-size:.8rem; padding:8px 18px; border-radius:20px;
+  border:2px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; transition:transform .15s ease; }
+.stepper button:hover { transform:scale(1.05); }
+.stepper button:disabled { opacity:.35; cursor:default; transform:none; }
+.stepper button.ghost { background:#fff; color:var(--accent); }
+.dots { display:flex; gap:7px; }
+.dots span { width:12px; height:12px; border-radius:50%; background:#dbe2ea; cursor:pointer; transition:transform .2s ease; }
+.dots span.on { background:linear-gradient(135deg,var(--candy1),var(--candy2)); transform:scale(1.35); }
+.gid { font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink2); margin:14px 0 8px; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+.chip { border-radius:20px; padding:6px 16px; font-size:.95rem; font-weight:600; }
+.chip b { font-family:"IBM Plex Mono",monospace; font-size:.6rem; display:block; opacity:.7; letter-spacing:.1em; }
+.zh { background:#ffe3ec; border:2px solid var(--candy4); }
+.en { background:#fff1d6; border:2px solid var(--candy3); }
+.de { background:#dcedff; border:2px solid var(--candy2); }
+.meta { font-size:.78rem; color:var(--ink2); line-height:1.8; }
+.meta b { color:var(--ink); }
+.edge { margin-top:12px; padding:12px 16px; border-left:4px solid var(--candy1); background:#f2fbf5;
+  border-radius:0 10px 10px 0; font-size:.84rem; line-height:1.7; }
+.edge .ev { font-style:italic; }
+.note { margin-top:14px; font-size:.76rem; color:var(--ink2); line-height:1.8; background:#f8fafc;
+  border:1px dashed var(--rule); border-radius:8px; padding:10px 14px; }
+.nav { position:fixed; top:14px; right:14px; display:flex; gap:6px; z-index:10; }
+.nav a, .nav button { font-size:.72rem; font-weight:600; color:var(--accent); background:rgba(255,255,255,.94);
+  border:1px solid var(--rule); border-radius:6px; padding:6px 12px; text-decoration:none; cursor:pointer; font-family:inherit; }
+.nav button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.scope { font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink2); margin:20px 0; line-height:1.7; }
+@media (prefers-reduced-motion: reduce) { .node.now { animation:none; } }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="../portal/cspace.html" data-k="back">← Galerie</a>
+  <button data-l="de" class="active">DE</button><button data-l="en">EN</button><button data-l="zh">ZH</button>
+</div>
+<div class="wrap">
+  <h1>Chain <em>Walker</em></h1>
+  <div class="sub" data-k="sub">Schritt für Schritt entlang der längsten Voraussetzungskette in Mathe: vom Vektor bis zur Orthonormalbasis. Eine Kette, nur Mathe.</div>
+  <div class="frozen" data-k="frozen">FROZEN · HDS max <b>8</b> · mean Mathe <b>0.40</b> / Physik <b>0.85</b> · diese Kette: 4 Knoten (längster Pfad im aktuellen aligned-Snapshot)</div>
+
+  <div class="card">
+    <h2 data-k="walk_t">Der Weg</h2>
+    <div class="desc" data-k="walk_d">Lernreihenfolge: Wurzel zuerst. Klicke einen Knoten oder laufe mit den Tasten.</div>
+    <div class="rail" id="rail"></div>
+    <div class="stepper">
+      <button class="ghost" id="prev">←</button>
+      <div class="dots" id="dots"></div>
+      <button id="next">→</button>
+      <span class="meta" id="cnt" style="margin-left:auto">1 / 4</span>
+    </div>
+    <div class="gid" id="gid"></div>
+    <div class="chips">
+      <div class="chip zh"><b>ZH</b><span id="lzh"></span></div>
+      <div class="chip en"><b>EN</b><span id="len"></span></div>
+      <div class="chip de"><b>DE</b><span id="lde"></span></div>
+    </div>
+    <div class="meta" id="nmeta"></div>
+    <div class="edge" id="edge"></div>
+    <div class="note" data-k="note">EINE KETTE, NUR MATHE · Methode: gerichtete prerequisite-/requires-Kanten mit Gruppen-IDs aus aligned_data.json (80 Kanten, 0 Zyklen) — längster Pfad per Tiefensuche, eindeutig, 4 Knoten. Eingefrorenes HDS-Maximum 8 stammt aus der dichteren Juni-Pipeline (verloren, siehe docs/fig5_hds_forensic.md).</div>
+  </div>
+
+  <div class="scope" data-k="scope">SCOPE · längster Voraussetzungspfad · data/math_extractions/merged/aligned_data.json Relationen (prerequisite + requires, Gruppen-IDs) · nur Mathe · alle Zahlen frozen</div>
+</div>
+<script>
+// Winning chain, learning order (root first). Labels verbatim from aligned_data.json.
+// Computed 2026-09-16: directed prerequisite|requires edges via source_group/target_group
+// (76 edges, DAG, 0 cycles) -> unique longest path, 4 nodes, summed importance 2.65.
+var CHAIN = [
+  { id: "math_linear_algebra_向量", zh: "vectors", en: "Vector", de: "向量", level: "high", depth: 0 },
+  { id: "math_linear_algebra_内积", zh: "内积", en: "Inner Product", de: "数量积", level: "college", depth: 1,
+    via: { imp: 0.9, ev: "数量积是向量之间的基本运算", book: "同济大学《线性代数》", type: "requires" } },
+  { id: "math_linear_algebra_正交", zh: "正交", en: "Orthogonal", de: "Orthogonal", level: "college", depth: 2,
+    via: { imp: 0.9, ev: "正交的定义基于内积为零", book: "同济大学《线性代数》", type: "requires" } },
+  { id: "math_linear_algebra_标准正交基", zh: "标准正交基", en: "Orthonormal Basis", de: "Orthonormale Basis", level: "college", depth: 3,
+    via: { imp: 0.85, ev: "标准正交基的向量两两正交", book: "同济大学《线性代数》", type: "requires" } }
+];
+var T = {
+  de: { back: "← Galerie",
+    sub: "Schritt für Schritt entlang der längsten Voraussetzungskette in Mathe: vom Vektor bis zur Orthonormalbasis. Eine Kette, nur Mathe.",
+    frozen: "FROZEN · HDS max <b>8</b> · mean Mathe <b>0.40</b> / Physik <b>0.85</b> · diese Kette: 4 Knoten (längster Pfad im aktuellen aligned-Snapshot)",
+    walk_t: "Der Weg", walk_d: "Lernreihenfolge: Wurzel zuerst. Klicke einen Knoten oder laufe mit den Tasten.",
+    scope: "SCOPE · längster Voraussetzungspfad · data/math_extractions/merged/aligned_data.json Relationen (prerequisite + requires, Gruppen-IDs) · nur Mathe · alle Zahlen frozen",
+    note: "EINE KETTE, NUR MATHE · Methode: gerichtete prerequisite-/requires-Kanten mit Gruppen-IDs aus aligned_data.json (80 Kanten, 0 Zyklen) — längster Pfad per Tiefensuche, eindeutig, 4 Knoten. Eingefrorenes HDS-Maximum 8 stammt aus der dichteren Juni-Pipeline (verloren, siehe docs/fig5_hds_forensic.md).",
+    depth: "Kettentiefe", needs: "braucht", done: "Ziel erreicht — Kette vollständig.",
+    ev_pre: "Weil: ", imp: "Gewicht" },
+  en: { back: "← Gallery",
+    sub: "Step by step along the longest math prerequisite chain: from Vector to Orthonormal Basis. One chain, math only.",
+    frozen: "FROZEN · HDS max <b>8</b> · mean math <b>0.40</b> / physics <b>0.85</b> · this chain: 4 nodes (longest path in the current aligned snapshot)",
+    walk_t: "The walk", walk_d: "Learning order: root first. Click a node or walk with the buttons.",
+    scope: "SCOPE · longest prerequisite path · data/math_extractions/merged/aligned_data.json relations (prerequisite + requires, group ids) · math only · all numbers frozen",
+    note: "ONE CHAIN, MATH ONLY · Method: directed prerequisite/requires edges with group ids from aligned_data.json (80 edges, 0 cycles) — longest path by depth-first search, unique, 4 nodes. Frozen HDS max 8 comes from the denser June pipeline (lost, see docs/fig5_hds_forensic.md).",
+    depth: "chain depth", needs: "needs", done: "Destination reached — chain complete.",
+    ev_pre: "Because: ", imp: "weight" },
+  zh: { back: "← 展厅",
+    sub: "沿着最长的数学先修链一步步走：从向量到标准正交基。一条链，仅数学。",
+    frozen: "冻结 · HDS 最大 <b>8</b> · 均值数学 <b>0.40</b> / 物理 <b>0.85</b> · 本链：4 节点（当前 aligned 快照中的最长路径）",
+    walk_t: "这条路", walk_d: "学习顺序：先根后叶。点击节点，或用按钮行走。",
+    scope: "口径 · 最长先修路径 · data/math_extractions/merged/aligned_data.json 关系（prerequisite + requires，组 ID）· 仅数学 · 数字全部冻结",
+    note: "一条链，仅数学 · 方法：aligned_data.json 中带组 ID 的有向 prerequisite/requires 边（80 条，0 环）——深度优先搜最长路径，唯一，4 节点。冻结的 HDS 最大值 8 来自更稠密的六月流水线（已丢失，见 docs/fig5_hds_forensic.md）。",
+    depth: "链深度", needs: "需要", done: "到达终点——链已走完。",
+    ev_pre: "因为：", imp: "权重" }
+};
+var lang = "de", idx = 0;
+try {
+  lang = localStorage.getItem("portal_lang") || localStorage.getItem("cspace_lang") || null;
+  if (!lang) { var n = (navigator.language || "en").toLowerCase(); lang = n.indexOf("zh") === 0 ? "zh" : (n.indexOf("de") === 0 ? "de" : "en"); }
+} catch (e) { lang = "de"; }
+if (!T[lang]) lang = "de";
+function setL(l) {
+  lang = T[l] ? l : "de";
+  try { localStorage.setItem("cspace_lang", lang); } catch (e) {}
+  var t = T[lang];
+  document.querySelectorAll("[data-k]").forEach(function (el) {
+    var k = el.getAttribute("data-k");
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll(".nav button[data-l]").forEach(function (b) { b.classList.toggle("active", b.dataset.l === lang); });
+  document.documentElement.lang = lang;
+  render();
+}
+function shortZh(s) { return s.length > 5 ? s.slice(0, 5) + "…" : s; }
+function render() {
+  var t = T[lang], c = CHAIN[idx];
+  var rail = document.getElementById("rail");
+  rail.innerHTML = "";
+  CHAIN.forEach(function (n, i) {
+    if (i > 0) { var lk = document.createElement("span"); lk.className = "link"; lk.textContent = "→"; rail.appendChild(lk); }
+    var d = document.createElement("div");
+    d.className = "node" + (i === idx ? " now" : (i < idx ? " done" : ""));
+    d.innerHTML = shortZh(n.zh) + "<small>d=" + n.depth + "</small>";
+    (function (j) { d.addEventListener("click", function () { idx = j; render(); }); })(i);
+    rail.appendChild(d);
+  });
+  document.getElementById("gid").textContent = c.id;
+  document.getElementById("lzh").textContent = c.zh;
+  document.getElementById("len").textContent = c.en;
+  document.getElementById("lde").textContent = c.de;
+  document.getElementById("nmeta").innerHTML = "<b>" + t.depth + " " + c.depth + " / 3</b> · " + c.level;
+  var eg = document.getElementById("edge");
+  if (idx < CHAIN.length - 1) {
+    var v = CHAIN[idx + 1].via;
+    eg.innerHTML = "<b>" + CHAIN[idx + 1].zh + "</b> " + t.needs + " <b>" + c.zh + "</b> (" + v.type + ", " + t.imp + " " + v.imp + ")<br><span class=\"ev\">" + t.ev_pre + v.ev + "</span><br>" + v.book;
+  } else {
+    eg.textContent = t.done;
+  }
+  document.getElementById("cnt").textContent = (idx + 1) + " / " + CHAIN.length;
+  document.getElementById("prev").disabled = idx === 0;
+  document.getElementById("next").disabled = idx === CHAIN.length - 1;
+  var dots = document.getElementById("dots");
+  dots.innerHTML = "";
+  CHAIN.forEach(function (_, i) {
+    var s = document.createElement("span");
+    if (i === idx) s.className = "on";
+    s.addEventListener("click", function () { idx = i; render(); });
+    dots.appendChild(s);
+  });
+}
+document.getElementById("prev").addEventListener("click", function () { if (idx > 0) { idx--; render(); } });
+document.getElementById("next").addEventListener("click", function () { if (idx < CHAIN.length - 1) { idx++; render(); } });
+document.querySelectorAll(".nav button[data-l]").forEach(function (b) {
+  b.addEventListener("click", function () { setL(b.dataset.l); });
+});
+setL(lang);
+</script>
+</body>
+</html>

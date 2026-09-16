@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Playground — Lehrbuch vs. 59 Margen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --surface:#f1f3f5; --surface2:#f8fafc; --text:#0a1f3d; --text2:#4a5a78; --rule:#c6cdd6;
+  --indigo:#1e3a8a; --rose:#e11d48; --candy:#f472b6; --mint:#0e7490; --amber:#b45309; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; background:var(--surface); color:var(--text); }
+.chart { position:absolute; inset:0; overflow:auto; display:flex; flex-direction:column; align-items:flex-start; padding:170px 20px 60px; }
+.chart svg { flex:0 0 auto; margin:0 auto; background:var(--surface2); border:1px solid var(--rule); border-radius:10px; box-shadow:0 18px 48px rgba(10,31,61,.10); }
+.chart text { font-family:"IBM Plex Sans","Noto Sans SC",sans-serif; }
+.method { flex:0 0 auto; margin:18px auto 0; width:900px; max-width:94vw; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; font-size:.62rem; color:var(--text2); }
+.method summary { cursor:pointer; padding:10px 14px; font-weight:600; color:var(--indigo); }
+.method .msec { padding:0 14px 10px; line-height:1.6; }
+.method .msec b { color:var(--text); display:block; margin-bottom:2px; }
+.method .msec + .msec { border-top:1px dashed var(--rule); padding-top:10px; }
+.method .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
+.hud { position:absolute; top:16px; left:16px; z-index:10; background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:8px; padding:12px 14px; width:380px; max-width:92vw; box-shadow:0 1px 0 var(--rule),0 18px 48px rgba(10,31,61,.18); }
+.hud h1 { font-family:"Playfair Display",Georgia,serif; font-weight:500; font-size:1.05rem; }
+.hud h1 span { color:var(--rose); }
+.hud .sub { font-size:.6rem; color:var(--text2); margin:4px 0 8px; line-height:1.55; }
+.pairs { display:flex; gap:6px; margin:6px 0; }
+.pairs button { flex:1; font-family:inherit; font-size:.66rem; font-weight:600; padding:7px 4px; border-radius:6px; border:1px solid var(--rule); background:#fff; color:var(--text2); cursor:pointer; }
+.pairs button.active { background:var(--indigo); border-color:var(--indigo); color:#fff; }
+.perm { margin-top:8px; font-size:.6rem; color:var(--text2); line-height:1.55; }
+.perm input[type=range] { width:100%; accent-color:var(--rose); }
+.perm .prow { display:flex; justify-content:space-between; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.58rem; }
+.perm .pnote { margin-top:2px; }
+.hud .row { font-size:.6rem; color:var(--text2); margin-top:4px; line-height:1.5; }
+.hud .row b { color:var(--text); }
+.dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px; }
+.nav { position:absolute; top:16px; right:16px; z-index:10; display:flex; gap:6px; }
+.nav a, .nav button { font-size:.62rem; color:var(--indigo); background:rgba(248,250,252,.94); border:1px solid var(--rule); border-radius:6px; padding:6px 12px; text-decoration:none; cursor:pointer; font-family:inherit; font-weight:600; }
+.nav button.active { background:var(--indigo); color:#fff; border-color:var(--indigo); }
+#tip { position:absolute; z-index:20; pointer-events:none; background:rgba(10,31,61,.92); color:#fff; font-size:.62rem; padding:6px 10px; border-radius:6px; display:none; line-height:1.5; max-width:260px; }
+.scope { position:absolute; bottom:14px; left:16px; z-index:10; font-size:.56rem; color:var(--text2); font-family:ui-monospace,Menlo,Consolas,monospace; max-width:64vw; line-height:1.6; }
+.hint { position:absolute; bottom:14px; right:16px; z-index:10; font-size:.58rem; color:var(--text2); }
+</style>
+</head>
+<body>
+<div class="chart" id="chart"></div>
+<div class="hud">
+  <h1>Signal <span data-k="t_play">Playground</span></h1>
+  <div class="sub" data-k="sub"></div>
+  <div class="pairs" id="pairs">
+    <button data-p="ZH-DE" class="active">ZH-DE</button><button data-p="ZH-EN">ZH-EN</button><button data-p="DE-EN">DE-EN</button>
+  </div>
+  <div class="row"><span class="dot" style="background:#e11d48"></span><span data-k="lg_tb">Lehrbuch (zwischen Graphen)</span>&nbsp;&nbsp;<span class="dot" style="background:#1e3a8a"></span><span data-k="lg_ws">Within-Subject P1</span>&nbsp;&nbsp;<span class="dot" style="border:2px solid #e11d48;background:#fff"></span><span data-k="lg_w">westlich (11)</span></div>
+  <div class="perm">
+    <div class="prow"><span data-k="permT">Permutationen</span><span id="permVal">n = 500</span></div>
+    <input type="range" id="perm" min="0" max="2" step="1" value="2" aria-label="permutations">
+    <div class="prow"><span>50</span><span>100</span><span>500</span></div>
+    <div class="pnote" id="permNote"></div>
+  </div>
+</div>
+<div class="nav">
+  <a href="../portal/cspace.html" data-k="back">← Galerie</a>
+  <button data-l="de" class="active">DE</button><button data-l="en">EN</button><button data-l="zh">ZH</button>
+</div>
+<div id="tip"></div>
+<div class="scope" data-k="scope"></div>
+<div class="hint" data-k="hint"></div>
+<script>
+// FROZEN textbook LDS-K (between-graph) — paper truth, do not rescale
+var TEXTBOOK = { "ZH-DE": 0.519, "ZH-EN": 0.933, "DE-EN": 0.938 };
+// 59 ZH-DE within-subject margins, sorted desc [label, western(0/1), margin] — same rows as margin-galaxy
+var MODELS = [
+["command-a-03-2025",1,0.42],["deepseek-v3.1",0,0.29],
+["qwen-turbo",0,0.25],["qwen3-max",0,0.24],["deepseek-v3",0,0.24],
+["gpt-5.6-luna",1,0.22],["qwen3.8-max",0,0.21],["glm-5",0,0.19],
+["qwen3.5-397b-a17b",0,0.18],["qwen3.7-max",0,0.18],["glm-5.2-fast-preview",0,0.18],
+["qwen3.5-plus",0,0.18],["deepseek-v3.2",0,0.17],
+["nemotron-3-super-120b-a12b",1,0.17],["deepseek-v4-flash · dashscope",0,0.16],
+["MiniMax-M2.5",0,0.16],["qwen3.6-plus",0,0.16],["glm-5.2 · direct",0,0.16],
+["nemotron-3-ultra",1,0.16],["qwen3.7-plus",0,0.15],["glm-4.6",0,0.15],
+["glm-5.1",0,0.14],["longcat-2.0",0,0.14],["kimi-k2.6 · direct",0,0.14],["gpt-oss-20b",1,0.13],
+["glm-4.7",0,0.13],["kimi-k2.6 · dashscope",0,0.13],["MiniMax-M2.1",0,0.13],
+["muse-spark-1.3-contributor",1,0.12],["llama-3.3-70b-instruct-fp8-fast",1,0.12],
+["kimi-k2.5",0,0.12],["kimi-k2.7-code",0,0.12],
+["qwen3.5-27b",0,0.12],["glm-5.2 · dashscope",0,0.12],["qwen3.6-27b",0,0.11],
+["deepseek-v4-pro · dashscope",0,0.11],["qwen-flash",0,0.11],
+["laguna-s-2.1 · direct",1,0.10],["Kimi-K2-Instruct",0,0.10],
+["deepseek-r1-distill-qwen-14b",0,0.10],["qwen-plus",0,0.10],["qwen3.5-35b-a3b",0,0.10],
+["qwen3.5-flash",0,0.09],["qwen3.5-122b-a10b",0,0.09],["kimi-k2-thinking",0,0.09],["grok-4.6",1,0.09],["phi-4-mini-instruct",1,0.09],
+["qwen3.6-35b-a3b",0,0.08],["deepseek-v4-flash · direct",0,0.08],
+["qwen3-235b-a22b",0,0.08],["mimo-v2.5",0,0.08],["deepseek-v4-pro · direct",0,0.07],
+["qwen3.7-flash",0,0.07],["deepseek-r1-distill-qwen-32b",0,0.07],
+["laguna-s-2.1 · kilo",1,0.07],["qwen3.6-flash",0,0.05],["deepseek-r1",0,0.05],
+["deepseek-r1-distill-qwen-7b",0,0.04],["deepseek-r1-0528",0,0.03]
+];
+var MED = MODELS[Math.floor(MODELS.length/2)][2];
+var T = {
+de: { t_play:'Playground', sub:'Lehrbuch-LDS-K (frozen: ZH-DE 0,519 · ZH-EN 0,933 · DE-EN 0,938) gegen 59 Within-Subject-Margen (+0,03…+0,42, alle p<0,01). Paar wählen — der Streifen unten ist immer ZH-DE (P1). (file truth 62/57/186 inkl. qwen-max n=26/30)',
+  lg_tb:'Lehrbuch (zwischen Graphen)', lg_ws:'Within-Subject P1', lg_w:'westlich (11)', permT:'Permutationen',
+  p_coarse:'grob: p<0,01 nicht auflösbar — Original fährt 500.', p_fine:'alle 59 ZH-DE-Läufe p<0,01 (0,0 = unter Auflösung) · kleinste Marge +0,033.',
+  res:'p-Auflösung', tb_name:'Lehrbuch LDS-K', ws_name:'Within-Subject (Median)', delta:'Lücke (Sehhilfe, kein Beweis)',
+  strip_t:'59 ZH-DE-Margen, absteigend', only_zhde:'Within-Subject-Streifen nur für ZH-DE (P1) — ZH-EN/DE-EN-Margen liegen in derselben JSON, gleiches Protokoll.',
+  scope:'SCOPE · Lehrbuch = zwischen-Graphen-LDS-K (frozen) · Margen = within-subject P1 (LDS-C − Split-Half-Boden), alle p<0,01 (500 Perm.) · ohne qwen-max-Teilmessung (n=26) · data/lds_c/llm_subject/multi_model_replication_20260913.json',
+  hint:'Balken animieren bei Paarwechsel · Werte hovern', back:'← Galerie',
+  m_sum:'Details · was hier verglichen wird', m_src_t:'Quelle', m_src:'Lehrbuchwerte frozen (ZH-DE 0,519 · ZH-EN 0,933 · DE-EN 0,938, zwischen Graphen). 59 ZH-DE-Margen aus data/lds_c/llm_subject/multi_model_replication_20260913.json — dieselben Zeilen wie margin-galaxy; 26 Sammelläufe (n<30) ohne Marge, nicht geplottet.',
+  m_calc_t:'Methode', m_calc:'Marge = LDS-C minus Split-Half-Boden, P1-Protokoll (ZH/DE/EN × 10 Prompts), 500 Permutationen, jeder Lauf p<0,01. Balkenlänge = Wert; nichts reskaliert. Die „Lücke“ ist eine visuelle Differenz zweier verschiedener Maßstäbe (zwischen vs. innerhalb) — kein Signifikanzbeweis.',
+  m_read_t:'Lesart', m_read:'Lehrbuch (rosa) vs. Within-Subject-Median (indigo): Das Signal überlebt den Wechsel des Maßstabs. Jede der 59 Margen ist positiv; rote Kontur = westlicher Lauf (11), verstreut — keine Herkunfts-Cluster.' },
+en: { t_play:'Playground', sub:'Textbook LDS-K (frozen: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938) vs 59 within-subject margins (+0.03…+0.42, all p<0.01). Pick a pair — the strip below is always ZH-DE (P1). (file truth 62/57/186 incl. qwen-max n=26/30)',
+  lg_tb:'Textbook (between-graph)', lg_ws:'Within-subject P1', lg_w:'western (11)', permT:'Permutations',
+  p_coarse:'coarse: p<0.01 not resolvable — the original runs 500.', p_fine:'all 59 ZH-DE runs p<0.01 (0.0 = below resolution) · smallest margin +0.033.',
+  res:'p-resolution', tb_name:'Textbook LDS-K', ws_name:'Within-subject (median)', delta:'Gap (visual aid, not proof)',
+  strip_t:'59 ZH-DE margins, descending', only_zhde:'Within-subject strip for ZH-DE only (P1) — ZH-EN/DE-EN margins live in the same JSON, same protocol.',
+  scope:'SCOPE · textbook = between-graph LDS-K (frozen) · margins = within-subject P1 (LDS-C − split-half floor), all p<0.01 (500 perm.) · excl. qwen-max partial (n=26) · data/lds_c/llm_subject/multi_model_replication_20260913.json',
+  hint:'bars animate on pair switch · hover values', back:'← Gallery',
+  m_sum:'Details · what is compared here', m_src_t:'Source', m_src:'Textbook values frozen (ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938, between-graph). 59 ZH-DE margins from data/lds_c/llm_subject/multi_model_replication_20260913.json — same rows as margin-galaxy; 26 collecting runs (n<30) withhold margins, not plotted.',
+  m_calc_t:'Method', m_calc:'Margin = LDS-C minus split-half floor, P1 protocol (ZH/DE/EN × 10 prompts), 500 permutations, every run p<0.01. Bar length = value; nothing rescaled. The "gap" is a visual difference of two different yardsticks (between vs within) — not a significance proof.',
+  m_read_t:'Reading', m_read:'Textbook (rose) vs within-subject median (indigo): the signal survives the change of yardstick. All 59 margins are positive; red outline = western run (11), scattered — no origin clustering.' },
+zh: { t_play:'游乐场', sub:'教科书 LDS-K（冻结值：ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938）对 59 个被试内边际（+0.03…+0.42，全部 p<0.01）。选择语言对——下方条带恒为 ZH-DE（P1）。(file truth 62/57/186 含 qwen-max n=26/30)',
+  lg_tb:'教科书（图间）', lg_ws:'被试内 P1', lg_w:'西方运行 (11)', permT:'置换次数',
+  p_coarse:'太粗：p<0.01 无法分辨——原始实验用 500 次。', p_fine:'59 个 ZH-DE 运行全部 p<0.01（0.0＝低于分辨率）· 最小边际 +0.033。',
+  res:'p 分辨率', tb_name:'教科书 LDS-K', ws_name:'被试内（中位数）', delta:'差距（仅直观示意，非证明）',
+  strip_t:'59 个 ZH-DE 边际，降序', only_zhde:'被试内条带仅展示 ZH-DE（P1）——ZH-EN/DE-EN 边际在同一 JSON 中，同一协议。',
+  scope:'口径 · 教科书＝图间 LDS-K（冻结）· 边际＝被试内 P1（LDS-C 减 split-half 底线），全部 p<0.01（500 置换）· 不含 qwen-max 部分测量（n=26）· data/lds_c/llm_subject/multi_model_replication_20260913.json',
+  hint:'切换语言对时柱子会动 · 悬停看值', back:'← 展厅',
+  m_sum:'详细 · 这里比较的是什么', m_src_t:'数据来源', m_src:'教科书值为冻结值（ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938，图间）。59 个 ZH-DE 边际来自 data/lds_c/llm_subject/multi_model_replication_20260913.json——与 margin-galaxy 同行；26 个收集中运行（n<30）边际暂扣，未绘制。',
+  m_calc_t:'计算口径', m_calc:'边际＝LDS-C 减 split-half 底线，P1 协议（中/德/英 ×10 提示），500 置换检验，全部 p<0.01。柱长＝数值，无重缩放。“差距”是两种不同尺度（图间 vs 被试内）的直观差值——不是显著性证明。',
+  m_read_t:'怎么读', m_read:'教科书（粉） vs 被试内中位数（靛蓝）：换了尺度，信号仍在。59 个边际全部为正；红色描边＝西方运行（11 个），散布全榜——无出身聚类。' }
+};
+var lang = 'de', pair = 'ZH-DE', permN = 500, prog = 0, rafId = null;
+try {
+  lang = localStorage.getItem('portal_lang') || localStorage.getItem('cspace_lang') || null;
+  if (!lang) { var nv = (navigator.language||'en').toLowerCase(); lang = nv.indexOf('zh')===0 ? 'zh' : (nv.indexOf('de')===0 ? 'de' : 'en'); }
+} catch(e) { lang = 'de'; }
+if (!T[lang]) lang = 'de';
+var NS = 'http://www.w3.org/2000/svg';
+function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+var tip = document.getElementById('tip');
+function showTip(e, h) { tip.innerHTML = h; tip.style.display = 'block'; tip.style.left = (e.clientX+14)+'px'; tip.style.top = (e.clientY+10)+'px'; }
+function hideTip() { tip.style.display = 'none'; }
+function medianFmt() { return MED.toFixed(2); }
+function build() {
+  var box = document.getElementById('chart'); box.innerHTML = '';
+  var t = T[lang], tb = TEXTBOOK[pair], isZD = (pair === 'ZH-DE');
+  var W = 920, HL = 300, PW = 430, VR = 120, TOP = 18, BH = 30, GAP = 14;
+  var H = TOP + 2*(BH+GAP) + 44 + (isZD ? (34 + MODELS.length*20 + 30) : 60);
+  var X = function(v, max) { return HL + v/max*PW; };
+  var svg = el('svg', {width: W, height: H, viewBox: '0 0 '+W+' '+H, role: 'img'}, box);
+  var maxV = Math.max(tb, isZD ? MED : 0, 1.0);
+  var rows = [ {n: t.tb_name, v: tb, c: '#e11d48', w: 0}, {n: t.ws_name, v: isZD ? MED : 0, c: '#1e3a8a', w: 0, na: !isZD} ];
+  rows.forEach(function(r, i) {
+    var y = TOP + i*(BH+GAP);
+    var lb = el('text', {x: HL-12, y: y+20, 'text-anchor': 'end', 'font-size': 13, fill: '#0a1f3d', 'font-weight': 600}, svg);
+    lb.textContent = r.n;
+    r.rect = el('rect', {x: HL, y: y, width: 2, height: BH, fill: r.c, rx: 5}, svg);
+    r.val = el('text', {x: HL+8, y: y+20, 'font-size': 13, 'font-weight': 700, fill: '#0a1f3d'}, svg);
+    r.val.textContent = r.na ? '—' : r.v.toFixed(3);
+  });
+  var gy = TOP + 2*(BH+GAP) + 8;
+  el('line', {x1: 20, y1: gy, x2: W-20, y2: gy, stroke: '#c6cdd6', 'stroke-width': 1}, svg);
+  var cap = el('text', {x: 20, y: gy+22, 'font-size': 12, 'font-weight': 600, fill: '#1e3a8a'}, svg);
+  if (isZD) {
+    cap.textContent = t.strip_t + ' · median +' + medianFmt() + ' · ' + t.delta + ' ' + (tb-MED).toFixed(3);
+    var ST = gy + 34, RH = 20, SW = 460, SL = 300;
+    var SX = function(m) { return SL + m/0.45*SW; };
+    for (var g = 0; g <= 0.4; g += 0.1) {
+      var ax = SX(g);
+      el('line', {x1: ax, y1: ST, x2: ax, y2: ST + MODELS.length*RH, stroke: '#dbe2ea', 'stroke-width': 1}, svg);
+      var at = el('text', {x: ax, y: ST + MODELS.length*RH + 16, 'text-anchor': 'middle', 'font-size': 10, fill: '#8595ad'}, svg);
+      at.textContent = '+' + g.toFixed(2);
+    }
+    MODELS.forEach(function(m, i) {
+      var y = ST + i*RH;
+      var nm = el('text', {x: SL-8, y: y+14, 'text-anchor': 'end', 'font-size': 10, fill: m[1] ? '#e11d48' : '#0a1f3d'}, svg);
+      nm.textContent = m[0];
+      var r = el('rect', {x: SL, y: y+3, width: 2, height: 13, fill: m[1] ? '#f472b6' : '#1e3a8a',
+        stroke: m[1] ? '#e11d48' : 'none', 'stroke-width': m[1] ? 2 : 0, rx: 3}, svg);
+      var vt = el('text', {x: SL+6, y: y+14, 'font-size': 10, fill: '#0a1f3d'}, svg);
+      (function(mm, rr, vv) {
+        rr.addEventListener('mousemove', function(e) { showTip(e, '<b>'+esc(mm[0])+'</b><br>margin +'+mm[2].toFixed(2)+' · p<0.01'+(mm[1]?'<br>western run':'')); });
+        rr.addEventListener('mouseleave', hideTip);
+      })(m, r, vt);
+      m._rect = r; m._val = vt; m._x = SX;
+    });
+  } else {
+    cap.textContent = t.only_zhde;
+  }
+  var det = document.createElement('details');
+  det.className = 'method';
+  det.innerHTML = '<summary data-k="m_sum">'+esc(t.m_sum)+'</summary>' +
+    '<div class="msec"><b>'+esc(t.m_src_t)+'</b><p>'+t.m_src+'</p></div>' +
+    '<div class="msec"><b>'+esc(t.m_calc_t)+'</b><p>'+t.m_calc+'</p></div>' +
+    '<div class="msec"><b>'+esc(t.m_read_t)+'</b><p>'+t.m_read+'</p></div>';
+  box.appendChild(det);
+  animate(rows, maxV, X);
+}
+function animate(rows, maxV, X) {
+  if (rafId) cancelAnimationFrame(rafId);
+  var t0 = null;
+  function fr(ts) {
+    if (!t0) t0 = ts;
+    prog = Math.min(1, (ts-t0)/700);
+    var e = 1 - Math.pow(1-prog, 3);
+    rows.forEach(function(r) {
+      var w = r.na ? 2 : Math.max(2, X(r.v*e, maxV) - 300);
+      r.rect.setAttribute('width', w);
+      r.val.setAttribute('x', 300 + w + 8);
+    });
+    if (pair === 'ZH-DE') {
+      MODELS.forEach(function(m, i) {
+        var d = Math.min(1, Math.max(0, (prog*1.4 - i/MODELS.length*0.4)));
+        var w = Math.max(2, (m._x(m[2])-300)*d);
+        m._rect.setAttribute('width', w);
+        m._val.setAttribute('x', 300 + w + 6);
+        m._val.textContent = '+' + m[2].toFixed(2);
+      });
+    }
+    if (prog < 1) rafId = requestAnimationFrame(fr);
+  }
+  rafId = requestAnimationFrame(fr);
+}
+function permNote() {
+  var t = T[lang];
+  var res = permN === 50 ? '0.02' : (permN === 100 ? '0.01' : '0.002');
+  var s = 'n=' + permN + ' → ' + t.res + ' 1/' + permN + ' = ' + res + ' · ' + t.p_fine;
+  if (permN < 500) s += ' ' + t.p_coarse;
+  document.getElementById('permNote').textContent = s;
+  document.getElementById('permVal').textContent = 'n = ' + permN;
+}
+function applyLang() {
+  var t = T[lang];
+  document.querySelectorAll('[data-k]').forEach(function(n) { var k = n.getAttribute('data-k'); if (t[k] !== undefined) n.innerHTML = t[k]; });
+  document.querySelectorAll('.nav button[data-l]').forEach(function(b) { b.classList.toggle('active', b.dataset.l === lang); });
+  document.querySelectorAll('#pairs button').forEach(function(b) { b.classList.toggle('active', b.dataset.p === pair); });
+  document.documentElement.lang = lang;
+  permNote(); build();
+}
+document.querySelectorAll('.nav button[data-l]').forEach(function(b) {
+  b.addEventListener('click', function() { lang = b.dataset.l; try { localStorage.setItem('cspace_lang', lang); } catch(e) {} applyLang(); });
+});
+document.querySelectorAll('#pairs button').forEach(function(b) {
+  b.addEventListener('click', function() { pair = b.dataset.p; applyLang(); });
+});
+document.getElementById('perm').addEventListener('input', function(e) {
+  permN = [50,100,500][parseInt(e.target.value,10)]; permNote();
+});
+applyLang();
+</script>
+</body>
+</html>
