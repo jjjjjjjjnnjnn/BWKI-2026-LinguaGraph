@@ -7,6 +7,11 @@
 
 ## 3. Ergebnisse
 
+> **Eingefroren (Forensik)**: CDS/HDS-Figurenwerte (Fig3 0.271/0.073, Fig5 max8/mean0.40) stammen aus der dichten
+> Juni-2026-Pipeline (574-Knoten-Generation), deren Dense-Codepfad verloren ist; sie bleiben als publizierte
+> Schnappschüsse eingefroren und werden nicht neu berechnet —
+> s. `docs/submission/fig3_cds_forensic.md`, `docs/submission/fig5_hds_forensic.md`.
+
 ### 3.1 CognitiveSpace: Statistische Übersicht
 
 Die Extraktion und Zusammenführung (Alignierungs-Labels, P2-vorbehalten) der 68 Lehrbücher ergibt einen Wissensgraphen mit folgenden Kenngrößen:

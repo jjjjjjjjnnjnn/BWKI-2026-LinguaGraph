@@ -97,6 +97,11 @@
 - 门户：Two-Tier（A）＋L1–L5（B/D）＋证伪探针（C）已粘 `_deploy/index.html` 已镜像；新段仅英文，三语回退英文。
 - 提交：§6 补 177 Tests＋双账（59/54/177 vs 62/57/186，去 luna 出处未澄清单列 P0）；
   `docs/submission/` 已镜像 final 五件；checkliste Stand→09-16。
+- 证据身份账（2026-09-16）：`research/bailian_mimo_sha_20260916.json`
+  （bailian 68 件 dir-sha 4fa5dda8762b6d79 / mimo 13 件 faaa278538ab7f3d；原文件黑箱不进 git）；
+  `research/weight_vectors_sha_20260916.json`（15.89MB cca943eb… / 15.87MB 6a4f8cb9…，
+  与 snapshot 记录一致，HELD 未入库，URI 待 Release）；SSOT `research/numbers_ssot_20260916.json`＋
+  门禁 `scripts/tools/numbers_audit.py`；portal W 指针（paper §9 结论章，评审证据外）。
 
 ## 补实验优先级
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。
