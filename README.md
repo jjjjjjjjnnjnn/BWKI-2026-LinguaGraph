@@ -66,7 +66,7 @@ Mathematical truth is universal, but its organization in textbooks varies dramat
 
 | Entry | What you get | Best for |
 |-------|--------------|----------|
-| [🧠 Research Portal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Findings F1–F12, replication roster (**59/54/177**), margin galaxy, validation section | **Judges & reviewers — start here** |
+| [🧠 Research Portal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Findings A–E, replication roster (**59/54/177**), 3 mini labs, validation section | **Judges & reviewers — start here** |
 | [🌐 STEAM overview](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | All 3 disciplines side-by-side in one 3D graph (1,143 nodes · 834 links, no cross-links) + compare panel | Cross-subject comparison |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Full paper, frozen figures + values | Academic reading, citation |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interactive 3D knowledge graph (1,143 concepts) | Live demo, audience |

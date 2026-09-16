@@ -60,8 +60,7 @@ a local mirror only — the workflow artifact is what goes live.
 |---|---|
 | `portal/index.html` (+ `portal/cspace.html`, 3D gallery hub) | `_deploy/portal/` |
 | `web/index.html` + `data.js` + `i18n.js` | `_deploy/web/` (portal iframe target) **and** `_deploy/` root (full-screen target) |
-| `web/data_physics.js` + `web/cds-terrain.html` + `web/margin-galaxy.html` + `web/coverage-towers.html` | `_deploy/web/` (3D gallery views) |
-| `web/story/index.html` | `_deploy/story/index.html` |
+| `portal/labs/*.html` (3 mini labs: reproduce/counterex/limits) | `_deploy/portal/labs/` |
 | `web/figures/fig4_null_model.png` | `_deploy/figures/` |
 | `docs/submission/LinguaGraph_BWKI2026.pdf` | `_deploy/docs/submission/` |
 

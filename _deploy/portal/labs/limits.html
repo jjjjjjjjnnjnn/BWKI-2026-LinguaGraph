@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Limit Switchboard · LinguaGraph</title>
+<style>
+:root{--bg:#0b0f14;--card:#131a24;--bd:#243041;--tx:#e6edf3;--mut:#93a1b5;--grn:#32d583;--red:#f04438}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 system-ui,"Noto Sans SC",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:1.4rem;margin:14px 0 4px}.sub{color:var(--mut);font-size:.88rem;margin:0 0 18px}
+.langs{display:flex;gap:6px}button{cursor:pointer}
+.lb{background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:7px;padding:5px 12px;font-weight:700;font-size:.78rem}
+.lb.on{background:var(--tx);color:#0b0f14}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 15px}
+.card b{display:block;font-size:.95rem}.card small{color:var(--mut);font-size:.8rem;display:block;margin:4px 0 10px}
+.sw{display:flex;align-items:center;gap:9px;font-size:.8rem;font-weight:700}
+.sw input{width:20px;height:20px;accent-color:var(--grn)}
+.sw.off{color:var(--red)}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.chip{background:var(--card);border:1px solid var(--grn);border-radius:20px;padding:6px 13px;font-size:.8rem;font-weight:600;transition:opacity .2s}
+.chip.dim{opacity:.28;border-color:var(--red);filter:grayscale(1)}
+#warns{display:grid;gap:8px;margin-top:6px}
+.warn{border-left:3px solid var(--red);background:#1a1214;border-radius:0 8px 8px 0;padding:9px 12px;font-size:.83rem}
+.ok{border-left:3px solid var(--grn);background:#0f1a15;border-radius:0 8px 8px 0;padding:9px 12px;font-size:.83rem;color:var(--mut)}
+.mono{font-family:ui-monospace,monospace;font-size:.76rem;color:var(--mut)}
+a{color:var(--grn)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span class="mono">Mini-Labor 3 · Limit Switchboard</span><div class="langs"><button class="lb on" data-l="de">DE</button><button class="lb" data-l="zh">ZH</button><button class="lb" data-l="en">EN</button></div></div>
+<h1 data-i="t">Schaltpult der Grenzen: was bricht ohne Limit weg?</h1>
+<p class="sub" data-i="s">Alle an = ehrliche Lesart. Schalter aus = Befund dimmt + Fehldeutung erscheint.</p>
+<div class="chips"><span class="chip" id="cA" data-i="fa">A · Dichte (CDS 0,271→0,073; 3,7×)</span><span class="chip" id="cB" data-i="fb">B · Tiefe ≤8 (Mathe ≤8), 83% Wurzeln</span><span class="chip" id="cC" data-i="fc">C · Sprache trennt (0,519 / 0,933 / 0,938)</span><span class="chip" id="cD" data-i="fd">D · Abdeckung streut stark</span><span class="chip" id="cE" data-i="fe">E · Menschen N=15: kein ΔLDS&gt;0</span></div>
+<div class="grid" id="sws"></div>
+<div id="warns"></div>
+<p class="mono"><a href="../index.v2.html">← portal v2</a> · frozen only · T1 0,556→0,020 · social 0,939 blind pending</p>
+</div>
+<script>
+var D={
+de:{t:"Schaltpult der Grenzen: was bricht ohne Limit weg?",s:"Alle an = ehrliche Lesart. Schalter aus = Befund dimmt + Fehldeutung erscheint.",fa:"A · Dichte (CDS 0,271→0,073; 3,7×)",fb:"B · Tiefe ≤8 (Mathe ≤8), 83% Wurzeln",fc:"C · Sprache trennt (0,519 / 0,933 / 0,938)",fd:"D · Abdeckung streut stark",fe:"E · Menschen N=15: kein ΔLDS>0",ok:"Alle 6 Grenzen an — alle Befunde A–E lesbar, keine Fehldeutung aktiv.",
+l1t:"L1 · Chunking-Grenzen",l1d:"Abschnitts-Chunks; Querverweise = dangling, Bias einseitig konservativ.",w1:"OFF L1: CDS (0,271→0,073) als exakte Dichte fehlgelesen statt konservativer Untergrenze.",
+l2t:"L2 · Hart-Match-Strafe",l2d:"Synonym anders geschrieben = bestraft; Sensitivität einstellig; T1 0,556→0,020.",w2:"OFF L2: ZH-DE 0,52 als Konvergenz fehlgelesen statt als widerlegtes Label-Artefakt.",
+l3t:"L3 · Spärliche Annotation",l3d:"Human-Pilot N=8 Platzhalter (powered N=30); 219 vs 359 unaligniert.",w3:"OFF L3: Humanities-Pilot N=8 (0,704/0,727/0,751) als Pass/Alarm-Call fehlgelesen.",
+l4t:"L4 · temperature=0 streut",l4d:"Ensemble-intra 0,59–0,73 (27–41% Divergenz); Einzel-Run = Schnappschuss.",w4:"OFF L4: ein Einzel-Run als deterministisch fehlgelesen statt Schwankungsband.",
+l5t:"L5 · Schnappschuss-Instabilität",l5d:"Voten mischen zwei Skalen — getrennt zeigen; keine Trends über Refills.",w5:"OFF L5: Frozen-A/B als Trend fehlgelesen statt eingefroren, nie neuberechnet.",
+l6t:"L6 · Kleine Stichproben",l6d:"92 Gold für Gesamt-F1; DE-Mathe-F1 0,506 hochvariabel; Sozial-0,939 blind pending.",w6:"OFF L6: Sozial-0,939 als validiert und DE-Mathe 0,506 als stabil fehlgelesen."},
+zh:{t:"局限开关板：关掉一项会塌什么？",s:"全开＝诚实读法。关闭＝相关发现变暗＋出现误读警告。",fa:"A · 密度（CDS 0.271→0.073，3.7×）",fb:"B · 深度≤8（数学≤8），83%为根",fc:"C · 语言分离结构（0.519/0.933/0.938）",fd:"D · 覆盖差异巨大",fe:"E · 人类 N=15：无ΔLDS>0",ok:"6 项全开——A–E 可读，无活跃误读。",
+l1t:"L1 · 切分边界",l1d:"按节切分；跨节指代计 dangling，偏倚单向且保守。",w1:"关 L1：把 CDS（0.271→0.073）误读为精确密度，而非保守下界。",
+l2t:"L2 · 硬匹配惩罚",l2d:"同义异写天然被罚；敏感性个位数；T1 0.556→0.020。",w2:"关 L2：把中德 0.52 误读为趋同，而非已证伪的标签伪影。",
+l3t:"L3 · 标注稀疏",l3d:"人类 pilot N=8 占位（效力设计 N=30）；对齐 219 vs 未对齐 359。",w3:"关 L3：把人文 pilot N=8（0.704/0.727/0.751）误读为 pass/alarm 结论。",
+l4t:"L4 · temperature=0 也波动",l4d:"集成自一致 0.59–0.73（27–41%分歧）；单次值是快照。",w4:"关 L4：把单次运行误读为确定性，而非波动带。",
+l5t:"L5 · 快照不稳定",l5d:"投票混两种阈值须拆分；跨轮均值不可比，不报趋势。",w5:"关 L5：把冻结 A/B 误读为趋势，而非冻结、永不重算。",
+l6t:"L6 · 样本小",l6d:"92 金标够总体 F1；德国数学 F1（0.506）方差大；社会 0.939 盲审待补。",w6:"关 L6：把社会 0.939 误读为已验证、把德国数学 0.506 误读为稳定。"},
+en:{t:"Limit switchboard: what collapses when a limit is off?",s:"All ON = honest reading. OFF = finding dims + misreading warning.",fa:"A · Density (CDS 0.271→0.073, 3.7×)",fb:"B · Depth ≤8 (math ≤8), 83% roots",fc:"C · Language splits (0.519 / 0.933 / 0.938)",fd:"D · Coverage varies widely",fe:"E · Humans N=15: no ΔLDS>0",ok:"All 6 limits ON — findings A–E readable, no active misreading.",
+l1t:"L1 · Chunking boundaries",l1d:"Section chunks; cross-refs = dangling, one-sided conservative bias.",w1:"OFF L1: CDS (0.271→0.073) misread as exact density, not a conservative floor.",
+l2t:"L2 · Hard-match penalty",l2d:"Synonym spellings penalized; single-digit sensitivity; T1 0.556→0.020.",w2:"OFF L2: ZH-DE 0.52 misread as convergence, not a falsified label artifact.",
+l3t:"L3 · Sparse annotation",l3d:"Human pilot N=8 placeholder (powered N=30); 219 vs 359 unaligned.",w3:"OFF L3: humanities pilot N=8 (0.704/0.727/0.751) misread as a pass/alarm call.",
+l4t:"L4 · temperature=0 varies",l4d:"Ensemble self-agreement 0.59–0.73 (27–41% disagreement); single run = snapshot.",w4:"OFF L4: a single run misread as deterministic, not a fluctuation band.",
+l5t:"L5 · Snapshot instability",l5d:"Votes mix two scales — show split; no cross-refill trends.",w5:"OFF L5: frozen A/B misread as a trend, not frozen, never recomputed.",
+l6t:"L6 · Small samples",l6d:"92 gold for overall F1; DE-math F1 0.506 high-variance; social 0.939 blind pending.",w6:"OFF L6: social 0.939 misread as validated and DE-math 0.506 as stable."}};
+var MAP={l1:["A","B","C"],l2:["C"],l3:["D","E"],l4:["A","B","C"],l5:["A","B"],l6:["C","E"]};
+var IDS=["l1","l2","l3","l4","l5","l6"],L="de";
+function build(){var g=document.getElementById("sws");g.innerHTML="";IDS.forEach(function(id){var d=document.createElement("div");d.className="card";d.innerHTML="<b data-i='"+id+"t'></b><small data-i='"+id+"d'></small><label class='sw'><input type='checkbox' checked data-k='"+id+"'><span>ON</span></label>";g.appendChild(d);var c=d.querySelector("input");c.onchange=function(){var lb=d.querySelector(".sw");lb.classList.toggle("off",!c.checked);lb.querySelector("span").textContent=c.checked?"ON":"OFF";refresh();};});}
+function setL(l){L=l;document.querySelectorAll(".lb").forEach(function(b){b.classList.toggle("on",b.dataset.l===l);});document.documentElement.lang=l==="zh"?"zh-CN":l;document.querySelectorAll("[data-i]").forEach(function(e){var k=e.getAttribute("data-i");if(D[l][k]!==undefined)e.innerHTML=D[l][k];});refresh();}
+function refresh(){var off={};document.querySelectorAll("#sws input").forEach(function(c){if(!c.checked)off[c.dataset.k]=1;});["A","B","C","D","E"].forEach(function(f){var dim=IDS.some(function(id){return off[id]&&MAP[id].indexOf(f)>-1;});document.getElementById("c"+f).classList.toggle("dim",dim);});var w=document.getElementById("warns");var ks=IDS.filter(function(id){return off[id];});w.innerHTML=ks.length?ks.map(function(id){return "<div class='warn'>"+D[L]["w"+id.slice(1)]+"</div>";}).join(""):"<div class='ok'>"+D[L].ok+"</div>";}
+document.querySelectorAll(".lb").forEach(function(b){b.onclick=function(){setL(b.dataset.l);};});
+build();setL("de");
+</script>
+</body>
+</html>
