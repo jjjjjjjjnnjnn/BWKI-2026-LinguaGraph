@@ -134,6 +134,26 @@
         padding:12px 18px; display:none; text-align:left;
         min-width:260px; max-width:460px;
         box-shadow:0 18px 48px rgba(10,31,61,.25);
+        max-height:480px; overflow-y:auto; overflow-x:hidden;
+        transition:max-height 280ms ease;
+    }
+    #detail.collapsed{ max-height:56px; overflow:hidden; }
+    #detailCollapse{
+        position:absolute; top:8px; right:8px; z-index:2;
+        width:24px; height:24px; line-height:1;
+        border:1px solid #c6cdd6; border-radius:4px; background:#f1f3f5;
+        color:#1e3a8a; font-size:.7rem; cursor:pointer; font-family:inherit;
+        display:flex; align-items:center; justify-content:center;
+        transition:background .2s;
+    }
+    #detailCollapse:hover{ background:rgba(30,58,138,.10); }
+    #detailCollapse:active{ transform:scale(.97); }
+    #detailCollapse:focus-visible{ outline:2px solid #1e3a8a; outline-offset:2px; }
+    #detailCollapse .chev{ display:inline-block; transition:transform 280ms ease; }
+    #detail.collapsed #detailCollapse .chev{ transform:rotate(180deg); }
+    @media (prefers-reduced-motion: reduce){
+        #detail{ transition:none; }
+        #detailCollapse .chev{ transition:none; }
     }
     #detail h3{ color:#1e3a8a; font-size:.8rem; font-weight:500; text-align:center; }
     #detail .ls{ font-size:.6rem; color:#4a5a78; margin:2px 0 4px; text-align:center; }
@@ -257,6 +277,8 @@
     /* Chain Walker (additive — detail panel stepper) */
     #chainWalk{ margin-top:6px; padding-top:6px; border-top:1px solid #c6cdd6; font-size:.6rem; }
     #chainWalk .cw-t{ font-size:.6rem; color:#7a9aff; font-weight:500; margin-bottom:4px; }
+    #chainWalk .cw-dir{ display:flex; gap:3px; margin-bottom:4px; }
+    #chainWalk .cw-dir .b.a{ background:rgba(30,58,138,.12); border-color:#1e3a8a; color:#1e3a8a; font-weight:600; }
     #chainWalk .cw-chips{ display:flex; gap:3px; flex-wrap:wrap; margin-bottom:4px; }
     #chainWalk .cw-chip.a{ background:rgba(30,58,138,.12); border-color:#1e3a8a; color:#1e3a8a; font-weight:600; }
     #chainWalk .cw-step{ color:#0a1f3d; margin-bottom:4px; line-height:1.4; }
@@ -332,6 +354,7 @@
     <div id="steamPanel" style="display:none"></div>
 
     <div id="detail">
+        <button id="detailCollapse" type="button" aria-label="Collapse" title="Collapse"><span class="chev">▾</span></button>
         <h3 id="dn"></h3>
         <div class="ls" id="dl"></div>
         <div class="m" id="dm"></div>
@@ -837,7 +860,11 @@
         return base;
     }
     function showDetail(n) {
+        const sameNode = lastNode && n && lastNode.id === n.id && document.getElementById('detail').style.display === 'block';
         lastNode = n;
+        detailEnsureCollapseBinding();
+        if (!sameNode) detailSetCollapsed(false, true);
+        else detailPaintCollapseBtn();
         const e = document.getElementById('detail');
         document.getElementById('dn').textContent = nodeLabel(n);
         const lbs = n.labels||{};
@@ -940,27 +967,63 @@
         renderChainIntro(n);
         clearTimeout(e._t); e._t = setTimeout(hideDetail, 20000);
     }
-    function hideDetail() { exitChainMode(); document.getElementById('detail').style.display = 'none'; }
+    function hideDetail() { exitChainMode(); detailSetCollapsed(false, true); document.getElementById('detail').style.display = 'none'; }
+
+    /* ─── Detail collapse (additive; shared showDetail/hideDetail for all disciplines) ─── */
+    let detailCollapseBound = false;
+    function detailPaintCollapseBtn(){
+        const b = document.getElementById('detailCollapse');
+        if (!b) return;
+        const collapsed = document.getElementById('detail').classList.contains('collapsed');
+        const k = collapsed ? 'detail.expand' : 'detail.collapse';
+        const t = i18n.tr(k);
+        b.setAttribute('aria-label', t);
+        b.setAttribute('title', t);
+        b.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
+    function detailSetCollapsed(on, silent){
+        const e = document.getElementById('detail');
+        if (!e) return;
+        e.classList.toggle('collapsed', !!on);
+        const cw = document.getElementById('chainWalk');
+        if (cw){ if (!!on) cw.setAttribute('inert', ''); else cw.removeAttribute('inert'); }
+        detailPaintCollapseBtn();
+        if (!silent) chainTouchTimer();
+    }
+    function detailEnsureCollapseBinding(){
+        if (detailCollapseBound) return;
+        const b = document.getElementById('detailCollapse');
+        if (!b) return;
+        detailCollapseBound = true;
+        b.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            const e = document.getElementById('detail');
+            detailSetCollapsed(!e.classList.contains('collapsed'));
+        });
+        detailPaintCollapseBtn();
+    }
 
     /* ─── Chain Walker (additive; directed prerequisite/requires BFS on rendered links) ─── */
-    const chainState = { active:false, rootId:null, levels:[], flat:[], flatDepth:[], idx:0, showAll:false, prevAuto:null, prevColors:null, bound:false };
-    // Directed adjacency restricted to prerequisite + requires (mirrors the HDS block in showDetail)
+    const chainState = { active:false, rootId:null, dir:'down', levels:[], flat:[], flatDepth:[], idx:0, showAll:false, prevAuto:null, prevColors:null, bound:false, availUp:0, availDown:0 };
+    // Directed adjacency restricted to prerequisite + requires (mirrors the HDS block in showDetail).
+    // fwd: source -> target (downstream / requires); rev: target <- source (upstream / prerequisite).
     function chainAdjacency(gd){
-        const adj = {};
-        gd.nodes.forEach(nn => { adj[nn.id] = []; });
+        const fwd = {}, rev = {};
+        gd.nodes.forEach(nn => { fwd[nn.id] = []; rev[nn.id] = []; });
         const seen = new Set();
         gd.links.forEach(l => {
             const s = typeof l.source==='object'?l.source.id:l.source;
             const t = typeof l.target==='object'?l.target.id:l.target;
-            if (((l.type||'')==='prerequisite'||(l.type||'')==='requires') && adj[s] && adj[t] !== undefined) {
+            if (((l.type||'')==='prerequisite'||(l.type||'')==='requires') && fwd[s] && rev[t] !== undefined) {
                 const k = s+'>'+t;
-                if (!seen.has(k)) { seen.add(k); adj[s].push(t); }
+                if (!seen.has(k)) { seen.add(k); fwd[s].push(t); rev[t].push(s); }
             }
         });
-        return adj;
+        return { fwd: fwd, rev: rev };
     }
-    function chainBuildLevels(rootId, gd){
-        const adj = chainAdjacency(gd);
+    function chainBuildLevels(rootId, gd, dir){
+        const adjAll = chainAdjacency(gd);
+        const adj = (dir === 'up') ? adjAll.rev : adjAll.fwd;
         const visited = new Set([rootId]);
         let frontier = [rootId];
         const levels = [];
@@ -972,6 +1035,73 @@
             frontier = next;
         }
         return levels;
+    }
+    // Longest-chain root already in the live data (max flat length over both directions).
+    // Memoized per graph (nodes|links count) — the scan is O(V*BFS), runs once per graph.
+    let longestCache = { key: null, id: null };
+    function chainLongestCached(gd){
+        const k = gd.nodes.length + '|' + gd.links.length;
+        if (longestCache.key === k) return longestCache.id;
+        const id = chainFindLongestRoot(gd);
+        longestCache = { key: k, id: id };
+        return id;
+    }
+    function chainFindLongestRoot(gd){
+        if (!gd || !gd.nodes || !gd.nodes.length) return null;
+        let bestId = null, bestLen = 0;
+        gd.nodes.forEach(nn => {
+            const a = chainBuildLevels(nn.id, gd, 'down').reduce((s,l)=>s+l.length,0);
+            const b = chainBuildLevels(nn.id, gd, 'up').reduce((s,l)=>s+l.length,0);
+            const m = Math.max(a, b);
+            if (m > bestLen){ bestLen = m; bestId = nn.id; }
+        });
+        return bestLen > 0 ? bestId : null;
+    }
+    // Fallback target: longest-chain root in data.js if any, else the current node's highest-HDS neighbor.
+    function chainDemoTarget(curId){
+        const gd = G && G.graphData ? G.graphData() : null;
+        if (!gd) return null;
+        const root = chainLongestCached(gd);
+        if (root && root !== curId) return root;
+        let best = null, bestLen = -1;
+        const seenNb = {};
+        gd.links.forEach(l => {
+            const s = typeof l.source==='object'?l.source.id:l.source;
+            const t = typeof l.target==='object'?l.target.id:l.target;
+            let oid = null;
+            if (s === curId) oid = t; else if (t === curId) oid = s;
+            if (oid && !seenNb[oid]){
+                seenNb[oid] = true;
+                const d = chainBuildLevels(oid, gd, 'down').reduce((x,lv)=>x+lv.length,0);
+                if (d > bestLen){ bestLen = d; best = oid; }
+            }
+        });
+        if (best && best !== curId) return best;
+        if (root) return root;
+        return null;
+    }
+    function chainGotoDemo(){
+        const t = chainDemoTarget(chainState.rootId);
+        if (!t) return;
+        const n = chainNodeById(t);
+        if (n && typeof focusNode === 'function') focusNode(n);
+        chainTouchTimer();
+    }
+    function chainSetDir(dir){
+        if (dir !== 'up' && dir !== 'down') return;
+        if (chainState.dir === dir) return;
+        const wasActive = chainState.active;
+        chainState.dir = dir;
+        const gd = G && G.graphData ? G.graphData() : null;
+        chainState.levels = gd ? chainBuildLevels(chainState.rootId, gd, chainState.dir) : [];
+        chainState.flat = [];
+        chainState.flatDepth = [];
+        chainState.levels.forEach((lvl, li) => lvl.forEach(id => { chainState.flat.push(id); chainState.flatDepth.push(li + 1); }));
+        chainState.idx = 0;
+        chainState.showAll = false;
+        if (wasActive && chainState.flat.length) chainApplyHighlight();
+        renderChainUI();
+        chainTouchTimer();
     }
     function chainNodeById(id){
         const gd = G && G.graphData ? G.graphData() : null;
@@ -1087,6 +1217,7 @@
         chainTouchTimer();
     }
     // Entry hook called at the end of showDetail(n) — renders only into #chainWalk.
+    // Full coverage: chain UI shows from depth>=1 in either direction; isolated nodes get a fallback + demo jump.
     function renderChainIntro(n){
         chainEnsureModeBinding();
         const box = document.getElementById('chainWalk');
@@ -1097,21 +1228,50 @@
             chainState.active = false;
             chainState.showAll = false;
             chainState.idx = 0;
+            if (!chainState.dir) chainState.dir = 'down';
             const gd = G.graphData();
-            chainState.levels = gd ? chainBuildLevels(n.id, gd) : [];
+            if (gd){
+                chainState.availDown = chainBuildLevels(n.id, gd, 'down').reduce((s,l)=>s+l.length,0);
+                chainState.availUp = chainBuildLevels(n.id, gd, 'up').reduce((s,l)=>s+l.length,0);
+                chainState.levels = chainBuildLevels(n.id, gd, chainState.dir);
+            } else {
+                chainState.levels = [];
+                chainState.availUp = 0; chainState.availDown = 0;
+            }
             chainState.flat = [];
             chainState.flatDepth = [];
             chainState.levels.forEach((lvl, li) => lvl.forEach(id => { chainState.flat.push(id); chainState.flatDepth.push(li + 1); }));
         }
         renderChainUI();
     }
+    function chainDirBar(){
+        const upOn = chainState.dir === 'up';
+        return '<div class="cw-dir"><button class="b'+(upOn?' a':'')+'" data-cw-dir="up">'+i18n.tr('detail.chain_up')+'</button>'+
+            '<button class="b'+(!upOn?' a':'')+'" data-cw-dir="down">'+i18n.tr('detail.chain_down')+'</button></div>';
+    }
+    function chainBindDirBar(box){
+        box.querySelectorAll('[data-cw-dir]').forEach(b => b.addEventListener('click', () => chainSetDir(b.getAttribute('data-cw-dir'))));
+    }
     function renderChainUI(){
         const box = document.getElementById('chainWalk');
         if (!box) return;
         const root = chainNodeById(chainState.rootId);
-        if (!root || !chainState.levels.length){
+        if (!root){
             box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
                 '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+            return;
+        }
+        if (!chainState.levels.length){
+            const demoId = chainDemoTarget(chainState.rootId);
+            const demoBtn = demoId ? '<div class="cw-nav"><button class="b" data-cw-demo="1">'+i18n.tr('detail.chain_demo')+'</button></div>' : '';
+            box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
+                chainDirBar()+
+                '<div class="cw-note">'+i18n.tr('detail.chain_none')+'</div>'+
+                demoBtn+
+                '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+            chainBindDirBar(box);
+            const dm = box.querySelector('[data-cw-demo]');
+            if (dm) dm.addEventListener('click', chainGotoDemo);
             return;
         }
         const total = chainState.flat.length;
@@ -1128,12 +1288,14 @@
         const atStart = !chainState.showAll && chainState.idx <= 0;
         const atEnd = !chainState.showAll && chainState.idx >= total - 1;
         box.innerHTML = '<div class="cw-t">'+i18n.tr('detail.chain_title')+'</div>'+
+            chainDirBar()+
             '<div class="cw-chips">'+chips+'</div>'+
             '<div class="cw-step">'+i18n.tr('detail.chain_step', {cur: cur, total: total, label: curLabel})+'</div>'+
             '<div class="cw-nav"><button class="b" data-cw-prev="1"'+(atStart?' disabled':'')+'>'+i18n.tr('detail.chain_prev')+'</button>'+
             '<button class="b" data-cw-next="1"'+(atEnd?' disabled':'')+'>'+i18n.tr('detail.chain_next')+'</button>'+
             '<button class="b" data-cw-exit="1">'+i18n.tr('detail.chain_exit')+'</button></div>'+
             '<div class="cw-note">'+i18n.tr('detail.chain_note')+'</div>';
+        chainBindDirBar(box);
         box.querySelectorAll('[data-cw-lvl]').forEach(b => b.addEventListener('click', () => chainSelectLevel(+b.getAttribute('data-cw-lvl'))));
         const all = box.querySelector('[data-cw-all]');
         if (all) all.addEventListener('click', chainSelectComplete);

@@ -128,6 +128,12 @@ const TRANSLATIONS = {
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': 'Chain limited to rendered links (233 of 517).',
         'detail.chain_exit': 'Exit',
+        'detail.chain_up': 'Prerequisites',
+        'detail.chain_down': 'Dependents',
+        'detail.chain_none': 'No prerequisite or follow-up chain on rendered links for this concept.',
+        'detail.chain_demo': 'Show an example chain elsewhere (unrelated to this concept)',
+        'detail.collapse': 'Collapse',
+        'detail.expand': 'Expand',
 
         // Detail values
         'connections': 'connections',
@@ -265,6 +271,12 @@ const TRANSLATIONS = {
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': 'Kette nur aus gerenderten Links (233 von 517).',
         'detail.chain_exit': 'Beenden',
+        'detail.chain_up': 'Voraussetzungen',
+        'detail.chain_down': 'Folgen',
+        'detail.chain_none': 'Keine Vorgänger- oder Folgekette auf gerenderten Links für dieses Konzept.',
+        'detail.chain_demo': 'Beispielkette anderswo zeigen (ohne Bezug zu diesem Konzept)',
+        'detail.collapse': 'Einklappen',
+        'detail.expand': 'Ausklappen',
 
         'connections': 'Verbindungen',
         'levels': 'Ebenen',
@@ -397,6 +409,12 @@ const TRANSLATIONS = {
         'detail.chain_chip': 'L{n}',
         'detail.chain_note': '链路仅基于已渲染边（517 中的 233）。',
         'detail.chain_exit': '退出',
+        'detail.chain_up': '上游前提',
+        'detail.chain_down': '下游后继',
+        'detail.chain_none': '该概念在已渲染边上无上游前提或下游后继链。',
+        'detail.chain_demo': '在别处看一条示例链（与当前概念无关）',
+        'detail.collapse': '收起',
+        'detail.expand': '展开',
 
         'connections': '条连接',
         'levels': '层',
