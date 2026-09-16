@@ -84,7 +84,7 @@
 - **fig_a7_3 语义**（2026-09-14）：`fig_a7_core.py` 改首行胜出 → fig_a7_3 取 legacy point（非 multiseed 均值）；EN/DE/ZH 三图已按此重建（`fig_a7_3_null_models{,_de,_zh}.png`）。
 - **档案声明**：`data/lds_c/**` 历史 JSON（如 `metric_robustness_20260811.json`、`multi_model_replication_202608*.json` 内 0.9546）保留冻结前值为档案，**不得引用**；引用以本台账 §1/§10 为准。
 
-## §11 2026-09-16 增补（v21；双人复核签字：____ / ____）
+## §11 2026-09-16 增补（v21；双人复核签字：opencode-agent/2026-09-16 ✅ pytest84 / ____ 待签）
 
 - 共识 v4：`research/consensus_v4_20260916.json/.md`（intra pro 0.5206 / v41 0.6000 / kimi 0.7291；inter 0.5009；
   vs_mimo 0.22–0.26；表决 546/203/884/1905/70）；thr 敏感性
