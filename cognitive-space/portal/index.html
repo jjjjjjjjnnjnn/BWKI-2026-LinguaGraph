@@ -804,6 +804,54 @@ graph LR
 
 </section>
 
+<section id="two-tier" class="fade-in">
+  <div class="finding-card" style="border-left:4px solid #0e7490">
+    <h3><i class="bi bi-layers" style="color:#0e7490"></i> <span>Textbook Pedagogy vs Latent Model Representations (Two-Tier, 2026-09-14)</span></h3>
+    <div class="lead">Open-weight vectors compress three pairs into a 0.48&ndash;0.52 narrow band (spread 0.0445) and do not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93). The two tiers measure different things.</div>
+    <div class="table-container" style="margin:16px 0;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead>
+          <tr style="background:var(--surface2);border-bottom:2px solid #0e7490">
+            <th style="padding:8px 12px;text-align:left">Dimension</th>
+            <th style="padding:8px 12px;text-align:left">Tier-1 Textbook explicit graph (main evidence)</th>
+            <th style="padding:8px 12px;text-align:left">Tier-2 Latent vectors (control baseline, this batch)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Source</strong></td>
+            <td style="padding:8px 12px">Textbook concept/relation tables (68 files, 741 concepts / 665 relations, human + multi-model audit)</td>
+            <td style="padding:8px 12px">Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>What is measured</strong></td>
+            <td style="padding:8px 12px">Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")</td>
+            <td style="padding:8px 12px">Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Topology</strong></td>
+            <td style="padding:8px 12px">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.934 / 0.938)</td>
+            <td style="padding:8px 12px">Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Interpretability</strong></td>
+            <td style="padding:8px 12px">High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)</td>
+            <td style="padding:8px 12px">Low: a single value is not traceable to a curriculum fact; distribution-level statements only</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px"><strong>Role</strong></td>
+            <td style="padding:8px 12px"><strong>Main evidence</strong>: carries the macro language-separability signal (LDS-C, p&lt;0.004)</td>
+            <td style="padding:8px 12px"><strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px"><strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.</p>
+    <p class="honesty">Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).</p>
+    <div class="meta"><span class="tag tag-cyan">Tier-1: LDS-K 0.519 / 0.934 / 0.938</span> <span class="tag tag-blue">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow">Source: research/two_tier_benchmark_20260914.md</span></div>
+  </div>
+</section>
+
 <!-- ==================== FINDING D: COVERAGE ==================== -->
   <section id="finding-d" class="fade-in">
 <div class="finding-card" style="border-left:4px solid var(--yellow)">
@@ -897,6 +945,51 @@ graph LR
   </div>
 </section>
 
+<section id="falsification-probe" class="fade-in">
+  <div class="finding-card" style="border-left:4px solid var(--purple)">
+    <h3><i class="bi bi-eyedropper" style="color:var(--purple)"></i> <span>Humanities "falsification probe" (asymmetric, pre-registered logic)</span></h3>
+    <div class="lead">The humanities/social-topic subset of the questionnaire is independent of the math graph and serves one-way falsification only &mdash; it can weaken the "curriculum-specific" claim but can never confirm the math result on its own.</div>
+    <p><strong>Pass:</strong> math-domain LDS splits significantly while the humanities subset on the same pair does not (or flips sign) &rarr; supports "effect is math-curriculum-specific", against a generic-language-distance reading. <strong>Alarm:</strong> humanities subset reproduces the same split &rarr; math LDS significance stands (different test objects), but the "curriculum-specific" claim is downgraded to "shared cross-domain split" and the generic factor must be chased. <strong>Never:</strong> the humanities subset alone confirms the math conclusion (different domains, no transfer). Execute at N=30: full-set LDS-C first, then the humanities slice under the same pipeline and alpha with independent Bonferroni correction; report both tables side by side, never only the favorable half. Current state: pilot N=8 social-topic values (0.704/0.727/0.751) are implanted as the probe baseline placeholder &mdash; no pass/alarm call today.</p>
+    <div class="table-container" style="margin:16px 0;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead>
+          <tr style="background:var(--surface2);border-bottom:2px solid var(--purple)">
+            <th style="padding:8px 12px;text-align:left">Reviewer question</th>
+            <th style="padding:8px 12px;text-align:left">Standard answer (read verbatim)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>N=8 and you report human conclusions?</strong></td>
+            <td style="padding:8px 12px">No. N=8 is a pipeline demo placeholder; the powered design is N=30 (86% power for &Delta;LDS&gt;0). The human column registers shape only, no significance claim.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Vectors or graphs &mdash; which is right?</strong></td>
+            <td style="padding:8px 12px">Not a right/wrong relation but two measurement layers: graphs measure curriculum structure (main evidence), vectors measure distributional proximity (control baseline). Vector uniformity is exactly what shows the graph's structure is not generic semantic noise.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>zh-de 0.48 vs 0.52 &mdash; mutual confirmation?</strong></td>
+            <td style="padding:8px 12px">No. Different scales (cosine distance vs GED+Jaccard synthesis); closeness is coincidence. Rank order only, never raw values.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>What if the humanities probe alarms?</strong></td>
+            <td style="padding:8px 12px">Downgrade "curriculum-specific" to "shared cross-domain", chase the generic factor; do not retract math LDS significance (different test objects, see blue-team D5 layering).</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:8px 12px"><strong>Is 500-perm p&lt;0.004 fished?</strong></td>
+            <td style="padding:8px 12px">It is the resolution limit at 500 permutations (minimum reportable p); 59/59 pass with margin floor 0.033 &gt; 0; micro noise does not move the macro margin order (see blue_defense_20260914.md &sect;D5).</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px"><strong>temperature=0 reproducible?</strong></td>
+            <td style="padding:8px 12px">Judge calls use temperature=0, max_tokens=5; embeddings have no sampling randomness (same word, same vector) &mdash; rerun the script for the same table; only an LM Studio model-version change forces re-registration.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="meta"><span class="tag tag-purple">Probe baseline (pilot, placeholder): 0.704 / 0.727 / 0.751</span> <span class="tag tag-yellow">Source: research/human_vs_machine_20260914.md &sect;3&ndash;4</span></div>
+  </div>
+</section>
+
 <!-- ==================== COGNITIVESPACE ==================== -->
 <section id="cognitivespace" class="fade-in" style="text-align:center">
   <h2 class="section-title" data-i18n="section_cognitivespace">Interactive CognitiveSpace</h2>
@@ -963,6 +1056,31 @@ graph LR
       <h3><i class="bi bi-patch-exclamation" style="color:var(--yellow)"></i> <span data-i18n="limitations6_title">Gold Label Sample Size</span></h3>
       <p data-i18n="limitations6_desc">92 gold labels, while sufficient for overall F1 estimation (especially for social concepts, n=72), are limited for fine-grained per-language, per-domain analysis. The mathematical domain has only 20 labels across 3 languages, and the German math F1 estimate (0.506) has high variance.</p>
       <div class="meta" data-i18n="limitations6_mit">Mitigation: Social concept results (n=72) are statistically robust</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-scissors" style="color:var(--yellow)"></i> <span>Chunking boundaries (section-level granularity)</span></h3>
+      <p>Textbook extraction chunks by section (<span class="mono">data/math_extractions/&lt;textbook&gt;_&lt;chapter&gt;_&lt;section&gt;.json</span>); cross-section co-reference is merged only at the alignment table, and edges pointing to concepts established elsewhere count as dangling (244 in-file / 51 unresolved cross-file, see blue-team D3). The bias is one-sided and conservative: node/edge Jaccard can only underestimate cross-lingual overlap and overestimate drift. Conclusions rest on "cross-lingual distance significantly above the null model" (margin floor 0.033 &gt; 0), not on absolute LDS values; chunking applies symmetrically across languages. Future work: chapter-level rerun as sensitivity analysis.</p>
+      <div class="meta">Source: research/limitations_20260914.md L1</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-type" style="color:var(--orange)"></i> <span>Hard-match penalty (normalization + exact alignment)</span></h3>
+      <p>Audit and alignment use hard matching (lowercase + strip spaces/hyphens/underscores + &szlig;&rarr;ss + synonym map). Synonymous-but-differently-spelled pairs (e.g. Bayes-Formel vs Satz von Bayes) are penalized by construction; quantified sensitivity is single-digit (unresolved 50 vs 51, cross-file renaming 53 vs 38). The vector audit inherits the same constraint: of 219 alignment groups, 32 are surface-identical in all three languages and zh-de keeps only 65 effective pairs with the widest error bar (mean 0.4804, std 0.1274). Report normalization rules alongside every recall/LDS number; vector level stays distribution-level, no single-pair claims. Soft matching (embedding-threshold alignment) is future work with pre-registered thresholds.</p>
+      <div class="meta">Source: research/limitations_20260914.md L2</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-people" style="color:var(--pink)"></i> <span>Sparse annotation (N=8 pilot + alignment coverage) &middot; temperature=0 &middot; 500-perm p&lt;0.004</span></h3>
+      <p>Human side: questionnaire implant is a pilot (N=8, social topics, LDS-C 0.704/0.727/0.751); the powered design is N=30 (86% power) and the human column is a shape placeholder with no significance claim. Alignment side: 219 aligned groups vs 359 unaligned concepts (coverage 37.9%); vector means describe the alignable subset (65/184/185 pairs), not the full curriculum. Reproducibility: judge calls use temperature=0, max_tokens=5 (single 0&ndash;5 digit); embeddings (<span class="mono">text-embedding-nomic-embed-text-v1.5</span>, dim=768 via LM Studio) have no sampling randomness. Defense line (read verbatim): macro separability uses 500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning &mdash; ZH-DE 59/59 pass with margin 0.033&ndash;0.424 (floor positive); micro extraction noise and the macro test sit on different nulls, so the macro signal stands under current micro noise; the reverse reading (macro significance proves micro correctness) is explicitly forbidden.</p>
+      <div class="meta">Rerun: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> &middot; Source: research/limitations_20260914.md L3 + perm defense</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-shuffle" style="color:var(--cyan)"></i> <span>temperature=0 is not deterministic (run-to-run divergence)</span></h3>
+      <p>Seven-model ensemble at temperature=0 reaches only 0.59&ndash;0.73 intra self-agreement (&sim;27&ndash;41% run disagreement; kimi-k3 0.7291 highest). Rerun deltas: flash-level &sim;0.03&ndash;0.06, max-level &sim;0.01. Consequence: every single-run F1/Jaccard is a snapshot and must carry a fluctuation band; rank orders may be reported, exact absolute values must not be quoted precisely. Absences are snapshots too (2 of 4 single-file absences成交 on deferred retry, 2 permanently absent) &mdash; never report a model as "failed".</p>
+      <div class="meta">Source: research/limitations_20260914.md L4</div>
+    </div>
+    <div class="card">
+      <h3><i class="bi bi-camera" style="color:var(--cyan)"></i> <span>Ensemble snapshot instability (vote totals are additive)</span></h3>
+      <p>Inter mean v2 0.4629 &rarr; v3 0.5401 (&Delta;+0.077) is fully driven by the qwen depth refill &mdash; the two numbers are not comparable, no trend claim. Vote totals use thr=n//2+1 with source counts 6&ndash;9 (thr 4&ndash;5): totals sum two scales and must be shown split with a thr-sensitivity table; 3 files with Solid&asymp;0 and Hypo&gt;100 are listed separately. v41 column (mojibake audit ongoing) and ds-pro row (unmeasurable) stay frozen.</p>
+      <div class="meta">Source: research/limitations_20260914.md L5</div>
     </div>
   </div>
 </section>
