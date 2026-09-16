@@ -1,6 +1,6 @@
 # LinguaGraph — Einreichungs-Checkliste (BWKI 2026)
 
-> **Stand**: 2026-09-08 (v0.13.2) | **Frist**: 20.09.2026 | **Ziel**: 3 vollständige Einreichungsbestandteile (Dokumentation / Code / Video-Pitch)
+> **Stand**: 2026-09-16 (v21) | **Frist**: 20.09.2026 | **Ziel**: 3 vollständige Einreichungsbestandteile (Dokumentation / Code / Video-Pitch)
 > **Narrative**: AI-Audit-Framing (Entscheid 2026-08-09) — siehe `docs/pitch_3min.md` + `docs/video_script.md`
 
 ---
@@ -43,7 +43,7 @@
 ## Bestandteil 4 (Supporting): Wissenschaftliche Arbeit → PDF
 
 - [x] Narrative reframed: Abstract + Einleitung + Schlussfolgerung + 3-Schlussfolgerungen (AI-Audit-Framing) ✅
-- [x] **PDF-Assemblierung**: `scripts/build_paper_pdf.py` (fpdf2) → `docs/submission/` + `submission/final/` + `_deploy/docs/submission/` (drei Orte, Bytes-identisch; Stand 2026-09-13: 229178B, inkl. v23-Methodik-Frozen-Boxen) ✅
+- [x] **PDF-Assemblierung**: `scripts/build_paper_pdf.py` (fpdf2) → `docs/submission/` + `submission/final/` + `_deploy/docs/submission/` (drei Orte, Bytes-identisch; Stand 2026-09-14: 235200B/36p) ✅
 - [ ] Formatprüfung (Konsistenz der Zahlen, Diagramme, Referenzen) — bis 9/13
 - **PDF-Regel (ab 2026-09-13, kein erneuter Drift)**: jede `docs/paper/*`-Änderung → `python scripts/build_paper_pdf.py` + `Copy-Item docs/submission/LinguaGraph_BWKI2026.pdf submission/final/LinguaGraph_BWKI2026.pdf -Force` + `Copy-Item docs/submission/LinguaGraph_BWKI2026.pdf _deploy/docs/submission/LinguaGraph_BWKI2026.pdf -Force` → Commit-Message `PDF rebuilt XXXXB/YYp` (Format wie v22-pdf).
 - [x] Manifest-Zahlen abgeglichen (556/525/219 SSOT, v0.13.2) ✅
@@ -54,7 +54,7 @@
 ## Inhaltliche Restarbeiten
 
 - [ ] **`docs/paper/04_discussion.md`** "so-what"-Anwendungsebene prüfen — optional, nur wenn Zeit (SW-Fixforschung geht vor)
-- [x] SW-Fixforschung (Step 4): SW1 Power-Analyse + Literatur · SW2 Provider-Stratifizierung ✅ + **West-Erweiterung (v0.14.0, 09-10)**: gpt-oss-20b (NIM), command-a (Cohere), laguna + nemotron-super (Kilo), gpt-5.6-luna (Terminal) → **55 Messungen / 50 Identitäten, ZH-DE 55/55 sig, West 7/7** · SW3 EN-Hub-Framing + Literatur · SW4 Youden-Kalibrierung (Optimum 0,13)
+- [x] SW-Fixforschung (Step 4): SW1 Power-Analyse + Literatur · SW2 Provider-Stratifizierung ✅ + **West-Erweiterung (v0.14.0, 09-10)**: gpt-oss-20b (NIM), command-a (Cohere), laguna + nemotron-super (Kilo), gpt-5.6-luna (Terminal) → **59 Messungen / 54 Identitäten, ZH-DE 59/59 sig, West 11/11** · SW3 EN-Hub-Framing + Literatur · SW4 Youden-Kalibrierung (Optimum 0,12, CI 0,12–0,13)
 - [ ] `pitch_10min.md`/`demo_script.md` als LEGACY markiert ✅ — Finals-Deck (11/13) wird aus neuem Rahmen neu gebaut
 
 ---

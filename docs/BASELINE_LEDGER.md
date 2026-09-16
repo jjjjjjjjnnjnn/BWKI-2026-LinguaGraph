@@ -1,4 +1,4 @@
-# BASELINE_LEDGER — 基线推导台账 (frozen 2026-09-12, v20)
+# BASELINE_LEDGER — 基线推导台账 (frozen 2026-09-12, v21 2026-09-16)
 
 > 每个基线四列：定义 → 代码 → 产物 → 复现命令。状态三态：**verified**（可引用）/ **needs_review**（ directional only，补实验后转正）/ **drop**（退役）。
 > 精度政策：测量值报 **3 位小数 + CI**（第 4 位为计算对账位，提取误差 ΔLDS≈0.0014 已淹没第 4 位）。
@@ -83,6 +83,20 @@
 - **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
 - **fig_a7_3 语义**（2026-09-14）：`fig_a7_core.py` 改首行胜出 → fig_a7_3 取 legacy point（非 multiseed 均值）；EN/DE/ZH 三图已按此重建（`fig_a7_3_null_models{,_de,_zh}.png`）。
 - **档案声明**：`data/lds_c/**` 历史 JSON（如 `metric_robustness_20260811.json`、`multi_model_replication_202608*.json` 内 0.9546）保留冻结前值为档案，**不得引用**；引用以本台账 §1/§10 为准。
+
+## §11 2026-09-16 增补（v21；双人复核签字：____ / ____）
+
+- 共识 v4：`research/consensus_v4_20260916.json/.md`（intra pro 0.5206 / v41 0.6000 / kimi 0.7291；inter 0.5009；
+  vs_mimo 0.22–0.26；表决 546/203/884/1905/70）；thr 敏感性
+  `research/thr_sensitivity_v4_20260916.json/.md`（自检 shift=0 精确复现；thr−1→683/321/766，thr+1→426/126/961）。
+- 修数：①删幻觉边 2＋②去重 24（`research/prune_backup_20260915/`）；③政策 A 仅 #6 可执行已入库
+  （`research/prune_backup_20260916_endpoint/`，其余 12 HOLD 转全局别名政策）；
+  ④破环 9 动作已执行（8 弱边删除＋#11 PDE/ODE 改向，`research/prune_backup_20260916_ring/`，pytest 84 绿）。
+- P1 stale 决议：v41 `zh_微分方程_ch9_sec9.1-9.2.r3.json` 在盘保留作证据，manifest 维持 missing＋do_not_retry，
+  不入 done（审计 BAD，入 done 污染计数）；下游 consensus 按 82 计的 ≤1 文件夸大已入 L1 债务。
+- 门户：Two-Tier（A）＋L1–L5（B/D）＋证伪探针（C）已粘 `_deploy/index.html` 已镜像；新段仅英文，三语回退英文。
+- 提交：§6 补 177 Tests＋双账（59/54/177 vs 62/57/186，去 luna 出处未澄清单列 P0）；
+  `docs/submission/` 已镜像 final 五件；checkliste Stand→09-16。
 
 ## 补实验优先级
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。

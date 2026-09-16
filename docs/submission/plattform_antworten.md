@@ -51,7 +51,7 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 ## 6. Kritische Einschätzung — Grenzen und nächste Schritte
 
 **Ehrliche Grenzen**:
-- **Beweisumfang**: Sprachsignal in **59-Messungs-Replikation** (54 Modelle, alle ZH-DE sig., Richtung über Zufall) — aber ~81 % CN-Anbieter (elf westliche), 9 n.s. EN-Paare. Stratifiziert: CN 48/48 (0,130), West 11/11 (0,155) — als Anbietervergleich unterpowert.
+- **Beweisumfang**: Sprachsignal in **59-Messungs-Replikation** (54 Modelle, alle ZH-DE sig., Richtung über Zufall) — aber ~81 % CN-Anbieter (elf westliche), 9 n.s. EN-Paare. Stratifiziert: CN 48/48 (0,130), West 11/11 (0,155) — als Anbietervergleich unterpowert. Makro-Signifikanz über **177 Tests** (500 Permutationen, FWER-kontrolliert). Zählung: publiziert 59/54/177; Datei-Wahrheit 62/57/186 (qwen-max n=26/30 ausgeschlossen).
 - **Kleinstmodell-Grenze**: nur phi-4-mini (3,8B, +0,09, p<0,01) repliziert; qwen2.5-0.5b null (p=0,168), hy-mt2 NaN (leere Sets), gemma Quarantäne — Kette bricht bei Extraktion (Paper §8.15).
 - **5 Konzepte, 3 Sprachen**: Breite begrenzt; weitere Konzepte/Sprachen (z. B. Französisch, Japanisch) stehen aus.
 - **Schwelle (Vorschlag)**: ZH-DE-Marge ≥ 0.10 = „hoch divergent" (Spanne +0.03…+0.42); Youden 0,12 (CI 0,12–0,13) — Faustregel, keine validierte Grenze.

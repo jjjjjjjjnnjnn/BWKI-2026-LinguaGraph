@@ -1,6 +1,6 @@
 # Feld-Mapping: Plattform ↔ Antworten (BWKI 2026)
 
-> Stand: 2026-09-13 | Quelle: `plattform_antworten.md` (final)
+> Stand: 2026-09-16 | Quelle: `plattform_antworten.md` (final)
 > Alle Abschnitte ≤ 1700 Zeichen — für typische Plattform-Limits unkritisch.
 > Beim Eintragen: 1:1 kopieren; falls ein Feld kürzer limitiert ist, zuerst
 > die Tabellen kompaktieren, dann Fließtext kürzen (Zahlen nie runden).
@@ -13,7 +13,7 @@
 | Umsetzung | §3 Umsetzung — technisch realisiert? | 845 |
 | Ergebnisse | §4 Ergebnisse — Was wurde gefunden? | 1225 |
 | Fehlerquellen (was nicht funktioniert hat) | §5 Fehlerquellen (4 dokumentierte) | 1339 |
-| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden) | 1087 |
+| Kritische Einschätzung | §6 Grenzen + nächste Schritte (inkl. SW-Fixforschung: Strata, EN-Hub, Youden; +177 Tests, +Doppelzählung 59/54/177 vs 62/57/186) | 1261 |
 | Entwicklung der Idee | §7 Projektentwicklung (Textbuch → Audit-Werkzeug) | 892 |
 | Unterstützung/Offenlegung | §8 + `declaration_of_support.md` (Anhang) | 681 |
 
