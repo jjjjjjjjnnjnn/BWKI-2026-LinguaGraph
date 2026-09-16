@@ -269,7 +269,6 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   <a href="#sources" data-i18n="nav_sources">Sources</a>
   <a href="#curriculum" data-i18n="nav_curriculum">Curriculum</a>
   <a href="#cognitivespace" data-i18n="nav_cogspace">3D Graph</a>
-  <a href="#labs" data-i18n="nav_labs">Mini Labs</a>
   <a href="#paper" data-i18n="nav_paper">Paper</a>
   <a href="#open-science" data-i18n="nav_open">Open Science</a>
   <div class="lang-switcher">
@@ -308,7 +307,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   <div class="card-grid">
     <div class="card"><h3 data-i18n="val_gold_t">Gold labels: 92</h3><p data-i18n="val_gold_d">20 hand-annotated math (Mature C9a) + 72 machine-seeded social (Developing C9b, agent-panel-reviewed, human-review pending).</p><div class="meta"><span class="tag tag-yellow" data-i18n="tag_developing">Developing</span></div></div>
     <div class="card"><h3 data-i18n="val_bench_t">Extraction benchmark: 19 models</h3><p data-i18n="val_bench_d">F1 range 0.55–0.67, used only for extractor selection — never for language claims.</p></div>
-    <div class="card"><h3 data-i18n="val_roster_t">Replication roster: 59 + 26</h3><p data-i18n="val_roster_d">59 full runs (54 models, all ZH-DE significant) + 26 collecting incl. qwen-max n=26/30 (parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.</p><div class="meta"><span class="tag tag-cyan">59/54/177</span> <span class="tag">62/57/186 file-truth</span></div></div>
+    <div class="card"><h3 data-i18n="val_roster_t">Replication roster: 59 + 26</h3><p data-i18n="val_roster_d">59 full runs (54 models, all ZH-DE significant) + 26 collecting (qwen-max n=26/30 parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.</p><div class="meta"><span class="tag tag-cyan">59/54/177</span> <span class="tag">62/57/186 file-truth</span></div></div>
     <div class="card"><h3 data-i18n="val_margin_t">Margin: 59/59, p&lt;0.01</h3><p data-i18n="val_margin_d">500 permutations; 9 of 177 EN-involving tests n.s. West 11/11 (0.155; without luna 10/10, 0.148), CN 48/48 (0.130) — underpowered as vendor comparison.</p></div>
   </div>
 </section>
@@ -325,7 +324,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   </div>
   <div class="finding-card" style="border-left:4px solid var(--green)">
     <h3 data-i18n="fb_t">B · Shallow hierarchies</h3>
-    <div class="lead" data-i18n="fb_lead">Concept depth ≤ 8 (math ≤ 8); 83% of concepts are hierarchy roots.</div>
+    <div class="lead" data-i18n="fb_lead">Concept depth ≤ 8 (math ≤ 6); 83% of concepts are hierarchy roots.</div>
     <p class="honesty" data-i18n="fb_frozen">Frozen snapshot, same provenance as A.</p>
   </div>
   <div class="finding-card" style="border-left:4px solid #0e7490">
@@ -359,7 +358,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p></div>
     <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p></div>
     <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p></div>
-    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
+    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): 42 DashScope, 8 bare-hosts, 2 Kilo, Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
   </div>
   <p class="honesty" data-i18n="method_prov">Provenance: HF model SHAs are today's HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).</p>
 </section>
@@ -411,18 +410,6 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   <div class="ctas" style="justify-content:center"><a href="../web/index.html" class="btn btn-solid" data-i18n="cs_open">Open the 3D graph →</a></div>
 </section>
 
-<!-- ==================== MINI LABS ==================== -->
-<section id="labs" class="fade-in">
-  <div class="kicker" data-i18n="kick_labs">Hands on</div>
-  <h2 class="section-title" data-i18n="labs_title">Mini Labs</h2>
-  <p class="section-sub" data-i18n="labs_sub">Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.</p>
-  <div class="card-grid">
-    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="labs/reproduce.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="labs/counterex.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="labs/limits.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-  </div>
-</section>
-
 <!-- ==================== PAPER ==================== -->
 <section id="paper" class="fade-in">
   <div class="kicker" data-i18n="kick_paper">Paper</div>
@@ -447,7 +434,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 <script>
 const TRANSLATIONS = { en: {
 page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
-nav_home: 'Top', nav_validation: 'Evidence', nav_findings: 'Findings', nav_method: 'Method', nav_limits: 'Limits', nav_sources: 'Sources', nav_curriculum: 'Curriculum', nav_cogspace: '3D Graph', nav_labs: 'Mini Labs', nav_paper: 'Paper', nav_open: 'Open Science',
+nav_home: 'Top', nav_validation: 'Evidence', nav_findings: 'Findings', nav_method: 'Method', nav_limits: 'Limits', nav_sources: 'Sources', nav_curriculum: 'Curriculum', nav_cogspace: '3D Graph', nav_paper: 'Paper', nav_open: 'Open Science',
 hero_kicker: 'BWKI 2026 · Multilingual AI Audit',
 hero_title: 'How do different languages organize the <em>same knowledge?</em>',
 hero_sub: 'Textbook knowledge graphs (Chinese, German, English) measured against open-weight vector baselines — with every limit printed next to every number.',
@@ -458,12 +445,12 @@ cta_evidence: 'See the evidence →', cta_findings: 'Findings A–E', cta_3d: '3
 kick_evidence: 'Evidence', validation_title: 'Validation', validation_sub: 'Trust first: what was checked, on how much data, with which limits.',
 val_gold_t: 'Gold labels: 92', val_gold_d: '20 hand-annotated math (Mature C9a) + 72 machine-seeded social (Developing C9b, agent-panel-reviewed, human-review pending).',
 tag_developing: 'Developing', val_bench_t: 'Extraction benchmark: 19 models', val_bench_d: 'F1 range 0.55–0.67, used only for extractor selection — never for language claims.',
-val_roster_t: 'Replication roster: 59 + 26', val_roster_d: '59 full runs (54 models, all ZH-DE significant) + 26 collecting incl. qwen-max n=26/30 (parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.',
+val_roster_t: 'Replication roster: 59 + 26', val_roster_d: '59 full runs (54 models, all ZH-DE significant) + 26 collecting (qwen-max n=26/30 parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.',
 val_margin_t: 'Margin: 59/59, p<0.01', val_margin_d: '500 permutations; 9 of 177 EN-involving tests n.s. West 11/11 (0.155; without luna 10/10, 0.148), CN 48/48 (0.130) — underpowered as vendor comparison. Perm file-truth 62/62.',
 kick_findings: 'Findings', findings_title: 'Findings A–E', findings_sub: 'Five claims, each with its limit attached. Preliminary until stated otherwise.',
 fa_t: 'A · Density peaks early', fa_lead: 'Curriculum graphs densify in middle school, then thin out (CDS 0.271 → 0.073, 3.7×).',
 fa_frozen: 'Frozen snapshot: computed on the June-2026 dense pipeline (574-node generation, dense code path since lost). Kept frozen, never recomputed — see forensic notes.',
-fb_t: 'B · Shallow hierarchies', fb_lead: 'Concept depth ≤ 8 (math ≤ 8); 83% of concepts are hierarchy roots.', fb_frozen: 'Frozen snapshot, same provenance as A.',
+fb_t: 'B · Shallow hierarchies', fb_lead: 'Concept depth ≤ 8 (math ≤ 6); 83% of concepts are hierarchy roots.', fb_frozen: 'Frozen snapshot, same provenance as A.',
 fc_t: 'C · Language separates structure', fc_lead: 'Textbook LDS-K: zh-de 0.519 far below EN-involving ≈0.93 (0.933 / 0.938). The raw zh-de closeness was falsified as a label artifact (T1 decontamination 0.556 → 0.020).',
 fc_tier_sum: 'Two-Tier control: what vectors (don’t) show',
 fc_tier_d: 'Open-weight embeddings (nomic-embed-text-v1.5, 768 dims, 934 terms) compress all three pairs into 0.48–0.52 (spread 0.0445) and do not reproduce the textbook split (spread 0.419). Rank order only — never raw values. Vectors are the control baseline, never the evidence.',
@@ -476,7 +463,7 @@ m1_t: '1 · Extract', m1_d: '68 textbook files → 741 concepts / 665 relations,
 m2_t: '2 · Align', m2_d: '219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.',
 m3_t: '3 · Measure', m3_d: 'LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.',
 m4_t: '4 · Null-test', m4_d: '500 label permutations; p<0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.',
-m5_t: '5 · Replicate', m5_d: 'Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.',
+m5_t: '5 · Replicate', m5_d: 'Identical P1 protocol on 59 measurements (54 models): 42 DashScope, 8 bare-hosts, 2 Kilo, Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.',
 method_prov: 'Provenance: HF model SHAs are today’s HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).',
 kick_limits: 'Limits', limits_title: 'Limitations', limits_sub: 'Every limit, before the conclusions. No silent upgrades.',
 l1_t: 'Chunking boundaries', l1_d: 'Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.',
@@ -493,7 +480,7 @@ kick_curr: 'Curriculum', curr_title: 'Curriculum analysis', curr_sub: 'Coverage:
 curr_a_t: 'A · Granularity ✕', curr_a_d: 'Finer-grained standards list more concepts — rejected as sole cause.',
 curr_b_t: 'B · Governance ✓', curr_b_d: 'Centralized systems cover more — hypothesis, paper §8.6.',
 curr_c_t: 'C · Division !', curr_c_d: 'Tracked vs comprehensive splits — open question.',
-kick_cs: 'Explore', cs_title: 'Interactive CognitiveSpace', cs_sub: 'Mathematics subgraph: 556 nodes · 233 rendered links (of 517) · 219 groups.', cs_open: 'Open the 3D graph →', kick_labs: 'Hands on', labs_title: 'Mini Labs', labs_sub: 'Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.', lab1_t: 'Reproduce lab', lab1_d: 'Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.', lab2_t: 'Counterexample hunter', lab2_d: "Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.", lab3_t: 'Limit switchboard', lab3_d: "Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.", lab_open: 'Open →',
+kick_cs: 'Explore', cs_title: 'Interactive CognitiveSpace', cs_sub: 'Mathematics subgraph: 556 nodes · 233 rendered links (of 517) · 219 groups.', cs_open: 'Open the 3D graph →',
 kick_paper: 'Paper', paper_title: 'Paper', paper_sub: 'Nine core chapters (~161KB) + PDF (243KB). Appendix W is exploratory and outside the review evidence.', paper_pdf: 'Download PDF',
 kick_open: 'Open Science', open_title: 'Open Science', open_sub: 'Code, data, figures — and contact.',
 open_code_t: 'Code', open_code_d: '84 pytest suite; reproduction guide in submission docs; weight vectors via GitHub Release.',
@@ -503,7 +490,7 @@ footer_note: 'Full detail table in the v1 archive.'
 },
 de: {
 page_title: 'LinguaGraph — Mehrsprachige Wissensstrukturanalyse',
-nav_home: 'Top', nav_validation: 'Belege', nav_findings: 'Befunde', nav_method: 'Methode', nav_limits: 'Grenzen', nav_sources: 'Quellen', nav_curriculum: 'Curriculum', nav_cogspace: '3D-Graph', nav_labs: 'Mini-Labore', nav_paper: 'Paper', nav_open: 'Open Science',
+nav_home: 'Top', nav_validation: 'Belege', nav_findings: 'Befunde', nav_method: 'Methode', nav_limits: 'Grenzen', nav_sources: 'Quellen', nav_curriculum: 'Curriculum', nav_cogspace: '3D-Graph', nav_paper: 'Paper', nav_open: 'Open Science',
 hero_kicker: 'BWKI 2026 · Mehrsprachiges KI-Audit',
 hero_title: 'Wie organisieren verschiedene Sprachen <em>dasselbe Wissen?</em>',
 hero_sub: 'Lehrbuch-Wissensgraphen (Chinesisch, Deutsch, Englisch) gegen Open-Weight-Vektorbaselines — jede Grenze steht neben jeder Zahl.',
@@ -514,13 +501,13 @@ cta_evidence: 'Zu den Belegen →', cta_findings: 'Befunde A–E', cta_3d: '3D-W
 kick_evidence: 'Belege', validation_title: 'Validierung', validation_sub: 'Erst Vertrauen: was geprüft wurde, auf wie vielen Daten, mit welchen Grenzen.',
 val_gold_t: 'Gold-Labels: 92', val_gold_d: '20 hand-annotierte Mathe (Mature C9a) + 72 maschinen-geseedete Sozial (Developing C9b, Agent-Panel-reviewed, Human-Review pending).',
 tag_developing: 'Developing', val_bench_t: 'Extraktions-Benchmark: 19 Modelle', val_bench_d: 'F1-Spanne 0,55–0,67, nur zur Extraktorauswahl — nie für Sprachbehauptungen.',
-val_roster_t: 'Replikations-Roster: 59 + 26', val_roster_d: '59 vollständige Läufe (54 Modelle, alle ZH-DE signifikant) + 26 sammelnd inkl. qwen-max n=26/30 (geparkt, 2 spärlich-Grenze, 1 Quarantäne). Datei-Wahrheit 62/57/186.',
+val_roster_t: 'Replikations-Roster: 59 + 26', val_roster_d: '59 vollständige Läufe (54 Modelle, alle ZH-DE signifikant) + 26 sammelnd (qwen-max n=26/30 geparkt, 2 spärlich-Grenze, 1 Quarantäne). Datei-Wahrheit 62/57/186.',
 val_margin_t: 'Marge: 59/59, p<0,01', val_margin_d: '500 Permutationen; 9 von 177 EN-haltigen Tests n.s. West 11/11 (0,155; ohne luna 10/10, 0,148), CN 48/48 (0,130) — als Anbietervergleich unterpowert. Perm file-truth 62/62.',
 kick_findings: 'Befunde', findings_title: 'Befunde A–E', findings_sub: 'Fünf Aussagen, jede mit ihrer Grenze. Preliminary bis anders vermerkt.',
 fa_t: 'A · Dichte kulminiert früh', fa_lead: 'Curriculum-Graphen verdichten sich in der Mittelstufe, dann aus (CDS 0,271 → 0,073; 3,7×).',
 fa_frozen: 'Eingefrorener Schnappschuss: Juni-2026-dichte Pipeline (574-Knoten-Generation, dichter Codepfad verloren). Eingefroren, nie neuberechnet — s. Forensik-Notizen.',
-fb_t: 'B · Flache Hierarchien', fb_lead: 'Konzepttiefe ≤ 8 (Mathe ≤ 8); 83 % der Konzepte sind Hierarchiewurzeln.', fb_frozen: 'Eingefrorener Schnappschuss, gleiche Provenienz wie A.',
-fc_t: 'C · Sprache trennt Struktur', fc_lead: 'Lehrbuch-LDS-K: zh-de 0,519 weit unter EN-haltig ≈0,93 (0,933 / 0,938). Die rohe zh-de-Nähe wurde als Label-Artefakt falsifiziert (T1-Dekontamination 0,556 → 0,020).',
+fb_t: 'B · Flache Hierarchien', fb_lead: 'Konzepttiefe ≤ 8 (Mathe ≤ 6); 83 % der Konzepte sind Hierarchiewurzeln.', fb_frozen: 'Eingefrorener Schnappschuss, gleiche Provenienz wie A.',
+fc_t: 'C · Sprache trennt Struktur', fc_lead: 'Lehrbuch-LDS-K: zh-de 0,519 weit unter EN-haltig ≈0,93 (0,934 / 0,938). Die rohe zh-de-Nähe wurde als Label-Artefakt falsifiziert (T1-Dekontamination 0,556 → 0,020).',
 fc_tier_sum: 'Two-Tier-Kontrolle: was Vektoren (nicht) zeigen',
 fc_tier_d: 'Open-Weight-Embeddings (nomic-embed-text-v1.5, 768 dims, 934 Terme) komprimieren alle drei Paare auf 0,48–0,52 (Spread 0,0445) und reproduzieren den Lehrbuch-Split nicht (Spread 0,419). Nur Rangfolge — nie Rohwerte. Vektoren sind Kontroll-Baseline, nie Evidenz.',
 fd_t: 'D · Systeme decken anders ab', fd_lead: 'Lehrbuch-Curriculum-Abdeckung variiert stark — Granularität (sicherste Lesart) und Governance (Hypothese) passen beide.',
@@ -530,9 +517,9 @@ fe_probe_d: 'Eine unabhängige Humanities-Scheibe kann die „curriculum-spezifi
 kick_method: 'Methode', method_title: 'Methodik in fünf Schritten', method_sub: 'Extrahieren → Alignieren → Messen (LDS) → Null-Test (500 Permutationen) → Replizieren (59 Modelle).',
 m1_t: '1 · Extrahieren', m1_d: '68 Lehrbuch-Dateien → 741 Konzepte / 665 Relationen, temperature=0, Multi-Modell-Audit.',
 m2_t: '2 · Alignieren', m2_d: '219 dreisprachige Gruppen; hartes Matching (Kleinbuchstaben, ß→ss, Synonym-Map). Unverknüpft bleibt unverknüpft.',
-m3_t: '3 · Messen', m3_d: 'LDS = 1 − mean(GED-Ähnlichkeit, Knoten/Kanten-Jaccard). Frozen: 0,519 / 0,933 / 0,938.',
+m3_t: '3 · Messen', m3_d: 'LDS = 1 − mean(GED-Ähnlichkeit, Knoten/Kanten-Jaccard). Frozen: 0,519 / 0,934 / 0,938.',
 m4_t: '4 · Null-Test', m4_d: '500 Label-Permutationen; p<0,004 ist Auflösungsgrenze (1/500), kein Tuning. ZH-DE 59/59 bestehen, Marge-Boden 0,033.',
-m5_t: '5 · Replizieren', m5_d: 'Identisches P1-Protokoll auf 59 Messungen (54 Modelle): meist DashScope + Bare-Hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Verfügbarkeitsstichprobe, keine präregistrierte Matrix.',
+m5_t: '5 · Replizieren', m5_d: 'Identisches P1-Protokoll auf 59 Messungen (54 Modelle): 42 DashScope, 8 Bare-Hosts, 2 Kilo, Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Verfügbarkeitsstichprobe, keine präregistrierte Matrix.',
 method_prov: 'Provenienz: HF-Modell-SHAs sind heutige HEADs, keine Experiment-Pins; served revision UNVERIFIED; lokale phi-Datei ist Community-Quant-Build (Snapshot + Anh. W).',
 kick_limits: 'Grenzen', limits_title: 'Limitationen', limits_sub: 'Jede Grenze vor den Schlussfolgerungen. Keine stillen Hochstufungen.',
 l1_t: 'Chunking-Grenzen', l1_d: 'Abschnitts-Chunks; Querverweise zählen als dangling. Bias einseitig und konservativ.',
@@ -549,7 +536,7 @@ kick_curr: 'Curriculum', curr_title: 'Curriculum-Analyse', curr_sub: 'Abdeckung:
 curr_a_t: 'A · Granularität ✕', curr_a_d: 'Feinere Standards listen mehr Konzepte — als alleinige Ursache verworfen.',
 curr_b_t: 'B · Governance ✓', curr_b_d: 'Zentralisierte Systeme decken mehr ab — Hypothese, Paper §8.6.',
 curr_c_t: 'C · Gliederung !', curr_c_d: 'Gegliedert vs Gesamtschule — offene Frage.',
-kick_cs: 'Erkunden', cs_title: 'Interaktiver CognitiveSpace', cs_sub: 'Mathe-Subgraph: 556 Knoten · 233 gerenderte Links (von 517) · 219 Gruppen.', cs_open: '3D-Graph öffnen →', kick_labs: 'Anfassen', labs_title: 'Mini-Labore', labs_sub: 'Drei Fünf-Minuten-Experimente: Methode ausführen, Gegenbeispiel jagen, Limit abschalten.', lab1_t: 'Reproduktions-Labor', lab1_d: 'Fünf Schritte, fünf Regler: Wort alignieren, LDS-Schwelle ziehen, 50 Permutationen laufen lassen, 59er-Roster aufleuchten.', lab2_t: 'Gegenbeispiel-Jagd', lab2_d: 'Acht harte Fälle dreisprachig nebeneinander — mit Urteil, warum sie Claim C nicht kippen.', lab3_t: 'Limit-Schalttafel', lab3_d: 'Sechs Limits als Schalter: eines abschalten und zusehen, welche Befunde verblassen — plus die Fehldeutung.', lab_open: 'Öffnen →',
+kick_cs: 'Erkunden', cs_title: 'Interaktiver CognitiveSpace', cs_sub: 'Mathe-Subgraph: 556 Knoten · 233 gerenderte Links (von 517) · 219 Gruppen.', cs_open: '3D-Graph öffnen →',
 kick_paper: 'Paper', paper_title: 'Paper', paper_sub: 'Neun Kernkapitel (~161KB) + PDF (243KB). Anhang W ist explorativ und außerhalb der Begutachtungs-Evidenz.', paper_pdf: 'PDF laden',
 kick_open: 'Open Science', open_title: 'Open Science', open_sub: 'Code, Daten, Figuren — und Kontakt.',
 open_code_t: 'Code', open_code_d: '84 pytest-Suite; Reproduktions-Guide in Submission-Docs; Gewichtsvektoren via GitHub Release.',
@@ -559,7 +546,7 @@ footer_note: 'Detailtabelle im v1-Archiv.'
 },
 zh: {
 page_title: 'LinguaGraph — 跨语言知识结构分析',
-nav_home: '顶部', nav_validation: '证据', nav_findings: '发现', nav_method: '方法', nav_limits: '局限', nav_sources: '来源', nav_curriculum: '课程', nav_cogspace: '3D 图', nav_labs: '迷你实验室', nav_paper: '论文', nav_open: '开放科学',
+nav_home: '顶部', nav_validation: '证据', nav_findings: '发现', nav_method: '方法', nav_limits: '局限', nav_sources: '来源', nav_curriculum: '课程', nav_cogspace: '3D 图', nav_paper: '论文', nav_open: '开放科学',
 hero_kicker: 'BWKI 2026 · 多语言 AI 审计',
 hero_title: '不同语言如何组织<em>相同的知识？</em>',
 hero_sub: '教科书知识图谱（中、德、英）对照开放权重向量基线——每个数字旁边都印着它的局限。',
@@ -570,12 +557,12 @@ cta_evidence: '看证据 →', cta_findings: '发现 A–E', cta_3d: '3D 知识�
 kick_evidence: '证据', validation_title: '验证', validation_sub: '先建立信任：查了什么、多少数据、什么局限。',
 val_gold_t: '金标：92', val_gold_d: '20 手标数学（Mature C9a）＋ 72 机播社会（Developing C9b，agent 面板已审，人审待补）。',
 tag_developing: 'Developing', val_bench_t: '抽取基准：19 模型', val_bench_d: 'F1 范围 0.55–0.67，只用于选抽取模型——绝不用于语言结论。',
-val_roster_t: '复刻名录：59＋26', val_roster_d: '59 完整运行（54 模型，中德全部显著）＋ 26 收集中（含 qwen-max n=26/30：搁置、2 稀疏边界、1 隔离）。文件实情 62/57/186。',
-val_margin_t: '边际：59/59，p<0.01', val_margin_d: '500 置换；177 中 9 个含 EN 不显著。西方 11/11（0.155；去 luna 10/10，0.148），中国 48/48（0.130）——作厂商比较则效力不足。置换文件实情 62/62。',
+val_roster_t: '复刻名录：59＋26', val_roster_d: '59 完整运行（54 模型，中德全部显著）＋ 26 收集中（qwen-max n=26/30 搁置、2 稀疏边界、1 隔离）。文件实情 62/57/186。',
+val_margin_t: '边际：59/59，p<0.01', val_margin_d: '500 置换；177 中 9 个含 EN 不显著。西方 11/11（0.155；去 luna 10/10，0.148），中国 48/48（0.130）——作厂商比较则效力不足。置换文件实情 62/62。File-truth 62/62.',
 kick_findings: '发现', findings_title: '发现 A–E', findings_sub: '五个结论，各带局限。未声明前均为 Preliminary。',
 fa_t: 'A · 密度早峰', fa_lead: '课程图谱在初中加密、高中变疏（CDS 0.271→0.073，3.7×）。',
 fa_frozen: '冻结快照：2026-06 密集管线（574 节点代，密集代码已丢失）。保持冻结、永不重算——见取证注记。',
-fb_t: 'B · 层级很浅', fb_lead: '概念深度 ≤8（数学 ≤8）；83% 概念是层级根。', fb_frozen: '冻结快照，与 A 同源。',
+fb_t: 'B · 层级很浅', fb_lead: '概念深度 ≤8（数学 ≤6）；83% 概念是层级根。', fb_frozen: '冻结快照，与 A 同源。',
 fc_t: 'C · 语言分离结构', fc_lead: '教科书 LDS-K：中德 0.519 远低于含英 ≈0.93（0.933/0.938）。原始中德接近已被证伪为标签伪影（T1 去污 0.556→0.020）。',
 fc_tier_sum: 'Two-Tier 对照：向量（不）显示什么',
 fc_tier_d: '开放权重嵌入（nomic-embed-text-v1.5，768 维，934 词）把三对全压进 0.48–0.52（spread 0.0445），复现不了教科书分裂（spread 0.419）。只比序，不比值。向量是 control 基线，绝不是证据。',
@@ -588,7 +575,7 @@ m1_t: '1 · 抽取', m1_d: '68 教科书文件 → 741 概念 / 665 关系，tem
 m2_t: '2 · 对齐', m2_d: '219 三语组；硬匹配（小写、ß→ss、同义词表）。对不上就保持不对上。',
 m3_t: '3 · 测量', m3_d: 'LDS＝1−mean（GED 相似、节点/边 Jaccard）。冻结：0.519/0.933/0.938。',
 m4_t: '4 · 零检验', m4_d: '500 标签置换；p<0.004 是分辨率极限（1/500），不是调参。中德 59/59 通过，边际地板 0.033。',
-m5_t: '5 · 复刻', m5_d: '同一 P1 协议 59 测量（54 模型）：多为 DashScope＋裸 host/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go。可用性样本，非预注册矩阵。',
+m5_t: '5 · 复刻', m5_d: '同一 P1 协议 59 测量（54 模型）：42 DashScope、8 裸 host、2 Kilo、Cohere/NIM/Cloudflare/LM-Studio/opencode-go。可用性样本，非预注册矩阵。',
 method_prov: '出处：HF 模型 SHA 是今日 HEAD，不是实验 pin；served revision 未验证；本地 phi 是社区量化版（快照＋附录 W）。',
 kick_limits: '局限', limits_title: '局限', limits_sub: '结论之前，先看全部局限。不静默升级。',
 l1_t: '切分边界', l1_d: '按节切分；跨节指代计 dangling。偏倚单向且保守。',
@@ -605,7 +592,7 @@ kick_curr: '课程', curr_title: '课程分析', curr_sub: '覆盖率：北威 1
 curr_a_t: 'A · 粒度 ✕', curr_a_d: '细标准列更多概念——否决为唯一原因。',
 curr_b_t: 'B · 治理 ✓', curr_b_d: '集权体制覆盖更多——假设，论文 §8.6。',
 curr_c_t: 'C · 分流 !', curr_c_d: '分轨 vs 综合——开放问题。',
-kick_cs: '探索', cs_title: '交互式 CognitiveSpace', cs_sub: '数学子图：556 节点 · 233 渲染边（共 517）· 219 组。', cs_open: '打开 3D 图 →', kick_labs: '上手', labs_title: '迷你实验室', labs_sub: '三个五分钟实验：跑方法、打反例、关限制。', lab1_t: '复算实验室', lab1_d: '五步五个控件：对齐单词、拖阈值、跑 50 次置换、点亮 59 名录。', lab2_t: '反例猎人', lab2_d: '八个硬茬三语并排——附裁决：推不翻结论 C。', lab3_t: '限制开关板', lab3_d: '六条限制开关：关一条看哪些发现变暗——附误读警告。', lab_open: '打开 →', 
+kick_cs: '探索', cs_title: '交互式 CognitiveSpace', cs_sub: '数学子图：556 节点 · 233 渲染边（共 517）· 219 组。', cs_open: '打开 3D 图 →',
 kick_paper: '论文', paper_title: '论文', paper_sub: '九个核心章（~161KB）＋ PDF（243KB）。附录 W 是探索性的，不在评审证据内。', paper_pdf: '下载 PDF',
 kick_open: '开放科学', open_title: '开放科学', open_sub: '代码、数据、图表——和联系方式。',
 open_code_t: '代码', open_code_d: '84 pytest 套件；提交文档有复现指南；权重向量走 GitHub Release。',

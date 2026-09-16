@@ -8,7 +8,6 @@
   <a href="#sources" data-i18n="nav_sources">Sources</a>
   <a href="#curriculum" data-i18n="nav_curriculum">Curriculum</a>
   <a href="#cognitivespace" data-i18n="nav_cogspace">3D Graph</a>
-  <a href="#labs" data-i18n="nav_labs">Mini Labs</a>
   <a href="#paper" data-i18n="nav_paper">Paper</a>
   <a href="#open-science" data-i18n="nav_open">Open Science</a>
   <div class="lang-switcher">
@@ -47,7 +46,7 @@
   <div class="card-grid">
     <div class="card"><h3 data-i18n="val_gold_t">Gold labels: 92</h3><p data-i18n="val_gold_d">20 hand-annotated math (Mature C9a) + 72 machine-seeded social (Developing C9b, agent-panel-reviewed, human-review pending).</p><div class="meta"><span class="tag tag-yellow" data-i18n="tag_developing">Developing</span></div></div>
     <div class="card"><h3 data-i18n="val_bench_t">Extraction benchmark: 19 models</h3><p data-i18n="val_bench_d">F1 range 0.55–0.67, used only for extractor selection — never for language claims.</p></div>
-    <div class="card"><h3 data-i18n="val_roster_t">Replication roster: 59 + 26</h3><p data-i18n="val_roster_d">59 full runs (54 models, all ZH-DE significant) + 26 collecting incl. qwen-max n=26/30 (parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.</p><div class="meta"><span class="tag tag-cyan">59/54/177</span> <span class="tag">62/57/186 file-truth</span></div></div>
+    <div class="card"><h3 data-i18n="val_roster_t">Replication roster: 59 + 26</h3><p data-i18n="val_roster_d">59 full runs (54 models, all ZH-DE significant) + 26 collecting (qwen-max n=26/30 parked, 2 sparse-boundary, 1 quarantined). File-truth 62/57/186.</p><div class="meta"><span class="tag tag-cyan">59/54/177</span> <span class="tag">62/57/186 file-truth</span></div></div>
     <div class="card"><h3 data-i18n="val_margin_t">Margin: 59/59, p&lt;0.01</h3><p data-i18n="val_margin_d">500 permutations; 9 of 177 EN-involving tests n.s. West 11/11 (0.155; without luna 10/10, 0.148), CN 48/48 (0.130) — underpowered as vendor comparison.</p></div>
   </div>
 </section>
@@ -64,7 +63,7 @@
   </div>
   <div class="finding-card" style="border-left:4px solid var(--green)">
     <h3 data-i18n="fb_t">B · Shallow hierarchies</h3>
-    <div class="lead" data-i18n="fb_lead">Concept depth ≤ 8 (math ≤ 8); 83% of concepts are hierarchy roots.</div>
+    <div class="lead" data-i18n="fb_lead">Concept depth ≤ 8 (math ≤ 6); 83% of concepts are hierarchy roots.</div>
     <p class="honesty" data-i18n="fb_frozen">Frozen snapshot, same provenance as A.</p>
   </div>
   <div class="finding-card" style="border-left:4px solid #0e7490">
@@ -98,7 +97,7 @@
     <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p></div>
     <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p></div>
     <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p></div>
-    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
+    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): 42 DashScope, 8 bare-hosts, 2 Kilo, Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
   </div>
   <p class="honesty" data-i18n="method_prov">Provenance: HF model SHAs are today's HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).</p>
 </section>
@@ -148,18 +147,6 @@
   <h2 class="section-title" data-i18n="cs_title">Interactive CognitiveSpace</h2>
   <p class="section-sub" style="margin-left:auto;margin-right:auto" data-i18n="cs_sub">Mathematics subgraph: 556 nodes · 233 rendered links (of 517) · 219 groups.</p>
   <div class="ctas" style="justify-content:center"><a href="../web/index.html" class="btn btn-solid" data-i18n="cs_open">Open the 3D graph →</a></div>
-</section>
-
-<!-- ==================== MINI LABS ==================== -->
-<section id="labs" class="fade-in">
-  <div class="kicker" data-i18n="kick_labs">Hands on</div>
-  <h2 class="section-title" data-i18n="labs_title">Mini Labs</h2>
-  <p class="section-sub" data-i18n="labs_sub">Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.</p>
-  <div class="card-grid">
-    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="labs/reproduce.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="labs/counterex.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="labs/limits.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-  </div>
 </section>
 
 <!-- ==================== PAPER ==================== -->
