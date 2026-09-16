@@ -6,40 +6,40 @@
 <title>CognitiveSpace — 3D Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tokens.css">
 <style>
 :root {
-  --surface: var(--parchment); --surface-2: var(--canvas); --text: var(--ink); --text-2: var(--gray-1);
-  --rule: var(--hairline); --accent: var(--blue); --accent-soft: rgba(0,102,204,.08);
-  --card-shadow: none;
+  --surface: #f1f3f5; --surface-2: #f8fafc; --text: #0a1f3d; --text-2: #4a5a78;
+  --rule: #c6cdd6; --accent: #1e3a8a; --accent-soft: rgba(30,58,138,.10);
+  --green: #1e7e4d;
+  --card-shadow: 0 1px 0 var(--rule), 0 18px 48px rgba(10,31,61,.08);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-sans); background: var(--surface); color: var(--text); -webkit-font-smoothing: antialiased; }
+body { font-family: "IBM Plex Sans", "Noto Sans SC", sans-serif; background: var(--surface); color: var(--text); -webkit-font-smoothing: antialiased; }
 .wrap { max-width: 920px; margin: 0 auto; padding: 56px 28px 64px; }
-.kicker { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-h1 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 8px; }
+.kicker { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 8px; }
 h1 em { font-style: italic; }
 .sub { color: var(--text-2); margin-bottom: 28px; max-width: 680px; }
 .rule { height: 1px; background: var(--accent); margin: 0 0 24px; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
 @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
-.card { background: var(--surface-2); border: 1px solid var(--rule); border-radius: var(--radius-card); padding: 24px 26px; box-shadow: var(--card-shadow); margin-bottom: 18px; }
+.card { background: var(--surface-2); border: 1px solid var(--rule); border-radius: 8px; padding: 24px 26px; box-shadow: var(--card-shadow); margin-bottom: 18px; }
 .grid .card { margin-bottom: 0; display: flex; flex-direction: column; }
-.card h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; margin-bottom: 6px; }
+.card h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: 1.3rem; margin-bottom: 6px; }
 .card p, .card li { font-size: .9rem; color: var(--text-2); line-height: 1.7; }
 .card ul { margin: 8px 0 0 18px; }
 .card li { margin: 5px 0; }
 .card li b { color: var(--text); font-weight: 600; }
-.stats { font-family: var(--font-mono); font-size: .7rem; color: var(--accent); margin-bottom: 10px; }
+.stats { font-family: "IBM Plex Mono", monospace; font-size: .7rem; color: var(--accent); margin-bottom: 10px; }
 .card .launch { margin-top: auto; padding-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .soon { opacity: .75; border-style: dashed; }
 table.how { width: 100%; font-size: .82rem; border-collapse: collapse; margin-top: 12px; }
 table.how th, table.how td { padding: 8px 10px; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; }
-table.how th { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
-table.how td:first-child { font-family: var(--font-mono); font-size: .74rem; white-space: nowrap; color: var(--accent); font-weight: 500; }
-.scope { font-family: var(--font-mono); font-size: .68rem; color: var(--text-2); margin: 14px 0 22px; line-height: 1.7; }
+table.how th { font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
+table.how td:first-child { font-family: "IBM Plex Mono", monospace; font-size: .74rem; white-space: nowrap; color: var(--accent); font-weight: 500; }
+.scope { font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--text-2); margin: 14px 0 22px; line-height: 1.7; }
 .launch { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-.btn { display: inline-block; padding: 13px 34px; border-radius: var(--radius-pill); font-weight: 600; font-size: .92rem; text-decoration: none; border: 1px solid transparent; transition: transform 120ms ease, background 120ms ease; }
+.btn { display: inline-block; padding: 13px 34px; border-radius: 6px; font-weight: 600; font-size: .92rem; text-decoration: none; border: 1px solid transparent; transition: transform 120ms ease, background 120ms ease; }
 .btn:active { transform: translateY(1px) scale(.99); }
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .btn-solid { background: var(--accent); color: #fff; }
@@ -48,9 +48,9 @@ table.how td:first-child { font-family: var(--font-mono); font-size: .74rem; whi
 .btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
 .btn-sm { padding: 9px 22px; font-size: .84rem; }
 .lang { position: fixed; top: 14px; right: 14px; display: flex; gap: 4px; }
-.lang button { border: 1px solid var(--rule); background: var(--surface-2); color: var(--text-2); padding: 5px 12px; border-radius: var(--radius-pill); cursor: pointer; font-size: .72rem; font-weight: 600; }
+.lang button { border: 1px solid var(--rule); background: var(--surface-2); color: var(--text-2); padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: .72rem; font-weight: 600; }
 .lang button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.tag { font-family: var(--font-mono); font-size: .64rem; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--rule); padding: 2px 9px; border-radius: var(--radius-pill); }
+.tag { font-family: "IBM Plex Mono", monospace; font-size: .64rem; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--rule); padding: 2px 9px; border-radius: 20px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
@@ -98,8 +98,8 @@ table.how td:first-child { font-family: var(--font-mono); font-size: .74rem; whi
       <div class="stats" data-k="cds_s">5 steps · run it yourself</div>
       <p data-k="cds_d">Each methodology step hands-on: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p>
       <div class="launch">
-        <a class="btn btn-solid btn-sm" href="index.html#methodology" data-k="launch">Open →</a>
-        <a class="btn btn-ghost btn-sm" href="index.html#methodology" target="_blank" data-k="full">Full screen ⬈</a>
+        <a class="btn btn-solid btn-sm" href="labs/reproduce.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="labs/reproduce.html" target="_blank" data-k="full">Full screen ⬈</a>
       </div>
     </div>
     <div class="card">
@@ -107,8 +107,8 @@ table.how td:first-child { font-family: var(--font-mono); font-size: .74rem; whi
       <div class="stats" data-k="gal_s">8 tough cases · verdict included</div>
       <p data-k="gal_d">The concepts that look most like counterexamples, side by side in three languages — with the ruling why they don't overturn claim C.</p>
       <div class="launch">
-        <a class="btn btn-solid btn-sm" href="index.html#findings" data-k="launch">Open →</a>
-        <a class="btn btn-ghost btn-sm" href="index.html#findings" target="_blank" data-k="full">Full screen ⬈</a>
+        <a class="btn btn-solid btn-sm" href="labs/counterex.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="labs/counterex.html" target="_blank" data-k="full">Full screen ⬈</a>
       </div>
     </div>
   </div>
@@ -119,8 +119,8 @@ table.how td:first-child { font-family: var(--font-mono); font-size: .74rem; whi
       <div class="stats" data-k="tow_s">6 limits · switch them off</div>
       <p data-k="tow_d">Turn off any limitation and watch which findings go dim — plus the misreading you'd fall for without it.</p>
       <div class="launch">
-        <a class="btn btn-solid btn-sm" href="index.html#limitations" data-k="launch">Open →</a>
-        <a class="btn btn-ghost btn-sm" href="index.html#limitations" target="_blank" data-k="full">Full screen ⬈</a>
+        <a class="btn btn-solid btn-sm" href="labs/limits.html" data-k="launch">Open →</a>
+        <a class="btn btn-ghost btn-sm" href="labs/limits.html" target="_blank" data-k="full">Full screen ⬈</a>
       </div>
     </div>
     <div class="card">

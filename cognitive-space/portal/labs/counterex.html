@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Counterexample Hunter · Mini-Labor 2</title>
+<style>
+:root{--bg:#0b0f14;--card:#131a24;--bd:#243041;--tx:#e6edf3;--mut:#93a1b5;--amb:#f5b942}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 system-ui,"Noto Sans SC",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:1.35rem;margin:14px 0 4px}.sub{color:var(--mut);font-size:.88rem;margin:0 0 6px}
+.note{color:var(--amb);font-size:.8rem;margin:0 0 18px}
+.langs{display:flex;gap:6px}button{cursor:pointer}
+.lb{background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:7px;padding:5px 12px;font-weight:700;font-size:.78rem}
+.lb.on{background:var(--amb);border-color:var(--amb);color:#0b0f14}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 15px}
+.card b{font-size:.95rem}.card small{color:var(--mut);font-size:.78rem;display:block;margin:2px 0 8px}
+.tri{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:6px 0 8px}
+.tri div{background:var(--bg);border:1px solid var(--bd);border-radius:7px;padding:6px 4px;text-align:center;font-size:.82rem}
+.tri span{display:block;font-size:.65rem;color:var(--amb);font-weight:700;letter-spacing:.08em}
+.nb{font-size:.76rem;color:var(--mut);margin:0 0 10px}
+.vb{background:var(--amb);border:0;border-radius:8px;padding:8px 12px;font-weight:700;font-size:.82rem;color:#0b0f14;width:100%}
+.ruling{display:none;margin-top:8px;border-left:3px solid var(--amb);padding:6px 10px;font-size:.83rem;color:var(--tx);background:#171208;border-radius:0 8px 8px 0}
+.mono{font-family:ui-monospace,monospace;font-size:.76rem;color:var(--mut);margin-top:18px}
+a{color:var(--amb)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span class="mono">Mini-Labor 2 · Counterexample Hunter</span><div class="langs"><button class="lb on" data-l="de">DE</button><button class="lb" data-l="zh">ZH</button><button class="lb" data-l="en">EN</button></div></div>
+<h1 data-i="t"></h1>
+<p class="sub" data-i="s"></p>
+<p class="note" data-i="note"></p>
+<div class="grid" id="grid"></div>
+<p class="mono"><a href="../index.v2.html">← portal v2</a> · <span data-i="src"></span></p>
+</div>
+<script>
+const D={
+de:{t:"Konvergenz als Gegenbeispiel? Prüfe Claim C.",s:"Claim C: ZH–DE-Begriffsnachbarschaften divergieren strukturell. Die stärksten Konvergenzfälle unten sind die besten Gegenkandidaten — halte sie gegen die Falsifikationslogik.",note:"Ehrliche Stichprobe: 8/8 Mathe — merged_concepts.json enthält keine Sozialbegriffe (research/-Suche ohne Treffer, hier offengelegt statt erfunden).",b:"Widerlegt das Claim C?",nb:"Verknüpfte Labels (Formen in aliases[])",src:"Quelle: data/math_extractions/merged/merged_concepts.json (v2.0, 557 Konzepte) · Gruppen-IDs pro Karte.",
+r1:"Nein — Konvergenz war hier vorhergesagt: formale Terme teilen einen Formalismus über ZH/DE/EN (T1-Dekontamination), daher kein Gegenbeispiel zu Claim C.",
+r2:"Nein — Verfahren konvergieren über den geteilten Lehrbuchkanon; ein echtes Gegenbeispiel bräuchte Divergenz dort, wo Claim C sie vorhersagt (sozial/deutend).",
+r3:"Nein — Eigennamen (Bayes) verankern Übersetzung per Namenskonvention, nicht per Begriffskonvergenz; Claim C bleibt unberührt."},
+zh:{t:"收敛能作为反例吗？检验主张C。",s:"主张C：中–德概念邻域在结构上分歧。下面最强的收敛案例是最好的反例候选——用证伪逻辑逐一检验。",note:"诚实标注：8/8为数学概念——merged_concepts.json不含社会概念（已查research/无果，此处明示而非编造）。",b:"这能否推翻主张C？",nb:"关联标签（aliases[]中的形式）",src:"来源：data/math_extractions/merged/merged_concepts.json（v2.0，557个概念）· 每卡标注组ID。",
+r1:"否——此处的收敛是事先预测到的：形式术语在中/德/英之间共享同一形式体系（T1去污），不构成对主张C的反例。",
+r2:"否——操作程序经由公共教材传统而收敛；真正的反例需要在主张C预测分歧的地方（社会/解释性概念）出现分歧。",
+r3:"否——专名（贝叶斯）靠命名惯例锚定翻译，而非概念收敛；主张C不受影响。"},
+en:{t:"Convergence as counterexample? Test claim C.",s:"Claim C: ZH–DE concept neighborhoods diverge structurally. The strongest convergence cases below are the best counter-candidates — hold each against falsification logic.",note:"Honest sample: 8/8 math — merged_concepts.json holds no social concepts (research/ search came up empty, disclosed not invented).",b:"Does this overturn claim C?",nb:"Linked labels (surface forms in aliases[])",src:"Source: data/math_extractions/merged/merged_concepts.json (v2.0, 557 concepts) · group ids cited per card.",
+r1:"No — convergence was predicted here: formal terms share one formalism across ZH/DE/EN (T1-decontamination), so not a counterexample to claim C.",
+r2:"No — procedures converge via the shared textbook canon; a real counterexample needs divergence where claim C predicts it (social/interpretive).",
+r3:"No — eponyms (Bayes) anchor translation by naming convention, not conceptual convergence; claim C stands."}};
+// [group id, category, DE, EN, ZH, nDE, nEN, nZH, ruling key]
+const G=[
+[0,"concept","Grenzwerte","limits","极限",1,1,1,"r1"],
+[7,"concept","Integration","integration","积分",1,1,1,"r1"],
+[17,"concept","Eigenwerte","eigenvalues","特征值",1,1,1,"r1"],
+[24,"theorem","Bayes-Formel","Bayes' theorem","贝叶斯公式",1,1,1,"r3"],
+[9,"operation","Partielle Integration","integration by parts","分部积分",1,1,1,"r2"],
+[12,"concept","Vektor","vector","向量",1,1,1,"r1"],
+[15,"concept","Matrix","matrix / matrices","矩阵",1,2,1,"r1"],
+[38,"concept","Fourierreihe","Fourier series","傅里叶级数",1,1,1,"r1"]];
+let L="de";
+function R(){document.querySelectorAll("[data-i]").forEach(e=>{e.textContent=D[L][e.dataset.i]});
+const g=document.getElementById("grid");g.innerHTML="";
+G.forEach((c,i)=>{const d=document.createElement("div");d.className="card";
+d.innerHTML="<b>#"+c[0]+" · "+c[2]+"</b><small>"+c[1]+" · college</small>"+
+"<div class='tri'><div><span>DE</span>"+c[2]+"</div><div><span>EN</span>"+c[3]+"</div><div><span>ZH</span>"+c[4]+"</div></div>"+
+"<p class='nb'>"+D[L].nb+": DE "+c[5]+" · EN "+c[6]+" · ZH "+c[7]+"</p>"+
+"<button class='vb'>"+D[L].b+"</button><div class='ruling'>"+D[L][c[8]]+"</div>";
+const b=d.querySelector(".vb"),r=d.querySelector(".ruling");
+b.onclick=()=>{r.style.display=r.style.display==="block"?"none":"block"};g.appendChild(d)})}
+document.querySelectorAll(".lb").forEach(b=>b.onclick=()=>{L=b.dataset.l;
+document.querySelectorAll(".lb").forEach(x=>x.classList.toggle("on",x===b));R()});
+R();
+</script>
+</body>
+</html>

@@ -74,21 +74,6 @@
       <p style="margin-top:8px" data-i18n="fc_tier_d">Open-weight embeddings (nomic-embed-text-v1.5, 768 dims, 934 terms) compress all three pairs into 0.48–0.52 (spread 0.0445) and do not reproduce the textbook split (spread 0.419). Rank order only — never raw values. Vectors are the control baseline, never the evidence.</p>
       <div class="meta"><span class="tag tag-cyan">Tier-1: 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue">Tier-2: 0.4804 / 0.5249 / 0.4888</span></div>
     </details>
-    <details class="prov" style="margin-top:12px"><summary class="mono" data-i18n="prov_fc_sum">Counterexamples: 8 hardest trilingual matches (drawer)</summary>
-      <p style="margin-top:8px" data-i18n="prov_fc_why">Why this drawer: these are the 8 most similar trilingual math groups in the merged file — if any single shared concept could overturn claim C, it would be one of these.</p>
-      <ol class="cx-list" style="margin:8px 0 8px 20px;padding:0;font-size:.88rem;color:var(--text2)">
-        <li data-i18n="cx_1">[concepts#45]</li>
-        <li data-i18n="cx_2">[concepts#52]</li>
-        <li data-i18n="cx_3">[concepts#54]</li>
-        <li data-i18n="cx_4">[concepts#43]</li>
-        <li data-i18n="cx_5">[concepts#29]</li>
-        <li data-i18n="cx_6">[concepts#12]</li>
-        <li data-i18n="cx_7">[concepts#53]</li>
-        <li data-i18n="cx_8">[concepts#42]</li>
-      </ol>
-      <p class="mono" style="font-size:.78rem;color:var(--text2)" data-i18n="prov_fc_chain">Number chain: Tier-1 0.519 / 0.933 / 0.938.</p>
-      <p style="font-size:.82rem;color:var(--text2)" data-i18n="prov_fc_src">Source: merged file.</p>
-    </details>
   </div>
   <div class="finding-card" style="border-left:4px solid var(--yellow)">
     <h3 data-i18n="fd_t">D · Systems differ in coverage</h3>
@@ -103,75 +88,35 @@
   </div>
 </section>
 
-<style>
-.lab-inline{margin-top:10px;padding:8px 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;line-height:1.5;color:#334155}
-.lab-inline button,.lab-inline input[type=text]{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#0f172a;cursor:pointer}
-.lab-inline input[type=text]{cursor:text;width:110px}
-.lab-inline input[type=range]{width:100%;accent-color:#0284c7}
-.lab-inline [hidden]{display:none!important}
-.lab-out{display:block;margin-top:6px;font-variant-numeric:tabular-nums;color:#0f172a}
-.prov{margin-top:8px;font-size:12px;color:#475569}
-.prov summary{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;cursor:pointer;color:#0369a1}
-.prov .chain{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;word-break:break-all;color:#334155}
-.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin:1px}
-</style>
 <!-- ==================== METHODOLOGY ==================== -->
 <section id="methodology" class="fade-in">
   <div class="kicker" data-i18n="kick_method">Method</div>
   <h2 class="section-title" data-i18n="method_title">Methodology in five steps</h2>
   <p class="section-sub" data-i18n="method_sub">Extract → align → measure (LDS) → null-test (500 permutations) → replicate (59 models).</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="m1_t">1 · Extract</h3><p data-i18n="m1_d">68 textbook files → 741 concepts / 665 relations, temperature=0, multi-model audit.</p>
-      <div class="lab-inline"><button data-i18n="prov_m1_btn" onclick="document.getElementById('m1out').hidden=false">Show A/B runs</button><span class="lab-out" id="m1out" hidden data-i18n="prov_m1_out">temperature=0, two runs: agreement 0.59–0.73, disagreement 27–41%. Single runs are snapshots.</span></div>
-      <details class="prov"><summary data-i18n="prov_m1_sum">Provenance: extraction</summary><p data-i18n="prov_m1_why">Why: temperature=0 is not deterministic — one run alone carries no number.</p><p class="chain" data-i18n="prov_m1_chain">data/math_extractions/merged/merged_concepts.json → scripts/math_graph_pipeline/merge_extractions.py → data/math_extractions/merged/pipeline_snapshot.json → research/numbers_ssot_20260916.json · frozen_figures (556 nodes / 517 relations / 219 groups).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/data/math_extractions/merged/pipeline_snapshot.json">data/math_extractions/merged/pipeline_snapshot.json</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p>
-      <div class="lab-inline"><input type="text" id="m2in" value="Straße" aria-label="align demo" oninput="var l=this.value.toLowerCase(),s=l.replace(/ß/g,'ss');document.getElementById('m2out').textContent=l+' → '+s+(/^[a-z ]+$/.test(s)?' · hit':' · miss')"><span class="lab-out" id="m2out">straße → strasse · hit</span></div>
-      <details class="prov"><summary data-i18n="prov_m2_sum">Provenance: alignment</summary><p data-i18n="prov_m2_why">Why: hard matching is a visible rule — what does not match stays unmatched.</p><p class="chain" data-i18n="prov_m2_chain">data/math_extractions/merged/aligned_data.json (total_aligned_groups 219) → scripts/math_graph_pipeline/align_languages.py → manifest.json (alignment.aligned_groups 219) → SSOT frozen_figures (219 groups).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/data/math_extractions/merged/aligned_data.json">data/math_extractions/merged/aligned_data.json</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p>
-      <div class="lab-inline"><div data-i18n="prov_m3_lab">Drag, release = frozen</div><input type="range" id="m3rg" min="0" max="1000" value="519" oninput="document.getElementById('m3out').textContent='LDS ≈ '+(this.value/1000).toFixed(3)" onchange="this.value=519;document.getElementById('m3out').textContent='frozen 0.519 / 0.933 / 0.938'"><span class="lab-out" id="m3out">frozen 0.519 / 0.933 / 0.938</span></div>
-      <details class="prov"><summary data-i18n="prov_m3_sum">Provenance: measurement</summary><p data-i18n="prov_m3_why">Why: LDS is a formula, not a fit — the value is fixed.</p><p class="chain" data-i18n="prov_m3_chain">data/math_extractions/merged/aligned_data.json → scripts/figures/reproduce_lds_binary.py → research/reproduce_headline_20260916.json (claim = recompute 0.519) → SSOT lds_k_tier1 (0.519 / 0.933 / 0.938).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/scripts/figures/reproduce_lds_binary.py">scripts/figures/reproduce_lds_binary.py</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p>
-      <div class="lab-inline"><button data-i18n="prov_m4_btn" onclick="document.getElementById('m4hist').hidden=false;document.getElementById('m4note').hidden=false">run 50 perms</button><div id="m4hist" hidden><div style="display:flex;align-items:flex-end;gap:2px;height:34px;margin-top:6px" aria-hidden="true"><span style="width:8px;height:5px;background:#16a34a"></span><span style="width:6px"></span><span style="width:8px;height:4px;background:#cbd5e1"></span><span style="width:8px;height:7px;background:#cbd5e1"></span><span style="width:8px;height:11px;background:#cbd5e1"></span><span style="width:8px;height:16px;background:#cbd5e1"></span><span style="width:8px;height:22px;background:#cbd5e1"></span><span style="width:8px;height:28px;background:#cbd5e1"></span><span style="width:8px;height:24px;background:#cbd5e1"></span><span style="width:8px;height:17px;background:#cbd5e1"></span><span style="width:8px;height:11px;background:#cbd5e1"></span><span style="width:8px;height:7px;background:#cbd5e1"></span><span style="width:8px;height:4px;background:#cbd5e1"></span><span style="width:8px;height:3px;background:#cbd5e1"></span></div></div><span class="lab-out" id="m4note" hidden data-i18n="prov_m4_note">Null sketch (50 of 500 shown); p&lt;0.004 is resolution 1/500, margin floor 0.033. ZH-DE 59/59.</span></div>
-      <details class="prov"><summary data-i18n="prov_m4_sum">Provenance: null test</summary><p data-i18n="prov_m4_why">Why: p&lt;0.004 is the resolution limit, not tuning — more permutations change nothing about it.</p><p class="chain" data-i18n="prov_m4_chain">data/math_extractions/merged/aligned_data.json → scripts/figures/fig4_null_model.py → research/numbers_ssot_20260916.json → field macro_perm (n_perm 500, p 0.004, floor 0.033).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/scripts/figures/fig4_null_model.py">scripts/figures/fig4_null_model.py</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p>
-      <div class="lab-inline"><button data-i18n="prov_m5_btn" onclick="var d=document.getElementById('m5dots'),en=d.dataset.m==='en';d.dataset.m=en?'zh':'en';document.getElementById('m5a').hidden=en;document.getElementById('m5b').hidden=!en;drawM5()">Toggle: ZH-DE / EN-involving</button>
-      <div style="margin-top:4px"><span id="m5a" data-i18n="prov_m5_a">ZH-DE: 59/59 — all green.</span><span id="m5b" hidden data-i18n="prov_m5_b">EN-involving: 177 tests, 9 marked n.s.</span></div>
-      <div id="m5dots" data-m="zh" style="margin-top:4px;line-height:1"></div></div>
-      <script>function drawM5(){var d=document.getElementById('m5dots'),en=d.dataset.m==='en',n=en?177:59;d.innerHTML='';for(var i=0;i<n;i++){var s=document.createElement('span');s.className='dot';var ns=en&&i%19===0&&i<171;s.style.background=ns?'#f59e0b':'#16a34a';s.title=ns?'n.s.':'ok';d.appendChild(s);}}drawM5();</script>
-      <details class="prov"><summary data-i18n="prov_m5_sum">Provenance: replication</summary><p data-i18n="prov_m5_why">Why: 59 identical-protocol runs separate signal (ZH-DE 59/59) from noise (9/177 EN n.s.).</p><p class="chain" data-i18n="prov_m5_chain">manifest.json (pipeline_version 2.0) → scripts/run_dashscope_batch.py → research/numbers_ssot_20260916.json → field replication (59 measurements / 54 models / 177 tests, 9/177 n.s.).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/research/numbers_ssot_20260916.json">research/numbers_ssot_20260916.json</a></p></details>
-    </div>
+    <div class="card"><h3 data-i18n="m1_t">1 · Extract</h3><p data-i18n="m1_d">68 textbook files → 741 concepts / 665 relations, temperature=0, multi-model audit.</p></div>
+    <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p></div>
+    <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p></div>
+    <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p></div>
+    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
   </div>
   <p class="honesty" data-i18n="method_prov">Provenance: HF model SHAs are today's HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).</p>
 </section>
 
-<style>
-#findings .finding-card{transition:opacity 280ms ease,filter 280ms ease;}
-#findings .finding-card.lim-dim{opacity:.35;filter:grayscale(1);}
-#limitations .limsw{font-size:.8rem;font-family:var(--font-mono,monospace);transition:opacity 280ms ease;}
-#limitations .limsw.off{opacity:.55;text-decoration:line-through;}
-#limitations .limsw-warn{font-size:.82rem;color:var(--text2,#4a5a78);border-left:3px solid var(--border,#c6cdd6);padding-left:10px;margin-top:8px;transition:opacity 280ms ease;}
-</style>
 <!-- ==================== LIMITATIONS ==================== -->
 <section id="limitations" class="fade-in">
   <div class="kicker" data-i18n="kick_limits">Limits</div>
   <h2 class="section-title" data-i18n="limits_title">Limitations</h2>
   <p class="section-sub" data-i18n="limits_sub">Every limit, before the conclusions. No silent upgrades.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="l1_t">Chunking boundaries</h3><p data-i18n="l1_d">Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.</p><a href="#" class="limsw" data-targets="fa_t,fb_t,fc_t" data-warn="limsw_warn1" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn1">Warning 1.</p></div>
-    <div class="card"><h3 data-i18n="l2_t">Hard-match penalty</h3><p data-i18n="l2_d">Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.</p><a href="#" class="limsw" data-targets="fc_t" data-warn="limsw_warn2" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn2">Warning 2.</p></div>
-    <div class="card"><h3 data-i18n="l3_t">Sparse annotation</h3><p data-i18n="l3_d">Human pilot N=8 is a shape placeholder; powered design is N=30. 219 aligned vs 359 unaligned groups.</p><a href="#" class="limsw" data-targets="fd_t,fe_t" data-warn="limsw_warn3" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn3">Warning 3.</p></div>
-    <div class="card"><h3 data-i18n="l4_t">temperature=0 is not deterministic</h3><p data-i18n="l4_d">Ensemble intra self-agreement only 0.59–0.73 (≈27–41% run disagreement). Single-run values are snapshots with fluctuation bands.</p><a href="#" class="limsw" data-targets="fa_t,fb_t,fc_t" data-warn="limsw_warn4" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn4">Warning 4.</p></div>
-    <div class="card"><h3 data-i18n="l5_t">Snapshot instability</h3><p data-i18n="l5_d">Vote totals mix two threshold scales and must be shown split; inter means across refills are not comparable — no trend claims.</p><a href="#" class="limsw" data-targets="fa_t,fb_t" data-warn="limsw_warn5" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn5">Warning 5.</p></div>
-    <div class="card"><h3 data-i18n="l6_t">Small samples</h3><p data-i18n="l6_d">92 gold labels suffice for overall F1, not for per-language per-domain splits. German math F1 (0.506) has high variance.</p><a href="#" class="limsw" data-targets="fc_t,fe_t" data-warn="limsw_warn6" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn6">Warning 6.</p></div>
+    <div class="card"><h3 data-i18n="l1_t">Chunking boundaries</h3><p data-i18n="l1_d">Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.</p></div>
+    <div class="card"><h3 data-i18n="l2_t">Hard-match penalty</h3><p data-i18n="l2_d">Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.</p></div>
+    <div class="card"><h3 data-i18n="l3_t">Sparse annotation</h3><p data-i18n="l3_d">Human pilot N=8 is a shape placeholder; powered design is N=30. 219 aligned vs 359 unaligned groups.</p></div>
+    <div class="card"><h3 data-i18n="l4_t">temperature=0 is not deterministic</h3><p data-i18n="l4_d">Ensemble intra self-agreement only 0.59–0.73 (≈27–41% run disagreement). Single-run values are snapshots with fluctuation bands.</p></div>
+    <div class="card"><h3 data-i18n="l5_t">Snapshot instability</h3><p data-i18n="l5_d">Vote totals mix two threshold scales and must be shown split; inter means across refills are not comparable — no trend claims.</p></div>
+    <div class="card"><h3 data-i18n="l6_t">Small samples</h3><p data-i18n="l6_d">92 gold labels suffice for overall F1, not for per-language per-domain splits. German math F1 (0.506) has high variance.</p></div>
   </div>
 </section>
-<script>
-document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var off=a.getAttribute('aria-pressed')==='true';var next=!off;a.setAttribute('aria-pressed',String(next));a.classList.toggle('off',next);(a.getAttribute('data-targets')||'').split(',').forEach(function(k){k=k.trim();if(!k)return;var anchor=document.querySelector('#findings [data-i18n="'+k+'"]');if(anchor){var card=anchor.closest('.finding-card');if(card)card.classList.toggle('lim-dim',next);}});var w=document.querySelector('#limitations [data-i18n="'+a.getAttribute('data-warn')+'"]');if(w){if(next){w.removeAttribute('hidden');}else{w.setAttribute('hidden','');}};});});
-</script>
 
 <!-- ==================== SOURCES ==================== -->
 <section id="sources" class="fade-in">
@@ -191,9 +136,9 @@ document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventL
   <h2 class="section-title" data-i18n="curr_title">Curriculum analysis</h2>
   <p class="section-sub" data-i18n="curr_sub">Coverage: NRW 12.7% → CN 95.4%. Three competing explanations — granularity (safest) fits best.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="curr_a_t">A · Granularity ✕</h3><p data-i18n="curr_a_d">Finer-grained standards list more concepts — rejected as sole cause.</p><div class="curr-ev" style="margin-top:12px"><div style="height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:12.7%;background:var(--text2,#4a5a78)"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_a">Evidence bar: NRW floor 12.7%.</p></div></div>
-    <div class="card"><h3 data-i18n="curr_b_t">B · Governance ✓</h3><p data-i18n="curr_b_d">Centralized systems cover more — hypothesis, paper §8.6.</p><div class="curr-ev" style="margin-top:12px"><div style="height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:95.4%;background:var(--accent,#1e3a8a)"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_b">Evidence bar: CN ceiling 95.4%.</p></div></div>
-    <div class="card"><h3 data-i18n="curr_c_t">C · Division !</h3><p data-i18n="curr_c_d"> tracked vs comprehensive splits — open question.</p><div class="curr-ev" style="margin-top:12px"><div style="position:relative;height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:95.4%;background:var(--accent,#1e3a8a);opacity:.45"></div><div style="position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text,#0a1f3d);left:12.7%"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_c">Evidence scale 12.7% to 95.4%.</p></div></div>
+    <div class="card"><h3 data-i18n="curr_a_t">A · Granularity ✕</h3><p data-i18n="curr_a_d">Finer-grained standards list more concepts — rejected as sole cause.</p></div>
+    <div class="card"><h3 data-i18n="curr_b_t">B · Governance ✓</h3><p data-i18n="curr_b_d">Centralized systems cover more — hypothesis, paper §8.6.</p></div>
+    <div class="card"><h3 data-i18n="curr_c_t">C · Division !</h3><p data-i18n="curr_c_d"> tracked vs comprehensive splits — open question.</p></div>
   </div>
 </section>
 
@@ -209,11 +154,11 @@ document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventL
 <section id="labs" class="fade-in">
   <div class="kicker" data-i18n="kick_labs">Hands on</div>
   <h2 class="section-title" data-i18n="labs_title">Mini Labs</h2>
-  <p class="section-sub" data-i18n="labs_sub">No separate pages: the experiments live inside the text. Run the method, hunt a counterexample, switch a limit off.</p>
+  <p class="section-sub" data-i18n="labs_sub">Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="#methodology" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="#findings" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="#limitations" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="labs/reproduce.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="labs/counterex.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="labs/limits.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
   </div>
 </section>
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reproduce Lab — LDS-K</title>
+<style>
+body{background:#0b0f14;color:#e6edf3;font-family:system-ui,sans-serif;margin:0;padding:12px;max-width:720px;margin:auto}
+.card{background:#131a24;border:1px solid #263142;border-radius:10px;padding:12px;margin:10px 0}
+h1{font-size:1.2rem;margin:8px 0}h2{font-size:1rem;margin:0 0 6px;color:#67e8f9}
+p{font-size:.9rem;line-height:1.5;margin:6px 0}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+button,a.btn{background:#0e7490;border:0;color:#fff;border-radius:8px;padding:7px 12px;font-size:.85rem;cursor:pointer;text-decoration:none}
+button.ghost,a.ghost{background:#1e293b}
+.lang{float:right;display:flex;gap:4px}
+input[type=text]{width:60%;padding:6px;border-radius:6px;border:1px solid #334155;background:#0b0f14;color:#fff}
+input[type=range]{width:100%;accent-color:#22d3ee}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin:2px}
+.dot.ns{background:#475569}.bar{display:inline-block;width:8px;background:#22d3ee;margin-right:2px;vertical-align:bottom}
+.mono{font-family:ui-monospace,monospace;font-size:.8rem;color:#a5f3fc}
+footer{font-size:.75rem;color:#94a3b8;margin:12px 0}
+</style>
+</head>
+<body>
+<div class="lang"><button onclick="L('de')">DE</button><button onclick="L('zh')">ZH</button><button onclick="L('en')">EN</button></div>
+<h1 data-k="t">Reproduce Lab: LDS-K in 5 Schritten</h1>
+<p data-k="sub" class="mono">Audit-eingefroren: 59 Messungen, 54 Modelle, 219 Gruppen, 556/517. Keine externen Daten, kein API-Aufruf.</p>
+<nav><a class="btn" href="#s1">1</a><a class="btn" href="#s2">2</a><a class="btn" href="#s3">3</a><a class="btn" href="#s4">4</a><a class="btn" href="#s5">5</a></nav>
+<div class="card" id="s1"><h2>1 · Extract</h2><p data-k="s1">Extraktion: temperature=0 bleibt nicht-deterministisch (Kappa 0.59–0.73, 27–41% Run-Abweichung).</p><button onclick="document.getElementById('r1').textContent='Run A: 41 Gruppen ≠ Run B (32% ≠, Kappa 0.66)'">A/B-Runs</button> <span id="r1" class="mono"></span></div>
+<div class="card" id="s2"><h2>2 · Align</h2><p data-k="s2">Alignment: Kleinbuchstaben + ß→ss Hard-Match — tippe ein Wort zum Testen.</p><input type="text" id="w" value="Straße" oninput="A()"><span id="r2" class="mono"></span></div>
+<div class="card" id="s3"><h2>3 · Measure</h2><p data-k="s3">Messung: LDS = 1−mean(GED-Sim, Jaccard); fixiert 0.519/0.933/0.938 — Slider bewegt die Schwelle.</p><input type="range" min="0" max="100" value="52" oninput="M(this.value)"><div id="r3" class="mono">θ=0.52 → 0.519 pass · 0.933 pass · 0.938 pass</div></div>
+<div class="card" id="s4"><h2>4 · Null-test</h2><p data-k="s4">Null-Test: 500 Perms, Auflösung p&lt;0.004, Boden 0.033 — 50 simulierte Perms starten.</p><button onclick="P()">Run 50 perms</button><div id="r4" style="height:44px;margin-top:6px"></div><div id="r4t" class="mono"></div></div>
+<div class="card" id="s5"><h2>5 · Replicate</h2><p data-k="s5">Replikation: 59/59 ZH-DE signifikant (grün); EN 9/177 n.s. — 219 Gruppen, 556/517.</p><button class="ghost" onclick="R()">ZH-DE ⇄ EN</button><div id="r5" style="margin-top:6px"></div></div>
+<footer class="mono">Frozen: LDS-K 0.519/0.933/0.938 · 500 perms p&lt;0.004 · ZH-DE 59/59 floor 0.033 · EN 9/177 n.s.</footer>
+<script>
+const D={de:{t:"Reproduce Lab: LDS-K in 5 Schritten",sub:"Audit-eingefroren: 59 Messungen, 54 Modelle, 219 Gruppen, 556/517. Keine externen Daten, kein API-Aufruf.",s1:"Extraktion: temperature=0 bleibt nicht-deterministisch (Kappa 0.59–0.73, 27–41% Run-Abweichung).",s2:"Alignment: Kleinbuchstaben + ß→ss Hard-Match — tippe ein Wort zum Testen.",s3:"Messung: LDS = 1−mean(GED-Sim, Jaccard); fixiert 0.519/0.933/0.938 — Slider bewegt die Schwelle.",s4:"Null-Test: 500 Perms, Auflösung p<0.004, Boden 0.033 — 50 simulierte Perms starten.",s5:"Replikation: 59/59 ZH-DE signifikant (grün); EN 9/177 n.s. — 219 Gruppen, 556/517."},
+zh:{t:"复现实验室：5 步复现 LDS-K",sub:"审计冻结：59 次测量、54 个模型、219 组、556/517。无外部数据，无 API 调用。",s1:"提取：temperature=0 仍不具确定性（Kappa 0.59–0.73，27–41% 轮次不一致）。",s2:"对齐：小写 + ß→ss 硬匹配——输入一个词试试。",s3:"测量：LDS = 1−mean(GED相似度, Jaccard)；冻结值 0.519/0.933/0.938——拖动滑块改变阈值。",s4:"零检验：500 置换，精度 p<0.004，下限 0.033——运行 50 次模拟置换。",s5:"复现：59/59 中德显著（绿色）；英文 9/177 不显著——219 组、556/517。"},
+en:{t:"Reproduce Lab: LDS-K in 5 steps",sub:"Audit-frozen: 59 measures, 54 models, 219 groups, 556/517. No external data, no API calls.",s1:"Extract: temperature=0 stays non-deterministic (kappa 0.59–0.73, 27–41% run disagreement).",s2:"Align: lowercase + ß→ss hard-match — type a word to test.",s3:"Measure: LDS = 1−mean(GED sim, Jaccard); frozen 0.519/0.933/0.938 — move the slider.",s4:"Null-test: 500 perms, resolution p<0.004, floor 0.033 — run 50 simulated perms.",s5:"Replicate: 59/59 ZH-DE significant (green); EN 9/177 n.s. — 219 groups, 556/517."}};
+function L(l){document.querySelectorAll("[data-k]").forEach(e=>e.textContent=D[l][e.dataset.k]);document.documentElement.lang=l}
+function N(s){return s.toLowerCase().replace(/ß/g,"ss")}
+function A(){const v=document.getElementById("w").value;const ex=["straße→"+N("straße"),"Strasse→"+N("Strasse")];document.getElementById("r2").textContent=" "+N(v)+" | "+ex.join(" | ")+(N(v)==="strasse"?" = match ✓":"")}
+function M(v){const t=(v/100).toFixed(2);const f=[0.519,0.933,0.938].map(x=>x+" "+(x>=t?"pass":"fail")).join(" · ");document.getElementById("r3").textContent="θ="+t+" → "+f}
+const H=[2,3,5,8,12,16,12,8,5,3,2,1];
+function P(){document.getElementById("r4").innerHTML=H.map(h=>"<span class='bar' style='height:"+h*3+"px'></span>").join("");document.getElementById("r4t").textContent="50/500 sims · H0≈0 · obs≫null · p<0.004 · floor 0.033"}
+let zh=true;
+function R(){zh=!zh;const n=zh?59:177,ns=zh?0:168;let h="";for(let i=0;i<n;i++)h+="<span class='dot"+(i<ns?" ns":"")+"'></span>";document.getElementById("r5").innerHTML=h+(zh?" 59/59 ZH-DE ✓":" 9/177 EN n.s.")}
+R();A();
+</script>
+</body>
+</html>

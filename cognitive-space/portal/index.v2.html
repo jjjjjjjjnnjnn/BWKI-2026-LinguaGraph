@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https: data:; object-src 'none'; base-uri 'self';">
 <title data-i18n="page_title">LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
 <meta name="description" content="A cross-lingual analysis of mathematics, physics and chemistry across China, Germany, the United Kingdom and the United States.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f1f3f5">
 <meta property="og:title" content="LinguaGraph — Cross-Lingual Knowledge Structure Analysis">
 <meta property="og:description" content="How do different languages and education systems organize the same knowledge?">
 <meta property="og:type" content="website">
@@ -15,43 +15,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Noto+Serif+SC:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="tokens.css">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
-mermaid.initialize({ theme:'default', themeVariables: { primaryColor:'#ffffff', primaryTextColor:'#1d1d1f', primaryBorderColor:'#d2d2d7', lineColor:'#0066cc', secondaryColor:'#f5f5f7', tertiaryColor:'#f5f5f7' }, startOnLoad:false, securityLevel:'sandbox' });
+mermaid.initialize({ theme:'default', themeVariables: { primaryColor:'#f8fafc', primaryTextColor:'#0a1f3d', primaryBorderColor:'#c6cdd6', lineColor:'#1e3a8a', secondaryColor:'#f1f3f5', tertiaryColor:'#e7ebef' }, startOnLoad:false, securityLevel:'sandbox' });
 window.addEventListener('DOMContentLoaded', () => { mermaid.run({ querySelector: '.mermaid' }).catch(() => {}); });
 </script>
 <style>
 *, *::before, *::after { box-sizing: border-box; }
 :root {
-  /* Apple-style mapping — canonical values live in tokens.css */
-  --bg: var(--canvas); --bg2: var(--parchment); --surface: var(--canvas);
-  --surface2: var(--parchment); --card: var(--canvas); --border: var(--hairline);
-  --text: var(--ink); --text2: var(--gray-2);
-  --accent: var(--blue);
-  --accent2: var(--gray-2); --green: #1e7e4d; --yellow: #8a6410;
+  /* porcelain surfaces + indigo ink (mit v4-Video identisch) */
+  --bg: #f1f3f5; --bg2: #e7ebef; --surface: #f8fafc;
+  --surface2: #e7ebef; --card: #f8fafc; --border: #c6cdd6;
+  --text: #0a1f3d; --text2: #4a5a78;
+  --accent: #1e3a8a;
+  /* legacy aliases → muted academic tones (kein Neon mehr) */
+  --accent2: #4a5a78; --green: #1e7e4d; --yellow: #8a6410;
   --red: #b3372f; --orange: #9a5b1a; --pink: #8a4a6b; --purple: #43386b;
-  --accent-soft: rgba(0,102,204,.10);
-  --font-display-en: var(--font-display);
+  --accent-soft: rgba(30,58,138,.10);
+  --card-shadow: 0 1px 0 var(--border), 0 18px 48px rgba(10,31,61,.08);
+  --font-display-en: "Playfair Display", Georgia, serif;
   --font-display-cn: "Noto Serif SC", serif;
-  --font-body: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-body: "IBM Plex Sans", "Noto Sans SC", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { font-family: var(--font-sans); background: var(--canvas); color: var(--ink); font-size: var(--fs-body); line-height: 1.6; }
-a { color: var(--blue); text-decoration: none; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; }
+a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 /* Klick-Feedback global: active-Absenkung + sichtbarer Fokus-Ring */
 a, button { transition: transform 120ms ease, background 120ms ease, border-color 120ms ease; }
 a:active, button:active { transform: translateY(1px) scale(.99); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-/* Nav — 48-60px translucent blur */
+/* Nav */
 nav {
-  position: fixed; top: 0; width: 100%; z-index: 100; height: 52px;
-  background: rgba(255,255,255,.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--hairline);
+  position: fixed; top: 0; width: 100%; z-index: 100; height: 60px;
+  background: rgba(241,243,245,.92); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
   display: flex; align-items: center; padding: 0 16px; gap: 2px;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -76,9 +77,8 @@ nav a.active { color: var(--accent); background: var(--accent-soft); font-weight
 .lang-btn:hover { background: var(--accent-soft); color: var(--text); border-color: var(--accent); }
 .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* Sections — editorial rows */
-section { max-width: var(--max-editorial); margin: 0 auto; padding: 96px 24px 64px; background: var(--canvas); }
-section:nth-of-type(even) { background: var(--tile-alt); }
+/* Sections */
+section { max-width: 1120px; margin: 0 auto; padding: 96px 24px 64px; }
 .kicker { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .section-title {
   font-family: var(--font-display-en); font-weight: 500; letter-spacing: -0.02em;
@@ -89,13 +89,13 @@ section:nth-of-type(even) { background: var(--tile-alt); }
   transition: transform 1550ms cubic-bezier(.16,1,.3,1); margin: -32px 0 36px; }
 .rule-grow.in { transform: scaleX(1); }
 
-/* Cards — borderless rows separated by hairlines, zero shadows */
-.card-grid { display: grid; grid-template-columns: 1fr; gap: 0; max-width: var(--max-editorial); margin: 0 auto; border-top: 1px solid var(--hairline); }
+/* Cards */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
 .card {
-  background: transparent; border: none; border-bottom: 1px solid var(--hairline); border-radius: 0;
-  padding: 40px 8px; transition: background .3s; box-shadow: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 28px; transition: all .3s; box-shadow: var(--card-shadow);
 }
-.card:hover { border-color: var(--hairline); transform: none; background: var(--tile-alt); }
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; row-gap: 6px; }
 .card h3 .tag { flex-shrink: 0; }
 .card h3 .h3note { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em; color: var(--text2); font-weight: 400; flex-basis: 100%; }
@@ -112,9 +112,9 @@ section:nth-of-type(even) { background: var(--tile-alt); }
 
 /* Tags */
 .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .72rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: .02em; border: 1px solid var(--border); }
-.tag-blue { background: rgba(0,102,204,.10); color: var(--blue); }
+.tag-blue { background: var(--accent-soft); color: var(--accent); }
 .tag-green { background: rgba(30,126,77,.10); color: var(--green); }
-.tag-cyan { background: rgba(0,102,204,.08); color: var(--blue); }
+.tag-cyan { background: rgba(30,58,138,.08); color: var(--accent); }
 .tag-yellow { background: rgba(138,100,16,.10); color: var(--yellow); }
 .tag-purple { background: rgba(67,56,107,.10); color: var(--purple); }
 .tag-red { background: rgba(179,55,47,.10); color: var(--red); }
@@ -136,11 +136,11 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 .mono { font-family: var(--font-mono); font-size: .92em; }
 .honesty { font-size: .8rem; color: var(--text2); border-left: 2px solid var(--yellow); padding-left: 12px; margin-top: 12px; line-height: 1.6; }
 
-/* Hero — one-statement centered 56px */
-.hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+/* Hero */
+.hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; }
 .hero h1 {
-  font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em;
-  font-size: clamp(40px,5.4vw,56px); line-height: 1.1; margin-bottom: 20px; max-width: 900px;
+  font-family: var(--font-display-en); font-weight: 500; letter-spacing: -0.025em;
+  font-size: clamp(2.4rem,5.4vw,4.2rem); line-height: 1.1; margin-bottom: 20px; max-width: 900px;
 }
 .hero h1 em { font-style: italic; }
 .hero .subtitle { font-size: clamp(1rem,2vw,1.2rem); color: var(--text2); max-width: 760px; margin-bottom: 36px; line-height: 1.55; }
@@ -156,21 +156,21 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 .hero-video #pitch { padding: 0; }
 /* Pitch standalone player: no white card, badge overlay, compact switch row */
 .pitch-wrap { position: relative; }
-.pitch-wrap video { width: 100%; border-radius: 12px; background: #1d1d1f; display: block; box-shadow: none; }
-.pitch-badge { position: absolute; top: 10px; left: 10px; background: rgba(29,29,31,.78); color: #fff; font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: .02em; }
+.pitch-wrap video { width: 100%; border-radius: 12px; background: #0a1f3d; display: block; box-shadow: 0 12px 40px rgba(10,31,61,.18); }
+.pitch-badge { position: absolute; top: 10px; left: 10px; background: rgba(10,31,61,.78); color: #fff; font-size: .68rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: .02em; }
 /* Pitch segmented control — one compact group instead of three big buttons */
 .pitch-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); margin-top: 14px; }
 .pitch-seg .pitch-sw { border: none; background: transparent; padding: 8px 18px; font-size: .78rem; font-weight: 600; color: var(--text2); cursor: pointer; font-family: inherit; }
 .pitch-seg .pitch-sw + .pitch-sw { border-left: 1px solid var(--border); }
 .pitch-seg .pitch-sw.a { background: var(--accent); color: #fff; }
 .hero-video .pitch-note { color: var(--text2); font-size: .72rem; margin: 10px 0 0; }
-/* CTA buttons — pill radius, max 1 filled per viewport, zero shadows */
-.btn { display: inline-block; padding: 12px 30px; border-radius: var(--radius-pill); font-weight: 600; font-size: .9rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; box-shadow: none; }
+/* CTA buttons — solid indigo, kein Gradient */
+.btn { display: inline-block; padding: 12px 30px; border-radius: 6px; font-weight: 600; font-size: .9rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
 .btn:hover { text-decoration: none; }
-.btn-solid { background: var(--blue); color: #fff; }
-.btn-solid:hover { background: var(--blue); color: #fff; }
-.btn-ghost { background: transparent; border-color: var(--blue); color: var(--blue); font-weight: 500; }
-.btn-ghost:hover { border-color: var(--blue); }
+.btn-solid { background: var(--accent); color: #fff; }
+.btn-solid:hover { background: var(--text); color: #fff; }
+.btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--accent); }
 
 /* Lightbox */
 .lightbox {
@@ -182,8 +182,8 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 
 /* Finding cards */
 .finding-card {
-  background: transparent; border: none; border-bottom: 1px solid var(--hairline); border-radius: 0; padding: 40px 8px; margin-bottom: 0;
-  box-shadow: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 32px; margin-bottom: 28px;
+  box-shadow: var(--card-shadow);
 }
 .finding-card h3 { font-family: var(--font-display-en); font-weight: 500; font-size: 1.35rem; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
 .finding-card h3 i, .finding-card h3 .bi { flex-shrink: 0; font-size: 1.4rem; margin-top: 2px; }
@@ -244,7 +244,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 }
 
 /* Chart containers */
-.chart-box { background: transparent; border: none; border-bottom: 1px solid var(--hairline); border-radius: 0; padding: 20px; max-width: 700px; margin: 0 auto; box-shadow: none; }
+.chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; max-width: 700px; margin: 0 auto; box-shadow: var(--card-shadow); }
 .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
 
@@ -335,21 +335,6 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
       <p style="margin-top:8px" data-i18n="fc_tier_d">Open-weight embeddings (nomic-embed-text-v1.5, 768 dims, 934 terms) compress all three pairs into 0.48–0.52 (spread 0.0445) and do not reproduce the textbook split (spread 0.419). Rank order only — never raw values. Vectors are the control baseline, never the evidence.</p>
       <div class="meta"><span class="tag tag-cyan">Tier-1: 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue">Tier-2: 0.4804 / 0.5249 / 0.4888</span></div>
     </details>
-    <details class="prov" style="margin-top:12px"><summary class="mono" data-i18n="prov_fc_sum">Counterexamples: 8 hardest trilingual matches (drawer)</summary>
-      <p style="margin-top:8px" data-i18n="prov_fc_why">Why this drawer: these are the 8 most similar trilingual math groups in the merged file — if any single shared concept could overturn claim C, it would be one of these.</p>
-      <ol class="cx-list" style="margin:8px 0 8px 20px;padding:0;font-size:.88rem;color:var(--text2)">
-        <li data-i18n="cx_1">[concepts#45]</li>
-        <li data-i18n="cx_2">[concepts#52]</li>
-        <li data-i18n="cx_3">[concepts#54]</li>
-        <li data-i18n="cx_4">[concepts#43]</li>
-        <li data-i18n="cx_5">[concepts#29]</li>
-        <li data-i18n="cx_6">[concepts#12]</li>
-        <li data-i18n="cx_7">[concepts#53]</li>
-        <li data-i18n="cx_8">[concepts#42]</li>
-      </ol>
-      <p class="mono" style="font-size:.78rem;color:var(--text2)" data-i18n="prov_fc_chain">Number chain: Tier-1 0.519 / 0.933 / 0.938.</p>
-      <p style="font-size:.82rem;color:var(--text2)" data-i18n="prov_fc_src">Source: merged file.</p>
-    </details>
   </div>
   <div class="finding-card" style="border-left:4px solid var(--yellow)">
     <h3 data-i18n="fd_t">D · Systems differ in coverage</h3>
@@ -364,75 +349,35 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
   </div>
 </section>
 
-<style>
-.lab-inline{margin-top:10px;padding:8px 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;line-height:1.5;color:#334155}
-.lab-inline button,.lab-inline input[type=text]{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#0f172a;cursor:pointer}
-.lab-inline input[type=text]{cursor:text;width:110px}
-.lab-inline input[type=range]{width:100%;accent-color:#0284c7}
-.lab-inline [hidden]{display:none!important}
-.lab-out{display:block;margin-top:6px;font-variant-numeric:tabular-nums;color:#0f172a}
-.prov{margin-top:8px;font-size:12px;color:#475569}
-.prov summary{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;cursor:pointer;color:#0369a1}
-.prov .chain{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;word-break:break-all;color:#334155}
-.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin:1px}
-</style>
 <!-- ==================== METHODOLOGY ==================== -->
 <section id="methodology" class="fade-in">
   <div class="kicker" data-i18n="kick_method">Method</div>
   <h2 class="section-title" data-i18n="method_title">Methodology in five steps</h2>
   <p class="section-sub" data-i18n="method_sub">Extract → align → measure (LDS) → null-test (500 permutations) → replicate (59 models).</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="m1_t">1 · Extract</h3><p data-i18n="m1_d">68 textbook files → 741 concepts / 665 relations, temperature=0, multi-model audit.</p>
-      <div class="lab-inline"><button data-i18n="prov_m1_btn" onclick="document.getElementById('m1out').hidden=false">Show A/B runs</button><span class="lab-out" id="m1out" hidden data-i18n="prov_m1_out">temperature=0, two runs: agreement 0.59–0.73, disagreement 27–41%. Single runs are snapshots.</span></div>
-      <details class="prov"><summary data-i18n="prov_m1_sum">Provenance: extraction</summary><p data-i18n="prov_m1_why">Why: temperature=0 is not deterministic — one run alone carries no number.</p><p class="chain" data-i18n="prov_m1_chain">data/math_extractions/merged/merged_concepts.json → scripts/math_graph_pipeline/merge_extractions.py → data/math_extractions/merged/pipeline_snapshot.json → research/numbers_ssot_20260916.json · frozen_figures (556 nodes / 517 relations / 219 groups).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/data/math_extractions/merged/pipeline_snapshot.json">data/math_extractions/merged/pipeline_snapshot.json</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p>
-      <div class="lab-inline"><input type="text" id="m2in" value="Straße" aria-label="align demo" oninput="var l=this.value.toLowerCase(),s=l.replace(/ß/g,'ss');document.getElementById('m2out').textContent=l+' → '+s+(/^[a-z ]+$/.test(s)?' · hit':' · miss')"><span class="lab-out" id="m2out">straße → strasse · hit</span></div>
-      <details class="prov"><summary data-i18n="prov_m2_sum">Provenance: alignment</summary><p data-i18n="prov_m2_why">Why: hard matching is a visible rule — what does not match stays unmatched.</p><p class="chain" data-i18n="prov_m2_chain">data/math_extractions/merged/aligned_data.json (total_aligned_groups 219) → scripts/math_graph_pipeline/align_languages.py → manifest.json (alignment.aligned_groups 219) → SSOT frozen_figures (219 groups).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/data/math_extractions/merged/aligned_data.json">data/math_extractions/merged/aligned_data.json</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p>
-      <div class="lab-inline"><div data-i18n="prov_m3_lab">Drag, release = frozen</div><input type="range" id="m3rg" min="0" max="1000" value="519" oninput="document.getElementById('m3out').textContent='LDS ≈ '+(this.value/1000).toFixed(3)" onchange="this.value=519;document.getElementById('m3out').textContent='frozen 0.519 / 0.933 / 0.938'"><span class="lab-out" id="m3out">frozen 0.519 / 0.933 / 0.938</span></div>
-      <details class="prov"><summary data-i18n="prov_m3_sum">Provenance: measurement</summary><p data-i18n="prov_m3_why">Why: LDS is a formula, not a fit — the value is fixed.</p><p class="chain" data-i18n="prov_m3_chain">data/math_extractions/merged/aligned_data.json → scripts/figures/reproduce_lds_binary.py → research/reproduce_headline_20260916.json (claim = recompute 0.519) → SSOT lds_k_tier1 (0.519 / 0.933 / 0.938).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/scripts/figures/reproduce_lds_binary.py">scripts/figures/reproduce_lds_binary.py</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p>
-      <div class="lab-inline"><button data-i18n="prov_m4_btn" onclick="document.getElementById('m4hist').hidden=false;document.getElementById('m4note').hidden=false">run 50 perms</button><div id="m4hist" hidden><div style="display:flex;align-items:flex-end;gap:2px;height:34px;margin-top:6px" aria-hidden="true"><span style="width:8px;height:5px;background:#16a34a"></span><span style="width:6px"></span><span style="width:8px;height:4px;background:#cbd5e1"></span><span style="width:8px;height:7px;background:#cbd5e1"></span><span style="width:8px;height:11px;background:#cbd5e1"></span><span style="width:8px;height:16px;background:#cbd5e1"></span><span style="width:8px;height:22px;background:#cbd5e1"></span><span style="width:8px;height:28px;background:#cbd5e1"></span><span style="width:8px;height:24px;background:#cbd5e1"></span><span style="width:8px;height:17px;background:#cbd5e1"></span><span style="width:8px;height:11px;background:#cbd5e1"></span><span style="width:8px;height:7px;background:#cbd5e1"></span><span style="width:8px;height:4px;background:#cbd5e1"></span><span style="width:8px;height:3px;background:#cbd5e1"></span></div></div><span class="lab-out" id="m4note" hidden data-i18n="prov_m4_note">Null sketch (50 of 500 shown); p&lt;0.004 is resolution 1/500, margin floor 0.033. ZH-DE 59/59.</span></div>
-      <details class="prov"><summary data-i18n="prov_m4_sum">Provenance: null test</summary><p data-i18n="prov_m4_why">Why: p&lt;0.004 is the resolution limit, not tuning — more permutations change nothing about it.</p><p class="chain" data-i18n="prov_m4_chain">data/math_extractions/merged/aligned_data.json → scripts/figures/fig4_null_model.py → research/numbers_ssot_20260916.json → field macro_perm (n_perm 500, p 0.004, floor 0.033).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/scripts/figures/fig4_null_model.py">scripts/figures/fig4_null_model.py</a></p></details>
-    </div>
-    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p>
-      <div class="lab-inline"><button data-i18n="prov_m5_btn" onclick="var d=document.getElementById('m5dots'),en=d.dataset.m==='en';d.dataset.m=en?'zh':'en';document.getElementById('m5a').hidden=en;document.getElementById('m5b').hidden=!en;drawM5()">Toggle: ZH-DE / EN-involving</button>
-      <div style="margin-top:4px"><span id="m5a" data-i18n="prov_m5_a">ZH-DE: 59/59 — all green.</span><span id="m5b" hidden data-i18n="prov_m5_b">EN-involving: 177 tests, 9 marked n.s.</span></div>
-      <div id="m5dots" data-m="zh" style="margin-top:4px;line-height:1"></div></div>
-      <script>function drawM5(){var d=document.getElementById('m5dots'),en=d.dataset.m==='en',n=en?177:59;d.innerHTML='';for(var i=0;i<n;i++){var s=document.createElement('span');s.className='dot';var ns=en&&i%19===0&&i<171;s.style.background=ns?'#f59e0b':'#16a34a';s.title=ns?'n.s.':'ok';d.appendChild(s);}}drawM5();</script>
-      <details class="prov"><summary data-i18n="prov_m5_sum">Provenance: replication</summary><p data-i18n="prov_m5_why">Why: 59 identical-protocol runs separate signal (ZH-DE 59/59) from noise (9/177 EN n.s.).</p><p class="chain" data-i18n="prov_m5_chain">manifest.json (pipeline_version 2.0) → scripts/run_dashscope_batch.py → research/numbers_ssot_20260916.json → field replication (59 measurements / 54 models / 177 tests, 9/177 n.s.).</p><p class="chain"><a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/blob/master/research/numbers_ssot_20260916.json">research/numbers_ssot_20260916.json</a></p></details>
-    </div>
+    <div class="card"><h3 data-i18n="m1_t">1 · Extract</h3><p data-i18n="m1_d">68 textbook files → 741 concepts / 665 relations, temperature=0, multi-model audit.</p></div>
+    <div class="card"><h3 data-i18n="m2_t">2 · Align</h3><p data-i18n="m2_d">219 trilingual groups; hard matching (lowercase, ß→ss, synonym map). Unmatched stays unmatched.</p></div>
+    <div class="card"><h3 data-i18n="m3_t">3 · Measure</h3><p data-i18n="m3_d">LDS = 1 − mean(GED similarity, node/edge Jaccard). Frozen: 0.519 / 0.933 / 0.938.</p></div>
+    <div class="card"><h3 data-i18n="m4_t">4 · Null-test</h3><p data-i18n="m4_d">500 label permutations; p&lt;0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.</p></div>
+    <div class="card"><h3 data-i18n="m5_t">5 · Replicate</h3><p data-i18n="m5_d">Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.</p></div>
   </div>
   <p class="honesty" data-i18n="method_prov">Provenance: HF model SHAs are today's HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).</p>
 </section>
 
-<style>
-#findings .finding-card{transition:opacity 280ms ease,filter 280ms ease;}
-#findings .finding-card.lim-dim{opacity:.35;filter:grayscale(1);}
-#limitations .limsw{font-size:.8rem;font-family:var(--font-mono,monospace);transition:opacity 280ms ease;}
-#limitations .limsw.off{opacity:.55;text-decoration:line-through;}
-#limitations .limsw-warn{font-size:.82rem;color:var(--text2,#4a5a78);border-left:3px solid var(--border,#c6cdd6);padding-left:10px;margin-top:8px;transition:opacity 280ms ease;}
-</style>
 <!-- ==================== LIMITATIONS ==================== -->
 <section id="limitations" class="fade-in">
   <div class="kicker" data-i18n="kick_limits">Limits</div>
   <h2 class="section-title" data-i18n="limits_title">Limitations</h2>
   <p class="section-sub" data-i18n="limits_sub">Every limit, before the conclusions. No silent upgrades.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="l1_t">Chunking boundaries</h3><p data-i18n="l1_d">Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.</p><a href="#" class="limsw" data-targets="fa_t,fb_t,fc_t" data-warn="limsw_warn1" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn1">Warning 1.</p></div>
-    <div class="card"><h3 data-i18n="l2_t">Hard-match penalty</h3><p data-i18n="l2_d">Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.</p><a href="#" class="limsw" data-targets="fc_t" data-warn="limsw_warn2" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn2">Warning 2.</p></div>
-    <div class="card"><h3 data-i18n="l3_t">Sparse annotation</h3><p data-i18n="l3_d">Human pilot N=8 is a shape placeholder; powered design is N=30. 219 aligned vs 359 unaligned groups.</p><a href="#" class="limsw" data-targets="fd_t,fe_t" data-warn="limsw_warn3" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn3">Warning 3.</p></div>
-    <div class="card"><h3 data-i18n="l4_t">temperature=0 is not deterministic</h3><p data-i18n="l4_d">Ensemble intra self-agreement only 0.59–0.73 (≈27–41% run disagreement). Single-run values are snapshots with fluctuation bands.</p><a href="#" class="limsw" data-targets="fa_t,fb_t,fc_t" data-warn="limsw_warn4" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn4">Warning 4.</p></div>
-    <div class="card"><h3 data-i18n="l5_t">Snapshot instability</h3><p data-i18n="l5_d">Vote totals mix two threshold scales and must be shown split; inter means across refills are not comparable — no trend claims.</p><a href="#" class="limsw" data-targets="fa_t,fb_t" data-warn="limsw_warn5" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn5">Warning 5.</p></div>
-    <div class="card"><h3 data-i18n="l6_t">Small samples</h3><p data-i18n="l6_d">92 gold labels suffice for overall F1, not for per-language per-domain splits. German math F1 (0.506) has high variance.</p><a href="#" class="limsw" data-targets="fc_t,fe_t" data-warn="limsw_warn6" aria-pressed="false" data-i18n="limsw_link">switch me off</a><p class="limsw-warn" hidden data-i18n="limsw_warn6">Warning 6.</p></div>
+    <div class="card"><h3 data-i18n="l1_t">Chunking boundaries</h3><p data-i18n="l1_d">Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.</p></div>
+    <div class="card"><h3 data-i18n="l2_t">Hard-match penalty</h3><p data-i18n="l2_d">Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.</p></div>
+    <div class="card"><h3 data-i18n="l3_t">Sparse annotation</h3><p data-i18n="l3_d">Human pilot N=8 is a shape placeholder; powered design is N=30. 219 aligned vs 359 unaligned groups.</p></div>
+    <div class="card"><h3 data-i18n="l4_t">temperature=0 is not deterministic</h3><p data-i18n="l4_d">Ensemble intra self-agreement only 0.59–0.73 (≈27–41% run disagreement). Single-run values are snapshots with fluctuation bands.</p></div>
+    <div class="card"><h3 data-i18n="l5_t">Snapshot instability</h3><p data-i18n="l5_d">Vote totals mix two threshold scales and must be shown split; inter means across refills are not comparable — no trend claims.</p></div>
+    <div class="card"><h3 data-i18n="l6_t">Small samples</h3><p data-i18n="l6_d">92 gold labels suffice for overall F1, not for per-language per-domain splits. German math F1 (0.506) has high variance.</p></div>
   </div>
 </section>
-<script>
-document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var off=a.getAttribute('aria-pressed')==='true';var next=!off;a.setAttribute('aria-pressed',String(next));a.classList.toggle('off',next);(a.getAttribute('data-targets')||'').split(',').forEach(function(k){k=k.trim();if(!k)return;var anchor=document.querySelector('#findings [data-i18n="'+k+'"]');if(anchor){var card=anchor.closest('.finding-card');if(card)card.classList.toggle('lim-dim',next);}});var w=document.querySelector('#limitations [data-i18n="'+a.getAttribute('data-warn')+'"]');if(w){if(next){w.removeAttribute('hidden');}else{w.setAttribute('hidden','');}};});});
-</script>
 
 <!-- ==================== SOURCES ==================== -->
 <section id="sources" class="fade-in">
@@ -452,9 +397,9 @@ document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventL
   <h2 class="section-title" data-i18n="curr_title">Curriculum analysis</h2>
   <p class="section-sub" data-i18n="curr_sub">Coverage: NRW 12.7% → CN 95.4%. Three competing explanations — granularity (safest) fits best.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="curr_a_t">A · Granularity ✕</h3><p data-i18n="curr_a_d">Finer-grained standards list more concepts — rejected as sole cause.</p><div class="curr-ev" style="margin-top:12px"><div style="height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:12.7%;background:var(--text2,#4a5a78)"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_a">Evidence bar: NRW floor 12.7%.</p></div></div>
-    <div class="card"><h3 data-i18n="curr_b_t">B · Governance ✓</h3><p data-i18n="curr_b_d">Centralized systems cover more — hypothesis, paper §8.6.</p><div class="curr-ev" style="margin-top:12px"><div style="height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:95.4%;background:var(--accent,#1e3a8a)"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_b">Evidence bar: CN ceiling 95.4%.</p></div></div>
-    <div class="card"><h3 data-i18n="curr_c_t">C · Division !</h3><p data-i18n="curr_c_d"> tracked vs comprehensive splits — open question.</p><div class="curr-ev" style="margin-top:12px"><div style="position:relative;height:8px;border-radius:6px;background:var(--surface2,#e7ebef);border:1px solid var(--border,#c6cdd6);overflow:hidden"><div style="height:100%;width:95.4%;background:var(--accent,#1e3a8a);opacity:.45"></div><div style="position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text,#0a1f3d);left:12.7%"></div></div><p style="font-size:.8rem;color:var(--text2,#4a5a78);margin:6px 0 0" data-i18n="curr_ev_c">Evidence scale 12.7% to 95.4%.</p></div></div>
+    <div class="card"><h3 data-i18n="curr_a_t">A · Granularity ✕</h3><p data-i18n="curr_a_d">Finer-grained standards list more concepts — rejected as sole cause.</p></div>
+    <div class="card"><h3 data-i18n="curr_b_t">B · Governance ✓</h3><p data-i18n="curr_b_d">Centralized systems cover more — hypothesis, paper §8.6.</p></div>
+    <div class="card"><h3 data-i18n="curr_c_t">C · Division !</h3><p data-i18n="curr_c_d"> tracked vs comprehensive splits — open question.</p></div>
   </div>
 </section>
 
@@ -470,11 +415,11 @@ document.querySelectorAll('#limitations .limsw').forEach(function(a){a.addEventL
 <section id="labs" class="fade-in">
   <div class="kicker" data-i18n="kick_labs">Hands on</div>
   <h2 class="section-title" data-i18n="labs_title">Mini Labs</h2>
-  <p class="section-sub" data-i18n="labs_sub">No separate pages: the experiments live inside the text. Run the method, hunt a counterexample, switch a limit off.</p>
+  <p class="section-sub" data-i18n="labs_sub">Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.</p>
   <div class="card-grid">
-    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="#methodology" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="#findings" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
-    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="#limitations" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab1_t">Reproduce lab</h3><p data-i18n="lab1_d">Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.</p><div class="ctas"><a href="labs/reproduce.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab2_t">Counterexample hunter</h3><p data-i18n="lab2_d">Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.</p><div class="ctas"><a href="labs/counterex.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
+    <div class="card"><h3 data-i18n="lab3_t">Limit switchboard</h3><p data-i18n="lab3_d">Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.</p><div class="ctas"><a href="labs/limits.html" class="btn btn-solid btn-sm" data-i18n="lab_open">Open →</a></div></div>
   </div>
 </section>
 
@@ -533,11 +478,6 @@ m3_t: '3 · Measure', m3_d: 'LDS = 1 − mean(GED similarity, node/edge Jaccard)
 m4_t: '4 · Null-test', m4_d: '500 label permutations; p<0.004 is the resolution limit (1/500), not tuning. ZH-DE 59/59 pass, margin floor 0.033.',
 m5_t: '5 · Replicate', m5_d: 'Identical P1 protocol on 59 measurements (54 models): mostly DashScope + bare-hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Availability sample, not a preregistered matrix.',
 method_prov: 'Provenance: HF model SHAs are today’s HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build (snapshot + App. W).',
-prov_m1_btn: 'Show A/B runs', prov_m1_out: 'temperature=0, two runs: agreement 0.59–0.73, disagreement 27–41%. Single runs are snapshots.', prov_m1_sum: 'Provenance: extraction', prov_m1_why: 'Why: temperature=0 is not deterministic — one run alone carries no number.', prov_m1_chain: 'data/math_extractions/merged/merged_concepts.json → scripts/math_graph_pipeline/merge_extractions.py → data/math_extractions/merged/pipeline_snapshot.json → research/numbers_ssot_20260916.json · frozen_figures (556 nodes / 517 relations / 219 groups).',
-prov_m2_sum: 'Provenance: alignment', prov_m2_why: 'Why: hard matching is a visible rule — what does not match stays unmatched.', prov_m2_chain: 'data/math_extractions/merged/aligned_data.json (total_aligned_groups 219) → scripts/math_graph_pipeline/align_languages.py → manifest.json (alignment.aligned_groups 219) → SSOT frozen_figures (219 groups).',
-prov_m3_lab: 'Drag, release = frozen', prov_m3_sum: 'Provenance: measurement', prov_m3_why: 'Why: LDS is a formula, not a fit — the value is fixed.', prov_m3_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/reproduce_lds_binary.py → research/reproduce_headline_20260916.json (claim = recompute 0.519) → SSOT lds_k_tier1 (0.519 / 0.933 / 0.938).',
-prov_m4_btn: 'run 50 perms', prov_m4_note: 'Null sketch (50 of 500 shown); p<0.004 is resolution 1/500, margin floor 0.033. ZH-DE 59/59.', prov_m4_sum: 'Provenance: null test', prov_m4_why: 'Why: p<0.004 is the resolution limit, not tuning — more permutations change nothing about it.', prov_m4_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/fig4_null_model.py → research/numbers_ssot_20260916.json → field macro_perm (n_perm 500, p 0.004, floor 0.033).',
-prov_m5_btn: 'Toggle: ZH-DE / EN-involving', prov_m5_a: 'ZH-DE: 59/59 — all green.', prov_m5_b: 'EN-involving: 177 tests, 9 marked n.s.', prov_m5_sum: 'Provenance: replication', prov_m5_why: 'Why: 59 identical-protocol runs separate signal (ZH-DE 59/59) from noise (9/177 EN n.s.).', prov_m5_chain: 'manifest.json (pipeline_version 2.0) → scripts/run_dashscope_batch.py → research/numbers_ssot_20260916.json → field replication (59 measurements / 54 models / 177 tests, 9/177 n.s.).',
 kick_limits: 'Limits', limits_title: 'Limitations', limits_sub: 'Every limit, before the conclusions. No silent upgrades.',
 l1_t: 'Chunking boundaries', l1_d: 'Section-level chunks; cross-section references count as dangling. Bias is one-sided and conservative.',
 l2_t: 'Hard-match penalty', l2_d: 'Synonymous-but-differently-spelled pairs are penalized by construction; sensitivity is single-digit.',
@@ -553,35 +493,13 @@ kick_curr: 'Curriculum', curr_title: 'Curriculum analysis', curr_sub: 'Coverage:
 curr_a_t: 'A · Granularity ✕', curr_a_d: 'Finer-grained standards list more concepts — rejected as sole cause.',
 curr_b_t: 'B · Governance ✓', curr_b_d: 'Centralized systems cover more — hypothesis, paper §8.6.',
 curr_c_t: 'C · Division !', curr_c_d: 'Tracked vs comprehensive splits — open question.',
-kick_cs: 'Explore', cs_title: 'Interactive CognitiveSpace', cs_sub: 'Mathematics subgraph: 556 nodes · 233 rendered links (of 517) · 219 groups.', cs_open: 'Open the 3D graph →', kick_labs: 'Hands on', labs_title: 'Mini Labs', labs_sub: 'No separate pages: the experiments live inside the text. Run the method, hunt a counterexample, switch a limit off.', lab1_t: 'Reproduce lab', lab1_d: 'Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.', lab2_t: 'Counterexample hunter', lab2_d: "Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.", lab3_t: 'Limit switchboard', lab3_d: "Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.", lab_open: 'Open →',
+kick_cs: 'Explore', cs_title: 'Interactive CognitiveSpace', cs_sub: 'Mathematics subgraph: 556 nodes · 233 rendered links (of 517) · 219 groups.', cs_open: 'Open the 3D graph →', kick_labs: 'Hands on', labs_title: 'Mini Labs', labs_sub: 'Three five-minute experiments: run the method, hunt a counterexample, switch a limit off.', lab1_t: 'Reproduce lab', lab1_d: 'Five steps, five controls: align a word, move the LDS threshold, run 50 permutations, light up the 59-run roster.', lab2_t: 'Counterexample hunter', lab2_d: "Eight tough cases side by side in three languages — with the ruling why they don't overturn claim C.", lab3_t: 'Limit switchboard', lab3_d: "Six limits as switches: turn one off and watch which findings go dim — plus the misreading you'd fall for.", lab_open: 'Open →',
 kick_paper: 'Paper', paper_title: 'Paper', paper_sub: 'Nine core chapters (~161KB) + PDF (243KB). Appendix W is exploratory and outside the review evidence.', paper_pdf: 'Download PDF',
 kick_open: 'Open Science', open_title: 'Open Science', open_sub: 'Code, data, figures — and contact.',
 open_code_t: 'Code', open_code_d: '84 pytest suite; reproduction guide in submission docs; weight vectors via GitHub Release.',
 open_data_t: 'Dataset', open_data_d: '68 math extractions + lds_c measurements; PII excluded from the submission package.',
 open_contact_t: 'Contact', open_contact_d: 'Via school supervisor (see ethics consent). Reviews and second ratings welcome.',
-footer_note: 'Full detail table in the v1 archive.',
-prov_fc_sum: 'Counterexamples: 8 hardest trilingual matches (drawer)',
-prov_fc_why: 'Why this drawer: these are the 8 most similar trilingual math groups in data/math_extractions/merged/merged_concepts.json — if any single shared concept could overturn claim C, it would be one of these.',
-cx_1: '[concepts#45] Skalarprodukt / inner product / 内积 · refs 4 (de 2, en 1, zh 1) — aliases "Skalarprodukt, dot product, inner product, 点积". Ruling: a shared node label leaves edge structure untouched, so it cannot close the LDS-K split (spread 0.419).',
-cx_2: '[concepts#52] Ableitung / derivative / 导数 · refs 4 (de 1, en 2, zh 1) — aliases "Ableitung, Derivative, Differentialquotient, Differenzialquotient, derivative, derivative function, differential coefficient, 导函数, 微商". Ruling: claim C averages 219 groups, so one aligned calculus core term cannot move the corpus mean by itself.',
-cx_3: '[concepts#54] Funktion / function / 函数 · refs 5 (de 1, en 2, zh 2) — aliases "Function, Funktion, function". Ruling: this is exactly the T1 label-artifact class already decontaminated (0.556 → 0.020), so counting it again would double-count the falsified closeness.',
-cx_4: '[concepts#43] Kern / kernel, null space / 核, 零空间 (线性变换的核) · refs 3 (de 1, en 1, zh 1) — aliases "Kern, kernel, null space, 核, 零空间". Ruling: hard matching already credits this synonym cluster inside the 0.519 figure, so it argues within the claim, not against it.',
-cx_5: '[concepts#29] charakteristische Gleichung / characteristic equation / 特征方程 · refs 4 (de 1, en 1, zh 2) — aliases "characteristic equation, charakteristische Gleichung". Ruling: Tier-2 vectors align this trio too yet compress all pairs to 0.48–0.52 (spread 0.0445), confirming vectors cannot reproduce the textbook split either way.',
-cx_6: '[concepts#12] Vektor / vector / 向量 · refs 4 (de 1, en 2, zh 1) — aliases "Vektor, vector". Ruling: a universal linear-algebra loanword predicts vocabulary overlap but no convergence of relation graphs, which is what LDS-K measures.',
-cx_7: '[concepts#53] Grenzwert / limit / 极限 · refs 4 (de 1, en 2, zh 1) — aliases "Grenzwert, Limes, Limit, limit". Ruling: node-level agreement on core analysis is fully compatible with zh-de edge divergence at corpus level.',
-cx_8: '[concepts#42] lineare Abbildung / linear transformation / 线性变换, 线性映射 · refs 3 (de 1, en 1, zh 1) — aliases "linear transformation, lineare Abbildung, 线性映射". Ruling: one clean triple out of 219 aligned vs 359 unaligned groups cannot overturn a corpus statistic significant in 59/59 permutation runs.',
-prov_fc_chain: 'Number chain: Tier-1 textbook LDS-K 0.519 / 0.933 / 0.938 (src/scoring.py:122; research/consensus_v4_20260916.json) · T1 decontamination 0.556 → 0.020 · Tier-2 vectors 0.4804 / 0.5249 / 0.4888, spread 0.0445 vs textbook spread 0.419 · groups data/math_extractions/merged/merged_concepts.json concepts #12, #29, #42, #43, #45, #52, #53, #54 (ref counts per language quoted from each cross_references array).',
-prov_fc_src: 'Source: merged file data/math_extractions/merged/merged_concepts.json · code and data <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph</a> — frozen numbers only, nothing recomputed here.',
-limsw_link: 'switch me off',
-limsw_warn1: 'Misreading if switched off: cross-section links look free, so the CDS floor (0.271 → 0.073) reads denser than it is — findings A, B, C stay preliminary, never stronger.',
-limsw_warn2: 'Misreading if switched off: zh-de 0.519 reads as real convergence — it is a penalized-by-construction value with single-digit sensitivity, so claim C keeps its split.',
-limsw_warn3: 'Misreading if switched off: the N=8 pilot shape (0.704/0.727/0.751) reads as evidence — it is a placeholder until N=30, so findings D and E stay shape-only.',
-limsw_warn4: 'Misreading if switched off: single-run values read as constants — with ≈27–41% run disagreement they are snapshots with fluctuation bands, so A, B, C keep their bands.',
-limsw_warn5: 'Misreading if switched off: mixed vote totals read as a trend — two threshold scales must stay split and inter means across refills are not comparable, so A and B show no trend.',
-limsw_warn6: 'Misreading if switched off: per-split F1 reads as solid — 92 gold labels cover overall F1 only and German math F1 (0.506) is high-variance, so C and E stay at overall scope.',
-curr_ev_a: 'Evidence bar: NRW floor 12.7% — fine-grained standards alone cannot explain the gap (rejected as sole cause).',
-curr_ev_b: 'Evidence bar: CN ceiling 95.4% — centralized coverage hypothesis, paper §8.6.',
-curr_ev_c: 'Evidence scale 12.7% → 95.4% — tracked vs comprehensive split stays an open question.'
+footer_note: 'Full detail table in the v1 archive.'
 },
 de: {
 page_title: 'LinguaGraph — Mehrsprachige Wissensstrukturanalyse',
@@ -616,11 +534,6 @@ m3_t: '3 · Messen', m3_d: 'LDS = 1 − mean(GED-Ähnlichkeit, Knoten/Kanten-Jac
 m4_t: '4 · Null-Test', m4_d: '500 Label-Permutationen; p<0,004 ist Auflösungsgrenze (1/500), kein Tuning. ZH-DE 59/59 bestehen, Marge-Boden 0,033.',
 m5_t: '5 · Replizieren', m5_d: 'Identisches P1-Protokoll auf 59 Messungen (54 Modelle): meist DashScope + Bare-Hosts/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go. Verfügbarkeitsstichprobe, keine präregistrierte Matrix.',
 method_prov: 'Provenienz: HF-Modell-SHAs sind heutige HEADs, keine Experiment-Pins; served revision UNVERIFIED; lokale phi-Datei ist Community-Quant-Build (Snapshot + Anh. W).',
-prov_m1_btn: 'A/B-Runs zeigen', prov_m1_out: 'temperature=0, zwei Runs: Übereinstimmung 0,59–0,73, Divergenz 27–41 %. Einzelwerte sind Schnappschüsse.', prov_m1_sum: 'Provenienz: Extraktion', prov_m1_why: 'Warum: temperature=0 ist nicht deterministisch — ein Run allein trägt keine Zahl.', prov_m1_chain: 'data/math_extractions/merged/merged_concepts.json → scripts/math_graph_pipeline/merge_extractions.py → data/math_extractions/merged/pipeline_snapshot.json → research/numbers_ssot_20260916.json · frozen_figures (556 Knoten / 517 Relationen / 219 Gruppen).',
-prov_m2_sum: 'Provenienz: Alignment', prov_m2_why: 'Warum: Hart-Matching ist eine sichtbare Regel — was nicht passt, bleibt unverknüpft.', prov_m2_chain: 'data/math_extractions/merged/aligned_data.json (total_aligned_groups 219) → scripts/math_graph_pipeline/align_languages.py → manifest.json (alignment.aligned_groups 219) → SSOT frozen_figures (219 Gruppen).',
-prov_m3_lab: 'Ziehen, loslassen = Freeze', prov_m3_sum: 'Provenienz: Messung', prov_m3_why: 'Warum: LDS ist eine Formel, kein Fit — der Wert liegt fest.', prov_m3_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/reproduce_lds_binary.py → research/reproduce_headline_20260916.json (Claim = Recompute 0,519) → SSOT lds_k_tier1 (0,519 / 0,933 / 0,938).',
-prov_m4_btn: '50 Permutationen laufen lassen', prov_m4_note: 'Null-Skizze (50 von 500 gezeigt); p<0,004 ist Auflösung 1/500, Marge-Boden 0,033. ZH-DE 59/59.', prov_m4_sum: 'Provenienz: Null-Test', prov_m4_why: 'Warum: p<0,004 ist Auflösungsgrenze, kein Tuning — mehr Permutationen ändern daran nichts.', prov_m4_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/fig4_null_model.py → research/numbers_ssot_20260916.json → Feld macro_perm (n_perm 500, p 0,004, floor 0,033).',
-prov_m5_btn: 'Wechseln: ZH-DE / EN-haltig', prov_m5_a: 'ZH-DE: 59/59 — alle grün.', prov_m5_b: 'EN-haltig: 177 Tests, 9 markiert n.s.', prov_m5_sum: 'Provenienz: Replikation', prov_m5_why: 'Warum: 59 Protokoll-identische Runs trennen Signal (ZH-DE 59/59) von Rauschen (9/177 EN n.s.).', prov_m5_chain: 'manifest.json (pipeline_version 2.0) → scripts/run_dashscope_batch.py → research/numbers_ssot_20260916.json → Feld replication (59 Messungen / 54 Modelle / 177 Tests, 9/177 n.s.).',
 kick_limits: 'Grenzen', limits_title: 'Limitationen', limits_sub: 'Jede Grenze vor den Schlussfolgerungen. Keine stillen Hochstufungen.',
 l1_t: 'Chunking-Grenzen', l1_d: 'Abschnitts-Chunks; Querverweise zählen als dangling. Bias einseitig und konservativ.',
 l2_t: 'Hart-Match-Strafe', l2_d: 'Synonyme, anders geschrieben, werden konstruktionsbedingt bestraft; Sensitivität einstellig.',
@@ -636,35 +549,13 @@ kick_curr: 'Curriculum', curr_title: 'Curriculum-Analyse', curr_sub: 'Abdeckung:
 curr_a_t: 'A · Granularität ✕', curr_a_d: 'Feinere Standards listen mehr Konzepte — als alleinige Ursache verworfen.',
 curr_b_t: 'B · Governance ✓', curr_b_d: 'Zentralisierte Systeme decken mehr ab — Hypothese, Paper §8.6.',
 curr_c_t: 'C · Gliederung !', curr_c_d: 'Gegliedert vs Gesamtschule — offene Frage.',
-kick_cs: 'Erkunden', cs_title: 'Interaktiver CognitiveSpace', cs_sub: 'Mathe-Subgraph: 556 Knoten · 233 gerenderte Links (von 517) · 219 Gruppen.', cs_open: '3D-Graph öffnen →', kick_labs: 'Anfassen', labs_title: 'Mini-Labore', labs_sub: 'Keine Extraseiten: Die Experimente stecken im Text. Methode ausführen, Gegenbeispiel jagen, Limit abschalten.', lab1_t: 'Reproduktions-Labor', lab1_d: 'Fünf Schritte, fünf Regler: Wort alignieren, LDS-Schwelle ziehen, 50 Permutationen laufen lassen, 59er-Roster aufleuchten.', lab2_t: 'Gegenbeispiel-Jagd', lab2_d: 'Acht harte Fälle dreisprachig nebeneinander — mit Urteil, warum sie Claim C nicht kippen.', lab3_t: 'Limit-Schalttafel', lab3_d: 'Sechs Limits als Schalter: eines abschalten und zusehen, welche Befunde verblassen — plus die Fehldeutung.', lab_open: 'Öffnen →',
+kick_cs: 'Erkunden', cs_title: 'Interaktiver CognitiveSpace', cs_sub: 'Mathe-Subgraph: 556 Knoten · 233 gerenderte Links (von 517) · 219 Gruppen.', cs_open: '3D-Graph öffnen →', kick_labs: 'Anfassen', labs_title: 'Mini-Labore', labs_sub: 'Drei Fünf-Minuten-Experimente: Methode ausführen, Gegenbeispiel jagen, Limit abschalten.', lab1_t: 'Reproduktions-Labor', lab1_d: 'Fünf Schritte, fünf Regler: Wort alignieren, LDS-Schwelle ziehen, 50 Permutationen laufen lassen, 59er-Roster aufleuchten.', lab2_t: 'Gegenbeispiel-Jagd', lab2_d: 'Acht harte Fälle dreisprachig nebeneinander — mit Urteil, warum sie Claim C nicht kippen.', lab3_t: 'Limit-Schalttafel', lab3_d: 'Sechs Limits als Schalter: eines abschalten und zusehen, welche Befunde verblassen — plus die Fehldeutung.', lab_open: 'Öffnen →',
 kick_paper: 'Paper', paper_title: 'Paper', paper_sub: 'Neun Kernkapitel (~161KB) + PDF (243KB). Anhang W ist explorativ und außerhalb der Begutachtungs-Evidenz.', paper_pdf: 'PDF laden',
 kick_open: 'Open Science', open_title: 'Open Science', open_sub: 'Code, Daten, Figuren — und Kontakt.',
 open_code_t: 'Code', open_code_d: '84 pytest-Suite; Reproduktions-Guide in Submission-Docs; Gewichtsvektoren via GitHub Release.',
 open_data_t: 'Datensatz', open_data_d: '68 Mathe-Extraktionen + lds_c-Messungen; PII aus Submission-Paket ausgeschlossen.',
 open_contact_t: 'Kontakt', open_contact_d: 'Via Schulbetreuung (s. Ethik-Consent). Reviews und Zweitr Ratings willkommen.',
-footer_note: 'Detailtabelle im v1-Archiv.',
-prov_fc_sum: 'Gegenbeispiele: 8 härteste dreisprachige Treffer (Schublade)',
-prov_fc_why: 'Warum diese Schublade: das sind die 8 ähnlichsten dreisprachigen Mathe-Gruppen aus data/math_extractions/merged/merged_concepts.json — könnte ein einzelnes geteiltes Konzept Claim C kippen, wäre es eines von diesen.',
-cx_1: '[concepts#45] Skalarprodukt / inner product / 内积 · Refs 4 (de 2, en 1, zh 1) — Aliase „Skalarprodukt, dot product, inner product, 点积“. Urteil: Ein geteiltes Knotenlabel lässt die Kantenstruktur unberührt und kann den LDS-K-Split (Spread 0,419) nicht schließen.',
-cx_2: '[concepts#52] Ableitung / derivative / 导数 · Refs 4 (de 1, en 2, zh 1) — Aliase „Ableitung, Derivative, Differentialquotient, Differenzialquotient, derivative, derivative function, differential coefficient, 导函数, 微商“. Urteil: Claim C mittelt über 219 Gruppen, ein alignierter Analysis-Kernbegriff bewegt den Korpus-Mittelwert allein praktisch nicht.',
-cx_3: '[concepts#54] Funktion / function / 函数 · Refs 5 (de 1, en 2, zh 2) — Aliase „Function, Funktion, function“. Urteil: Genau diese Label-Artefakt-Klasse wurde per T1-Dekontamination falsifiziert (0,556 → 0,020); sie erneut zu zählen, würde die widerlegte Nähe doppelt zählen.',
-cx_4: '[concepts#43] Kern / kernel, null space / 核, 零空间 (线性变换的核) · Refs 3 (de 1, en 1, zh 1) — Aliase „Kern, kernel, null space, 核, 零空间“. Urteil: Das harte Matching vergütet dieses Synonymcluster bereits innerhalb der 0,519 — es spricht innerhalb der Behauptung, nicht gegen sie.',
-cx_5: '[concepts#29] charakteristische Gleichung / characteristic equation / 特征方程 · Refs 4 (de 1, en 1, zh 2) — Aliase „characteristic equation, charakteristische Gleichung“. Urteil: Tier-2-Vektoren alignieren auch dieses Trio, komprimieren aber alle Paare auf 0,48–0,52 (Spread 0,0445) — Vektoren reproduzieren den Lehrbuch-Split in keine Richtung.',
-cx_6: '[concepts#12] Vektor / vector / 向量 · Refs 4 (de 1, en 2, zh 1) — Aliase „Vektor, vector“. Urteil: Ein universelles Lineare-Algebra-Lehnwort erklärt Vokabelüberlapp, aber keine Konvergenz der Relationsgraphen, die LDS-K misst.',
-cx_7: '[concepts#53] Grenzwert / limit / 极限 · Refs 4 (de 1, en 2, zh 1) — Aliase „Grenzwert, Limes, Limit, limit“. Urteil: Knoten-Einigkeit im Analysiskern ist mit zh-de-Kantendivergenz auf Korpusebene voll vereinbar.',
-cx_8: '[concepts#42] lineare Abbildung / linear transformation / 线性变换, 线性映射 · Refs 3 (de 1, en 1, zh 1) — Aliase „linear transformation, lineare Abbildung, 线性映射“. Urteil: Ein sauberes Tripel bei 219 alignierten vs 359 unalignierten Gruppen kippt keine Korpusstatistik mit 59/59 signifikanten Permutationsläufen.',
-prov_fc_chain: 'Zahlenkette: Tier-1-Lehrbuch-LDS-K 0,519 / 0,933 / 0,938 (src/scoring.py:122; research/consensus_v4_20260916.json) · T1-Dekontamination 0,556 → 0,020 · Tier-2-Vektoren 0,4804 / 0,5249 / 0,4888, Spread 0,0445 vs Lehrbuch-Spread 0,419 · Gruppen data/math_extractions/merged/merged_concepts.json Concepts #12, #29, #42, #43, #45, #52, #53, #54 (Ref-Zahlen je Sprache aus je cross_references-Array).',
-prov_fc_src: 'Quelle: Merge-Datei data/math_extractions/merged/merged_concepts.json · Code und Daten <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph</a> — nur frozen Zahlen, hier nichts neuberechnet.',
-limsw_link: 'schalt mich ab',
-limsw_warn1: 'Fehldeutung bei abgeschaltet: Querverweise wirken gratis, der CDS-Boden (0,271 → 0,073) liest sich dichter als er ist — Befunde A, B, C bleiben preliminary, nie stärker.',
-limsw_warn2: 'Fehldeutung bei abgeschaltet: zh-de 0,519 liest sich als echte Konvergenz — konstruktionsbedingt bestraft, Sensitivität einstellig, Claim C behält seinen Split.',
-limsw_warn3: 'Fehldeutung bei abgeschaltet: Die N=8-Pilotform (0,704/0,727/0,751) liest sich als Evidenz — Platzhalter bis N=30, Befunde D und E bleiben Form.',
-limsw_warn4: 'Fehldeutung bei abgeschaltet: Einzelwerte lesen sich als Konstanten — bei ≈27–41 % Run-Divergenz sind es Schnappschüsse mit Band, A, B, C behalten ihre Bänder.',
-limsw_warn5: 'Fehldeutung bei abgeschaltet: Gemischte Voten lesen sich als Trend — zwei Schwellen-Skalen bleiben getrennt, Inter-Mittel über Refills unvergleichbar, A und B zeigen keinen Trend.',
-limsw_warn6: 'Fehldeutung bei abgeschaltet: Pro-Split-F1 liest sich solide — 92 Gold-Labels decken nur Gesamt-F1, Deutsch-Mathe-F1 (0,506) hochvariabel, C und E bleiben im Gesamt-Scope.',
-curr_ev_a: 'Evidenzbalken: NRW-Boden 12,7 % — feine Standards allein erklären die Lücke nicht (als alleinige Ursache verworfen).',
-curr_ev_b: 'Evidenzbalken: CN-Decke 95,4 % — zentralisierte Abdeckungshypothese, Paper §8.6.',
-curr_ev_c: 'Evidenzskala 12,7 % → 95,4 % — gegliedert vs Gesamtschule bleibt offene Frage.'
+footer_note: 'Detailtabelle im v1-Archiv.'
 },
 zh: {
 page_title: 'LinguaGraph — 跨语言知识结构分析',
@@ -699,11 +590,6 @@ m3_t: '3 · 测量', m3_d: 'LDS＝1−mean（GED 相似、节点/边 Jaccard）�
 m4_t: '4 · 零检验', m4_d: '500 标签置换；p<0.004 是分辨率极限（1/500），不是调参。中德 59/59 通过，边际地板 0.033。',
 m5_t: '5 · 复刻', m5_d: '同一 P1 协议 59 测量（54 模型）：多为 DashScope＋裸 host/Kilo/Cohere/NIM/Cloudflare/LM-Studio/opencode-go。可用性样本，非预注册矩阵。',
 method_prov: '出处：HF 模型 SHA 是今日 HEAD，不是实验 pin；served revision 未验证；本地 phi 是社区量化版（快照＋附录 W）。',
-prov_m1_btn: '显示 A/B 两轮', prov_m1_out: 'temperature=0，两轮：一致 0.59–0.73，分歧 27–41%。单轮值只是快照。', prov_m1_sum: '出处：抽取', prov_m1_why: '为什么：temperature=0 并不确定——单轮撑不起任何数字。', prov_m1_chain: 'data/math_extractions/merged/merged_concepts.json → scripts/math_graph_pipeline/merge_extractions.py → data/math_extractions/merged/pipeline_snapshot.json → research/numbers_ssot_20260916.json · frozen_figures（556 节点 / 517 关系 / 219 组）。',
-prov_m2_sum: '出处：对齐', prov_m2_why: '为什么：硬匹配是看得见的规则——对不上就保持不对上。', prov_m2_chain: 'data/math_extractions/merged/aligned_data.json（total_aligned_groups 219）→ scripts/math_graph_pipeline/align_languages.py → manifest.json（alignment.aligned_groups 219）→ SSOT frozen_figures（219 组）。',
-prov_m3_lab: '拖动，松开即回冻结值', prov_m3_sum: '出处：测量', prov_m3_why: '为什么：LDS 是公式、不是拟合——值是钉死的。', prov_m3_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/reproduce_lds_binary.py → research/reproduce_headline_20260916.json（claim＝recompute 0.519）→ SSOT lds_k_tier1（0.519 / 0.933 / 0.938）。',
-prov_m4_btn: '跑 50 次置换', prov_m4_note: '零假设示意（示出 50/500）；p<0.004 是分辨率 1/500，边际地板 0.033。中德 59/59。', prov_m4_sum: '出处：零检验', prov_m4_why: '为什么：p<0.004 是分辨率极限、不是调参——再多置换也改不了它。', prov_m4_chain: 'data/math_extractions/merged/aligned_data.json → scripts/figures/fig4_null_model.py → research/numbers_ssot_20260916.json → 字段 macro_perm（n_perm 500，p 0.004，floor 0.033）。',
-prov_m5_btn: '切换：中德 / 含英', prov_m5_a: '中德：59/59——全绿。', prov_m5_b: '含英：177 检验，9 个标 n.s.。', prov_m5_sum: '出处：复刻', prov_m5_why: '为什么：59 次同协议复刻把信号（中德 59/59）和噪声（含英 9/177 n.s.）分开。', prov_m5_chain: 'manifest.json（pipeline_version 2.0）→ scripts/run_dashscope_batch.py → research/numbers_ssot_20260916.json → 字段 replication（59 测量 / 54 模型 / 177 检验，9/177 n.s.）。',
 kick_limits: '局限', limits_title: '局限', limits_sub: '结论之前，先看全部局限。不静默升级。',
 l1_t: '切分边界', l1_d: '按节切分；跨节指代计 dangling。偏倚单向且保守。',
 l2_t: '硬匹配惩罚', l2_d: '同义异写天然被罚；敏感性是个位数。',
@@ -719,35 +605,13 @@ kick_curr: '课程', curr_title: '课程分析', curr_sub: '覆盖率：北威 1
 curr_a_t: 'A · 粒度 ✕', curr_a_d: '细标准列更多概念——否决为唯一原因。',
 curr_b_t: 'B · 治理 ✓', curr_b_d: '集权体制覆盖更多——假设，论文 §8.6。',
 curr_c_t: 'C · 分流 !', curr_c_d: '分轨 vs 综合——开放问题。',
-kick_cs: '探索', cs_title: '交互式 CognitiveSpace', cs_sub: '数学子图：556 节点 · 233 渲染边（共 517）· 219 组。', cs_open: '打开 3D 图 →', kick_labs: '上手', labs_title: '迷你实验室', labs_sub: '无独立页面：实验嵌在正文里。跑方法、打反例、关限制。', lab1_t: '复算实验室', lab1_d: '五步五个控件：对齐单词、拖阈值、跑 50 次置换、点亮 59 名录。', lab2_t: '反例猎人', lab2_d: '八个硬茬三语并排——附裁决：推不翻结论 C。', lab3_t: '限制开关板', lab3_d: '六条限制开关：关一条看哪些发现变暗——附误读警告。', lab_open: '打开 →', 
+kick_cs: '探索', cs_title: '交互式 CognitiveSpace', cs_sub: '数学子图：556 节点 · 233 渲染边（共 517）· 219 组。', cs_open: '打开 3D 图 →', kick_labs: '上手', labs_title: '迷你实验室', labs_sub: '三个五分钟实验：跑方法、打反例、关限制。', lab1_t: '复算实验室', lab1_d: '五步五个控件：对齐单词、拖阈值、跑 50 次置换、点亮 59 名录。', lab2_t: '反例猎人', lab2_d: '八个硬茬三语并排——附裁决：推不翻结论 C。', lab3_t: '限制开关板', lab3_d: '六条限制开关：关一条看哪些发现变暗——附误读警告。', lab_open: '打开 →', 
 kick_paper: '论文', paper_title: '论文', paper_sub: '九个核心章（~161KB）＋ PDF（243KB）。附录 W 是探索性的，不在评审证据内。', paper_pdf: '下载 PDF',
 kick_open: '开放科学', open_title: '开放科学', open_sub: '代码、数据、图表——和联系方式。',
 open_code_t: '代码', open_code_d: '84 pytest 套件；提交文档有复现指南；权重向量走 GitHub Release。',
 open_data_t: '数据', open_data_d: '68 数学抽取＋lds_c 测量；PII 不进提交包。',
 open_contact_t: '联系', open_contact_d: '经学校导师（见伦理 consent）。欢迎评审与二评。',
-footer_note: '详表见 v1 存档。',
-prov_fc_sum: '反例：8 个最硬的三语对齐组（抽屉）',
-prov_fc_why: '为什么设这个抽屉：这是合并文件 data/math_extractions/merged/merged_concepts.json 里跨语言最相似的 8 个数学组——如果某个共享概念能推翻结论 C，最可能就是其中之一。',
-cx_1: '[concepts#45] Skalarprodukt / inner product / 内积 · 引用 4（de 2、en 1、zh 1）——别名"Skalarprodukt, dot product, inner product, 点积"。裁决：共享的节点标签碰不到边结构，关不上 LDS-K 分裂（spread 0.419）。',
-cx_2: '[concepts#52] Ableitung / derivative / 导数 · 引用 4（de 1、en 2、zh 1）——别名"Ableitung, Derivative, Differentialquotient, Differenzialquotient, derivative, derivative function, differential coefficient, 导函数, 微商"。裁决：结论 C 是 219 组的平均，一个对齐的微积分核心词搬不动全库均值。',
-cx_3: '[concepts#54] Funktion / function / 函数 · 引用 5（de 1、en 2、zh 2）——别名"Function, Funktion, function"。裁决：这正是 T1 去污已证伪的标签伪影类（0.556→0.020），再数一次等于把证伪的接近重复计算。',
-cx_4: '[concepts#43] Kern / kernel, null space / 核, 零空间（线性变换的核）· 引用 3（de 1、en 1、zh 1）——别名"Kern, kernel, null space, 核, 零空间"。裁决：硬匹配已在 0.519 内部给这组同义词加过分，它在 claim 里面，不在对立面。',
-cx_5: '[concepts#29] charakteristische Gleichung / characteristic equation / 特征方程 · 引用 4（de 1、en 1、zh 2）——别名"characteristic equation, charakteristische Gleichung"。裁决：Tier-2 向量也对得上这三元组，却把三对全压进 0.48–0.52（spread 0.0445），证明向量两边都复现不了教科书分裂。',
-cx_6: '[concepts#12] Vektor / vector / 向量 · 引用 4（de 1、en 2、zh 1）——别名"Vektor, vector"。裁决：通用的线性代数外来词只能解释词汇重叠，解释不了 LDS-K 所测的关系图收敛。',
-cx_7: '[concepts#53] Grenzwert / limit / 极限 · 引用 4（de 1、en 2、zh 1）——别名"Grenzwert, Limes, Limit, limit"。裁决：分析核心的节点一致与中德边级分歧在全库层面完全兼容。',
-cx_8: '[concepts#42] lineare Abbildung / linear transformation / 线性变换, 线性映射 · 引用 3（de 1、en 1、zh 1）——别名"linear transformation, lineare Abbildung, 线性映射"。裁决：219 对齐 vs 359 未对齐中的一组干净三元组，推不翻 59/59 置换显著的全库统计。',
-prov_fc_chain: '数字链：Tier-1 教科书 LDS-K 0.519/0.933/0.938（src/scoring.py:122；research/consensus_v4_20260916.json）· T1 去污 0.556→0.020 · Tier-2 向量 0.4804/0.5249/0.4888，spread 0.0445 vs 教科书 spread 0.419 · 组 data/math_extractions/merged/merged_concepts.json concepts #12、#29、#42、#43、#45、#52、#53、#54（各语言引用数逐条引自 cross_references 数组）。',
-prov_fc_src: '来源：合并文件 data/math_extractions/merged/merged_concepts.json · 代码与数据 <a href="https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph">github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph</a>——只用 frozen 数字，此处不重算。',
-limsw_link: '关掉我',
-limsw_warn1: '关掉后的误读：跨节链接看似免费，CDS 地板（0.271→0.073）显得比实际更密——发现 A、B、C 仍是 preliminary，绝不会更强。',
-limsw_warn2: '关掉后的误读：中德 0.519 看似真收敛——它是构造性惩罚值、敏感性只有个位数，结论 C 的分裂不变。',
-limsw_warn3: '关掉后的误读：N=8 pilot 形状（0.704/0.727/0.751）看似证据——N=30 之前只是占位，发现 D、E 保持只有形状。',
-limsw_warn4: '关掉后的误读：单次值看似常量——轮间分歧约 27–41%，它们是带波动带的快照，A、B、C 保留波动带。',
-limsw_warn5: '关掉后的误读：混合投票看似趋势——两种阈值刻度必须拆开、跨轮 inter 均值不可比，A、B 不报趋势。',
-limsw_warn6: '关掉后的误读：分片 F1 看似稳固——92 金标只够估总体 F1，德国数学 F1（0.506）方差大，C、E 留在总体口径。',
-curr_ev_a: '证据条：NRW 地板 12.7%——细标准单独解释不了差距（已否决为唯一原因）。',
-curr_ev_b: '证据条：CN 天花板 95.4%——集权覆盖假设，论文 §8.6。',
-curr_ev_c: '证据尺 12.7%→95.4%——分轨 vs 综合仍是开放问题。'
+footer_note: '详表见 v1 存档。'
 } };
 
 </script>
