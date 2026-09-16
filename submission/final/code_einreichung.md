@@ -44,6 +44,16 @@ python scripts/lds_k_deepen.py               # LDS-K, Knoten-/Kanten-Aufschlüss
 
 Alle Skripte schreiben datierte JSON-Ausgaben nach `data/lds_c/` inkl. Nachvollziehbarkeitsblock (Eingabedateien, Modell, Parameter, Seed).
 
+**Schritt 5 — Weight-Vektor-Kontrollebene (exploratory appendix-only, NICHT Teil der Haupt-Reproduktion):**
+```bash
+python scripts/tools/weight_graph_audit.py  # E1 kNN-LDS-VEC (k=5/10/15), bereits committed
+python scripts/tools/weight_graph_E1b.py    # E1b gid-Identität, J_edge-only(gid) (staged, Phase-3b)
+python scripts/tools/weight_graph_E3.py     # E3 238-Kanten edge-count-matched-only (staged, Phase-3b)
+```
+- Bedarf: System-Python + **numpy** (stdlib sonst); **kein torch/transformers nötig** (E1b/E3 rechnen Kosinus-kNN auf abgelegten 934×768-Vektoren; Aufgabenstellung „torch/transformers" trifft auf diese Skripte nicht zu — hier wahrheitsgemäß als numpy-only登记).
+- Eingaben (read-only): `research/weight_vectors_934x768_20260916.term2vec.json` (934×768, `text-embedding-nomic-embed-text-v1.5` via LM Studio `http://127.0.0.1:1234/v1/models`, served revision UNVERIFIED) + `data/math_extractions/merged/aligned_data.json` (219 Zeilen). Vektordateien (~15,8 MB × 2) bleiben **untracked (Release-Attachment, kein LFS)** — ohne sie sind E1b/E3 nicht lauffähig.
+- Outputs: `research/weight_graph_E1b_20260916.json` (committed) / `research/weight_graph_E3_20260916.json` (committed) / E3-Bericht `research/weight_vs_human_E3_20260916.md` (staged). Alle Statistiken exploratory appendix-only (Hypothesis/PENDING), kein Aufstieg ohne unabhängige Nachprüfung (≥200 Wiederholungen + Letztzeilen-Rechnung + Dichte-Adjudikation).
+
 ---
 
 ## 2. Skriptrollen (Übersicht)
