@@ -110,3 +110,10 @@
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。
 - P1：§7 gloss 抽检 + 交叉、§6 ✅ 已重冻（docstring 旧数 0.444/0.800 待 A 组核对）、Mono bug ✅ 已修。
 - P2：GED 近似路线 ✅ 已正式放弃并冻结（§8d，用户决策 2026-09-14）、旧 1.0 CSV 归档。
+
+## §12 全量化审核 v22（2026-09-16；post-PDF-Stand，仅 markdown 台账）
+- 全复算：`scripts/tools/reproduce_headline.py` 28/28 match，numbers-gate PASS（见 `research/reproduce_headline_20260916.md`）。
+- §11 行 89–90 共识裸数两处特此改引为报告指针（`research/thr_sensitivity_v4_20260916.md`），内容不变，headline 维持禁用；live recount 漂移（weak −1 / hypo −2，6 文件 ±1）已记偏离 D-系，不修数（禁用量级，无 headline 影响）。
+- 统计双审：重跑全 match（Youden/perm/dedup/E3/CKA·RSA 精确），方法盲审 12 项中 SAP 缺失与 gold-72 盲态判 reject（`research/stat_methods_review_20260916.md`）；paper §9.5 已追加第 6 条 Prüfarchitektur-Limitation。
+- pitch `video_script.md` 口径已对齐 SSOT（59/54/elf/n=26-30 geparkt）。
+- 门禁判定：v1.0 tag 继续 block（H1 二评＋H3 二签人类项＋D2/D8/D9/D10/D13/D17 六 open 偏离）；总报告 `research/full_audit_report_20260916.md`。

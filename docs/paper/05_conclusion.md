@@ -61,6 +61,7 @@ Die Studie hat fünf wesentliche Einschränkungen:
 3. **Umfang des Nullmodells**: Das graderhaltende Nullmodell ist konservativ — es testet Kantenanordnung jenseits der Gradstruktur, aber nicht, ob die Gradstruktur selbst sprachbeeinflusst ist.
 4. **Lehrplanvergleich**: Der Coverage Score verwendet keyword-basiertes Matching; zukünftige Versionen sollten semantische Alignierung integrieren.
 5. **Golddatensatzgröße**: Aktuelle 92 Goldlabels insgesamt (Batch A 20 hand-annotiert, **Mature (C9a)**; Batch B 72 machine-seeded/human-accepted, **Developing (C9b)**, agent-panel-reviewed (verdict maintain, human-review pending)) liefern zuverlässige Schätzungen über Domänen hinweg. Eine Erweiterung auf 200+ würde die statistische Aussagekraft für Untergruppenanalysen weiter stärken.
+6. **Prüfarchitektur (Voll-Audit 2026-09-16, s. `research/full_audit_report_20260916.md`)**: Kein vorab gesperrter statistischer Analyseplan (SAP) — die Studie ist konfirmatorisch nur im Within-Subject-LLM-Design belastbar, die Human-Randomisierung bleibt explorativ; Youden 0,12 ist heuristisch (nicht validiert); Consensus-Votes sind skalen-gemischt und von Headline-Aussagen ausgeschlossen; ds-pro/mimo-Abwesenheiten sind Quoten-bedingt offengelegt (keine Imputation); die Gold-72-Zweitreview (H1) und die LEDGER-Zweitsignatur (H3) stehen aus und blockieren den v1.0-Tag.
 
 ### 9.6 Zukünftige Arbeit
 

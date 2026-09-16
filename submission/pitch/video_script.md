@@ -49,15 +49,15 @@ Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen. Unsere neue 
 
 ## 1:40–2:25 — Befunde: Sprachsignal ist real und kulturell gemustert (发现)
 
-**Visual:** Fünf Themen-Säulen ZH-DE (Gerechtigkeit 0.96 / Freiheit 0.96 / Verantwortung 0.98 / Heimat 0.93 / Erfolg 0.93) + Math-Kontrollsäule 0.52; Ecke: "55 Messungen · 50 Modelle · alle ZH-DE p<0.05" + Fußnote "ohne qwen-max-Teilmessung (n=29, in ZH-DE ebenfalls signifikant)"; B1: LDS-C 0.93–0.96 / Boden 0.85–0.87 / Social 0.82 (Basismodell deepseek-v4-flash).
+**Visual:** Fünf Themen-Säulen ZH-DE (Gerechtigkeit 0.96 / Freiheit 0.96 / Verantwortung 0.98 / Heimat 0.93 / Erfolg 0.93) + Math-Kontrollsäule 0.52; Ecke: "59 Messungen · 54 Modelle · alle ZH-DE p<0.05" + Fußnote "ohne qwen-max-Teilmessung (n=26/30, geparkt)"; B1: LDS-C 0.93–0.96 / Boden 0.85–0.87 / Social 0.82 (Basismodell deepseek-v4-flash).
 
 **Narration (DE):**
-„Wir haben das Experiment auf 50 Modelle verschiedener Anbieter ausgeweitet (55 Messungen) — auch auf sieben westliche Messungen. In allen 55 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
+„Wir haben das Experiment auf 54 Modelle verschiedener Anbieter ausgeweitet (59 Messungen) — auch auf elf westliche Messungen. In allen 59 Messungen ist das chinesisch-deutsche Signal statistisch signifikant (Permutationstest p < 0.05). Und es ist nicht zufällig, sondern kulturell gemustert: Deutsche Konzepte betonen Autonomie und Regeln, chinesische Raum und Anspruch — die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
 
 Der entscheidende Kontrollbefund: Institutionelles Wissen — etwa Mathematik — konvergiert sprachübergreifend. Kulturelle Konzepte divergieren dagegen deutlich. Unser Messinstrument findet also genau das, was es finden soll: Konvergenz, wo Konvergenz zu erwarten ist, Divergenz, wo Divergenz zu erwarten ist. Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch."
 
 **Narration (EN subtitle):**
-"We extended the experiment to 50 models from different providers (55 measurements) — including seven western measurements. Across all 55 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.
+"We extended the experiment to 54 models from different providers (59 measurements) — including eleven western measurements. Across all 59 measurements the Chinese–German signal is statistically significant (permutation test p < 0.05). And it is not random but culturally patterned: German concepts emphasize autonomy and rules, Chinese concepts space and entitlement — the cultural direction clearly exceeds a random null model.
 
 The decisive control finding: institutional knowledge — for instance mathematics — converges across languages. Cultural concepts, by contrast, diverge clearly. Our instrument finds exactly what it should find: convergence where convergence is expected, divergence where divergence is expected. Even the relations between concepts are organized language-specifically."
 
@@ -93,7 +93,7 @@ The decisive control finding: institutional knowledge — for instance mathemati
 - [ ] Weltkarte / Sprach-Split + „EU AI Act"-Einblendung
 - [ ] Drei-Sprachen-Panel: dasselbe Modell → 5 Themen
 - [ ] LDS-Formel (1 − mean(J_node, J_edge)) + Balken LDS-C vs. Boden (0.93–0.96 / 0.85–0.87)
-- [ ] **55-Messungs-Replikation**: Balken der ZH-DE-Margen (top-8 Modelle, 0.03–0.42) + "55 Messungen, 50 Modelle"
+- [ ] **59-Messungs-Replikation**: Balken der ZH-DE-Margen (top-8 Modelle, 0.03–0.42) + "59 Messungen, 54 Modelle"
 - [ ] Treiberliste (DE-only vs ZH-only) aus `divergence_drivers_20260809.json`
 - [ ] **Kontrollbefund (P2-Recheck)**: Domänen-Vergleich ist alignierungsabhängig → im Video nicht als harter "Kontrollbeweis" präsentieren; stattdessen die Nullmodell-Statistik der Kulturrichtung (≥10 Stimmen 218 vs 147, p<0.001)
 - [ ] Divergenzbericht-Mockup (Entwickler/Regulierer/Forscher)
