@@ -77,7 +77,7 @@
 
 | 入口 | 内容 | 适合谁 |
 |-------|--------------|----------|
-| [🧠 研究门户](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | 发现 F1–F12、复刻名录（**59/54/177**）、边际星系图、验证区 | **评委与审稿人——从这里开始** |
+| [🧠 研究门户](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | 发现 A–E、复刻名录（**59/54/177**）、边际星系图、验证区 | **评委与审稿人——从这里开始** |
 | [🌐 STEAM 总览](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | 三学科并置 3D 图（1,143 节点 · 834 边，无跨学科桥）+ 对比面板 | 跨学科对比 |
 | [📄 论文（PDF）](submission/final/LinguaGraph_BWKI2026.pdf) | 论文全文，冻结图表 + 数值 | 学术阅读、引用 |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | 交互式 3D 知识图谱（1,143 概念） | 现场演示、观众 |

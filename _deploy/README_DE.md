@@ -77,7 +77,7 @@ Mathematische Wahrheit ist universell, aber die Art und Weise, wie sie in Lehrb�
 
 | Einstieg | Was es gibt | Für wen |
 |-------|--------------|----------|
-| [🧠 Forschungsportal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Erkenntnisse F1–F12, Replikations-Roster (**59/54/177**), Margin-Galaxie, Validierung | **Jury & Reviewer — hier starten** |
+| [🧠 Forschungsportal](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/portal/) | Befunde A–E, Replikations-Roster (**59/54/177**), Margin-Galaxie, Validierung | **Jury & Reviewer — hier starten** |
 | [🌐 STEAM-Überblick](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/web/?graph=steam) | Alle 3 Fächer nebeneinander in einem 3D-Graphen (1.143 Knoten · 834 Kanten, keine Brücken) + Vergleichs-Panel | Fächerübergreifender Vergleich |
 | [📄 Paper (PDF)](submission/final/LinguaGraph_BWKI2026.pdf) | Vollständiges Paper, eingefrorene Abbildungen + Werte | Akademische Lektüre, Zitation |
 | [🌌 CognitiveSpace 3D](https://jjjjjjjjnnjnn.github.io/BWKI-2026-LinguaGraph/) | Interaktiver 3D-Wissensgraph (1.140+ Konzepte) | Live-Demo, Publikum |

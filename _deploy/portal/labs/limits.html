@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Limit Switchboard · LinguaGraph</title>
+<style>
+:root{--bg:#f1f3f5;--sf:#f8fafc;--ink:#0a1f3d;--sec:#4a5a78;--ac:#1e3a8a;--hl:#c6cdd6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Georgia,"Times New Roman",serif;max-width:860px;margin:0 auto;padding:28px 18px}
+h1{font-size:30px;margin:0}.sub{color:var(--sec);font-size:16px;margin:6px 0 0}
+.sw{margin:12px 0}.sw a{color:var(--sec);text-decoration:underline;margin-right:12px;font-size:15px;cursor:pointer}.sw a.on{color:var(--ac);font-weight:bold}
+section{background:var(--sf);border:1px solid var(--hl);border-radius:10px;padding:16px 18px;margin:14px 0}
+h2{font-size:19px;margin:0 0 8px}.tg{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--hl);font-size:16px;cursor:pointer}.tg:first-of-type{border-top:0}.tg input{margin-top:5px;accent-color:var(--ac)}.tg small{color:var(--sec);font-family:system-ui;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid var(--hl);border-radius:999px;padding:6px 14px;font-size:15px;background:#fff;transition:opacity .2s}.dim{opacity:.22}
+#warn{font-size:15px;color:var(--sec);border-left:3px solid var(--ac);padding:6px 12px;margin:10px 0 0;min-height:1em}.foot{color:var(--sec);font-size:13px;font-family:system-ui}
+</style>
+</head>
+<body>
+<h1 id="t">Limit-Schalttafel</h1>
+<p class="sub" id="s"></p>
+<div class="sw"><a data-lg="de" class="on">Deutsch</a><a data-lg="zh">中文</a><a data-lg="en">English</a></div>
+<section><h2 id="hL"></h2>
+<label class="tg"><input type="checkbox" checked data-m="A,B,C" data-i="0"><span><span data-l="0"></span><br><small>T1 0.556→0.020 · dangling refs</small></span></label>
+<label class="tg"><input type="checkbox" checked data-m="C" data-i="1"><span data-l="1"></span></label>
+<label class="tg"><input type="checkbox" checked data-m="D,E" data-i="2"><span data-l="2"></span></label>
+<label class="tg"><input type="checkbox" checked data-m="A,B,C" data-i="3"><span data-l="3"></span></label>
+<label class="tg"><input type="checkbox" checked data-m="A,B" data-i="4"><span data-l="4"></span></label>
+<label class="tg"><input type="checkbox" checked data-m="C,E" data-i="5"><span data-l="5"></span></label>
+</section>
+<section><h2 id="hF"></h2><div class="chips">
+<span class="chip" id="FA" data-f="0"></span><span class="chip" id="FB" data-f="1"></span><span class="chip" id="FC" data-f="2"></span><span class="chip" id="FD" data-f="3"></span><span class="chip" id="FE" data-f="4"></span>
+</div><p id="warn"></p></section>
+<p class="foot">LinguaGraph · BWKI 2026 · frozen numbers only · Mini-Labor 3</p>
+<script>
+var T={
+de:{t:"Limit-Schalttafel",s:"Sechs Grenzen an/aus — AUS dimmt Befunde und warnt vor Fehllesung.",hL:"Grenzen (L1–L6)",hF:"Befunde (A–E)",
+L:["L1 · Chunking-Grenze (sektionsweise)","L2 · Hard-Match + T1 0,556→0,020","L3 · Pilot N=8 Platzhalter / Design N=30","L4 · temperature=0: Selbstübereinstimmung 0,59–0,73","L5 · Snapshot-Instabilität (keine Trends)","L6 · Kleine Stichproben: DE-Mathe F1 0,506 · Social 0,939 blind ausstehend"],
+F:["A · CDS 0,271→0,073 (3,7×)","B · Tiefe ≤8 (Mathe ≤8), 83% Wurzeln","C · 0,519 / 0,933 / 0,938","D · Abdeckung variiert","E · Menschen N=15, kein ΔLDS"],
+W:["Ohne L1 wirken Graphen vollständig — Dangling-Referenzen werden übersehen.","Ohne L2 wirkt zh–de-Nähe echt — 0,556 war ein Label-Artefakt (T1 0,556→0,020).","Ohne L3 wirkt N=8 belastbar — es ist nur Platzhalter, N=30 steht aus.","Ohne L4 wirken Werte exakt — Selbstübereinstimmung nur 0,59–0,73.","Ohne L5 wirken Trends stabil — Nachfüll-Mittel sind unvergleichbar.","Ohne L6 wirkt DE-Mathe F1 0,506 robust — Varianz hoch; 0,939 wartet auf Blind-Review."]},
+zh:{t:"限制配电盘",s:"六个限制开/关——关闭时对应发现变暗，并提示误读。",hL:"限制 (L1–L6)",hF:"发现 (A–E)",
+L:["L1 · 分块边界（按节切分）","L2 · 硬匹配 + T1 0.556→0.020","L3 · 试点 N=8 占位 / 正式 N=30 待测","L4 · temperature=0：自洽仅 0.59–0.73","L5 · 快照不稳定（无趋势结论）","L6 · 小样本：德语数学 F1 0.506 · 社会 0.939 待盲审"],
+F:["A · CDS 0.271→0.073（3.7×）","B · 深度≤8（数学≤8），83% 为根","C · 0.519 / 0.933 / 0.938","D · 覆盖度差异大","E · 人类 N=15，无 ΔLDS"],
+W:["关闭 L1，图谱显得完整——悬空引用被忽略。","关闭 L2，中德接近显得真实——0.556 实为标签假象（T1 0.556→0.020）。","关闭 L3，N=8 显得可信——实仅占位，N=30 待测。","关闭 L4，数值显得精确——而自洽仅 0.59–0.73。","关闭 L5，趋势显得稳定——而跨轮均值不可比。","关闭 L6，德语数学 F1 0.506 显得稳健——实则方差大；0.939 待盲审。"]},
+en:{t:"Limit Switchboard",s:"Six limits on/off — OFF dims findings and warns against misreading.",hL:"Limits (L1–L6)",hF:"Findings (A–E)",
+L:["L1 · Chunking boundary (section-level)","L2 · Hard match + T1 0.556→0.020","L3 · Pilot N=8 placeholder / design N=30","L4 · temperature=0: self-agreement 0.59–0.73","L5 · Snapshot instability (no trends)","L6 · Small samples: DE-math F1 0.506 · social 0.939 blind pending"],
+F:["A · CDS 0.271→0.073 (3.7×)","B · Depth ≤8 (math ≤8), 83% roots","C · 0.519 / 0.933 / 0.938","D · Coverage varies","E · Humans N=15, no ΔLDS"],
+W:["Without L1 graphs look complete — dangling references vanish.","Without L2 zh–de closeness looks real — 0.556 was a label artifact (T1 0.556→0.020).","Without L3 N=8 looks solid — shape-only placeholder; N=30 pending.","Without L4 values look exact — self-agreement is only 0.59–0.73.","Without L5 trends look stable — refill means are incomparable.","Without L6 DE-math F1 0.506 looks robust — variance high; 0.939 awaits blind review."]}};
+var lang="de";
+function upd(){var d=T[lang],off={};document.querySelectorAll(".tg input").forEach(function(c){if(!c.checked)c.dataset.m.split(",").forEach(function(k){off[k]=1})});
+["A","B","C","D","E"].forEach(function(k){document.getElementById("F"+k).classList.toggle("dim",!!off[k])});
+var w=[];document.querySelectorAll(".tg input").forEach(function(c){if(!c.checked)w.push(d.W[+c.dataset.i])});
+document.getElementById("warn").textContent=w.join(" ")}
+function setLang(l){lang=l;var d=T[l];document.querySelectorAll(".sw a").forEach(function(a){a.classList.toggle("on",a.dataset.lg===l)});
+document.getElementById("t").textContent=d.t;document.getElementById("s").textContent=d.s;document.getElementById("hL").textContent=d.hL;document.getElementById("hF").textContent=d.hF;
+document.querySelectorAll("[data-l]").forEach(function(e){e.textContent=d.L[+e.dataset.l]});document.querySelectorAll("[data-f]").forEach(function(e){e.textContent=d.F[+e.dataset.f]});upd()}
+document.querySelectorAll(".sw a").forEach(function(a){a.onclick=function(){setLang(a.dataset.lg)}});
+document.querySelectorAll(".tg input").forEach(function(c){c.onchange=upd});setLang("de");
+</script>
+</body>
+</html>
