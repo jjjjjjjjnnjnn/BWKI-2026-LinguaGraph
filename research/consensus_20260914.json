@@ -1,0 +1,7439 @@
+{
+  "meta": {
+    "date": "20260914",
+    "method": "概念归一化=小写+去全部空白；概念>=2源=收录；关系有序端点对(归一化source,归一化target)一致>=2源=Solid，1源=Hypothetical（忽略type）；mimo独有(sources=={mimo})=候选删/审",
+    "inputs": [
+      "data/math_extractions/<base>.json",
+      "research/mimo_spark_audit/<base>.audit.json",
+      "research/bailian_audit/<base>.bailian.json"
+    ],
+    "n_files": 12,
+    "basenames": [
+      "de_abitur_lk",
+      "de_forster_analysis1_ch5_sec5.1",
+      "de_lambacher_5-8",
+      "de_wahrscheinlichkeit_ch1-8",
+      "en_ib_math_aa_sl",
+      "en_khan_academy_3-4",
+      "en_khan_academy_6-8",
+      "en_stewart_ch3_sec3.1",
+      "zh_微分方程_ch3_sec3.2-3.4",
+      "zh_微分方程_ch4_sec4.1-4.3",
+      "zh_选修2-2_ch1_sec1.1",
+      "zh_选修2-2_ch1_sec1.2"
+    ]
+  },
+  "totals": {
+    "accepted_concepts_ge2": 230,
+    "solid_relations": 96,
+    "hypothetical_relations": 456,
+    "mimo_only_review": 22
+  },
+  "files": [
+    {
+      "basename": "de_abitur_lk",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 28,
+        "spark_concepts": 34,
+        "bailian_concepts": 40,
+        "accepted_concepts_ge2": 30,
+        "mimo_only_review": 5,
+        "mimo_relations": 21,
+        "spark_relations": 21,
+        "bailian_relations": 30,
+        "solid_ge2": 16,
+        "hypothetical_1src": 40
+      },
+      "accepted_concepts": [
+        {
+          "norm": "bedingtewahrscheinlichkeit",
+          "display": "Bedingte Wahrscheinlichkeit",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "binomialverteilung",
+          "display": "Binomialverteilung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "determinante",
+          "display": "Determinante",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "diagonalisierung",
+          "display": "Diagonalisierung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "differentialgleichung",
+          "display": "Differentialgleichung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "differentiation",
+          "display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "ebenengleichung",
+          "display": "Ebenengleichung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "eigenvektoren",
+          "display": "Eigenvektoren",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "eigenwerte",
+          "display": "Eigenwerte",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "erwartungswert",
+          "display": "Erwartungswert",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "extrema",
+          "display": "Extrema",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "grenzwerte",
+          "display": "Grenzwerte",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "integration",
+          "display": "Integration",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kegelschnitte",
+          "display": "Kegelschnitte",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kombinationen",
+          "display": "Kombinationen",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "komplexezahlen",
+          "display": "Komplexe Zahlen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kurvendiskussion",
+          "display": "Kurvendiskussion",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "matrizen",
+          "display": "Matrizen",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "monotonie",
+          "display": "Monotonie",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "newton-verfahren",
+          "display": "Newton-Verfahren",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "normalverteilung",
+          "display": "Normalverteilung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "permutationen",
+          "display": "Permutationen",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "polarkoordinaten",
+          "display": "Polarkoordinaten",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "satzvonbayes",
+          "display": "Satz von Bayes",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "simpson-regel",
+          "display": "Simpson-Regel",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "stammfunktion",
+          "display": "Stammfunktion",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "taylorentwicklung",
+          "display": "Taylorentwicklung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "trapezregel",
+          "display": "Trapezregel",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "vektor",
+          "display": "Vektor",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "wendepunkte",
+          "display": "Wendepunkte",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "bayes-formel",
+          "display": "Bayes-Formel"
+        },
+        {
+          "norm": "geradengleichungimraum",
+          "display": "Geradengleichung im Raum"
+        },
+        {
+          "norm": "partielleintegration",
+          "display": "Partielle Integration"
+        },
+        {
+          "norm": "substitutionsregel",
+          "display": "Substitutionsregel"
+        },
+        {
+          "norm": "taylor-entwicklung",
+          "display": "Taylor-Entwicklung"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "determinante",
+          "target_norm": "matrizen",
+          "source_display": "Determinante",
+          "target_display": "Matrizen",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "diagonalisierung",
+          "target_norm": "eigenwerte",
+          "source_display": "Diagonalisierung",
+          "target_display": "Eigenwerte",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "differentialgleichung",
+          "target_norm": "differentiation",
+          "source_display": "Differentialgleichung",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "differentiation",
+          "target_norm": "grenzwerte",
+          "source_display": "Differentiation",
+          "target_display": "Grenzwerte",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "ebenengleichung",
+          "target_norm": "vektor",
+          "source_display": "Ebenengleichung",
+          "target_display": "Vektor",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "eigenvektoren",
+          "target_norm": "eigenwerte",
+          "source_display": "Eigenvektoren",
+          "target_display": "Eigenwerte",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "eigenwerte",
+          "target_norm": "matrizen",
+          "source_display": "Eigenwerte",
+          "target_display": "Matrizen",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "extrema",
+          "target_norm": "differentiation",
+          "source_display": "Extrema",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "integration",
+          "target_norm": "stammfunktion",
+          "source_display": "Integration",
+          "target_display": "Stammfunktion",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "kurvendiskussion",
+          "target_norm": "extrema",
+          "source_display": "Kurvendiskussion",
+          "target_display": "Extrema",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "monotonie",
+          "target_norm": "differentiation",
+          "source_display": "Monotonie",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "newton-verfahren",
+          "target_norm": "differentiation",
+          "source_display": "Newton-Verfahren",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "satzvonbayes",
+          "target_norm": "bedingtewahrscheinlichkeit",
+          "source_display": "Satz von Bayes",
+          "target_display": "Bedingte Wahrscheinlichkeit",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "simpson-regel",
+          "target_norm": "integration",
+          "source_display": "Simpson-Regel",
+          "target_display": "Integration",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "trapezregel",
+          "target_norm": "integration",
+          "source_display": "Trapezregel",
+          "target_display": "Integration",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "wendepunkte",
+          "target_norm": "differentiation",
+          "source_display": "Wendepunkte",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "ableitungenhöhererordnung",
+          "target_norm": "ableitungsbegriff",
+          "source_display": "Ableitungen höherer Ordnung",
+          "target_display": "Ableitungsbegriff",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungsbegriff",
+          "target_norm": "grenzwerteundstetigkeit",
+          "source_display": "Ableitungsbegriff",
+          "target_display": "Grenzwerte und Stetigkeit",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "bayes-formel",
+          "target_norm": "bedingtewahrscheinlichkeit",
+          "source_display": "Bayes-Formel",
+          "target_display": "bedingte Wahrscheinlichkeit",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "bestimmteintegrale",
+          "target_norm": "integration",
+          "source_display": "Bestimmte Integrale",
+          "target_display": "Integration",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "binomialverteilung",
+          "target_norm": "kombinationen",
+          "source_display": "Binomialverteilung",
+          "target_display": "Kombinationen",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "binomialverteilung",
+          "target_norm": "kombinatorik",
+          "source_display": "Binomialverteilung",
+          "target_display": "Kombinatorik",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "determinanten",
+          "target_norm": "matrizen",
+          "source_display": "Determinanten",
+          "target_display": "Matrizen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "diagonalisierung",
+          "target_norm": "eigenwerteundeigenvektoren",
+          "source_display": "Diagonalisierung",
+          "target_display": "Eigenwerte und Eigenvektoren",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differentiationsregeln",
+          "target_norm": "ableitungsbegriff",
+          "source_display": "Differentiationsregeln",
+          "target_display": "Ableitungsbegriff",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ebenengleichungen",
+          "target_norm": "vektoreninr²undr³",
+          "source_display": "Ebenengleichungen",
+          "target_display": "Vektoren in R² und R³",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "eigenwerteundeigenvektoren",
+          "target_norm": "matrizen",
+          "source_display": "Eigenwerte und Eigenvektoren",
+          "target_display": "Matrizen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "erwartungswert",
+          "target_norm": "zufallsvariablen",
+          "source_display": "Erwartungswert",
+          "target_display": "Zufallsvariablen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "extrema",
+          "target_norm": "kurvendiskussion",
+          "source_display": "Extrema",
+          "target_display": "Kurvendiskussion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "extrema",
+          "target_norm": "monotonie",
+          "source_display": "Extrema",
+          "target_display": "Monotonie",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "geradengleichung",
+          "target_norm": "vektor",
+          "source_display": "Geradengleichung",
+          "target_display": "Vektor",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "geradengleichungen",
+          "target_norm": "vektoreninr²undr³",
+          "source_display": "Geradengleichungen",
+          "target_display": "Vektoren in R² und R³",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "geradengleichungimraum",
+          "target_norm": "vektor",
+          "source_display": "Geradengleichung im Raum",
+          "target_display": "Vektor",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "gewöhnlichedifferentialgleichungen1.ordnung",
+          "target_norm": "ableitungsbegriff",
+          "source_display": "Gewöhnliche Differentialgleichungen 1. Ordnung",
+          "target_display": "Ableitungsbegriff",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "hyperbel",
+          "target_norm": "kegelschnitte",
+          "source_display": "Hyperbel",
+          "target_display": "Kegelschnitte",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "integration",
+          "target_norm": "stammfunktionen",
+          "source_display": "Integration",
+          "target_display": "Stammfunktionen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kegelschnitte",
+          "target_norm": "ellipse",
+          "source_display": "Kegelschnitte",
+          "target_display": "Ellipse",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "krümmungsverhalten",
+          "target_norm": "ableitungenhöhererordnung",
+          "source_display": "Krümmungsverhalten",
+          "target_display": "Ableitungen höherer Ordnung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "krümmungsverhalten",
+          "target_norm": "kurvendiskussion",
+          "source_display": "Krümmungsverhalten",
+          "target_display": "Kurvendiskussion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kurvendiskussion",
+          "target_norm": "wendepunkte",
+          "source_display": "Kurvendiskussion",
+          "target_display": "Wendepunkte",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "lineareabbildungen",
+          "target_norm": "matrizen",
+          "source_display": "Lineare Abbildungen",
+          "target_display": "Matrizen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearegleichungssysteme",
+          "target_norm": "matrizen",
+          "source_display": "Lineare Gleichungssysteme",
+          "target_display": "Matrizen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "monotonie",
+          "target_norm": "ableitungsbegriff",
+          "source_display": "Monotonie",
+          "target_display": "Ableitungsbegriff",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "monotonie",
+          "target_norm": "kurvendiskussion",
+          "source_display": "Monotonie",
+          "target_display": "Kurvendiskussion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "normalverteilung",
+          "target_norm": "erwartungswert",
+          "source_display": "Normalverteilung",
+          "target_display": "Erwartungswert",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "normalverteilung",
+          "target_norm": "zufallsvariablen",
+          "source_display": "Normalverteilung",
+          "target_display": "Zufallsvariablen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "parabel",
+          "target_norm": "kegelschnitte",
+          "source_display": "Parabel",
+          "target_display": "Kegelschnitte",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "partielleintegration",
+          "target_norm": "produktregel",
+          "source_display": "Partielle Integration",
+          "target_display": "Produktregel",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "permutationen",
+          "target_norm": "kombinationen",
+          "source_display": "Permutationen",
+          "target_display": "Kombinationen",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "substitutionsregel",
+          "target_norm": "kettenregel",
+          "source_display": "Substitutionsregel",
+          "target_display": "Kettenregel",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "taylor-entwicklung",
+          "target_norm": "differentiation",
+          "source_display": "Taylor-Entwicklung",
+          "target_display": "Differentiation",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "taylorentwicklung",
+          "target_norm": "ableitungenhöhererordnung",
+          "source_display": "Taylorentwicklung",
+          "target_display": "Ableitungen höherer Ordnung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "taylorentwicklung",
+          "target_norm": "differentiation",
+          "source_display": "Taylorentwicklung",
+          "target_display": "Differentiation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "taylorentwicklung",
+          "target_norm": "potenzreihen",
+          "source_display": "Taylorentwicklung",
+          "target_display": "Potenzreihen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "wendepunkte",
+          "target_norm": "krümmungsverhalten",
+          "source_display": "Wendepunkte",
+          "target_display": "Krümmungsverhalten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "zufallsvariablen",
+          "target_norm": "wahrscheinlichkeitsrechnung",
+          "source_display": "Zufallsvariablen",
+          "target_display": "Wahrscheinlichkeitsrechnung",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "de_forster_analysis1_ch5_sec5.1",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 11,
+        "spark_concepts": 15,
+        "bailian_concepts": 31,
+        "accepted_concepts_ge2": 14,
+        "mimo_only_review": 0,
+        "mimo_relations": 8,
+        "spark_relations": 12,
+        "bailian_relations": 30,
+        "solid_ge2": 8,
+        "hypothetical_1src": 34
+      },
+      "accepted_concepts": [
+        {
+          "norm": "ableitung",
+          "display": "Ableitung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "ableitungsregeln",
+          "display": "Ableitungsregeln",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "differenzierbarkeit",
+          "display": "Differenzierbarkeit",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "exponentialregel",
+          "display": "Exponentialregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kettenregel",
+          "display": "Kettenregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "konstantenregel",
+          "display": "Konstantenregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kosinusregel",
+          "display": "Kosinusregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "logarithmusregel",
+          "display": "Logarithmusregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "potenzregel",
+          "display": "Potenzregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "produktregel",
+          "display": "Produktregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "quotientenregel",
+          "display": "Quotientenregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "sinusregel",
+          "display": "Sinusregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "summenregel",
+          "display": "Summenregel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "zusammengesetztefunktion",
+          "display": "Zusammengesetzte Funktion",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [],
+      "solid_relations": [
+        {
+          "source_norm": "ableitungsregeln",
+          "target_norm": "grenzwert",
+          "source_display": "Ableitungsregeln",
+          "target_display": "Grenzwert",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "exponentialregel",
+          "target_norm": "ableitung",
+          "source_display": "Exponentialregel",
+          "target_display": "Ableitung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "kettenregel",
+          "target_norm": "ableitung",
+          "source_display": "Kettenregel",
+          "target_display": "Ableitung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "kettenregel",
+          "target_norm": "zusammengesetztefunktion",
+          "source_display": "Kettenregel",
+          "target_display": "Zusammengesetzte Funktion",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "potenzregel",
+          "target_norm": "ableitung",
+          "source_display": "Potenzregel",
+          "target_display": "Ableitung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "produktregel",
+          "target_norm": "grenzwert",
+          "source_display": "Produktregel",
+          "target_display": "Grenzwert",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "quotientenregel",
+          "target_norm": "produktregel",
+          "source_display": "Quotientenregel",
+          "target_display": "Produktregel",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "summenregel",
+          "target_norm": "grenzwert",
+          "source_display": "Summenregel",
+          "target_display": "Grenzwert",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "ableitungsregeln",
+          "target_norm": "definitionderableitung",
+          "source_display": "Ableitungsregeln",
+          "target_display": "Definition der Ableitung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungsregeln",
+          "target_norm": "differentiation",
+          "source_display": "Ableitungsregeln",
+          "target_display": "Differentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungsregeln",
+          "target_norm": "grenzwertregeln",
+          "source_display": "Ableitungsregeln",
+          "target_display": "Grenzwertregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungvon(3x+1)^5",
+          "target_norm": "kettenregel",
+          "source_display": "Ableitung von (3x+1)^5",
+          "target_display": "Kettenregel",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungvone^(x²)",
+          "target_norm": "kettenregel",
+          "source_display": "Ableitung von e^(x²)",
+          "target_display": "Kettenregel",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ableitungvonsin(2x)",
+          "target_norm": "kettenregel",
+          "source_display": "Ableitung von sin(2x)",
+          "target_display": "Kettenregel",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differentiation",
+          "target_norm": "ableitung",
+          "source_display": "Differentiation",
+          "target_display": "Ableitung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differenzierbarkeit",
+          "target_norm": "grenzwert",
+          "source_display": "Differenzierbarkeit",
+          "target_display": "Grenzwert",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "exponentialregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Exponentialregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "exponentialregel",
+          "target_norm": "exponentialfunktion",
+          "source_display": "Exponentialregel",
+          "target_display": "Exponentialfunktion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kettenregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Kettenregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kettenregel",
+          "target_norm": "differenzierbarkeit",
+          "source_display": "Kettenregel",
+          "target_display": "Differenzierbarkeit",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kettenregel",
+          "target_norm": "zusammensetzung",
+          "source_display": "Kettenregel",
+          "target_display": "Zusammensetzung",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "konstantenregel",
+          "target_norm": "ableitung",
+          "source_display": "Konstantenregel",
+          "target_display": "Ableitung",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "konstantenregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Konstantenregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "konstantenregel",
+          "target_norm": "konstante",
+          "source_display": "Konstantenregel",
+          "target_display": "Konstante",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kosinusregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Kosinusregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kosinusregel",
+          "target_norm": "kosinusfunktion",
+          "source_display": "Kosinusregel",
+          "target_display": "Kosinusfunktion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "logarithmusregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Logarithmusregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "logarithmusregel",
+          "target_norm": "natürlicherlogarithmus",
+          "source_display": "Logarithmusregel",
+          "target_display": "Natürlicher Logarithmus",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "potenzregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Potenzregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "potenzregel",
+          "target_norm": "potenzfunktion",
+          "source_display": "Potenzregel",
+          "target_display": "Potenzfunktion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "produktregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Produktregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "produktregel",
+          "target_norm": "grenzwertsatz",
+          "source_display": "Produktregel",
+          "target_display": "Grenzwertsatz",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "produktregel",
+          "target_norm": "produktvonfunktionen",
+          "source_display": "Produktregel",
+          "target_display": "Produkt von Funktionen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "quotientenregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Quotientenregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "quotientenregel",
+          "target_norm": "kettenregel",
+          "source_display": "Quotientenregel",
+          "target_display": "Kettenregel",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "quotientenregel",
+          "target_norm": "quotientvonfunktionen",
+          "source_display": "Quotientenregel",
+          "target_display": "Quotient von Funktionen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "sinusregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Sinusregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "sinusregel",
+          "target_norm": "sinusfunktion",
+          "source_display": "Sinusregel",
+          "target_display": "Sinusfunktion",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "summenregel",
+          "target_norm": "ableitungsregeln",
+          "source_display": "Summenregel",
+          "target_display": "Ableitungsregeln",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "summenregel",
+          "target_norm": "summevonfunktionen",
+          "source_display": "Summenregel",
+          "target_display": "Summe von Funktionen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "verallgemeinerungderproduktregel",
+          "target_norm": "produktregel",
+          "source_display": "Verallgemeinerung der Produktregel",
+          "target_display": "Produktregel",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "zusammengesetztefunktion",
+          "target_norm": "ableitung",
+          "source_display": "Zusammengesetzte Funktion",
+          "target_display": "Ableitung",
+          "sources": [
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "de_lambacher_5-8",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 15,
+        "spark_concepts": 30,
+        "bailian_concepts": 40,
+        "accepted_concepts_ge2": 28,
+        "mimo_only_review": 2,
+        "mimo_relations": 10,
+        "spark_relations": 20,
+        "bailian_relations": 30,
+        "solid_ge2": 11,
+        "hypothetical_1src": 36
+      },
+      "accepted_concepts": [
+        {
+          "norm": "addition",
+          "display": "Addition",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "brüche",
+          "display": "Brüche",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "dezimalzahlen",
+          "display": "Dezimalzahlen",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "division",
+          "display": "Division",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "dreieck",
+          "display": "Dreieck",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "durchschnitt",
+          "display": "Durchschnitt",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "funktionenbegriff",
+          "display": "Funktionenbegriff",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "ganzezahlen",
+          "display": "Ganze Zahlen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "grundrechenarten",
+          "display": "Grundrechenarten",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kreis",
+          "display": "Kreis",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "linearefunktionen",
+          "display": "Lineare Funktionen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "linearegleichungen",
+          "display": "Lineare Gleichungen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "median",
+          "display": "Median",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "modalwert",
+          "display": "Modalwert",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "multiplikation",
+          "display": "Multiplikation",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "natürlichezahlen",
+          "display": "natürliche Zahlen",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "proportionalität",
+          "display": "Proportionalität",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "prozentrechnung",
+          "display": "Prozentrechnung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "pythagoreischerlehrsatz",
+          "display": "Pythagoreischer Lehrsatz",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "quader",
+          "display": "Quader",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "rationalezahlen",
+          "display": "Rationale Zahlen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "stellenwertsystem",
+          "display": "Stellenwertsystem",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "subtraktion",
+          "display": "Subtraktion",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "terme",
+          "display": "Terme",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "viereck",
+          "display": "Viereck",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "wahrscheinlichkeit",
+          "display": "Wahrscheinlichkeit",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "winkel",
+          "display": "Winkel",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "würfel",
+          "display": "Würfel",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "gleichung",
+          "display": "Gleichung"
+        },
+        {
+          "norm": "linearefunktion",
+          "display": "lineare Funktion"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "brüche",
+          "target_norm": "grundrechenarten",
+          "source_display": "Brüche",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "dezimalzahlen",
+          "target_norm": "brüche",
+          "source_display": "Dezimalzahlen",
+          "target_display": "Brüche",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "division",
+          "target_norm": "multiplikation",
+          "source_display": "Division",
+          "target_display": "Multiplikation",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "ganzezahlen",
+          "target_norm": "natürlichezahlen",
+          "source_display": "Ganze Zahlen",
+          "target_display": "Natürliche Zahlen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "linearefunktionen",
+          "target_norm": "funktionenbegriff",
+          "source_display": "Lineare Funktionen",
+          "target_display": "Funktionenbegriff",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "linearefunktionen",
+          "target_norm": "linearegleichungen",
+          "source_display": "Lineare Funktionen",
+          "target_display": "Lineare Gleichungen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "proportionalität",
+          "target_norm": "linearefunktionen",
+          "source_display": "Proportionalität",
+          "target_display": "Lineare Funktionen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "prozentrechnung",
+          "target_norm": "brüche",
+          "source_display": "Prozentrechnung",
+          "target_display": "Brüche",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "pythagoreischerlehrsatz",
+          "target_norm": "dreieck",
+          "source_display": "Pythagoreischer Lehrsatz",
+          "target_display": "Dreieck",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "rationalezahlen",
+          "target_norm": "ganzezahlen",
+          "source_display": "Rationale Zahlen",
+          "target_display": "Ganze Zahlen",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "winkel",
+          "target_norm": "dreieck",
+          "source_display": "Winkel",
+          "target_display": "Dreieck",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "addition",
+          "target_norm": "grundrechenarten",
+          "source_display": "Addition",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "brüche",
+          "target_norm": "dezimalzahlen",
+          "source_display": "Brüche",
+          "target_display": "Dezimalzahlen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "brüche",
+          "target_norm": "division",
+          "source_display": "Brüche",
+          "target_display": "Division",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "diagramme",
+          "target_norm": "daten",
+          "source_display": "Diagramme",
+          "target_display": "Daten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "division",
+          "target_norm": "grundrechenarten",
+          "source_display": "Division",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "dreieck",
+          "target_norm": "flächenfiguren",
+          "source_display": "Dreieck",
+          "target_display": "Flächenfiguren",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "dreieck",
+          "target_norm": "viereck",
+          "source_display": "Dreieck",
+          "target_display": "Viereck",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "durchschnitt",
+          "target_norm": "daten",
+          "source_display": "Durchschnitt",
+          "target_display": "Daten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "flächenberechnung",
+          "target_norm": "flächenfiguren",
+          "source_display": "Flächenberechnung",
+          "target_display": "Flächenfiguren",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "gleichungen",
+          "target_norm": "terme",
+          "source_display": "Gleichungen",
+          "target_display": "Terme",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "grundrechenarten",
+          "target_norm": "natürlichezahlen",
+          "source_display": "Grundrechenarten",
+          "target_display": "Natürliche Zahlen",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "grundrechenarten",
+          "target_norm": "zahlen",
+          "source_display": "Grundrechenarten",
+          "target_display": "Zahlen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kopfrechnen",
+          "target_norm": "grundrechenarten",
+          "source_display": "Kopfrechnen",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "kreis",
+          "target_norm": "fläche",
+          "source_display": "Kreis",
+          "target_display": "Fläche",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "kreis",
+          "target_norm": "flächenfiguren",
+          "source_display": "Kreis",
+          "target_display": "Flächenfiguren",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearefunktion",
+          "target_norm": "gleichung",
+          "source_display": "lineare Funktion",
+          "target_display": "Gleichung",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "linearegleichungen",
+          "target_norm": "gleichungen",
+          "source_display": "Lineare Gleichungen",
+          "target_display": "Gleichungen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearegleichungen",
+          "target_norm": "terme",
+          "source_display": "Lineare Gleichungen",
+          "target_display": "Terme",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "median",
+          "target_norm": "daten",
+          "source_display": "Median",
+          "target_display": "Daten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "median",
+          "target_norm": "durchschnitt",
+          "source_display": "Median",
+          "target_display": "Durchschnitt",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "modalwert",
+          "target_norm": "durchschnitt",
+          "source_display": "Modalwert",
+          "target_display": "Durchschnitt",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "multiplikation",
+          "target_norm": "addition",
+          "source_display": "Multiplikation",
+          "target_display": "Addition",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "multiplikation",
+          "target_norm": "grundrechenarten",
+          "source_display": "Multiplikation",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "natürlichezahlen",
+          "target_norm": "zahlen",
+          "source_display": "Natürliche Zahlen",
+          "target_display": "Zahlen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "proportionalität",
+          "target_norm": "linearefunktion",
+          "source_display": "Proportionalität",
+          "target_display": "lineare Funktion",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "schriftrechnung",
+          "target_norm": "grundrechenarten",
+          "source_display": "Schriftrechnung",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "stellenwertsystem",
+          "target_norm": "natürlichezahlen",
+          "source_display": "Stellenwertsystem",
+          "target_display": "Natürliche Zahlen",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "subtraktion",
+          "target_norm": "addition",
+          "source_display": "Subtraktion",
+          "target_display": "Addition",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "subtraktion",
+          "target_norm": "grundrechenarten",
+          "source_display": "Subtraktion",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "terme",
+          "target_norm": "grundrechenarten",
+          "source_display": "Terme",
+          "target_display": "Grundrechenarten",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "terme",
+          "target_norm": "zahlen",
+          "source_display": "Terme",
+          "target_display": "Zahlen",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "wahrscheinlichkeit",
+          "target_norm": "daten",
+          "source_display": "Wahrscheinlichkeit",
+          "target_display": "Daten",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "wahrscheinlichkeit",
+          "target_norm": "durchschnitt",
+          "source_display": "Wahrscheinlichkeit",
+          "target_display": "Durchschnitt",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "wahrscheinlichkeit",
+          "target_norm": "zufallsexperimente",
+          "source_display": "Wahrscheinlichkeit",
+          "target_display": "Zufallsexperimente",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "würfel",
+          "target_norm": "quader",
+          "source_display": "Würfel",
+          "target_display": "Quader",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "würfel",
+          "target_norm": "raumkörper",
+          "source_display": "Würfel",
+          "target_display": "Raumkörper",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "de_wahrscheinlichkeit_ch1-8",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 24,
+        "spark_concepts": 36,
+        "bailian_concepts": 39,
+        "accepted_concepts_ge2": 31,
+        "mimo_only_review": 2,
+        "mimo_relations": 15,
+        "spark_relations": 24,
+        "bailian_relations": 30,
+        "solid_ge2": 16,
+        "hypothetical_1src": 34
+      },
+      "accepted_concepts": [
+        {
+          "norm": "bedingtewahrscheinlichkeit",
+          "display": "bedingte Wahrscheinlichkeit",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "binomialverteilung",
+          "display": "Binomialverteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "chi-quadrat-verteilung",
+          "display": "Chi-Quadrat-Verteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "dichte",
+          "display": "Dichte",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "erwartungswert",
+          "display": "Erwartungswert",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "f-test",
+          "display": "F-Test",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "f-verteilung",
+          "display": "F-Verteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "gemeinsameverteilung",
+          "display": "Gemeinsame Verteilung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "gesetzdergroßenzahlen",
+          "display": "Gesetz der großen Zahlen",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "hypothesentest",
+          "display": "Hypothesentest",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "klassischesmodell",
+          "display": "Klassisches Modell",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "konfidenzintervall",
+          "display": "Konfidenzintervall",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "kovarianz",
+          "display": "Kovarianz",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "maximum-likelihood-schätzung",
+          "display": "Maximum-Likelihood-Schätzung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "normalverteilung",
+          "display": "Normalverteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "poissonverteilung",
+          "display": "Poissonverteilung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "randverteilung",
+          "display": "Randverteilung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "satzvonbayes",
+          "display": "Satz von Bayes",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "signifikanzniveau",
+          "display": "Signifikanzniveau",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "statistik",
+          "display": "Statistik",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "t-test",
+          "display": "t-Test",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "t-verteilung",
+          "display": "t-Verteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "unabhängigkeit",
+          "display": "Unabhängigkeit",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "varianz",
+          "display": "Varianz",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "verteilungsfunktion",
+          "display": "Verteilungsfunktion",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "wahrscheinlichkeit",
+          "display": "Wahrscheinlichkeit",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "wahrscheinlichkeitsaxiome",
+          "display": "Wahrscheinlichkeitsaxiome",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "z-test",
+          "display": "Z-Test",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "zentralergrenzwertsatz",
+          "display": "Zentraler Grenzwertsatz",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "zufallsexperiment",
+          "display": "Zufallsexperiment",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "zufallsgröße",
+          "display": "Zufallsgröße",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "fehler1.art",
+          "display": "Fehler 1. Art"
+        },
+        {
+          "norm": "fehler2.art",
+          "display": "Fehler 2. Art"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "bedingtewahrscheinlichkeit",
+          "target_norm": "wahrscheinlichkeit",
+          "source_display": "bedingte Wahrscheinlichkeit",
+          "target_display": "Wahrscheinlichkeit",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "chi-quadrat-verteilung",
+          "target_norm": "normalverteilung",
+          "source_display": "Chi-Quadrat-Verteilung",
+          "target_display": "Normalverteilung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "erwartungswert",
+          "target_norm": "zufallsgröße",
+          "source_display": "Erwartungswert",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "f-test",
+          "target_norm": "hypothesentest",
+          "source_display": "F-Test",
+          "target_display": "Hypothesentest",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "f-verteilung",
+          "target_norm": "chi-quadrat-verteilung",
+          "source_display": "F-Verteilung",
+          "target_display": "Chi-Quadrat-Verteilung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "gesetzdergroßenzahlen",
+          "target_norm": "erwartungswert",
+          "source_display": "Gesetz der großen Zahlen",
+          "target_display": "Erwartungswert",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "hypothesentest",
+          "target_norm": "statistik",
+          "source_display": "Hypothesentest",
+          "target_display": "Statistik",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "kovarianz",
+          "target_norm": "erwartungswert",
+          "source_display": "Kovarianz",
+          "target_display": "Erwartungswert",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "normalverteilung",
+          "target_norm": "zufallsgröße",
+          "source_display": "Normalverteilung",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "randverteilung",
+          "target_norm": "gemeinsameverteilung",
+          "source_display": "Randverteilung",
+          "target_display": "Gemeinsame Verteilung",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "satzvonbayes",
+          "target_norm": "bedingtewahrscheinlichkeit",
+          "source_display": "Satz von Bayes",
+          "target_display": "bedingte Wahrscheinlichkeit",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "t-test",
+          "target_norm": "hypothesentest",
+          "source_display": "t-Test",
+          "target_display": "Hypothesentest",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "t-verteilung",
+          "target_norm": "normalverteilung",
+          "source_display": "t-Verteilung",
+          "target_display": "Normalverteilung",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "varianz",
+          "target_norm": "erwartungswert",
+          "source_display": "Varianz",
+          "target_display": "Erwartungswert",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "zentralergrenzwertsatz",
+          "target_norm": "normalverteilung",
+          "source_display": "Zentraler Grenzwertsatz",
+          "target_display": "Normalverteilung",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "zufallsgröße",
+          "target_norm": "wahrscheinlichkeit",
+          "source_display": "Zufallsgröße",
+          "target_display": "Wahrscheinlichkeit",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "bernoulli-verteilung",
+          "target_norm": "zufallsgröße",
+          "source_display": "Bernoulli-Verteilung",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "binomialverteilung",
+          "target_norm": "bernoulli-verteilung",
+          "source_display": "Binomialverteilung",
+          "target_display": "Bernoulli-Verteilung",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "binomialverteilung",
+          "target_norm": "diskreteverteilung",
+          "source_display": "Binomialverteilung",
+          "target_display": "Diskrete Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "chi-quadrat-test",
+          "target_norm": "chi-quadrat-verteilung",
+          "source_display": "Chi-Quadrat-Test",
+          "target_display": "Chi-Quadrat-Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "chi-quadrat-verteilung",
+          "target_norm": "stichprobenvarianz",
+          "source_display": "Chi-Quadrat-Verteilung",
+          "target_display": "Stichprobenvarianz",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "dichte",
+          "target_norm": "stetigeverteilung",
+          "source_display": "Dichte",
+          "target_display": "Stetige Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "diskreteverteilung",
+          "target_norm": "zufallsgröße",
+          "source_display": "Diskrete Verteilung",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "ereignis",
+          "target_norm": "ergebnisraum",
+          "source_display": "Ereignis",
+          "target_display": "Ergebnisraum",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "f-test",
+          "target_norm": "f-verteilung",
+          "source_display": "F-Test",
+          "target_display": "F-Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "gesetzdergroßenzahlen",
+          "target_norm": "stichprobenmittelwert",
+          "source_display": "Gesetz der großen Zahlen",
+          "target_display": "Stichprobenmittelwert",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "klassischesmodell",
+          "target_norm": "wahrscheinlichkeitsaxiome",
+          "source_display": "Klassisches Modell",
+          "target_display": "Wahrscheinlichkeitsaxiome",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "konfidenzintervall",
+          "target_norm": "signifikanzniveau",
+          "source_display": "Konfidenzintervall",
+          "target_display": "Signifikanzniveau",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "konfidenzintervall",
+          "target_norm": "statistik",
+          "source_display": "Konfidenzintervall",
+          "target_display": "Statistik",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "konfidenzintervall",
+          "target_norm": "stichprobenmittelwert",
+          "source_display": "Konfidenzintervall",
+          "target_display": "Stichprobenmittelwert",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "korrelation",
+          "target_norm": "kovarianz",
+          "source_display": "Korrelation",
+          "target_display": "Kovarianz",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "korrelationskoeffizient",
+          "target_norm": "kovarianz",
+          "source_display": "Korrelationskoeffizient",
+          "target_display": "Kovarianz",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "maximum-likelihood-schätzung",
+          "target_norm": "dichte",
+          "source_display": "Maximum-Likelihood-Schätzung",
+          "target_display": "Dichte",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "normalverteilung",
+          "target_norm": "stetigeverteilung",
+          "source_display": "Normalverteilung",
+          "target_display": "Stetige Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "poisson-verteilung",
+          "target_norm": "diskreteverteilung",
+          "source_display": "Poisson-Verteilung",
+          "target_display": "Diskrete Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "poissonverteilung",
+          "target_norm": "zufallsgröße",
+          "source_display": "Poissonverteilung",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "signifikanzniveau",
+          "target_norm": "hypothesentest",
+          "source_display": "Signifikanzniveau",
+          "target_display": "Hypothesentest",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "signifikanzniveau",
+          "target_norm": "teststatistik",
+          "source_display": "Signifikanzniveau",
+          "target_display": "Teststatistik",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "t-test",
+          "target_norm": "t-verteilung",
+          "source_display": "t-Test",
+          "target_display": "t-Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "t-verteilung",
+          "target_norm": "stichprobenmittelwert",
+          "source_display": "t-Verteilung",
+          "target_display": "Stichprobenmittelwert",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "teststatistik",
+          "target_norm": "nullhypothese",
+          "source_display": "Teststatistik",
+          "target_display": "Nullhypothese",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "unabhängigkeit",
+          "target_norm": "wahrscheinlichkeit",
+          "source_display": "Unabhängigkeit",
+          "target_display": "Wahrscheinlichkeit",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "unabhängigkeit",
+          "target_norm": "wahrscheinlichkeitsaxiome",
+          "source_display": "Unabhängigkeit",
+          "target_display": "Wahrscheinlichkeitsaxiome",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "verteilungsfunktion",
+          "target_norm": "dichte",
+          "source_display": "Verteilungsfunktion",
+          "target_display": "Dichte",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "verteilungsfunktion",
+          "target_norm": "zufallsgröße",
+          "source_display": "Verteilungsfunktion",
+          "target_display": "Zufallsgröße",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "wahrscheinlichkeitsaxiome",
+          "target_norm": "ereignis",
+          "source_display": "Wahrscheinlichkeitsaxiome",
+          "target_display": "Ereignis",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "wahrscheinlichkeitsfunktion",
+          "target_norm": "diskreteverteilung",
+          "source_display": "Wahrscheinlichkeitsfunktion",
+          "target_display": "Diskrete Verteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "z-test",
+          "target_norm": "normalverteilung",
+          "source_display": "Z-Test",
+          "target_display": "Normalverteilung",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "zufallsexperiment",
+          "target_norm": "ergebnisraum",
+          "source_display": "Zufallsexperiment",
+          "target_display": "Ergebnisraum",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "zufallsgröße",
+          "target_norm": "ergebnisraum",
+          "source_display": "Zufallsgröße",
+          "target_display": "Ergebnisraum",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "en_ib_math_aa_sl",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 18,
+        "spark_concepts": 38,
+        "bailian_concepts": 40,
+        "accepted_concepts_ge2": 27,
+        "mimo_only_review": 1,
+        "mimo_relations": 14,
+        "spark_relations": 20,
+        "bailian_relations": 29,
+        "solid_ge2": 14,
+        "hypothetical_1src": 32
+      },
+      "accepted_concepts": [
+        {
+          "norm": "arclength",
+          "display": "arc length",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "argument",
+          "display": "argument",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "arithmeticsequence",
+          "display": "arithmetic sequence",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "asymptote",
+          "display": "asymptote",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "binomialdistribution",
+          "display": "binomial distribution",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "complexnumber",
+          "display": "complex number",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "confidenceinterval",
+          "display": "confidence interval",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "crossproduct",
+          "display": "cross product",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "discriminant",
+          "display": "discriminant",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "dotproduct",
+          "display": "dot product",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "exponentialfunction",
+          "display": "exponential function",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "function",
+          "display": "function",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "geometricsequence",
+          "display": "geometric sequence",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "hypothesistest",
+          "display": "hypothesis test",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "implicitdifferentiation",
+          "display": "implicit differentiation",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "infinitegeometricseries",
+          "display": "infinite geometric series",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "logarithmicfunction",
+          "display": "logarithmic function",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "modulus",
+          "display": "modulus",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "normaldistribution",
+          "display": "normal distribution",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "polarform",
+          "display": "polar form",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "probability",
+          "display": "probability",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "quadraticfunction",
+          "display": "quadratic function",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "radianmeasure",
+          "display": "radian measure",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "rationalfunction",
+          "display": "rational function",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "trigonometricequation",
+          "display": "trigonometric equation",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "trigonometricidentity",
+          "display": "trigonometric identity",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "vector",
+          "display": "vector",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "inversefunction",
+          "display": "inverse function"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "arclength",
+          "target_norm": "radianmeasure",
+          "source_display": "arc length",
+          "target_display": "radian measure",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "argument",
+          "target_norm": "complexnumber",
+          "source_display": "argument",
+          "target_display": "complex number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "binomialdistribution",
+          "target_norm": "probability",
+          "source_display": "binomial distribution",
+          "target_display": "probability",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "crossproduct",
+          "target_norm": "vector",
+          "source_display": "cross product",
+          "target_display": "vector",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "discriminant",
+          "target_norm": "quadraticfunction",
+          "source_display": "discriminant",
+          "target_display": "quadratic function",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "dotproduct",
+          "target_norm": "vector",
+          "source_display": "dot product",
+          "target_display": "vector",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "geometricsequence",
+          "target_norm": "arithmeticsequence",
+          "source_display": "geometric sequence",
+          "target_display": "arithmetic sequence",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "hypothesistest",
+          "target_norm": "confidenceinterval",
+          "source_display": "hypothesis test",
+          "target_display": "confidence interval",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "implicitdifferentiation",
+          "target_norm": "derivative",
+          "source_display": "implicit differentiation",
+          "target_display": "derivative",
+          "sources": [
+            "bailian",
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "logarithmicfunction",
+          "target_norm": "exponentialfunction",
+          "source_display": "logarithmic function",
+          "target_display": "exponential function",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "modulus",
+          "target_norm": "complexnumber",
+          "source_display": "modulus",
+          "target_display": "complex number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "normaldistribution",
+          "target_norm": "probability",
+          "source_display": "normal distribution",
+          "target_display": "probability",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "polarform",
+          "target_norm": "complexnumber",
+          "source_display": "polar form",
+          "target_display": "complex number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "trigonometricequation",
+          "target_norm": "trigonometricidentity",
+          "source_display": "trigonometric equation",
+          "target_display": "trigonometric identity",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "arithmeticseries",
+          "target_norm": "arithmeticsequence",
+          "source_display": "Arithmetic Series",
+          "target_display": "Arithmetic Sequence",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "asymptote",
+          "target_norm": "rationalfunction",
+          "source_display": "asymptote",
+          "target_display": "rational function",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "chainrule",
+          "target_norm": "derivative",
+          "source_display": "Chain Rule",
+          "target_display": "Derivative",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "confidenceinterval",
+          "target_norm": "normaldistribution",
+          "source_display": "confidence interval",
+          "target_display": "normal distribution",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "continuity",
+          "target_norm": "limitofafunction",
+          "source_display": "Continuity",
+          "target_display": "Limit of a Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "definiteintegral",
+          "target_norm": "limitofafunction",
+          "source_display": "Definite Integral",
+          "target_display": "Limit of a Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "derivative",
+          "target_norm": "limitofafunction",
+          "source_display": "Derivative",
+          "target_display": "Limit of a Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differentiability",
+          "target_norm": "continuity",
+          "source_display": "Differentiability",
+          "target_display": "Continuity",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differentiation",
+          "target_norm": "limit",
+          "source_display": "differentiation",
+          "target_display": "limit",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "function",
+          "target_norm": "exponentialfunction",
+          "source_display": "Function",
+          "target_display": "Exponential Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "function",
+          "target_norm": "logarithmicfunction",
+          "source_display": "Function",
+          "target_display": "Logarithmic Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "function",
+          "target_norm": "quadraticfunction",
+          "source_display": "Function",
+          "target_display": "Quadratic Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "function",
+          "target_norm": "rationalfunction",
+          "source_display": "Function",
+          "target_display": "Rational Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "fundamentaltheoremofcalculus",
+          "target_norm": "derivative",
+          "source_display": "Fundamental Theorem of Calculus",
+          "target_display": "Derivative",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "geometricseries",
+          "target_norm": "geometricsequence",
+          "source_display": "Geometric Series",
+          "target_display": "Geometric Sequence",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "implicitdifferentiation",
+          "target_norm": "differentiation",
+          "source_display": "implicit differentiation",
+          "target_display": "differentiation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "infinitegeometricseries",
+          "target_norm": "geometricsequence",
+          "source_display": "infinite geometric series",
+          "target_display": "geometric sequence",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "infinitegeometricseries",
+          "target_norm": "geometricseries",
+          "source_display": "Infinite Geometric Series",
+          "target_display": "Geometric Series",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "integration",
+          "target_norm": "differentiation",
+          "source_display": "integration",
+          "target_display": "differentiation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "inversefunction",
+          "target_norm": "function",
+          "source_display": "inverse function",
+          "target_display": "function",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "lineandplanein3d",
+          "target_norm": "vector",
+          "source_display": "line and plane in 3d",
+          "target_display": "vector",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "logarithms",
+          "target_norm": "exponents",
+          "source_display": "Logarithms",
+          "target_display": "Exponents",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "naturallogarithm",
+          "target_norm": "logarithmicfunction",
+          "source_display": "Natural Logarithm",
+          "target_display": "Logarithmic Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "parametricequationofaline",
+          "target_norm": "vector",
+          "source_display": "Parametric Equation of a Line",
+          "target_display": "Vector",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "polarformofacomplexnumber",
+          "target_norm": "complexnumber",
+          "source_display": "Polar Form of a Complex Number",
+          "target_display": "Complex Number",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "productrule",
+          "target_norm": "derivative",
+          "source_display": "Product Rule",
+          "target_display": "Derivative",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "pythagoreanidentity",
+          "target_norm": "trigonometricidentity",
+          "source_display": "Pythagorean Identity",
+          "target_display": "Trigonometric Identity",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "quotientrule",
+          "target_norm": "derivative",
+          "source_display": "Quotient Rule",
+          "target_display": "Derivative",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "rationalfunction",
+          "target_norm": "asymptote",
+          "source_display": "rational function",
+          "target_display": "asymptote",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "sectorarea",
+          "target_norm": "radianmeasure",
+          "source_display": "sector area",
+          "target_display": "radian measure",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "standarddeviation",
+          "target_norm": "mean",
+          "source_display": "Standard Deviation",
+          "target_display": "Mean",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "tangentline",
+          "target_norm": "derivative",
+          "source_display": "Tangent Line",
+          "target_display": "Derivative",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "en_khan_academy_3-4",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 10,
+        "spark_concepts": 31,
+        "bailian_concepts": 37,
+        "accepted_concepts_ge2": 15,
+        "mimo_only_review": 3,
+        "mimo_relations": 12,
+        "spark_relations": 16,
+        "bailian_relations": 30,
+        "solid_ge2": 6,
+        "hypothetical_1src": 45
+      },
+      "accepted_concepts": [
+        {
+          "norm": "addition",
+          "display": "addition",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "angle",
+          "display": "angle",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "area",
+          "display": "area",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "division",
+          "display": "division",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "equivalentfractions",
+          "display": "equivalent fractions",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "factor",
+          "display": "factor",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "fouroperations",
+          "display": "four operations",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "fraction",
+          "display": "fraction",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "multiplication",
+          "display": "multiplication",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "parallel",
+          "display": "parallel",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "perimeter",
+          "display": "perimeter",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "perpendicular",
+          "display": "perpendicular",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "placevalue",
+          "display": "place value",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "shapeattributes",
+          "display": "shape attributes",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "subtraction",
+          "display": "subtraction",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "denominator",
+          "display": "denominator"
+        },
+        {
+          "norm": "multiple",
+          "display": "multiple"
+        },
+        {
+          "norm": "numerator",
+          "display": "numerator"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "area",
+          "target_norm": "addition",
+          "source_display": "area",
+          "target_display": "addition",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "area",
+          "target_norm": "multiplication",
+          "source_display": "area",
+          "target_display": "multiplication",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "equivalentfractions",
+          "target_norm": "fraction",
+          "source_display": "equivalent fractions",
+          "target_display": "fraction",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "factor",
+          "target_norm": "multiplication",
+          "source_display": "factor",
+          "target_display": "multiplication",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "fraction",
+          "target_norm": "division",
+          "source_display": "fraction",
+          "target_display": "division",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "perimeter",
+          "target_norm": "addition",
+          "source_display": "perimeter",
+          "target_display": "addition",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "2dfigureclassification",
+          "target_norm": "parallel",
+          "source_display": "2d figure classification",
+          "target_display": "parallel",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "2dfigureclassification",
+          "target_norm": "perpendicular",
+          "source_display": "2d figure classification",
+          "target_display": "perpendicular",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "addingfractionswithlikedenominators",
+          "target_norm": "fractions",
+          "source_display": "Adding Fractions with Like Denominators",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "addition",
+          "target_norm": "fouroperations",
+          "source_display": "Addition",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "angle",
+          "target_norm": "perpendicular",
+          "source_display": "angle",
+          "target_display": "perpendicular",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "area",
+          "target_norm": "perimeter",
+          "source_display": "area",
+          "target_display": "perimeter",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "areaandperimeterformulas",
+          "target_norm": "area",
+          "source_display": "Area and Perimeter Formulas",
+          "target_display": "Area",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "areaandperimeterformulas",
+          "target_norm": "perimeter",
+          "source_display": "Area and Perimeter Formulas",
+          "target_display": "Perimeter",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "arithmeticpatterns",
+          "target_norm": "fouroperations",
+          "source_display": "Arithmetic Patterns",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "classifyingtwo-dimensionalfigures",
+          "target_norm": "parallellines",
+          "source_display": "Classifying Two-Dimensional Figures",
+          "target_display": "Parallel Lines",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "classifyingtwo-dimensionalfigures",
+          "target_norm": "perpendicularlines",
+          "source_display": "Classifying Two-Dimensional Figures",
+          "target_display": "Perpendicular Lines",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "classifyingtwo-dimensionalfigures",
+          "target_norm": "shapeattributes",
+          "source_display": "Classifying Two-Dimensional Figures",
+          "target_display": "Shape Attributes",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "decimal",
+          "target_norm": "fraction",
+          "source_display": "decimal",
+          "target_display": "fraction",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "decimals",
+          "target_norm": "fractions",
+          "source_display": "Decimals",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "denominator",
+          "target_norm": "fraction",
+          "source_display": "denominator",
+          "target_display": "fraction",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "division",
+          "target_norm": "fouroperations",
+          "source_display": "Division",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "division",
+          "target_norm": "multiplication",
+          "source_display": "division",
+          "target_display": "multiplication",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "equalareapartition",
+          "target_norm": "fractions",
+          "source_display": "Equal Area Partition",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "equivalentfractions",
+          "target_norm": "fractionequivalencerule",
+          "source_display": "Equivalent Fractions",
+          "target_display": "Fraction Equivalence Rule",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "equivalentfractions",
+          "target_norm": "fractions",
+          "source_display": "Equivalent Fractions",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "factorpairs",
+          "target_norm": "multiplication",
+          "source_display": "Factor Pairs",
+          "target_display": "Multiplication",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "fraction",
+          "target_norm": "numberline",
+          "source_display": "fraction",
+          "target_display": "number line",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "fractionbywholenumber",
+          "target_norm": "multiplication",
+          "source_display": "fraction by whole number",
+          "target_display": "multiplication",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "fractions",
+          "target_norm": "division",
+          "source_display": "Fractions",
+          "target_display": "Division",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "like-denominatoraddition",
+          "target_norm": "fraction",
+          "source_display": "like-denominator addition",
+          "target_display": "fraction",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "liquidvolumemeasurement",
+          "target_norm": "measurementunitrelativesizes",
+          "source_display": "Liquid Volume Measurement",
+          "target_display": "Measurement Unit Relative Sizes",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multi-digitadditionandsubtraction",
+          "target_norm": "multi-digitplacevalue",
+          "source_display": "Multi-digit Addition and Subtraction",
+          "target_display": "Multi-digit Place Value",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multi-digitmultiplication",
+          "target_norm": "multi-digitplacevalue",
+          "source_display": "Multi-digit Multiplication",
+          "target_display": "Multi-digit Place Value",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multiple",
+          "target_norm": "multiplication",
+          "source_display": "multiple",
+          "target_display": "multiplication",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "multiplication",
+          "target_norm": "division",
+          "source_display": "Multiplication",
+          "target_display": "Division",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multiplication",
+          "target_norm": "fouroperations",
+          "source_display": "Multiplication",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multiplicationequationascomparison",
+          "target_norm": "multiplication",
+          "source_display": "Multiplication Equation as Comparison",
+          "target_display": "Multiplication",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multiplyingfractionbywholenumber",
+          "target_norm": "fractions",
+          "source_display": "Multiplying Fraction by Whole Number",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "multistepwordproblems",
+          "target_norm": "fouroperations",
+          "source_display": "Multistep Word Problems",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "numberlinefractionrepresentation",
+          "target_norm": "fractions",
+          "source_display": "Number Line Fraction Representation",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "numerator",
+          "target_norm": "fraction",
+          "source_display": "numerator",
+          "target_display": "fraction",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "parallel",
+          "target_norm": "perpendicular",
+          "source_display": "parallel",
+          "target_display": "perpendicular",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "perimeter",
+          "target_norm": "area",
+          "source_display": "perimeter",
+          "target_display": "area",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "perimeter",
+          "target_norm": "length",
+          "source_display": "perimeter",
+          "target_display": "length",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "perpendicular",
+          "target_norm": "angle",
+          "source_display": "perpendicular",
+          "target_display": "angle",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "rounding",
+          "target_norm": "placevalue",
+          "source_display": "rounding",
+          "target_display": "place value",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "roundingwholenumbers",
+          "target_norm": "placevalue",
+          "source_display": "Rounding Whole Numbers",
+          "target_display": "Place Value",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "subtraction",
+          "target_norm": "fouroperations",
+          "source_display": "Subtraction",
+          "target_display": "Four Operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "timemeasurement",
+          "target_norm": "measurementunitrelativesizes",
+          "source_display": "Time Measurement",
+          "target_display": "Measurement Unit Relative Sizes",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "unitfraction",
+          "target_norm": "fractions",
+          "source_display": "Unit Fraction",
+          "target_display": "Fractions",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "en_khan_academy_6-8",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 37,
+        "spark_concepts": 39,
+        "bailian_concepts": 39,
+        "accepted_concepts_ge2": 33,
+        "mimo_only_review": 8,
+        "mimo_relations": 22,
+        "spark_relations": 18,
+        "bailian_relations": 30,
+        "solid_ge2": 13,
+        "hypothetical_1src": 39
+      },
+      "accepted_concepts": [
+        {
+          "norm": "absolutevalue",
+          "display": "absolute value",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "algebraicexpression",
+          "display": "algebraic expression",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "complementaryangles",
+          "display": "complementary angles",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "congruentfigures",
+          "display": "congruent figures",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "constantofproportionality",
+          "display": "constant of proportionality",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "dilation",
+          "display": "dilation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "equation",
+          "display": "equation",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "equivalentexpressions",
+          "display": "equivalent expressions",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "equivalentratios",
+          "display": "equivalent ratios",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "exponent",
+          "display": "exponent",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "function",
+          "display": "function",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "greatestcommonfactor",
+          "display": "greatest common factor",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "inequality",
+          "display": "inequality",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "irrationalnumber",
+          "display": "irrational number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "leastcommonmultiple",
+          "display": "least common multiple",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "linearfunction",
+          "display": "linear function",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "numericalexpression",
+          "display": "numerical expression",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "probability",
+          "display": "probability",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "proportionalrelationship",
+          "display": "proportional relationship",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "pythagoreantheorem",
+          "display": "Pythagorean theorem",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "ratio",
+          "display": "ratio",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "rationalnumber",
+          "display": "rational number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "reflection",
+          "display": "reflection",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "rotation",
+          "display": "rotation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "scatterplot",
+          "display": "scatter plot",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "similartriangles",
+          "display": "similar triangles",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "slope",
+          "display": "slope",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "squareroot",
+          "display": "square root",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "supplementaryangles",
+          "display": "supplementary angles",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "translation",
+          "display": "translation",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "two-waytable",
+          "display": "two-way table",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "unitrate",
+          "display": "unit rate",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "verticalangles",
+          "display": "vertical angles",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "compoundinterest",
+          "display": "compound interest"
+        },
+        {
+          "norm": "integer",
+          "display": "integer"
+        },
+        {
+          "norm": "interquartilerange",
+          "display": "interquartile range"
+        },
+        {
+          "norm": "lineofbestfit",
+          "display": "line of best fit"
+        },
+        {
+          "norm": "meanabsolutedeviation",
+          "display": "mean absolute deviation"
+        },
+        {
+          "norm": "similarfigures",
+          "display": "similar figures"
+        },
+        {
+          "norm": "simpleinterest",
+          "display": "simple interest"
+        },
+        {
+          "norm": "y-intercept",
+          "display": "y-intercept"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "algebraicexpression",
+          "target_norm": "numericalexpression",
+          "source_display": "algebraic expression",
+          "target_display": "numerical expression",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "constantofproportionality",
+          "target_norm": "proportionalrelationship",
+          "source_display": "constant of proportionality",
+          "target_display": "proportional relationship",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "equation",
+          "target_norm": "algebraicexpression",
+          "source_display": "equation",
+          "target_display": "algebraic expression",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "equivalentratios",
+          "target_norm": "ratio",
+          "source_display": "equivalent ratios",
+          "target_display": "ratio",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "inequality",
+          "target_norm": "algebraicexpression",
+          "source_display": "inequality",
+          "target_display": "algebraic expression",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "irrationalnumber",
+          "target_norm": "rationalnumber",
+          "source_display": "irrational number",
+          "target_display": "rational number",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "linearfunction",
+          "target_norm": "function",
+          "source_display": "linear function",
+          "target_display": "function",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "proportionalrelationship",
+          "target_norm": "ratio",
+          "source_display": "proportional relationship",
+          "target_display": "ratio",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "pythagoreantheorem",
+          "target_norm": "righttriangle",
+          "source_display": "Pythagorean theorem",
+          "target_display": "right triangle",
+          "sources": [
+            "bailian",
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "slope",
+          "target_norm": "linearfunction",
+          "source_display": "slope",
+          "target_display": "linear function",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "slope",
+          "target_norm": "similartriangles",
+          "source_display": "slope",
+          "target_display": "similar triangles",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "squareroot",
+          "target_norm": "exponent",
+          "source_display": "square root",
+          "target_display": "exponent",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "unitrate",
+          "target_norm": "ratio",
+          "source_display": "unit rate",
+          "target_display": "ratio",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "absolutevalue",
+          "target_norm": "rationalnumbers",
+          "source_display": "Absolute value",
+          "target_display": "Rational numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "area",
+          "target_norm": "righttriangle",
+          "source_display": "Area",
+          "target_display": "Right triangle",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "compoundinterest",
+          "target_norm": "exponent",
+          "source_display": "compound interest",
+          "target_display": "exponent",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "congruentfigures",
+          "target_norm": "rotation",
+          "source_display": "congruent figures",
+          "target_display": "rotation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "congruentfigures",
+          "target_norm": "similarfigures",
+          "source_display": "congruent figures",
+          "target_display": "similar figures",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "congruentfigures",
+          "target_norm": "translation",
+          "source_display": "congruent figures",
+          "target_display": "translation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "coordinateplane",
+          "target_norm": "rationalnumbers",
+          "source_display": "Coordinate plane",
+          "target_display": "Rational numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "cuberoot",
+          "target_norm": "exponent",
+          "source_display": "cube root",
+          "target_display": "exponent",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "datadisplays",
+          "target_norm": "statisticalquestion",
+          "source_display": "Data displays",
+          "target_display": "Statistical question",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "decimalrepresentationofrationalnumbers",
+          "target_norm": "rationalnumbers",
+          "source_display": "Decimal representation of rational numbers",
+          "target_display": "Rational numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "dilation",
+          "target_norm": "similarfigures",
+          "source_display": "dilation",
+          "target_display": "similar figures",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "dilation",
+          "target_norm": "similartriangles",
+          "source_display": "dilation",
+          "target_display": "similar triangles",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "equivalentexpressions",
+          "target_norm": "propertiesofoperations",
+          "source_display": "Equivalent expressions",
+          "target_display": "Properties of operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "exponent",
+          "target_norm": "multiplication",
+          "source_display": "exponent",
+          "target_display": "multiplication",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "greatestcommonfactor",
+          "target_norm": "factor",
+          "source_display": "greatest common factor",
+          "target_display": "factor",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "greatestcommonfactor",
+          "target_norm": "wholenumbers",
+          "source_display": "Greatest common factor",
+          "target_display": "Whole numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "inequality",
+          "target_norm": "equation",
+          "source_display": "inequality",
+          "target_display": "equation",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "integerexponents",
+          "target_norm": "whole-numberexponents",
+          "source_display": "Integer exponents",
+          "target_display": "Whole-number exponents",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "leastcommonmultiple",
+          "target_norm": "multiple",
+          "source_display": "least common multiple",
+          "target_display": "multiple",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "leastcommonmultiple",
+          "target_norm": "wholenumbers",
+          "source_display": "Least common multiple",
+          "target_display": "Whole numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearexpressions",
+          "target_norm": "propertiesofoperations",
+          "source_display": "Linear expressions",
+          "target_display": "Properties of operations",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearfunction",
+          "target_norm": "slope",
+          "source_display": "Linear function",
+          "target_display": "Slope",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "linearmodel",
+          "target_norm": "scatterplot",
+          "source_display": "linear model",
+          "target_display": "scatter plot",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "measuresofcenter",
+          "target_norm": "statisticalquestion",
+          "source_display": "Measures of center",
+          "target_display": "Statistical question",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "probability",
+          "target_norm": "ratio",
+          "source_display": "probability",
+          "target_display": "ratio",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "randomsampling",
+          "target_norm": "probability",
+          "source_display": "random sampling",
+          "target_display": "probability",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "ratereasoning",
+          "target_norm": "unitrate",
+          "source_display": "Rate reasoning",
+          "target_display": "Unit rate",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "rationalnumber",
+          "target_norm": "fraction",
+          "source_display": "rational number",
+          "target_display": "fraction",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "rationalnumberoperations",
+          "target_norm": "rationalnumbers",
+          "source_display": "Rational number operations",
+          "target_display": "Rational numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "rationalnumbers",
+          "target_norm": "wholenumbers",
+          "source_display": "Rational numbers",
+          "target_display": "Whole numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "scatterplot",
+          "target_norm": "datadisplays",
+          "source_display": "Scatter plot",
+          "target_display": "Data displays",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "similartriangles",
+          "target_norm": "proportionalrelationship",
+          "source_display": "Similar triangles",
+          "target_display": "Proportional relationship",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "simpleinterest",
+          "target_norm": "multiplication",
+          "source_display": "simple interest",
+          "target_display": "multiplication",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "slope",
+          "target_norm": "unitrate",
+          "source_display": "Slope",
+          "target_display": "Unit rate",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "squareroot",
+          "target_norm": "irrationalnumbers",
+          "source_display": "Square root",
+          "target_display": "Irrational numbers",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "statisticalquestion",
+          "target_norm": "measuresofvariability",
+          "source_display": "Statistical question",
+          "target_display": "Measures of variability",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "volume",
+          "target_norm": "rightrectangularprism",
+          "source_display": "Volume",
+          "target_display": "Right rectangular prism",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "whole-numberexponents",
+          "target_norm": "numericalexpression",
+          "source_display": "Whole-number exponents",
+          "target_display": "Numerical expression",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "y-intercept",
+          "target_norm": "linearfunction",
+          "source_display": "y-intercept",
+          "target_display": "linear function",
+          "sources": [
+            "mimo"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "en_stewart_ch3_sec3.1",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 7,
+        "spark_concepts": 22,
+        "bailian_concepts": 30,
+        "accepted_concepts_ge2": 13,
+        "mimo_only_review": 0,
+        "mimo_relations": 6,
+        "spark_relations": 16,
+        "bailian_relations": 30,
+        "solid_ge2": 1,
+        "hypothetical_1src": 50
+      },
+      "accepted_concepts": [
+        {
+          "norm": "acceleration",
+          "display": "acceleration",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "antidifferentiation",
+          "display": "antidifferentiation",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "constantmultiplerule",
+          "display": "Constant Multiple Rule",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "fundamentaltheoremofcalculus",
+          "display": "Fundamental Theorem of Calculus",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "limitdefinitionofe",
+          "display": "limit definition of e",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "marginalcost",
+          "display": "marginal cost",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "numbere",
+          "display": "number e",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "powerrule",
+          "display": "Power Rule",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "rateofchange",
+          "display": "rate of change",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "realexponent",
+          "display": "real exponent",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "sumanddifferencerules",
+          "display": "Sum and Difference Rules",
+          "sources": [
+            "bailian",
+            "mimo"
+          ]
+        },
+        {
+          "norm": "tangentlineapproximation",
+          "display": "tangent line approximation",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "velocity",
+          "display": "velocity",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [],
+      "solid_relations": [
+        {
+          "source_norm": "tangentlineapproximation",
+          "target_norm": "derivative",
+          "source_display": "tangent line approximation",
+          "target_display": "Derivative",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "a^x",
+          "target_norm": "lna",
+          "source_display": "a^x",
+          "target_display": "ln a",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "acceleration",
+          "target_norm": "derivative",
+          "source_display": "acceleration",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "acceleration",
+          "target_norm": "position",
+          "source_display": "Acceleration",
+          "target_display": "Position",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "acceleration",
+          "target_norm": "velocity",
+          "source_display": "Acceleration",
+          "target_display": "Velocity",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "antidifferentiation",
+          "target_norm": "integration",
+          "source_display": "Antidifferentiation",
+          "target_display": "Integration",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "cf(x)",
+          "target_norm": "constantmultiplerule",
+          "source_display": "cf(x)",
+          "target_display": "Constant Multiple Rule",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "constantc",
+          "target_norm": "constantmultiplerule",
+          "source_display": "Constant c",
+          "target_display": "Constant Multiple Rule",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "constantmultiplerule",
+          "target_norm": "cf'(x)",
+          "source_display": "Constant Multiple Rule",
+          "target_display": "cf'(x)",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "constantmultiplerule",
+          "target_norm": "derivative",
+          "source_display": "constant multiple rule",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "constantmultiplerule",
+          "target_norm": "differentiablefunction",
+          "source_display": "Constant Multiple Rule",
+          "target_display": "Differentiable Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "constantmultiplerule",
+          "target_norm": "differentiation",
+          "source_display": "Constant Multiple Rule",
+          "target_display": "Differentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "constantmultiplerule",
+          "target_norm": "sumanddifferencerules",
+          "source_display": "Constant Multiple Rule",
+          "target_display": "Sum and Difference Rules",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "derivative",
+          "target_norm": "antidifferentiation",
+          "source_display": "derivative",
+          "target_display": "antidifferentiation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "derivative",
+          "target_norm": "rateofchange",
+          "source_display": "derivative",
+          "target_display": "rate of change",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "derivativesofexponentialfunctions",
+          "target_norm": "a^x",
+          "source_display": "Derivatives of Exponential Functions",
+          "target_display": "a^x",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "derivativesofexponentialfunctions",
+          "target_norm": "e^x",
+          "source_display": "Derivatives of Exponential Functions",
+          "target_display": "e^x",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differencerule",
+          "target_norm": "derivative",
+          "source_display": "difference rule",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "differentiation",
+          "target_norm": "antidifferentiation",
+          "source_display": "Differentiation",
+          "target_display": "Antidifferentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "differentiation",
+          "target_norm": "rateofchange",
+          "source_display": "Differentiation",
+          "target_display": "Rate of Change",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "e^x",
+          "target_norm": "derivativesofexponentialfunctions",
+          "source_display": "e^x",
+          "target_display": "Derivatives of Exponential Functions",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "e^x",
+          "target_norm": "numbere",
+          "source_display": "e^x",
+          "target_display": "Number e",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "exponentialfunction",
+          "target_norm": "derivative",
+          "source_display": "exponential function",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "f(x)±g(x)",
+          "target_norm": "sumanddifferencerules",
+          "source_display": "f(x) ± g(x)",
+          "target_display": "Sum and Difference Rules",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "fundamentaltheoremofcalculus",
+          "target_norm": "derivative",
+          "source_display": "Fundamental Theorem of Calculus",
+          "target_display": "Derivative",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "fundamentaltheoremofcalculus",
+          "target_norm": "differentiation",
+          "source_display": "Fundamental Theorem of Calculus",
+          "target_display": "Differentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "fundamentaltheoremofcalculus",
+          "target_norm": "integration",
+          "source_display": "Fundamental Theorem of Calculus",
+          "target_display": "Integration",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "fundamentaltheoremofcalculus",
+          "target_norm": "inverseoperation",
+          "source_display": "fundamental theorem of calculus",
+          "target_display": "inverse operation",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "generalexponentialfunction",
+          "target_norm": "naturallogarithm",
+          "source_display": "general exponential function",
+          "target_display": "natural logarithm",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "limitdefinitionofe",
+          "target_norm": "numbere",
+          "source_display": "limit definition of e",
+          "target_display": "number e",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "marginalcost",
+          "target_norm": "costfunction",
+          "source_display": "Marginal Cost",
+          "target_display": "Cost Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "marginalcost",
+          "target_norm": "derivative",
+          "source_display": "marginal cost",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "numbere",
+          "target_norm": "derivative",
+          "source_display": "number e",
+          "target_display": "Derivative",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "numbere",
+          "target_norm": "exponentialfunction",
+          "source_display": "number e",
+          "target_display": "exponential function",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "numbere",
+          "target_norm": "limitdefinitionofe",
+          "source_display": "Number e",
+          "target_display": "Limit Definition of e",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "derivative",
+          "source_display": "Power Rule",
+          "target_display": "Derivative",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "differentiablefunction",
+          "source_display": "Power Rule",
+          "target_display": "Differentiable Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "differentiation",
+          "source_display": "Power Rule",
+          "target_display": "Differentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "nx^(n-1)",
+          "source_display": "Power Rule",
+          "target_display": "n x^(n-1)",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "powerfunction",
+          "source_display": "power rule",
+          "target_display": "power function",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "realexponent",
+          "source_display": "Power Rule",
+          "target_display": "Real Exponent",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "powerrule",
+          "target_norm": "x^n",
+          "source_display": "Power Rule",
+          "target_display": "x^n",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "rateofchange",
+          "target_norm": "derivative",
+          "source_display": "rate of change",
+          "target_display": "Derivative",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "realexponent",
+          "target_norm": "positiveintegerexponent",
+          "source_display": "Real Exponent",
+          "target_display": "Positive Integer Exponent",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "secondderivative",
+          "target_norm": "derivative",
+          "source_display": "second derivative",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "sumanddifferencerules",
+          "target_norm": "differentiablefunction",
+          "source_display": "Sum and Difference Rules",
+          "target_display": "Differentiable Function",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "sumanddifferencerules",
+          "target_norm": "f'(x)±g'(x)",
+          "source_display": "Sum and Difference Rules",
+          "target_display": "f'(x) ± g'(x)",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "sumrule",
+          "target_norm": "derivative",
+          "source_display": "sum rule",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "tangentlineapproximation",
+          "target_norm": "differentiation",
+          "source_display": "Tangent Line Approximation",
+          "target_display": "Differentiation",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "velocity",
+          "target_norm": "derivative",
+          "source_display": "velocity",
+          "target_display": "derivative",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "velocity",
+          "target_norm": "position",
+          "source_display": "Velocity",
+          "target_display": "Position",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "zh_微分方程_ch3_sec3.2-3.4",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 6,
+        "spark_concepts": 22,
+        "bailian_concepts": 29,
+        "accepted_concepts_ge2": 9,
+        "mimo_only_review": 0,
+        "mimo_relations": 5,
+        "spark_relations": 16,
+        "bailian_relations": 28,
+        "solid_ge2": 3,
+        "hypothetical_1src": 43
+      },
+      "accepted_concepts": [
+        {
+          "norm": "二阶常系数齐次方程",
+          "display": "二阶常系数齐次方程",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "参数变易法",
+          "display": "参数变易法",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "导数",
+          "display": "导数",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "待定系数法",
+          "display": "待定系数法",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "特征方程",
+          "display": "特征方程",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "特征根重数k",
+          "display": "特征根重数k",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "非齐次方程",
+          "display": "非齐次方程",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "高阶线性微分方程",
+          "display": "高阶线性微分方程",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "齐次方程",
+          "display": "齐次方程",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [],
+      "solid_relations": [
+        {
+          "source_norm": "特征方程",
+          "target_norm": "二阶常系数齐次方程",
+          "source_display": "特征方程",
+          "target_display": "二阶常系数齐次方程",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "非齐次方程",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "非齐次方程",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "齐次方程",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "齐次方程",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "n阶常系数齐次线性微分方程",
+          "target_norm": "二阶常系数齐次方程",
+          "source_display": "n阶常系数齐次线性微分方程",
+          "target_display": "二阶常系数齐次方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "n阶特征方程推广",
+          "target_norm": "特征方程",
+          "source_display": "n阶特征方程推广",
+          "target_display": "特征方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "n阶线性微分方程的一般形式",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "n阶线性微分方程的一般形式",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "pm(x)e^λx型右端",
+          "target_norm": "待定系数法",
+          "source_display": "Pm(x)e^λx型右端",
+          "target_display": "待定系数法",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "不等实根解形式",
+          "target_norm": "特征方程",
+          "source_display": "不等实根解形式",
+          "target_display": "特征方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "两个不等实根",
+          "target_norm": "特征根",
+          "source_display": "两个不等实根",
+          "target_display": "特征根",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "二阶常系数齐次方程",
+          "target_norm": "常系数齐次线性微分方程",
+          "source_display": "二阶常系数齐次方程",
+          "target_display": "常系数齐次线性微分方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "二阶常系数齐次方程",
+          "target_norm": "特征方程",
+          "source_display": "二阶常系数齐次方程",
+          "target_display": "特征方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "二阶常系数齐次方程通解",
+          "target_norm": "特征根",
+          "source_display": "二阶常系数齐次方程通解",
+          "target_display": "特征根",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "共轭复根",
+          "target_norm": "特征根",
+          "source_display": "共轭复根",
+          "target_display": "特征根",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "共轭复根解形式",
+          "target_norm": "特征方程",
+          "source_display": "共轭复根解形式",
+          "target_display": "特征方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "判别式",
+          "target_norm": "特征方程",
+          "source_display": "判别式",
+          "target_display": "特征方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "原函数",
+          "target_norm": "未知函数",
+          "source_display": "原函数",
+          "target_display": "未知函数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "参数变易法",
+          "target_norm": "常系数非齐次方程",
+          "source_display": "参数变易法",
+          "target_display": "常系数非齐次方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "参数变易法",
+          "target_norm": "特解形式",
+          "source_display": "参数变易法",
+          "target_display": "特解形式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "参数变易法",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "参数变易法",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "参数变易法",
+          "target_norm": "齐次通解",
+          "source_display": "参数变易法",
+          "target_display": "齐次通解",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "常数变易假设",
+          "target_norm": "参数变易法",
+          "source_display": "常数变易假设",
+          "target_display": "参数变易法",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "常系数非齐次线性微分方程",
+          "target_norm": "常系数齐次线性微分方程",
+          "source_display": "常系数非齐次线性微分方程",
+          "target_display": "常系数齐次线性微分方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "待定系数法",
+          "target_norm": "常系数非齐次方程",
+          "source_display": "待定系数法",
+          "target_display": "常系数非齐次方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "待定系数法",
+          "target_norm": "特征根重数k",
+          "source_display": "待定系数法",
+          "target_display": "特征根重数k",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "待定系数法",
+          "target_norm": "特解形式",
+          "source_display": "待定系数法",
+          "target_display": "特解形式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "待定系数法",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "待定系数法",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "微分方程与导数的关系",
+          "target_norm": "原函数",
+          "source_display": "微分方程与导数的关系",
+          "target_display": "原函数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "微分方程与导数的关系",
+          "target_norm": "导数",
+          "source_display": "微分方程与导数的关系",
+          "target_display": "导数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "特征方程",
+          "target_norm": "高阶线性微分方程",
+          "source_display": "特征方程",
+          "target_display": "高阶线性微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "特征根",
+          "target_norm": "判别式δ",
+          "source_display": "特征根",
+          "target_display": "判别式Δ",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "重根",
+          "target_norm": "特征根",
+          "source_display": "重根",
+          "target_display": "特征根",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "重根解形式",
+          "target_norm": "特征方程",
+          "source_display": "重根解形式",
+          "target_display": "特征方程",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "非齐次方程",
+          "target_norm": "齐次方程",
+          "source_display": "非齐次方程",
+          "target_display": "齐次方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "非齐次方程的解的结构",
+          "target_norm": "齐次通解",
+          "source_display": "非齐次方程的解的结构",
+          "target_display": "齐次通解",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "非齐次特解",
+          "target_norm": "特解形式",
+          "source_display": "非齐次特解",
+          "target_display": "特解形式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "非齐次解结构",
+          "target_norm": "特解",
+          "source_display": "非齐次解结构",
+          "target_display": "特解",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "非齐次解结构",
+          "target_norm": "通解",
+          "source_display": "非齐次解结构",
+          "target_display": "通解",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "非齐次通解",
+          "target_norm": "非齐次方程的解的结构",
+          "source_display": "非齐次通解",
+          "target_display": "非齐次方程的解的结构",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "非齐次通解",
+          "target_norm": "非齐次特解",
+          "source_display": "非齐次通解",
+          "target_display": "非齐次特解",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "高阶线性微分方程",
+          "target_norm": "导数",
+          "source_display": "高阶线性微分方程",
+          "target_display": "导数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "高阶线性微分方程",
+          "target_norm": "常微分方程",
+          "source_display": "高阶线性微分方程",
+          "target_display": "常微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "高阶线性微分方程",
+          "target_norm": "未知函数",
+          "source_display": "高阶线性微分方程",
+          "target_display": "未知函数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "齐次方程的解的结构",
+          "target_norm": "线性无关的解",
+          "source_display": "齐次方程的解的结构",
+          "target_display": "线性无关的解",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "齐次通解",
+          "target_norm": "线性无关的解",
+          "source_display": "齐次通解",
+          "target_display": "线性无关的解",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "齐次通解结构定理",
+          "target_norm": "线性无关解",
+          "source_display": "齐次通解结构定理",
+          "target_display": "线性无关解",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "齐次通解结构定理",
+          "target_norm": "通解",
+          "source_display": "齐次通解结构定理",
+          "target_display": "通解",
+          "sources": [
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "zh_微分方程_ch4_sec4.1-4.3",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 7,
+        "spark_concepts": 24,
+        "bailian_concepts": 28,
+        "accepted_concepts_ge2": 13,
+        "mimo_only_review": 1,
+        "mimo_relations": 7,
+        "spark_relations": 17,
+        "bailian_relations": 30,
+        "solid_ge2": 5,
+        "hypothetical_1src": 44
+      },
+      "accepted_concepts": [
+        {
+          "norm": "sir模型",
+          "display": "SIR 模型",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "一阶方程组",
+          "display": "一阶方程组",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "共振",
+          "display": "共振",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "受迫振动",
+          "display": "受迫振动",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "弹簧振动",
+          "display": "弹簧振动",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "放射性衰变",
+          "display": "放射性衰变",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "物理应用",
+          "display": "物理应用",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "生物应用",
+          "display": "生物应用",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "矩阵方法",
+          "display": "矩阵方法",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "简谐运动",
+          "display": "简谐运动",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "逻辑斯蒂模型",
+          "display": "逻辑斯蒂模型",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "阻尼振动",
+          "display": "阻尼振动",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "马尔萨斯模型",
+          "display": "马尔萨斯模型",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [
+        {
+          "norm": "微分方程组",
+          "display": "微分方程组"
+        }
+      ],
+      "solid_relations": [
+        {
+          "source_norm": "共振",
+          "target_norm": "受迫振动",
+          "source_display": "共振",
+          "target_display": "受迫振动",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "受迫振动",
+          "target_norm": "弹簧振动",
+          "source_display": "受迫振动",
+          "target_display": "弹簧振动",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "放射性衰变",
+          "target_norm": "物理应用",
+          "source_display": "放射性衰变",
+          "target_display": "物理应用",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "简谐运动",
+          "target_norm": "弹簧振动",
+          "source_display": "简谐运动",
+          "target_display": "弹簧振动",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "阻尼振动",
+          "target_norm": "弹簧振动",
+          "source_display": "阻尼振动",
+          "target_display": "弹簧振动",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "lrc电路",
+          "target_norm": "lr电路",
+          "source_display": "LRC电路",
+          "target_display": "LR电路",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "lrc电路",
+          "target_norm": "rc电路",
+          "source_display": "LRC电路",
+          "target_display": "RC电路",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "lrc电路",
+          "target_norm": "电路方程",
+          "source_display": "LRC电路",
+          "target_display": "电路方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "lrc电路方程",
+          "target_norm": "物理应用",
+          "source_display": "LRC电路方程",
+          "target_display": "物理应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "lr电路",
+          "target_norm": "电路方程",
+          "source_display": "LR电路",
+          "target_display": "电路方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "lr电路方程",
+          "target_norm": "物理应用",
+          "source_display": "LR电路方程",
+          "target_display": "物理应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "rc电路",
+          "target_norm": "电路方程",
+          "source_display": "RC电路",
+          "target_display": "电路方程",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "rc电路方程",
+          "target_norm": "物理应用",
+          "source_display": "RC电路方程",
+          "target_display": "物理应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "sir模型",
+          "target_norm": "传染病模型",
+          "source_display": "SIR模型",
+          "target_display": "传染病模型",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "sir模型",
+          "target_norm": "微分方程组",
+          "source_display": "SIR 模型",
+          "target_display": "微分方程组",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "sir模型",
+          "target_norm": "生物应用",
+          "source_display": "SIR模型",
+          "target_display": "生物应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "一阶方程组",
+          "target_norm": "常微分方程组",
+          "source_display": "一阶方程组",
+          "target_display": "常微分方程组",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "一阶方程组",
+          "target_norm": "微分方程组",
+          "source_display": "一阶方程组",
+          "target_display": "微分方程组",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "人口增长模型",
+          "target_norm": "生物应用",
+          "source_display": "人口增长模型",
+          "target_display": "生物应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "传染病模型",
+          "target_norm": "生物应用",
+          "source_display": "传染病模型",
+          "target_display": "生物应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "共振",
+          "target_norm": "弹簧振动",
+          "source_display": "共振",
+          "target_display": "弹簧振动",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "化高阶方程为方程组",
+          "target_norm": "一阶方程组",
+          "source_display": "化高阶方程为方程组",
+          "target_display": "一阶方程组",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "常微分方程组",
+          "target_norm": "微分方程的应用",
+          "source_display": "常微分方程组",
+          "target_display": "微分方程的应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "弹簧振动",
+          "target_norm": "二阶线性微分方程",
+          "source_display": "弹簧振动",
+          "target_display": "二阶线性微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "弹簧振动",
+          "target_norm": "物理应用",
+          "source_display": "弹簧振动",
+          "target_display": "物理应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "微分方程与线性代数的关系",
+          "target_norm": "矩阵方法",
+          "source_display": "微分方程与线性代数的关系",
+          "target_display": "矩阵方法",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "微分方程组",
+          "target_norm": "常微分方程",
+          "source_display": "微分方程组",
+          "target_display": "常微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "放射性衰变",
+          "target_norm": "指数衰减",
+          "source_display": "放射性衰变",
+          "target_display": "指数衰减",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "无阻尼振动",
+          "target_norm": "弹簧振动",
+          "source_display": "无阻尼振动",
+          "target_display": "弹簧振动",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "无阻尼振动",
+          "target_norm": "简谐运动",
+          "source_display": "无阻尼振动",
+          "target_display": "简谐运动",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "有阻尼振动",
+          "target_norm": "弹簧振动",
+          "source_display": "有阻尼振动",
+          "target_display": "弹簧振动",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "有阻尼振动",
+          "target_norm": "指数衰减",
+          "source_display": "有阻尼振动",
+          "target_display": "指数衰减",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "物理应用",
+          "target_norm": "微分方程的应用",
+          "source_display": "物理应用",
+          "target_display": "微分方程的应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "特征值决定动力学",
+          "target_norm": "矩阵方法",
+          "source_display": "特征值决定动力学",
+          "target_display": "矩阵方法",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "生物应用",
+          "target_norm": "微分方程的应用",
+          "source_display": "生物应用",
+          "target_display": "微分方程的应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "电路方程",
+          "target_norm": "物理应用",
+          "source_display": "电路方程",
+          "target_display": "物理应用",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "矩阵指数解",
+          "target_norm": "矩阵方法",
+          "source_display": "矩阵指数解",
+          "target_display": "矩阵方法",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "矩阵方法",
+          "target_norm": "常微分方程组",
+          "source_display": "矩阵方法",
+          "target_display": "常微分方程组",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "矩阵方法",
+          "target_norm": "微分方程组",
+          "source_display": "矩阵方法",
+          "target_display": "微分方程组",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "矩阵方法",
+          "target_norm": "矩阵指数",
+          "source_display": "矩阵方法",
+          "target_display": "矩阵指数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "系数矩阵特征值",
+          "target_norm": "矩阵方法",
+          "source_display": "系数矩阵特征值",
+          "target_display": "矩阵方法",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "系统动力学行为",
+          "target_norm": "系数矩阵特征值",
+          "source_display": "系统动力学行为",
+          "target_display": "系数矩阵特征值",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "逻辑斯蒂模型",
+          "target_norm": "人口增长模型",
+          "source_display": "逻辑斯蒂模型",
+          "target_display": "人口增长模型",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "逻辑斯蒂模型",
+          "target_norm": "微分方程",
+          "source_display": "逻辑斯蒂模型",
+          "target_display": "微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "逻辑斯蒂模型",
+          "target_norm": "生物应用",
+          "source_display": "逻辑斯蒂模型",
+          "target_display": "生物应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "马尔萨斯模型",
+          "target_norm": "人口增长模型",
+          "source_display": "马尔萨斯模型",
+          "target_display": "人口增长模型",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "马尔萨斯模型",
+          "target_norm": "生物应用",
+          "source_display": "马尔萨斯模型",
+          "target_display": "生物应用",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "高阶方程化方程组",
+          "target_norm": "一阶方程组",
+          "source_display": "高阶方程化方程组",
+          "target_display": "一阶方程组",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "高阶方程化方程组",
+          "target_norm": "状态变量",
+          "source_display": "高阶方程化方程组",
+          "target_display": "状态变量",
+          "sources": [
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "zh_选修2-2_ch1_sec1.1",
+      "n_sources": 2,
+      "has_bailian": false,
+      "counts": {
+        "mimo_concepts": 4,
+        "spark_concepts": 18,
+        "bailian_concepts": 0,
+        "accepted_concepts_ge2": 4,
+        "mimo_only_review": 0,
+        "mimo_relations": 2,
+        "spark_relations": 12,
+        "bailian_relations": 0,
+        "solid_ge2": 1,
+        "hypothetical_1src": 12
+      },
+      "accepted_concepts": [
+        {
+          "norm": "函数",
+          "display": "函数",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "切线",
+          "display": "切线",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "导数",
+          "display": "导数",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "极限",
+          "display": "极限",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [],
+      "solid_relations": [
+        {
+          "source_norm": "导数",
+          "target_norm": "极限",
+          "source_display": "导数",
+          "target_display": "极限",
+          "sources": [
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "函数增量",
+          "target_norm": "自变量增量",
+          "source_display": "函数增量",
+          "target_display": "自变量增量",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "切线斜率",
+          "target_norm": "导数",
+          "source_display": "切线斜率",
+          "target_display": "导数",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "割线",
+          "target_norm": "切线",
+          "source_display": "割线",
+          "target_display": "切线",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "可导性",
+          "target_norm": "连续性",
+          "source_display": "可导性",
+          "target_display": "连续性",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导函数",
+          "target_norm": "导数",
+          "source_display": "导函数",
+          "target_display": "导数",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导数",
+          "target_norm": "切线",
+          "source_display": "导数",
+          "target_display": "切线",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "导数",
+          "target_norm": "瞬时变化率",
+          "source_display": "导数",
+          "target_display": "瞬时变化率",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导数的几何意义",
+          "target_norm": "切线",
+          "source_display": "导数的几何意义",
+          "target_display": "切线",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导数的物理意义",
+          "target_norm": "瞬时变化率",
+          "source_display": "导数的物理意义",
+          "target_display": "瞬时变化率",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "平均变化率",
+          "target_norm": "变化率",
+          "source_display": "平均变化率",
+          "target_display": "变化率",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "微商",
+          "target_norm": "导数",
+          "source_display": "微商",
+          "target_display": "导数",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "瞬时变化率",
+          "target_norm": "平均变化率",
+          "source_display": "瞬时变化率",
+          "target_display": "平均变化率",
+          "sources": [
+            "spark"
+          ]
+        }
+      ]
+    },
+    {
+      "basename": "zh_选修2-2_ch1_sec1.2",
+      "n_sources": 3,
+      "has_bailian": true,
+      "counts": {
+        "mimo_concepts": 9,
+        "spark_concepts": 22,
+        "bailian_concepts": 22,
+        "accepted_concepts_ge2": 13,
+        "mimo_only_review": 0,
+        "mimo_relations": 12,
+        "spark_relations": 16,
+        "bailian_relations": 23,
+        "solid_ge2": 2,
+        "hypothetical_1src": 47
+      },
+      "accepted_concepts": [
+        {
+          "norm": "余弦函数的导数",
+          "display": "余弦函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "可导函数",
+          "display": "可导函数",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "和差法则",
+          "display": "和差法则",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "商法则",
+          "display": "商法则",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "对数函数的导数",
+          "display": "对数函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "导数",
+          "display": "导数",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "常数函数的导数",
+          "display": "常数函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "幂函数的导数",
+          "display": "幂函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "指数函数的导数",
+          "display": "指数函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "极限",
+          "display": "极限",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "极限运算法则",
+          "display": "极限运算法则",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "norm": "正弦函数的导数",
+          "display": "正弦函数的导数",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        },
+        {
+          "norm": "积法则",
+          "display": "积法则",
+          "sources": [
+            "bailian",
+            "mimo",
+            "spark"
+          ]
+        }
+      ],
+      "mimo_only_review": [],
+      "solid_relations": [
+        {
+          "source_norm": "和差法则",
+          "target_norm": "极限运算法则",
+          "source_display": "和差法则",
+          "target_display": "极限运算法则",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "商法则",
+          "target_norm": "可导函数",
+          "source_display": "商法则",
+          "target_display": "可导函数",
+          "sources": [
+            "bailian",
+            "spark"
+          ]
+        }
+      ],
+      "hypothetical_relations": [
+        {
+          "source_norm": "余弦函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "余弦函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "余弦函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "余弦函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "余弦函数的导数",
+          "target_norm": "导数",
+          "source_display": "余弦函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "可导函数",
+          "target_norm": "导数",
+          "source_display": "可导函数",
+          "target_display": "导数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "和差法则",
+          "target_norm": "导数四则运算法则",
+          "source_display": "和差法则",
+          "target_display": "导数四则运算法则",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "和差法则",
+          "target_norm": "导数的四则运算法则",
+          "source_display": "和差法则",
+          "target_display": "导数的四则运算法则",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "和差法则",
+          "target_norm": "极限",
+          "source_display": "和差法则",
+          "target_display": "极限",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "商法则",
+          "target_norm": "导数四则运算法则",
+          "source_display": "商法则",
+          "target_display": "导数四则运算法则",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "商法则",
+          "target_norm": "导数的四则运算法则",
+          "source_display": "商法则",
+          "target_display": "导数的四则运算法则",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "商法则",
+          "target_norm": "积法则",
+          "source_display": "商法则",
+          "target_display": "积法则",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "基本初等函数的导数公式",
+          "target_norm": "微分学的计算基础",
+          "source_display": "基本初等函数的导数公式",
+          "target_display": "微分学的计算基础",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "多个函数乘积的求导法则",
+          "target_norm": "积法则",
+          "source_display": "多个函数乘积的求导法则",
+          "target_display": "积法则",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "多函数积推广",
+          "target_norm": "积法则",
+          "source_display": "多函数积推广",
+          "target_display": "积法则",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "对数函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "对数函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "对数函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "对数函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "对数函数的导数",
+          "target_norm": "导数",
+          "source_display": "对数函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "导数",
+          "target_norm": "函数",
+          "source_display": "导数",
+          "target_display": "函数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "导数四则运算法则",
+          "target_norm": "导数定义",
+          "source_display": "导数四则运算法则",
+          "target_display": "导数定义",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导数四则运算法则",
+          "target_norm": "极限运算法则",
+          "source_display": "导数四则运算法则",
+          "target_display": "极限运算法则",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "导数的四则运算法则",
+          "target_norm": "可导函数",
+          "source_display": "导数的四则运算法则",
+          "target_display": "可导函数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "导数的四则运算法则",
+          "target_norm": "微分学的计算基础",
+          "source_display": "导数的四则运算法则",
+          "target_display": "微分学的计算基础",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "导数的四则运算法则",
+          "target_norm": "极限运算法则",
+          "source_display": "导数的四则运算法则",
+          "target_display": "极限运算法则",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "导数的定义",
+          "target_norm": "极限",
+          "source_display": "导数的定义",
+          "target_display": "极限",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "常数函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "常数函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "常数函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "常数函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "常数函数的导数",
+          "target_norm": "导数",
+          "source_display": "常数函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "幂函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "幂函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "幂函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "幂函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "幂函数的导数",
+          "target_norm": "导数",
+          "source_display": "幂函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "微分方程的阶",
+          "target_norm": "微分方程",
+          "source_display": "微分方程的阶",
+          "target_display": "微分方程",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "微分的几何意义",
+          "target_norm": "微分",
+          "source_display": "微分的几何意义",
+          "target_display": "微分",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "指数函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "指数函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "指数函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "指数函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "指数函数的导数",
+          "target_norm": "导数",
+          "source_display": "指数函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "无穷级数",
+          "target_norm": "收敛",
+          "source_display": "无穷级数",
+          "target_display": "收敛",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "正弦函数的导数",
+          "target_norm": "基本初等函数导数公式",
+          "source_display": "正弦函数的导数",
+          "target_display": "基本初等函数导数公式",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "正弦函数的导数",
+          "target_norm": "基本初等函数的导数公式",
+          "source_display": "正弦函数的导数",
+          "target_display": "基本初等函数的导数公式",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "正弦函数的导数",
+          "target_norm": "导数",
+          "source_display": "正弦函数的导数",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "求导",
+          "target_norm": "导数",
+          "source_display": "求导",
+          "target_display": "导数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "求导",
+          "target_norm": "导数的定义",
+          "source_display": "求导",
+          "target_display": "导数的定义",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "积法则",
+          "target_norm": "导数",
+          "source_display": "积法则",
+          "target_display": "导数",
+          "sources": [
+            "mimo"
+          ]
+        },
+        {
+          "source_norm": "积法则",
+          "target_norm": "导数四则运算法则",
+          "source_display": "积法则",
+          "target_display": "导数四则运算法则",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "积法则",
+          "target_norm": "导数的四则运算法则",
+          "source_display": "积法则",
+          "target_display": "导数的四则运算法则",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "自然对数函数导数",
+          "target_norm": "对数函数的导数",
+          "source_display": "自然对数函数导数",
+          "target_display": "对数函数的导数",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "自然对数函数的导数",
+          "target_norm": "对数函数的导数",
+          "source_display": "自然对数函数的导数",
+          "target_display": "对数函数的导数",
+          "sources": [
+            "bailian"
+          ]
+        },
+        {
+          "source_norm": "自然指数函数导数",
+          "target_norm": "指数函数的导数",
+          "source_display": "自然指数函数导数",
+          "target_display": "指数函数的导数",
+          "sources": [
+            "spark"
+          ]
+        },
+        {
+          "source_norm": "自然指数函数的导数",
+          "target_norm": "指数函数的导数",
+          "source_display": "自然指数函数的导数",
+          "target_display": "指数函数的导数",
+          "sources": [
+            "bailian"
+          ]
+        }
+      ]
+    }
+  ]
+}

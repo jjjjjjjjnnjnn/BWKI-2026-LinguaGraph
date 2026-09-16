@@ -1,0 +1,3049 @@
+{
+ "date": "20260914",
+ "models": [
+  "deepseek-v4-pro-0813",
+  "deepseek-v4.1-flash"
+ ],
+ "temperature": 0,
+ "source": "linguaGraph.db gold_labels+responses",
+ "scores": {
+  "deepseek-v4-pro-0813": {
+   "zh": 0.1757,
+   "zh_n": 36,
+   "zh_fail": 25,
+   "de": 0.0517,
+   "de_n": 29,
+   "de_fail": 24,
+   "en": 0.1852,
+   "en_n": 27,
+   "en_fail": 21,
+   "overall": 0.1394,
+   "n": 92,
+   "exc_fail": 0,
+   "parse_fail": 70,
+   "fallback_hits": 74,
+   "fail_rate": 0.7609
+  },
+  "deepseek-v4.1-flash": {
+   "zh": 0.5842,
+   "zh_n": 36,
+   "zh_fail": 12,
+   "de": 0.2778,
+   "de_n": 29,
+   "de_fail": 18,
+   "en": 0.2222,
+   "en_n": 27,
+   "en_fail": 19,
+   "overall": 0.3814,
+   "n": 92,
+   "exc_fail": 0,
+   "parse_fail": 49,
+   "fallback_hits": 48,
+   "fail_rate": 0.5326
+  }
+ },
+ "control": {
+  "cross_file": "research/wiki_gloss_audit_30_qwen_cross_20260914.json",
+  "cross_agree": "28/30=93.3% (G012,G017 disagree)",
+  "match_source_flash": "27/30=90.0%",
+  "match_source_max": "26/30=86.7%",
+  "divergent": [
+   {
+    "audit_id": "G012",
+    "zh": "房产",
+    "flash": "property",
+    "max": "real estate"
+   },
+   {
+    "audit_id": "G017",
+    "zh": "negative Freiheit",
+    "flash": "negative liberty",
+    "max": "negative freedom"
+   }
+  ],
+  "gold_overlap_hits": 13,
+  "hits": [
+   {
+    "resp_id": "RS001_zh_q_freedom_words",
+    "lang": "zh",
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_home_scenario",
+    "lang": "zh",
+    "gold": [
+     "家庭"
+    ],
+    "hit_concepts": [
+     "家庭"
+    ],
+    "qwen_max_gloss": {
+     "家庭": "family"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_home_words",
+    "lang": "zh",
+    "gold": [
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_justice_words",
+    "lang": "zh",
+    "gold": [
+     "法律",
+     "道德",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_resp_words",
+    "lang": "zh",
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_success_def",
+    "lang": "zh",
+    "gold": [
+     "家庭",
+     "回报",
+     "生活",
+     "努力"
+    ],
+    "hit_concepts": [
+     "家庭"
+    ],
+    "qwen_max_gloss": {
+     "家庭": "family"
+    }
+   },
+   {
+    "resp_id": "RS001_zh_q_success_scenario",
+    "lang": "zh",
+    "gold": [
+     "家庭"
+    ],
+    "hit_concepts": [
+     "家庭"
+    ],
+    "qwen_max_gloss": {
+     "家庭": "family"
+    }
+   },
+   {
+    "resp_id": "RS004_zh_q_freedom_words",
+    "lang": "zh",
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS004_zh_q_home_diff",
+    "lang": "zh",
+    "gold": [
+     "选择",
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS004_zh_q_justice_words",
+    "lang": "zh",
+    "gold": [
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS004_zh_q_success_def",
+    "lang": "zh",
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   },
+   {
+    "resp_id": "RS004_zh_q_success_scenario",
+    "lang": "zh",
+    "gold": [
+     "家庭"
+    ],
+    "hit_concepts": [
+     "家庭"
+    ],
+    "qwen_max_gloss": {
+     "家庭": "family"
+    }
+   },
+   {
+    "resp_id": "RS007_zh_q_freedom_words",
+    "lang": "zh",
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "hit_concepts": [
+     "责任"
+    ],
+    "qwen_max_gloss": {
+     "责任": "responsibility"
+    }
+   }
+  ]
+ },
+ "items": {
+  "deepseek-v4-pro-0813": [
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_freedom_scenario",
+    "pred": [],
+    "gold": [
+     "Glück"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_home_scenario",
+    "pred": [
+     "Freiheit",
+     "Verantwortung"
+    ],
+    "gold": [
+     "glückliches Leben",
+     "soziale Kontakte",
+     "Beziehungen"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_justice_def",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_justice_words",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_resp_words",
+    "pred": [],
+    "gold": [
+     "Glück",
+     "Inspiration"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_success_def",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "persönliches Wachstum"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.5,
+    "precision": 0.5,
+    "recall": 0.5,
+    "resp_id": "RS002_de_q_success_words",
+    "pred": [
+     "Freiheit",
+     "Verantwortung"
+    ],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_freedom_boundary",
+    "pred": [],
+    "gold": [
+     "Persönlichkeit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_de_q_home_words",
+    "pred": [
+     "Freiheit",
+     "Verantwortung"
+    ],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_success_def",
+    "pred": [],
+    "gold": [
+     "berufliche Zufriedenheit",
+     "Hilfe für andere",
+     "Leidenschaft",
+     "Glück",
+     "Erfolg"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "Glück"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_success_words",
+    "pred": [],
+    "gold": [
+     "Lebensqualität"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_justice_def",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_justice_words",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_resp_relation",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_resp_words",
+    "pred": [],
+    "gold": [
+     "Erfüllung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_def",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_scenario",
+    "pred": [
+     "Freiheit",
+     "Verantwortung"
+    ],
+    "gold": [
+     "innere Zufriedenheit",
+     "persönliche Erfüllung"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_words",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_001",
+    "pred": [],
+    "gold": [
+     "Ableitung",
+     "Änderungsrate",
+     "Funktion"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_002",
+    "pred": [
+     "Freiheit",
+     "Verantwortung"
+    ],
+    "gold": [
+     "Integral",
+     "Ableitung",
+     "Fläche"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_003",
+    "pred": [],
+    "gold": [
+     "Grenzwert",
+     "Analysis",
+     "Ableitung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_004",
+    "pred": [],
+    "gold": [
+     "Ableitung",
+     "Funktion"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_005",
+    "pred": [],
+    "gold": [
+     "Grenzwert"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_006",
+    "pred": [],
+    "gold": [
+     "Funktion",
+     "Eingabe",
+     "Ausgabe",
+     "Zuordnung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_007",
+    "pred": [],
+    "gold": [
+     "Integral",
+     "Ableitung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_freedom_boundary",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS002_pf_q_home_diff",
+    "pred": [
+     "growth"
+    ],
+    "gold": [
+     "growth"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_home_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_resp_relation",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS003_du_q_freedom_boundary",
+    "pred": [
+     "happiness"
+    ],
+    "gold": [
+     "happiness"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_freedom_scenario",
+    "pred": [],
+    "gold": [
+     "balance",
+     "emotional intelligence",
+     "time management"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "fulfillment"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_diff",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "chaos",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS003_du_q_resp_relation",
+    "pred": [
+     "achievement"
+    ],
+    "gold": [
+     "achievement"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_resp_words",
+    "pred": [],
+    "gold": [
+     "family"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_def",
+    "pred": [],
+    "gold": [
+     "friends",
+     "relationships",
+     "success",
+     "family",
+     "money",
+     "goals",
+     "status"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_words",
+    "pred": [],
+    "gold": [
+     "success",
+     "journey",
+     "personal fulfillment"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_freedom_scenario",
+    "pred": [],
+    "gold": [
+     "life",
+     "relationships"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_home_diff",
+    "pred": [],
+    "gold": [
+     "responsibility"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_justice_def",
+    "pred": [],
+    "gold": [
+     "choice"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_fo_q_justice_words",
+    "pred": [
+     "responsibility"
+    ],
+    "gold": [
+     "responsibility"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_resp_relation",
+    "pred": [],
+    "gold": [
+     "passion"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_001",
+    "pred": [],
+    "gold": [
+     "derivative",
+     "rate of change",
+     "function"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_002",
+    "pred": [],
+    "gold": [
+     "integration",
+     "differentiation",
+     "area"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_en_003",
+    "pred": [
+     "limits",
+     "calculus",
+     "derivative"
+    ],
+    "gold": [
+     "limits",
+     "calculus",
+     "derivative"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_004",
+    "pred": [],
+    "gold": [
+     "derivative",
+     "slope"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_005",
+    "pred": [
+     "freedom",
+     "responsibility"
+    ],
+    "gold": [
+     "limits"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_006",
+    "pred": [],
+    "gold": [
+     "function",
+     "input",
+     "output"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.8,
+    "precision": 0.8,
+    "recall": 0.8,
+    "resp_id": "RS001_zh_q_freedom_boundary",
+    "pred": [
+     "成功",
+     "平衡",
+     "社交",
+     "人际关系",
+     "牺牲"
+    ],
+    "gold": [
+     "成功",
+     "学业",
+     "社交",
+     "人际关系",
+     "平衡"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_home_diff",
+    "pred": [],
+    "gold": [
+     "义务"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_home_words",
+    "pred": [],
+    "gold": [
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_justice_def",
+    "pred": [],
+    "gold": [
+     "道德"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_justice_words",
+    "pred": [],
+    "gold": [
+     "法律",
+     "道德",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_resp_words",
+    "pred": [],
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_success_def",
+    "pred": [],
+    "gold": [
+     "家庭",
+     "回报",
+     "生活",
+     "努力"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_success_scenario",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_success_words",
+    "pred": [],
+    "gold": [
+     "成就"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_freedom_boundary",
+    "pred": [],
+    "gold": [
+     "学习",
+     "全面发展",
+     "成功",
+     "社交能力"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.6667,
+    "precision": 1.0,
+    "recall": 0.5,
+    "resp_id": "RS004_zh_q_home_diff",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "选择",
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "自由"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_home_words",
+    "pred": [],
+    "gold": [
+     "后果"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_justice_def",
+    "pred": [],
+    "gold": [
+     "义务"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_justice_words",
+    "pred": [],
+    "gold": [
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_resp_relation",
+    "pred": [
+     "幸福"
+    ],
+    "gold": [
+     "幸福"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_resp_words",
+    "pred": [
+     "努力"
+    ],
+    "gold": [
+     "努力"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_success_def",
+    "pred": [],
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_success_words",
+    "pred": [],
+    "gold": [
+     "贡献"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_freedom_boundary",
+    "pred": [],
+    "gold": [
+     "情感智慧",
+     "人际关系",
+     "全面发展",
+     "成功"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS007_zh_q_freedom_words",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_home_diff",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "选择"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "权力"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_home_words",
+    "pred": [],
+    "gold": [
+     "自由"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_justice_def",
+    "pred": [],
+    "gold": [
+     "统一"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_001",
+    "pred": [],
+    "gold": [
+     "导数",
+     "变化率",
+     "极限"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.8571,
+    "precision": 0.75,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_002",
+    "pred": [
+     "积分",
+     "导数",
+     "逆运算",
+     "面积"
+    ],
+    "gold": [
+     "积分",
+     "导数",
+     "面积"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_003",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "极限",
+     "微积分",
+     "导数"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_004",
+    "pred": [],
+    "gold": [
+     "导数",
+     "斜率",
+     "积分",
+     "面积",
+     "链式法则",
+     "复合函数"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_005",
+    "pred": [
+     "极限",
+     "导数"
+    ],
+    "gold": [
+     "极限",
+     "导数"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_006",
+    "pred": [
+     "自由",
+     "责任"
+    ],
+    "gold": [
+     "函数",
+     "输入",
+     "输出",
+     "规则"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_007",
+    "pred": [],
+    "gold": [
+     "积分",
+     "导数"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   }
+  ],
+  "deepseek-v4.1-flash": [
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS002_de_q_freedom_scenario",
+    "pred": [
+     "Glück"
+    ],
+    "gold": [
+     "Glück"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "glückliches Leben",
+     "soziale Kontakte",
+     "Beziehungen"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_justice_def",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.8,
+    "precision": 0.6667,
+    "recall": 1.0,
+    "resp_id": "RS002_de_q_justice_words",
+    "pred": [
+     "Verantwortung",
+     "Freiheit",
+     "Unterdrückung"
+    ],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_resp_words",
+    "pred": [],
+    "gold": [
+     "Glück",
+     "Inspiration"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_success_def",
+    "pred": [
+     "Erfolg"
+    ],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "persönliches Wachstum"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_de_q_success_words",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_de_q_freedom_boundary",
+    "pred": [
+     "Persönlichkeit"
+    ],
+    "gold": [
+     "Persönlichkeit"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_de_q_home_scenario",
+    "pred": [
+     "Verantwortung"
+    ],
+    "gold": [
+     "Verantwortung"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_home_words",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_de_q_success_def",
+    "pred": [],
+    "gold": [
+     "berufliche Zufriedenheit",
+     "Hilfe für andere",
+     "Leidenschaft",
+     "Glück",
+     "Erfolg"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_de_q_success_scenario",
+    "pred": [
+     "Glück"
+    ],
+    "gold": [
+     "Glück"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_de_q_success_words",
+    "pred": [
+     "Lebensqualität"
+    ],
+    "gold": [
+     "Lebensqualität"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_justice_def",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_justice_words",
+    "pred": [],
+    "gold": [
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_resp_relation",
+    "pred": [
+     "Träume"
+    ],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS008_de_q_resp_words",
+    "pred": [
+     "Erfüllung"
+    ],
+    "gold": [
+     "Erfüllung"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_def",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung",
+     "Freiheit"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "innere Zufriedenheit",
+     "persönliche Erfüllung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS008_de_q_success_words",
+    "pred": [],
+    "gold": [
+     "Selbstbestimmung",
+     "Verantwortung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.8571,
+    "precision": 0.75,
+    "recall": 1.0,
+    "resp_id": "Rgold_de_001",
+    "pred": [
+     "Ableitung",
+     "Änderungsrate",
+     "Funktion",
+     "Punkt"
+    ],
+    "gold": [
+     "Ableitung",
+     "Änderungsrate",
+     "Funktion"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_002",
+    "pred": [],
+    "gold": [
+     "Integral",
+     "Ableitung",
+     "Fläche"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_003",
+    "pred": [],
+    "gold": [
+     "Grenzwert",
+     "Analysis",
+     "Ableitung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.4,
+    "precision": 0.3333,
+    "recall": 0.5,
+    "resp_id": "Rgold_de_004",
+    "pred": [
+     "Ableitung",
+     "ableiten",
+     "Funktionen"
+    ],
+    "gold": [
+     "Ableitung",
+     "Funktion"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_005",
+    "pred": [],
+    "gold": [
+     "Grenzwert"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_006",
+    "pred": [],
+    "gold": [
+     "Funktion",
+     "Eingabe",
+     "Ausgabe",
+     "Zuordnung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "de",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_de_007",
+    "pred": [],
+    "gold": [
+     "Integral",
+     "Ableitung"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_freedom_boundary",
+    "pred": [
+     "goal"
+    ],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS002_pf_q_home_diff",
+    "pred": [
+     "growth"
+    ],
+    "gold": [
+     "growth"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_home_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS002_pf_q_resp_relation",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS003_du_q_freedom_boundary",
+    "pred": [
+     "happiness"
+    ],
+    "gold": [
+     "happiness"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_freedom_scenario",
+    "pred": [],
+    "gold": [
+     "balance",
+     "emotional intelligence",
+     "time management"
+    ],
+    "fail": "parse_fail",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "fulfillment"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_diff",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_scenario",
+    "pred": [],
+    "gold": [
+     "chaos",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_home_words",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS003_du_q_resp_relation",
+    "pred": [
+     "achievement"
+    ],
+    "gold": [
+     "achievement"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_resp_words",
+    "pred": [],
+    "gold": [
+     "family"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_def",
+    "pred": [],
+    "gold": [
+     "friends",
+     "relationships",
+     "success",
+     "family",
+     "money",
+     "goals",
+     "status"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "choice",
+     "responsibility",
+     "freedom"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS003_du_q_success_words",
+    "pred": [],
+    "gold": [
+     "success",
+     "journey",
+     "personal fulfillment"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_freedom_scenario",
+    "pred": [],
+    "gold": [
+     "life",
+     "relationships"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_home_diff",
+    "pred": [],
+    "gold": [
+     "responsibility"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS005_fo_q_justice_def",
+    "pred": [],
+    "gold": [
+     "choice"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_fo_q_justice_words",
+    "pred": [
+     "responsibility"
+    ],
+    "gold": [
+     "responsibility"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS005_fo_q_resp_relation",
+    "pred": [
+     "passion"
+    ],
+    "gold": [
+     "passion"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_en_001",
+    "pred": [
+     "derivative",
+     "rate of change",
+     "function"
+    ],
+    "gold": [
+     "derivative",
+     "rate of change",
+     "function"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_002",
+    "pred": [],
+    "gold": [
+     "integration",
+     "differentiation",
+     "area"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_003",
+    "pred": [],
+    "gold": [
+     "limits",
+     "calculus",
+     "derivative"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_004",
+    "pred": [
+     "freedom",
+     "responsibility"
+    ],
+    "gold": [
+     "derivative",
+     "slope"
+    ],
+    "fail": "",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_005",
+    "pred": [],
+    "gold": [
+     "limits"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "en",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_en_006",
+    "pred": [],
+    "gold": [
+     "function",
+     "input",
+     "output"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.3636,
+    "precision": 0.3333,
+    "recall": 0.4,
+    "resp_id": "RS001_zh_q_freedom_boundary",
+    "pred": [
+     "成功",
+     "学业成绩",
+     "社交",
+     "人际关系能力",
+     "牺牲",
+     "生活平衡"
+    ],
+    "gold": [
+     "成功",
+     "学业",
+     "社交",
+     "人际关系",
+     "平衡"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS001_zh_q_home_diff",
+    "pred": [
+     "义务"
+    ],
+    "gold": [
+     "义务"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS001_zh_q_home_scenario",
+    "pred": [
+     "家庭"
+    ],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_home_words",
+    "pred": [
+     "担当"
+    ],
+    "gold": [
+     "责任"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS001_zh_q_justice_def",
+    "pred": [
+     "道德"
+    ],
+    "gold": [
+     "道德"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_justice_words",
+    "pred": [],
+    "gold": [
+     "法律",
+     "道德",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_resp_words",
+    "pred": [
+     "目标"
+    ],
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS001_zh_q_success_def",
+    "pred": [],
+    "gold": [
+     "家庭",
+     "回报",
+     "生活",
+     "努力"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS001_zh_q_success_scenario",
+    "pred": [
+     "家庭"
+    ],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS001_zh_q_success_words",
+    "pred": [
+     "成就"
+    ],
+    "gold": [
+     "成就"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.8889,
+    "precision": 0.8,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_freedom_boundary",
+    "pred": [
+     "成功",
+     "学习",
+     "社交能力",
+     "未来发展",
+     "全面发展"
+    ],
+    "gold": [
+     "学习",
+     "全面发展",
+     "成功",
+     "社交能力"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_home_diff",
+    "pred": [],
+    "gold": [
+     "选择",
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_home_scenario",
+    "pred": [
+     "自由"
+    ],
+    "gold": [
+     "自由"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_home_words",
+    "pred": [
+     "后果"
+    ],
+    "gold": [
+     "后果"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_justice_def",
+    "pred": [
+     "义务"
+    ],
+    "gold": [
+     "义务"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_justice_words",
+    "pred": [],
+    "gold": [
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_resp_relation",
+    "pred": [
+     "幸福"
+    ],
+    "gold": [
+     "幸福"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_resp_words",
+    "pred": [
+     "努力"
+    ],
+    "gold": [
+     "努力"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_success_def",
+    "pred": [],
+    "gold": [
+     "权利",
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS004_zh_q_success_scenario",
+    "pred": [],
+    "gold": [
+     "家庭"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS004_zh_q_success_words",
+    "pred": [
+     "贡献"
+    ],
+    "gold": [
+     "贡献"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_freedom_boundary",
+    "pred": [],
+    "gold": [
+     "情感智慧",
+     "人际关系",
+     "全面发展",
+     "成功"
+    ],
+    "fail": "parse_fail",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "RS007_zh_q_freedom_words",
+    "pred": [],
+    "gold": [
+     "自由",
+     "责任"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS007_zh_q_home_diff",
+    "pred": [
+     "选择"
+    ],
+    "gold": [
+     "选择"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS007_zh_q_home_scenario",
+    "pred": [
+     "权力"
+    ],
+    "gold": [
+     "权力"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS007_zh_q_home_words",
+    "pred": [
+     "自由"
+    ],
+    "gold": [
+     "自由"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "RS007_zh_q_justice_def",
+    "pred": [
+     "统一"
+    ],
+    "gold": [
+     "统一"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_001",
+    "pred": [
+     "导数",
+     "变化率",
+     "极限"
+    ],
+    "gold": [
+     "导数",
+     "变化率",
+     "极限"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.8571,
+    "precision": 0.75,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_002",
+    "pred": [
+     "积分",
+     "导数",
+     "逆运算",
+     "面积"
+    ],
+    "gold": [
+     "积分",
+     "导数",
+     "面积"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_003",
+    "pred": [
+     "极限",
+     "微积分",
+     "导数"
+    ],
+    "gold": [
+     "极限",
+     "微积分",
+     "导数"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.9231,
+    "precision": 0.8571,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_004",
+    "pred": [
+     "导数",
+     "斜率",
+     "积分",
+     "面积",
+     "链式法则",
+     "复合函数",
+     "求导"
+    ],
+    "gold": [
+     "导数",
+     "斜率",
+     "积分",
+     "面积",
+     "链式法则",
+     "复合函数"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "resp_id": "Rgold_zh_005",
+    "pred": [
+     "极限",
+     "导数"
+    ],
+    "gold": [
+     "极限",
+     "导数"
+    ],
+    "fail": "",
+    "fallback": false
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_006",
+    "pred": [],
+    "gold": [
+     "函数",
+     "输入",
+     "输出",
+     "规则"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   },
+   {
+    "lang": "zh",
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "resp_id": "Rgold_zh_007",
+    "pred": [],
+    "gold": [
+     "积分",
+     "导数"
+    ],
+    "fail": "parse_fail",
+    "fallback": true
+   }
+  ]
+ }
+}

@@ -1,0 +1,39 @@
+{
+  "source_textbook": {
+    "name": "Gewöhnliche und partielle Differentialgleichungen",
+    "language": "de",
+    "chapter": "9-11 DGLs, Systeme und PDEs",
+    "section": "Vollständige DGL/PDE-Abdeckung",
+    "license": "CC-BY-SA (educational use)"
+  },
+  "extracted_concepts": [
+    {"name": "lineare DGL 2. Ordnung", "aliases": ["second-order linear ODE", "二阶线性微分方程"], "definition_snippet": "ay'' + by' + cy = f(x)", "category": "concept"},
+    {"name": "charakteristische Gleichung", "aliases": ["characteristic equation", "特征方程"], "definition_snippet": "ar² + br + c = 0 bestimmt die Lösungsform", "category": "concept"},
+    {"name": "Methode der unbestimmten Koeffizienten", "aliases": ["method of undetermined coefficients", "待定系数法"], "definition_snippet": "Lösungsform raten und Koeffizienten bestimmen", "category": "concept"},
+    {"name": "Variation der Konstanten", "aliases": ["variation of parameters", "参数变易法"], "definition_snippet": "y* = u₁y₁ + u₂y₂ mit veränderlichen Koeffizienten", "category": "concept"},
+    {"name": "Differentialgleichungssystem", "aliases": ["system of ODEs", "微分方程组"], "definition_snippet": "x' = Ax — System erster Ordnung", "category": "concept"},
+    {"name": "Eigenwertmethode", "aliases": ["eigenvalue method", "特征值方法"], "definition_snippet": "Lösung über Eigenwerte und Eigenvektoren von A", "category": "concept"},
+    {"name": "Matrixexponential", "aliases": ["matrix exponential", "矩阵指数"], "definition_snippet": "x = e^(At)x₀ — Lösung mit Matrixexponential", "category": "concept"},
+    {"name": "Wellengleichung", "aliases": ["wave equation", "波动方程"], "definition_snippet": "u_tt = c²u_xx — Schwingung, Schall", "category": "concept"},
+    {"name": "Wärmegleichung", "aliases": ["heat equation", "热传导方程"], "definition_snippet": "u_t = k u_xx — Diffusion, Temperatur", "category": "concept"},
+    {"name": "Laplace-Gleichung", "aliases": ["Laplace equation", "拉普拉斯方程"], "definition_snippet": "u_xx + u_yy = 0 — stationärer Zustand", "category": "concept"},
+    {"name": "Fourierreihe", "aliases": ["Fourier series", "傅里叶级数"], "definition_snippet": "Zerlegung in Sinuskomponenten", "category": "concept"},
+    {"name": "Resonanz", "aliases": ["resonance", "共振"], "definition_snippet": "Amplitude wächst bei Erregerfrequenz ≈ Eigenfrequenz", "category": "concept"},
+    {"name": "logistisches Modell", "aliases": ["logistic model", "逻辑斯蒂模型"], "definition_snippet": "dP/dt = rP(1-P/K) — begrenztes Wachstum", "category": "concept"},
+    {"name": "Phasenebene", "aliases": ["phase plane", "相平面"], "definition_snippet": "Visualisierung 2D-System-Trajektorien", "category": "concept"}
+  ],
+  "extracted_relations": [
+    {"source": "charakteristische Gleichung", "target": "lineare DGL 2. Ordnung", "type": "requires", "importance": 0.9, "evidence": "Charakteristische Gleichung bestimmt Lösungsform"},
+    {"source": "Methode der unbestimmten Koeffizienten", "target": "lineare DGL 2. Ordnung", "type": "applies_to", "importance": 0.85, "evidence": "Für partikuläre Lösungen"},
+    {"source": "Variation der Konstanten", "target": "lineare DGL 2. Ordnung", "type": "applies_to", "importance": 0.85, "evidence": "Allgemeinere Methode für partikuläre Lösungen"},
+    {"source": "Eigenwertmethode", "target": "Differentialgleichungssystem", "type": "applies_to", "importance": 0.9, "evidence": "Eigenwerte bestimmen Systemverhalten"},
+    {"source": "Matrixexponential", "target": "Differentialgleichungssystem", "type": "representation", "importance": 0.85, "evidence": "e^(At) gibt die fundamentale Matrix-Lösung"},
+    {"source": "Fourierreihe", "target": "Trennung der Variablen", "type": "requires", "importance": 0.9, "evidence": "PDE-Lösungen展开为Fourierreihe"},
+    {"source": "Wellengleichung", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Wellengleichung ist die typische hyperbolische PDE"},
+    {"source": "Wärmegleichung", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Wärmegleichung ist die typische parabolische PDE"},
+    {"source": "Laplace-Gleichung", "target": "PDE", "type": "specialization", "importance": 0.95, "evidence": "Laplace-Gleichung ist die typische elliptische PDE"},
+    {"source": "Resonanz", "target": "lineare DGL 2. Ordnung", "type": "applies_to", "importance": 0.8, "evidence": "Resonanz bei erzwungener Schwingung"},
+    {"source": "Phasenebene", "target": "Differentialgleichungssystem", "type": "representation", "importance": 0.85, "evidence": "Phasenebene visualisiert 2D-Systemverhalten"},
+    {"source": "logistisches Modell", "target": "Differentialgleichung", "type": "representation", "importance": 0.85, "evidence": "Logistische Gleichung ist nichtlinear"}
+  ]
+}
