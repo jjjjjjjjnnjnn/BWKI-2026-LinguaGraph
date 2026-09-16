@@ -1,0 +1,382 @@
+{
+  "lane": "Lane-3 weight-vs-human read-only audit",
+  "date": "2026-09-16",
+  "read_only_contract": {
+    "writes": [
+      "research/weight_graph_audit_20260916.json",
+      "research/weight_vectors_934x768_20260916.json",
+      "research/weight_vectors_934x768_20260916.term2vec.json",
+      "research/weight_vs_human_E1_20260916.md"
+    ],
+    "untouched": [
+      "tests/",
+      "freeze/",
+      "_deploy/",
+      "data/",
+      "linguaGraph.db"
+    ],
+    "new_concepts": 0,
+    "corpus_expanded": false,
+    "lds_v3_formula_changed": false
+  },
+  "inputs": {
+    "aligned_data_groups": 219,
+    "lds_k_frozen": {
+      "ZH-EN": 0.934,
+      "DE-EN": 0.938,
+      "ZH-DE": 0.519
+    },
+    "nomic_model": "text-embedding-nomic-embed-text-v1.5, dim=768",
+    "lm_studio_alive": true
+  },
+  "status": {
+    "R1_pair_recount": "EXECUTED",
+    "R2_aggregate_verify": "EXECUTED",
+    "R3_human_sparsity": "EXECUTED",
+    "R4_lm_probe": "EXECUTED",
+    "E1_knn_lds_vec": "EXECUTED",
+    "E2_freq_sim_partialcorr": "PENDING",
+    "E3_sparsity_matched_control": "PARTIAL (human EXECUTED, vector PENDING)",
+    "contamination_4branch": "MIXED (2 EXECUTED/PARTIAL guardrails, 2 PENDING)"
+  },
+  "detail": {
+    "R1_pair_recount": {
+      "aligned_groups": 219,
+      "primary_pairs_total": 434,
+      "by_pair": {
+        "zh-de": 65,
+        "zh-en": 184,
+        "de-en": 185
+      },
+      "groups_with_any_empty_label": 0,
+      "excluded_surface_identical_or_missing": {
+        "surface_identical/deen": 34,
+        "surface_identical/dezh": 154,
+        "surface_identical/enzh": 35
+      },
+      "exploratory_appendix_only": true
+    },
+    "R2_aggregate_verify": {
+      "cache_path": "C:\\Users\\rongj\\AppData\\Local\\Temp\\opencode\\openweight_embed_audit.json",
+      "cache_found": true,
+      "aggregate_match_vs_two_tier_report": {
+        "zh-de": {
+          "expected_n": 65,
+          "got_n": 65,
+          "expected_mean": 0.4804,
+          "got_mean": 0.4804,
+          "match": true
+        },
+        "zh-en": {
+          "expected_n": 184,
+          "got_n": 184,
+          "expected_mean": 0.5249,
+          "got_mean": 0.5249,
+          "match": true
+        },
+        "de-en": {
+          "expected_n": 185,
+          "got_n": 185,
+          "expected_mean": 0.4888,
+          "got_mean": 0.4888,
+          "match": true
+        },
+        "overall": {
+          "expected_n": 434,
+          "got_n": 434,
+          "expected_mean": 0.5029,
+          "got_mean": 0.5029,
+          "match": true
+        }
+      },
+      "per_pair_distances_available": false,
+      "model": "text-embedding-nomic-embed-text-v1.5",
+      "dim": 768
+    },
+    "R3_human_sparsity": {
+      "human_nodes": 556,
+      "human_edges": 238,
+      "human_density_undirected": 0.001543,
+      "human_avg_degree": 0.8561,
+      "human_sparsity_1_minus_density": 0.998457,
+      "knn_matching_targets": {
+        "k=5": {
+          "note": "future per-language kNN graph over 219 aligned labels must be sparsity-matched to this human baseline before any LDS-VEC vs LDS-K comparison",
+          "max_edges_per_lang_undirected_symmetrized_le": 1095
+        },
+        "k=10": {
+          "note": "future per-language kNN graph over 219 aligned labels must be sparsity-matched to this human baseline before any LDS-VEC vs LDS-K comparison",
+          "max_edges_per_lang_undirected_symmetrized_le": 2190
+        },
+        "k=15": {
+          "note": "future per-language kNN graph over 219 aligned labels must be sparsity-matched to this human baseline before any LDS-VEC vs LDS-K comparison",
+          "max_edges_per_lang_undirected_symmetrized_le": 3285
+        }
+      },
+      "exploratory_appendix_only": true
+    },
+    "R4_lm_probe": {
+      "alive": true,
+      "note": "{\n  \"data\": [\n    {\n      \"id\": \"text-embedding-nomic-embed-text-v1.5\",\n      \"object\": \"model\",\n      \"owned_by\": \"organization_owner\"\n    },\n    {\n      \"id\": \"phi-4-mini-instruct\",\n      \"object\": "
+    },
+    "E1_knn_lds_vec": {
+      "ks": [
+        5,
+        10,
+        15
+      ],
+      "formula": "LDS v3 Jaccard reuse (docs/lds_formal_definition.md 8.1), unmodified",
+      "vector_dim": 768,
+      "n_terms_with_vectors": 934,
+      "results": {
+        "k=5": {
+          "zh-de": {
+            "lds_score": 0.5245,
+            "jaccard_node": 0.552,
+            "jaccard_edge": 0.399
+          },
+          "zh-en": {
+            "lds_score": 0.9392,
+            "jaccard_node": 0.0808,
+            "jaccard_edge": 0.0408
+          },
+          "de-en": {
+            "lds_score": 0.9416,
+            "jaccard_node": 0.0812,
+            "jaccard_edge": 0.0356
+          }
+        },
+        "k=10": {
+          "zh-de": {
+            "lds_score": 0.5309,
+            "jaccard_node": 0.552,
+            "jaccard_edge": 0.3861
+          },
+          "zh-en": {
+            "lds_score": 0.9428,
+            "jaccard_node": 0.0808,
+            "jaccard_edge": 0.0335
+          },
+          "de-en": {
+            "lds_score": 0.9446,
+            "jaccard_node": 0.0812,
+            "jaccard_edge": 0.0295
+          }
+        },
+        "k=15": {
+          "zh-de": {
+            "lds_score": 0.5457,
+            "jaccard_node": 0.552,
+            "jaccard_edge": 0.3566
+          },
+          "zh-en": {
+            "lds_score": 0.9476,
+            "jaccard_node": 0.0808,
+            "jaccard_edge": 0.024
+          },
+          "de-en": {
+            "lds_score": 0.9477,
+            "jaccard_node": 0.0812,
+            "jaccard_edge": 0.0235
+          }
+        }
+      },
+      "exploratory_appendix_only": true
+    },
+    "E2_freq_sim_partialcorr": {
+      "status_detail": "PENDING: no frozen math-corpus term-frequency table exists. data/corpus/corpus_analysis.json covers the Wikipedia SOCIAL pilot (freedom/justice/...) — domain-mismatched, must NOT be substituted. Raw textbook text is referenced-only (not versioned); building a new frequency table would expand the corpus, which is forbidden. Per-pair cosine distances are likewise unavailable (aggregates only).",
+      "required_to_unblock": "frozen per-concept frequency counts from the ALREADY-USED math textbook exposure set (no new texts), plus persisted per-pair (n=434) cosine distances; then Spearman rho + partial correlation controlling for surface-form identity, reported ZH-DE vs EN separately.",
+      "exploratory_appendix_only": true
+    },
+    "E3_sparsity_matched_control": {
+      "human_side": "EXECUTED (see R3_human_sparsity)",
+      "vector_side": "PENDING (blocked on E1 vectors; kNN graphs must be sparsity-matched to R3 baseline before comparison)",
+      "zh_de_vs_en_split": {
+        "zh-de": 65,
+        "zh-en": 184,
+        "de-en": 185
+      },
+      "required_to_unblock": "same as E1",
+      "exploratory_appendix_only": true
+    },
+    "contamination_4branch": {
+      "branch_1_frequency": {
+        "status": "PENDING",
+        "what": "vector similarity driven by pretraining frequency, not structure",
+        "reason": "same blockers as E2 (no math freq table; corpus expansion forbidden)",
+        "needs": "frozen math-corpus frequencies + per-pair distances (E2)"
+      },
+      "branch_2_rephrase": {
+        "status": "PENDING",
+        "what": "paraphrase/translation rephrased-sample contamination (Yang et al. 2023)",
+        "reason": "no new weights run in this lane; literal dedup (norm) is insufficient per literature",
+        "needs": "LLM-based semantic decontaminator or paraphrase-embedding pass (e.g. multilingual paraphrase model) over the 934 terms + 434 pairs; no suitable local weight is online (LM Studio offline)"
+      },
+      "branch_3_zh_de_asymmetry": {
+        "status": "PARTIAL (recount EXECUTED, interpretation downgraded)",
+        "what": "zh-de primary pairs are thinnest (n=65 vs 184/185); most groups share one surface form across zh/de and are excluded by rule",
+        "evidence": {
+          "by_pair": {
+            "zh-de": 65,
+            "zh-en": 184,
+            "de-en": 185
+          },
+          "excluded": {
+            "surface_identical/deen": 34,
+            "surface_identical/dezh": 154,
+            "surface_identical/enzh": 35
+          }
+        },
+        "rule": "zh-de vector estimates are down-weighted; no conclusion may rest on zh-de alone"
+      },
+      "branch_4_cross_tier": {
+        "status": "EXECUTED as guardrail; weight-side layer test PENDING",
+        "what": "cross-dimension comparison ban: cosine distance (distribution proximity) vs LDS-K = 1-mean(node/edge Jaccard) (curricular structure) share no unit",
+        "guardrail": "report order-structure only (vector range 0.0445 vs graph range 0.419); forbidden sentence: vector validates/confirms any LDS-K value; zh-de -0.04 closeness is a unit coincidence",
+        "needs": "E1 vectors for the layer-specific dissociation test"
+      }
+    }
+  },
+  "cross_dimension_ban": "cosine distance and LDS-K share no unit; order-structure comparison only",
+  "en_cap_zh_de_rule": {
+    "EN_cap": "EN-involved vector claims stay distribution-level; no per-concept validation sentences",
+    "ZH_DE_rule": "zh-de (n=65, thinnest) down-weighted; never sole carrier"
+  },
+  "E1_EXECUTED": {
+    "date": "2026-09-16",
+    "status": "EXECUTED (measurement); interpretation capped at Hypothesis (see gate)",
+    "model": "text-embedding-nomic-embed-text-v1.5",
+    "model_revision": "not exposed by LM Studio /v1/models (only id list)",
+    "vectors_file": "research/weight_vectors_934x768_20260916.json",
+    "vectors_plain_for_rerun": "research/weight_vectors_934x768_20260916.term2vec.json",
+    "rows": 934,
+    "cols": 768,
+    "batch": 32,
+    "lds_vec": {
+      "k=5": {
+        "zh-de": {
+          "lds_score": 0.5245,
+          "jaccard_node": 0.552,
+          "jaccard_edge": 0.399
+        },
+        "zh-en": {
+          "lds_score": 0.9392,
+          "jaccard_node": 0.0808,
+          "jaccard_edge": 0.0408
+        },
+        "de-en": {
+          "lds_score": 0.9416,
+          "jaccard_node": 0.0812,
+          "jaccard_edge": 0.0356
+        }
+      },
+      "k=10": {
+        "zh-de": {
+          "lds_score": 0.5309,
+          "jaccard_node": 0.552,
+          "jaccard_edge": 0.3861
+        },
+        "zh-en": {
+          "lds_score": 0.9428,
+          "jaccard_node": 0.0808,
+          "jaccard_edge": 0.0335
+        },
+        "de-en": {
+          "lds_score": 0.9446,
+          "jaccard_node": 0.0812,
+          "jaccard_edge": 0.0295
+        }
+      },
+      "k=15": {
+        "zh-de": {
+          "lds_score": 0.5457,
+          "jaccard_node": 0.552,
+          "jaccard_edge": 0.3566
+        },
+        "zh-en": {
+          "lds_score": 0.9476,
+          "jaccard_node": 0.0808,
+          "jaccard_edge": 0.024
+        },
+        "de-en": {
+          "lds_score": 0.9477,
+          "jaccard_node": 0.0812,
+          "jaccard_edge": 0.0235
+        }
+      }
+    },
+    "rank_corr_vs_LDS_K_order_only": {
+      "method": "Spearman rank correlation over n=3 language pairs (descriptive; exact two-sided p=0.333, n.s.)",
+      "LDS_K_order_asc": [
+        "zh-de",
+        "zh-en",
+        "de-en"
+      ],
+      "k=5": {
+        "LDS_VEC_order_asc": [
+          "zh-de",
+          "zh-en",
+          "de-en"
+        ],
+        "rho": 1.0
+      },
+      "k=10": {
+        "LDS_VEC_order_asc": [
+          "zh-de",
+          "zh-en",
+          "de-en"
+        ],
+        "rho": 1.0
+      },
+      "k=15": {
+        "LDS_VEC_order_asc": [
+          "zh-de",
+          "zh-en",
+          "de-en"
+        ],
+        "rho": 1.0
+      },
+      "ban": "order-structure only; no numeric comparison of LDS-VEC vs LDS-K values"
+    },
+    "sparsity_E3_vector": {
+      "per_lang_nodes": 217,
+      "human_baseline": {
+        "nodes": 556,
+        "edges": 238,
+        "density": 0.001543
+      },
+      "knn": {
+        "k=5": {
+          "edges": "642-709",
+          "density": "0.027-0.030"
+        },
+        "k=10": {
+          "edges": "1214-1345",
+          "density": "0.052-0.057"
+        },
+        "k=15": {
+          "edges": "1769-1936",
+          "density": "0.075-0.083"
+        }
+      },
+      "verdict": "MISMATCH 18-54x denser than human graph; cross-density Jaccard confounded"
+    },
+    "node_caveats": {
+      "per_lang_lists": "217 not 219",
+      "missing_groups": [
+        "math_linear_algebra_?? (2 groups, symbol-only labels absent from extracted_concepts and from non-excluded pairs)"
+      ],
+      "duplicate_labels_per_lang": "22-24 (cross-group repeats)",
+      "self_loops": "e.g. 16/709 zh k=5 edges (2.3%)",
+      "confounding": "cross-lingual Jaccard can be nonzero only via shared surface strings; J_node zh-de 0.552 reflects known de-label CJK overlap (T1); rank-match may be contamination reproduced, not geometry"
+    },
+    "gate_verdict": {
+      "E1_measurement": "EXECUTED",
+      "E1_interpretation": "Hypothesis (confounded + n=3 + sparsity mismatch)",
+      "E2": "PENDING (unchanged)",
+      "E3": "PARTIAL (vector sparsity now MEASURED but mismatched; matched-control rerun required)",
+      "branch_4_weight_test": "EXECUTED as measurement, capped at Hypothesis"
+    },
+    "exploratory_appendix_only": true
+  }
+}
