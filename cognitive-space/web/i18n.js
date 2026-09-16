@@ -96,6 +96,8 @@ const TRANSLATIONS = {
         'loading': 'CognitiveSpace',
         'error.load': '3d-force-graph failed to load. Check network.',
         'error.data': 'Knowledge graph data not found.',
+        'error.retry': 'Retry',
+        'error.static': 'View static snapshot',
 
         // Detail panel headers
         'detail.node.profile': 'NODE PROFILE',
@@ -245,6 +247,8 @@ const TRANSLATIONS = {
         'loading': 'CognitiveSpace',
         'error.load': '3d-force-graph konnte nicht geladen werden. Netzwerk prüfen.',
         'error.data': 'Wissensgraph-Daten nicht gefunden.',
+        'error.retry': 'Erneut versuchen',
+        'error.static': 'Statische Ansicht',
 
         'detail.node.profile': 'KNOTENPROFIL',
         'detail.graph.profile': 'GRAPHPROFIL (vollständiger Datensatz: {count} Knoten)',
@@ -386,6 +390,8 @@ const TRANSLATIONS = {
         'loading': 'CognitiveSpace',
         'error.load': '3d-force-graph 加载失败，请检查网络。',
         'error.data': '未找到知识图谱数据。',
+        'error.retry': '重试',
+        'error.static': '查看静态截图',
 
         'detail.node.profile': '节点信息',
         'detail.graph.profile': '图谱信息（完整数据集：{count} 个节点）',

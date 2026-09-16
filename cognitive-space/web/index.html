@@ -5,7 +5,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CognitiveSpace v2 — Mathematics Knowledge Graph · ZH/EN/DE</title>
-    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
+    <script src="../vendor/js/3d-force-graph.min.js"></script>
     <script src="data.js"></script>
     <script src="data_physics.js"></script>
     <script src="data_chemistry.js"></script>
@@ -545,19 +545,35 @@
     }
 
     /* ─── Init ────────────────────────────────────────────────────── */
+    // Offline fallback: error text + retry button + static snapshot link (porcelain styling, no new libs).
+    function showLoadErr(key, withSnapshot) {
+        const box = document.getElementById('loadErr');
+        box.textContent = ''+i18n.tr(key)+'';
+        const retry = document.createElement('button');
+        retry.textContent = ''+i18n.tr('error.retry')+'';
+        retry.style.cssText = 'margin-left:10px;padding:4px 14px;border:1px solid #c6cdd6;border-radius:20px;background:#f8fafc;color:#0a1f3d;cursor:pointer';
+        retry.onclick = () => location.reload();
+        box.appendChild(retry);
+        if (withSnapshot) {
+            const a = document.createElement('a');
+            a.textContent = ''+i18n.tr('error.static')+'';
+            a.href = 'screenshot.png'; a.target = '_blank';
+            a.style.cssText = 'margin-left:10px;color:#1e3a8a';
+            box.appendChild(a);
+        }
+        box.style.display = 'block';
+    }
     function init() {
         // Check dependencies
         if (typeof ForceGraph3D === 'undefined') {
-            document.getElementById('loadErr').textContent = ''+i18n.tr('error.load')+'';
-            document.getElementById('loadErr').style.display = 'block';
+            showLoadErr('error.load', true);
             return;
         }
 
         const data = typeof COGNITIVE_DATA_EXT !== 'undefined' ? COGNITIVE_DATA_EXT :
                      typeof COGNITIVE_DATA !== 'undefined' ? COGNITIVE_DATA : null;
         if (!data || !data.nodes || !data.nodes.length) {
-            document.getElementById('loadErr').textContent = ''+i18n.tr('error.data')+'';
-            document.getElementById('loadErr').style.display = 'block';
+            showLoadErr('error.data', false);
             return;
         }
 

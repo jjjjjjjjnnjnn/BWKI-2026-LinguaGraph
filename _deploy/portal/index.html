@@ -11,12 +11,10 @@
 <meta property="og:description" content="How do different languages and education systems organize the same knowledge?">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Noto+Serif+SC:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../vendor/css/fonts.css">
+<link rel="stylesheet" href="../vendor/css/bootstrap-icons.min.css">
+<script src="../vendor/js/mermaid.min.js"></script>
+<script src="../vendor/js/chart.umd.min.js"></script>
 <script>
 mermaid.initialize({ theme:'default', themeVariables: { primaryColor:'#f8fafc', primaryTextColor:'#0a1f3d', primaryBorderColor:'#c6cdd6', lineColor:'#1e3a8a', secondaryColor:'#f1f3f5', tertiaryColor:'#e7ebef' }, startOnLoad:false, securityLevel:'sandbox' });
 window.addEventListener('DOMContentLoaded', () => { mermaid.run({ querySelector: '.mermaid' }).catch(() => {}); });
@@ -35,8 +33,8 @@ window.addEventListener('DOMContentLoaded', () => { mermaid.run({ querySelector:
   --accent-soft: rgba(30,58,138,.10);
   --card-shadow: 0 1px 0 var(--border), 0 18px 48px rgba(10,31,61,.08);
   --font-display-en: "Playfair Display", Georgia, serif;
-  --font-display-cn: "Noto Serif SC", serif;
-  --font-body: "IBM Plex Sans", "Noto Sans SC", -apple-system, sans-serif;
+  --font-display-cn: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-body: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
@@ -66,6 +64,19 @@ nav a {
 }
 nav a:hover { color: var(--text); background: var(--accent-soft); }
 nav a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+/* Full-page table of contents (porcelain card; no-JS usable via native details) */
+.toc { max-width: 1120px; margin: 12px auto 0; padding: 0 24px; }
+.toc-inner { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+.toc summary { cursor: pointer; padding: 12px 18px; font-weight: 600; color: var(--accent); list-style: none; }
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary:active { transform: scale(.98); }
+.toc-body { overflow: hidden; transition: max-height 280ms ease; }
+.toc-group { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 18px 16px; align-items: center; }
+.toc-label { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text2); margin-right: 4px; }
+.toc-group a { border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: .8rem; color: var(--text); background: var(--bg); }
+.toc-group a:hover { border-color: var(--accent); color: var(--accent); }
+.toc-group a:active { transform: scale(.94); }
 
 /* Language Switcher */
 .lang-switcher { display: flex; gap: 2px; margin-left: auto; margin-right: 0; padding-left: 8px; flex-shrink: 0; position: sticky; right: 0; background: inherit; }
@@ -306,6 +317,16 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <button class="lang-btn" title="中文">ZH</button>
   </div>
 </nav>
+
+<!-- TOC: every section reachable (details = usable without JS; JS adds 280ms expand) -->
+<details class="toc" id="toc"><div class="toc-inner">
+  <summary data-i18n="toc_contents">Contents</summary>
+  <div class="toc-body">
+    <div class="toc-group"><span class="toc-label">Research</span><a href="#pitch" data-i18n="section_pitch">Pitch</a><a href="#research" data-i18n="nav_research">Questions</a><a href="#contributions" data-i18n="nav_contributions">Contributions</a><a href="#methodology" data-i18n="section_method">Methodology</a><a href="#sources" data-i18n="section_sources">Sources</a></div>
+    <div class="toc-group"><span class="toc-label">Findings</span><a href="#finding-a" data-i18n="finding_a_title">Knowledge density peaks early</a><a href="#finding-b" data-i18n="finding_b_title">Knowledge structures stay shallow</a><a href="#finding-c" data-i18n="finding_c_title">Textbook structures converge across languages</a><a href="#two-tier" data-i18n="twotier_title">Textbook Pedagogy vs Latent Model Representations (Two-Tier, 2026-09-14)</a><a href="#finding-d" data-i18n="finding_d_title">Curriculum alignment varies dramatically by governance</a><a href="#finding-e" data-i18n="finding_e_title">N=15 falsifies delta-LDS between-subject</a><a href="#falsification-probe" data-i18n="fals_title">Humanities "falsification probe" (asymmetric, pre-registered logic)</a></div>
+    <div class="toc-group"><span class="toc-label">Evidence</span><a href="#cognitivespace" data-i18n="nav_cognitivespace">CognitiveSpace</a><a href="#limitations" data-i18n="section_limitations">Limitations</a><a href="#curriculum" data-i18n="nav_curriculum">Curriculum</a><a href="#validation" data-i18n="section_validation">Validation</a><a href="#paper" data-i18n="section_paper">Paper</a><a href="#open-science" data-i18n="section_openscience">Open Science</a></div>
+  </div>
+</div></details>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" alt="Enlarged"></div>
@@ -1565,13 +1586,32 @@ document.querySelectorAll('section .section-sub').forEach(s => {
   }
 })();
 
-// Nav active section tracking
+// Nav active section tracking (finding subsections highlight the Findings parent)
 const navLinks = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('section[id]');
+const FINDINGS_SUB = ['finding-b', 'finding-c', 'two-tier', 'finding-d', 'finding-e', 'falsification-probe'];
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 300) current = s.id; });
+  if (FINDINGS_SUB.includes(current)) current = 'finding-a';
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+});
+
+// TOC expand animation (max-height 280ms; native details remains the no-JS fallback)
+document.querySelectorAll('details.toc').forEach(d => {
+  const body = d.querySelector('.toc-body');
+  body.style.maxHeight = '0px';
+  d.querySelector('summary').addEventListener('click', e => {
+    e.preventDefault();
+    if (d.open) {
+      body.style.maxHeight = '0px';
+      setTimeout(() => d.removeAttribute('open'), 280);
+    } else {
+      d.setAttribute('open', '');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      setTimeout(() => { if (d.open) body.style.maxHeight = '70vh'; }, 280);
+    }
+  });
 });
 
 // Lightbox
@@ -1593,8 +1633,10 @@ function copyBibtex() {
 }
 window.copyBibtex = copyBibtex;
 
+// Offline guard: each chart below is a single statement prefixed with if (window.Chart),
+// so a missing vendored Chart.js skips rendering instead of throwing.
 // Chart.js — Coverage Score
-window.coverageChart = new Chart(document.getElementById('coverageChart'), {
+if (window.Chart) window.coverageChart = new Chart(document.getElementById('coverageChart'), {
   type: 'bar',
   data: {
     labels: ['NRW (Germany)', 'US', 'UK', 'China'],
@@ -1624,7 +1666,7 @@ window.coverageChart = new Chart(document.getElementById('coverageChart'), {
 });
 
 // Chart.js — Model Benchmark
-new Chart(document.getElementById('benchmarkChart'), {
+if (window.Chart) new Chart(document.getElementById('benchmarkChart'), {
   type: 'bar',
   data: {
     labels: ['hy3-preview', 'mimo-v2.5-pro', 'qwen-plus ★', 'qwen-max', 'mimo-v2.5', 'kimi-k2.6', 'qwen3.7-max', 'qwen3.5-plus', 'deepseek-v4-flash', 'deepseek-v4-pro', 'glm-5', 'glm-5.2', 'glm-5.1', 'kimi-k2.5', 'minimax-m3', 'qwen3.6-plus', 'minimax-m2.5', 'minimax-m2.7', 'deepseek-chat'],
@@ -1660,7 +1702,7 @@ new Chart(document.getElementById('benchmarkChart'), {
 const MARGIN_LABELS = ['command-a-03-2025', 'deepseek-v3.1', 'qwen-turbo', 'qwen3-max', 'deepseek-v3', 'gpt-5.6-luna', 'qwen3.8-max', 'glm-5', 'qwen3.5-397b-a17b', 'qwen3.7-max', 'glm-5.2-fast-preview', 'qwen3.5-plus', 'nemotron-3-super-120b-a12b', 'deepseek-v3.2', 'nemotron-3-ultra', 'deepseek-v4-flash · dashscope', 'MiniMax-M2.5', 'qwen3.6-plus', 'glm-5.2 · direct', 'qwen3.7-plus', 'glm-4.6', 'glm-5.1', 'longcat-2.0', 'kimi-k2.6 · direct', 'gpt-oss-20b', 'glm-4.7', 'kimi-k2.6 · dashscope', 'MiniMax-M2.1', 'muse-spark-1.3-contributor', 'llama-3.3-70b-instruct-fp8-fast', 'kimi-k2.5', 'kimi-k2.7-code', 'qwen3.5-27b', 'glm-5.2 · dashscope', 'qwen3.6-27b', 'deepseek-v4-pro · dashscope', 'qwen-flash', 'laguna-s-2.1 · direct', 'Kimi-K2-Instruct', 'deepseek-r1-distill-qwen-14b', 'qwen-plus', 'qwen3.5-35b-a3b', 'qwen3.5-flash', 'qwen3.5-122b-a10b', 'kimi-k2-thinking', 'grok-4.6', 'phi-4-mini-instruct', 'qwen3.6-35b-a3b', 'deepseek-v4-flash · direct', 'qwen3-235b-a22b', 'mimo-v2.5', 'laguna-s-2.1 · kilo', 'deepseek-v4-pro · direct', 'qwen3.7-flash', 'deepseek-r1-distill-qwen-32b', 'qwen3.6-flash', 'deepseek-r1', 'deepseek-r1-distill-qwen-7b', 'deepseek-r1-0528'];
 const MARGIN_VALUES = [0.42, 0.29, 0.25, 0.24, 0.24, 0.22, 0.21, 0.19, 0.18, 0.18, 0.18, 0.18, 0.17, 0.17, 0.16, 0.16, 0.16, 0.16, 0.16, 0.15, 0.15, 0.14, 0.14, 0.14, 0.13, 0.13, 0.13, 0.13, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.11, 0.11, 0.11, 0.10, 0.10, 0.10, 0.10, 0.10, 0.09, 0.09, 0.09, 0.09, 0.09, 0.08, 0.08, 0.08, 0.08, 0.07, 0.07, 0.07, 0.07, 0.05, 0.05, 0.04, 0.03];
 const MARGIN_WEST = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0];
-new Chart(document.getElementById('marginChart'), {
+if (window.Chart) new Chart(document.getElementById('marginChart'), {
   type: 'bar',
   data: {
     labels: MARGIN_LABELS,
@@ -1689,7 +1731,7 @@ new Chart(document.getElementById('marginChart'), {
 
 // Small-model boundary charts — extraction density + ZH-DE outcome (formal median ref)
 const DENSITY_LABELS = ['baseline · deepseek-v4-flash', 'phi-4-mini · 3.8B', 'qwen2.5-0.5b · 0.5B', 'hy-mt2-1.8b · 1.8B'];
-new Chart(document.getElementById('densityChart'), {
+if (window.Chart) new Chart(document.getElementById('densityChart'), {
   type: 'bar',
   data: {
     labels: DENSITY_LABELS,
@@ -1709,7 +1751,7 @@ new Chart(document.getElementById('densityChart'), {
     }
   }
 });
-new Chart(document.getElementById('smallSigChart'), {
+if (window.Chart) new Chart(document.getElementById('smallSigChart'), {
   type: 'bar',
   data: {
     labels: ['formal median (59)', 'phi-4-mini · sig.', 'qwen2.5-0.5b · n.s.', 'hy-mt2-1.8b · NaN', 'gemma-3-270m · n/a'],
@@ -1736,7 +1778,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — Cross-Lingual Knowledge Structure Analysis',
     nav_research: 'Questions', nav_contributions: 'Contributions', nav_methodology: 'Methodology',
     nav_findings: 'Findings', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Curriculum',
-    nav_validation: 'Validation', nav_paper: 'Paper', nav_limitations: 'Limitations', nav_open: 'Open Science',
+    nav_validation: 'Validation', nav_paper: 'Paper', nav_limitations: 'Limitations', nav_open: 'Open Science', toc_contents: 'Contents',
     hero_title: 'How do different languages<br>and educational systems<br>organize the <em>same knowledge?</em>',
     hero_sub: 'A cross-lingual analysis of mathematics, physics and chemistry textbook knowledge — across China, Germany, the United Kingdom and the United States — measured through structural graph metrics and curriculum alignment.',
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
@@ -2230,7 +2272,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — Sprachübergreifende Analyse von Wissensstrukturen',
     nav_research: 'Fragen', nav_contributions: 'Beiträge', nav_methodology: 'Methodik',
     nav_findings: 'Erkenntnisse', nav_cognitivespace: 'CognitiveSpace', nav_curriculum: 'Lehrplan',
-    nav_validation: 'Validierung', nav_paper: 'Paper', nav_limitations: 'Einschränkungen', nav_open: 'Open Science',
+    nav_validation: 'Validierung', nav_paper: 'Paper', nav_limitations: 'Einschränkungen', nav_open: 'Open Science', toc_contents: 'Inhalt',
     hero_title: 'Wie organisieren verschiedene Sprachen<br>und Bildungssysteme<br><em>das gleiche Wissen?</em>',
     hero_sub: 'Eine sprachübergreifende Analyse von Mathematik-, Physik- und Chemie-Lehrbüchern aus China, Deutschland, Großbritannien und den USA — gemessen anhand struktureller Graphmetriken und Lehrplanabgleich.',
     cta_findings: 'Erkenntnisse entdecken →', cta_3d: '<i class="bi bi-boxes"></i> CognitiveSpace 3D',
@@ -2412,7 +2454,7 @@ const TRANSLATIONS = {
     page_title: 'LinguaGraph — 跨语言知识结构分析',
     nav_research: '问题', nav_contributions: '贡献', nav_methodology: '方法',
     nav_findings: '发现', nav_cognitivespace: '认知空间', nav_curriculum: '课程',
-    nav_validation: '验证', nav_paper: '论文', nav_limitations: '局限性', nav_open: '开放科学',
+    nav_validation: '验证', nav_paper: '论文', nav_limitations: '局限性', nav_open: '开放科学', toc_contents: '目录',
     hero_title: '不同语言和教育体系<br>是如何组织<br><em>同一种知识的？</em>',
     hero_sub: '跨越中国、德国、英国和美国，对数学、物理和化学教材进行跨语言分析——通过结构图指标和课程对齐进行量化。',
     cta_findings: '探索发现 →', cta_3d: '<i class="bi bi-boxes"></i> 认知空间 3D',
@@ -2812,7 +2854,7 @@ function setLanguage(lang) {
   var t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.title = t.page_title;
   // Nav
-  var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', sources: 'nav_sources', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', curriculum: 'nav_curriculum', limitations: 'nav_limitations', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
+  var navMap = { research: 'nav_research', contributions: 'nav_contributions', methodology: 'nav_methodology', sources: 'nav_sources', pitch: 'section_pitch', 'finding-a': 'nav_findings', cognitivespace: 'nav_cognitivespace', curriculum: 'nav_curriculum', limitations: 'nav_limitations', validation: 'nav_validation', paper: 'nav_paper', 'open-science': 'nav_open' };
   document.querySelectorAll('nav a').forEach(function(a) {
     var id = a.getAttribute('href');
     if (id && navMap[id.replace('#','')]) a.textContent = t[navMap[id.replace('#','')]];

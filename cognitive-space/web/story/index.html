@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LinguaGraph — Cross-Lingual Knowledge Structure Analysis</title>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script src="../../vendor/js/mermaid.min.js"></script>
 <style>
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -840,8 +840,8 @@ timeline
 </footer>
 
 <script>
-// Mermaid init
-mermaid.initialize({
+// Mermaid init (offline-safe: skip when vendored lib missing; diagrams stay as source text)
+if (window.mermaid) mermaid.initialize({
   theme: 'dark',
   themeVariables: {
     primaryColor: '#1e293b',

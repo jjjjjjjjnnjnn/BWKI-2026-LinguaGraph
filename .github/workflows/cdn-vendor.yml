@@ -1,0 +1,24 @@
+name: CDN Vendor Gate (self-hosting + hashes + anchors)
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'cognitive-space/**'
+      - 'scripts/tools/cdn_audit.py'
+      - '_deploy/**'
+  pull_request:
+
+jobs:
+  cdn-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: CDN/vendor gate (no external scripts, hashes pinned, anchors live)
+        run: python scripts/tools/cdn_audit.py

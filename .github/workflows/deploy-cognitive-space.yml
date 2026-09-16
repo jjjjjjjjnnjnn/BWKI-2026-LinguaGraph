@@ -42,6 +42,7 @@ jobs:
           mkdir -p _deploy/web
           cp -r cognitive-space/web/* _deploy/web/
           cp -r cognitive-space/portal _deploy/portal
+          cp -r cognitive-space/vendor _deploy/vendor
           cp -r docs _deploy/docs
           cp README.md README_DE.md README_ZH.md _deploy/ 2>/dev/null || true
           # Dev-only files must not ship to Pages (B6 2026-09-13):
@@ -56,6 +57,7 @@ jobs:
           sed -i 's|"../figures/|"figures/|g' _deploy/index.html
           sed -i 's|"../docs/|"docs/|g' _deploy/index.html
           sed -i 's|"../portal/|"portal/|g' _deploy/index.html
+          sed -i 's|"../vendor/|"vendor/|g' _deploy/index.html
           sed -i 's|"../index.html"|"web/index.html"|g' _deploy/index.html
           echo "Deployment bundle contents:"
           find _deploy -maxdepth 2 -type f | head -40
