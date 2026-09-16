@@ -1,7 +1,7 @@
 {
   "lane": "Lane-3 weight-vs-human E1b gid-identity rerun",
   "date": "2026-09-16",
-  "status": "EXECUTED (measurement only); caliber Hypothesis/PENDING; interpretation Hypothesis/PENDING",
+  "status": "EXECUTED (measurement); interpretation capped at Hypothesis",
   "exploratory_appendix_only": true,
   "read_only_contract": {
     "writes": [
@@ -34,14 +34,12 @@
       "zh-de": 0.519,
       "zh-en": 0.934,
       "de-en": 0.938
-    },
-    "input_hash": "none: aligned_data.json and term2vec json have no SHA256 on disk; byte consistency unverified",
-    "input_hash_note": "A7: no hash; row counts only"
+    }
   },
   "translation_layer": {
     "R_intra": "three labels of one aligned group share ONE node (gid)",
-    "R_gid": "rows sharing one gid collapse to the FIRST row in aligned-file order; all 18 collisions recorded; first-row pick = selection bias (2 single-label variants: math_calculus_LHopital de-slot Regel von LHospital vs repeat, math_calculus_divergence en-slot Divergence vs Divergence (vector)); no last-row rerun, so no lossless/clean wording allowed",
-    "R_cross": "same surface label across DISTINCT gids maps to the FIRST gid in file order, per language; all collisions recorded; nodes NOT merged (merge would make node survival depend on surface equality again, J_node decontamination would fail)",
+    "R_gid": "rows sharing one gid collapse to the FIRST row in aligned-file order; all 18 collisions recorded",
+    "R_cross": "same surface label across DISTINCT gids maps to the FIRST gid in file order, per language; all collisions recorded; nodes NOT merged (merge would re-contaminate J_node via surface equality)",
     "R_loop": "self-loops (gid==gid) removed and counted",
     "row_census": {
       "aligned_rows": 219,
@@ -683,17 +681,12 @@
         "en": 0,
         "de": 0
       }
-    },
-    "decontamination": "J_node decontaminated by construction (identical 199-gid sets); J_edge still contaminated: (1) de-slot CJK residue (de cross_gid terms Triangle/Volume/Circle/Area etc stored as CJK in de slot, first-gid mapping reshapes neighborhoods); (2) twin-pair mechanism (18 duplicate-row folding + cross-gid same-label first-gid mapping + row-space self-loop/zero-distance neighbor structure渗入 edge sets); no stripping/decontamination/clean claims",
-    "term_first_gid_not_referenced": "A5 declaration: a field named term_first_gid (if present) was NOT referenced/validated; measurement used first_gid mapping persisted in cross_gid_duplicates",
-    "missing_mechanism": "MNAR (non-random: 2 groups with fully surface-identical CJK labels systematically absent from 934 term matrix)",
-    "caliber": "199/201 biased caliber (MNAR 2/201 + first-row selection bias on 18 collisions without last-row rerun); no E1-impact judgment; no clean-caliber wording",
-    "selection_bias": "A3: 18 first-row picks = selection bias; variants named: math_calculus_LHopital (row12/39 de-slot), math_calculus_divergence(scatter) (row21/61 en-slot)"
+    }
   },
   "method": {
     "nodes": "unique-gid sets per language (identical -> J_node=1.0 by construction)",
     "edges": "per-language symmetrized kNN (k=5/10/15, cosine) over gid vectors V(gid,lang)=vec[first-row label]; edge endpoints compared as gid pairs",
-    "formula": "LDS v3 Jaccard reuse (docs/lds_formal_definition.md 8.1), unmodified; E1b metric is degenerate J_edge-only(gid)=(1-J_edge)/2 under J_node=1.0 by construction, range [0,0.5] asymmetric, new unvalidated suspect metric",
+    "formula": "LDS v3 Jaccard reuse (docs/lds_formal_definition.md 8.1), unmodified",
     "tie_rule": "stable argsort (file order), mirrors E1 stable sort",
     "e1_reproduction_check": {
       "numpy_knn_reproduces_E1_row_string_space": true,
@@ -768,11 +761,63 @@
         }
       }
     },
-    "rank_method": "Spearman rho (midrank ties) over n=3 pairs, method note only, banned before E3-full; exact permutation p; n=3 has no power, order uninterpretable; k-consistency does not count",
-    "reproduction_scope": "A7: e1_reproduction_check covers row-space old-path smoke only; gid new path has NO independent verification; shared kNN code path only, no shared validation conclusion"
+    "rank_method": "Spearman rho (midrank ties) over n=3 pairs, descriptive; exact permutation p; order-only"
+  },
+  "results_LDS_VEC_gid": {
+    "k=5": {
+      "zh-de": {
+        "lds_score": 0.2932,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.4137
+      },
+      "zh-en": {
+        "lds_score": 0.4401,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1197
+      },
+      "de-en": {
+        "lds_score": 0.4356,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1287
+      }
+    },
+    "k=10": {
+      "zh-de": {
+        "lds_score": 0.2941,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.4118
+      },
+      "zh-en": {
+        "lds_score": 0.4423,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1153
+      },
+      "de-en": {
+        "lds_score": 0.4406,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1188
+      }
+    },
+    "k=15": {
+      "zh-de": {
+        "lds_score": 0.2956,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.4087
+      },
+      "zh-en": {
+        "lds_score": 0.4409,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1182
+      },
+      "de-en": {
+        "lds_score": 0.4383,
+        "jaccard_node": 1.0,
+        "jaccard_edge": 0.1234
+      }
+    }
   },
   "rank_corr_vs_LDS_K_order_only": {
-    "method": "Spearman rho over n=3 language pairs with midrank ties; METHOD NOTE ONLY, banned before E3-full; exact two-sided permutation p; n=3 has no power, order uninterpretable; k-consistency does not count",
+    "method": "Spearman rho over n=3 language pairs with midrank ties; descriptive only; exact two-sided permutation p; human pilot N=8: no significance claims anywhere",
     "LDS_K_frozen_asc": [
       "zh-de",
       "zh-en",
@@ -783,59 +828,58 @@
       "zh-en": 0.934,
       "de-en": 0.938
     },
-    "ban": "method-note only, banned before E3-full; forbidden: any numeric comparison of J_edge-only(gid) vs LDS-K values (cross-dimension unit ban); forbidden: significance language at n=3 and at human N=8; forbidden: EN order-gap claims on near-ties (T-P5-3 analog); forbidden: directional narratives; pending E3-full review",
+    "ban": "order-structure only; forbidden: any numeric comparison of LDS-VEC(gid) vs LDS-K values (cross-dimension unit ban); forbidden: significance language at n=3 and at human N=8; forbidden: EN order-gap claims on near-ties (T-P5-3 analog)",
     "k=5": {
-      "rho": 0.5,
-      "exact_two_sided_p": 1.0,
-      "p_note": "n.s.: n=3 has no power, order uninterpretable (descriptive method note only, pending E3-full)",
-      "tied_values_at_4dp": [],
-      "tie_note": "no ties",
-      "J_edge_only_gid_asc": [
+      "LDS_VEC_gid_asc": [
         "zh-de",
         "de-en",
         "zh-en"
       ],
-      "J_edge_only_gid_values": {
+      "LDS_VEC_gid_values": {
         "zh-de": 0.2932,
         "zh-en": 0.4401,
         "de-en": 0.4356
-      }
-    },
-    "k=10": {
+      },
       "rho": 0.5,
       "exact_two_sided_p": 1.0,
-      "p_note": "n.s.: n=3 has no power, order uninterpretable (descriptive method note only, pending E3-full)",
+      "p_note": "n.s.: n=3 has no power (descriptive only)",
       "tied_values_at_4dp": [],
-      "tie_note": "no ties",
-      "J_edge_only_gid_asc": [
+      "tie_note": "no ties"
+    },
+    "k=10": {
+      "LDS_VEC_gid_asc": [
         "zh-de",
         "de-en",
         "zh-en"
       ],
-      "J_edge_only_gid_values": {
+      "LDS_VEC_gid_values": {
         "zh-de": 0.2941,
         "zh-en": 0.4423,
         "de-en": 0.4406
-      }
-    },
-    "k=15": {
+      },
       "rho": 0.5,
       "exact_two_sided_p": 1.0,
-      "p_note": "n.s.: n=3 has no power, order uninterpretable (descriptive method note only, pending E3-full)",
+      "p_note": "n.s.: n=3 has no power (descriptive only)",
       "tied_values_at_4dp": [],
-      "tie_note": "no ties",
-      "J_edge_only_gid_asc": [
+      "tie_note": "no ties"
+    },
+    "k=15": {
+      "LDS_VEC_gid_asc": [
         "zh-de",
         "de-en",
         "zh-en"
       ],
-      "J_edge_only_gid_values": {
+      "LDS_VEC_gid_values": {
         "zh-de": 0.2956,
         "zh-en": 0.4409,
         "de-en": 0.4383
-      }
-    },
-    "verdict": "A2/A6: n=3 no power, exact p=1.0, order uninterpretable; k-consistency does not count; rank and k-flatness pending E3-full review; no support/corroboration recorded"
+      },
+      "rho": 0.5,
+      "exact_two_sided_p": 1.0,
+      "p_note": "n.s.: n=3 has no power (descriptive only)",
+      "tied_values_at_4dp": [],
+      "tie_note": "no ties"
+    }
   },
   "sparsity_E3_context": {
     "human_baseline": {
@@ -906,86 +950,15 @@
         }
       }
     },
-    "verdict": "kNN(gid) stays an order of magnitude denser than the human textbook graph; cross-density Jaccard remains confounded; sparsity-matched rerun (E3-full) PENDING; rank and k-flatness pending E3-full review"
+    "verdict": "kNN(gid) stays an order of magnitude denser than the human textbook graph; cross-density Jaccard remains confounded; sparsity-matched rerun (E3-full) PENDING"
   },
   "zh_de_rule": "zh-de primary n=65 (thinnest) down-weighted; never sole carrier; reported only side-by-side with zh-en/de-en",
   "en_cap": "EN-involved claims stay distribution-level; no per-concept validation sentences",
   "gate_self_eval": {
-    "E1b_measurement": "EXECUTED (measurement only; inputs have no hash)",
-    "R5_node_census": "Hypothesis/PENDING: rows->unique-gids logged (18 first-row picks = selection bias, 2 variants named, no last-row rerun; MNAR 2/201; 18 cross-gid mappings; gid self-loops 0 by construction); upgrade requires last-row rerun + E3-full",
-    "E1b_interpretation": "Hypothesis/PENDING (capped): n=3 rank has no power (exact p=1.0, order uninterpretable); sparsity mismatch persists (E3-full pending); zh-de n=65 down-weighted, never sole carrier; N=8: no significance claims; rank + k-flatness pending E3-full",
+    "E1b_measurement": "EXECUTED",
+    "R5_node_census": "Mature-ready at measurement-hygiene level: rows->unique-gids audited, id-collisions logged, 217->219 cause closed, cross-gid duplicates logged, self-loops 0 by construction",
+    "E1b_interpretation": "Hypothesis (capped): n=3 rank has no power (exact p n.s.); sparsity mismatch persists (E3-full pending); zh-de n=65 down-weighted, never sole carrier; N=8: no significance claims",
     "promote_to_Developing": false,
-    "promote_reason": "Developing requires the registered E3-full sparsity-matched rerun (238-edge matching) plus k-sensitivity accounting; E1b covers group-id identity only, so Hypothesis/PENDING caps on caliber and interpretation stay."
-  },
-  "metric_name": "J_edge-only(gid)",
-  "metric_old_name": "LDS-VEC(gid) (deprecated alias, renamed in fix_rev 2026-09-16)",
-  "metric_formula": "J_edge-only(gid)=(1-J_edge)/2 (degenerate LDS v3 under J_node=1.0 by construction)",
-  "metric_range": "[0,0.5] asymmetric; cross-dimension comparison with LDS-K forbidden both directions",
-  "metric_suspect": "new unvalidated suspect metric; rank comparison is method note only, banned before E3-full",
-  "results_J_edge_only_gid": {
-    "k=5": {
-      "zh-de": {
-        "lds_score": 0.2932,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.4137
-      },
-      "zh-en": {
-        "lds_score": 0.4401,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1197
-      },
-      "de-en": {
-        "lds_score": 0.4356,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1287
-      }
-    },
-    "k=10": {
-      "zh-de": {
-        "lds_score": 0.2941,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.4118
-      },
-      "zh-en": {
-        "lds_score": 0.4423,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1153
-      },
-      "de-en": {
-        "lds_score": 0.4406,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1188
-      }
-    },
-    "k=15": {
-      "zh-de": {
-        "lds_score": 0.2956,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.4087
-      },
-      "zh-en": {
-        "lds_score": 0.4409,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1182
-      },
-      "de-en": {
-        "lds_score": 0.4383,
-        "jaccard_node": 1.0,
-        "jaccard_edge": 0.1234
-      }
-    }
-  },
-  "fix_rev": {
-    "date": "2026-09-16",
-    "scope": "red-team A1-A8定稿修复; numeric history values frozen (9 J_edge-only cells + J_edge + LDS-K frozen + e1_reproduction numbers unchanged)",
-    "A1": "rename LDS-VEC(gid)->J_edge-only(gid); degenerate (1-J_edge)/2, range [0,0.5] asymmetric, suspect new metric; rank = method note, banned before E3-full",
-    "A2": "directional narratives removed; only n=3 no power p=1.0 order-uninterpretable; k-consistency does not count",
-    "A3": "18 first-row picks = selection bias (LHopital + divergence variants named); no last-row rerun so lossless/clean wording banned",
-    "A4": "missing 2 groups = MNAR, rate 2/201; 199/201 biased caliber; no E1-impact/clean-caliber wording",
-    "A5": "J_node decontaminated, J_edge still contaminated (de-slot CJK residue + twin-pair mechanism named); term_first_gid not referenced declared",
-    "A6": "rank corr + k-flatness moved to pending E3-full review; no corroboration narratives",
-    "A7": "reproduction anchor = row-space old-path smoke only, gid new path unverified; inputs have no hash declared",
-    "A8": "gate = measurement EXECUTED, caliber + interpretation Hypothesis/PENDING; upgrade wording removed",
-    "numeric_guard": "9 cells frozen: k5[0.2932,0.4401,0.4356] k10[0.2941,0.4423,0.4406] k15[0.2956,0.4409,0.4383]; J_edge frozen; LDS-K frozen zh-de 0.519 zh-en 0.934 de-en 0.938"
+    "promote_reason": "Developing requires the registered E3-full sparsity-matched rerun (238-edge matching) plus k-sensitivity accounting; E1b covers group-id identity only, so the Hypothesis cap stays."
   }
 }

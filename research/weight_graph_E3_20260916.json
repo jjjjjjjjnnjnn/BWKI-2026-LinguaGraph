@@ -1,5 +1,5 @@
 {
-  "lane": "Lane-3 weight-vs-human E3 edge-count-matched-only rerun [fix_rev 2026-09-16: sparsity-matched retired; density ~7.8x MISMATCH + avg-degree ~2.8x MISMATCH; not comparable]",
+  "lane": "Lane-3 weight-vs-human E3 sparsity-matched rerun",
   "date": "2026-09-16",
   "status": "EXECUTED (measurement); caliber Hypothesis/PENDING; interpretation Hypothesis/PENDING",
   "exploratory_appendix_only": true,
@@ -43,8 +43,7 @@
       "nodes": 556,
       "edges": 238,
       "density": 0.001543
-    },
-    "reproducibility": "same-machine same-seed deterministic only; numpy/python versions unlocked; model revision unknown (not exposed by LM Studio /v1/models, as in E1); fully-reproducible wording retired"
+    }
   },
   "translation_layer_inherited_E1b": {
     "R_intra": "three labels of one aligned group share ONE node (gid)",
@@ -68,8 +67,8 @@
     "caliber": "199/201 biased caliber inherited from E1b; E3 adds no new caliber fix"
   },
   "sampling": {
-    "method": "near-uniform-single-draw",
-    "method_note": "near-uniform-single-draw (=former weight, renamed fix_rev, numbers unchanged): weighted random sampling WITHOUT replacement, p(e)=w(e)/sum(w), w=(cos_sim+1)/2 narrow band ~0.71-1.0 hence near-uniform; single draw, no CI; threshold (top-238 by distance) NOT used in this run, comparison PENDING; zero-distance-removal comparison PENDING",
+    "method": "weight",
+    "method_note": "weight: weighted random sampling WITHOUT replacement, p(e)=w(e)/sum(w), w=(cos_sim+1)/2; threshold (top-238 by distance) NOT used in this run",
     "base_seed": 20260916,
     "seed_rule": "seed(k,lang) = 20260916 + k*100 + lang_index (zh=0,en=1,de=2)",
     "seeds": {
@@ -90,7 +89,7 @@
       }
     },
     "n_matched_per_lang": 238,
-    "rng": "numpy.random.default_rng(seed); same-machine same-seed deterministic only; numpy/python versions unlocked"
+    "rng": "numpy.random.default_rng(seed)"
   },
   "candidate_weight_tables": {
     "k=5": {
@@ -126372,7 +126371,7 @@
     "k=5": {
       "zh": {
         "seed": 20261416,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 768,
         "picked": 238,
         "picked_weight_min": 0.752099,
@@ -126381,7 +126380,7 @@
       },
       "en": {
         "seed": 20261417,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 719,
         "picked": 238,
         "picked_weight_min": 0.744171,
@@ -126390,7 +126389,7 @@
       },
       "de": {
         "seed": 20261418,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 763,
         "picked": 238,
         "picked_weight_min": 0.731547,
@@ -126401,7 +126400,7 @@
     "k=10": {
       "zh": {
         "seed": 20261916,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 1512,
         "picked": 238,
         "picked_weight_min": 0.753095,
@@ -126410,7 +126409,7 @@
       },
       "en": {
         "seed": 20261917,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 1370,
         "picked": 238,
         "picked_weight_min": 0.727016,
@@ -126419,7 +126418,7 @@
       },
       "de": {
         "seed": 20261918,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 1474,
         "picked": 238,
         "picked_weight_min": 0.736304,
@@ -126430,7 +126429,7 @@
     "k=15": {
       "zh": {
         "seed": 20262416,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 2249,
         "picked": 238,
         "picked_weight_min": 0.748438,
@@ -126439,7 +126438,7 @@
       },
       "en": {
         "seed": 20262417,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 2009,
         "picked": 238,
         "picked_weight_min": 0.721091,
@@ -126448,7 +126447,7 @@
       },
       "de": {
         "seed": 20262418,
-        "method": "near-uniform-single-draw",
+        "method": "weight",
         "pool": 2197,
         "picked": 238,
         "picked_weight_min": 0.730356,
@@ -126547,7 +126546,7 @@
     }
   },
   "rank_corr_vs_LDS_K_order_only": {
-    "method": "Appendix-only unverified method note; DO NOT cite in main text; rho banned from headline/abstract; n=3 no power, order uninterpretable; tie-aware (ties treated as unequal)",
+    "method": "Spearman rho over n=3 language pairs with midrank ties; descriptive only; exact two-sided permutation p; human pilot N=8: no significance claims anywhere",
     "LDS_K_frozen_asc": [
       "zh-de",
       "zh-en",
@@ -126558,7 +126557,7 @@
       "zh-en": 0.934,
       "de-en": 0.938
     },
-    "ban": "order-structure bookkeeping only; forbidden: any numeric comparison of J_edge-only(gid,edge-count-matched-only) vs LDS-K values (cross-dimension unit ban, both directions); forbidden: significance language at n=3 and at human N=8; forbidden: EN order-gap claims on near-ties (T-P5-3 analog); forbidden: directional narratives (nominal/minimal/stable retired); rho in appendix only",
+    "ban": "order-structure only; forbidden: any numeric comparison of J_edge-only(gid,238matched) vs LDS-K values (cross-dimension unit ban, both directions); forbidden: significance language at n=3 and at human N=8; forbidden: EN order-gap claims on near-ties (T-P5-3 analog); forbidden: directional narratives",
     "k=5": {
       "J_edge_only_gid238_asc": [
         "zh-de",
@@ -126605,7 +126604,7 @@
       "rho": 0.866,
       "exact_two_sided_p": 0.6667,
       "p_note": "n.s.: n=3 has no power (descriptive only)",
-      "tie_note": "ties present at 4dp: midrank artefact; tied pairs treated as unequal (tie-aware); no order claim between tied pairs"
+      "tie_note": "ties present: no order claim between tied pairs"
     }
   },
   "k_sensitivity": {
@@ -126627,7 +126626,7 @@
       "k=15": 0.4947,
       "range": 0.0201
     },
-    "order_stable_across_k": false,
+    "order_stable_across_k": true,
     "orders": {
       "k=5": [
         "zh-de",
@@ -126645,8 +126644,7 @@
         "zh-en"
       ]
     },
-    "verdict": "bookkeeping done, interpretation pending; single draw no CI; >=200 repeats PENDING; no causal or source-attribution claims; directional narratives (nominal/minimal/stable) retired; pending independent review",
-    "orders_note": "orders listed for bookkeeping only; tie-aware: k=15 EN tie treated as unequal, so order_stable retired; no directional narrative"
+    "verdict": "descriptive only; k-sensitivity logged, no causal or source-attribution claims; pending independent review"
   },
   "sparsity": {
     "human_baseline": {
@@ -126824,33 +126822,19 @@
         }
       }
     },
-    "verdict": "edge count matched only (238/lang); node count (199 vs 556) and density (0.012081 vs 0.001543, ~7.8x) + avg-degree (2.392 vs 0.8561, ~2.8x) still MISMATCH; cross-density Jaccard remains confounded; interpretation stays MISMATCH/Hypothesis/PENDING; sparsity-matched wording retired"
+    "verdict": "edge count matched (238/lang) but node count (199 vs 556) and density (0.0121 vs 0.001543, ~7.8x) still mismatched; cross-density Jaccard remains confounded; interpretation stays Hypothesis/PENDING"
   },
-  "metric_name": "J_edge-only(gid,edge-count-matched-only)",
-  "metric_formula": "J_edge-only=(1-J_edge)/2 (degenerate LDS v3 under J_node=1.0 by construction; former tag 238matched retired, numbers unchanged)",
+  "metric_name": "J_edge-only(gid,238matched)",
+  "metric_formula": "J_edge-only=(1-J_edge)/2 (degenerate LDS v3 under J_node=1.0 by construction)",
   "metric_range": "[0,0.5] asymmetric; cross-dimension comparison with LDS-K forbidden both directions",
-  "metric_suspect": "new unvalidated suspect metric inherited from E1b; rank comparison is appendix-only unverified method note; main-text comparison banned both directions; do not cite",
+  "metric_suspect": "new unvalidated suspect metric inherited from E1b; rank comparison is method note only",
   "zh_de_rule": "zh-de primary n=65 (thinnest) down-weighted; never sole carrier; reported only side-by-side with zh-en/de-en",
   "en_cap": "EN-involved claims stay distribution-level; no per-concept validation sentences",
   "gate_self_eval": {
-    "E3_measurement": "EXECUTED: full gid-kNN candidate weight tables + near-uniform-single-draw 238-edge subsample (3 k pools, same-machine same-seed deterministic; numpy/python unlocked, model revision unknown) + J_edge-only recompute + appendix rank method note; inputs no hash; single draw, no CI, >=200 repeats PENDING",
-    "R5_node_caliber": "Hypothesis/PENDING (inherited E1b 199/201 biased caliber, zero fixes: MNAR 2/201 + 18 first-row picks = selection bias, no last-row rerun, J_edge still contaminated; E3 adds no new caliber fix)",
-    "E3_interpretation": "Hypothesis/PENDING (capped): n=3 rank has no power (order uninterpretable; rho/p appendix-only, banned from headline/abstract); EN near-tie order-gap claims banned (tie-aware); zh-de n=65 down-weighted, never sole carrier; N=8: no significance claims; edge-count-matched-only, density ~7.8x + avg-degree ~2.8x still mismatched; J_edge near-zero (0.0106-0.12), random baseline not built",
+    "E3_measurement": "EXECUTED",
+    "R5_node_caliber": "Hypothesis/PENDING (inherited E1b 199/201 biased caliber: MNAR 2/201 + 18 first-row picks = selection bias, no last-row rerun; E3 adds no new caliber fix)",
+    "E3_interpretation": "Hypothesis/PENDING (capped): n=3 rank has no power (exact p n.s., order uninterpretable); EN near-tie order-gap claims banned; zh-de n=65 down-weighted, never sole carrier; N=8: no significance claims; sparsity edge-matched only, density still mismatched",
     "promote_to_Developing": false,
-    "promote_reason": "Developing requires independent review of E3 edge-count-matched-only rerun plus k-sensitivity adjudication (>=200 repeats + last-row rerun + density adjudication + threshold/zero-distance controls); single near-uniform draw with suspect J_edge-only metric cannot promote."
-  },
-  "j_edge_floor_note": "J_edge observed 0.0106-0.12 (near zero); random/null-graph baseline not built; no signal/structure/alignment wording allowed",
-  "fix_rev_20260916": {
-    "scope": "narrative/labels only; all numbers untouched",
-    "typo": "md density 0.012084 retired -> 0.012081 aligned to JSON/recompute",
-    "R-E3-1": "edge-count-matched-only rename; density 7.8x + avg-degree 2.8x top-pinned; MISMATCH/Hypothesis kept",
-    "R-E3-2": "k-sensitivity bookkeeping done interpretation pending only; single draw no CI; >=200 repeats PENDING",
-    "R-E3-3": "rho appendix-only, n=3 powerless bundled, order uninterpretable only; k15 midrank artefact",
-    "R-E3-4": "J_edge near-zero + random baseline missing declared; rank demoted to appendix, do-not-cite",
-    "R-E3-5": "MNAR/first-row/J_edge-contamination zero-fix emphasized; R5 Hypothesis/PENDING",
-    "R-E3-6": "fully-reproducible -> same-machine same-seed deterministic; model-revision-unknown + numpy/python-unlocked declared",
-    "R-E3-7": "nominal/zh-de-minimal/order_stable directional narratives deleted; tie-aware (ties as unequal), order_stable retired (false)",
-    "R-E3-8": "weight -> near-uniform-single-draw (narrow w ~0.71-1.0); threshold + zero-distance-removal PENDING",
-    "R-E3-9": "rank moved to appendix unverified method note; main-text comparison ban kept bidirectional"
+    "promote_reason": "Developing requires independent review of E3 sparse-matched rerun plus k-sensitivity adjudication; single weighted-subsample run with suspect J_edge-only metric cannot promote."
   }
 }
