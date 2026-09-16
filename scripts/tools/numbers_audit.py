@@ -38,15 +38,19 @@ def main():
     p = "cognitive-space/portal/index.html"
     errs += check(p, ["55 个完整运行", "8 个含 EN 测试不显著",
                       "that is the 58-run replication below"],
-                  ["59 full runs", "59 vollständige Runs", "59 次测量"])
-    errs += check(p, [], ["标签 shuffling，如中德 59/59、p＜0.004（500 perm.，file-truth 62/62）"])
+                  ["59 full runs", "59"])
+    errs += check(p, [], ["file-truth 62/62"])
     errs += check("scripts/build_paper_pdf.py", ["55-Messungs-Replikation"],
                   ["59 Messungen (54 eindeutige Modelle)"])
     for q in ("docs/submission/plattform_antworten.md",
               "submission/final/plattform_antworten.md"):
         errs += check(q, [], ["Developing"])
     if errs:
-        print("\n".join(errs))
+        for e in errs:
+            try:
+                print(e)
+            except UnicodeEncodeError:
+                print(e.encode("ascii", "backslashreplace").decode("ascii"))
         print("NUMBERS_GATE FAIL (%d)" % len(errs))
         return 1
     print("NUMBERS_GATE PASS")
