@@ -1039,21 +1039,17 @@ graph LR
       <button class="cs-cover" id="cs-cover" aria-label="Load 3D graph">
         <span class="cs-title">CognitiveSpace · 3D</span>
         <span class="cs-meta" data-i18n="cognitivespace_meta">556 nodes · 233 rendered links · 219 groups · 3 languages</span>
-        <span class="btn btn-solid" style="pointer-events:none" data-i18n="cs_load">Load interactive graph →</span>
+        <span class="btn btn-solid" style="pointer-events:none" data-i18n="cs_load">Loading 3D graph…</span>
       </button>
     </div>
   </div>
   <p style="color:var(--text2);max-width:600px;margin:0 auto 20px" data-i18n="cognitivespace_hint">Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="../web/index.html" target="_blank" class="btn btn-solid"><i class="bi bi-boxes"></i> <span data-i18n="cognitivespace_open">Open Full Screen</span></a>
-    <a href="cspace.html" class="btn btn-solid" data-i18n="cs_view_gallery">Gallery</a>
     <span class="btn btn-ghost" style="cursor:default"><i class="bi bi-database"></i> 556 nodes · 233 rendered links · 219 groups</span>
   </div>
   <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-    <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_math">Math 3D</a>
-    <a href="../web/index.html?graph=steam" target="_blank" class="btn btn-ghost" data-i18n="cs_view_steam">STEAM 3D</a>
-    <a href="../web/index.html?graph=physics" target="_blank" class="btn btn-ghost" data-i18n="cs_view_physics">Physics 3D</a>
-    <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_chain">Chain Walker</a>
+    <a href="../web/index.html" target="_blank" class="btn btn-ghost" data-i18n="cs_view_3d">3D Graph — Math · STEAM · Physics · Chain</a>
   </div>
 </section>
 
@@ -1548,19 +1544,25 @@ document.querySelectorAll('section .section-sub').forEach(s => {
   document.querySelectorAll('.stat-num[data-count]').forEach(el => cio.observe(el));
 })();
 
-// CognitiveSpace cover → click loads the 3D app
+// CognitiveSpace cover → auto-loads the 3D app when scrolled near (click is fallback)
 (function() {
   const cover = document.getElementById('cs-cover');
   if (!cover) return;
-  cover.addEventListener('click', function() {
+  function load() {
+    if (!document.getElementById('cs-cover')) return;
     const frame = document.getElementById('cs-frame');
     const f = document.createElement('iframe');
     f.src = '../web/index.html';
     f.title = 'CognitiveSpace 3D';
     f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none';
+    f.addEventListener('load', () => { const c = document.getElementById('cs-cover'); if (c) c.remove(); });
     frame.appendChild(f);
-    cover.remove();
-  });
+  }
+  cover.addEventListener('click', load);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { load(); io.disconnect(); } }); }, { rootMargin: '400px' });
+    io.observe(cover);
+  }
 })();
 
 // Nav active section tracking
@@ -1944,9 +1946,8 @@ const TRANSLATIONS = {
     paper_cite_title: 'Cite this work',
     cognitivespace_hint: 'Switch between zoom, rotate and fly modes. Explore the graph in three languages or switch discipline. Compare how different education systems structure the same mathematical knowledge.',
     cognitivespace_open: 'Open Full Screen',
-    cs_view_gallery: 'Interactive Gallery', cs_view_math: 'Math 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physics 3D',
-    cs_load: 'Load interactive graph →',
-    cs_view_chain: 'Chain Walker (3D)',
+    cs_load: 'Loading 3D graph…',
+    cs_view_3d: '3D Graph — Math · STEAM · Physics · Chain',
     paper_sec_meta: '10 files · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Read Methodology</a>',
     paper_fig_meta: '10 files · 54 references',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
@@ -2211,9 +2212,8 @@ const TRANSLATIONS = {
     paper_cite_title: 'Diese Arbeit zitieren',
     cognitivespace_hint: 'Wechseln Sie zwischen Zoom-, Rotations- und Flugmodi. Erkunden Sie den Graphen in drei Sprachen oder wechseln Sie die Disziplin.',
     cognitivespace_open: 'Vollbild oeffnen',
-    cs_view_gallery: 'Interaktive Galerie', cs_view_math: 'Mathe 3D', cs_view_steam: 'STEAM 3D', cs_view_physics: 'Physik 3D',
-    cs_load: 'Interaktiven Graphen laden →',
-    cs_view_chain: 'Ketten-Walker (3D)',
+    cs_load: '3D-Graph lädt…',
+    cs_view_3d: '3D-Graph — Mathe · STEAM · Physik · Kette',
     paper_sec_meta: '10 Dateien · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">Methodik lesen</a>',
     paper_fig_meta: '10 Dateien · 54 Referenzen',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 2:53]',
@@ -2630,9 +2630,8 @@ curr_explanations_title: '三种竞争性解释',
     paper_cite_title: '引用本作品',
     cognitivespace_hint: '在旋转、缩放和飞行模式间切换。以三种语言浏览图谱或切换学科。比较不同教育体系如何组织同一数学知识。',
     cognitivespace_open: '打开全屏',
-    cs_view_gallery: '交互展厅', cs_view_math: '数学 3D', cs_view_steam: 'STEAM 总览', cs_view_physics: '物理 3D',
-    cs_load: '加载交互图谱 →',
-    cs_view_chain: '链漫步（3D）',
+    cs_load: '3D 图谱加载中…',
+    cs_view_3d: '3D 图谱——数学 · STEAM · 物理 · 链',
     paper_sec_meta: '10 个文件 · ~161 KB md · 226 KB PDF · <a href="../docs/paper/02_methodology.md">阅读方法章</a>',
     paper_fig_meta: '10 个文件 · 54 篇引用',
     section_pitch: '宣讲', pitch_badge: '[▶ 演示 · 2:53]',
