@@ -57,9 +57,9 @@ Für jedes Paar verwandter Konzepte:
 
 Die Extraktion wurde für jedes der 68 Lehrbücher separat durchgeführt, was **75 JSON-Extraktionsdateien** ergab (einige Lehrbücher wurden aufgrund ihres Umfangs in Kapitel aufgeteilt).
 
-### 2.4 Graphkonstruktion und -fusion
+### 2.4 Graphkonstruktion und -zusammenführung (Alignierungs-Labels, P2-vorbehalten)
 
-Die Roh-Extraktionen durchlaufen einen mehrstufigen Fusionsprozess:
+Die Roh-Extraktionen durchlaufen eine mehrstufige Zusammenführung (Dedup + Alignierung; Mathe-Knoten = Alignierungs-Labels, de-Feld teils CJK-kontaminiert, T1-falsifiziert):
 
 **Step 1 — Merging**: Alle 75 Extraktionsdateien werden eingelesen und zu einem einheitlichen Graphen zusammengeführt. Aliase und Synonyme werden anhand einer Konfigurationsdatei (`concept_taxonomy.json`) normalisiert:
 
@@ -159,7 +159,7 @@ Zur Validierung der Extraktionsqualität wird ein mehrsprachiger Goldstandard ve
 1. **Batch A — Mathematische Konzepte** (20 Label: 7 ZH / 7 DE / 6 EN): Calculus-Grundbegriffe (Grenzwert, Ableitung, Integral) — **von Hand annotiert** (`annotator_1`: concepts/relations/missing_hints von Grund auf neu) — zur Validierung der domänenspezifischen Extraktionsqualität. Dieser Batch ist **sauber** (kein Seed-Evaluierungs-Overlap).
 2. **Batch B — Soziale Konzepte** (72 Label: 29 ZH / 22 DE / 21 EN): Antworten zu Freiheit, Gerechtigkeit, Erfolg, Verantwortung und Heimat — **machine-seeded + human-accepted** (`auto_accepted`): Ziel 100 (40 ZH + 30 DE + 30 EN), per `scripts/expand_gold_dataset.py` geschichtet 80 Items gezogen (33 ZH / 23 DE / 24 EN) → qwen-plus-Vorextraktion (temp 0.3, `call_api`) → menschliche Annahme → Merge (8 leere verworfen) → realisiert 72 — zur Validierung in der Hauptdomäne der Studie. `research/gold_review/`-Zwischendateien liegen nicht vor (als Lücke dokumentiert).
 
-Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). Ergebnisse:
+Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). DB-Pfad nominell F1 ≥ 0,88 (Developing C9b; Developing四件套: machine-seeded/human-accepted + same-source + harness-reberechnet ~0,65 + Blind-Review ausstehend) — Preliminary, kein Validierungs-Beleg; bis Blind-Review nur als Arbeitshypothese. Ergebnisse:
 
 | Domäne | Sprache | F1 | Precision | Recall | n |
 |--------|---------|:--:|:---------:|:------:|:-:|
@@ -177,7 +177,7 @@ Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). Ergebnisse
 >
 > **Limitation**: Batch-B-Seeds und Evaluierungsmodell sind identisch (qwen-plus) — der Sozial-F1 enthält einen Verwandtschaftsbonus; Batch A (Mathe, hand-annotiert) ist davon unberührt.
 
-Die Extraktionsqualität für soziale Konzepte übertrifft die mathematische Domäne deutlich: alle drei Sprachen erreichen F1 ≥ 0,88, mit chinesischen (F1=0,974) und deutschen (F1=0,949) Ergebnissen, die das Qualitätsziel (F1 ≥ 0,70) weit übertreffen. Dies bestätigt, dass die zuvor beobachtete niedrige deutsche Extraktionsqualität (F1=0,506) domänenspezifisch war und nicht die Modelleignung für die Hauptstudie widerspiegelt. Der Sozial-F1 (0,939) gilt bis zum Blind-Review als **Developing (C9b)**.
+Die Extraktionsqualität für soziale Konzepte liegt auf dem DB-Pfad nominell über der mathematischen Domäne: alle drei Sprachen erreichen F1 ≥ 0,88 (Developing C9b; harness ~0,65; Preliminary, kein Validierungs-Beleg), mit chinesischen (F1=0,974†) und deutschen (F1=0,949†) Werten auf DB-Pfad-Niveau. Dies ist vereinbar damit, dass die zuvor beobachtete niedrige deutsche Extraktionsqualität (F1=0,506) domänenspezifisch war. Der Sozial-F1 (0,939†) gilt bis zum Blind-Review als **Developing (C9b)** — Preliminary, nur als Arbeitshypothese.
 
 ### 2.9 Model Comparison
 
@@ -190,7 +190,7 @@ Um zu bestimmen, ob die Extraktionsqualität durch die Pipeline oder die Modellf
 | qwen3.7-max (API) | Mathematik | 0,980 | 0,551 | 0,778 |
 | **qwen-plus (API)** | **Sozial** | **0,974** | **0,949** | **0,882** |
 
-Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität in allen drei Sprachen als hoch einzustufen.
+Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität auf dem DB-Pfad nominell vorläufig hoch (Developing C9b, harness ~0,65, Preliminary); bis Blind-Review nur als Arbeitshypothese.
 
 ### 2.10 Curriculum Coverage Score (CS)
 

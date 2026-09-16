@@ -9,7 +9,7 @@
 
 ### 3.1 CognitiveSpace: Statistische Übersicht
 
-Die Extraktion und Fusion der 68 Lehrbücher ergibt einen Wissensgraphen mit folgenden Kenngrößen:
+Die Extraktion und Zusammenführung (Alignierungs-Labels, P2-vorbehalten) der 68 Lehrbücher ergibt einen Wissensgraphen mit folgenden Kenngrößen:
 
 | Metrik | Wert |
 |--------|------|
@@ -57,7 +57,7 @@ Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
 2. **Hierarchische Struktur**: Grundschulkonzepte haben einen hohen Zentralitätsgrad und dienen als Anker für zahlreiche Oberstufen- und Universitätskonzepte. Dies bestätigt das erwartete "Knowledge Core → Expansion"-Muster.
 
-3. **Kreuzsprachliche Kanten**: Konzepte, die in mehreren Sprachen vorkommen, weisen strukturell ähnliche Nachbarschaftsbeziehungen auf — ein Indikator dafür, dass die zugrundeliegende mathematische Wissensstruktur sprachunabhängige Invarianten besitzt.
+3. **Kreuzsprachliche Kanten**: Konzepte, die in mehreren Sprachen vorkommen, weisen strukturell ähnliche Nachbarschaftsbeziehungen auf — ein Indikator dafür, dass Nachbarschaften über Sprachen hinweg teilweise überlappen (deskriptiv, Preliminary) — kein Invarianz-Beweis; Alignierungsabhängigkeit (P2) vorbehalten.
 
 ### 3.5 CognitiveSpace 3D-Visualisierung
 
@@ -94,15 +94,15 @@ Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbü
 | Node-Permuted Null | 0.934 | 0.938 | 0.519 |
 | Complete Random | 1.000 | 1.000 | 1.000 |
 
-**Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare. Unter degree-preserving Randomisierung sind die randomisierten Graphen systematisch unterschiedlicher als die echten Graphen. Dies bedeutet, dass **Lehrbuch-Wissensstrukturen über Sprachgrenzen hinweg konvergieren** — das Gegenteil einer sprachgetriebenen Divergenz.
+**Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare (frozen v3). Unter degree-preserving Randomisierung sind die randomisierten Graphen deskriptiv unterschiedlicher als die echten Graphen. Lesart T1-falsifiziert: scheinbare ZH-DE-Ähnlichkeit 0.519→0.990 nach Dekontamination; kein Konvergenz-Beleg.
 
-Die Interpretation: LDS-K wird von der **Gradverteilungsstruktur** dominiert (eine Eigenschaft, die von universeller mathematischer Prerequisite-Logik geteilt wird), nicht von sprachspezifischen Inhaltsarrangements. Der wissenschaftliche Kernbeitrag verschiebt sich damit zu **ΔLDS = LDS-C − LDS-K**, der den sprachspezifischen Anteil der menschlichen Kognition isoliert.
+Die Interpretation: LDS-K wird von der **Gradverteilungsstruktur** dominiert (von geteilter Gradstruktur, Preliminary), nicht von sprachspezifischen Inhaltsarrangements. Der wissenschaftliche Kernbeitrag verschiebt sich damit zu **ΔLDS = LDS-C − LDS-K**, der auf den kognitiven Anteil jenseits der Lehrbuchstruktur zielt (Ebenen-getrennt, Preliminary, keine kausale Isolation).
 
 ### 3.8 LDS-K Vertiefung: Bildungsebenen, Sensitivität und Cross-Source-Nullmodell
 
 Die LDS-K-Ergebnisse wurden vertieft (reproduzierbar via `scripts/lds_k_deepen.py` + `lds_k_wiki_gloss.py`):
 
-**Bildungsebenen**: Die ZH-DE-Konvergenz (0.52 im Pool) ist **systematisch über alle vier Bildungsebenen** — Grundschule 0.39, Mittelschule 0.80, Oberstufe 0.54, Universität 0.49. Sie ist kein Artefakt einer einzelnen Ebene. Die Kantenkomponente trägt für ZH-DE dreifach mehr zur Divergenz bei (Δ 0.075) als für ZH-EN/DE-EN (Δ ~0.02) — die Konvergenz zeigt sich auch in der **Relationenstruktur**, nicht nur in der Konzeptwahl.
+**Bildungsebenen**: Die nominelle ZH-DE-Zahl (0.52, frozen v3) liegt in allen vier Ebenen unter den EN-Paaren — Grundschule 0.39, Mittelschule 0.80, Oberstufe 0.54, Universität 0.49. T1-falsifiziert: nach CJK-Dekontamination + Size-Matching (k=15–35) kehrt sich der Wiki-Vergleich um; kein Konvergenz-Beleg (Fig. 8). Die Kantenkomponente trägt für ZH-DE dreifach mehr zur Divergenz bei (Δ 0.075) als für ZH-EN/DE-EN (Δ ~0.02).
 
 **Sensitivität**: Die Ergebnisse sind robust gegenüber (a) Kantenrichtung (Δ ≤ 0.004), (b) Alignierungstoleranz — Synonym-/Stem-Mapping vs. exakte Gloss-Übereinstimmung (Δ ≤ 0.05), (c) Wichtigkeitsschwelle (Δ ≤ 0.02 auf LLM-Konzepten). Die Rangfolge (ZH-DE < ZH-EN ≈ DE-EN) bleibt in allen Konfigurationen erhalten.
 
@@ -197,7 +197,7 @@ Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahiert
 | DE-EN | 0.966 | [0.949, 0.993] | 0.068 | **0.000** | 0.938 | +0.028 | 0.959 |
 | ZH-DE | 0.964 | [0.948, 0.980] | 0.064 | 0.008 | 0.519 | +0.445 | 0.958 |
 
-**Zentraler Befund**: Die Kantenstrukturen überlappen sprachübergreifend kaum (Edge-Jaccard ≈ 0, DE-EN exakt 0.000). Der Split-Half-Boden (0.958–0.979) entspricht der beobachteten v3-LDS (0.964–0.977) — auch auf relationaler Ebene ist die Divergenz vollständig durch Teilnehmervariabilität erklärbar. Der scheinbar große ΔLDS-Wert für ZH-DE (+0.445) ist ein Artefakt des Vergleichs zwischen spärlichen Menschengraphen und dichten, strukturell konvergenten Lehrbuchgraphen — nicht ein Beleg für sprachgetriebene Divergenz (der Split-Half-Boden von 0.958 für ZH-DE widerlegt dies).
+**Zentraler Befund**: Die Kantenstrukturen überlappen sprachübergreifend kaum (Edge-Jaccard ≈ 0, DE-EN exakt 0.000). Der Split-Half-Boden (0.958–0.979) entspricht der beobachteten v3-LDS (0.964–0.977) — auch auf relationaler Ebene ist die Divergenz vollständig durch Teilnehmervariabilität erklärbar. Der scheinbar große ΔLDS-Wert für ZH-DE (+0.445) ist ein Artefakt des Vergleichs spärlicher Menschengraphen mit dichten Lehrbuch-Alignierungs-Labels (deren nominelle ZH-DE-Ähnlichkeit T1-falsifiziert ist, 0.52→0.99).
 
 **Fazit relationale Ebene**: Die relationale Struktur bestätigt die Konzept- und Themenebene. Unter Between-Subject-Bedingungen (N=15) ist kein separierbares Sprachsignal nachweisbar — weder auf Knoten-, Kanten-, noch Kategorienebene.
 
@@ -317,11 +317,11 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 
 Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
 
-### 5.9 Design-Effekt-Beweis, Divergenztreiber und Knoten/Kanten-Dekomposition
+### 5.9 Design-Effekt-Vergleich (Konsistenz-Demonstration, kein Kausalbeweis), Divergenztreiber und Knoten/Kanten-Dekomposition
 
 > Reproduzierbar via `scripts/lds_c_design_effect.py`, `lds_c_divergence_drivers.py`, `lds_c_node_edge_decomp.py`; Ergebnisse in `data/lds_c/llm_subject/design_effect_*.json`, `data/lds_c/divergence_drivers_*.json`, `data/lds_c/lds_k_deep/node_edge_decomp_*.json`.
 
-**5.9.1 Design-Effekt-Beweis: gleiche Signalamplitude, unterschiedliche Bodenlinie.**
+**5.9.1 Design-Effekt-Vergleich (Preliminary): gleiche Signalamplitude, unterschiedliche Bodenlinie.**
 
 Der Vergleich von Mensch (Between-Subject, N=15) und LLM (Within-Subject, k=10) auf identischem Messrahmen zeigt:
 
@@ -378,7 +378,7 @@ Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am d
 | Wikipedia sozial | ZH-DE | 0.819 | 0.200 | 0.162 | **0.800** | 0.019 |
 | Mensch kognitiv | ZH-DE | 0.954 | 0.085 | 0.008 | 0.915 | 0.038 |
 
-Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Institutionelles Wissen konvergiert primär in der **Konzeptwahl (Knoten)**; die **Beziehungsorganisation (Kanten)** bleibt über alle Quellen hinweg systemisch divergent. Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
+Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Alignierungs-Labels stimmen nominell stärker überein (node-only 0.444, frozen v3) — P2/T1: kein belastbarer inhaltlicher Befund (de-Feld teils chinesisch; Size-Matching kehrt Muster um). Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
 
 > **Einschränkung (P2-Recheck)**: Die Mathematik-Knoten sind Alignierungs-Labels und damit teils Alignierungsprodukte, nicht unabhängig extrahierte Konzepte; zudem enthält das `de`-Label-Feld im Alignierungs-Datensatz teils chinesische Texte (110/150 Stichprobe), was den mathematischen J_node künstlich erhöht. Ein Size-Matching auf die Wikipedia-Größe (~45 Knoten/Sprache) **kehrt das Muster um**: bei k=15–35 zeigt Wikipedia einen höheren J_node (0.07–0.15) als Mathematik (0.03–0.07); die mathematische "Konvergenz" (J_node 0.556) ist ein Artefakt der nahe-vollständigen Universumsabtastung (~195/219 Gruppen) + des Label-Artefakts, nicht ein Beleg unabhängiger sprachübergreifender Konvergenz. Die "institutionelle Konvergenz / kulturelle Divergenz"-Umkehr ist daher **kein belastbarer inhaltlicher Befund** (Details: `docs/p2_methodology_rechecks.md`).
 

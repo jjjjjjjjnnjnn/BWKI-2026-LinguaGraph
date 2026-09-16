@@ -310,7 +310,7 @@ graph LR
     subgraph Extraction["🧩 Concept Extraction"]
         LLM["LLM API<br/>MIMO Prompt"]
         CG["Concept Graphs<br/>1160+ nodes"]
-        GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939† Developing)"]
+        GL["Gold Labels<br/>92 labels | F1=0.881 weighted (social 0.939† Developing DB-path; harness ~0.65)"]
     end
 
     subgraph Analysis["📊 Structural Analysis"]
@@ -432,7 +432,7 @@ flowchart TB
   <div class="card-grid">
     <div class="card">
       <h3>📐 Mathematics</h3>
-      <p>556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus. Validated against 4 national curricula.</p>
+      <p>556 concepts, 525 relations across 68 textbooks. Covers arithmetic through advanced calculus. Compared against 4 national curricula (coverage: keyword bridge + 2-overlap, Preliminary).</p>
       <div class="meta">CDS peak: 0.271 · HDS max: 8 · LDS range: 0.52–0.94</div>
     </div>
     <div class="card">
@@ -512,7 +512,7 @@ flowchart TB
   </div>
 
   <h3 style="margin:40px 0 16px">Extraction Quality: 92 Gold Labels</h3>
-  <p style="color:var(--text2); margin-bottom:20px">Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against production-model extraction.</p>
+  <p style="color:var(--text2); margin-bottom:20px">Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness ~0.65) checked against extraction (Preliminary) — no validation claim.</p>
 
   <table class="data-table" style="margin-bottom:20px">
     <thead>
@@ -524,7 +524,7 @@ flowchart TB
         <td><span class="tag tag-green">0.974</span></td>
         <td><span class="tag tag-green">0.949</span></td>
         <td><span class="tag tag-green">0.882</span></td>
-        <td><strong>0.939<sup>†</sup></strong></td>
+        <td><strong>0.939<sup>†</sup> Developing (DB-path; harness ~0.65)</strong></td>
         <td>72</td>
       </tr>
       <tr>
@@ -634,7 +634,7 @@ flowchart TB
       </tr>
       <tr>
         <td class="fnum">F8</td>
-        <td><strong>Chemistry also peaks at Middle school (0.042)</strong><br><span style="color:var(--text2);font-size:.82rem">STEM density pattern is universal</span></td>
+        <td><strong>Chemistry also peaks at Middle school (0.042)</strong><br><span style="color:var(--text2);font-size:.82rem">STEM density pattern in the 3-subject sample (Preliminary, frozen graphs)</span></td>
         <td>Middle CDS = 0.042</td>
         <td><span class="tag tag-blue">CDS</span></td>
       </tr>
@@ -683,7 +683,7 @@ flowchart TB
 
   <div class="figure-box">
     <img src="../figures/fig7_three_subject_cds.png" alt="Fig 7: Three-Subject CDS" onclick="openLightbox(this.src)" loading="lazy">
-    <div class="fig-label"><strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The "early peak, later decline" pattern holds universally.</div>
+    <div class="fig-label"><strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The "early peak, later decline" pattern holds in the frozen 3-subject sample (Preliminary, no universal claim).</div>
   </div>
 </section>
 
@@ -729,7 +729,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 0 — Pilot</div>
       <h4>Concept & Feasibility Study</h4>
-      <p>3-student pilot study, 20 gold labels, initial LDS analysis across ZH/EN/DE. Validated the core hypothesis that cross-language knowledge structures measurably differ.</p>
+      <p>3-student pilot study, 20 gold labels, initial LDS analysis across ZH/EN/DE. Explored whether cross-language structures differ (pilot, Preliminary — no validation claim).</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 1 — Mathematics</div>
@@ -744,7 +744,7 @@ timeline
     <div class="timeline-item">
       <div class="date">Phase 3 — Chemistry</div>
       <h4>Chemistry Knowledge Graph (220 concepts, 215 relations)</h4>
-      <p>89 titles. Confirmed universal STEM density pattern (F8). Three-discipline comparison complete.</p>
+      <p>89 titles. F8 pattern observed in the sample (Preliminary). Three-discipline comparison complete.</p>
     </div>
     <div class="timeline-item">
       <div class="date">Phase 4 — Curriculum</div>
@@ -938,7 +938,7 @@ var TRANSLATIONS = {
     metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'How much of the curriculum the textbooks cover. Textbook–curriculum alignment.',
     gold_title: 'Extraction Quality: 92 Gold Labels',
-    gold_desc: 'Human-annotated gold standard covering social concepts and mathematical concepts across 3 languages, evaluated against production-model extraction.',
+    gold_desc: 'Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness ~0.65) checked against extraction (Preliminary) — no validation claim.',
     th_domain: 'Domain', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
     th_overall: 'Overall', th_n: 'n',
     social_concepts: 'Social Concepts', mathematical_concepts: 'Mathematical Concepts',
@@ -952,7 +952,7 @@ var TRANSLATIONS = {
     fig4_caption: '<strong>Fig 4</strong> — LDS Null Model Suite across ZH/EN/DE. ZH–DE converges (0.519); DE–EN diverges most (0.938). T1 decontamination falsifies the convergence (0.52 → 0.99, Fig 8).',
     fig5_caption: '<strong>Fig 5</strong> — Hierarchy Depth Score (HDS) distribution. Maximum chain depth is 8; 83% of concepts are root nodes with no prerequisites. (Frozen June-2026 dense graph 556/525; not recomputable from current archive — forensic note)',
     fig6_caption: '<strong>Fig 6</strong> — CDS comparison: Math vs. Physics. Physics peaks earlier (Elementary) with higher density; both follow the same peak-and-decline pattern.',
-    fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds universally.',
+    fig7_caption: '<strong>Fig 7</strong> — CDS across all three disciplines (Math, Physics, Chemistry). The early peak, later decline pattern holds in the frozen 3-subject sample (Preliminary, no universal claim).',
     section_space_title: 'Interactive Cognitive Space', section_space_sub: 'Explore the 3D knowledge graph — rotate, filter, compare',
     space_desc: 'The CognitiveSpace visualization lets you explore the 556-concept mathematics subgraph in an interactive 3D environment. Switch between Universe, Space-Fill and Compare views, search any concept, filter by language, and inspect degree, roles and metric definitions per node. A second physics graph (367 nodes) is available through the discipline switcher.',
     space_cta: 'Launch CognitiveSpace 3D',
@@ -1014,7 +1014,7 @@ var TRANSLATIONS = {
     metric_lds_name: 'Linguistic Divergence Score', metric_lds_desc: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs_name: 'Coverage Score', metric_cs_desc: 'Wie viel des Lehrplans die Lehrbuecher abdecken. Lehrbuch-Lehrplan-Abgleich.',
     gold_title: 'Extraktionsqualitaet: 92 Goldlabels',
-    gold_desc: 'Manuell annotierter Goldstandard mit sozialen und mathematischen Konzepten in 3 Sprachen, bewertet mit der Extraktion des Produktionsmodells.',
+    gold_desc: 'Mixed-Provenienz-Gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; Harness ~0,65) geprüft an Extraktion (Preliminary) — kein Validierungs-Beleg.',
     th_domain: 'Bereich', th_zh_f1: 'ZH F1', th_de_f1: 'DE F1', th_en_f1: 'EN F1',
     th_overall: 'Gesamt', th_n: 'n',
     social_concepts: 'Soziale Konzepte', mathematical_concepts: 'Mathematische Konzepte',
@@ -1028,7 +1028,7 @@ var TRANSLATIONS = {
     fig4_caption: '<strong>Abb. 4</strong> — LDS Null Model Suite ueber ZH/EN/DE. ZH–DE konvergiert (0,519); DE–EN divergiert am staerksten (0,938). T1-Dekontamination falsifiziert die Konvergenz (0,52 → 0,99, Abb. 8).',
     fig5_caption: '<strong>Abb. 5</strong> — Hierarchietiefe (HDS) Verteilung. Maximale Kettentiefe ist 8; 83% der Konzepte sind Wurzelknoten. (Eingefrorener dichter Graph vom Juni 2026, 556/525; aus dem aktuellen Archiv nicht rekonstruierbar — Forensik-Notiz)',
     fig6_caption: '<strong>Abb. 6</strong> — CDS-Vergleich: Math vs. Physik. Physik erreicht frueheren Hoehepunkt (Grundschule), beide folgen demselben Muster.',
-    fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt universell.',
+    fig7_caption: '<strong>Abb. 7</strong> — CDS aller drei Disziplinen (Math, Physik, Chemie). Das fruehe Spitzen-, spaete Abfall-Muster gilt in der frozen 3-Fach-Stichprobe (Preliminary, kein Universalitäts-Anspruch).',
     section_space_title: 'Interaktiver CognitiveSpace', section_space_sub: 'Erkunden Sie den 3D-Wissensgraphen — rotieren, filtern, vergleichen',
     space_desc: 'Die CognitiveSpace-Visualisierung laesst Sie den 556-Konzepte-Mathematik-Subgraphen in einer interaktiven 3D-Umgebung erkunden. Wechseln Sie zwischen Universum-, Raumfuellungs- und Vergleichsansicht, suchen Sie Konzepte, filtern Sie nach Sprache und pruefen Sie Grad, Rollen und Metrikdefinitionen pro Knoten. Ein zweiter Physik-Graph (367 Knoten) ist ueber den Disziplin-Umschalter verfuegbar.',
     space_cta: 'CognitiveSpace 3D starten',
@@ -1090,7 +1090,7 @@ var TRANSLATIONS = {
     metric_lds_name: '语言漂移得分', metric_lds_desc: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs_name: '覆盖率得分', metric_cs_desc: '课程内容有多少被教材覆盖。教材–课程对齐程度。',
     gold_title: '提取质量：92 个黄金标签',
-    gold_desc: '人工标注的黄金标准，涵盖 3 种语言的社会概念和数学概念，经生产模型提取验证。',
+    gold_desc: '混合来源金标（20 手标 C9a + 72 机器预提/人工接受 C9b，Developing；harness 约 0.65）经抽查对抗提取（Preliminary）——不作验证声称。',
     th_domain: '领域', th_zh_f1: '中文 F1', th_de_f1: '德文 F1', th_en_f1: '英文 F1',
     th_overall: '总体', th_n: '数量',
     social_concepts: '社会概念', mathematical_concepts: '数学概念',
@@ -1104,7 +1104,7 @@ var TRANSLATIONS = {
     fig4_caption: '<strong>图 4</strong> — LDS 零模型套件跨 ZH/EN/DE。中德趋同（0.519），德英差异最大（0.938）。T1 去污染证伪趋同（0.52→0.99，图 8）。',
     fig5_caption: '<strong>图 5</strong> — 层次深度得分（HDS）分布。最大链深度为 8；83% 的概念是无前提知识的根节点。（冻结自2026年6月稠密图556/525，当前存档不可重算——取证注）',
     fig6_caption: '<strong>图 6</strong> — CDS 对比：数学 vs 物理。物理峰值更早（小学），两者都遵循相同的先峰后降模式。',
-    fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式具有普遍性。',
+    fig7_caption: '<strong>图 7</strong> — 三个学科（数学、物理、化学）的 CDS。早期峰值、后期下降的模式见于冻结三学科样本（Preliminary，不作普遍性声称）。',
     section_space_title: '交互式认知空间', section_space_sub: '探索 3D 知识图谱 — 旋转、筛选、对比',
     space_desc: 'CognitiveSpace 可视化让您在交互式 3D 环境中探索 556 个概念的数学子图。在宇宙/空间填充/比较视图间切换，搜索任意概念，按语言筛选，查看每个节点的度、角色与指标定义。另有物理图谱（367 节点），可通过学科切换器进入。',
     space_cta: '启动 CognitiveSpace 3D',
