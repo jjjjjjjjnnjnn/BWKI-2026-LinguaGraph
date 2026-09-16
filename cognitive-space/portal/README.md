@@ -21,7 +21,7 @@ Open `index.html` in any browser. No build step required.
 | 9 | Finding E | "N=15 falsifies between-subject ΔLDS" — human validation (F11–F12) |
 | 10 | CognitiveSpace | Click-to-load 3D viewer (porcelain cover, saves 429KB first paint) |
 | 11 | Curriculum | Coverage scores by education system + 3 competing explanations |
-| 12 | Validation | Gold dataset F1 table + 19-model benchmark chart + 55-margin fused replication chart (collecting table separate) |
+| 12 | Validation | Gold dataset F1 table + 19-model benchmark chart + 59-measurement fused replication chart (file-truth 62/57/186) (collecting table separate) |
 | 13 | Limitations | 6 methodological boundaries with mitigations |
 | 14 | Paper | Citation, BibTeX with copy button |
 | 15 | Open Science | Links to code, data, paper, figures, benchmarks |

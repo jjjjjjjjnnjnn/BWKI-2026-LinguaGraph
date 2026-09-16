@@ -13,9 +13,9 @@
 
 | 指标 / Metric | 值 / Value |
 |--------|-------|
-| 概念 / Concepts / Konzepte | **574** (557 unique, 17 aligned) |
+| 概念 / Concepts / Konzepte | **556** nodes (525 relations, 219 groups; frozen 2026-09-12) |
 | 关系 / Relations / Beziehungen | **525** (known) + **~3000** (inferred) |
-| 教材 / Textbooks / Lehrbücher | **68** (45 ZH / 20 EN / 10 DE) |
+| 教材 / Textbooks / Lehrbücher | **68** (39 ZH / 18 EN / 11 DE) |
 | 课程体系 / Curricula / Lehrpläne | 人教版 · IB · AP · IGCSE · Abitur · Khan Academy |
 | 学段 / Levels / Stufen | 小学 → 大学 / Elementary → University |
 | 结构冲突 / Structural conflicts | **0** |

@@ -1,6 +1,6 @@
 # LinguaGraph — BWKI 2026 Final Submission (bis 20.09.)
 
-> Stand: 2026-09-08 (v0.13.2) | Autor: Jiajun Rong (lead) · Zhenxi Lan (supporting: funding & advisory)
+> Stand: 2026-09-08 (v0.13.2) | Autor: Jiajun Rong (lead) · Zhenxi Lan (supporting: funding & advisory) | Appendix-W-Notiz 2026-09-16 (committed): Appendix W (`docs/paper/08_appendixW_weight_vs_human.md`) ist exploratory appendix-only und NICHT in der Begutachtungs-Evidenz.
 > Historie: `submission/idea/` (Ideenanmeldung 28.06., historisch — Teamnamen/Rauschzeichen dort nicht mehr anfassen).
 
 ## Forschungsfrage
@@ -24,7 +24,7 @@
 - Physik 367 / Chemie 220 (Legacy-Pipelines) → gesamt 1.140+ Konzepte
 - Gold: 92 (sozial F1 0,939; gewichtet gesamt 0,881)
 - Human: N=15 (Between, Δ≈0) + LLM-within (Signal)
-- 55 Messungen: 42 DashScope + 8 zen/OpenRouter + 2 Kilo + 1 Cohere + 1 NIM + 1 opencode-go; alle ZH-DE p<0,05 (p=0,0 als p<0,004 lesen)
+- 59 Messungen: 42 DashScope + 8 zen/OpenRouter + 2 Kilo + 1 Cohere + 1 NIM + 1 Cloudflare + 1 LM-Studio + 3 opencode-go (54 Modelle)lo + 1 Cohere + 1 NIM + 1 opencode-go; alle ZH-DE p<0,05 (p=0,0 als p<0,004 lesen)
 - Westlich (7 Messungen): nemotron-3-ultra + laguna-s-2.1 (zen), gpt-oss-20b (NIM), command-a (Cohere), laguna-s-2.1 + nemotron-3-super (Kilo), gpt-5.6-luna (Herkunft ungeklärt)
 
 ## Dateien

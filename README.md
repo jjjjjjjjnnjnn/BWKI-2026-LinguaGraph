@@ -209,6 +209,9 @@ Products: `outputs/figures/reproduce_lds_binary.log`, `fig4_null_model_data.csv`
 4. **Cross-lingual Alignment** — 30 shared IDs → 219 trilingual groups (39%) → CDS/HDS/LDS/CS metrics
 5. **Validation & Falsification** — 92 gold labels, N=15 human study, null-model suite, T1 decontamination
 
+### Tool layering (paper §2.12, Eigenständigkeit)
+Own contributions: design, LDS definition, all findings/falsification analyses. Disclosed auxiliary tooling (not mixed with string-match counts): **networks/graphs** NetworkX + 3d-force-graph · **figures** matplotlib (`scripts/figures/`) · **text extraction** pymupdf + RapidOCR-ONNX (DirectML-GPU) · **semantics** nomic-embed-v1.5 pre-screen + Muse-Spark adjudication (temp-0, `scripts/semantic_ground_en.py`) · **concept extraction (D1)** Bailian API qwen-plus (gold N=92, social F1 0.939).
+
 ---
 
 ## 📁 Project Structure
