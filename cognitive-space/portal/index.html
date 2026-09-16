@@ -472,6 +472,7 @@ graph LR
       <dt><strong>9. Margin threshold (≥ 0.10)</strong></dt><dd data-i18n="glos_9">Operational heuristic for audit use, not a validated boundary.</dd>
     </dl>
   </details>
+  <p class="honesty" data-i18n="method_prov_note">Provenance: HF main SHAs are today HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build not comparable to official hashes (snapshot research/weight_snapshot_20260916.json; paper App. W).</p>
 </section>
 
 <!-- ==================== SOURCES ==================== -->
@@ -941,6 +942,7 @@ graph LR
       <strong><span class="tag tag-purple">F11</span></strong> <span data-i18n="finding_e_f11">N=15 falsifies ΔLDS > 0 between-subject: human LDS-C ≈ split-half floor — between-subject designs cannot separate language from participant variance.</span><br>
       <strong><span class="tag tag-purple">F12</span></strong> <span data-i18n="finding_e_f12">Concept-level ΔLDS ≈ 0; LLM within-subject margin (+0.08–0.09) shows the signal exists — earlier simulation comparison withdrawn.</span>
     </p>
+    <p class="honesty" data-i18n="f12_prov_note">F12 note: the Two-Tier vector baseline uses nomic embeddings only and is unaffected by the design-vs-execution judge swap (design phi-4-mini-instruct vs execution muse-spark-1.3-contributor); see paper §2.12 and App. W.</p>
     <div class="meta"><a class="tag tag-purple" href="#methodology" data-i18n="finding_e_tag1">Metric: LDS</a> <a class="tag tag-blue" href="#finding-e" data-i18n="finding_e_tag2">F11, F12</a> <span class="tag tag-green" data-i18n="finding_e_tag3">N=15 participants, 300 simulation (exploratory)</span></div>
   </div>
 </section>
@@ -1082,6 +1084,11 @@ graph LR
       <p>Inter mean v2 0.4629 &rarr; v3 0.5401 (&Delta;+0.077) is fully driven by the qwen depth refill &mdash; the two numbers are not comparable, no trend claim. Vote totals use thr=n//2+1 with source counts 6&ndash;9 (thr 4&ndash;5): totals sum two scales and must be shown split with a thr-sensitivity table; 3 files with Solid&asymp;0 and Hypo&gt;100 are listed separately. v41 column (mojibake audit ongoing) and ds-pro row (unmeasurable) stay frozen.</p>
       <div class="meta">Source: research/limitations_20260914.md L5</div>
     </div>
+    <div class="card">
+      <h3><i class="bi bi-fingerprint" style="color:var(--cyan)"></i> <span data-i18n="limit7_prov_title">Model Provenance (UNVERIFIED pins)</span></h3>
+      <p data-i18n="limit7_prov_desc">HF main SHAs are today HEADs, not experiment-day pins; the served LM Studio revision exposes names only (UNVERIFIED); the local phi build is community-quantized and not hash-comparable to official weights; the nomic weight file is not locatable on disk. Cite App. W residual risks ①–⑥ with every use.</p>
+      <div class="meta">Source: research/weight_snapshot_20260916.json + paper App. W</div>
+    </div>
   </div>
 </section>
 
@@ -1172,11 +1179,12 @@ graph LR
         <strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
         <br>† Social F1 0.939 = Developing (seed-evaluation same-source, blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
       </div>
+      <p class="honesty" data-i18n="valid_design_exec">Design vs execution: the design judge is phi-4-mini-instruct (open weights, snapshot object); the executed merge used muse-spark-1.3-contributor (closed API, 10 parallel judges, 407 results) — not interchangeable. The Two-Tier vector finding uses nomic embeddings only and is unaffected by this swap (paper §2.12, App. W).</p>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
         <summary style="cursor:pointer;color:var(--accent)" data-i18n="mm_bench_sum">Details · how the benchmark chart is made</summary>
         <p style="margin:8px 0" data-i18n="mm_bench_src"><b>Source.</b> 19 models scored on 92 gold labels (model-selection benchmark, Validation section).</p>
         <p style="margin:8px 0" data-i18n="mm_bench_calc"><b>Method.</b> F1 on gold labels; the production extraction model was selected by overall F1. Range 0.55–0.67.</p>
-        <p style="margin:8px 0" data-i18n="mm_bench_read"><b>Reading.</b> Bar = F1 per model. Used <b>only</b> for extractor selection — never for language claims (that is the 58-run replication below).</p>
+        <p style="margin:8px 0" data-i18n="mm_bench_read"><b>Reading.</b> Bar = F1 per model. Used <b>only</b> for extractor selection — never for language claims (that is the 59-run replication below).</p>
       </details>
       <h3 style="margin:20px 0 8px;font-size:1.05rem" data-i18n="val_roster_title">Replication roster: 59 full runs + 26 collecting (file truth 62/57/186 incl. qwen-max n=26/30 (parked))</h3>
       <div class="chart-box" style="margin:16px 0;max-width:100%">
@@ -1827,6 +1835,11 @@ const TRANSLATIONS = {
     metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
     method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components',
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
+    method_prov_note: 'Provenance: HF main SHAs are today HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build not comparable to official hashes (snapshot research/weight_snapshot_20260916.json; paper App. W).',
+    f12_prov_note: 'F12 note: the Two-Tier vector baseline uses nomic embeddings only and is unaffected by the design-vs-execution judge swap (design phi-4-mini-instruct vs execution muse-spark-1.3-contributor); see paper §2.12 and App. W.',
+    limit7_prov_title: 'Model Provenance (UNVERIFIED pins)',
+    limit7_prov_desc: 'HF main SHAs are today HEADs, not experiment-day pins; the served LM Studio revision exposes names only (UNVERIFIED); the local phi build is community-quantized and not hash-comparable to official weights; the nomic weight file is not locatable on disk. Cite App. W residual risks ①–⑥ with every use.',
+    valid_design_exec: 'Design vs execution: the design judge is phi-4-mini-instruct (open weights, snapshot object); the executed merge used muse-spark-1.3-contributor (closed API, 10 parallel judges, 407 results) — not interchangeable. The Two-Tier vector finding uses nomic embeddings only and is unaffected by this swap (paper §2.12, App. W).',
     glos_1: 'Grade-randomized graphs: the overlap expected by pure chance.',
     glos_2: 'k = 15/25/35: comparison at equal vocabulary size.',
     glos_3: 'Same-language divergence: the baseline no cross-language claim may sit below. (textbook legacy line; human line 0.92-0.96; LLM line 0.85-0.87)',
@@ -2077,6 +2090,11 @@ const TRANSLATIONS = {
     metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
     method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, zwei Aehnlichkeitskomponenten',
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
+    method_prov_note: 'Provenienz: HF-main-SHAs sind heutige HEADs, keine Experimental-Pins; served Revision UNVERIFIED; lokale Phi-Datei ist ein Community-Quant-Build ohne Vergleichbarkeit zu offiziellen Hashes (Snapshot research/weight_snapshot_20260916.json; Anhang W).',
+    f12_prov_note: 'F12-Hinweis: Die Two-Tier-Vektorbaseline nutzt nur nomic-Embeddings und ist vom Design-vs-Execution-Richtertausch unberührt (Design phi-4-mini-instruct vs. Ausführung muse-spark-1.3-contributor); s. §2.12 und Anhang W.',
+    limit7_prov_title: 'Modell-Provenienz (UNVERIFIED-Pins)',
+    limit7_prov_desc: 'HF-main-SHAs sind heutige HEADs, keine Tages-Pins der Experimente; die served LM-Studio-Revision nennt nur Namen (UNVERIFIED); der lokale Phi-Build ist community-quantisiert und nicht mit offiziellen Gewichten per Hash vergleichbar; die nomic-Gewichtsdatei ist auf Platte nicht auffindbar. Mit jeder Nutzung Restrisiken ①–⑥ aus Anhang W zitieren.',
+    valid_design_exec: 'Design vs. Ausführung: Design-Richter ist phi-4-mini-instruct (offene Gewichte, Snapshot-Objekt); die ausgeführte Fusion nutzte muse-spark-1.3-contributor (geschlossene API, 10 parallele Richter, 407 Ergebnisse) — nicht austauschbar. Der Two-Tier-Vektorbefund nutzt nur nomic-Embeddings und ist von diesem Tausch unberührt (Paper §2.12, Anhang W).',
     glos_1: 'Grad-randomisierte Graphen: die Ueberlappung, die reiner Zufall erwarten laesst.',
     glos_2: 'k = 15/25/35: Vergleich bei gleicher Vokabelgroesse.',
     glos_3: 'Sprachinterne Divergenz: die Basislinie, unter die keine sprachuebergreifende Aussage fallen darf. (Lehrbuch-Legacylinie; Humanlinie 0.92-0.96; LLM-Linie 0.85-0.87)',
@@ -2280,7 +2298,7 @@ curr_explanations_title: '三种竞争性解释',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
     val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源，72 条盲审待补；独立 harness 复算约 0.65 vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。',
-    val_replication_note: '扩展复刻（2026-09，论文 §5.10）：59 次测量 / 54 个模型 —— 59 对 ZH-DE 全部显著（边际 +0.03…+0.42）；8 个含 EN 测试不显著。',
+    val_replication_note: '扩展复刻（2026-09，论文 §5.10）：59 次测量 / 54 个模型 —— 59 对 ZH-DE 全部显著（边际 +0.03…+0.42）；177 中 9 个 EN n.s.。',
     val_roster_title: '复刻名录：59 次完整运行 ＋ 26 次收集中(file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: '对比视图——59 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.（500 置换）；西方运行标红。26 个收集中运行（含 qwen-max n=26/30 (parked)，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',
     margin_legend: '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(30,58,138,.85);margin-right:4px"></span>中国模型运行 &nbsp;&nbsp;<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(179,55,47,.9);margin-right:4px"></span>西方运行 (11)',
@@ -2327,13 +2345,18 @@ curr_explanations_title: '三种竞争性解释',
     metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
     method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、两个相似度分量',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
+    method_prov_note: '来源说明：HF main SHA 为今日 HEAD，非实验当日锁定版本；在线服务版本记为 UNVERIFIED；本地 phi 文件为社区量化构建，与官方哈希不可直接比对（快照 research/weight_snapshot_20260916.json；论文附录 W）。',
+    f12_prov_note: 'F12 注：Two-Tier 向量基线仅使用 nomic 嵌入，不受设计态与执行态判官替换影响（设计态 phi-4-mini-instruct，对比执行态 muse-spark-1.3-contributor）；见论文 §2.12 与附录 W。',
+    limit7_prov_title: '模型来源（未锁定版本）',
+    limit7_prov_desc: 'HF main SHA 为今日 HEAD，非实验当日版本；在线 LM Studio 服务仅暴露模型名（记为 UNVERIFIED）；本地 phi 为社区量化构建，与官方权重无哈希可比性；nomic 权重文件在磁盘上无法定位。每次引用须附带附录 W 残余风险①–⑥。',
+    valid_design_exec: '设计态与执行态拆分：设计态判官为 phi-4-mini-instruct（开源权重，快照对象）；实际合并使用 muse-spark-1.3-contributor（闭源 API，10 并行判官，407 条结果）——二者不可混称。Two-Tier 向量结论仅使用 nomic 嵌入，不受此次替换影响（论文 §2.12，附录 W）。',
     glos_1: '度随机化图谱：纯随机下的期望重叠。',
     glos_2: 'k＝15/25/35：等词汇量下的比较。',
     glos_3: '语言内噪声基线（0.97）：任何跨语言结论不得低于此线。(教材旧线；人线0.92-0.96；LLM线0.85-0.87)',
     glos_4: '领域纯净的社会概念（中/英/德），独立抽取。',
     glos_5: '被试间 marge＋0.015：该 N 下无可分语言信号。',
     glos_6: 'LDS-C 0.93–0.96 (LLM-as-subject)，permutation p＜0.01：语言代码主导。',
-    glos_7: '标签 shuffling，如中德 59/59、p＜0.004（500 perm.）。',
+    glos_7: '标签 shuffling，如中德 59/59、p＜0.004（500 perm.，file-truth 62/62）。',
     glos_8: '一致性演示，不是人类零结果的因果证明。',
     glos_9: '审计用操作启发式，非验证过的边界。',
     mm_fig37_sum: '详细 · 图 3 / 图 7 是怎么做的',
@@ -2353,7 +2376,7 @@ curr_explanations_title: '三种竞争性解释',
     mm_bench_calc: '计算口径。gold 标签 F1；生产抽取模型按总体 F1 选中。区间 0.55–0.67。',
     mm_bench_read: '怎么读。柱＝单模型 F1。只用于选抽取器——不用于语言结论（那是下面的 59 运行复刻）。',
     mm_margin_sum: '详细 · 边际图是怎么做的',
-    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 55 个完整运行——与边际实证视图、下方名录表同行。26 个收集中运行（n<30）边际暂扣。',
+    mm_margin_src: '数据来源。data/lds_c/llm_subject/multi_model_replication_20260913.json 59 个完整运行——与边际实证视图、下方名录表同行。26 个收集中运行（n<30）边际暂扣。',
     mm_margin_calc: '计算口径。边际＝LDS-C 减 split-half 底线，全运行统一 P1 协议；500 置换，59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.。降序排列，无重缩放。',
     mm_margin_read: '怎么读。柱＝边际，59 根全正。红色＝西方（散布＝无出身聚类）。下方名录表列出每一行。',
     src_title: '来源总清单',
