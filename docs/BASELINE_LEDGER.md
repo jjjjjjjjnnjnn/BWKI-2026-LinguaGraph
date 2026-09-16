@@ -100,7 +100,9 @@
 - 证据身份账（2026-09-16）：`research/bailian_mimo_sha_20260916.json`
   （bailian 68 件 dir-sha 4fa5dda8762b6d79 / mimo 13 件 faaa278538ab7f3d；原文件黑箱不进 git）；
   `research/weight_vectors_sha_20260916.json`（15.89MB cca943eb… / 15.87MB 6a4f8cb9…，
-  与 snapshot 记录一致，HELD 未入库，URI 待 Release）；SSOT `research/numbers_ssot_20260916.json`＋
+  与 snapshot 记录一致；Release `data-weight-vectors-20260916`
+ （https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/releases/tag/data-weight-vectors-20260916），
+  仓库内保持 HELD 未入库）；SSOT `research/numbers_ssot_20260916.json`＋
   门禁 `scripts/tools/numbers_audit.py`；portal W 指针（paper §9 结论章，评审证据外）。
 
 ## 补实验优先级
