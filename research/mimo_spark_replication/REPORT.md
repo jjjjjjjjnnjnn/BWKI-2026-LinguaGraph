@@ -53,7 +53,7 @@ EN-Subgruppe 27/27 valide alle F1=0,000 (zweiter vollständiger EN-Kollaps nach 
 T1 micro-P/R 0,253/0,356 (11/11; wahrscheinlichkeit-Base löst glm im 1. Versuch,
 die r4-deepseek 6× scheiterte — s. §1).
 
-Pro Sprache (mean F1): spark-1.3 zh 0,276 / de 0,223 / en 0,070; spark-1.2 0,227/0,193/0,036;
+Pro Sprache (mean F1, overall inkl. Mathe-Domäne — paper §2.9 zeigt dagegen Sozial-only): spark-1.3 zh 0,276 / de 0,223 / en 0,070; spark-1.2 0,227/0,193/0,036;
 MiniMax 0,224/0,190/0,065; r4 0,205/0,159/0,005; 6.8-lite 0,226/0,177/0,000;
 glm-5.2 0,263/0,188/0,000.
 EN-Kollaps: 5–56 % der EN-Predictions
@@ -109,3 +109,23 @@ Rotation empfohlen.
   6.8-lite + glm-5.2 mit Valide-Nenner- flag, P3-Entscheid 2026-09-18).
 - §2.8: Mechanismus-Absatz (Kardinalität + Sprachausgabe + A5-verfehlt + Harness-v2-Empfehlung).
 - Keine Änderung an bestehenden Behauptungen/C9b-Status.
+
+## 6. Deep-Dive (2026-09-18, deterministisch, zero API — exploratory)
+
+`T2_DEEPDIVE.json/md` (Seed/B wie Matrix) + `T1_PAIRWISE.json/md`. Kerne:
+
+- **Zell-CIs**: Math-Zellen (n=6–7) CI-Breiten ~0,2–0,5 (z. B. en_math 1.3 [0,056–0,383]) —
+  keine Zell-Rankings möglich; nur Sozial-Zellen (n=21–29) sind informativ. Formalisiert G3.
+- **gold_n-Schichtung**: neue Arme n1 (37 Items) F1 ~0,06–0,13 vs. n2 (55) ~0,16–0,25
+  (Überproduktion wird auf Singletons härtest bestraft); qwen INVERTIERT (n1 0,84 > n2 0,55) —
+  qwen trifft Singletons mit Gold-Kardinalität. Stärkste F2-Stütze aus vorhandenen Daten.
+- **Paired dF1** (prä-deklarierte Paare): 1.3−qwen −0,467 [−0,558–−0,384] (Gap formal);
+  1.3−1.2 +0,039 [+0,009–+0,073] (klein, aber gepaart signifikant — schärfer als CI-Überlapp-Blick);
+  minimax−glm +0,007 [−0,027–+0,036] (null). Exploratory-Paare deskriptiv, Bonferroni (α≈0,003) beachten.
+- **pred_n–F1**: Pearson r −0,31…−0,43 pro Arm (außer 6.8: +0,23 — 429-Fails verzerren, offengelegt);
+  Bins monoton fallend (pred 10→20: F1 0,23→0,07). Korrelativ, nicht kausal; pro Sprache konfundiert.
+- **T1-Pairwise** (5×11/11-Arme): F1 0,42–0,61 (Mittel 0,53) — Modelle stimmen untereinander
+  deutlich mehr überein als mit mimo (micro-P 0,21–0,32; andere Metrik, explizit).
+  Stützt „mimo = noisy reference" (M4-Herausforderung) — C22 bleibt Developing mit schärferer Caveat.
+- **Difficulty**: n=9 (alle Mathe) — Negativbefund per Design, DO-NOT-USE.
+- **Power**: gepaartes Design braucht n≈32–71 für Δ=0,1; n=6–7-Zellen detektieren nur Δ≈0,4+.
