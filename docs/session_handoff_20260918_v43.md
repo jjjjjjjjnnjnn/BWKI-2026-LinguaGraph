@@ -44,7 +44,7 @@
 2. sn 剩余臂: glm-5.2 done (r4-direct); 其余碎臂 (deepseek-v4-flash/pro, kimi-k3, u1.5-fast) 仍待定; mimo-T2 永久缺席确认待定。
 3. 31 条变更本地 A–E 五批 commit, 不 push (Owner 决策); 三串 key 轮换待做; textbook 未重跟踪 (verified 21:30)。
 
-## 五、P0 修复遍 (2026-09-18 21:30, REPORT rev4, Owner 决策执行)
+## 四、P0 修复遍 (2026-09-18 21:30, REPORT rev4, Owner 决策执行)
 
 - R1/R3 文字修正 (6.8-höchste-P → spark-1.2 0.316 最高; rel_agree 2.4 → 2.0); EN-CJK 5–56%;
   `submission/README.md` 525 → 517; `_log_*` 入 .gitignore。
@@ -55,7 +55,18 @@
   qwen-plus Sozial 行补 †; REPORT §5 "6 neue Zeilen"。
 - 提交: 本地 A–E 五批, 不 push (Owner 决策)。
 
-## 四、禁区重申
+## 五、禁区重申
 
 不改 tests/ 逻辑; freeze/ 只读; 禁 add -A; key 永不打印/入库; paper 不加新断言;
 `research/mimo_spark_audit/` (判官) ≠ 模型臂, 不动; 8 月 LDS 历史不动。
+
+## 六、遗留六项收尾 (2026-09-18 22:00, Owner 四项决策执行)
+
+- D-S1 → CLOSED (Bounds-Argument: qwen 92/92, 最长输出 150 字符 ≪ 2048 tokens; 上界非直接证明); REPORT 去 OPEN。
+- Finding B: 维持 233 + 双引 frozen 219 (`06_physics:29` 注 + `00_conclusions:39` 表注)。
+- p 记法: `03_results:398` 加 ≡ 单侧注记, 指回 `04_discussion:226`。
+- "6 Versuche" → 3 stage-belegt + Vorlauf (Mojibake 删, 无证据); D-S2 加 stage 覆盖教训半句。
+- key 轮换: 提交后做 (Owner 决策)。清单: ①四控制台 revoke (zen/MiniMax/r4/sensenova, r4 可先行已闲置);
+  ②新 key 只写本地 `.env`; ③旧 key 试调一次验 401; ④库内无值可改 (仅变量名)。
+- nach 仓 (46 paths): deadline 前零动作, 提交后单独收敛; 主仓 pitch 自包含已验。
+- 遗留: textbook 95 txt 仍在索引 (removal owner-gated); sn 碎臂去向; push 指令待 Owner。

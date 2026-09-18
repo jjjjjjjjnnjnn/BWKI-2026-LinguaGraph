@@ -36,7 +36,7 @@
 |--------|:----:|:-------:|
 | Max. HDS | 8 | 6 |
 | Mittlere HDS | 0,40 | 0,85 |
-| Wurzelkonzepte | 83 % | 64 % (233/367) |
+| Wurzelkonzepte | 83 % | 64 % (233/367; frozen June-dense 219, s. 06_physics) |
 | Strukturtyp | Flaches Netz | Tiefere Kette |
 
 ---

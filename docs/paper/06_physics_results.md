@@ -26,7 +26,7 @@ Der 3,7-fache Abfall von Physik-Grundschule (0,222) zur Oberstufe (0,013) spiege
 | Mittlere Tiefe | **0,85** | 0,40 |
 | Wurzelkonzepte | 233 (64 %) | 459 (83 %) |
 
-> Physik-Wurzelwert 233 aus `outputs/physics_comparison.json:30` (`hds.root_count`); 219 ist der eingefrorene June-dense-Wert, s. `docs/submission/fig5_hds_forensic.md`.
+> Physik-Wurzelwert 233 aus `outputs/physics_comparison.json:30` (`hds.root_count`); 219 ist der eingefrorene June-dense-Wert (SSOT-web P2b#2, Finding-B-Headline), s. `docs/submission/fig5_hds_forensic.md`. Headline-Regel: live = 233, frozen = 219 — beide zitiert, kein Widerspruch.
 
 **◆ Befund F7**: Physik weist **tiefere Voraussetzungsketten** auf (mittlerer HDS 0,85 vs. Mathe 0,40). Dies spiegelt den kumulativen Charakter physikalischen Wissens wider: Das Verständnis elektromagnetischer Induktion erfordert zuerst die Beherrschung von elektrischer Ladung → Strom → Magnetfeld → Faradaysches Gesetz — eine Kette von 4+ Konzepten. Die Mathematik hingegen verfügt über mehr unabhängige Einstiegspunkte (83 % Wurzeln).
 

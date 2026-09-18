@@ -15,8 +15,9 @@ Deviations: `research/deviation_log_20260918_spark.md` (D-S1–D-S7).
 - mimo-v2.5-free: Owner-Retirement 2026-09-18, 36 Dateien archiviert
   (`research/archive_mimo-v2.5-free_20260918/` + README), aus allen Matrizen entfernt.
 - u1-fast + u1.5-lite: Bildgenerierungs-Modelle (Owner-Angabe) → EXCLUDED, nie gelaufen.
-- T1-Fehlstand r4-deepseek: `de_wahrscheinlichkeit_ch1-8` (6 Versuche: Timeouts + trunkiertes
-  JSON mit Mojibake; staged, keine weiteren Retries). **glm-5.2 (gleicher Transport r4)
+- T1-Fehlstand r4-deepseek: `de_wahrscheinlichkeit_ch1-8` (wiederholte Versuche:
+  3 stage-belegt — 2× RuntimeError + 1× parse_fail — plus Vorlauf-Timeouts aus der
+  D-S1-Pilotphase; staged, keine weiteren Retries). **glm-5.2 (gleicher Transport r4)
   löst dieselbe Base im 1. Versuch (c=40/r=30, gate=True, rung=0)** — Fehlstand ist
   modellseitig, nicht transportseitig.
 - sensenova-Quota-Bill (gezählt aus attempt-Logs): **~416 Calls** (T1 254 + T2 162),
@@ -90,8 +91,8 @@ die nach Owner-Order auf seriell (A10) umgestellt wurde; A10 Image-Ausschluss + 
 Prompts SHA-gefroren
 (T1 `9ad3d51b…`, T2-System `72c5424f…`/Template `31b8e6eb…`, T2≡Harness-Template 391 chars);
 Transport v1→v3 + sn-Direkt dokumentiert (Cloudflare-1010, Modell-ID ohne Präfix, argv-Mangling,
-Custom-Agent-403, Sandbox-Kontamination-Ausschluss); D-S1 (r4-Ceiling, OPEN-Aktion:
-qwen-Ceiling-Bindung prüfen), D-S2 (Orphan-Bereinigung, CLOSED), D-S3 (T2-Summary-
+Custom-Agent-403, Sandbox-Kontamination-Ausschluss); D-S1 (r4-Ceiling, per Bounds-Argument
+2026-09-18 CLOSED: qwen längstes Output 150 Zeichen ≪ 2048-Token-Ceiling), D-S2 (Orphan-Bereinigung, CLOSED), D-S3 (T2-Summary-
 Print-NameError, datenneutral, CLOSED), D-S4 (9-Parallel-Sturm: KeyError-`sn` +
 fehlender Breaker + fehlende Smoke-Gate + grobe Err-Logs; Korrekturen verifiziert:
 Breaker parkte 6.7 zweimal korrekt; Quota-Bill ~416); D-S5 (opencode-Wrapper-Timeout
