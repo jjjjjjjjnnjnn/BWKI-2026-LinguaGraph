@@ -188,9 +188,17 @@ Um zu bestimmen, ob die Extraktionsqualität durch die Pipeline oder die Modellf
 | qwen3-8B (lokal) | Mathematik | 0,857 | 0,506 | 0,711 |
 | qwen-plus (API) | Mathematik | 0,952 | 0,489 | 0,778 |
 | qwen3.7-max (API) | Mathematik | 0,980 | 0,551 | 0,778 |
-| **qwen-plus (API)** | **Sozial** | **0,974** | **0,949** | **0,882** |
+| **qwen-plus (API)** | **Sozial**† | **0,974**† | **0,949**† | **0,882**† |
+| muse-spark-1.3 (free-tier) | Sozial† | 0,207† | 0,181† | 0,031† |
+| muse-spark-1.2 (free-tier) | Sozial† | 0,180† | 0,171† | 0,033† |
+| MiniMax-M3 (direkt) | Sozial† | 0,164† | 0,172† | 0,042† |
+| deepseek-v4.1-flash (r4) | Sozial† | 0,157† | 0,153† | 0,006† |
+| sensenova-6.8-flash-lite | Sozial† (76/92 valide) | 0,189† | 0,163† | 0,000† |
+| glm-5.2 (r4-direkt) | Sozial† (91/92 valide) | 0,224† | 0,167† | 0,000† |
 
-Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität auf dem DB-Pfad nominell vorläufig hoch (Developing C9b, harness ~0,65, Preliminary); bis Blind-Review nur als Arbeitshypothese.
+Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. (Scope-Hinweis: 0,489 aus Benchmark-Item-Menge dieser Tabelle; Gold-Batch-A Mathematik-DE 0,506 n=7 s. §2.8 — unterschiedliche Item-Mengen, kein Widerspruch.) Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität auf dem DB-Pfad nominell vorläufig hoch (Developing C9b, harness ~0,65, Preliminary); bis Blind-Review nur als Arbeitshypothese.
+
+> † **Seed-fremde Replikation (2026-09-18, n=72: 29 ZH / 22 DE / 21 EN; exakte IDs, Endpoints, Datum s. `research/mimo_spark_replication/REPORT.md`)**: Kein seed-fremder Arm reproduziert die Sozial-F1 (A2-konform 0,10–0,15 gesamt; 95 %-CIs s. REPORT) — die prä-registrierten Deutungsäste (0,60–0,70 / ≥0,85) wurden beide verfehlt. Der Abstand erklärt sich mechanistisch, nicht als Qualitätsranking: Die neuen Arme befolgen die Prompt-Vorgabe „10–20 Konzepte" wörtlich (pred_n 11,7–16,8 bei Gold-2,16 → Precision 0,08–0,14 bei Recall ~0,6), während die qwen-Historie quellen-sprachlich mit Gold-Kardinalität antwortet (pred_n 2,5); zusätzlich kollabiert EN (5–56 % der EN-Predictions enthalten CJK — der System-Prompt verlangt gleichzeitig „原始语言" und „输出UTF-8中文"; zwei Arme — 6.8-lite, glm-5.2 — mit vollständigem EN-Kollaps 0,000 bei 76/92 bzw. 91/92 validen Items). T2-F1 misst daher Prompt-Gehorsam × Exaktmatch; ob 0,939 ein Seed-Artefakt ist, bleibt unentschieden (C9b unverändert Developing). Designfehler des Harness v1 dokumentiert (C23); Harness v2 (kardinalitätskontrolliert) empfohlen, kein retroaktives Rescoring. T1-Gegenstück: Kreuzmodell-Agreement vs. mimo nur micro-P 0,21–0,32 (C22).
 
 ### 2.10 Curriculum Coverage Score (CS)
 
@@ -223,7 +231,7 @@ Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Port
 4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
 5. **Human N=15 floor** — Between-Subject-Marge +0,015.
 6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
-7. **Permutation test** — z. B. ZH-DE 59/59 (file-truth 61/62 mit qwen-max + hy-mt2, ohne qwen2.5-n.s.) bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
+7. **Permutation test** — z. B. ZH-DE 59/59 [Datei-Wahrheit 62 Modelle inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54; hy-mt2-Boundary und qwen2.5-n.s. als Kleinstmodell-Grenze separat, s. §8.15] bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
 8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
 9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
 
