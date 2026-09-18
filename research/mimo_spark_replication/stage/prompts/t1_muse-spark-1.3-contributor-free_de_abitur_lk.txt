@@ -1,0 +1,64 @@
+TASK: Extract knowledge-graph JSON from the textbook text at the end. Do NOT ask questions. Do NOT converse. Do NOT explain. Output ONLY the JSON object, nothing else before or after it.
+
+Schema:
+{"extracted_concepts": [{"name": "<source-language name>", "aliases": ["english", "chinese"], "definition_snippet": "<short>", "category": "concept|operation|theorem|property"}],
+ "extracted_relations": [{"source": "<name from concepts>", "target": "<name from concepts>", "type": "requires|representation|generalization|inverse_of|part_of", "importance": 0.0-1.0, "evidence": "<short>"}]}
+Keys MUST be exactly "extracted_concepts" and "extracted_relations" (never "nodes"/"edges"/"concepts"/"relations"). Aim 15-40 concepts, 10-30 relations. Every source/target must be a listed concept name. No placeholders. Empty lists are FORBIDDEN.
+
+TEXTBOOK (German / de_abitur_lk):
+Abitur Mathematik (Baden-Württemberg) — Leistungskurs
+
+Kapitel 1: Analysis
+- Grenzwerte und Stetigkeit
+- Differentiation: Ableitungsbegriff und Differentiationsregeln
+- Ableitungen höherer Ordnung
+- Monotonie und Extrema
+- Krümmungsverhalten und Wendepunkte
+- Kurvendiskussion
+- Taylorentwicklung und Potenzreihen
+- Integration: Stammfunktionen und Methoden
+- Bestimmte Integrale und ihre Anwendung
+- Gewöhnliche Differentialgleichungen 1. Ordnung
+
+Kapitel 2: Lineare Algebra und Geometrie
+- Vektoren in R² und R³
+- Geradengleichungen und Ebenengleichungen
+- Parameterische und kartesische Darstellung
+- Abstände, Winkel, Schnitte
+- Lineare Abbildungen
+- Matrizen und Determinanten
+- Lineare Gleichungssysteme
+- Eigenwerte und Eigenvektoren
+- Diagonalisierung
+
+Kapitel 3: Analytische Geometrie und Lineare Algebra
+- Kegelschnitte: Ellipse, Hyperbel, Parabel
+- Implizite und explizite Kurvendarstellung
+- Polarkoordinaten
+- Komplexe Zahlen und Gauss'sche Zahlenebene
+
+Kapitel 4: Stochastik
+- Kombinatorik: Permutationen, Kombinationen, Variationen
+- Wahrscheinlichkeitsrechnung: Laplace, frequentistisch, klassisch
+- Baumschema und Pfadsätze
+- Bedingte Wahrscheinlichkeit und Satz von Bayes
+- Zufallsvariablen und Verteilungen
+- Binomialverteilung und Poissonverteilung
+- Normalverteilung und Standardnormalverteilung
+- Erwartungswert, Varianz, Standardabweichung
+- Statistische Tests: t-Test, χ²-Test
+
+Kapitel 5: Funktionen und their Anwendungen
+- Exponentialfunktionen und Logarithmusfunktionen
+- Hyperbelfunktionen
+- Trigonometrische und inverse trigonometrische Funktionen
+- Potenzfunktionen und Wurzelfunktionen
+- Funktionsuntersuchungen
+- Umkehrfunktionen und Implizite Differentiation
+
+Kapitel 6: Numerik
+- Numerische Integration: Trapezregel, Simpson-Regel
+- Numerische Lösung von Gleichungen: Newton-Verfahren
+- Interpolation und Regression
+
+BEGIN JSON NOW:
