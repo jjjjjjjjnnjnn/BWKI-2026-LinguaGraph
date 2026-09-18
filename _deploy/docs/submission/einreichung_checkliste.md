@@ -37,7 +37,7 @@
 - [x] Storyboard + Fakten-Check (v0.13.2) in `submission/pitch/README.md`
 - [ ] **Aufnahme**: Screen-Recording der Konzeptgraphen + LDS-Balken + Treiberliste + Divergenzbericht-Mockup
 - [ ] Schnitt auf 2–4 Min · 1080p · H.264
-- [ ] Musik/Assets-Lizenz dokumentieren (falls verwendet)
+- [x] Musik/Assets-Lizenz dokumentieren: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0) — s. `submission/pitch/upload_description.md`, Portal-Fußzeile, `declaration_of_support.md` §6
 - [ ] `submission/pitch/assets/` beschaffen (Screenshots, LDS-Diagramm, Mockup)
 
 ## Bestandteil 4 (Supporting): Wissenschaftliche Arbeit → PDF

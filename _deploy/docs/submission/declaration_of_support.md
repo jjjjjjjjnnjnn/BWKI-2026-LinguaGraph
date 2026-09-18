@@ -110,8 +110,8 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 
 ## 6. Urheberrecht und Musik (Videomaterial)
 
-- Das Einreichungsvideo verwendet ausschließlich selbst erstellte Bilder und systemgenerierte Inhalte.
-- Falls im Video urheberrechtlich geschütztes Material verwendet wird, werden in der Videobeschreibung **Autor/Rechteinhaber und Link genannt** (gemäß Regelwerk).
+- Das Einreichungsvideo verwendet selbst erstellte Bilder und systemgenerierte Inhalte sowie **ein CC-lizenziertes Musikstück** (Nachweis s. u.).
+- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (`202609171822_100MB.mp4` + EN/ZH-Untertitelvarianten).
 - LDS-Definition, Fragebogen und Versuchsdesign der Arbeit sind originär (einschlägige Literatur im Papier zitiert).
 
 ---
@@ -125,7 +125,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 | Offenlegung der Datensatzquellen | ✅ diese Datei §3 |
 | Offenlegung Personen/Institutionen | ✅ diese Datei §4 |
 | Offenlegung Rechenleistung/Infrastruktur | ✅ diese Datei §5 (inkl. API-Abrechnungsvorfall) |
-| Namensnennung von Video-Copyright-Material | ⏳ bei Aufnahme auszuführen |
+| Namensnennung von Video-Copyright-Material | ✅ erledigt — s. §6 (Musiknachweis) + Portal-Fußzeile |
 | EU-AI-Act-Konformität | ✅ LLM-Nutzung für Forschungsanalyse, keine beschränkten Zwecke (keine Deepfakes u. Ä.) |
 | Keine diskriminierenden/antidemokratischen/militärischen Inhalte | ✅ nicht zutreffend |
 

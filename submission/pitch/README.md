@@ -31,7 +31,7 @@
 - 556 Konzepte / 517 Relationen / 219 Gruppen; F1 sozial 0,939, gewichtet 0,881
 - N=15 Δ≈0 (Between); LLM-within +0,08–0,09; 59 Messungen/54 Modelle; ~81 % CN
 - Kein §8.17-N=1-Fall; kein p=0,05-Sim-Vergleich; Schwelle ≥0,10 heuristisch
-- Musik/Assets-Lizenzen dokumentieren (falls verwendet)
+- Musik/Assets-Lizenzen dokumentieren ✅ erledigt: Musik [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0) — Nachweis in Videobeschreibung (`upload_description.md`), Portal-Fußzeile und `declaration_of_support.md` §6
 
 ## Assets
 

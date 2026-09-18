@@ -65,7 +65,7 @@ Video-Pitch:
 - [x] Aufnahme 09-12 4K-Master + EN/ZH subs + DE/EN srt (ftyp-verifiziert)
 - [x] Schnitt 2-4min 1080p H.264 (Master vorhanden)
 - [ ] Narrativ-Abgleich vs v26-Paper — OPEN
-- [ ] Musik/Assets-Lizenz — OPEN (falls verwendet)
+- [x] Musik/Assets-Lizenz — DONE 2026-09-18: Small Signs of Change – Sascha Ende (ende.app, CC BY 4.0)
 - [ ] `submission/pitch/assets/` — OPEN
 
 Supporting Paper/PDF:
