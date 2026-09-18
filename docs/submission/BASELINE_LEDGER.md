@@ -1,5 +1,7 @@
 # BASELINE_LEDGER — 基线推导台账 (frozen 2026-09-12, v21 2026-09-16)
 
+> SSOT-Hinweis (2026-09-17): Kanonische Datei `../../submission/final/BASELINE_LEDGER.md`; diese Kopie ist ein inhaltsgleicher Lese-Spiegel — Änderungen nur im Kanon, dann spiegeln.
+
 > 每个基线四列：定义 → 代码 → 产物 → 复现命令。状态三态：**verified**（可引用）/ **needs_review**（ directional only，补实验后转正）/ **drop**（退役）。
 > 精度政策：测量值报 **3 位小数 + CI**（第 4 位为计算对账位，提取误差 ΔLDS≈0.0014 已淹没第 4 位）。
 > 容差政策：确定性重算 0.001（舍入级）/ 随机重采样 0.01（SE 级）/ 跨版本 0.02。

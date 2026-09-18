@@ -24,7 +24,7 @@
 | Metric | Value |
 |--------|-------|
 | Textbook corpus | 68 math (39 ZH + 18 EN + 11 DE, s. Paper §2.2) |
-| Knowledge graph | 556 concepts · 525 direct relations (+~3000 transitive) |
+| Knowledge graph | 556 concepts · 517 direct relations (+~3000 transitive) |
 | Trilingual alignment | 219 groups (39.4%) |
 | Education levels | 4 (elementary → university) |
 | Structural conflicts | 0 |
@@ -48,7 +48,7 @@
 | Concept extraction | LLM (qwen-plus, D1 production model) |
 | Knowledge graph | NetworkX |
 | 3D viz | 3d-force-graph (Three.js) |
-| Cross-language alignment | 219 alignment groups (math 556 / 525), deterministic hashing |
+| Cross-language alignment | 219 alignment groups (math 556 / 517), deterministic hashing |
 | Inference | llama.cpp GGUF / Ollama |
 | Frontend (Workbench) | Flask / standalone HTML |
 

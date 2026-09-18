@@ -377,11 +377,13 @@ Die Treiber sind **rahmengeladene Kulturkonzepte**: DE tendiert zu Autonomie/Reg
 
 Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am divergentesten in sozialen Wikipedia) wird in Knoten- und Kantenkomponente zerlegt (frozen v3):
 
-| Quelle | Paar | LDS v3 | J_node | J_edge | node-only | Kantenbeitrag |
+| Quelle | Paar | LDS v3 | J_node | J_edge | node-only† | Kantenbeitrag |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|
 | Mathematik | ZH-DE | 0.519 | 0.556 | 0.407 | **0.444** | **0.074** |
 | Wikipedia sozial | ZH-DE | 0.819 | 0.200 | 0.162 | **0.800** | 0.019 |
 | Mensch kognitiv | ZH-DE | 0.954 | 0.085 | 0.008 | 0.915 | 0.038 |
+
+> † node-only-Spalte: reine Dekompositions-Ebene (frozen v3), kein unabhängiger Konvergenz-Beleg — Mathematik/Wikipedia-Werte (0,444/0,800) als retired Ablation/expired scope (s. `BASELINE_LEDGER.md` §6), nur mit P2/T1-Einschränkung zitieren.
 
 Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0.444 → konvergent; sozial 0.800 → divergent), **nicht auf der Kantenebene**: der Kantenbeitrag ist in der Mathematik am größten (0.074). Alignierungs-Labels stimmen nominell stärker überein (node-only 0.444, frozen v3) — P2/T1: kein belastbarer inhaltlicher Befund (de-Feld teils chinesisch; Size-Matching kehrt Muster um). Dies vertieft §3.8: der Kantenbeitrag 0.075 ist keine "kantengetriebene Konvergenz", sondern eine "kantengetriebene Divergenz" innerhalb eines konzeptuell konvergenten Fachs.
 

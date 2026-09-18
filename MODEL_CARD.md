@@ -3,7 +3,8 @@ language:
 - zh
 - de
 - en
-license: apache-2.0
+license: proprietary
+status: design-only-no-weights-released
 library_name: transformers
 pipeline_tag: text-generation
 tags:
@@ -35,7 +36,8 @@ A fine-tuned concept extraction model for the LinguaGraph project (BWKI 2026). B
 | **Languages** | Chinese (ZH), German (DE), English (EN) |
 | **Training** | LoRA (r=16) on 1000+ social issues examples |
 | **Merging** | TIES (ZH + DE + EN adapters) |
-| **License** | Apache 2.0 |
+| **License** | Proprietary (All Rights Reserved — same as repo `LICENSE`; Apache-2.0 was a future-intent mislabel) |
+| **Status** | Design only — no weights released (base Qwen2.5-1.5B carries its own license, not sublicensable as Apache-2.0) |
 
 ## Intended Use
 

@@ -83,7 +83,7 @@ python scripts/tools/weight_graph_E3.py     # E3 238-Kanten edge-count-matched-o
 | **Figuren** | matplotlib (deterministische Skripte `scripts/figures/`) | reproduzierbar |
 | **Textextraktion** | pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill) | Scan-OCR, Layer getrennt |
 | **Semantik** | nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (`scripts/semantic_ground_en.py`, temp-0) | EN-Grounding-Layer |
-| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92 (F1 sozial 0,939) | `docs/declaration_of_support.md` |
+| **Konzeptextraktion (D1)** | qwen-plus via Alibaba Cloud Bailian API (production-extraction-model), Gold-N=92 (F1 sozial 0,939† Developing C9b, harness ~0,65, blind pending — s. Paper §2.8) | `docs/declaration_of_support.md` |
 | **Rechenleistung** | Keine externe GPU; reine API + lokale CPU | — |
 
 **Lizenzhinweis**: Wikipedia-Daten unterliegen CC-BY-SA; Quellen in `data/wikipedia_extractions/` dokumentiert. Lehrbuch-Korpus: urheberrechtlich geschützt, nur für die Analyse verwendet, nicht weitergegeben.
