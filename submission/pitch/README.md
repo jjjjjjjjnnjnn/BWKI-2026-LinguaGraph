@@ -1,18 +1,19 @@
 # LinguaGraph — Video-Pitch (separater Workflow)
 
 > Spec: 2–4 Min · 1080p · H.264 | Skript: `video_script.md` v2 (AI-Audit-Framing, DE-Narration + EN-Untertitel)
-> Status: **Finals vorhanden (2026-09-11, 173s, gleicher Schnitt)** — Master: separates Video-Repo (`nach/`, v4-Pipeline, 32 Steps, Narration-SSOT `nach/docs/narration_de.md`, Faktencheck `nach/docs/faktencheck.md` unterschrieben). Dieses Verzeichnis hält nur die **Einbettungs-Kopien** für Repo + Portal.
+> Status: **Finals vorhanden (2026-09-17, 204s, gleicher Schnitt)** — Benutzerschnitt (`202609171822`, 203.55s, 3840×2160@60) + ≤100MB-Kompression + neu gebrannte EN/ZH-Untertitel (62 Cues, klein, unten). Dieses Verzeichnis hält nur die **Einbettungs-Kopien** für Repo + Portal.
 
-## Finals (Einbettungs-Kopien, Stand 2026-09-11)
+## Finals (Einbettungs-Kopien, Stand 2026-09-17, 203.55s / 3840×2160@60 / H.264+AAC)
 
 | Datei | Inhalt | Größe |
 |---|---|---|
-| `LinguaGraph_BWKI2026_Pitch_4K.mp4` | DE ohne Untertitel (Default-Quelle, 3840×2160 h264/aac) | 14.3 MB |
-| `LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4` | gleicher Schnitt + EN-Untertitel (eingebrannt) | 23.8 MB |
-| `LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4` | gleicher Schnitt + ZH-Untertitel (eingebrannt) | 22.1 MB |
-| `assets/pitch_poster.jpg` | Poster-Frame (t60s) | — |
+| `LinguaGraph_BWKI2026_Pitch_4K.mp4` | DE ohne Untertitel (Default-Quelle) | 64.9 MB |
+| `LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4` | gleicher Schnitt + EN-Untertitel (eingebrannt, 62 Cues, klein/unten) | 51.7 MB |
+| `LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4` | gleicher Schnitt + ZH-Untertitel (eingebrannt, 62 Cues, klein/unten) | 51.1 MB |
+| `subtitles_{de,en,zh}.srt` | Untertitel-Quellen (62 Cues, 0→190s, Wort-Timestamps via faster-whisper) | — |
+| `assets/pitch_poster.jpg` | Poster-Frame (t60s, aus dem 204s-Schnitt) | — |
 
-> Quelle: `nach/renders/final/` (Video-Repo, wird dort gepflegt — hier nicht rendern, nur kopieren). 112-MB-4K-Master bleibt im Video-Repo/Release, nicht im Git.
+> Quelle: Benutzerschnitt `202609171822.mp4` (Desktop, 250 MB) → CRF14/slow ≤100MB (`202609171822_100MB.mp4`, 64.9 MB) → EN/ZH-Burn CRF17/fast mit Audio-Copy. Kopien in `submission/pitch/`, `cognitive-space/portal/pitch/` (= Pages-Quelle) und `_deploy/portal/pitch/` (Deploy-Spiegel) identisch.
 
 ## Storyboard (aus `video_script.md` v2)
 

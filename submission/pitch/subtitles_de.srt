@@ -1,102 +1,302 @@
 1
-00:00:00,000 --> 00:00:14,000
-Fragen wir ein deutsches KI-Modell: Was gehört zur Freiheit?
-Es antwortet: Autonomie, Regeln, eigene Ziele.
+00:00:00,000 --> 00:00:02,700
+Ich bin Jiajun Rong
+von der Privatschule Schloss Heessen.
 
 2
-00:00:14,000 --> 00:00:29,000
-Fragen wir dasselbe Modell auf Chinesisch nach 自由:
-Es antwortet mit Raum, Grenzen, dem, was einem zusteht.
-Dasselbe Wort — aber eine andere kognitive Landkarte.
-Genau solche Unterschiede macht LinguaGraph messbar.
+00:00:03,240 --> 00:00:05,100
+LinguaGraph macht
+solche Unterschiede messbar.
 
 3
-00:00:29,000 --> 00:00:42,000
-KI-Systeme werden heute für Milliarden von Menschen
-in Dutzenden Sprachen bereitgestellt.
-Aber sie sind überwiegend mit englischen Daten trainiert.
+00:00:05,560 --> 00:00:07,020
+Fragen wir
+ein deutsches KI-Modell.
 
 4
-00:00:42,000 --> 00:00:52,000
-Versteht ein Modell ‚Gerechtigkeit' in einem
-Kreditentscheidungs-System auf Deutsch und Chinesisch gleich?
-Wenn nicht, erhalten Nutzer je nach Sprache unterschiedliche Behandlung.
+00:00:07,780 --> 00:00:08,640
+Was gehört zur Freiheit?
 
 5
-00:00:52,000 --> 00:01:01,000
-Gängige KI-Evaluation misst aber nur die Aufgabenerfüllung —
-nicht, ob die Wertkonzepte des Modells sprachübergreifend konsistent sind.
-Das ist ein blinder Fleck.
+00:00:09,680 --> 00:00:12,860
+Es antwortet: Autonomie,
+Regeln, eigene Ziele.
 
 6
-00:01:01,000 --> 00:01:24,000
-Wie misst man etwas Unsichtbares wie die Konzeptstruktur eines Modells?
-Kernidee: Man fragt die KI selbst.
-Wir machen das LLM zum kontrollierten Versuchsprobanden:
-Dasselbe Modell, dieselben fünf Themen —
-Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg —
-nur die Sprache ändert sich.
+00:00:13,320 --> 00:00:15,460
+Fragen wir dasselbe Modell
+auf Chinesisch nach Zi You.
 
 7
-00:01:24,000 --> 00:01:35,000
-Weil es dasselbe Modell ist, ist Sprache die einzige Variable.
+00:00:16,200 --> 00:00:18,940
+Es antwortet mit Raum, Grenzen,
+dem, was einem zusteht.
 
 8
-00:01:35,000 --> 00:01:47,000
-Aus den Antworten extrahieren wir pro Sprache einen Konzeptgraphen.
-Unsere neue Metrik, der Linguistic Divergence Score (LDS),
-misst die strukturelle Divergenz — über gemeinsame Konzepte und Relationen.
-Und wir können nicht nur eine Zahl ausgeben,
-sondern benennen, welche Konzept-Bestandteile genau divergieren.
+00:00:19,440 --> 00:00:22,260
+Dasselbe Wort —
+aber eine andere kognitive Landkarte.
 
 9
-00:01:47,000 --> 00:02:06,000
-Wir haben das Experiment auf 50 Modelle verschiedener Anbieter
-ausgeweitet (55 Messungen) — auch auf sieben westliche Messungen.
-In allen 55 Messungen ist das chinesisch-deutsche Signal
-statistisch signifikant (Permutationstest p < 0.05).
+00:00:22,760 --> 00:00:25,200
+Genau solche Unterschiede
+macht LinguaGraph messbar.
 
 10
-00:02:06,000 --> 00:02:16,000
-Und es ist nicht zufällig, sondern kulturell gemustert:
-Deutsche Konzepte betonen Autonomie und Regeln,
-chinesische Raum und Anspruch —
-die Kulturrichtung übersteigt ein Zufalls-Nullmodell deutlich.
+00:00:25,580 --> 00:00:27,860
+KI-Systeme werden heute
+für Milliarden von Menschen
 
 11
-00:02:16,000 --> 00:02:26,000
-Der entscheidende Kontrollbefund: Institutionelles Wissen —
-etwa Mathematik — konvergiert sprachübergreifend.
-Kulturelle Konzepte divergieren dagegen deutlich.
-Unser Messinstrument findet also genau das, was es finden soll:
-Konvergenz, wo Konvergenz zu erwarten ist,
-Divergenz, wo Divergenz zu erwarten ist.
-Selbst die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch.
+00:00:27,860 --> 00:00:29,460
+in Dutzenden Sprachen
+bereitgestellt.
 
 12
-00:02:26,000 --> 00:02:51,000
-[Stille — drei rote Punkte: N = 15 Between-Subject / 8 n. s. / 0.10 heuristisch]
+00:00:30,140 --> 00:00:33,060
+Aber sie sind überwiegend
+mit englischen Daten trainiert.
 
 13
-00:02:51,000 --> 00:03:06,000
-Damit ist LinguaGraph eine neue Art von KI-Prüfung.
-Ein Entwickler kann vor dem Einsatz eines mehrsprachigen Modells prüfen:
-Driftet mein Modell bei wertbeladenen Begriffen zwischen Sprachen —
-und wo genau?
+00:00:33,520 --> 00:00:35,280
+Versteht ein Modell
+Gerechtigkeit
 
 14
-00:03:06,000 --> 00:03:14,000
-Für Regulierer liefert es Transparenz,
-wie der EU AI Act sie für den Einsatz von KI verlangt.
-Der Output ist interpretierbar — kein Black-Box-Score,
-sondern eine Liste der konkreten Konzept-Bestandteile, die divergieren.
+00:00:35,280 --> 00:00:38,700
+in einem Kreditentscheidungssystem
+auf Deutsch und Chinesisch gleich?
 
 15
-00:03:14,000 --> 00:03:23,000
-LinguaGraph verwandelt eine philosophische Frage —
-formt Sprache unser Denken? — in eine messbare Ingenieursfrage
-für die KI-Systeme, von denen wir alle abhängen.
-Und der Befund ist: Ja, sie driften — messbar über Dutzende Modelle hinweg,
-in einer klar erkennbaren kulturellen Richtung.
-Jetzt können wir sehen, wo — das ist der erste Schritt
-zu einer verlässlichen Prüfung mehrsprachiger KI.
+00:00:39,240 --> 00:00:42,020
+Wenn nicht, erhalten Nutzer
+je nach Sprache unterschiedliche Behandlung.
+
+16
+00:00:42,480 --> 00:00:45,800
+Gängige KI-Evaluation misst aber
+nur die Aufgabenerfüllung —
+
+17
+00:00:46,400 --> 00:00:49,640
+nicht, ob die Wertkonzepte des Modells
+sprachübergreifend konsistent sind.
+
+18
+00:00:50,180 --> 00:00:52,200
+Das ist ein blinder Fleck.
+
+19
+00:00:52,740 --> 00:00:54,280
+Wie misst man
+etwas Unsichtbares
+
+20
+00:00:54,280 --> 00:00:55,920
+wie die Konzeptstruktur
+eines Modells?
+
+21
+00:00:56,380 --> 00:00:58,320
+Kernidee:
+Man fragt die KI selbst.
+
+22
+00:00:58,900 --> 00:01:01,580
+Wir machen das LLM
+zum kontrollierten Versuchsprobanden.
+
+23
+00:01:02,000 --> 00:01:03,980
+Dasselbe Modell,
+dieselben fünf Themen:
+
+24
+00:01:04,540 --> 00:01:08,500
+Gerechtigkeit, Freiheit, Verantwortung,
+Heimat, Erfolg —
+
+25
+00:01:09,140 --> 00:01:10,380
+nur die Sprache ändert sich.
+
+26
+00:01:10,820 --> 00:01:13,580
+Weil es dasselbe Modell ist,
+ist Sprache die einzige Variable.
+
+27
+00:01:14,080 --> 00:01:17,700
+Aus den Antworten extrahieren wir
+pro Sprache einen Konzeptgraphen.
+
+28
+00:01:18,180 --> 00:01:20,920
+Unsere neue Metrik,
+der Linguistic Divergence Score,
+
+29
+00:01:21,360 --> 00:01:25,040
+misst die strukturelle Divergenz —
+über gemeinsame Konzepte und Relationen.
+
+30
+00:01:25,040 --> 00:01:27,720
+Und wir können nicht nur
+eine Zahl ausgeben —
+
+31
+00:01:28,000 --> 00:01:29,940
+sondern benennen,
+welche Konzeptbestandteile genau divergieren.
+
+32
+00:01:30,420 --> 00:01:34,040
+Wir haben das Experiment auf 54 Modelle
+verschiedener Anbieter ausgeweitet
+
+33
+00:01:34,580 --> 00:01:37,480
+(59 Messungen) —
+auch auf elf westliche Messungen.
+
+34
+00:01:38,020 --> 00:01:41,100
+In allen 59 Messungen ist das
+chinesisch-deutsche Signal
+
+35
+00:01:41,100 --> 00:01:42,920
+statistisch signifikant.
+
+36
+00:01:43,540 --> 00:01:47,320
+Permutationstest:
+p < 0,05.
+
+37
+00:01:48,060 --> 00:01:50,600
+Und es ist nicht zufällig,
+sondern kulturell gemustert.
+
+38
+00:01:51,320 --> 00:01:53,760
+Deutsche Konzepte betonen
+Autonomie und Regeln.
+
+39
+00:01:53,760 --> 00:01:56,340
+chinesische
+Raum und Anspruch —
+
+40
+00:01:56,340 --> 00:01:58,520
+die Kulturrichtung übersteigt
+ein Zufalls-Nullmodell deutlich.
+
+41
+00:01:59,160 --> 00:02:00,500
+Der entscheidende Kontrollbefund:
+
+42
+00:02:00,960 --> 00:02:04,720
+Institutionelles Wissen — etwa Mathematik —
+konvergiert sprachübergreifend.
+
+43
+00:02:05,200 --> 00:02:09,820
+Ehrlich dazu: Diese mathematische
+Konvergenz ist indikativ —
+
+44
+00:02:10,400 --> 00:02:14,460
+nach Dekontamination kollabiert sie
+von 0,52 auf 0,99.
+
+45
+00:02:15,300 --> 00:02:17,740
+Ein Label-Artefakt,
+das wir selbst falsifiziert haben.
+
+46
+00:02:18,120 --> 00:02:20,140
+Kulturelle Konzepte
+divergieren dagegen deutlich.
+
+47
+00:02:20,140 --> 00:02:23,820
+Selbst die Beziehungen zwischen Konzepten
+organisieren sich sprachspezifisch.
+
+48
+00:02:23,980 --> 00:02:24,800
+Ehrlich dazu.
+
+49
+00:02:25,740 --> 00:02:28,020
+Unser Human-Experiment
+mit 15 Personen
+
+50
+00:02:28,020 --> 00:02:30,120
+zeigt unter Between-Subject-
+Bedingungen:
+
+51
+00:02:30,120 --> 00:02:33,420
+kein Sprachsignal —
+ein Design-Artefakt, kein Gegenbeweis.
+
+52
+00:02:33,980 --> 00:02:37,460
+Neun englisch-haltige Paare
+sind nicht signifikant —
+
+53
+00:02:37,460 --> 00:02:39,640
+konsistent mit der
+Englisch-Zentriertheit heutiger Modelle.
+
+54
+00:02:40,140 --> 00:02:44,400
+Und unsere operative Schwelle von 0,10
+ist eine heuristische Faustregel —
+
+55
+00:02:44,540 --> 00:02:45,660
+keine validierte Grenze.
+
+56
+00:02:46,080 --> 00:02:48,720
+Damit ist LinguaGraph
+eine neue Art von KI-Prüfung.
+
+57
+00:02:48,720 --> 00:02:51,960
+Ein Entwickler kann vor dem Einsatz
+eines mehrsprachigen Modells prüfen:
+
+58
+00:02:52,460 --> 00:02:55,780
+Driftet mein Modell bei wertbeladenen
+Begriffen zwischen Sprachen — und wo genau?
+
+59
+00:02:56,300 --> 00:03:00,480
+Für Regulierer liefert es Transparenz,
+wie der EU AI Act sie verlangt.
+
+60
+00:03:00,920 --> 00:03:03,260
+Der Output ist interpretierbar —
+kein Black-Box-Score,
+
+61
+00:03:03,800 --> 00:03:06,980
+sondern eine Liste der konkreten
+Konzept-Bestandteile, die divergieren.
+
+62
+00:03:07,620 --> 00:03:10,040
+LinguaGraph.
+Sichtbar. Danke.
