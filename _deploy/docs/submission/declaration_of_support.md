@@ -135,12 +135,12 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 
 ---
 
-## 8. Unterschrift (bei Einreichung ausfüllen)
+## 8. Unterschrift (bei Einreichung ausfüllen — beide Teilnehmende)
 
-| Feld | Angabe |
-|------|--------|
-| Ort, Datum | __________, 2026-09-__ |
-| Name (Druckschrift) | __________ |
-| Unterschrift | __________ |
+| Feld | Jiajun Rong (Lead) | Zhenxi Lan (Supporting) |
+|------|--------------------|-------------------------|
+| Ort, Datum | __________, 2026-09-__ | __________, 2026-09-__ |
+| Name (Druckschrift) | Jiajun Rong | Zhenxi Lan |
+| Unterschrift | __________ | __________ |
 
 *Erklärung: Die obige Offenlegung ist vollständig und wahrheitsgemäß; alle KI-/Werkzeug-/Datenquellen der Arbeit sind in §§1–5 genannt.*
