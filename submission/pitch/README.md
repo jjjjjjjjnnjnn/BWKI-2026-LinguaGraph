@@ -1,13 +1,13 @@
 # LinguaGraph — Video-Pitch (separater Workflow)
 
 > Spec: 2–4 Min · 1080p · H.264 | Skript: `video_script.md` v2 (AI-Audit-Framing, DE-Narration + EN-Untertitel)
-> Status: **Finals vorhanden (2026-09-17, 204s, gleicher Schnitt)** — Benutzerschnitt (`202609171822`, 203.55s, 3840×2160@60) + ≤100MB-Kompression + neu gebrannte EN/ZH-Untertitel (62 Cues, klein, unten). Dieses Verzeichnis hält nur die **Einbettungs-Kopien** für Repo + Portal.
+> Status: **EINGEREICHT 2026-09-19: `LinguaGraph_BWKI2026_Pitch_4K.mp4` (DE ohne Untertitel, 3840×2160@60, 64.9 MB, 203.55s, H.264+AAC, keine eingebetteten Untertitelspuren — ffprobe-verifiziert)**. EN/ZH-Hardsub-Varianten als Alternativen. Quelle: Benutzerschnitt (`202609171822`, 203.55s) + ≤100MB-Kompression + neu gebrannte EN/ZH-Untertitel (62 Cues, klein, unten). Dieses Verzeichnis hält nur die **Einbettungs-Kopien** für Repo + Portal.
 
 ## Finals (Einbettungs-Kopien, Stand 2026-09-17, 203.55s / 3840×2160@60 / H.264+AAC)
 
 | Datei | Inhalt | Größe |
 |---|---|---|
-| `LinguaGraph_BWKI2026_Pitch_4K.mp4` | DE ohne Untertitel (Default-Quelle) | 64.9 MB |
+| `LinguaGraph_BWKI2026_Pitch_4K.mp4` | DE ohne Untertitel — **EINGEREICHTE Fassung** | 64.9 MB |
 | `LinguaGraph_BWKI2026_Pitch_4K_subs_en.mp4` | gleicher Schnitt + EN-Untertitel (eingebrannt, 62 Cues, klein/unten) | 51.7 MB |
 | `LinguaGraph_BWKI2026_Pitch_4K_subs_zh.mp4` | gleicher Schnitt + ZH-Untertitel (eingebrannt, 62 Cues, klein/unten) | 51.1 MB |
 | `subtitles_{de,en,zh}.srt` | Untertitel-Quellen (62 Cues, 0→190s, Wort-Timestamps via faster-whisper) | — |

@@ -1,6 +1,7 @@
 # Upload-Beschreibung — LinguaGraph BWKI 2026 Pitch (204-s-Finalschnitt)
 
-> Copy-paste bei Upload (YouTube/Plattform). Stand: 2026-09-18.
+> Copy-paste bei Upload (YouTube/Plattform). Stand: 2026-09-19.
+> **EINGEREICHT: `LinguaGraph_BWKI2026_Pitch_4K.mp4` (DE ohne Untertitel, 3840×2160@60, 64.9 MB).**
 > Dateien: `LinguaGraph_BWKI2026_Pitch_4K.mp4` (DE, 64.9 MB) ·
 > `…_subs_en.mp4` (51.7 MB) · `…_subs_zh.mp4` (51.1 MB) — alle 3840×2160@60.
 

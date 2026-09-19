@@ -13,7 +13,7 @@
 |---|-------------|--------|----------------|--------|
 | 1 | **Projektdokumentation** (Plattform-Fragen) | 🟡 Final-Entwürfe in `submission/final/`; Plattform-Felderabgleich offen **[OWNER]** | Du | 9/20 |
 | 2 | **Code** (lauffähig + strukturiert) | 🟢 Pipeline ✅; Guide ✅ (84 tests); CI-Grün zu verifizieren (s. Must-3) | Du | 9/19 |
-| 3 | **Video-Pitch** (2–4 Min) | 🟢 4K-Master + EN/ZH-Subs + DE/EN/ZH-srt (09-17/18); Endfassung-Wahl offen **[OWNER]** | Du | 9/20 |
+| 3 | **Video-Pitch** (2–4 Min) | 🟢 **EINGEREICHT 09-19: `LinguaGraph_BWKI2026_Pitch_4K.mp4` (DE ohne Untertitel, 3840×2160@60, 203.55s, ffprobe-verifiziert)**; EN/ZH-Hardsubs als Alternativen | done | ✅ |
 | 4 | **Paper-PDF** (Supporting) | 🟢 Rebuilt 2026-09-19: 253600B/39p, 3 Orte hash-identisch (Reaudit-Stand B1–B2) | done | ✅ |
 
 ---
@@ -75,8 +75,8 @@
 
 ## Owner-Rest (Abend 09-19, vor Frist 20.09)
 
-1. Plattform-Felderabgleich + Eintragung (S. Should-5-Tabelle, falls erstellt).
-2. Video-Endfassung wählen + Timeline auf Key-Screens prüfen (mp4 nicht grep-bar).
+1. Plattform-Felderabgleich + Eintragung (feld-mapping v22).
+2. Video-Timeline auf Key-Screens prüfen (mp4 nicht grep-bar) — Datei-Wahl geschlossen.
 3. Konsolen-Quick-Check (zen/MiniMax/r4/sensenova/OpenRouter): keine abnormalen Abbuchungen → sonst erst revoke, dann einreichen.
 4. CI-Grün (Must-3-Ergebnis abwarten); v1.0-Tag nur auf ausdrückliche Order (封盘≠Release-Disziplin).
 
