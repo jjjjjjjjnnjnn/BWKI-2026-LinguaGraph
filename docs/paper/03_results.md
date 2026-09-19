@@ -58,7 +58,7 @@ Die relativ hohe exklusive ZH-Abdeckung (21,6 %) ist auf die spezifischeren chin
 
 Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
-1. **Konnektivität**: Der Graph ist dünn verknüpft (233 Links auf 556 Knoten, Dichte 0,0015, 388 Zusammenhangskomponenten): 381 Knoten (68,5 %) haben keine ausgehenden Kanten; die größte Komponente umfasst 121 Knoten. Die Struktur folgt einem Kern-Peripherie-Muster mit wenigen zentralen Ankerkonzepten und vielen peripheren Einträgen.
+1. **Konnektivität**: Der Graph ist dünn verknüpft (233 gerenderte Links auf 556 Knoten, Dichte 0,0015 — gerendert vs. aligniert: 233 von 517 Relationen sichtbar, s. LEDGER §11; 388 Zusammenhangskomponenten): 381 Knoten (68,5 %) haben keine ausgehenden Kanten; die größte Komponente umfasst 121 Knoten. Die Struktur folgt einem Kern-Peripherie-Muster mit wenigen zentralen Ankerkonzepten und vielen peripheren Einträgen.
 
 2. **Hierarchische Struktur**: Grundschulkonzepte haben einen hohen Zentralitätsgrad und dienen als Anker für zahlreiche Oberstufen- und Universitätskonzepte. Dies bestätigt das erwartete "Knowledge Core → Expansion"-Muster.
 
@@ -95,8 +95,10 @@ Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbü
 | Bedingung | ZH-EN | DE-EN | ZH-DE |
 |:----------|:-----:|:-----:|:-----:|
 | Full (LDS-K baseline) | 0.933 | 0.938 | 0.519 |
-| Structure Null (degree-preserving) | **0.957** | **0.957** | **0.717** |
-| Node-Permuted Null | 0.933 | 0.938 | 0.519 |
+| Structure Null (degree-preserving) | **0.957** | **0.957** | **0.715** (Punkt; 5-seed-Mittel 0,717) |
+| Within-Language Split-Half (Boden) | 0.9695 | 0.9744 | 0.9615 |
+| Label-Permutation | 0.8407 | 0.8701 | 0.6704 |
+| Node-Permuted Null (retired — Shuffle-then-set = Identität, keine Power, s. LEDGER §2.1) | 0.933 | 0.938 | 0.519 |
 | Complete Random | 1.000 | 1.000 | 1.000 |
 
 **Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare (frozen v3). Unter degree-preserving Randomisierung sind die randomisierten Graphen deskriptiv unterschiedlicher als die echten Graphen. Lesart T1-falsifiziert: scheinbare ZH-DE-Ähnlichkeit 0.519→0.990 nach Dekontamination; kein Konvergenz-Beleg.
@@ -115,7 +117,7 @@ Die LDS-K-Ergebnisse wurden vertieft (reproduzierbar via `scripts/lds_k_deepen.p
 1. **Lehrbuch (Mathematik) vs. Wikipedia (sozial)**: LDS = 1.00 (null Knotenüberlappung) — dies ist eine **Domänenkonfundierung** (Mathematik ⊥ Soziales), kein Sprachsignal. Der Vergleich ist methodisch ungeeignet, weil die Quellen verschiedene Wissensdomänen abdecken.
 2. **Wikipedia(zh) vs. Human(zh), beide sozial (domänenrein)**: LDS = 0.94 — die Quelle trägt einen großen Anteil zur Divergenz bei (institutionelle Enzyklopädie vs. spontane Kognition überschneiden sich kaum, J_node=0.06).
 
-**Wikipedia-Negativkontrolle (korrigiert)**: Frühere Analysen berichteten LDS = 1.00 für soziale Wikipedia-Konzepte. Dies war ein **Alignierungs-Artefakt**: chinesische Konzepte (z. B. 自由) werden von `canonical_key` (das nur lateinische Zeichen extrahiert) zu leeren Schlüsseln reduziert. Nach Glossierung von 96 chinesischen und deutschen Konzepten in denselben kanonischen Schlüsselraum ergeben sich reale Werte:
+**Wikipedia-Negativkontrolle (korrigiert)**: Frühere Analysen berichteten LDS = 1.00 für soziale Wikipedia-Konzepte. Dies war ein **Alignierungs-Artefakt**: chinesische Konzepte (z. B. 自由) werden von `canonical_key` (das nur lateinische Zeichen extrahiert) zu leeren Schlüsseln reduziert. Nach Glossierung von 96 chinesischen und deutschen Konzepten in denselben kanonischen Schlüsselraum ergeben sich reale Werte. (Quellen: Wikipedia-Artikel Freiheit/Gerechtigkeit/Verantwortung/Heimat/Erfolg × ZH/EN/DE, Zugriff 2026-08-08, CC-BY-SA; Extraktions-Log `data/wikipedia_extractions/` + `wiki_gloss_20260808.json`.)
 
 | Quelle | ZH-EN | DE-EN | ZH-DE |
 |:------|:-----:|:-----:|:-----:|
@@ -147,13 +149,13 @@ Aggregierte Konzeptmengen pro Sprachgruppe, LDS = 1 − Jaccard(kanonische Schl�
 
 | Sprachpaar | LDS-C (gepoolt) | 95 %-CI (Bootstrap) | LDS-K (Konzept) | ΔLDS |
 |:----------:|:---------------:|:-------------------:|:---------------:|:----:|
-| ZH-EN | 0.963 | [0.936, 0.985] | 0.977 | −0.014 |
+| ZH-EN | 0.963 | [0.936, 0.985] | 0.977 | −0.016 |
 | DE-EN | 0.932 | [0.899, 0.986] | 0.977 | −0.045 |
-| ZH-DE | 0.936 | [0.908, 0.960] | 0.887 | +0.049 |
+| ZH-DE | 0.936 | [0.908, 0.960] | 0.887 | +0.048 |
 
 **Wichtig**: Alle drei Sprachpaare zeigen LDS-C ≈ 0.93–0.96. Die Werte liegen **nahe der Zufallsverteilung** (siehe 4.3) und deutlich höher als die früheren N=8-Schätzungen (0.70–0.75), die mit einer älteren Pipeline berechnet wurden.
 
-**● Hinweis zur ΔLDS-Definition (Berichtsformat)**: Die hier berichteten ΔLDS-Werte (konzeptuelle Ebene, −0.044 bis +0.047) verwenden die **konzeptuelle LDS-K** (nur Knoten) als Basis, sodass LDS-C und LDS-K auf derselben Skala verglichen werden (apples-to-apples). Die relationale v3-LDS-K (§4.5) ist mit den relationalen LDS-C-Werten zu vergleichen — beide ΔLDS-Formate sind in der Arbeit durchgängig nach Ebene getrennt und nicht miteinander vermischt. Die Titelaussage "ΔLDS ≈ 0 (−0.05 bis +0.05)" bezieht sich auf die konzeptuelle Ebene.
+**● Hinweis zur ΔLDS-Definition (Berichtsformat)**: Die hier berichteten ΔLDS-Werte (konzeptuelle Ebene, −0.045 bis +0.048; Quelle `data/lds_c/lds_c_results_20260808.json:delta`) verwenden die **konzeptuelle LDS-K** (nur Knoten) als Basis, sodass LDS-C und LDS-K auf derselben Skala verglichen werden (apples-to-apples). Die relationale v3-LDS-K (§4.5) ist mit den relationalen LDS-C-Werten zu vergleichen — beide ΔLDS-Formate sind in der Arbeit durchgängig nach Ebene getrennt und nicht miteinander vermischt. Die Titelaussage "ΔLDS ≈ 0 (−0.05 bis +0.05)" bezieht sich auf die konzeptuelle Ebene.
 
 ### 4.3 Null-Modell-Prüfung: Kein separierbares Sprachsignal
 
@@ -161,13 +163,15 @@ Zwei Null-Modelle testen, ob die beobachtete LDS-C auf Sprache zurückgeht oder 
 
 | Sprachpaar | LDS-C (beobachtet) | Within-Lang Split-Half (Boden) | Label-Permutation | Perm-p |
 |:----------:|:------------------:|:------------------------------:|:-----------------:|:------:|
-| ZH-EN | 0.963 | 0.958 | 0.940 | 0.08 |
-| DE-EN | 0.932 | 0.923 | 0.938 | 1.00 |
-| ZH-DE | 0.936 | 0.922 | 0.935 | 1.00 |
+| ZH-EN | 0.963 | 0.959 | 0.941 | 0.08 |
+| DE-EN | 0.932 | 0.924 | 0.940 | 1.00 |
+| ZH-DE | 0.936 | 0.922 | 0.937 | 1.00 |
+
+(Quelle: `data/lds_c/llm_subject/design_effect_20260810.json` — offizielle Bodenwerte; löst die zurückgezogene Alt-Datei `lds_c_results_20260808.json` ab, s. LEDGER §3.)
 
 **Zentraler Befund**:
 1. **Within-Language-Split-Half** (Teilnehmervariabilität innerhalb einer Sprache): 0.92–0.96 ≈ beobachtete LDS-C. Die Variabilität **innerhalb** einer Sprachgruppe ist genauso groß wie die Divergenz **zwischen** den Gruppen.
-2. **Label-Permutation** (Permutation der Sprachlabels): 0.94–0.94 ≈ beobachtete LDS-C. Der formale Permutationstest (zweiseitig) liefert **p = 0.08 / 1.00 / 1.00** — die Sprachlabels tragen **kein messbares Signal** (kein p-Wert unterhalb konventioneller Schwellen). **Ehrliche Abgrenzung**: p=0.08 hat SE≈0.019 (95 %-CI [0.042, 0.118] überschreitet die 0.05-Linie) — keine Signifikanz-Interpretation; Re-Berechnung mit ≥1000 Permutationen ausstehend (s. `docs/BASELINE_LEDGER.md` §2.3, needs_review).
+2. **Label-Permutation** (Permutation der Sprachlabels): 0.937–0.941 ≈ beobachtete LDS-C. Der formale Permutationstest (zweiseitig) liefert **p = 0.08 / 1.00 / 1.00** — die Sprachlabels tragen **kein messbares Signal** (kein p-Wert unterhalb konventioneller Schwellen). **Ehrliche Abgrenzung**: p=0.08 hat SE≈0.019 (95 %-CI [0.042, 0.118] überschreitet die 0.05-Linie) — keine Signifikanz-Interpretation; Re-Berechnung mit ≥1000 Permutationen ausstehend (s. `docs/BASELINE_LEDGER.md` §2.3, needs_review).
 
 **Interpretation**: Auf Konzeptebene ist die LDS-C von Teilnehmervariabilität dominiert. Das Between-Subject-Design (jede Person antwortet nur in einer Sprache) vermischt sprachgetriebene Divergenz mit individueller Variabilität. Bei N=15 (6/6/3) dominiert die letztere. **Die Hypothese ΔLDS > 0 wird auf Konzeptebene nicht bestätigt.**
 
@@ -314,7 +318,7 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 
 ### 5.8 Zusammenfassung und Einordnung
 
-1. **Sprachsignal existiert** im Within-Subject-Design (P1: LDS-C ≫ Boden) — der menschliche Negativebefund ist ein Between-Subject-Artefakt.
+1. **Sprachsignal existiert** im Within-Subject-Design (P1: LDS-C ≫ Boden) — der menschliche Negativebefund ist mit der Design-Artefakt-Hypothese vereinbar (Exklusion + Konsistenz-Demonstration q=0,30; keine quantitative Kausalzuordnung, s. §5.9.2b/§8.14).
 2. **Dominanter Mechanismus**: Sprachcode (M2, lexikalisch-assoziativ) — signifikanter marginaler Beitrag im LMM.
 3. **Sekundärer Mechanismus**: kultureller Rahmen (M3) — wirkt innerhalb des Codes, überbrückt Codes nicht.
 4. **ZH-DE trägt eine strukturelle Ebene** jenseits der Assoziationsstatistik (P3: Δ=−0.209) — am stärksten beim kulturell entferntesten Paar.
@@ -322,7 +326,7 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 
 Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
 
-> **TRACE Harness v2 / Panel (C21/C23/C24, Details §2.9b + REPORT §7/§8)**: Seed-fremder Faktortest — **C21**: v1-non-repro → v2-partial-repro (P1−P0 +0,34/+0,41/+0,27, Reihenfolge glm/deepseek/6.8; P3 sozial 0,395–0,58); **C23**: Harness-v1-Konfundierung v2-bestätigt (CARD-Fix hebt F1, LANG-Fix ohne EN-Lift); **C24**: Western-EN-Hypothese (big-pickle P3-EN 0,377 höchst, deskriptiv). E2-Paraphrase explorativ (CI enthält 0, Äquivalenz nicht gezeigt). Agent-Panel (falsify-only): 15/72 Rejects, vs-gold 0,389 → MAINTAIN (weak, single-run); 11/72 einstimmige Rejects = falsify-grade Gold-Lücke ~15 %; C9b bleibt Developing.
+> **TRACE Harness v2 / Panel (C21/C23/C24, Details §2.9b + REPORT §7/§8)**: Seed-fremder Faktortest — **C21**: v1-non-repro → v2-partial-repro (P1−P0 +0,34/+0,41/+0,27, Reihenfolge glm-4.7-flash/deepseek-v4-flash/qwen3-6.8b; alle CI≠0; glm drift-konfundiert = obere Schranke; P3 sozial 0,395 (6.8 marginal miss, kein Aufrunden) – 0,544 (deepseek validiert; glm drift-caveatiert) – 0,580 (big-pickle deskriptiv)); **C23**: Harness-v1-Konfundierung v2-bestätigt (CARD-Fix hebt F1; LANG-Fix ohne EN-Lift — P2-EN 0,02/0,14/0,00, alle <0,30; CJK→0 %; n-asymmetrisch deskriptiv; EN-Lift aus Kardinalität); **C24**: Western-EN-Hypothese (big-pickle P3-EN 0,377 höchst, deskriptiv). E2-Paraphrase (P3b, glm n=30) NICHT-ROBUST: |P3b−P3| +0,024, CI [−0,0467–+0,0913] enthält 0, überschreitet ±0,05 — Äquivalenz NICHT gezeigt (explorativ; D-V11). Agent-Panel (falsify-only): 15/72 Rejects, vs-gold 0,389 → MAINTAIN (weak, single-run, unkalibriert; κ=0,56, Jaccard 0,44–0,77); 11/72 einstimmige Rejects = falsify-grade Gold-Lücke ~15 %; C9b bleibt Developing.
 
 ### 5.9 Design-Effekt-Vergleich (Konsistenz-Demonstration, kein Kausalbeweis), Divergenztreiber und Knoten/Kanten-Dekomposition
 
@@ -342,7 +346,7 @@ Die **Signalamplitude (LDS-C) ist bei Mensch und LLM nahezu identisch (0.93–0.
 
 > **● Hinweis zur Stichprobengröße (Sample-Size-Kontrolle)**: Die menschlichen Bodenwerte in der Tabelle beruhen auf Halb-Splits mit 3/3 (DE/ZH) bzw. 1/2 (EN) Teilnehmenden; die LLM-Bodenwerte auf 5/5 Stichproben. Ein N-abgestimmter Floor-Scan (§5.9.1, N=6 → 3+3 Halb-Splits, analog zur menschlichen Aufteilung) ergibt für das LLM weiterhin einen Boden von 0.854–0.885 — weit unter dem menschlichen Boden (0.922–0.958, Differenz 0.05–0.07). Die Schlussfolgerung ist daher **nicht** durch unterschiedliche Stichprobengrößen verursacht.
 
-Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist also **kein Stichprobeneffekt**, sondern Folge der Varianzstruktur: menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
+Ein Floor-Scan (LLM-Signal bei N = 3/5/6/8/10 Stichproben pro Sprache) zeigt, dass das Signal **auch bei N=3 nachweisbar bleibt** (Marge +0.02–0.04) und bei N=10 auf +0.08 anwächst. Die menschliche Null ist vereinbar mit einer Varianzstruktur-Erklärung (Floor-Scan N=6: LLM-Boden 0,854–0,885 vs. human 0,922–0,958; Konsistenz-Demonstration, keine quantitative Kausalzuordnung): menschliche Teilnehmer innerhalb einer Sprache sind heterogen, LLM-Stichproben desselben Gewichtssatzes sind homogen.
 
 **5.9.2 Virtuelle Between-Subject-Linse + Heterogenitäts-Injektion (Kausal-Konsistenztest).**
 
@@ -383,7 +387,7 @@ Die soziale/institutionelle Umkehr (ZH-DE am konvergentesten in Mathematik, am d
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|
 | Mathematik | ZH-DE | 0.519 | 0.556 | 0.407 | **0.444** | **0.074** |
 | Wikipedia sozial | ZH-DE | 0.819 | 0.200 | 0.162 | **0.800** | 0.019 |
-| Mensch kognitiv | ZH-DE | 0.954 | 0.085 | 0.008 | 0.915 | 0.038 |
+| Mensch kognitiv | ZH-DE | 0.954 | 0.085 (frozen `node_edge_decomp`; v3-Aggregation 0,064 abweichend — eine Quelle einfrieren, s. LEDGER) | 0.008 | 0.915 | 0.038 |
 
 > † node-only-Spalte: reine Dekompositions-Ebene (frozen v3), kein unabhängiger Konvergenz-Beleg — Mathematik/Wikipedia-Werte (0,444/0,800) als retired Ablation/expired scope (s. `BASELINE_LEDGER.md` §6), nur mit P2/T1-Einschränkung zitieren.
 
@@ -399,4 +403,4 @@ Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor
 
 **◆ Signal — breit repliziert, aber nicht ausnahmslos**: Alle **59 ZH-DE-Sprachpaare sind signifikant** (p<0.05, meist <0.01); die ZH-DE-Marge reicht von +0.03 (deepseek-r1-0528) bis +0.42 (command-a-03-2025). Von den **177 Sprachpaar-Tests sind 9 nicht signifikant** (p≥0.05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0.672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0.0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0.004 zu berichten (≡ einseitig p<0,002; Notation s. 04_discussion Robustheit (a)), und es wurde keine Mehrfachtest-Korrektur vorgenommen. Ein formaler Bonferroni-Test (α≈0,0003 bei 177 Tests) übersteigt diese Permutationsauflösung; die Meta-Betrachtung — alle 59 ZH-DE-Paare überschreiten sämtliche 500 Permutationen (erwartet unter der globalen Null ≈0,12) — stützt die Aussage dennoch (Details §8.15).
 
-**Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (p<0.001): ≥3: 1179 vs. 919±11; ≥10: **237 vs. 157±4**; ≥20: 72 vs. 14±2. Die stärksten Konzepte (Heimat:safety 48 DE-Stimmen; Heimat:physical space 45 ZH-Stimmen; equal opportunity 45) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 48 von 62 Modellen [Datei-Wahrheit inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54] Heimat:safety als einseitigen Treiber).
+**Kulturrichtung — über dem Zufallsniveau**: Eine Voten-Analyse der ZH-DE-Treiber (wie viele Modelle markieren ein Konzept als nur-in-DE bzw. nur-in-ZH) wird gegen ein **frequenz-angepasstes Zufalls-Nullmodell** getestet. Die beobachtete Zahl richtungskonsistenter Konzepte (max(DE,ZH) ≥ t) übersteigt das Nullmodell bei allen Schwellen (unkorrigiert p<0,001 je Schwelle; 3 Schwellen, keine Mehrfachtest-Korrektur; Doppelstimmen-Bias ≤10, s. §8.15(b); Richtung Preliminary, modell-/paarabhängig): ≥3: 1179 vs. 919±11; ≥10: **237 vs. 157±4**; ≥20: 72 vs. 14±2. Die stärksten Konzepte (Heimat:safety 48 DE-Stimmen; Heimat:physical space 45 ZH-Stimmen; equal opportunity 45) stützen die DE-Autonomie/ZH-Raum-Orientierung, jedoch mit begrenzter Abdeckung (z. B. produzierten nur 48 von 62 Messungen [Datei-Wahrheit 62 Messungen / 57 Modelle / 186 Tests inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54/177] Heimat:safety als einseitigen Treiber).
