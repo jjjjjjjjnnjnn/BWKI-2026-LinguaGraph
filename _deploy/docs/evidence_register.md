@@ -2,7 +2,7 @@
 
 > **Purpose**: Maps each scientific claim to its supporting evidence, maturity level, and confidence.
 > **Principle**: All claims must be traceable to evidence. Claims without sufficient evidence are labeled as such.
-> **Updated**: 2026-09-14 (C9 split C9a/C9b; social F1 Developing pending 72-label blind review)
+> **Updated**: 2026-09-19 (reaudit: C21–C24 caveats/interval corrected, Method stream counted, LDS-C 2 Mature)
 
 ---
 
@@ -31,10 +31,10 @@
 | C18 | Within-subject LLM data shows clear language-code signal | LDS-C | LLM 0.955/0.930/0.945 vs floor 0.875/0.846/0.862; margin +0.08–0.09; permutation p<0.01 | **Mature** | **High** | Same amplitude as human, floor separated |
 | C19 | 59-model replication: ZH-DE separable in every model | LDS-C | 62 ok runs (61×n=30 + qwen-max n=26) / 57 identities / 186 pairs; ZH-DE 59/59 formal at p<0.004 (500 perm. resolution limit); 9 EN n.s. | **Mature** | **High** | Public headline 59/54/177 (qwen-max partial withheld); file truth 62/57/186 |
 | C20 | Published CDS/HDS values are frozen June-2026 dense-graph outputs | LDS-K | CDS middle 46/280→0.271, high 175/1113→0.073; HDS 556/459/8/0.40; pipeline lost, 16+96 exhaustion negative | **Mature** | **High** | Frozen + forensic notes (fig3/fig5); not recomputable, direction intact |
-| C21 | Seed-independent re-extraction: v1-non-repro → v2-partial-repro (quantitative) | Method | v1: 6 seed-fremde Arme social 0.102–0.148 (A2); v2 (A11–A17, 3 Anker + Western): P1−P0 dF1 +0.27–+0.41, P3 social 0.40–0.58 (deepseek 0.544 V2-validated; glm 0.544 drift-caveated; 6.8 0.395 marginal miss); beide A5-Äste verfehlt; DB 0.939 vs harness-qwen ~0.65 vs v2 ~0.5 → C9b bleibt Developing | **Developing** | **High** | Prereg A1–A10 + v1.2 (A11–A17); REPORT §7; `V2_MATRIX.json` |
-| C22 | §2.3 textbook extractions are model-dependent (low cross-model agreement) | Method | T1 (11 Basen, deterministischer Match): micro-P vs. mimo 0.21–0.32, rel_agree 0.8–2.0/Datei; konsistent mit Ensemble vs-mimo 0.22–0.26 | **Developing** | **Medium** | Baseline-relativ (mimo unverifiziert); `T1_AGREEMENT.md` |
-| C23 | Gold harness v1 conflates prompt-obedience with extraction quality (v2-confirmed) | Method | v2-Faktor-Test: CARD-fix hebt F1 um +0.27–+0.41 (2× drift-sauber); LANG-fix in P2/P3 befolgt (EN-CJK →0 %; P1-deepseek 9,8 % Rest) ohne EN-Lift (Modell-Seite); P3 social 0.40–0.58 | **Developing** | **High** | v2-Datenbefund (A11–A17); REPORT §7; Empfehlung Harness v2 (P3) als Default |
-| C24 | Western-model EN advantage under P3 (language familiarity) | Method | big-pickle P3 (92/92): EN 0.377 höchst (glm 0.315, deepseek 0.215, 6.8 0.037); overall 0.608/social 0.580; P0-Kontrolle partial-46 (paired n=46, d=+0.32) | **Developing** | **Medium** | v2-Datenbefund; Western-Rater-Kandidat für Panel Phase 2 |
+| C21 | Seed-independent re-extraction: v1-non-repro → v2-partial-repro (quantitative) | Method | v1: 6 seed-fremde Arme social 0.102–0.148 (A2); v2 (A11–A17, 3 Anker + Western): P1−P0 dF1 +0.27–+0.41 (davon glm +0.34 drift-konfundiert, s. Drift-Caveat unten), P3 social 0.395–0.58 (deepseek 0.544 V2-validated; glm 0.544 mit Serving-Drift-Caveat +0.32; 6.8 0.395 marginal miss — kein Aufrunden, nicht 0.40; big-pickle 0.580 deskriptiv, partial-46-Kontrolle); beide A5-Äste verfehlt; DB 0.939 vs harness-qwen ~0.65 vs v2 ~0.5 → C9b bleibt Developing | **Developing** | **High** | Prereg A1–A10 + v1.2 (A11–A17); REPORT §7; `V2_MATRIX.json` |
+| C22 | §2.3 textbook extractions are model-dependent (low cross-model agreement) | Method | T1 (11 Basen, deterministischer Match): micro-P vs. mimo 0.21–0.32 (alias-key counting), rel_agree 0.8–2.0/Datei; REAUDIT 2026-09-19 concept-level (alias fixed, `T1_AGREEMENT_reaudit_20260919.json`): micro-P 0.26–0.41, micro-R 0.55–0.94 — qualitative verdict (low, baseline-relative) unchanged | **Developing** | **Medium** | Baseline-relativ (mimo unverifiziert); `T1_AGREEMENT.md` + Reaudit |
+| C23 | Gold harness v1 conflates prompt-obedience with extraction quality (v2-confirmed) | Method | v2-Faktor-Test: CARD-fix hebt F1 um +0.27–+0.41 (davon nur 2× drift-sauber — deepseek +0.41, 6.8 +0.27; glm +0.34 drift-konfundiert +0.32); LANG-fix in P2/P3 befolgt (EN-CJK →0 %; P1-deepseek 9,8 % Rest) ohne EN-Lift (Modell-Seite); P3 social 0.395–0.58 (6.8 0.395 marginal miss) | **Developing** | **High** | v2-Datenbefund (A11–A17); REPORT §7; Empfehlung Harness v2 (P3) als Default |
+| C24 | Western-model EN advantage under P3 (language familiarity — Hypothese, nicht validiert) | Method | big-pickle P3 (92/92): EN 0.377 höchst (glm 0.315, deepseek 0.215, 6.8 0.037); overall 0.608/social 0.580; P0-Kontrolle partial-46 (paired n=46, d=+0.32) | **Developing** | **Medium** | v2-Datenbefund; Hypothese (deskriptiv-only); Western-Rater-Kandidat für Panel Phase 2 |
 
 ---
 
@@ -43,8 +43,9 @@
 | Stream | Total Claims | Mature | Developing | Exploratory |
 |--------|:-----------:|:------:|:----------:|:-----------:|
 | **LDS-K** | C1–C6, C9a, C9b, C11, C16, C20 | **10** | **1** | 0 |
-| **LDS-C** | C7–C8, C17–C19 | **1** | **3** | 0 |
+| **LDS-C** | C7–C8, C17–C19 | **2** | **2** | 0 |
 | **LPA** | C12–C15 | 0 | 0 | **4** |
+| **Method** | C10, C21–C24 | 0 | **5** | 0 |
 
 > LDS-K total 11 (10 Mature + 1 Developing: C9b social batch pending blind review) — v25 Gold-Provenance-Härtung 2026-09-14.
 
