@@ -133,17 +133,17 @@ Rotation empfohlen.
 
 ## 7. Harness v2 (2026-09-18/19, prereg A11–A17 vor erstem Call)
 
-Cells: P1 (CARD-only) / P2 (LANG-only, EN+DE+zh10) / P3 (BOTH) + P0-cal Drift. Anker: glm-5.2-r4, deepseek-v4.1-flash-r4, 6.8-sn (+ big-pickle P3 western, P0 partial-46). minimax EXCLUDED (owner), F5/qwen CUT (owner).
+Cells: P1 (CARD-only) / P2 (LANG-only, EN+DE+zh10, n=66 — Ausnahme 6.8-sn: full-92, s. Tabelle) / P3 (BOTH) + P0-cal Drift. Anker: glm-5.2 (sn-Transport, Label `glm-5.2-r4` ≠ Panel-R2 `glm-r4` — Kanäle nicht vergleichbar), deepseek-v4.1-flash-r4, 6.8-sn (+ big-pickle P3 western, P0 partial-46). minimax EXCLUDED (owner), F5/qwen CUT (owner).
 
-| Arm | P0 (v1) | P1 | P2 (EN/DE) | P3 | pred_n P0→P3 |
+| Arm | P0 (v1) | P1 | P2 (EN/DE; n) | P3 | pred_n P0→P3 |
 |---|---|---|---|---|---|
-| glm-5.2-r4 | 0,159 | 0,500 | 0,167 (EN 0,019, CJK 0 %) | 0,555 (soc 0,544) | 12,8→2,1 |
-| deepseek-r4 | 0,132 | 0,545 | 0,197 (EN 0,136, CJK 0 %) | 0,539 (soc 0,544) | 16,8→2,2 |
-| 6.8-sn | 0,121 | 0,395 | 0,141 (EN 0,000, CJK 0 %) | 0,421 (soc 0,395) | 15,0→2,6 |
+| glm-5.2 (sn) | 0,159 | 0,500 | 0,167 (EN 0,019, CJK 0 %; n=66) | 0,555 (soc 0,544) | 12,8→2,1 |
+| deepseek-r4 | 0,132 | 0,545 | 0,197 (EN 0,136, CJK 0 %; n=66) | 0,539 (soc 0,544) | 16,8→2,2 |
+| 6.8-sn | 0,121 | 0,395 | 0,141 (EN 0,000, CJK 0 %; **n=92**, inkl. 26 Extra-zh — mit n=66-Armen nur deskriptiv vergleichbar) | 0,421 (soc 0,395) | 15,0→2,6 |
 | big-pickle (west) | — (P0 partial-46) | — | — | 0,608 (soc 0,580, EN 0,377) | →2,1 |
 
 Paired dF1 (A2, 95 %-CI): P1−P0 +0,34/+0,41/+0,27 (alle CI≠0); P3−P0 +0,40/+0,41/+0,30;
-P2−P0 +0,03/+0,07/+0,02. Drift P0-cal: deepseek −0,03 / 6.8 +0,03 (≈0, sauber);
+P2−P0 +0,03/+0,07/+0,02 (**n-asymmetrisch**: 6.8-Wert auf n=92-Basis; keine Gleichheitsbehauptung über Anker). Drift P0-cal: deepseek −0,03 / 6.8 +0,03 (≈0, sauber);
 **glm +0,32 [0,15–0,52] — Serving-Drift über Nacht** (gleicher Prompt/Transport: P0cal pred_n ~5,
 en_001 F1=1,0 unter P0!). glm-Lifts daher drift-konfundiert (obere Schranke), deepseek/6.8 sauber.
 
@@ -159,8 +159,8 @@ A13-Verdikte:
   Neu C24: Western-EN-Effekt (big-pickle EN 0,377 höchst — Sprachfamiliarität).
 - E1 EXTENDED gegenstandslos (alle lauffähigen Arme in CORE); E3/E2 offen (E2 sinnvoll: P3-Lift steht);
   Panel Phase 2 bereit (big-pickle = Western-Rater).
-- **E2 P3b (A18, glm n=30): ROBUST.** |P3b−P3| +0,024 [−0,047–+0,091] < 0,05 — P3-Lift ist nicht
-  wortlaut-fragil (`t2_v2-glm52r4-P3b.json`, SHAs f91a3dad/8058b210; Kontrast-Produkt `P3B_CONTRAST.json`).
+- **E2 P3b (A18, glm n=30): NICHT-ROBUST im Äquivalenzsinn — nur „kein signifikanter Unterschied".** |P3b−P3| mean +0,024, aber 95 %-CI [−0,047–+0,091] enthält 0 und überschreitet das ±0,05-Band — Äquivalenz NICHT gezeigt; „ROBUST"-Label vom 2026-09-19 als explorative Schwach-Aussage superseded (D-V11). P3-Lift ist damit nicht als wortlaut-stabil belegt
+  (`t2_v2-glm52r4-P3b.json`, SHAs f91a3dad/8058b210; Kontrast-Produkt `P3B_CONTRAST.json`, dessen `robust_gate`-Feld als historischer Output unverändert bleibt).
 
 ## 8. Agent-Panel Screen (2026-09-19, A-Judge — falsify-only)
 

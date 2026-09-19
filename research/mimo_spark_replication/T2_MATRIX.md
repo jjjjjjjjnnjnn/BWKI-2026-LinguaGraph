@@ -2,6 +2,7 @@
 
 CI = bootstrap 95% (B=1000, seed 20260918). en/de_cjk_frac = fraction of predicted names containing CJK (exploratory).
 F1_n92 = A2-compliant primary (fails as 0 over all 92 gold IDs, D-S6); F1 = valid-only secondary.
+**Nenner-Hinweis (Reaudit 2026-09-19, D-V11)**: die `social`-Spalte ist valid-only (Social-Subset, n≈72) — kein A2; echte A2-social-Werte s. `T2_MATRIX.json` (`social_f1_n92`) bzw. Reaudit-Datei. Fails fließen nur in `F1_n92` ein.
 
 | model | n | P | R | F1 | 95%CI | F1_n92 | 95%CI_n92 | social | math | pred_n/gold_n |
 |---|---|---|---|---|---|---|---|---|---|---|

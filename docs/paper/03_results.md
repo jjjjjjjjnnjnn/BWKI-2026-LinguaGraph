@@ -322,6 +322,8 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 
 Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
 
+> **TRACE Harness v2 / Panel (C21/C23/C24, Details §2.9b + REPORT §7/§8)**: Seed-fremder Faktortest — **C21**: v1-non-repro → v2-partial-repro (P1−P0 +0,34/+0,41/+0,27, Reihenfolge glm/deepseek/6.8; P3 sozial 0,395–0,58); **C23**: Harness-v1-Konfundierung v2-bestätigt (CARD-Fix hebt F1, LANG-Fix ohne EN-Lift); **C24**: Western-EN-Hypothese (big-pickle P3-EN 0,377 höchst, deskriptiv). E2-Paraphrase explorativ (CI enthält 0, Äquivalenz nicht gezeigt). Agent-Panel (falsify-only): 15/72 Rejects, vs-gold 0,389 → MAINTAIN (weak, single-run); 11/72 einstimmige Rejects = falsify-grade Gold-Lücke ~15 %; C9b bleibt Developing.
+
 ### 5.9 Design-Effekt-Vergleich (Konsistenz-Demonstration, kein Kausalbeweis), Divergenztreiber und Knoten/Kanten-Dekomposition
 
 > Reproduzierbar via `scripts/lds_c_design_effect.py`, `lds_c_divergence_drivers.py`, `lds_c_node_edge_decomp.py`; Ergebnisse in `data/lds_c/llm_subject/design_effect_*.json`, `data/lds_c/divergence_drivers_*.json`, `data/lds_c/lds_k_deep/node_edge_decomp_*.json`.

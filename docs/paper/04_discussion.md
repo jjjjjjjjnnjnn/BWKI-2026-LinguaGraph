@@ -106,6 +106,8 @@ Ein potenzielles Bedenken bei jeder LLM-basierten Analyse ist, ob Messfehler die
 
 Diese Fehlerverteilung bedeutet, dass die strukturellen Metriken (CDS, HDS, LDS, Coverage-Score) robust gegenüber Extraktionsrauschen sind: Partielle Auslassungen reduzieren die Konzeptanzahlen leicht, verzerren jedoch nicht systematisch die Graphentopologie oder die sprachübergreifenden Vergleiche. Wir halten es daher für unwahrscheinlich, dass die berichteten Befunde Artefakte der Extraktionsmethodik sind.
 
+> **TRACE Harness v2 / Panel (C21/C23/C24)**: Der seed-fremde Faktortest (§2.9b) bestätigt die Harness-v1-Konfundierung (**C23**: CARD-Fix +0,27–+0,41, davon 2× drift-sauber; LANG-Fix ohne EN-Lift) und liefert die quantitative v2-partial-repro (**C21**: P3 sozial 0,395–0,58); der Western-EN-Effekt bleibt Hypothese (**C24**, big-pickle deskriptiv). Das Agent-Panel (falsify-only, MAINTAIN bei vs-gold 0,389) quantifiziert zugleich eine falsify-grade Gold-Qualitätslücke (11/72 einstimmige Rejects, ~15 %) — C9b bleibt Developing, die obige Robustheits-Einschätzung gilt nur für die Topologie-Ebene, nicht für die Gold-Validierung.
+
 ### 8.8 Robustheitsprüfung: Rechnerische Basislinie — methodisch revidiert
 
 Zur Kontrolle, ob die beobachteten LDS-Werte echte strukturelle Unterschiede und nicht zufällige Konzeptvariation widerspiegeln, wurde ursprünglich eine **rechnerische Basislinie** aus 300 simulierten Antworten (20 pro Bedingung × 5 Themen × 3 Sprachen) berechnet. Die frühere Version dieser Analyse (N=8, qwen-plus-Extraktion) ergab einen scheinbaren Unterschied zwischen menschlichem LDS (0,727) und Simulation (0,647, p=0,05).

@@ -1,5 +1,7 @@
 ## 6. Fächerübergreifende Validierung: Physik und Chemie
 
+> **Stand-Hinweis (Reaudit 2026-09-19)**: CDS/HDS-Werte dieses Kapitels sind frozen June-dense-Outputs (nicht rekonstruierbar, s. forensic notes + §9.2 Frozen-Hinweis); Auswirkung von Harness v2 / Panel auf physikalische Alignierung/Extraktion nicht bewertet — Kapitel als Querschnitts-Befund, nicht als laufende Messung lesen.
+
 Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **367 Konzepte**, **386 Relationen**, 83 Lehrbuchtitel mit 94 Belegen) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 89 Lehrbuchtitel).
 
 ### 6.1 Konzeptdichtestruktur (CDS)

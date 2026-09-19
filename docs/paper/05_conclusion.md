@@ -4,14 +4,14 @@
 
 Diese Studie stellt LinguaGraph vor, ein wissensgraphbasiertes Framework zur Messung, wie Wissen über Sprachen (Chinesisch, Deutsch, Englisch), Disziplinen (Mathematik, Physik, Chemie) und Bildungssysteme (NRW, UK, US, China) organisiert ist. Das konsistente strukturelle Muster über alle drei Disziplinen hinweg ist:
 
-> **Die Organisation von Bildungswissen folgt einem universellen „früh integrieren, spät divergieren"-Muster: Die maximale Verbindungsdichte tritt in den grundlegenden Stufen (Grundschule/Mittelstufe) auf — über alle Disziplinen und alle drei Sprachen hinweg — und nimmt dann mit zunehmender Spezialisierung monoton ab.**
+> **Die Organisation von Bildungswissen folgt einem sample-begrenzten „früh integrieren, spät divergieren"-Muster (kein Universalitäts-Anspruch, s. §9.3): Die maximale Verbindungsdichte tritt in den grundlegenden Stufen (Grundschule/Mittelstufe) auf — über alle Disziplinen und alle drei Sprachen hinweg — und nimmt dann mit zunehmender Spezialisierung monoton ab.**
 
 Die sprachübergreifende LDS-Analyse zeigt ein differenzierteres Bild. Anstelle eines einheitlichen „Spracheffekts" beobachten wir **heterogene sprachübergreifende Strukturbeziehungen**:
 
 | Sprachpaar | LDS-K (Lehrbuch) | Interpretation |
 |:----------:|:----------------:|---------------|
 | ZH–DE | 0,519 | **Scheinbar konvergent, T1-falsifiziert** — Rohwert weit unterhalb der sprachinternen Rauschschwelle (0,97); nach CJK-Dekontamination (167/219) LDS 0,52→0,99 (J 0,556→0,020), s. Fig8 + Story RQ1. Die Konvergenz-Lesart ist damit falsifiziert; P2-Recheck-Einschränkung (Alignierungs-Labels, s. §8.14.5) bleibt zusätzlich bestehen |
-| ZH–EN | 0,934 | **Nahe der Rauschschwelle** — nicht von sprachinterner Variation unterscheidbar |
+| ZH–EN | 0,933 | **Nahe der Rauschschwelle** — nicht von sprachinterner Variation unterscheidbar (Re-Freeze 2026-09-16; Fig-Snapshot 2026-09-12: 0,934) |
 | DE–EN | 0,938 | **Nahe der Rauschschwelle** — nicht von sprachinterner Variation unterscheidbar |
 
 Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beeinflusst", sondern dass **verschiedene Sprachpaare systematisch unterschiedliche Grade struktureller Konvergenz aufweisen**, wobei ZH-DE im Rohwert ein Muster zeigt, das Standard-Nullmodelle nicht erklären können — das sich jedoch in T1 als Kontaminations-Artefakt erwiesen hat (decontaminiert 0,99, s. Fig8). Diese Heterogenität — nicht Uniformität — ist die primäre Beobachtung, die unser Framework ermöglicht.

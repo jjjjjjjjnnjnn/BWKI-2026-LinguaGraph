@@ -19,11 +19,11 @@
 | Mathematik | Mittelstufe | 0,271 | ↑ Gipfel ↓ stetiger Abfall |
 | Physik | Grundschule | 0,222 | ↑ Gipfel ↓ rascher Abfall |
 
-**◆ Robustheit**: Unabhängig in ZH, EN, DE bestätigt
+**◆ Robustheit (Preliminary, STEM-Lehrbuchgraphen, kein Universalitäts-Anspruch)**: Muster in ZH, EN, DE beobachtet — Replikation ausstehend
 
 ---
 
-## Schlussfolgerung 2 (Preliminary, frozen sample): Beobachtete Tiefenobergrenze HDS ≤ 8 (Mathe max 8 / Physik max 6)
+## Schlussfolgerung 2 (Preliminary, frozen sample): Beobachtete Tiefenobergrenze HDS ≤ 8 (Mathe max 8 / Physik max 6; frozen June-dense, nicht rekonstruierbar — s. 06_physics/forensic notes)
 
 **Was wir fanden**:
 > Die maximale Tiefe der Voraussetzungsketten ist auf **HDS ≤ 8** beschränkt, unabhängig von der Disziplin. Die mittlere Tiefe unterscheidet sich je nach Disziplin (Mathe: 0,40, Physik: 0,85).
@@ -44,7 +44,7 @@
 ## Schlussfolgerung 3: Scheinbare ZH-DE-Ähnlichkeit (LDS-K 0.519) — T1-falsifiziert als Label-Artefakt (0.52→0.99, Fig. 8); ΔLDS isoliert … (Ebenen-getrennt, Preliminary)
 
 **Was wir fanden**:
-> Die lehrbuchbasierten LDS-K-Werte reichen von **0,519 (ZH-DE) bis 0,938 (DE-EN)**, doch eine **Nullmodell-Kritik** zeigt, dass diese Werte vollständig von der Gradverteilungsstruktur dominiert werden — nicht von der Sprache. Unter gradbewahrender Randomisierung (Structure Null, frozen v3, Full vs. Structure Null) sind die realen Graphen deskriptiv **ähnlicher** als randomisierte Graphen (ZH-EN: 0,934 < 0,957; DE-EN: 0,938 < 0,957; ZH-DE: 0,519 < 0,717). Lesart T1-falsifiziert: ZH-DE 0.519 kollabiert nach Entfernen CJK-kontaminierter de-Labels (167/219) auf 0.990 (J_node 0.556→0.020); kein Beleg inhaltlicher Konvergenz. Dies falsifiziert die Hypothese, dass LDS-K sprachbedingte Divergenz misst.
+> Die lehrbuchbasierten LDS-K-Werte reichen von **0,519 (ZH-DE) bis 0,938 (DE-EN)**, doch eine **Nullmodell-Kritik** zeigt, dass diese Werte vollständig von der Gradverteilungsstruktur dominiert werden — nicht von der Sprache. Unter gradbewahrender Randomisierung (Structure Null, frozen v3, Full vs. Structure Null) sind die realen Graphen deskriptiv **ähnlicher** als randomisierte Graphen (ZH-EN Snapshot 0,934 < 0,957; DE-EN: 0,938 < 0,957; ZH-DE: 0,519 < 0,717). Lesart T1-falsifiziert: ZH-DE 0.519 kollabiert nach Entfernen CJK-kontaminierter de-Labels (167/219) auf 0.990 (J_node 0.556→0.020); kein Beleg inhaltlicher Konvergenz. Dies falsifiziert die Hypothese, dass LDS-K sprachbedingte Divergenz misst.
 
 **Warum es relevant ist**:
 > Obwohl mathematische Wahrheit universell ist, erscheinen lehrbuchwissenschaftliche Wissensstrukturen über Sprachen hinweg oberflächlich ähnlicher als gradrandomisierte Graphen (T1-falsifiziert, s. N04) — Dies ist mit geteilter Gradstruktur vereinbar (Preliminary), kein Dominanz-Beweis. **Einschränkung**: Die Mathematik-Knoten sind teils Alignierungs-Labels (P2-Recheck: `de`-Feld teils chinesisch, Size-Matching kehrt das Muster um) — die ZH-DE-„Konvergenz" ist damit indikativ, kein unabhängiger Beleg. Der zentrale wissenschaftliche Beitrag verschiebt sich von LDS-K (Lehrbuchdivergenz) zu **ΔLDS = LDS-C − LDS-K** (kognitive Divergenz jenseits der Wissensstruktur, Konzeptebene; Relationsebene nicht vergleichbar). Die N=15-Humanvalidierung falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen — und präzisiert damit die Bedingungen (Within-Subject, N≥30), unter denen ein sprachspezifischer Anteil menschlichen Wissensausdrucks nachweisbar wäre.
