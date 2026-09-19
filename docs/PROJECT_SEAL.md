@@ -48,6 +48,8 @@ R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 
   (Dots/Count auto, g4-Hash geclampt); `method_prov_note` formal (19-Modell-Benchmark, qwen-plus);
   Mermaid-EXT (MIMO→19-model benchmarked, 3-sprachig); Carousel-minHeight folgt aktivem Slide
   (+Resize-Dispatch bei Sprachwechsel); 24 Orphan-i18n-Zeilen raus.
+- Post-seal Fig-Fix (Tiefenaudit User): `fig_v2_cells` Legende log (Farbe=Cell, Label=Anker) →
+  Farbe=Cell + Schraffur=Anker, Doppel-Legende je Panel; Portal-Caption + Farbschlüssel (3-sprachig).
 - Post-seal Portal-Runde 3 (Show-all-Bug): Inline-`translateX` schlug `.all`-CSS (leere Ansicht ab Seite 2) →
   `paint()` löscht Transform im All-Modus; 收起 scrollt zu Section-Start; Button-Label Show all↔Show less
   (3-sprachig, i18n-sicher); Nav/Keys/Swipe im All-Modus deaktiviert (gedimmt); Count-Init 1/3.

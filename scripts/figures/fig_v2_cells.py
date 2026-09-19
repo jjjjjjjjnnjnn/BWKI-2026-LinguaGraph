@@ -10,6 +10,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+import matplotlib.patches as mpatches
+
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(BASE, "outputs", "figures")
 os.makedirs(OUT, exist_ok=True)
@@ -27,7 +29,10 @@ EN = {
 }
 BP_SOC, BP_EN = 0.5804, 0.3765  # big-pickle P3 descriptive (partial-46 P0 control)
 CELLS = ["P0 (v1)", "P1 CARD", "P2 LANG", "P3 BOTH"]
-COL = ["#94a3b8", "#38bdf8", "#fbbf24", "#34d399"]
+CELL_COL = ["#94a3b8", "#38bdf8", "#fbbf24", "#34d399"]  # color = cell
+ANCHORS = ["glm-5.2", "deepseek-flash", "sensenova-6.8"]
+HATCH = ["", "///", "..."]  # hatch = anchor
+BP_COL, BP_HATCH = "#f472b6", "xx"
 
 CAPTIONS = {
     "": ("Harness v2: cardinality fix lifts social F1 (P1/P3), language fix alone does not (P2); "
@@ -47,26 +52,37 @@ for suf in ("", "_de", "_zh"):
     plt.rcParams.update({"font.family": "sans-serif",
                          "font.sans-serif": (["Microsoft YaHei", "SimSun", "DejaVu Sans"]
                                              if suf == "_zh" else ["DejaVu Sans"])})
-    fig, ax = plt.subplots(1, 2, figsize=(11, 4.2))
+    fig, ax = plt.subplots(1, 2, figsize=(12, 4.4))
     x = range(4)
-    for i, (a, v) in enumerate(SOC.items()):
-        ax[0].bar([p + (i - 1) * 0.22 for p in x], v, width=0.2, color=COL, label=a)
-    ax[0].bar([3 + 2 * 0.22], [BP_SOC], width=0.2, color="#f472b6", label="big-pickle P3*")
+    for i, a in enumerate(ANCHORS):
+        v = SOC[a]
+        ax[0].bar([p + (i - 1) * 0.22 for p in x], v, width=0.2,
+                  color=CELL_COL, hatch=HATCH[i], edgecolor="white")
+    ax[0].bar([3 + 2 * 0.22], [BP_SOC], width=0.2, color=BP_COL, hatch=BP_HATCH, edgecolor="white")
     ax[0].set_xticks(list(x));
     ax[0].set_xticklabels(CELLS, fontsize=8)
     ax[0].set_ylim(0, 0.65);
     ax[0].set_title(TITLES[suf][0]);
-    ax[0].legend(fontsize=7);
     ax[0].set_ylabel("Social F1 (A2)")
-    for i, (a, v) in enumerate(EN.items()):
-        ax[1].bar([p + (i - 1) * 0.22 for p in x], v, width=0.2, color=COL, label=a)
-    ax[1].bar([3 + 2 * 0.22], [BP_EN], width=0.2, color="#f472b6", label="big-pickle P3*")
+    for i, a in enumerate(ANCHORS):
+        v = EN[a]
+        ax[1].bar([p + (i - 1) * 0.22 for p in x], v, width=0.2,
+                  color=CELL_COL, hatch=HATCH[i], edgecolor="white")
+    ax[1].bar([3 + 2 * 0.22], [BP_EN], width=0.2, color=BP_COL, hatch=BP_HATCH, edgecolor="white")
     ax[1].set_xticks(list(x));
     ax[1].set_xticklabels(CELLS, fontsize=8)
     ax[1].set_ylim(0, 0.45);
     ax[1].set_title(TITLES[suf][1]);
-    ax[1].legend(fontsize=7);
     ax[1].set_ylabel("EN F1 (A2)")
+    for a_ in ax:
+        cell_handles = [mpatches.Patch(facecolor=c, edgecolor="white", label=l)
+                        for c, l in zip(CELL_COL, CELLS)]
+        anchor_handles = [mpatches.Patch(facecolor="white", hatch=h, edgecolor="black", label=l)
+                          for h, l in zip(HATCH + [BP_HATCH],
+                                          ANCHORS + ["big-pickle P3*"])]
+        leg1 = a_.legend(handles=cell_handles, fontsize=6.5, loc="upper left", title="cell")
+        a_.add_artist(leg1)
+        a_.legend(handles=anchor_handles, fontsize=6.5, loc="upper right", title="anchor")
     fig.suptitle("Fig v2-cells — Harness v2 factor test (seed-foreign replication)", fontsize=11)
     fig.text(0.01, 0.01, CAPTIONS[suf] + " *descriptive (P0 partial-46).", fontsize=7, wrap=True,
              ha="left", va="bottom")
