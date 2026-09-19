@@ -73,27 +73,34 @@ def main():
                          "n_matched_new": nm, "n_matched_ref": rm,
                          "n_new": nn, "n_ref": rn})
         ok = [x for x in rows if "error" not in x]
+        new_tot = max(sum(x["n_new"] for x in ok), 1)
+        ref_tot = max(sum(x["n_ref"] for x in ok), 1)
         table[arm] = {
             "n": len(ok),
-            "micro_p": round(sum(x["n_matched_new"] for x in ok) / max(sum(x["n_new"] for x in ok), 1), 4),
-            "micro_r": round(sum(x["n_matched_ref"] for x in ok) / max(sum(x["n_ref"] for x in ok), 1), 4),
+            "micro_p": round(
+                sum(x["n_matched_new"] for x in ok) / new_tot, 4),
+            "micro_r": round(
+                sum(x["n_matched_ref"] for x in ok) / ref_tot, 4),
             "rows": rows,
         }
     json.dump(table, open(os.path.join(REP, "T1_AGREEMENT_%s.json" % TAG), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    L = ["# T1 Agreement REAUDIT 2026-09-19 (concept-level; frozen T1_AGREEMENT.json untouched)", "",
-         "Method: each concept counts once (name-or-alias cross-match). "
-         "Original expanded every alias into an independent key (alias-count inflation).",
-         "",
-         "| arm | files | micro-P | micro-R |",
-         "|---|---|---|---|"]
+    lines = ["# T1 Agreement REAUDIT 2026-09-19 "
+             "(concept-level; frozen T1_AGREEMENT.json untouched)", "",
+             "Method: each concept counts once (name-or-alias cross-match). "
+             "Original expanded every alias into an independent key "
+             "(alias-count inflation).",
+             "",
+             "| arm | files | micro-P | micro-R |",
+             "|---|---|---|---|"]
     for arm, t in table.items():
         if t.get("status", "").startswith("missing") or t.get("n", -1) == 0:
-            L.append("| %s | %d | missing/partial | |" % (arm, t.get("n", 0)))
+            lines.append("| %s | %d | missing/partial | |" % (arm, t.get("n", 0)))
             continue
-        L.append("| %s | %d | %.4f | %.4f |" % (arm, t["n"], t["micro_p"], t["micro_r"]))
+        lines.append("| %s | %d | %.4f | %.4f |" % (
+            arm, t["n"], t["micro_p"], t["micro_r"]))
     open(os.path.join(REP, "T1_AGREEMENT_%s.md" % TAG), "w",
-         encoding="utf-8").write("\n".join(L) + "\n")
+         encoding="utf-8").write("\n".join(lines) + "\n")
     for arm, t in table.items():
         if t.get("status", "").startswith("missing") or t.get("n", -1) == 0:
             print("%s MISSING/EMPTY" % arm)
