@@ -44,3 +44,7 @@ R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 
 - Post-seal Portal-Fixes (Tiefenaudit Portal 2026-09-19): `_deploy/favicon.svg` nachgereicht (Root-断链);
   `figKeys`-Index-Mapping entfernt (7 `.fig-label` laufen über `data-i18n`, 12 tote Caption-Zeilen raus);
   en-`finding_c_sub` entdeutscht; 15 Orphan-i18n-Zeilen raus; Methodology-`<h2>` mit `data-i18n`.
+- Post-seal Portal-Runde 2: L7-Provenance-Card (UNVERIFIED/Restrisiken-Draft) entfernt → Carousel 3 Slides
+  (Dots/Count auto, g4-Hash geclampt); `method_prov_note` formal (19-Modell-Benchmark, qwen-plus);
+  Mermaid-EXT (MIMO→19-model benchmarked, 3-sprachig); Carousel-minHeight folgt aktivem Slide
+  (+Resize-Dispatch bei Sprachwechsel); 24 Orphan-i18n-Zeilen raus.

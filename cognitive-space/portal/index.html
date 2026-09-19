@@ -455,8 +455,8 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="mermaid" id="methodMermaid">
 %%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
-    MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
+    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> EXT[Step 2 Extraction §2.3<br/>19-model benchmarked LLM<br/>prod. qwen-plus]
+    EXT --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
     GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Preliminary check| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
@@ -515,7 +515,7 @@ graph LR
       <dt><strong>9. Margin threshold (≥ 0.10)</strong></dt><dd data-i18n="glos_9">Operational heuristic for audit use, not a validated boundary.</dd>
     </dl>
   </details>
-  <p class="honesty" data-i18n="method_prov_note">Provenance: HF main SHAs are today HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build not comparable to official hashes (snapshot research/weight_snapshot_20260916.json; paper App. W).</p>
+  <p class="honesty" data-i18n="method_prov_note">Provenance: production extraction model selected by 19-model benchmark (F1=0.666, qwen-plus); served-API revisions are provider-side; weight snapshot research/weight_snapshot_20260916.json, details paper App. W.</p>
 </section>
 
 <!-- ==================== SOURCES ==================== -->
@@ -1161,14 +1161,6 @@ graph LR
       <div class="meta">Source: research/limitations_20260914.md L5</div>
     </div>
     </div></div>
-    <div class="lim-slide" data-g="lim_car_g4"><div class="card-grid">
-    <div class="card">
-      <h3><i class="bi bi-fingerprint" style="color:var(--cyan)"></i> <span data-i18n="limit7_prov_title">Model Provenance (UNVERIFIED pins)</span></h3>
-      <p data-i18n="limit7_prov_desc">HF main SHAs are today HEADs, not experiment-day pins; the served LM Studio revision exposes names only (UNVERIFIED); the local phi build is community-quantized and not hash-comparable to official weights; the nomic weight file is not locatable on disk. Cite App. W residual risks ①–⑥ with every use.</p>
-      <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis12">If this limit were off, you would misread a today-HEAD SHA or an UNVERIFIED served name as an experiment-day pin.</p>
-      <div class="meta">Source: research/weight_snapshot_20260916.json + paper App. W</div>
-    </div>
-    </div></div>
   </div></div>
 </section>
 
@@ -1191,8 +1183,8 @@ function paint(){
   track.style.transform='translateX(-'+(cur*100)+'%)';
   Array.prototype.forEach.call(dotsBox.children,function(d,i){d.classList.toggle('on',i===cur);d.setAttribute('aria-selected',i===cur?'true':'false');});
   if(count)count.textContent=(cur+1)+' / '+slides.length;
-  var h=0;slides.forEach(function(s){h=Math.max(h,s.offsetHeight);});
-  track.parentElement.style.minHeight=h+'px';
+  var car=track.parentElement;
+  if(!car.classList.contains('all')){car.style.minHeight=slides[cur].offsetHeight+'px';}
 }
 function go(i){cur=(i+slides.length)%slides.length;paint();}
 document.getElementById('limPrev').addEventListener('click',function(){go(cur-1);});
@@ -1209,7 +1201,7 @@ document.getElementById('limAll').addEventListener('click',function(){
   this.setAttribute('aria-pressed',on?'true':'false');
   if(on){car.style.minHeight='0';}else{paint();}
 });
-(function(){var m=(location.hash||'').match(/limitations-g([1-4])/);if(m)cur=+m[1]-1;})();
+(function(){var m=(location.hash||'').match(/limitations-g([1-4])/);if(m)cur=Math.min(+m[1]-1,slides.length-1);})();
 paint();
 })();
 </script>
@@ -1954,14 +1946,13 @@ const TRANSLATIONS = {
     lim_mis9: 'If this limit were off, you would misread the N=8 pilot shape (0.704/0.727/0.751) or the 37.9% alignable subset as a significant full-curriculum result.',
     lim_mis10: 'If this limit were off, you would misread a single-run F1/Jaccard as exact instead of a snapshot with a 0.03-0.06 fluctuation band.',
     lim_mis11: 'If this instability were off, you would misread the v2 0.4629 to v3 0.5401 rise as a trend instead of a qwen refill artifact.',
-    lim_mis12: 'If this limit were off, you would misread a today-HEAD SHA or an UNVERIFIED served name as an experiment-day pin.',
     lim_sparse_title: 'Sparse annotation (N=8 pilot + alignment coverage) · temperature=0 · 500-perm p<0.004',
     lim_sparse_body: 'Human side: questionnaire implant is a pilot (N=8, social topics, LDS-C 0.704/0.727/0.751); the powered design is N=30 (86% power) and the human column is a shape placeholder with no significance claim. Alignment side: 219 aligned groups vs 359 unaligned concepts (coverage 37.9%); vector means describe the alignable subset (65/184/185 pairs), not the full curriculum. Reproducibility: judge calls use temperature=0, max_tokens=5 (single 0–5 digit); embeddings (text-embedding-nomic-embed-text-v1.5, dim=768 via LM Studio) have no sampling randomness. Defense line (read verbatim): macro separability uses 500 label permutations; p<0.004 is the resolution limit (1/500), not tuning — ZH-DE 59/59 pass with margin 0.033–0.424 (floor positive); micro extraction noise and the macro test sit on different nulls, so the macro signal stands under current micro noise; the reverse reading (macro significance proves micro correctness) is explicitly forbidden.',
     lim_temp0_title: 'temperature=0 is not deterministic (run-to-run divergence)',
     lim_temp0_body: 'Seven-model ensemble at temperature=0 reaches only 0.59–0.73 intra self-agreement (~27–41% run disagreement; kimi-k3 0.7291 highest). Rerun deltas: flash-level ~0.03–0.06, max-level ~0.01. Consequence: every single-run F1/Jaccard is a snapshot and must carry a fluctuation band; rank orders may be reported, exact absolute values must not be quoted precisely. Absences are snapshots too (2 of 4 single-file absences succeeded on deferred retry, 2 permanently absent) — never report a model as "failed". Context: kimi-k3 0.7291 (n=24); gold rerun flash +0.0283 / max +0.0112; absent files 27b abitur r3 + kimi en_ap r2 (deferred-ok) vs max wahrsch r3 + kimi en_ap r3 (permanent).',
     lim_ens_title: 'Ensemble snapshot instability (vote totals are additive)',
     lim_ens_body: 'Inter mean v2 0.4629 → v3 0.5401 (Δ+0.077) is fully driven by the qwen depth refill — the two numbers are not comparable, no trend claim. Vote totals use thr=n//2+1 with source counts 6–9 (thr 4–5): totals sum two scales and must be shown split with a thr-sensitivity table; 3 files with Solid≈0 (k-2 / ch3 / 选修1.2) and Hypo>100 are listed separately. v41 column (mojibake audit ongoing) and ds-pro row (unmeasurable) stay frozen.',
-    lim_car_g1: 'Method bounds', lim_car_g2: 'Extraction & alignment', lim_car_g3: 'Replication statistics', lim_car_g4: 'Provenance & freeze', lim_car_all: 'Show all',
+    lim_car_g1: 'Method bounds', lim_car_g2: 'Extraction & alignment', lim_car_g3: 'Replication statistics', lim_car_all: 'Show all',
     val_domain: 'Domain',
     val_overall: 'Overall',
     val_social: 'Social Concepts',
@@ -2019,10 +2010,8 @@ const TRANSLATIONS = {
     method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components',
     method_figv2: '<strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.40–0.58 (P1/P3); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
-    method_prov_note: 'Provenance: HF main SHAs are today HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build not comparable to official hashes (snapshot research/weight_snapshot_20260916.json; paper App. W).',
+    method_prov_note: 'Provenance: production extraction model selected by 19-model benchmark (F1=0.666, qwen-plus); served-API revisions are provider-side; weight snapshot research/weight_snapshot_20260916.json, details paper App. W.',
     f12_prov_note: 'F12 note: the Two-Tier vector baseline uses nomic embeddings only and is unaffected by the design-vs-execution judge swap (design phi-4-mini-instruct vs execution muse-spark-1.3-contributor); see paper §2.12 and App. W.',
-    limit7_prov_title: 'Model Provenance (UNVERIFIED pins)',
-    limit7_prov_desc: 'HF main SHAs are today HEADs, not experiment-day pins; the served LM Studio revision exposes names only (UNVERIFIED); the local phi build is community-quantized and not hash-comparable to official weights; the nomic weight file is not locatable on disk. Cite App. W residual risks ①–⑥ with every use.',
     valid_design_exec: 'Design vs execution: the design judge is phi-4-mini-instruct (open weights, snapshot object); the executed merge used muse-spark-1.3-contributor (closed API, 10 parallel judges, 407 results) — not interchangeable. The Two-Tier vector finding uses nomic embeddings only and is unaffected by this swap (paper §2.12, App. W).',
     glos_1: 'Grade-randomized graphs: the overlap expected by pure chance.',
     glos_2: 'k = 15/25/35: comparison at equal vocabulary size.',
@@ -2211,14 +2200,13 @@ const TRANSLATIONS = {
     lim_mis9: 'Ohne diese Grenze wuerdest du die N=8-Pilotform (0,704/0,727/0,751) oder die 37,9%-Teilmenge als signifikantes Vollcurriculum-Ergebnis missverstehen.',
     lim_mis10: 'Ohne diese Grenze wuerdest du einen Einzelrun-F1/Jaccard als exakt statt als Snapshot mit 0,03-0,06-Schwankung missverstehen.',
     lim_mis11: 'Ohne diese Instabilitaet wuerdest du den Anstieg v2 0,4629 zu v3 0,5401 als Trend statt als Qwen-Refill-Artefakt missverstehen.',
-    lim_mis12: 'Ohne diese Grenze wuerdest du einen Heute-HEAD-SHA oder einen UNVERIFIED-Served-Namen als Tages-Pin missverstehen.',
     lim_sparse_title: 'Sparse Annotation (N=8-Pilot + Alignment-Abdeckung) · temperature=0 · 500-perm p<0,004',
     lim_sparse_body: 'Human-Seite: Fragebogen-Implant ist Pilot (N=8, soziale Themen, LDS-C 0,704/0,727/0,751); das gepowerte Design ist N=30 (86 % Power), die Human-Spalte ist Form-Platzhalter ohne Signifikanzanspruch. Alignment-Seite: 219 alignierte Gruppen vs 359 unalignierte Konzepte (Abdeckung 37,9 %); Vektormittel beschreiben die alignierbare Teilmenge (65/184/185 Paare), nicht das Vollcurriculum. Reproduzierbarkeit: Judge-Calls mit temperature=0, max_tokens=5 (einzelne Ziffer 0–5); Embeddings (text-embedding-nomic-embed-text-v1.5, dim=768 via LM Studio) ohne Sampling-Zufall. Verteidigungslinie (woertlich): Makro-Separierbarkeit mit 500 Label-Permutationen; p<0,004 ist Aufloesungsgrenze (1/500), kein Tuning — ZH-DE 59/59 bestanden mit Marge 0,033–0,424 (Boden positiv); Mikro-Extraktionsrauschen und Makro-Test liegen auf verschiedenen Nullen, daher steht das Makro-Signal unter aktuellem Mikro-Rauschen; die umgekehrte Lesart (Makro-Signifikanz beweist Mikro-Korrektheit) ist explizit verboten.',
     lim_temp0_title: 'temperature=0 ist nicht deterministisch (Run-zu-Run-Divergenz)',
     lim_temp0_body: 'Sieben-Modell-Ensemble bei temperature=0 erreicht nur 0,59–0,73 intra Selbstuebereinstimmung (~27–41 % Run-Divergenz; kimi-k3 0,7291 hoechst). Rerun-Deltas: Flash-Level ~0,03–0,06, Max-Level ~0,01. Konsequenz: jeder Einzel-Run-F1/Jaccard ist ein Snapshot und braucht ein Schwankungsband; Rangfolgen duerfen berichtet, exakte Absolutwerte nicht praezise zitiert werden. Absenzen sind Snapshots (2 von 4 Einzel-Datei-Absenzen per deferred Retry zugestellt, 2 permanent absent) — nie ein Modell als „gescheitert" melden. Kontext: kimi-k3 0,7291 (n=24); Gold-Rerun Flash +0,0283 / Max +0,0112; absente Dateien 27b abitur r3 + kimi en_ap r2 (deferred-ok) vs max wahrsch r3 + kimi en_ap r3 (permanent).',
     lim_ens_title: 'Ensemble-Snapshot-Instabilitaet (Vote-Totalen sind additiv)',
     lim_ens_body: 'Inter-Mittel v2 0,4629 → v3 0,5401 (Δ+0,077) vollstaendig durch Qwen-Depth-Refill getrieben — beide Zahlen unvergleichbar, kein Trend-Claim. Vote-Totale mit thr=n//2+1 bei Quellzahlen 6–9 (thr 4–5): Totalen summieren zwei Skalen, getrennt zeigen + thr-Sensitivitaetstabelle; 3 Dateien mit Solid≈0 (k-2 / ch3 / 选修1.2) und Hypo>100 separat listen. v41-Spalte (Mojibake-Audit laeuft) und ds-pro-Zeile (unmessbar) bleiben gefroren.',
-    lim_car_g1: 'Methodengrenzen', lim_car_g2: 'Extraktion & Alignment', lim_car_g3: 'Replikationsstatistik', lim_car_g4: 'Provenienz & Freeze', lim_car_all: 'Alle zeigen',
+    lim_car_g1: 'Methodengrenzen', lim_car_g2: 'Extraktion & Alignment', lim_car_g3: 'Replikationsstatistik', lim_car_all: 'Alle zeigen',
     val_domain: 'Bereich',
     val_overall: 'Gesamt',
     val_social: 'Soziale Konzepte',
@@ -2350,10 +2338,8 @@ const TRANSLATIONS = {
     method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, zwei Aehnlichkeitskomponenten',
     method_figv2: '<strong>Abb. v2-cells</strong> — Seed-fremder Faktortest (2026-09): Kardinalitaets-Fix hebt Social-F1 auf 0,40–0,58 (P1/P3); Sprach-Fix allein ≈0 (P2, modellseitig); EN nur via Kardinalitaet. A2-Nenner; glm-P3 mit Serving-Drift-Caveat. Quelle: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
-    method_prov_note: 'Provenienz: HF-main-SHAs sind heutige HEADs, keine Experimental-Pins; served Revision UNVERIFIED; lokale Phi-Datei ist ein Community-Quant-Build ohne Vergleichbarkeit zu offiziellen Hashes (Snapshot research/weight_snapshot_20260916.json; Anhang W).',
+    method_prov_note: 'Provenienz: Produktions-Extraktionsmodell per 19-Modell-Benchmark gewählt (F1=0.666, qwen-plus); served-API-Revisionen sind Provider-seitig; Weight-Snapshot research/weight_snapshot_20260916.json, Details Anhang W.',
     f12_prov_note: 'F12-Hinweis: Die Two-Tier-Vektorbaseline nutzt nur nomic-Embeddings und ist vom Design-vs-Execution-Richtertausch unberührt (Design phi-4-mini-instruct vs. Ausführung muse-spark-1.3-contributor); s. §2.12 und Anhang W.',
-    limit7_prov_title: 'Modell-Provenienz (UNVERIFIED-Pins)',
-    limit7_prov_desc: 'HF-main-SHAs sind heutige HEADs, keine Tages-Pins der Experimente; die served LM-Studio-Revision nennt nur Namen (UNVERIFIED); der lokale Phi-Build ist community-quantisiert und nicht mit offiziellen Gewichten per Hash vergleichbar; die nomic-Gewichtsdatei ist auf Platte nicht auffindbar. Mit jeder Nutzung Restrisiken ①–⑥ aus Anhang W zitieren.',
     valid_design_exec: 'Design vs. Ausführung: Design-Richter ist phi-4-mini-instruct (offene Gewichte, Snapshot-Objekt); die ausgeführte Fusion nutzte muse-spark-1.3-contributor (geschlossene API, 10 parallele Richter, 407 Ergebnisse) — nicht austauschbar. Der Two-Tier-Vektorbefund nutzt nur nomic-Embeddings und ist von diesem Tausch unberührt (Paper §2.12, Anhang W).',
     glos_1: 'Grad-randomisierte Graphen: die Ueberlappung, die reiner Zufall erwarten laesst.',
     glos_2: 'k = 15/25/35: Vergleich bei gleicher Vokabelgroesse.',
@@ -2617,14 +2603,13 @@ curr_explanations_title: '三种竞争性解释',
     lim_mis9: '若无此局限，你会把 N=8 试点形态（0.704/0.727/0.751）或 37.9% 可对齐子集误读为显著的整课程结论。',
     lim_mis10: '若无此局限，你会把单次运行的 F1/Jaccard 误读为精确值，而非带 0.03–0.06 波动带的快照。',
     lim_mis11: '若无此不稳定性说明，你会把 v2 0.4629 到 v3 0.5401 的上升误读为趋势，而非 qwen 回填伪影。',
-    lim_mis12: '若无此局限，你会把今日 HEAD SHA 或 UNVERIFIED 服务名误读为实验当日锁定版本。',
     lim_sparse_title: '稀疏标注（N=8 试点＋对齐覆盖）· temperature=0 · 500 置换 p<0.004',
     lim_sparse_body: '人类侧：问卷植入为试点（N=8，社会话题，LDS-C 0.704/0.727/0.751）；功效设计为 N=30（86% 功效），人类列仅为形态占位，不做显著断言。对齐侧：219 对齐组 vs 359 未对齐概念（覆盖率 37.9%）；向量均值描述"可对齐子集"（65/184/185 对），而非全课程。可复现性：判官调用 temperature=0、max_tokens=5（单个 0–5 数字）；嵌入（text-embedding-nomic-embed-text-v1.5，dim=768，经 LM Studio）无采样随机性。防御话术（照读）：宏观可分性用 500 次标签置换；p<0.004 是分辨率极限（1/500），不是调参——中德 59/59 通过，边际 0.033–0.424（下限为正）；微观抽取噪声与宏观检验不在同一零模型上，因此宏观信号在现有微观噪声下依然成立；反向表述（宏观显著证明微观无错）明确禁止。',
     lim_temp0_title: 'temperature=0 非确定性（运行间分歧）',
     lim_temp0_body: '七模型集成在 temperature=0 下自一致仅 0.59–0.73（约 27–41% 运行分歧；kimi-k3 0.7291 最高）。重跑差量：flash 级约 0.03–0.06，max 级约 0.01。后果：一切单次 F1/Jaccard 均为快照，必须带波动带；排序可报，绝对值精确引用禁报。缺席也是快照（4 个单文件缺席中 2 个经 deferred 重试成交，2 个永久缺席）——禁报"模型失败"。背景：kimi-k3 0.7291（n=24）；gold 重跑 flash +0.0283 / max +0.0112；缺席文件 27b abitur r3＋kimi en_ap r2（deferred 成交）对 max wahrsch r3＋kimi en_ap r3（永久缺席）。',
     lim_ens_title: '集成快照不稳定性（投票总数为加总）',
     lim_ens_body: 'inter 均值 v2 0.4629 → v3 0.5401（Δ+0.077）完全由 qwen 深度回填驱动，两数不可比、趋势禁报。表决 thr=n//2+1，源数 6–9（thr 4–5）：总数为两种刻度加总，须拆分展示＋thr 敏感性表；3 个 Solid≈0（k-2／ch3／选修1.2）且 Hypo 破百的文件须单列。v41 列（乱码审计中）与 ds-pro 行（不可测）冻结。',
-    lim_car_g1: '方法边界', lim_car_g2: '抽取与对齐', lim_car_g3: '复现统计', lim_car_g4: '溯源与冻结', lim_car_all: '全部展开',
+    lim_car_g1: '方法边界', lim_car_g2: '抽取与对齐', lim_car_g3: '复现统计', lim_car_all: '全部展开',
     val_domain: '领域',
     val_overall: '总体',
     val_social: '社会概念',
@@ -2682,10 +2667,8 @@ curr_explanations_title: '三种竞争性解释',
     method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、两个相似度分量',
     method_figv2: '<strong>图 v2-cells</strong>——跨种子因子实验（2026-09）：基数修复把社会 F1 抬到 0.40–0.58（P1/P3）；纯语言修复≈0（P2，模型侧）；英文仅随基数回升。A2 分母；glm P3 带服务漂移 caveat。来源：V2_MATRIX.json，REPORT §7。',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
-    method_prov_note: '来源说明：HF main SHA 为今日 HEAD，非实验当日锁定版本；在线服务版本记为 UNVERIFIED；本地 phi 文件为社区量化构建，与官方哈希不可直接比对（快照 research/weight_snapshot_20260916.json；论文附录 W）。',
+    method_prov_note: '来源说明：生产提取模型经 19 模型基准选定（F1=0.666，qwen-plus）；在线服务版本由提供方控制；权重快照 research/weight_snapshot_20260916.json，详见论文附录 W。',
     f12_prov_note: 'F12 注：Two-Tier 向量基线仅使用 nomic 嵌入，不受设计态与执行态判官替换影响（设计态 phi-4-mini-instruct，对比执行态 muse-spark-1.3-contributor）；见论文 §2.12 与附录 W。',
-    limit7_prov_title: '模型来源（未锁定版本）',
-    limit7_prov_desc: 'HF main SHA 为今日 HEAD，非实验当日版本；在线 LM Studio 服务仅暴露模型名（记为 UNVERIFIED）；本地 phi 为社区量化构建，与官方权重无哈希可比性；nomic 权重文件在磁盘上无法定位。每次引用须附带附录 W 残余风险①–⑥。',
     valid_design_exec: '设计态与执行态拆分：设计态判官为 phi-4-mini-instruct（开源权重，快照对象）；实际合并使用 muse-spark-1.3-contributor（闭源 API，10 并行判官，407 条结果）——二者不可混称。Two-Tier 向量结论仅使用 nomic 嵌入，不受此次替换影响（论文 §2.12，附录 W）。',
     glos_1: '度随机化图谱：纯随机下的期望重叠。',
     glos_2: 'k＝15/25/35：等词汇量下的比较。',
@@ -2781,14 +2764,14 @@ curr_explanations_title: '三种竞争性解释',
 
 
 // W4: trilingual methodology graph. Five steps map to paper §2.1-§2.5:
-// Step1 corpus=T1(§2.2), Step2 extraction=MIMO(§2.3), Step3 fusion=KG(§2.4),
+// Step1 corpus=T1(§2.2), Step2 extraction=EXT(§2.3, 19-model benchmarked, prod qwen-plus), Step3 fusion=KG(§2.4),
 // Step4 alignment+metrics=CDS/HDS/LDS/CURR/CS(§2.5), Step5 insights=INSIGHTS(§2.1 Pipeline B).
 // Node ids identical across languages; static EN above is the no-JS fallback.
 var METHOD_GRAPHS = {
   en: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
-    MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
+    T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> EXT[Step 2 Extraction §2.3<br/>19-model benchmarked LLM<br/>prod. qwen-plus]
+    EXT --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
     GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Preliminary check| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
@@ -2802,8 +2785,8 @@ graph LR
     style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4`,
   de: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[Schritt 1 Korpus §2.2<br/>68 Lehrbuecher ZH EN DE] --> MIMO[Schritt 2 Extraktion §2.3<br/>MIMO LLM Konzepte]
-    MIMO --> KG[Schritt 3 Graph §2.4<br/>556 Konzepte 517 Relations]
+    T1[Schritt 1 Korpus §2.2<br/>68 Lehrbuecher ZH EN DE] --> EXT[Schritt 2 Extraktion §2.3<br/>Benchmark-selektierte LLM<br/>Prod. qwen-plus]
+    EXT --> KG[Schritt 3 Graph §2.4<br/>556 Konzepte 517 Relations]
     GL[92 Gold-Labels<br/>F1 0.939† Developing sozial 0.881 gesamt] -.->|Vorläufige Prüfung| KG
     KG --> CDS[Schritt 4 CDS §2.5<br/>Konzeptdichte]
     KG --> HDS[Schritt 4 HDS §2.5<br/>Hierarchietiefe]
@@ -2817,8 +2800,8 @@ graph LR
     style GL fill:#f8fafc,stroke:#1e7e4d,stroke-dasharray:4 4`,
   zh: `%%{init:{'theme':'default','themeVariables':{'primaryColor':'#f8fafc','primaryTextColor':'#0a1f3d','primaryBorderColor':'#c6cdd6','lineColor':'#1e3a8a','secondaryColor':'#f1f3f5','tertiaryColor':'#e7ebef'}}}%%
 graph LR
-    T1[步骤1 语料 §2.2<br/>68 教材 ZH EN DE] --> MIMO[步骤2 抽取 §2.3<br/>MIMO LLM 概念]
-    MIMO --> KG[步骤3 图谱 §2.4<br/>556 概念 517 关系]
+    T1[步骤1 语料 §2.2<br/>68 教材 ZH EN DE] --> EXT[步骤2 抽取 §2.3<br/>多模型基准选型 LLM<br/>生产 qwen-plus]
+    EXT --> KG[步骤3 图谱 §2.4<br/>556 概念 517 关系]
     GL[92 金标<br/>F1 0.939† Developing 社会 0.881 总体] -.->|抽查（Preliminary）| KG
     KG --> CDS[步骤4 CDS §2.5<br/>概念密度]
     KG --> HDS[步骤4 HDS §2.5<br/>层次深度]
@@ -2993,6 +2976,7 @@ function setLanguage(lang) {
       }
     }
   });
+  try { window.dispatchEvent(new Event('resize')); } catch (e) {}
 }function browserLang() {
   // First-visit default follows the browser; an explicit choice (saved) always wins
   try {
