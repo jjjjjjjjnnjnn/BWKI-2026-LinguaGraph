@@ -1,6 +1,6 @@
 # docs/ Index
 
-> Stand: v23g-smallmodel (2026-09-13) | SSOT-Zahlen: 556 Konzepte / 525 Relationen / 219 Gruppen (manifest.json) · 59 Messungen / 54 Modelle / 177 Tests (multi_model_replication_20260913.json) · PDF 231718B ×3 Orte
+> Stand: v42 (2026-09-16) | SSOT-Zahlen: 556 Konzepte / 517 Relationen / 219 Gruppen (manifest.json; 525 = v26-Vorfreeze, Archiv) · 59 Messungen / 54 Modelle / 177 Tests (multi_model_replication_20260913.json; file-truth 62/57/186) · PDF 243313B ×3 Orte
 > Lesereihenfolge Paper: `paper/` → ORDER in `scripts/build_paper_pdf.py`
 > (01_abstract → 02_related_work → 02_methodology → 03_results → 06_physics → 07_lpa → 04_discussion → 05_conclusion → 00_three_conclusions)
 
@@ -58,7 +58,7 @@
 - `planning/research_directions_20260808.md` (D1–D4; D5/D6 entfernt)
 - `planning/r1_within_subject_protocol.md` (R1-Arm)
 - `PRIORITIES.md`, `experiment-design.md`, `experiment_conductor.md`
-- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md`, `session_handoff_20260910.md`, `session_handoff_20260913.md` (aktuell, v23e-audit)
+- `session_handoff_20260808.md`, `session_handoff_20260810.md`, `handoff_multi_subject.md` (superseded — Expansion längst erledigt), `session_handoff_20260910.md`, `session_handoff_20260913.md`, `session_handoff_20260913_v23f.md`, `session_handoff_20260913_v23g.md`, `session_handoff_20260914_v26.md` (v26-nobridges; danach v27–v42, aktuell: `session_handoff_20260916_v42.md`, v42-517-refreeze 2026-09-16)
 - `planning/` — Detailpläne; `findings/`, `compose/`, `demo/`, `images/`, `lingua-core/` — Arbeitsbereiche
 
 ## Analyse-Notizen (einzelne Befunde)

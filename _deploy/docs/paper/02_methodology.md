@@ -5,7 +5,7 @@
 
 ---
 
-## 2. Methodik
+## 2B. Methodik
 
 ### 2.1 Überblick
 
@@ -19,7 +19,7 @@ Pipeline B (Lehrbuch-Wissensgraph):
 Lehrbuchkorpus → MIMO Extraktion → Alignierung → CognitiveSpace 3D
 ```
 
-Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 556 Konzepte, 525 Relationen.
+Pipeline A dient der kognitiven Analyse auf individueller Ebene (Probandenstudie). Pipeline B dient der **Validierung der Extraktions- und Alignierungsmethodik im großen Maßstab** — 68 Lehrbücher, 556 Konzepte, 517 Relationen.
 
 ### 2.2 Lehrbuchkorpus (Pipeline B)
 
@@ -57,9 +57,9 @@ Für jedes Paar verwandter Konzepte:
 
 Die Extraktion wurde für jedes der 68 Lehrbücher separat durchgeführt, was **75 JSON-Extraktionsdateien** ergab (einige Lehrbücher wurden aufgrund ihres Umfangs in Kapitel aufgeteilt).
 
-### 2.4 Graphkonstruktion und -fusion
+### 2.4 Graphkonstruktion und -zusammenführung (Alignierungs-Labels, P2-vorbehalten)
 
-Die Roh-Extraktionen durchlaufen einen mehrstufigen Fusionsprozess:
+Die Roh-Extraktionen durchlaufen eine mehrstufige Zusammenführung (Dedup + Alignierung; Mathe-Knoten = Alignierungs-Labels, de-Feld teils CJK-kontaminiert, T1-falsifiziert):
 
 **Step 1 — Merging**: Alle 75 Extraktionsdateien werden eingelesen und zu einem einheitlichen Graphen zusammengeführt. Aliase und Synonyme werden anhand einer Konfigurationsdatei (`concept_taxonomy.json`) normalisiert:
 
@@ -71,7 +71,7 @@ Die Roh-Extraktionen durchlaufen einen mehrstufigen Fusionsprozess:
 
 **Step 2 — Deduplizierung**: Konzepte mit identischer ID oder nachgewiesener Synonymie werden fusioniert. Nach der Deduplizierung verbleiben **556 eindeutige Konzepte**.
 
-**Step 3 — Relationsextraktion**: Aus den extrahierten Abhängigkeiten wird ein gerichteter Graph konstruiert. Zusätzlich zu den 525 direkt extrahierten Relationen werden ~3000 transitive Inferenzen zur Sicherstellung der Konnektivität hinzugefügt.
+**Step 3 — Relationsextraktion**: Aus den extrahierten Abhängigkeiten wird ein gerichteter Graph konstruiert. Zusätzlich zu den 517 direkt extrahierten Relationen werden ca. 3000 transitive Inferenzen zur Sicherstellung der Konnektivität hinzugefügt (Zählung s. `config/concept_taxonomy.json`; exakte Zahl bericht-abhängig, daher ca.).
 
 ### 2.5 Sprachübergreifende Alignierung
 
@@ -91,7 +91,7 @@ Die Alignierung wird durch zwei Strategien erreicht:
 1. **Explizite Abbildung**: Lehrbücher, die dasselbe mathematische Konzept behandeln, werden über Kapitelverweise gemappt (z. B. Stewart Kapitel 2 ↔ Forster Kapitel 4 ↔ Renjiao选修2-2).
 2. **Semantische Inferenz**: Konzepte mit übereinstimmenden Nachbarschaftsbeziehungen im Graphen werden als äquivalent betrachtet.
 
-Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten; Gruppen ≠ Konzepte, s. §3-Fußnote) sind dreisprachig vollständig abgedeckt**, 120 sind nur im Chinesischen vorhanden (21,6 %), der Rest in zwei von drei Sprachen.
+Ergebnis: **219 Konzeptgruppen (39 % von 556 Konzepten; Gruppen ≠ Konzepte, s. §3-Fußnote) sind dreisprachig vollständig abgedeckt**, ca. 120 sind nur im Chinesischen vorhanden (ca. 21,6 %), der Rest in zwei von drei Sprachen (Zählung s. `config/concept_taxonomy.json`, Stand frozen sample).
 
 > **Fünf-Schritte-Titel, frozen EN-Baseline 2026-09-12 (Portal-Mermaid dreisprachig)**: §2.1 **Overview — From textbook text to structural insights in five steps** · §2.2 **Textbook Corpus** · §2.3 **Concept Extraction (MIMO)** · §2.4 **Graph Construction and Fusion** · §2.5 **Cross-lingual Alignment**. Deutsche Titel oben bleiben maßgeblich; DE/ZH-Portal-Labels sind Übersetzungen genau dieser EN-Baseline (keine neuen Schritte, keine neuen Zahlen).
 
@@ -121,7 +121,7 @@ def position(knoten_id, min_r, max_r):
             r * cos(phi))
 ```
 
-Diese deterministische Positionierung garantiert, dass jedes Konzept bei jedem Laden der Visualisierung an derselben Stelle erscheint — essentiell für die Reproduzierbarkeit in der Forschung.
+Diese deterministische Positionierung stellt sicher (bei identischer Hash-Funktion/Version), dass jedes Konzept bei jedem Laden der Visualisierung an derselben Stelle erscheint — essentiell für die Reproduzierbarkeit in der Forschung.
 
 **Farbcodierung**: Jeder Bildungsstufe ist eine eigene Farbe zugeordnet:
 - Grundschule: Grün (#4ade80)
@@ -145,21 +145,22 @@ wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und
 - **LDS-K** (Knowledge): Strukturelle Divergenz institutionellen Wissens (Lehrbuch-Konzeptgraphen).
 - **LDS-C** (Cognitive): Divergenz spontaner kognitiver Ausdrucksweise (menschliche oder LLM-Konzeptgraphen).
 - **ΔLDS** = LDS-C − LDS-K: der zusätzliche, durch kognitive Ausdrucksweise eingeführte Anteil jenseits der Lehrbuchstruktur.
+- **LDS-VEC** (Anhang W only): kNN-Graph-Divergenz über Kosinusdistanzen (nomic-768D), Falsifikationssonde, keine Haupttext-Schlussfolgerung.
 
 **Null-Modell-Rahmen**: Um Struktureffekte von Spracheffekten zu trennen, werden drei Null-Modelle eingesetzt (Details in `docs/lds_formal_definition.md` §3): (1) **Within-Language Split-Half** — Aufteilung einer Sprache in zwei Hälften → Bodenniveau der Teilnehmervariabilität; (2) **Label-Permutation** — Permutation der Sprachlabels → formales p-Wert für das getragene Sprachsignal; (3) **Cross-Source Null** — Textbuch vs. Wikipedia derselben Sprache → Trennung von Quell- und Spracheffekt. Alle LDS-Berechnungen verwenden die frozen v3-Formel; die Ergebnisse der Human- und LLM-Analyse (§4, §5) stützen sich auf denselben Rahmen.
 
 > **Formel-Verdict (2026-09-12, vgl. `docs/BASELINE_LEDGER.md` §8)**: verifiziert — publizierte LDS-K-Werte stammen aus der 2-Komponenten-Pipeline (`scripts/figures/_lds_utils.py::lds_jaccard`; Freeze-Skript `scripts/figures/reproduce_lds_binary.py`, Log `outputs/figures/reproduce_lds_binary.log`). Die 3-Komponenten-Variante in `src/scoring.py` (exaktes GED auf 219 Knoten intractable, Fallback 0,5) reproduziert sie nicht; obiger frozen-v3-Text (2 Komponenten) ist damit die maßgebliche Definition.
 
-> **Fig4/Fig8-Zeichenmethode, frozen 2026-09-12**: **Fig4** (`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model{,_de,_zh}.png` + `fig4_null_model_data.csv`): Full-Baseline = Freeze-Werte **ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188** (Snapshot `outputs/figures/reproduce_lds_binary.log`, publiziert gerundet 0.934/0.938/0.519); Structure Null (grad-erhaltend) 0.9571/0.9568/0.7154 (sorted-freeze 2026-09-14, 5-seed Mittel 0.9562±0.0010/0.9555±0.0024/0.7170±0.0013); Within-Language-Floor 0.9695/0.9744/0.9615; Label-Permute 0.8407/0.8701/0.6704 (Punkt: Seed 42+999=1041; 5-seed Mittel 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069; Seeds 42,999,2026,7,1234). **Fig8** (`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination{,_de,_zh}.png` + `fig8_lds_decontamination_data.csv`, deterministischer Snapshot ohne Recompute): Full 0.934/0.938/0.519 (Paper §3.7) vs Structure Null 0.957/0.957/0.717 vs Dekontaminiert (T1 FilterA, 167/219 CJK-de-Labels raus, 52 behalten) 0.985/0.985/0.990 — ZH-DE-Pfeil +0.47. Spiegel beider Figuren unter `cognitive-space/web/figures/`.
+> **Fig4/Fig8-Zeichenmethode, frozen 2026-09-12**: **Fig4** (`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model{,_de,_zh}.png` + `fig4_null_model_data.csv`): Full-Baseline = Freeze-Werte **ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188** (Snapshot `outputs/figures/reproduce_lds_binary.log`, publiziert gerundet 0,934/0,938/0,519; aktueller Re-Freeze SSOT 2026-09-16: 0.9330/0.9378/0.5190, publiziert 0,933/0,938/0,519 — δ im Rundungsband); Structure Null (grad-erhaltend) 0.9571/0.9568/0.7154 (sorted-freeze 2026-09-14, 5-seed Mittel 0.9562±0.0010/0.9555±0.0024/0.7170±0.0013); Within-Language-Floor 0.9695/0.9744/0.9615; Label-Permute 0.8407/0.8701/0.6704 (Punkt: Seed 42+999=1041; 5-seed Mittel 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069; Seeds 42,999,2026,7,1234). **Fig8** (`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination{,_de,_zh}.png` + `fig8_lds_decontamination_data.csv`, deterministischer Snapshot ohne Recompute): Full 0,934/0,938/0,519 (Paper §3.7) vs Structure Null 0,957/0,957/0,717 vs Dekontaminiert (T1 FilterA, 167/219 CJK-de-Labels raus, 52 behalten) 0,985/0,985/0,990 — ZH-DE-Pfeil +0,47. Spiegel beider Figuren unter `cognitive-space/web/figures/`.
 
 ### 2.8 LLM-Extraktionsqualität
 
 Zur Validierung der Extraktionsqualität wird ein mehrsprachiger Goldstandard verwendet. Der Datensatz umfasst insgesamt **92 Goldlabels in drei Provenienzstufen** (36 ZH, 29 DE, 27 EN), verteilt auf zwei Batches mit unterschiedlicher Entstehung:
 
 1. **Batch A — Mathematische Konzepte** (20 Label: 7 ZH / 7 DE / 6 EN): Calculus-Grundbegriffe (Grenzwert, Ableitung, Integral) — **von Hand annotiert** (`annotator_1`: concepts/relations/missing_hints von Grund auf neu) — zur Validierung der domänenspezifischen Extraktionsqualität. Dieser Batch ist **sauber** (kein Seed-Evaluierungs-Overlap).
-2. **Batch B — Soziale Konzepte** (72 Label: 29 ZH / 22 DE / 21 EN): Antworten zu Freiheit, Gerechtigkeit, Erfolg, Verantwortung und Heimat — **machine-seeded + human-accepted** (`auto_accepted`): Ziel 100 (40 ZH + 30 DE + 30 EN), per `scripts/expand_gold_dataset.py` geschichtet 80 Items gezogen (33 ZH / 23 DE / 24 EN) → qwen-plus-Vorextraktion (temp 0.3, `call_api`) → menschliche Annahme → Merge (8 leere verworfen) → realisiert 72 — zur Validierung in der Hauptdomäne der Studie. `research/gold_review/`-Zwischendateien liegen nicht vor (als Lücke dokumentiert).
+2. **Batch B — Soziale Konzepte** (72 Label: 29 ZH / 22 DE / 21 EN): Antworten zu Freiheit, Gerechtigkeit, Erfolg, Verantwortung und Heimat — **machine-seeded + human-accepted** (`auto_accepted`): Ziel 100 (40 ZH + 30 DE + 30 EN), per `scripts/expand_gold_dataset.py` geschichtet 80 Items gezogen (33 ZH / 23 DE / 24 EN) → qwen-plus-Vorextraktion (temp 0,3, `call_api`) → menschliche Annahme → Merge (8 leere verworfen) → realisiert 72 — zur Validierung in der Hauptdomäne der Studie. `research/gold_review/`-Zwischendateien liegen nicht vor (als Lücke dokumentiert).
 
-Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). Ergebnisse:
+Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). DB-Pfad nominell F1 ≥ 0,88 (Developing C9b; Developing四件套: machine-seeded/human-accepted + same-source + harness-reberechnet ~0,65 + Blind-Review ausstehend) — Preliminary, kein Validierungs-Beleg; bis Blind-Review nur als Arbeitshypothese. Ergebnisse:
 
 | Domäne | Sprache | F1 | Precision | Recall | n |
 |--------|---------|:--:|:---------:|:------:|:-:|
@@ -173,24 +174,44 @@ Die Extraktion erfolgt mit **qwen-plus** (Alibaba Cloud Bailian API). Ergebnisse
 
 > Gesamt-F1 ist das domänengewichtete Mittel ((72×0,939+20×0,674)/92≈0,881); die Kopfzahl 0,939 gilt nur für die Sozial-Subgruppe. Gesamt-Precision/Recall werden nicht aggregiert (domänenspezifisch, s. Zeilen oben).
 >
-> † **Developing (C9b, Seed-Evaluierung same-source, Blind-Review der 72 Batch-B-Labels ausstehend)**: Die Sozial-F1 (0,939) stammen aus dem DB-Extraktionspfad mit qwen-plus-Seed — unabhängiger Benchmark-Harness (`data/model_comparison/qwen-plus_results.json`, sample_id-Join): Mathe-20-Mittel 0,7244 / Sozial-72-Mittel 0,6497 (qwen-max: 0,7068 / 0,6483). D. h. 0,939 ist ein „DB-Pfad + Same-Source-Seed"-spezifischer Wert; harness-reberechnet liegt Sozial bei ~0,65. Die Rangordnung qwen-plus > qwen-max gilt auch auf den sauberen Mathe-Labels (+0,0176) — Modellauswahl bleibt, Absolutbetrag ist degradiert. Details s. G3-Notiz `research/gold_deconfound_2026-09-14.md`.
+> † **Developing (C9b, Seed-Evaluierung same-source, 72 Batch-B-Labels agent-panel-reviewed, human-review pending)**: Die Sozial-F1 (0,939) stammen aus dem DB-Extraktionspfad mit qwen-plus-Seed — unabhängiger Benchmark-Harness (`data/model_comparison/qwen-plus_results.json`, sample_id-Join): Mathe-20-Mittel 0,7244 / Sozial-72-Mittel 0,6497 (qwen-max: 0,7068 / 0,6483). D. h. 0,939 ist ein „DB-Pfad + Same-Source-Seed"-spezifischer Wert; harness-reberechnet (v2, Faktortest s. §2.9b) liegt Sozial je nach Zelle bei 0,10–0,58. Die Rangordnung qwen-plus > qwen-max gilt auch auf den sauberen Mathe-Labels (+0,0176) — Modellauswahl bleibt, Absolutbetrag ist degradiert. Details s. G3-Notiz `research/gold_deconfound_2026-09-14.md`. Agent-Panel-Screen (2026-09-19, 5 Endpunkte, falsify-only, DETAILS s. `research/gold_review_v2/PANEL_SCREEN.md`): 15/72 Rejects, Gold-Übereinstimmung 0,389, qwen-F1 0,419 (qwen-plus = bewertetes Extraktionsmodell, kein Panel-Endpunkt) → **MAINTAIN (weak, single-run, unkalibriert)** (κ=0,56 unter 0,61-Schwelle, paarweiser Konzept-Jaccard 0,44–0,77; methodische Reservations s. PANEL_SCREEN — kein Retest/Swap/Human-Baseline); 11/72 einstimmige Rejects über alle 5 Endpunkte (falsify-grade Gold-Qualitätslücke ~15 %); Human-Spotcheck (reduziert 12 Items) + R4-Vollständigkeit offen. C9b bleibt Developing.
 >
 > **Limitation**: Batch-B-Seeds und Evaluierungsmodell sind identisch (qwen-plus) — der Sozial-F1 enthält einen Verwandtschaftsbonus; Batch A (Mathe, hand-annotiert) ist davon unberührt.
 
-Die Extraktionsqualität für soziale Konzepte übertrifft die mathematische Domäne deutlich: alle drei Sprachen erreichen F1 ≥ 0,88, mit chinesischen (F1=0,974) und deutschen (F1=0,949) Ergebnissen, die das Qualitätsziel (F1 ≥ 0,70) weit übertreffen. Dies bestätigt, dass die zuvor beobachtete niedrige deutsche Extraktionsqualität (F1=0,506) domänenspezifisch war und nicht die Modelleignung für die Hauptstudie widerspiegelt. Der Sozial-F1 (0,939) gilt bis zum Blind-Review als **Developing (C9b)**.
+Die Extraktionsqualität für soziale Konzepte liegt auf dem DB-Pfad nominell über der mathematischen Domäne: alle drei Sprachen erreichen F1 ≥ 0,88 (Developing C9b; harness ~0,65; Preliminary, kein Validierungs-Beleg), mit chinesischen (F1=0,974†) und deutschen (F1=0,949†) Werten auf DB-Pfad-Niveau. Dies ist vereinbar damit, dass die zuvor beobachtete niedrige deutsche Extraktionsqualität (F1=0,506) domänenspezifisch war. Der Sozial-F1 (0,939†) gilt bis zum Blind-Review als **Developing (C9b)** — Preliminary, nur als Arbeitshypothese. (Harness-v2-Einordnung s. §2.9b; Panel-Screen s. † oben.)
 
 ### 2.9 Model Comparison
 
 Um zu bestimmen, ob die Extraktionsqualität durch die Pipeline oder die Modellfähigkeit begrenzt ist, vergleichen wir mehrere Modelle auf denselben Goldlabels. Die Tabelle zeigt Ergebnisse für die soziale Konzeptdomäne (72 Label) und die mathematische Domäne (20 Label):
+
+> **Scope-Banner**: Auszug aus dem archivierten Harness-v1-Benchmark (REMOVED, nur zur Dokumentation der Domänenabhängigkeit; kein Evidenz-Rang — maßgeblich §2.9b). `qwen-plus`-Zeilen = bewertetes Extraktionsmodell, **kein Panel-Mitglied** (Panel-Endpunkte R1–R5 s. `research/gold_review_v2/PANEL_SCREEN.md`). `MiniMax-M3`-Zeile = REMOVED (Owner-excluded, nur Dokumentation).
 
 | Model | Domäne | ZH F1 | DE F1 | EN F1 |
 |-------|--------|:-----:|:-----:|:-----:|
 | qwen3-8B (lokal) | Mathematik | 0,857 | 0,506 | 0,711 |
 | qwen-plus (API) | Mathematik | 0,952 | 0,489 | 0,778 |
 | qwen3.7-max (API) | Mathematik | 0,980 | 0,551 | 0,778 |
-| **qwen-plus (API)** | **Sozial** | **0,974** | **0,949** | **0,882** |
+| **qwen-plus (API)** | **Sozial**† | **0,974**† | **0,949**† | **0,882**† |
+| muse-spark-1.3 (free-tier) | Sozial† | 0,207† | 0,181† | 0,031† |
+| muse-spark-1.2 (free-tier) | Sozial† | 0,180† | 0,171† | 0,033† |
+| MiniMax-M3 (direkt) — REMOVED | Sozial† | 0,164† | 0,172† | 0,042† |
+| deepseek-v4.1-flash (r4) | Sozial† | 0,157† | 0,153† | 0,006† |
+| sensenova-6.8-flash-lite (= qwen3-6.8b-Harness-Label) | Sozial† (76/92; zh25/de16/en16) | 0,189† | 0,163† | 0,000† |
+| glm-5.2 (r4-direkt) (= glm-4.7-flash-Harness-Label) | Sozial† (91/92; zh28/de22/en21) | 0,224† | 0,167† | 0,000† |
 
-Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität in allen drei Sprachen als hoch einzustufen.
+Die Ergebnisse zeigen einen entscheidenden Befund: Die Extraktionsqualität ist **domänenabhängig**. Während qwen-plus in der mathematischen Domäne lediglich DE F1=0,489 erreicht, steigt der Wert für soziale Konzepte auf DE F1=0,949. (Scope-Hinweis: 0,489 aus Benchmark-Item-Menge dieser Tabelle; Gold-Batch-A Mathematik-DE 0,506 n=7 s. §2.8 — unterschiedliche Item-Mengen, kein Widerspruch.) Dies liegt vermutlich an der unterschiedlichen Konzeptstruktur: Mathematische Konzepte sind präziser und domänenspezifischer, während soziale Konzepte alltagssprachlich näher an der Trainingsdistribution der Modelle liegen. Für die Hauptstudie (soziale Konzepte) ist die Extraktionsqualität auf dem DB-Pfad nominell vorläufig hoch (Developing C9b, Harness-v2-P3 0,395–0,58 s. §2.9b, Preliminary); bis Blind-Review nur als Arbeitshypothese.
+
+> † **Seed-fremde Replikation (2026-09-18, n=72: 29 ZH / 22 DE / 21 EN; exakte IDs, Endpoints, Datum s. `research/mimo_spark_replication/REPORT.md`)**: Kein seed-fremder Arm reproduziert die Sozial-F1 (A2-konform 0,10–0,15 sozial; 95 %-CIs s. REPORT) — die prä-registrierten Deutungsäste (0,60–0,70 / ≥0,85) wurden beide verfehlt. Der Abstand erklärt sich mechanistisch, nicht als Qualitätsranking: Die neuen Arme befolgen die Prompt-Vorgabe „10–20 Konzepte" wörtlich (pred_n 11,7–16,8 bei Gold-2,16 → Precision 0,08–0,14 bei Recall ~0,6), während die qwen-Historie quellen-sprachlich mit Gold-Kardinalität antwortet (pred_n 2,5); zusätzlich kollabiert EN (5–56 % der EN-Predictions enthalten CJK — der System-Prompt verlangt gleichzeitig „原始语言" und „输出UTF-8中文"; zwei Arme — qwen3-6.8b-lite, glm-4.7-flash — mit vollständigem EN-Kollaps 0,000 (EN 22/22 bzw. 27/27 valide; sozial 16/21 bzw. 21/21). T2-F1 misst daher Prompt-Gehorsam × Exaktmatch; ob 0,939 ein Seed-Artefakt ist, bleibt unentschieden (C9b unverändert Developing). Designfehler des Harness v1 dokumentiert (C23); Harness v2 (kardinalitätskontrolliert) empfohlen, kein retroaktives Rescoring. T1-Gegenstück: Kreuzmodell-Agreement vs. mimo nur micro-P 0,21–0,32 (C22).
+
+### 2.9b Harness v2 — Faktortest (seed-fremd, 2026-09-19)
+
+Um Kardinalität und Sprachanweisung kausal zu trennen, testet Harness v2 drei Zellen gegen denselben v1-P0-Kontrollarm (preregistriert v1.2 A11–A18, Prompts SHA-gefroren, A2-Nenner fails-als-0/92; Anker: glm-4.7-flash per sn-Transport [im Harness als `glm-5.2-r4` geloggt; Label `glm-5.2-r4` ≠ Panel-R2 `glm-r4`, Kanäle nicht vergleichbar], deepseek-v4.1-flash, qwen3-6.8b [im Harness als `sensenova-6.8(-flash-lite)` geloggt]; plus big-pickle deskriptiv): **P1** (nur Kardinalität 1–7), **P2** (nur Sprache: Quellsprache + CJK-Verbot; n=66, Ausnahme qwen3-6.8b: full-92 — Anker-vergleiche deskriptiv), **P3** (beides). Details und CIs s. `research/mimo_spark_replication/REPORT.md §7` + `V2_MATRIX.json`; Abb. `outputs/figures/fig_v2_cells.png`.
+
+- **F1 CARD bestätigt**: P1−P0 gepaart +0,34/+0,41/+0,27 (Reihenfolge glm-4.7-flash/deepseek-v4-flash/qwen3-6.8b; alle CI≠0 — glm-Anteil +0,34 drift-konfundiert, sauber: deepseek +0,41, qwen3-6.8b +0,27); pred_n 12–17 → ~2–3.
+- **F2 LANG modellseitig gescheitert**: CJK-Fix in P2/P3 befolgt (EN-CJK →0 %), EN-F1 bleibt 0,02/0,14/0,00 (Reihenfolge glm-4.7-flash/deepseek-v4-flash/qwen3-6.8b; alle klar unter Schwelle 0,30); der EN-Lift kommt aus der Kardinalität (P1-EN ≈ P3-EN: deepseek P3-EN 0,21, glm 0,31, qwen3-6.8b 0,04), nicht aus der Sprachklausel. P2-Ankervergleich n-asymmetrisch (qwen3-6.8b: n=92 statt 66), daher deskriptiv.
+- **P3**: deepseek V2-validiert (sozial 0,544); glm-4.7-flash validiert-mit-Drift-Caveat (0,544; P0-Kalibrierungs-Drift +0,32 über Nacht, Serving-seitig); qwen3-6.8b marginal miss (0,395 < 0,40 — kein Aufrunden); big-pickle deskriptiv 0,580 (EN 0,377 höchst — C24 Western-Hypothese, nicht validiert). E2-Paraphrase (P3b, glm n=30): |P3b−P3| mean +0,024, CI [−0,0467–+0,0913] enthält 0 und überschreitet ±0,05 — Äquivalenz NICHT gezeigt, nur „kein signifikanter Unterschied" (explorativ; D-V11).
+- **Nenner-Disziplin**: Alle v2-Headlines sind A2 (fails-als-0); die Sozial-pro-Sprache-Werte der Tabelle oben (§2.9) sind dagegen valid-only (qwen3-6.8b: zh25/de16/en16 → 0,189/0,163/0,000; glm-4.7-flash: zh28/de22/en21 → 0,224/0,167/0,000) — Sozial-A2-Entsprechungen (fails-als-0/29/22/21): qwen3-6.8b zh 0,163/de 0,118/en 0,000, glm-4.7-flash zh 0,216/de 0,167/en 0,000 (Overall-A2 inkl. Mathe s. `V2_MATRIX.json`: qwen3-6.8b zh 0,201/de 0,134, glm-4.7-flash zh 0,256/de 0,188).
+- **Claims**: C21 → v2-partial-repro (quantitativ), C23 → gehärtet (Mature-Kandidat), C24 neu (Western-EN, Hypothese); C9b unverändert Developing.
 
 ### 2.10 Curriculum Coverage Score (CS)
 
@@ -223,10 +244,10 @@ Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Port
 4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
 5. **Human N=15 floor** — Between-Subject-Marge +0,015.
 6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
-7. **Permutation test** — z. B. ZH-DE 59/59 (file-truth 61/62 mit qwen-max + hy-mt2, ohne qwen2.5-n.s.) bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
+7. **Permutation test** — z. B. ZH-DE 59/59 [Datei-Wahrheit 62 Modelle inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54; hy-mt2-Boundary und qwen2,5-n.s. als Kleinstmodell-Grenze separat, s. §8.15] bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
 8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
 9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
 
 ### 2.12 Technische Werkzeuge (Eigenständigkeit)
 
-Externe Werkzeuge und Modelle (BWKI-Kriterium Eigenständigkeit — eigene Leistung: Design, LDS-Definition, alle Befund- und Falsifikationsanalysen; Hilfsmittel hier offengelegt): **Netzwerke/Graphen**: NetworkX, 3d-force-graph (CognitiveSpace-Rendering); **Figuren**: matplotlib (deterministische Skripte `scripts/figures/`); **Textextraktion**: pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill); **Semantik**: nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (EN-Grounding-Layer, temp-0-Protokoll in `scripts/semantic_ground_en.py`); **Konzeptextraktion (D1)**: qwen-plus via Alibaba Cloud Bailian API (als production-extraction-model gelabelt), Gold-N=92 (20 hand-annotiert C9a + 72 machine-seeded/human-accepted C9b, sozial F1 0,939† Developing; G3-Dual-Harness-Notiz `research/gold_deconfound_2026-09-14.md`); **v25-Re-Freezing**: `scripts/figures/fig4_null_model.py` + `scripts/p2_size_match.py` + `scripts/lds_c_compute.py` (Seeds/Determinismus, `docs/BASELINE_LEDGER.md` §1–§6), Gold-Blind-Review-Apparat `scripts/gold_blind_audit.py` (deterministisch, kein Modell als Annotator); **OCR/LLM-Nutzung ist in allen Ergebnisdateien als Layer getrennt gebucht** (kein Vermischen mit String-Match-Zählungen).
+Externe Werkzeuge und Modelle (BWKI-Kriterium Eigenständigkeit — eigene Leistung: Design, LDS-Definition, alle Befund- und Falsifikationsanalysen; Hilfsmittel hier offengelegt): **Netzwerke/Graphen**: NetworkX, 3d-force-graph (CognitiveSpace-Rendering); **Figuren**: matplotlib (deterministische Skripte `scripts/figures/`); **Textextraktion**: pymupdf + RapidOCR-ONNX (DirectML-GPU, `pdf-reading`-Skill); **Semantik**: nomic-embed-v1.5 (LM Studio, Prefilter) + Muse-Spark-Adjudikation (EN-Grounding-Layer, temp-0-Protokoll in `scripts/semantic_ground_en.py`); **Konzeptextraktion (D1)**: qwen-plus via Alibaba Cloud Bailian API (als production-extraction-model gelabelt), Gold-N=92 (20 hand-annotiert C9a + 72 machine-seeded/human-accepted C9b, sozial F1 0,939† Developing; G3-Dual-Harness-Notiz `research/gold_deconfound_2026-09-14.md`); **v25-Re-Freezing**: `scripts/figures/fig4_null_model.py` + `scripts/p2_size_match.py` + `scripts/lds_c_compute.py` (Seeds/Determinismus, `docs/BASELINE_LEDGER.md` §1–§6), Gold-Blind-Review-Apparat `scripts/gold_blind_audit.py` (deterministisch, kein Modell als Annotator); **OCR/LLM-Nutzung ist in allen Ergebnisdateien als Layer getrennt gebucht** (kein Vermischen mit String-Match-Zählungen). Die HF-`main`-SHA (`research/weight_snapshot_20260916.json`, Zugriff 2026-09-16: `nomic-embed-text-v1.5` → `e9b67630…`, `Phi-4-mini-instruct` → `cfbefacb…`, `contrastors`-HEAD → `613ddfd3…`) sind heutige HEAD-Stände und damit kein Experimental-Pin der Läufe vom 2026-09-12/14. Die served Revision des LM-Studio-Endpunkts (`GET /v1/models`) legt nur Modellnamen offen, sodass die served Revision als UNVERIFIED zu buchen ist. Die lokale Phi-Datei ist eine Community-Quantisierung (`MaziyarPanahi`, SHA `5482cf4a…`), deren GGUF-Bytes nicht gegen offizielle Safetensors-Hashes prüfbar sind; die nomic-Gewichtsdatei ist lokal nicht auffindbar (UNVERIFIED).

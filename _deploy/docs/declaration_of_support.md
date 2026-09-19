@@ -3,7 +3,7 @@
 > **Version**: 2.0 | **Stand**: 2026-09-11 (vor Einreichung final geprüft)
 > **Grundlage**: BWKI 2026 Teilnahmebedingungen, Klausel „Eigenständigkeit" (Stand 28.04.2023)
 > **Zweck**: Dieses Dokument legt alle externen Unterstützungsquellen des Projekts transparent und vollständig offen. **Es ist mit der schriftlichen Ausarbeitung einzureichen.**
-> **v1.0 → v2.0 Änderungen**: alle KI-Anbieter ergänzt (opencode zen / OpenRouter / DashScope / NIM / Cohere / Kilo), 55-Modell-Replikation, Methodenentscheidung Extraktionsmodell = Versuchsmodell, ein Drittanbieter-API-Abrechnungsvorfall; F1-Zahlen-Zuordnung korrigiert.
+> **v1.0 → v2.0 Änderungen**: alle KI-Anbieter ergänzt (opencode zen / OpenRouter / DashScope / NIM / Cohere / Kilo), 59-Modell-Replikation (59 Messungen / 54 Modelle), Methodenentscheidung Extraktionsmodell = Versuchsmodell, ein Drittanbieter-API-Abrechnungsvorfall; F1-Zahlen-Zuordnung korrigiert.
 
 ---
 
@@ -35,6 +35,8 @@ Das Projekt nutzt große Sprachmodelle (LLMs) in **zwei klar getrennten Rollen**
 | **opencode-Terminal** | gpt-5.6-luna (Herkunft ungeklärt) | West-Erweiterung (vollständig) |
 
 **Mehrmodell-Replikation (59 vollständige Messungen / 54 eindeutige Modelle + 26 laufend)**: 2026-08-09/10 wurden 42 DashScope-Modelle + 7 zen/OpenRouter-Modelle + D1-Baseline unter identischem P1-Protokoll (3 Sprachen × k=10) als LLM-as-Subject vermessen. **West-Erweiterung 2026-09-09/13 (gleiches Protokoll, alle vollständig)**: gpt-oss-20b (NVIDIA NIM), command-a-03-2025 (Cohere), laguna-s-2.1 + nemotron-3-super (Kilo), gpt-5.6-luna + grok-4.6 + muse-spark (opencode-Terminal), llama-3.3-70b (Cloudflare), phi-4-mini (LM Studio, lokal) → **59 vollständige Messungen / 54 eindeutige Modelle**, alle ZH-DE-Paare signifikant. **Kleinstmodell-Grenze (nicht gezählt)**: qwen2.5-0.5b (ZH-DE n.s.), hy-mt2-1.8b (Boden NaN), gemma-3-270m (Quarantäne) — dokumentiert in Paper §8.15 und Portal. **Alle Modelle wurden als kontrollierte Versuchsmodelle vermessen**; ihre Antworten und Extraktionen bilden den Datenkörper des Papiers (`data/lds_c/llm_subject/`). Dies sind Forschungsdaten, keine „Hilfe bei der Anfertigung".
+
+**Design- vs. Ausführungs-Richter (Phase-3b-Klarstellung, 2026-09-16; Design ≠ Ausführung, nicht austauschbar)**: Der **Design-Richter** ist `phi-4-mini-instruct` (offene Gewichte, Snapshot-Objekt `research/weight_snapshot_20260916.json`; HF-main-SHA heutiger HEAD, Experimental-SHA UNVERIFIED). Die **ausgeführte Fusion** nutzte `muse-spark-1.3-contributor` (geschlossene API, 10 parallele Richter, 407 Ergebnisse). Die Two-Tier-Vektor-Kontrollebene (App. W) nutzt ausschließlich nomic-Embeddings und ist von diesem Richtertausch **unberührt** (Paper §2.12, App. W §§W.1/W.5).
 
 ### 1.2 Extraktionsqualität und F1-Zahlen (v1-Verwechslung korrigiert)
 
@@ -88,8 +90,8 @@ Das Projekt extrahierte dreisprachige Konzeptstrukturen zu 5 Gesellschaftsthemen
 
 | Beteiligte | Rolle | Anmerkung |
 |--------|------|------|
-| Teilnehmende Schüler | Projektleitung, Forschung | Forschungsdesign, Datenerhebung und Ergebnisinterpretation eigenständig erbracht |
-| Schule (deutsches Gymnasium) | stellt Rahmen | keine inhaltlich-wissenschaftliche Einwirkung |
+| Jiajun Rong (Lead) · Zhenxi Lan (Supporting: Finanzierung & Beratung) | Projektleitung, Forschung | Forschungsdesign, Datenerhebung und Ergebnisinterpretation eigenständig erbracht (Rollen s. §0) |
+| Privatschule Schloss Heessen (deutsches Gymnasium) | stellt Rahmen | keine inhaltlich-wissenschaftliche Einwirkung |
 | Weitere Teams/Institutionen | keine | keine externe Forschungskooperation |
 
 ---
@@ -111,7 +113,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 ## 6. Urheberrecht und Musik (Videomaterial)
 
 - Das Einreichungsvideo verwendet selbst erstellte Bilder und systemgenerierte Inhalte sowie **ein CC-lizenziertes Musikstück** (Nachweis s. u.).
-- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (`202609171822_100MB.mp4` + EN/ZH-Untertitelvarianten).
+- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (**EINGEREICHT: `submission/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4`, DE ohne Untertitel, 3840×2160@60**; EN/ZH-Untertitelvarianten als Alternativen im selben Verzeichnis).
 - LDS-Definition, Fragebogen und Versuchsdesign der Arbeit sind originär (einschlägige Literatur im Papier zitiert).
 
 ---
@@ -120,7 +122,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 
 | Regelanforderung | Status |
 |---------|------|
-| Offenlegung der KI-Modellnutzung | ✅ diese Datei §1 (alle Anbieter + 55-Modell-Replikation + Extraktions-=Versuchsmodell-Entscheidung) |
+| Offenlegung der KI-Modellnutzung | ✅ diese Datei §1 (alle Anbieter + 59-Modell-Replikation 59/54/177 + Extraktions-=Versuchsmodell-Entscheidung) |
 | Offenlegung KI-basierter Hilfsmittel | ✅ diese Datei §2 |
 | Offenlegung der Datensatzquellen | ✅ diese Datei §3 |
 | Offenlegung Personen/Institutionen | ✅ diese Datei §4 |

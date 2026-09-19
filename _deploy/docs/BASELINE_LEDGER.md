@@ -1,4 +1,6 @@
-# BASELINE_LEDGER — 基线推导台账 (frozen 2026-09-12, v20)
+# BASELINE_LEDGER — 基线推导台账 (frozen 2026-09-12, v21 2026-09-16)
+
+> SSOT-Hinweis (2026-09-17): Kanonische Datei `../submission/final/BASELINE_LEDGER.md`; diese Kopie ist ein inhaltsgleicher Lese-Spiegel (für `scripts/tools/ledger517.py` + 46 Pfad-Verweise erhalten) — Änderungen nur im Kanon, dann spiegeln.
 
 > 每个基线四列：定义 → 代码 → 产物 → 复现命令。状态三态：**verified**（可引用）/ **needs_review**（ directional only，补实验后转正）/ **drop**（退役）。
 > 精度政策：测量值报 **3 位小数 + CI**（第 4 位为计算对账位，提取误差 ΔLDS≈0.0014 已淹没第 4 位）。
@@ -61,7 +63,7 @@
 - 结论：wiki>math、gap 全负，方向成立；点值 exact reproducibility 成立（守卫 + 排序冻结 + 双跑一致）。旧"跨进程抖 ±0.002"已消除。
 
 ## §7 Wikipedia control — needs_review
-- 对齐后：`data/lds_c/lds_k_deep/lds_k_deepen_20260808.json` → wiki 0.698/0.723/0.819 vs math 0.934/0.938/0.519（公式字段自标 frozen v3 二元）。
+- 对齐后：`data/lds_c/lds_k_deep/lds_k_deepen_20260808.json` → wiki 0.698/0.723/0.819 vs math 0.933/0.938/0.519（公式字段自标 frozen v3 二元）。
 - 旧 1.0（`fig_wikipedia_lds_data.csv` 全 1.0）为 Latin-only 对齐伪影，作废；旧 CSV 无 git 历史，待移 `_archive/`。
 - 缺口：96 条 gloss 系 deepseek-v4-flash 英文化，无人工抽检、无第二模型交叉 → 补盲抽 ≥30/96 + qwen-plus 交叉 gloss，否则不得作内容证据。
 
@@ -80,11 +82,40 @@
 
 ## §10 Fig4 / Fig8 frozen figure values（2026-09-14 更新，B1/B2/B5 重跑，可引用绘图快照）
 - **Fig4**（`$env:PYTHONHASHSEED=0; python scripts/figures/fig4_null_model.py [--seeds "42,999,2026,7,1234"]` → `outputs/figures/fig4_null_model_data.csv` + `fig4_null_model{,_de,_zh}.png`）：Full 基线 **0.9336 / 0.9382 / 0.5188**（ZH-EN / DE-EN / ZH-DE；发表取整 0.934/0.938/0.519）；Structure Null 点值 **0.9571/0.9568/0.7154**（sorted 冻结，旧快照 0.9571/0.9546/0.7142 见 §1 差异说明）+ 5-seed 均值±SD **0.9562±0.0010 / 0.9555±0.0024 / 0.7170±0.0013**；Within-Lang floor 点值 0.9695/0.9744/0.9615 + 5-seed 均值 0.9700/0.9692/0.9682（±0.0061/0.0055/0.0085）；Label-Permute 点值 0.8407/0.8701/0.6704 + 5-seed 均值 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069；Mono Control 列已填（点值 0.9695/0.9615/0.9744，5-seed 均值 0.9700/0.9682/0.9692）。
-- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.934/0.938/0.519 vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
+- **Fig8**（`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination_data.csv` + `fig8_lds_decontamination{,_de,_zh}.png`，确定性快照、不重算）：Full 0.933/0.938/0.519 (re-freeze 2026-09-16) vs Structure Null 0.957/0.957/0.717 vs 去污染 T1 FilterA（167/219 CJK-de 标签剔除、52 保留）0.985/0.985/0.990；ZH-DE 箭头 +0.47（T1 falsifiziert）。复现：`python scripts/figures/fig8_lds_decontamination.py`。快照基底声明（2026-09-14）：Fig8 struct 列为 09-12 冻结快照（3 位小数），与当前 point（0.9571/0.9568/0.7154）差 ≤0.003（ZH-DE 0.717 vs 0.7154）；箭头结论只依赖 full vs 去污染，与 struct 列无关，不受影响。
 - **fig_a7_3 语义**（2026-09-14）：`fig_a7_core.py` 改首行胜出 → fig_a7_3 取 legacy point（非 multiseed 均值）；EN/DE/ZH 三图已按此重建（`fig_a7_3_null_models{,_de,_zh}.png`）。
 - **档案声明**：`data/lds_c/**` 历史 JSON（如 `metric_robustness_20260811.json`、`multi_model_replication_202608*.json` 内 0.9546）保留冻结前值为档案，**不得引用**；引用以本台账 §1/§10 为准。
+
+## §11 2026-09-16 增补（v21；双人复核签字：opencode-agent/2026-09-16 ✅ pytest84 / ____ 待签）
+
+- 共识 v4：`research/consensus_v4_20260916.json/.md`（intra pro 0.5206 / v41 0.6000 / kimi 0.7291；inter 0.5009；
+  vs_mimo 0.22–0.26；表决 546/203/884/1905/70）；thr 敏感性
+  `research/thr_sensitivity_v4_20260916.json/.md`（自检 shift=0 精确复现；thr−1→683/321/766，thr+1→426/126/961）。
+- 修数：①删幻觉边 2＋②去重 24（`research/prune_backup_20260915/`）；③政策 A 仅 #6 可执行已入库
+  （`research/prune_backup_20260916_endpoint/`，其余 12 HOLD 转全局别名政策）；
+  ④破环 9 动作已执行（8 弱边删除＋#11 PDE/ODE 改向，`research/prune_backup_20260916_ring/`，pytest 84 绿）。
+- P1 stale 决议：v41 `zh_微分方程_ch9_sec9.1-9.2.r3.json` 在盘保留作证据，manifest 维持 missing＋do_not_retry，
+  不入 done（审计 BAD，入 done 污染计数）；下游 consensus 按 82 计的 ≤1 文件夸大已入 L1 债务。
+- 门户：Two-Tier（A）＋L1–L5（B/D）＋证伪探针（C）已粘 `_deploy/index.html` 已镜像；新段仅英文，三语回退英文。
+- 提交：§6 补 177 Tests＋双账（59/54/177 vs 62/57/186，去 luna 出处未澄清单列 P0）；
+  `docs/submission/` 已镜像 final 五件；checkliste Stand→09-16。
+- 证据身份账（2026-09-16）：`research/bailian_mimo_sha_20260916.json`
+  （bailian 68 件 dir-sha 4fa5dda8762b6d79 / mimo 13 件 faaa278538ab7f3d；原文件黑箱不进 git）；
+  `research/weight_vectors_sha_20260916.json`（15.89MB cca943eb… / 15.87MB 6a4f8cb9…，
+  与 snapshot 记录一致；Release `data-weight-vectors-20260916`
+ （https://github.com/jjjjjjjjnnjnn/BWKI-2026-LinguaGraph/releases/tag/data-weight-vectors-20260916），
+  仓库内保持 HELD 未入库）；SSOT `research/numbers_ssot_20260916.json`＋
+  门禁 `scripts/tools/numbers_audit.py`；portal W 指针（paper §9 结论章，评审证据外）。
+- 再冻结 2026-09-16（ring/prune 修复后 pipeline 重算）：merged relations 525→517，vis links 238→233（密度0.0015/分量388/零度381/最大分量121 不变），Full LDS-K 0.9336/0.9382/0.5188→0.9330/0.9378/0.5190(发表0.933/0.938/0.519，δ≤0.001舍入容限内)，STEAM 839→834；CI guard 与 SSOT 同步；10 条减表12 条增均可追溯至审计修复。
 
 ## 补实验优先级
 - P0（2026-09-14 状态）：§2.2 多 seed 分布 ✅、§5 floor 分布 + Mono 修 ✅（均为 5-seed；200× 更紧 SE 为可选项）、§1 sorted 冻结 ✅；§2.3 n_iter≥1000 重算 ⏳blocked（代码就绪，待跑 `--perm-iters 1000`）。
 - P1：§7 gloss 抽检 + 交叉、§6 ✅ 已重冻（docstring 旧数 0.444/0.800 待 A 组核对）、Mono bug ✅ 已修。
 - P2：GED 近似路线 ✅ 已正式放弃并冻结（§8d，用户决策 2026-09-14）、旧 1.0 CSV 归档。
+
+## §12 全量化审核 v22（2026-09-16；post-PDF-Stand，仅 markdown 台账）
+- 全复算：`scripts/tools/reproduce_headline.py` 28/28 match，numbers-gate PASS（见 `research/reproduce_headline_20260916.md`）。
+- §11 行 89–90 共识裸数两处特此改引为报告指针（`research/thr_sensitivity_v4_20260916.md`），内容不变，headline 维持禁用；live recount 漂移（weak −1 / hypo −2，6 文件 ±1）已记偏离 D-系，不修数（禁用量级，无 headline 影响）。
+- 统计双审：重跑全 match（Youden/perm/dedup/E3/CKA·RSA 精确），方法盲审 12 项中 SAP 缺失与 gold-72 盲态判 reject（`research/stat_methods_review_20260916.md`）；paper §9.5 已追加第 6 条 Prüfarchitektur-Limitation。
+- pitch `video_script.md` 口径已对齐 SSOT（59/54/elf/n=26-30 geparkt）。
+- 门禁判定：v1.0 tag 继续 block（H1 二评＋H3 二签人类项＋D2/D8/D9/D10/D13/D17 六 open 偏离）；总报告 `research/full_audit_report_20260916.md`。

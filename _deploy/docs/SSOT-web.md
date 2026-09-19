@@ -12,6 +12,12 @@
 | Chemistry | concepts / relations | **220 / 215** | Backfill后基线(218+2, 0 dangling) |
 | Titles总量 | Math + Phys + Chem | **204 = 32 + 83 + 89** | Portal `#sources`实测三数之和；README Total以此为准(旧240退役) |
 
+## v26 Bridges-Retirement + Portal-Zahlen (2026-09-14)
+
+- STEAM: **1143 nodes / 834 intra-discipline links / 0 bridges** (`steam-v2`); 10 hand-picked Bridges retiriert → `research/steam_bridges_retired_2026-09-14.json` (Details v24-Note unten).
+- Portal-Wording EN/DE/ZH: Math "556 nodes · 233 rendered links (of 517 aligned relations) · 219 groups"; Totals exakt **1,143**; Scope-Note nennt STEAM-Vergleichsansicht.
+- Steam-Panel: abgeblendete Disziplin zeigt `(hidden)`-Tag (DE `(ausgeblendet)` / ZH `（已隐藏）`); Bridge-Zeile/Legende entfernt. Shots 7 neu. pytest 84/84.
+
 ## v25 Gold-Provenance-Härtung (2026-09-14)
 
 - G1 金标三段披露：Gold-N=92 = Batch A 数学20真人工 (`annotator_1`, Mature/C9a) + Batch B 社会72机器预提+人工接受 (`auto_accepted`, Developing/C9b)；目标100实得92 (8空丢弃)；`research/gold_review/` 缺失已记录。
@@ -24,8 +30,8 @@
 | 数字 | 值 | Scope | 来源 | 用处 |
 |---|---|---|---|---|
 | Concepts (total) | 1,140+ | 全项目 Math 556 + Physics 367 + Chemistry 220 | `README.md` L131-134 | portal hero |
-| Relations (total) | 1,100+ direct | 同上 (525 + 386 + 215) | `README.md` L131-134 | portal hero |
-| Math nodes / relations / groups | 556 / 525 / 219 | 数学子图 (= 3D可视化数据) | `manifest.json` graph/alignment | 视频 SSOT · CognitiveSpace段 (`556 nodes · 525 relations`) |
+| Relations (total) | 1,100+ direct | 同上 (517 + 386 + 215) | `README.md` L131-134 | portal hero |
+| Math nodes / relations / groups | 556 / 517 / 219 | 数学子图 (= 3D可视化数据) | `manifest.json` graph/alignment | 视频 SSOT · CognitiveSpace段 (`556 nodes · 517 relations`) |
 | Textbooks | 204 titles (32 math in-graph + 83 phys + 89 chem) | 全项目 Titel-Summe, Portal `#sources` | `02_methodology.md` 计数口径 (68/72/32) | portal contributions |
 | Gold labels | 92 (social 72, math 20) | 全项目 | `README.md` L142 | validation |
 | F1 | social 0.939 / weighted 0.881 | 全项目 | `README.md` L144+ | hero + validation |
@@ -37,7 +43,7 @@
 
 1. hero 保留 1,140+ / 1,100+,下方加一行 scope 注脚:
    `Math 556 · Physics 367 · Chemistry 220 — full project graph (README.md §dataset)`.
-2. CognitiveSpace 段保留 `556 nodes · 525 relations · 219 groups`,标注 `mathematics subgraph (manifest.json)`.
+2. CognitiveSpace 段保留 `556 nodes · 517 relations · 219 groups`,标注 `mathematics subgraph (manifest.json)`.
 3. "19-model benchmark" 旁标注 `model-selection benchmark on 92 gold labels`,与 §5 的 59/54 区分。
 4. 禁止新数字;物理/化学数只用 README 已有值,不反查 legacy pipeline。
 
@@ -70,9 +76,9 @@
 - Strata formal: CN 48/48 (0.130) vs West 11/11 (0.155, ohne luna 10/10 0.148); EN n.s. 9/177 (+phi ZH-EN p=0.224); dedup 54/54 (0.137); Youden 59: Optimum 0.12, CI 0.12–0.13; Votes (62 Voter): ≥10: 237 vs 157±4; Heimat:safety 48 DE → „48 von 62".
 - Portal: Small-Model-Panel (4 Karten) + densityChart (Baseline 294/299/293 vs phi ~140 vs qwen2.5 zh36 vs hy-mt2 zh17) + smallSigChart (Median 0.123 vs phi 0.087 vs n.s./NaN/n-a); Collecting-Tabelle 26 Zeilen (23 incomplete + qwen2.5/hy-mt2-boundary + gemma-Quarantäne).
 
-## v24 STEAM fused 3D (2026-09-14)
-- Quelle: `scripts/build_steam_graph.py` (viewer-Tripel → `web/data_steam.js`, `var data_steam`): **1143 nodes (556+367+220) / 849 links (238+386+215 + 10 Bridges)**. ID-Disjointheit per Assert (keine Kollision); `discipline`-Tag pro Node/Link.
-- Bridges: `data/steam_bridge_dict.json` (frozen 2026-09-14, 10 Paare, en-Label-Deckung): Thermo-Gesetze phys-chem (3), Resonanz/SHM/Kinematik math-phys (5), Avogadro/Brown phys-chem (2, chem-seitig `_chem`-Suffix-IDs), significant figures math-chem (1). Typ `analogy`, `cross_discipline:true, inferred:true`, gold dargestellt.
+## v24 STEAM fused 3D (2026-09-14; bridges retired same day)
+- Quelle: `scripts/build_steam_graph.py` (viewer-Tripel → `web/data_steam.js`, `var data_steam`): **1143 nodes (556+367+220) / 834 links (233+386+215 intra-discipline, 0 bridges)**. ID-Disjointheit per Assert (keine Kollision); `discipline`-Tag pro Node/Link.
+- Bridges RETIRED 2026-09-14: 10 hand-picked pairs (shared en-labels, `analogy` type) removed from viewer + script; archived at `research/steam_bridges_retired_2026-09-14.json` with reason (no systematic cross-discipline mining → would imply undiscovered structure). STEAM = side-by-side comparison view, no cross-discipline claim. Panel row/legend/about-text removed; per-discipline rows show `(hidden)`-tag when unticked.
 - Viewer (`web/index.html`, +241/-18): Tab **全部/Alle/All** an erster Stelle + Fach-Toggles (Brücke nur bei beiden Enden sichtbar) + Farbmodus Stufen (Default, null Regression) / Fächer + Vergleichs-Panel (Dichten live: math 0.0015 / phys 0.0057 / chem 0.0089, Stufen-Balken 36/196/388/523, Finding-A/B-Anker) + `?graph=steam`-Deep-Link. Verifiziert: headless Chrome, 3 Modi je 0 JS-Errors.
 - Einstiege: Portal-CS-Sektion `STEAM 3D`-Button (`cs_view_steam`, EN/DE/ZH) + Galerie-Karte (steam_t/s/d, EN/DE/ZH) + r_disc-Update; README-Nav + Hero-Thumbnails; Screenshots `portal_hero/full.png` + `steam_overview.png`.
 
@@ -101,7 +107,7 @@
 4 Versuche, publizierte Werte (556 nodes / 459 roots / max 8 / mean 0.40) zu reproduzieren:
 1. aligned_data.json alle Relationen, BFS: 442 / 270 / 6 / 0.72 ✗
 2. merged_relations requires(+prerequisite): 196–201 / ~110 / 4 / ~0.6 ✗
-3. compute_hds exakt auf merged (556 Konzepteinträge, 525 Rel): IDs inkonsistent (canonical_name vs Display-Namen) ✗
+3. compute_hds exakt auf merged (556 Konzepteinträge, 517 Rel): IDs inkonsistent (canonical_name vs Display-Namen) ✗
 Schluss: Quellgraph der publizierten Fig5 ist superseded. fig5 bleibt EN-only + Caption;
 kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/4/7 only).
 
@@ -244,7 +250,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v22-p1 (2026-09-12, 红蓝对抗12/12)
-- 366→367六处、89 titles、pitch 556/525、hero=1143、floor三线、人/机后缀、双账脚注、EN层标签、CN 7+4=11、p口径、paper frozen句、§2.2镜像句、MANIFEST 7行+数字修正。红方全过。
+- 366→367六处、89 titles、pitch 556/517、hero=1143、floor三线、人/机后缀、双账脚注、EN层标签、CN 7+4=11、p口径、paper frozen句、§2.2镜像句、MANIFEST 7行+数字修正。红方全过。
 - CLOSED 2026-09-12: author roles fixed to dual-team (Rong Lead / Lan Supporting funding+advisory).
 
 ## v21-p0b (2026-09-12, 红蓝对抗)
@@ -264,7 +270,7 @@ kein Re-Render (würde Balken fälschen). Skript: scripts/figures_i18n.py (fig3/
 - 公式终审：二元精确复现发表值(裁决人亲跑 `reproduce_lds_binary.py`，log冻结)；三元收窄为as-implemented；`src/scoring.py`加VERDICT注(行为不动)；Fig2重画二元+三语脚注；portal公式卡改回二元；paper §2.7改为Verdict注。
 - 附带：`outputs/physics_{comparison,cognitivespace}.json` v18漏提交的367/386本次收齐(physics_full.json实测367概念/386关系)；portal ZH字典区历史mojibake(HEAD既有)记P1，不在本轮修。
 - Fig3破案 CLOSED (Wave 2 W2.1, 原因找到→不删除)：middle 46/280→0.271、high 175/1113→0.073（无向密度唯一命中）；源头 eeca788/2ffd963/763b836（2026-06-21/22）；稠密管线已丢失（574→556/3375），16+96穷举无命中；Option 1落地（portal三语+story+assert信息）。
-- Fig5立案 CLOSED (Wave 2 W2.2, 同政策→不删除)：`docs/fig5_hds_forensic.md`新建；4阶段拼合史（eeca788定义/2ffd963 max7+mean0.40/8ad379a 459/897f04e max8+0.4029+3538/0962982 556分母）；丢失556/525一致ID图（merged-557+6悬空边为残骸，最接近460/7/0.27）；`6f1d5b2`事故覆盖math节（发表JSON仅存于6f1d5b2^）；脚注portal finding_b三语+story F7/fig5_caption三语；story stale 64%→60%顺手修复；paper表为发表态，披露由取证注承担。
+- Fig5立案 CLOSED (Wave 2 W2.2, 同政策→不删除)：`docs/fig5_hds_forensic.md`新建；4阶段拼合史（eeca788定义/2ffd963 max7+mean0.40/8ad379a 459/897f04e max8+0.4029+3538/0962982 556分母）；丢失556/517一致ID图（merged-557+6悬空边为残骸，最接近460/7/0.27）；`6f1d5b2`事故覆盖math节（发表JSON仅存于6f1d5b2^）；脚注portal finding_b三语+story F7/fig5_caption三语；story stale 64%→60%顺手修复；paper表为发表态，披露由取证注承担。
 
 ## v19 P2/P3/P4-Abschluss (2026-09-12，续)
 - P2 QC-closure: `--pages`-Modus in skill-`pdf_extract.py` (+ Manifest-Merge, `pdf_qc.py` ignoriert skipped/-1) → `conf_backfill.py`: 101 Seiten nachgeholt, **-1 = 0, 1481 Seiten, 27 flagged (alle belegt blank/cover), mean conf 0.9665**; Visual-Closure: 2 Seiten vom Modell gegengeprüft (xb2-p60 Sinus-Wechselstrom, bx1-p28 Redox — Schlüsselterme im OCR verifiziert); `render_qc_sample.py`.

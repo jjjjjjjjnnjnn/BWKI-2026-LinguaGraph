@@ -20,13 +20,13 @@ Vier Dimensionen wurden mit einem a priori definierten Kriterienkatalog codiert.
 
 ### 7.3 Pilotergebnisse (N=6 DE)
 
-**D1 Räumliche Granularität:** Kriterienerfüllung von 3/9 bis 9/9. DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*) — eine Kombination intrinsischer und relativer Referenzrahmen (vgl. Levinson, 2003). DE02 codierte nur ein Objekt ohne räumliche Relation. Die beobachtete intra-linguale Variation ist konsistent mit Slobin (2000).
+**D1 Räumliche Granularität:** Kriterienerfüllung von 3/9 bis 9/9 (Nenner: 9 Kriterien per `docs/lpa_codebook.md`; Skript-Norm /10 s. `scripts/analyze_lpa.py` — Abgleich s. P1-Reaudit). DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*) — eine Kombination intrinsischer und relativer Referenzrahmen (vgl. Levinson, 2003). DE02 codierte nur ein Objekt ohne räumliche Relation. Die beobachtete intra-linguale Variation ist konsistent mit Slobin (2000).
 
-**D2 Zeitliche Rahmung:** 1/6 eindeutig (T+: *vorverlegt*), 1/6 nicht-standardisiert (T~: *vorwärts bewegt*), 3/6 ambigu (T?: *verschoben*), 1/6 unvollständig (T-). Die Ambiguitätsvermeidung (3/5 Bearbeitende wählten richtungsneutrale Formulierungen) ist konsistent mit Boroditsky (2000) und Gentner et al. (2002).
+**D2 Zeitliche Rahmung:** 1/6 eindeutig (T+: *vorverlegt*), 1/6 nicht-standardisiert (T~: *vorwärts bewegt*), 4/6 ambigu (T?: *verschoben* u. a.; Kodierung s. `outputs/lpa_pilot_coded.json`, Zweitkodierung `lpa_coder2_manual.json`; IRR ausstehend). Die Ambiguitätsvermeidung (3/5 Bearbeitende wählten richtungsneutrale Formulierungen) ist konsistent mit Boroditsky (2000) und Gentner et al. (2002).
 
-**D3 Konzeptuelle Flexibilität:** Bilinguale Parallelerklärungen von 2/6 Probanden, inklusive Code-Switching (DE → EN innerhalb einer Äußerung), konsistent mit Pavlenko (2005) und Grosjean (2010). Sechs soziale Skriptstrategien beobachtet. Perspektivwechsel bei einem Probanden.
+**D3 Konzeptuelle Flexibilität:** Bilinguale Parallelerklärungen von 2/6 Probanden, inklusive Code-Switching (DE → EN innerhalb einer Äußerung), konsistent mit Pavlenko (2005) und Grosjean (2010). Sechs soziale Skriptstrategien beobachtet. Perspektivwechsel bei einem Probanden. (Kodierung s. `outputs/lpa_pilot_coded.json`; Kategorien-Zählung explorativ, IRR ausstehend.)
 
-**D4 Lexikalische Produktion:** Assoziative Kategorien umfassten Messung, Institution, Zeitdruck und Kalender. Benennungsstrategien von funktional-präzise bis kreativ-neologistisch und bilingual hybrid (vgl. Štekauer, 2005).
+**D4 Lexikalische Produktion:** Assoziative Kategorien umfassten Messung, Institution, Zeitdruck und Kalender (Kodierung s. `outputs/lpa_pilot_coded.json`, explorativ). Benennungsstrategien von funktional-präzise bis kreativ-neologistisch und bilingual hybrid (vgl. Štekauer, 2005).
 
 ### 7.4 Methodische Anmerkungen
 
@@ -34,7 +34,7 @@ Diese Analyse ist explorativ. Vor systematischen cross-linguistischen Vergleiche
 
 1. **Inter-Rater-Reliabilität:** Cohen's κ ≥ 0,70 angestrebt (Landis & Koch, 1977). Zwei unabhängige Codierer, 20 Antworten.
 2. **Dimensionsanalyse:** Abhängig von Stichprobengröße und Verteilungseigenschaften wird exploratorische Faktorenanalyse oder PCA durchgeführt.
-3. **Cross-linguistische Erweiterung:** Äquivalente ZH/EN-Fragebögen erstellt.
+3. **Cross-linguistische Erweiterung:** Äquivalente ZH/EN-Fragebögen erstellt (`data/questionnaires/questionnaire_{de,en,zh}.json`).
 
 ### 7.5 Methodologische Einordnung
 

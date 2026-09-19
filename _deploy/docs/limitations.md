@@ -1,5 +1,13 @@
 # LinguaGraph Limitations
 
+> **Wegweiser (Stand 2026-09-17)**: Die nachstehenden Abschnitte sind ein allgemeines Template (Frühphase).
+> Die verbindlichen, zahlenbelegten Einschränkungen stehen in:
+> `paper/04_discussion.md` §8.10/§8.12 (Power 0,06–0,12 Between vs. Within-Design-Folge, registrierte Folgeuntersuchung R1),
+> `docs/p2_methodology_rechecks.md` (Alignierungs-Artefakte: P2-Recheck, Size-Matching-Umkehr),
+> `docs/BASELINE_LEDGER.md` §6/§10 (retired Ablation-Werte, T1-Dekontamination Fig8),
+> `docs/evidence_register.md` C16/C17 (Herabstufungen).
+> Für die Begutachtung gelten diese vier Quellen; dieses Dokument dient nur als Überblick.
+
 ## Method Limitations
 
 ### 1. Concept Extraction Accuracy

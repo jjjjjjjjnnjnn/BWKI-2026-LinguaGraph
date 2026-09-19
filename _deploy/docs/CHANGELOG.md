@@ -4,6 +4,99 @@
 
 ---
 
+## [2026-09-19] reaudit — Seal + Post-seal-Audit + Reaudit B1–B4
+
+### Overview
+
+封盘 `b7b17f3`（tag `seal-2026-09-19`）+ 交接 v44–v48。Post-seal：D-V9（Jaccard 0.44–0.77）/ D-V10（ZH-EN 0.933）/ F5 post-hoc / J3 negativ，
+门户三轮（flaw fixes / L7+MIMO+Carousel / Show-all / fig-Legende），`_deploy` 同步。Reaudit B1–B4（零新实验）：
+P2 分母注记、E2 降级、T1 concept-level 重算（micro-P 0.26–0.41，C22 定性不变）、Panel weak-MAINTAIN + reservations、
+C21–C24 caveats、论文 hedge 回写、ZH-EN 扫尾、C-TRACE。门禁双 PASS / pytest 84/84。
+
+### Commits
+
+`b7b17f3` (seal) → `908f01d` (audit) → `b03ae88` (sync) → `093993a`/`1438324`/`a8469df`/`b4f17c7` (portal) →
+`d676ed6` (v48) → `e02c7ee` (B1) → `4abff63` (B2) → `cc6ba44` (B3) → B4 (this).
+
+---
+
+## [2026-09-14] v26-nobridges — 10 STEAM-Bridges retiriert + Portal-Zahlen ehrlich gestellt
+
+### Overview
+
+User-Entscheidung "Brücken löschen" umgesetzt: Die 10 frozen Paare waren eine hand-picked Allowlist (shared en-labels), kein systematisches Mining → aus Viewer + `build_steam_graph.py` entfernt, archiviert unter `research/steam_bridges_retired_2026-09-14.json` (mit Begründung). STEAM neu: **1143 nodes / 839 intra-discipline links / 0 bridges** (`steam-v2`, Assert 839). Viewer: Bridge-Zeile, Legende, `legend.bridge`/`steam.bridges`-Keys und tote `cross_discipline`-Branches raus; `about.body_steam` EN/DE/ZH mit Retirement-Hinweis. Diagnose nebenbei: Chemie-0/0 + "Bridges 5" war Toggle-off-Darstellung (korrekt), kein Datenbug → `(hidden)`-Tag pro abgeblendeter Panel-Zeile (EN `(hidden)` / DE `(ausgeblendet)` / ZH `（已隐藏）`).
+
+Portal drei Sprachen: Mathematik "556 nodes · 238 rendered links (of 525 aligned relations) · 219 groups", Totals exakt **1,143**, Scope-Note nennt STEAM-Vergleichsansicht. Paper-Quoten unangetastet. Shots 7 neu (steam_overview×3, portal_hero×3, portal_full; DE/ZH bildverifiziert). pytest 84/84, Viewer 0 JS-Errors, `_deploy` Doppelspiegel + `mirror_root.py`.
+
+### Files
+
+- Code: `scripts/build_steam_graph.py` (Allowlist raus, Assert 839, `bridge_count: 0`), `cognitive-space/web/index.html` (Panel/Legende/i18n), `cognitive-space/web/data_steam.js` (1143/839)
+- Retired: `data/steam_bridge_dict.json` → `research/steam_bridges_retired_2026-09-14.json`
+- Portal/Docs: `cognitive-space/portal/index.html` + `cspace.html` (EN/DE/ZH), `README.md`/`README_DE.md`/`README_ZH.md` (STEAM-Captions, Totals 1,143), `cognitive-space/portal/README.md`, `docs/SSOT-web.md`
+- Shots: 7 PNGs (web/ + `_deploy`-Spiegel)
+
+---
+
+## [2026-09-14] g2-workbench — Offline-Blindaudit-UI + Per-Language-Floor im Code
+
+### Overview
+
+`--workbench` baut `research/gold_review_v2/workbench.html` (Offline-Single-File: 72 Items, localStorage-Autosave, Export → `--import`). Build mit Blindness-Gate (fails loud bei Seed-Leak; verifiziert: 72 eingebettet, 0 Prefill). End-to-End mit 3 synthetischen Urteilen getestet (accept/edit/reject → n=3, reject=1, Verdict maintain). Inkonsistenz repariert: **Per-Language-Floor ≥0.7 jetzt im Code enforced** (vorher nur PROTOCOL-Papier) + reject = F1 0.0 + `n_f1_valid`. PROTOCOL §11 dokumentiert Workbench-Ablauf.
+
+### Files
+
+- `scripts/gold_blind_audit.py` (`--workbench`, `PASS_AGR_LANG`, Reject-F1), `research/gold_review_v2/workbench.html`, `research/gold_review_v2/PROTOCOL.md`
+
+---
+
+## [2026-09-14] readme-i18n-shots — DE/ZH lokalisierte Screenshots
+
+### Overview
+
+Playwright 1600×900 Direkt-Schnitt der UI-Sprache: `portal_hero_de/zh.png` + `screenshot_de/zh.png` + `steam_overview_de/zh.png` (Viewer 0 Errors). README_DE → `*_de.png`, README_ZH → `*_zh.png`, EN unverändert; `_deploy/` Doppelpfad-Spiegel. pytest 84.
+
+### Files
+
+- `README.md`, `README_DE.md`, `README_ZH.md`, 9 PNGs unter `cognitive-space/web/` (+ `_deploy`)
+
+---
+
+## [2026-09-14] v25-redteam — Bare-0.939-Sweep + C10-Verengung
+
+### Overview
+
+Nacktes 0.939 überall getilgt (Portal/Story/Pitch/Jury/Demo/OSF/Milestones); Pitch-All-Zeile korrigiert (0.951/0.842/0.844/0.881). C10 verengt (N 57–92 ungleich + Fail-Ausschluss + qwen-Heimvorteil-Hinweis). Audit: reject=0 + Per-Language-Floors; Fig8/a7_3/Archiv-Ledger-Notizen; `submission/final/declaration_of_support.md` synchron. PDF 235200B ×3 konsistent, pytest 84, 19 SAME.
+
+### Files
+
+- `cognitive-space/portal/index.html`, `cognitive-space/web/story/`, `submission/` (pitch, jury, demo, osf, milestones, final), `docs/paper/`, Fig-Skripte, PDFs ×3 Orte
+
+---
+
+## [2026-09-14] v25-gold-honesty — C9a/C9b-Split + Blindaudit-Rig
+
+### Overview
+
+Gold 92 = 20 echte Hand-Annotationen Mathe (`annotator_1`, C9a Mature) + 72 maschinell vorgeschlagen/menschlich akzeptiert sozial (`auto_accepted`, C9b Developing). Paper §2.8 (3 Absätze Disclosure + †-Fußnote + G3-Dual-Harness) + §2.12/§4/Fazit/C9-Split + Portal-`val_bench_note` (3 Sprachen) + README-Hinweis. B1/B2/B5/B6 neu eingefroren (5-Seed-Mittel±SD, `sorted(key=repr)`, PYTHONHASHSEED-Guard, struct 0.9571/0.9568/0.7154). Neu: `scripts/gold_blind_audit.py` + `research/gold_review_v2/review_72.json` (72 leer, seed 20260914) + PROTOCOL + `gold_deconfound_2026-09-14.md/json` + SHA-Siegel + `wiki_gloss_audit_30.json`. GED offiziell begraben. PDF machine-seeded 6/Alt 0 verifiziert.
+
+### Files
+
+- `docs/paper/` (02/04/05 + C9), Portal-Validierung, READMEs, `scripts/gold_blind_audit.py`, `research/gold_review_v2/`, `research/gold_deconfound_*`, `research/gold_freeze_*`, `research/wiki_gloss_audit_30.json`
+
+---
+
+## [2026-09-14] v24-steam — STEAM-Fusionsgraph 1143/849+10b 3D
+
+### Overview
+
+`scripts/build_steam_graph.py` → `web/data_steam.js` (`var data_steam`) + `data/steam_bridge_dict.json` (10 frozen Paare). Viewer: 全部-Tab zuerst, Fach-Toggles, Dual-Color, Vergleichs-Panel mit Live-Dichten (math 0.0015 / phys 0.0057 / chem 0.0089), `?graph=steam`-Deep-Link. Portal-Button, Galerie-Karte, README-Nav, Screenshots (`portal_hero/full.png` + `steam_overview.png`), gh-Homepage/Topics live. Anmerkung: die 10 Bridges wurden noch am selben Tag retiriert (siehe v26).
+
+### Files
+
+- `scripts/build_steam_graph.py`, `data/steam_bridge_dict.json`, `cognitive-space/web/data_steam.js` + `index.html`, Portal + `cspace.html`, README-Trio, Screenshots, `_deploy`-Spiegel
+
+---
+
 ## [2026-09-13] v23g-smallmodel — phi-4-mini转正 (59/54/177) + 小模型边界专区
 
 ### Overview

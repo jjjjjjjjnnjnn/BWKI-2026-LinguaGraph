@@ -2,7 +2,7 @@
 
 > **Status**: Final (2026-09-08, v0.13.2) | **Sprache**: Deutsch (BWKI-Einreichsprache)
 > **Zweck**: Antwortentwürfe für die Fragen in der Einreicheplattform (Idee, Methoden, Umsetzung, Ergebnisse, Fehlerquellen, kritische Einschätzung, Entwicklung, Offenlegung)
-> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` und der Arbeit `docs/paper/` (SSOT: `manifest.json` — 556 Konzepte / 525 Relationen / 219 Gruppen).
+> **Digitale Quelle**: Alle Zahlen stammen aus `data/lds_c/` und der Arbeit `docs/paper/` (SSOT: `manifest.json` — 556 Konzepte / 517 Relationen / 219 Gruppen).
 > **Vollständige Unterstützungs-Offenlegung**: `docs/declaration_of_support.md`
 
 ---
@@ -39,19 +39,19 @@ Die Idee von LinguaGraph: **das KI-Modell selbst zum Versuchsprobanden machen** 
 | **Es ist kulturell gemustert, nicht zufällig** | ZH-DE-Divergenztreiber: DE betont Autonomie/Regeln/eigene Ziele, ZH Raum/Grenzen/Anspruch |
 | **Domänen-Asymmetrie (Kontrollbefund, indikativ)** | Institutionelles Wissen (Mathematik, indikativ full-v3 0.52 → nach T1-Dekontamination 0.99 — Label-Artefakt, s. Fig8); kulturelle Konzepte divergieren (indikativ 0.82) → Signal indikativ kultureller Natur, kein harter Kontrollbeweis |
 | **Struktur, nicht nur Wortwahl** | Auch die Beziehungen zwischen Konzepten organisieren sich sprachspezifisch (Kanten-Komponente divergiert systematisch) |
-| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert exakt die menschliche Marge (+0.014 ≈ +0.015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung) |
+| **Warum Menschen dafür ungeeignet sind** | N=15 (6 DE · 6 ZH · 3 EN), Between-Subject: LDS-C 0.93–0.96 ≈ Split-Half-Boden 0.92–0.96 → negatives Ergebnis ist ein Design-Artefakt. Der Mechanismus-Beleg: Heterogenitäts-Injektion in die LLM-Stichprobe (Konzept-Dropout q=0.30) reproduziert nahezu die menschliche Marge (+0.014 ≈ +0.015; Punktschätzung ohne CI; Konsistenz-Demonstration, keine quantitative Kausalzuordnung) |
 
 ## 5. Fehlerquellen — Was hat nicht funktioniert und warum?
 
-1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **konsistent auf die aggregationsbedingte Sparsity als Mechanismus zurückgeführt** (Signal-Marge +0,014 ≈ menschlich +0,015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung, siehe Paper §8).
+1. **Menschliches Between-Subject-Design** (das wichtigste "Nicht-Ergebnis"): Das erste Human-Experiment (N=15) zeigte kein Sprachsignal. Erst die Design-Effekt-Analyse zeigte: Die Signalamplitude ist bei Menschen und LLMs gleich groß — der Unterschied liegt im Rauschen (menschliche individuelle Variabilität vs. homogene LLM-Stichprobe). Durch Heterogenitäts-Injektion wurde die Negativität **im Einklang mit aggregationsbedingter Sparsity als Mechanismus-Hypothese gedeutet** (Signal-Marge +0,014 ≈ menschlich +0,015; Konsistenz-Demonstration, keine quantitative Kausalzuordnung, siehe Paper §8).
 2. **Alignment-Artefakt**: Chinesische Konzepte ohne lateinische Tokens (canonical_key) erzeugten leere Schlüssel → falsche Divergenz. Fix: Glossierung chinesischer Konzepte ins Englische vor der Alignierung, mit expliziter Fehlermeldung bei fehlenden Glosses.
 3. **Wikipedia-LDS=1.0-Artefakt**: Leere Mengen erzeugten still die maximale Divergenz. Fix: leere-Menge-Konvention (∅=∅ identisch; ∅ vs. nicht-leer = NaN, kein stilles Maximum) + Testabdeckung.
-4. **Modellabhängige Extraktionsqualität**: Die Extraktionsqualität variiert nach Domäne (soziale Konzepte F1≈0.94, deutsche Mathematik F1≈0.51). Dies betrifft die Lehrbuch-Kontrolldomäne, nicht das LLM-as-Subject-Kernexperiment.
+4. **Modellabhängige Extraktionsqualität**: Die Extraktionsqualität variiert nach Domäne (soziale Konzepte F1≈0.94, deutsche Mathematik F1≈0.51; Developing C9b, Harness ~0,65, Blind-Review pending, keine Validierungs-Behauptung). Dies betrifft die Lehrbuch-Kontrolldomäne, nicht das LLM-as-Subject-Kernexperiment.
 
 ## 6. Kritische Einschätzung — Grenzen und nächste Schritte
 
 **Ehrliche Grenzen**:
-- **Beweisumfang**: Sprachsignal in **59-Messungs-Replikation** (54 Modelle, alle ZH-DE sig., Richtung über Zufall) — aber ~81 % CN-Anbieter (elf westliche), 9 n.s. EN-Paare. Stratifiziert: CN 48/48 (0,130), West 11/11 (0,155) — als Anbietervergleich unterpowert.
+- **Beweisumfang**: Sprachsignal in **59-Messungs-Replikation** (54 Modelle, alle ZH-DE sig., Richtung über Zufall) — aber ~81 % CN-Anbieter (elf westliche), 9 n.s. EN-Paare. Stratifiziert: CN 48/48 (0,130), West 11/11 (0,155) — als Anbietervergleich unterpowert. Makro-Signifikanz über **177 Tests** (500 Permutationen, FWER-kontrolliert). Zählung: publiziert 59/54/177; Datei-Wahrheit 62/57/186 (qwen-max n=26/30 ausgeschlossen).
 - **Kleinstmodell-Grenze**: nur phi-4-mini (3,8B, +0,09, p<0,01) repliziert; qwen2.5-0.5b null (p=0,168), hy-mt2 NaN (leere Sets), gemma Quarantäne — Kette bricht bei Extraktion (Paper §8.15).
 - **5 Konzepte, 3 Sprachen**: Breite begrenzt; weitere Konzepte/Sprachen (z. B. Französisch, Japanisch) stehen aus.
 - **Schwelle (Vorschlag)**: ZH-DE-Marge ≥ 0.10 = „hoch divergent" (Spanne +0.03…+0.42); Youden 0,12 (CI 0,12–0,13) — Faustregel, keine validierte Grenze.

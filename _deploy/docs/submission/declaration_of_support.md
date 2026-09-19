@@ -3,7 +3,7 @@
 > **Version**: 2.0 | **Stand**: 2026-09-11 (vor Einreichung final geprüft)
 > **Grundlage**: BWKI 2026 Teilnahmebedingungen, Klausel „Eigenständigkeit" (Stand 28.04.2023)
 > **Zweck**: Dieses Dokument legt alle externen Unterstützungsquellen des Projekts transparent und vollständig offen. **Es ist mit der schriftlichen Ausarbeitung einzureichen.**
-> **v1.0 → v2.0 Änderungen**: alle KI-Anbieter ergänzt (opencode zen / OpenRouter / DashScope / NIM / Cohere / Kilo), 55-Modell-Replikation, Methodenentscheidung Extraktionsmodell = Versuchsmodell, ein Drittanbieter-API-Abrechnungsvorfall; F1-Zahlen-Zuordnung korrigiert.
+> **v1.0 → v2.0 Änderungen**: alle KI-Anbieter ergänzt (opencode zen / OpenRouter / DashScope / NIM / Cohere / Kilo), 59-Modell-Replikation (59 Messungen / 54 Modelle), Methodenentscheidung Extraktionsmodell = Versuchsmodell, ein Drittanbieter-API-Abrechnungsvorfall; F1-Zahlen-Zuordnung korrigiert.
 
 ---
 
@@ -111,7 +111,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 ## 6. Urheberrecht und Musik (Videomaterial)
 
 - Das Einreichungsvideo verwendet selbst erstellte Bilder und systemgenerierte Inhalte sowie **ein CC-lizenziertes Musikstück** (Nachweis s. u.).
-- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (`202609171822_100MB.mp4` + EN/ZH-Untertitelvarianten).
+- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (**EINGEREICHT: `submission/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4`, DE ohne Untertitel, 3840×2160@60**; EN/ZH-Untertitelvarianten als Alternativen im selben Verzeichnis).
 - LDS-Definition, Fragebogen und Versuchsdesign der Arbeit sind originär (einschlägige Literatur im Papier zitiert).
 
 ---
@@ -120,7 +120,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 
 | Regelanforderung | Status |
 |---------|------|
-| Offenlegung der KI-Modellnutzung | ✅ diese Datei §1 (alle Anbieter + 55-Modell-Replikation + Extraktions-=Versuchsmodell-Entscheidung) |
+| Offenlegung der KI-Modellnutzung | ✅ diese Datei §1 (alle Anbieter + 59-Modell-Replikation 59/54/177 + Extraktions-=Versuchsmodell-Entscheidung) |
 | Offenlegung KI-basierter Hilfsmittel | ✅ diese Datei §2 |
 | Offenlegung der Datensatzquellen | ✅ diese Datei §3 |
 | Offenlegung Personen/Institutionen | ✅ diese Datei §4 |

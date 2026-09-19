@@ -111,7 +111,7 @@ Am 2026-08-10 führte bei einer DashScope-Batch-Sammlung die **versehentliche Nu
 ## 6. Urheberrecht und Musik (Videomaterial)
 
 - Das Einreichungsvideo verwendet selbst erstellte Bilder und systemgenerierte Inhalte sowie **ein CC-lizenziertes Musikstück** (Nachweis s. u.).
-- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (`202609171822_100MB.mp4` + EN/ZH-Untertitelvarianten).
+- **Musiknachweis (Videobeschreibung + Portal-Fußzeile, gemäß Regelwerk — Autor/Rechteinhaber + Link)**: [Small Signs of Change – Sascha Ende](https://ende.app/en/song/13867-documentary-music-small-signs-of-change) (ende.app, CC BY 4.0). Einsatz als Hintergrundmusik im 204-s-Finalschnitt (**EINGEREICHT: `submission/pitch/LinguaGraph_BWKI2026_Pitch_4K.mp4`, DE ohne Untertitel, 3840×2160@60**; EN/ZH-Untertitelvarianten als Alternativen im selben Verzeichnis).
 - LDS-Definition, Fragebogen und Versuchsdesign der Arbeit sind originär (einschlägige Literatur im Papier zitiert).
 
 ---

@@ -90,8 +90,8 @@ Das Projekt extrahierte dreisprachige Konzeptstrukturen zu 5 Gesellschaftsthemen
 
 | Beteiligte | Rolle | Anmerkung |
 |--------|------|------|
-| Teilnehmende Schüler | Projektleitung, Forschung | Forschungsdesign, Datenerhebung und Ergebnisinterpretation eigenständig erbracht |
-| Schule (deutsches Gymnasium) | stellt Rahmen | keine inhaltlich-wissenschaftliche Einwirkung |
+| Jiajun Rong (Lead) · Zhenxi Lan (Supporting: Finanzierung & Beratung) | Projektleitung, Forschung | Forschungsdesign, Datenerhebung und Ergebnisinterpretation eigenständig erbracht (Rollen s. §0) |
+| Privatschule Schloss Heessen (deutsches Gymnasium) | stellt Rahmen | keine inhaltlich-wissenschaftliche Einwirkung |
 | Weitere Teams/Institutionen | keine | keine externe Forschungskooperation |
 
 ---
