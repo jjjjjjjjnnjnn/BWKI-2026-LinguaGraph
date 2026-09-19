@@ -198,7 +198,7 @@ Eine grobkörnige Codierung (Codebook v1: Legal/Institutional, Individual/Autono
 
 ### 4.5 Relationale Ebene (v3-Knoten+Kante)
 
-Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahierten Konzepten erfasst (7 Relationstypen, pro Thema). Insgesamt 162 Kanten (DE 59, ZH 67, EN 36). Die v3-LDS kombiniert Knoten- und Kanten-Jaccard (frozen Formel):
+Zusätzlich zur Konzeptebene wurden explizite Relationen zwischen den extrahierten Konzepten erfasst (7 Relationstypen, pro Thema). Insgesamt 162 Kanten (DE 59, ZH 67, EN 36; P1-Reaudit 2026-09-19 aus `data/lds_c/relations_20260808.json` reproduziert). Die v3-LDS kombiniert Knoten- und Kanten-Jaccard (frozen Formel):
 
 | Sprachpaar | LDS v3 | 95 %-CI | Node-Jaccard | Edge-Jaccard | LDS-K (v3) | ΔLDS | Split-Half-Boden |
 |:----------:|:------:|:-------:|:------------:|:------------:|:----------:|:----:|:----------------:|
@@ -250,7 +250,7 @@ Die erweiterte Humanvalidierung (N=15) liefert über **drei Analyseebenen** hinw
 | DE-EN | **0,930** | [0,912, 0,955] | 0,846 | 0,880 | **<0,01** |
 | ZH-DE | **0,945** | [0,932, 0,961] | 0,862 | 0,879 | **<0,01** |
 
-**Zentraler Befund**: Die beobachtete LDS-C übersteigt den Split-Half-Boden um **+0,08 bis +0,09** und die Label-Permutation um **+0,05 bis +0,08**. Ein formaler Permutationstest (500 Iterationen; zweiseitig; Anteil der Permutationen mit LDS ≥ beobachtetem LDS) liefert für alle drei Sprachpaare **p < 0,01** (keine der 500 Permutationen erreichte die beobachtete LDS-C). Anders als bei den menschlichen Daten (N=15, Between-Subject: LDS-C ≈ Boden ≈ Permutation, p = 0,08/1,0/1,0) trägt das Sprachlabel hier **messbares Signal**.
+**Zentraler Befund**: Die beobachtete LDS-C übersteigt den Split-Half-Boden um **+0,08 bis +0,09** und die Label-Permutation um **+0,05 bis +0,08**. Ein formaler Permutationstest (500 Iterationen; zweiseitig; Anteil der Permutationen mit LDS ≥ beobachtetem LDS) liefert für alle drei Sprachpaare **p < 0,01** (keine der 500 Permutationen erreichte die beobachtete LDS-C; P1-Reaudit 2026-09-19 reproduziert: 0/500 je Paar). Anders als bei den menschlichen Daten (N=15, Between-Subject: LDS-C ≈ Boden ≈ Permutation, p = 0,08/1,0/1,0) trägt das Sprachlabel hier **messbares Signal**.
 
 > **Dies ist der zentrale Kontrast der Arbeit**: Derselbe Messrahmen (LDS-C + Nullmodelle), nur das Design von Between-Subject (Menschen) auf Within-Subject (LLM) umgestellt, verwandelt ein nicht-trennbares Signal in ein trennbares. Der menschliche Negativebefund ist damit als **Design-Artefakt** charakterisiert — nicht als Beleg für das Fehlen sprachlicher Kognitionseffekte (Charakterisierung auf Exklusion + Konsistenz-Demonstration gestützt; keine quantitative Kausalzuordnung, s. §5.9.2b/§8.14).
 
@@ -291,9 +291,9 @@ Um die marginalen Beiträge von Sprachcode und kulturellem Rahmen zu trennen, wu
 |:------:|:---------------------:|:--:|:--:|:---:|:-------------:|:--------------:|
 | Intercept | +0,050 | 0,011 | 4,60 | <0,001 | — | — |
 | **same_lang** | **+0,038** | 0,009 | 4,28 | **<0,001** | **0,000** | **<0,01** |
-| **same_frame** | **+0,001** | 0,009 | 0,13 | **0,90** | **0,779** | **0,82** |
+| **same_frame** | **+0,001** | 0,009 | 0,13 | **0,90** | **0,937** | **0,82** |
 
-**Marginalbeitrag**: Das Teilen des Sprachcodes erhöht die Konzeptähnlichkeit signifikant (+0,038); das Teilen des kulturellen Rahmens hat **keinen** signifikanten marginalen Beitrag (+0,001). Die Permutationsprüfung (blockweise, 1000 Iterationen) bestätigt die Robustheit. Zusätzlich wurde ein **Cell-Cluster-Bootstrap** (1000 Iterationen, Resampling der 5 Zellen unter Beibehaltung der Dyaden innerhalb der Zelle) durchgeführt, um der Nicht-Unabhängigkeit der Dyaden (jede Zelle erscheint in 4 Dyaden) Rechnung zu tragen: same_lang bleibt signifikant (p<0,01), same_frame nicht-signifikant (p=0,82) — die Kernsaussage ist gegenüber dieser konservativeren Inferenz **robust**.
+**Marginalbeitrag**: Das Teilen des Sprachcodes erhöht die Konzeptähnlichkeit signifikant (+0,038); das Teilen des kulturellen Rahmens hat **keinen** signifikanten marginalen Beitrag (+0,001). Die Permutationsprüfung (within-topic blockweise, 1000 Iterationen, P1-Reaudit 2026-09-19, `research/lmm_blockperm_reaudit_20260919.json`; ersetzt unverifizierbares 0,779) bestätigt die Robustheit. Zusätzlich wurde ein **Cell-Cluster-Bootstrap** (1000 Iterationen, Resampling der 5 Zellen unter Beibehaltung der Dyaden innerhalb der Zelle) durchgeführt, um der Nicht-Unabhängigkeit der Dyaden (jede Zelle erscheint in 4 Dyaden) Rechnung zu tragen: same_lang bleibt signifikant (p<0,01), same_frame nicht-signifikant (p=0,82) — die Kernsaussage ist gegenüber dieser konservativeren Inferenz **robust**.
 
 **Harmonisierung mit P2 (Zwei-Boden-Konzept)**:
 - Boden 1 = Split-Half innerhalb einer Bedingung: J≈0,12 (gleicher Code + Rahmen)

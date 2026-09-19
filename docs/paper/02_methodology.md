@@ -223,7 +223,7 @@ CS(G_{textbook}, G_{curriculum}) = \frac{|V_{textbook} \cap V_{curriculum}|}{|V_
 
 Der Coverage Score misst den Anteil der vom Lehrplan geforderten Konzepte, die im Lehrbuchgraph abgedeckt sind. Die Berechnung erfolgt pro Bildungsstufe und sprachspezifisch.
 
-Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scripts/compute_all_coverage_v2.py`):
+Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scripts/compute_all_coverage_v2.py`; P1-Reaudit 2026-09-19 reproduziert, Δ=0):
 
 | Lehrplan | Gesamt-Coverage | Höchste Stufe | Niedrigste Stufe |
 |----------|:--------------:|:-------------:|:----------------:|
