@@ -426,7 +426,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
     <div class="contrib-card">
       <div class="num">1</div>
       <h3 data-i18n="contrib1_title">A multilingual STEM knowledge graph</h3>
-      <p data-i18n="contrib1_desc">1,143 concepts and 1,118 aligned relations (517 math + 386 physics + 215 chemistry) across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and checked against Preliminary gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-path social F1 0.939†, harness ~0.65, blind audit pending; weighted overall 0.881) — no validation claim.</p>
+      <p data-i18n="contrib1_desc">1,143 concepts and 1,118 aligned relations (517 math + 386 physics + 215 chemistry) across mathematics, physics and chemistry in Chinese, English and German — extracted from 204 textbook titles and checked against Preliminary gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-path social F1 0.939†; harness-v2 P3 social 0.40–0.58 (CARD-confirmed; LANG model-side failure); 5-agent panel screen MAINTAIN (11/72 unanimous rejects, human review open); weighted overall 0.881) — no validation claim.</p>
     </div>
     <div class="contrib-card">
       <div class="num">2</div>
@@ -457,7 +457,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 graph LR
     T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
     MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
-    GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Checked (Preliminary)| KG
+    GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Preliminary check| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
     KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
@@ -525,7 +525,7 @@ graph LR
   <p style="font-size:.8rem;color:var(--text2)" data-i18n="src_local">Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).</p>
   <details style="margin:12px 0">
     <summary style="cursor:pointer;font-size:.9rem;color:var(--accent)" data-i18n="src_math_sum">Mathematics · 32 titles</summary>
-    <p style="font-size:.8rem;color:var(--text2);margin:8px 0" data-i18n="src_math_note">Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts). Corpus: 68 math textbooks (180 total, all subjects); full inventory below: 204 titles.</p>
+    <p style="font-size:.8rem;color:var(--text2);margin:8px 0" data-i18n="src_math_note">Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts). Corpus: 68 math textbooks (204 titles total, all subjects); full inventory below: 204 titles.</p>
     <div style="margin:12px 0;overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
       <table class="gold roster" style="margin-top:0">
         <thead style="position:sticky;top:0;background:var(--surface)"><tr><th data-i18n="src_book_h">Title</th><th data-i18n="src_lang_h">Lang</th><th data-i18n="src_refs_h">Refs</th></tr></thead>
@@ -769,7 +769,7 @@ graph LR
 <div class="finding-card" style="border-left:4px solid var(--accent)">
     <h3><i class="bi bi-bar-chart-line" style="color:var(--accent)"></i> <span data-i18n="finding_a_title">Finding A: Knowledge density peaks early</span></h3>
     <div class="lead" data-i18n="finding_a_sub">All three STEM disciplines concentrate their densest knowledge connections at introductory stages, not advanced ones.</div>
-    <p data-i18n="finding_a_body">Mathematics peaks at <strong>middle school</strong> (CDS = 0.271). Physics peaks at <strong>elementary school</strong> (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics.</p>
+    <p data-i18n="finding_a_body">Mathematics peaks at <strong>middle school</strong> (CDS = 0.271). Physics peaks at <strong>elementary school</strong> (CDS = 0.222). Chemistry shares the same middle school peak (CDS = 0.042). After the peak, density drops sharply — a 3.7× decline from middle to high school in mathematics. <em>Values frozen from the June 2026 dense graph; not recomputable from the current archive — see Fig 3 forensic note.</em></p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_a_body2">This contradicts the natural assumption that "more advanced knowledge is more densely connected." Instead, curricula are designed to maximize connection density during foundational stages (early integration) before branching into specialization (later differentiation).</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--accent)">0.271</div><div class="ev-label" data-i18n="finding_a_ev1">Math CDS (Middle)</div></div>
@@ -825,28 +825,28 @@ graph LR
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K nominell ZH-DE 0.519 (frozen v3) — T1-falsifiziert (0.52→0.99 label artifact); EN-Paare ≈ noise floor. Core signal: ΔLDS (Preliminary, Ebenen-getrennt).</div>
-    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.933) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
+    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.519</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (0.519)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.938</div><div class="ev-label" data-i18n="finding_c_ev2">DE–EN (0.938)</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.933</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (0.933)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.934</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (0.934)</div></div>
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label" data-i18n="finding_c_ev4">Topic variance</div></div>
     </div>
     <details style="margin:16px 0;border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--surface);font-size:.82rem;color:var(--text2)">
-      <summary style="cursor:pointer;color:var(--accent);font-size:.85rem" data-i18n="finding_cx_sum">Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.933 / 0.938, 219 groups) — why they do not overturn claim C</summary>
-      <p style="margin:8px 0" data-i18n="finding_cx_intro">Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.</p>
+      <summary style="cursor:pointer;color:var(--accent);font-size:.85rem" data-i18n="finding_cx_sum">Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.934 / 0.938, 219 groups) — why they do not overturn claim C</summary>
+      <p style="margin:8px 0" data-i18n="finding_cx_intro">Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.934 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.</p>
       <div style="margin:8px 0">
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g1"><span class="mono">math_calculus_导数</span> · DE “导数” / EN “导数” / ZH “导数” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: identical CJK string in all three labels inflates Jaccard and belongs to the 167/219 CJK-contaminated de-labels removed by T1 (0.556 → 0.020), so artifact, not content convergence.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g2"><span class="mono">math_calculus_极限</span> · DE “极限” / EN “极限” / ZH “极限” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: same identical-label artifact as above, removed in T1, so it cannot rescue the falsified ZH-DE 0.519 reading.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g3"><span class="mono">math_calculus_函数</span> · DE “函数” / EN “函数” / ZH “函数” · cross-refs ZH 6 / EN 6 / DE 3 — Ruling: identical trilingual string is a label match, not curriculum-structure match, and vanishes under T1 decontamination.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g4"><span class="mono">math_calculus_切线</span> · DE “切线” / EN “切线” / ZH “切线” · cross-refs ZH 6 / EN 3 / DE 3 — Ruling: high similarity is carried by the shared CJK label, one of the contaminated cases behind the 0.556 → 0.020 collapse.</div>
-        <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g5"><span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.933 / 0.938), which measures graph structure, not term translatability.</div>
+        <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g5"><span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.934 / 0.938), which measures graph structure, not term translatability.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g6"><span class="mono">math_calculus_偏导数</span> · DE “Partielle Ableitung” / EN “Partial Derivative” / ZH “偏导数” · cross-refs ZH 1 / EN 0 / DE 0 — Ruling: genuine trio proves only that calculus vocabulary translates, not that textbook graphs converge, so claim C stands.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g7"><span class="mono">math_calculus_洛必达法则</span> · DE “Regel von L'Hospital” / EN “洛必达法则” / ZH “洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2 — Ruling: EN label carries the ZH string while only DE is genuinely translated, so the pair similarity is still label-driven and T1-contaminated.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g8"><span class="mono">math_calculus_连续性</span> · DE “连续性” / EN “Continuity” / ZH “连续性” · cross-refs ZH 0 / EN 2 / DE 2 — Ruling: DE label repeats the ZH string, a partial-contamination case of the same 167/219 artifact behind the 0.556 → 0.020 verdict.</div>
       </div>
-      <p style="margin:8px 0" data-i18n="finding_cx_note">Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.933 / 0.938 and T1 0.556 → 0.020 are unchanged.</p>
+      <p style="margin:8px 0" data-i18n="finding_cx_note">Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.934 / 0.938 and T1 0.556 → 0.020 are unchanged.</p>
     </details>
     <div class="figure-box" style="max-width:600px;margin:16px auto">
       <img src="figures/fig4_null_model.png" alt="Fig 4: Null Model Suite — Full vs Structure Null" onclick="openLightbox(this.src)" loading="lazy">
@@ -889,7 +889,7 @@ graph LR
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
             <td style="padding:8px 12px"><strong data-i18n="twotier_r_topo">Topology</strong></td>
-            <td style="padding:8px 12px" data-i18n="twotier_topo_t1">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_topo_t1">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.934 / 0.938)</td>
             <td style="padding:8px 12px" data-i18n="twotier_topo_t2">Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
@@ -907,7 +907,7 @@ graph LR
     </div>
     <p style="margin-top:8px" data-i18n="twotier_key"><strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.</p>
     <p class="honesty" data-i18n="twotier_scale">Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).</p>
-    <div class="meta"><span class="tag tag-cyan" data-i18n="twotier_meta1">Tier-1: LDS-K 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue" data-i18n="twotier_meta2">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow" data-i18n="twotier_meta3">Source: research/two_tier_benchmark_20260914.md</span></div>
+    <div class="meta"><span class="tag tag-cyan" data-i18n="twotier_meta1">Tier-1: LDS-K 0.519 / 0.934 / 0.938</span> <span class="tag tag-blue" data-i18n="twotier_meta2">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow" data-i18n="twotier_meta3">Source: research/two_tier_benchmark_20260914.md</span></div>
   </div>
 </section>
 
@@ -983,7 +983,7 @@ graph LR
             <td style="padding:8px 12px"><strong data-i18n="e_row_lds">Textbook LDS-K</strong></td>
             <td style="padding:8px 12px;text-align:center"><strong>0.519</strong></td>
             <td style="padding:8px 12px;text-align:center">0.938</td>
-            <td style="padding:8px 12px;text-align:center">0.933</td>
+            <td style="padding:8px 12px;text-align:center">0.934</td>
             <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
           </tr>
           <tr style="background:var(--surface2);font-style:italic">
@@ -1094,7 +1094,7 @@ graph LR
       <h3><i class="bi bi-database" style="color:var(--yellow)"></i> <span data-i18n="limitations1_title">Textbook Selection Bias</span></h3>
       <p data-i18n="limitations1_desc">The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.</p>
       <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis1">If this bias were off, you would misread a Renjiao-only pattern as Chinese mathematics education as a whole.</p>
-      <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68 math textbooks (180 total, all subjects)</div>
+      <div class="meta" data-i18n="limitations1_mit">Mitigation: Multi-source triangulation across 68 math textbooks (204 titles total, all subjects)</div>
     </div>
     <div class="card">
       <h3><i class="bi bi-diagram-3" style="color:var(--orange)"></i> <span data-i18n="limitations2_title">Limited Discipline Coverage</span></h3>
@@ -1112,8 +1112,8 @@ graph LR
     <div class="lim-slide" data-g="lim_car_g2"><div class="card-grid">
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--orange)"></i> <span data-i18n="limitations4_title">LLM Extraction Reliability</span></h3>
-      <p data-i18n="limitations4_desc">Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939† on social concepts (machine-seeded, Developing — blind audit pending), the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
-      <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis4">If this limit were off, you would misread the social 0.939 (blind audit pending) as a validated score.</p>
+      <p data-i18n="limitations4_desc">Concept extraction depends on a single production model. The 19-model benchmark (F1 range 0.55–0.67) confirms extraction consistency across architectures. While F1 = 0.939† on social concepts (machine-seeded, Developing — panel-screened MAINTAIN, human review pending), the math domain achieves only 0.674 overall (German as low as 0.506). Extraction errors propagate through all downstream metrics. Relation extraction (prerequisite links) is less reliable than concept identification.</p>
+      <p style="font-size:.82rem;color:var(--text2);margin:8px 0" data-i18n="lim_mis4">If this limit were off, you would misread the social 0.939 (panel-screened, human review pending) as a validated score.</p>
       <div class="meta" data-i18n="limitations4_mit">Mitigation: 92 gold labels ensure measurable quality bounds</div>
     </div>
     <div class="card">
@@ -1277,12 +1277,12 @@ paint();
   <div class="card-grid" style="margin-bottom:40px;grid-template-columns:1fr">
     <div class="card">
       <h3><i class="bi bi-patch-check" style="color:var(--green)"></i> <span data-i18n="val_gold_title">Gold Dataset: 92 Labels</span></h3>
-      <p data-i18n="validation_gold_desc">Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness ~0.65) checked against extraction (Preliminary) — no validation claim.</p>
+      <p data-i18n="validation_gold_desc">Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.40–0.58, panel MAINTAIN) checked against extraction (Preliminary) — no validation claim.</p>
       <div style="margin:16px 0;overflow-x:auto">
         <table style="width:100%;font-size:.82rem;border-collapse:collapse">
           <thead><tr style="background:var(--surface)"><th style="padding:8px 10px;text-align:left" data-i18n="val_domain">Domain</th><th style="padding:8px 10px;text-align:center">ZH F1</th><th style="padding:8px 10px;text-align:center">DE F1</th><th style="padding:8px 10px;text-align:center">EN F1</th><th style="padding:8px 10px;text-align:center" data-i18n="val_overall">Overall</th><th style="padding:8px 10px;text-align:center">n</th></tr></thead>
           <tbody>
-            <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_social">Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882†</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939† Developing (DB-path; harness ~0.65)</td><td style="padding:8px 10px;text-align:center">72</td></tr>
+            <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_social">Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882†</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939† Developing (DB-path; harness-v2 P3 0.40–0.58; panel MAINTAIN)</td><td style="padding:8px 10px;text-align:center">72</td></tr>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_math">Mathematics</strong></td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.857</td><td style="padding:8px 10px;text-align:center;color:var(--yellow)">0.506</td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.711</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.674</td><td style="padding:8px 10px;text-align:center">20</td></tr>
             <tr style="border-top:1px solid var(--border);background:var(--accent-soft)"><td style="padding:8px 10px"><strong data-i18n="val_all">All (weighted)</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.951</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.842</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.844</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.881</td><td style="padding:8px 10px;text-align:center">92</td></tr>
           </tbody>
@@ -1290,6 +1290,13 @@ paint();
       </div>
       <p style="font-size:.82rem;color:var(--text2)" data-i18n="val_note">Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.</p>
     </div>
+
+  <div class="fig-row" style="margin-top:24px">
+    <div class="figure-box">
+      <img src="figures/fig_v2_cells.png" alt="Fig v2-cells: Harness v2 factor test" onclick="openLightbox(this.src)" loading="lazy">
+      <div class="fig-label" data-i18n="method_figv2"><strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.40–0.58 (P1/P3); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.</div>
+    </div>
+  </div>
 
     <div class="card">
       <h3><i class="bi bi-cpu" style="color:var(--accent)"></i> <span data-i18n="val_bench_title">Model Benchmark: 19 Models</span></h3>
@@ -1299,7 +1306,8 @@ paint();
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
-        <br>† Social F1 0.939 = Developing (seed-evaluation same-source, blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
+        <br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.40–0.58 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
+        <br>Harness v2 (seed-foreign, 2026-09): P3 social 0.544/0.544/0.395 + 0.580 western-descriptive; EN lift via cardinality only (P1-EN≈P3-EN; REPORT §7).
       </div>
       <p class="honesty" data-i18n="valid_design_exec">Design vs execution: the design judge is phi-4-mini-instruct (open weights, snapshot object); the executed merge used muse-spark-1.3-contributor (closed API, 10 parallel judges, 407 results) — not interchangeable. The Two-Tier vector finding uses nomic embeddings only and is unaffected by this swap (paper §2.12, App. W).</p>
       <details style="margin:12px 0;font-size:.82rem;color:var(--text2)">
@@ -1455,13 +1463,13 @@ paint();
       <i class="bi bi-file-text" style="font-size:2.5rem;color:var(--accent);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_abstract_title">Abstract</h3>
       <p data-i18n="paper_abstract_text">LinguaGraph asks whether language shapes the structural organization of knowledge. Two pipelines — textbook graphs (556 concepts, 517 relations, 219 groups) and LLM-as-subject (59 runs, 54 models) — isolate the language signal ΔLDS: N=15 falsifies it between-subject; within-subject shows it clearly (paper §5).</p>
-      <div class="meta"><a href="../../docs/paper/01_abstract_introduction.md">Read Abstract</a> · <a href="../../docs/submission/LinguaGraph_BWKI2026.pdf">PDF (226 KB)</a></div>
+      <div class="meta"><a href="docs/paper/01_abstract_introduction.md">Read Abstract</a> · <a href="docs/submission/LinguaGraph_BWKI2026.pdf">PDF (226 KB)</a></div>
     </div>
     <div class="card" style="text-align:center">
       <i class="bi bi-layers" style="font-size:2.5rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center" data-i18n="paper_sections_title">Sections</h3>
       <p data-i18n="paper_sections_text">Three Conclusions · Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Results · LPA Analysis</p>
-      <div class="meta" data-i18n="paper_sec_meta">10 files · ~161 KB md · 226 KB PDF · <a href="../../docs/paper/02_methodology.md">Read Methodology</a></div>
+      <div class="meta" data-i18n="paper_sec_meta">10 files · ~161 KB md · 226 KB PDF · <a href="docs/paper/02_methodology.md">Read Methodology</a></div>
     </div>
   </div>
 
@@ -1497,7 +1505,7 @@ paint();
       <p>All knowledge graphs, curriculum alignments, gold annotations and benchmark results.</p>
       <div class="meta">1143 concepts · 1118 relations (517+386+215) · 92 gold labels</div>
     </a>
-    <a href="../../docs/paper/01_abstract_introduction.md" target="_blank" class="card" style="text-decoration:none;text-align:center">
+    <a href="docs/paper/01_abstract_introduction.md" target="_blank" class="card" style="text-decoration:none;text-align:center">
       <i class="bi bi-file-earmark-text" style="font-size:2.2rem;color:var(--green);display:block;margin-bottom:8px"></i>
       <h3 style="justify-content:center">Paper</h3>
       <p>Full manuscript with 3 research questions, 4 metrics, 12 findings and error analysis.</p>
@@ -1785,7 +1793,7 @@ const TRANSLATIONS = {
     cta_findings: 'Explore Findings →', cta_3d: '<i class="bi bi-boxes"></i> 3D Knowledge Graph',
     stat_concepts: 'Concepts · full project (=1143 = 556+367+220)', stat_relations: 'Relations · 517 math + 386 physics + 215 chemistry = 1,118', stat_languages: 'Languages<br>ZH · EN · DE', stat_disciplines: 'Disciplines<br>Math · Physics · Chemistry',
     stat_edu_systems: 'Education Systems<br>DE · UK · US · CN', stat_models_bench: 'Models<br>19-model benchmark', stat_overall_f1: 'Overall F1 (weighted)',
-    scope_note: 'SCOPE · Full project: Math 556 · Physics 367 (incl. 1 pending sensor node) · Chemistry 220 = 1,143 concepts (README.md dataset section). The 3D viewer opens on the mathematics subgraph (manifest.json: 556 nodes · 233 rendered links of 517 aligned relations · 219 groups); switch disciplines inside the app or open the STEAM comparison view (1,143 nodes · 839 intra-discipline links, no cross-links).',
+    scope_note: 'SCOPE · Full project: Math 556 · Physics 367 (incl. 1 pending sensor node) · Chemistry 220 = 1,143 concepts (README.md dataset section). The 3D viewer opens on the mathematics subgraph (manifest.json: 556 nodes · 233 rendered links of 517 aligned relations · 219 groups); switch disciplines inside the app or open the STEAM comparison view (1,143 nodes · 834 intra-discipline links, no cross-links).',
     section_rq: 'Research Questions', rq_sub: 'Three complementary lenses on how the same knowledge is organized differently',
     rq1_title: 'RQ1: Language', rq1_question: 'How do different languages organize the same knowledge?',
     rq1_answer: 'LDS-K nominal ZH-DE 0.519 (frozen v3) — T1 falsified it as a label artefact (0.52→0.99, Fig. 8); EN pairs ≈ noise floor. Core signal: ΔLDS (preliminary, level-separated). Terms LDS-K · ΔLDS · T1 are defined in Methodology and Finding C.',
@@ -1801,7 +1809,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Three structural metrics for knowledge organization',
     contrib3_title: 'Curriculum coverage analysis framework',
     contrib4_title: 'Empirical findings across 4 education systems',
-    contrib1_desc: '1,143 concepts and 1,118 aligned relations (517 math + 386 physics + 215 chemistry) across mathematics, physics and chemistry in Chinese, English and German — extracted from 180 textbooks and checked against Preliminary gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-path 0.939†, harness ~0.65, blind audit pending; weighted 0.881) — no validation claim.',
+    contrib1_desc: '1,143 concepts and 1,118 aligned relations (517 math + 386 physics + 215 chemistry) across mathematics, physics and chemistry in Chinese, English and German — extracted from 204 textbook titles and checked against Preliminary gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-path 0.939†; harness-v2 P3 social 0.40–0.58 (CARD-confirmed; LANG model-side failure); 5-agent panel MAINTAIN (11/72 unanimous rejects, human open); weighted 0.881) — no validation claim.',
     section_method: 'Methodology', method_sub: 'From textbook text to structural insights in five steps',
     section_findings_title: 'Findings',
     section_findings: 'Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals',
@@ -1835,11 +1843,11 @@ const TRANSLATIONS = {
     section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
     val_gold_title: 'Gold Dataset: 92 Labels',
     val_bench_title: 'Model Benchmark: 19 Models',
-    validation_gold_desc: 'Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness ~0.65) checked against extraction (Preliminary) — no validation claim.',
+    validation_gold_desc: 'Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.40–0.58, panel MAINTAIN) checked against extraction (Preliminary) — no validation claim.',
     validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. The production extraction model was selected by overall F1.',
     section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
     section_paper: 'Paper', paper_sub: 'Preprint manuscript available in the repository',
-    paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 180 textbooks, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
+    paper_abstract: 'LinguaGraph introduces a framework for measuring how different languages and education systems organize the same knowledge. Using LLM-based concept extraction from 204 textbook titles, we build multilingual knowledge graphs and quantify structural differences through four metrics.',
     paper_sections: 'Introduction · Related Work · Methodology · Results · Discussion · Conclusion · Physics Appendix',
     paper_copy_bib: 'Copy BibTeX',
     section_openscience: 'Open Science', openscience_sub: 'All data, code and results are publicly available',
@@ -1864,7 +1872,7 @@ const TRANSLATIONS = {
     finding_a_tag1: 'Metric: CDS',
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: 'Disciplines: Math, Physics, Chemistry',
-    finding_b_body: 'Maximum prerequisite chain depth is HDS ≤ 8 for mathematics and HDS ≤ 6 for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts). Values frozen from the June 2026 dense graph (556 concepts/525 relations); not recomputable from the current archive — see Fig 5 forensic note.',
+    finding_b_body: 'Maximum prerequisite chain depth is HDS ≤ 8 for mathematics and HDS ≤ 6 for physics. Mean depth is even lower: 0.40 for math, 0.85 for physics. Over 83% of math concepts have no prerequisite chains at all (root concepts). Values frozen from the June 2026 dense graph (556 concepts/525 relations in the June-2026 dense snapshot, archival; current SSOT 556/517); not recomputable from the current archive — see Fig 5 forensic note.',
     finding_b_body2: 'Physics has 2.1× more sequential depth than mathematics (60% roots in physics vs 83% in math), reflecting its more cumulative knowledge structure. But both disciplines respect the same shallow upper bound — suggesting a pedagogical or cognitive constraint on how knowledge can be sequenced.',
     finding_b_ev1: 'Math HDS (max)',
     finding_b_ev2: 'Math HDS (mean)',
@@ -1874,11 +1882,11 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
-    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.933) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.',
+    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.',
     finding_c_body2: 'The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.',
     finding_c_ev1: 'ZH–DE (0.519)',
     finding_c_ev2: 'DE–EN (0.938)',
-    finding_c_ev3: 'ZH–EN (0.933)',
+    finding_c_ev3: 'ZH–EN (0.934)',
     finding_c_ev4: 'Topic variance',
     finding_c_fig: 'Fig 4 — Null Model Suite: Full vs Structure Null. Full < Structure Null, deskriptiv (Preliminary, T1-falsified reading)',
     finding_c_fig8: 'Fig 8 — Decontamination (T1): removing CJK-contaminated de-labels collapses ZH-DE 0.52 → 0.99. Verdict: artifact',
@@ -1887,17 +1895,17 @@ const TRANSLATIONS = {
     finding_c_tag3: 'Languages: ZH, EN, DE',
     finding_c_honesty: 'Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).',
     finding_c_methodbox: 'Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Frozen: ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188.',
-    finding_cx_sum: 'Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.933 / 0.938, 219 groups) — why they do not overturn claim C',
-    finding_cx_intro: 'Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.',
+    finding_cx_sum: 'Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.934 / 0.938, 219 groups) — why they do not overturn claim C',
+    finding_cx_intro: 'Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.934 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE “导数” / EN “导数” / ZH “导数” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: identical CJK string in all three labels inflates Jaccard and belongs to the 167/219 CJK-contaminated de-labels removed by T1 (0.556 → 0.020), so artifact, not content convergence.',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE “极限” / EN “极限” / ZH “极限” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: same identical-label artifact as above, removed in T1, so it cannot rescue the falsified ZH-DE 0.519 reading.',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE “函数” / EN “函数” / ZH “函数” · cross-refs ZH 6 / EN 6 / DE 3 — Ruling: identical trilingual string is a label match, not a curriculum-structure match, and vanishes under T1 decontamination.',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE “切线” / EN “切线” / ZH “切线” · cross-refs ZH 6 / EN 3 / DE 3 — Ruling: high similarity is carried by the shared CJK label, one of the contaminated cases behind the 0.556 → 0.020 collapse.',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.933 / 0.938), which measures graph structure, not term translatability.',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.934 / 0.938), which measures graph structure, not term translatability.',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE “Partielle Ableitung” / EN “Partial Derivative” / ZH “偏导数” · cross-refs ZH 1 / EN 0 / DE 0 — Ruling: genuine trio proves only that calculus vocabulary translates, not that textbook graphs converge, so claim C stands.',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE “Regel von L\'Hospital” / EN “洛必达法则” / ZH “洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2 — Ruling: EN label carries the ZH string while only DE is genuinely translated, so the pair similarity is still label-driven and T1-contaminated.',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE “连续性” / EN “Continuity” / ZH “连续性” · cross-refs ZH 0 / EN 2 / DE 2 — Ruling: DE label repeats the ZH string, a partial-contamination case of the same 167/219 artifact behind the 0.556 → 0.020 verdict.',
-    finding_cx_note: 'Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.933 / 0.938 and T1 0.556 → 0.020 are unchanged.',
+    finding_cx_note: 'Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.934 / 0.938 and T1 0.556 → 0.020 are unchanged.',
     finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. Consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation.',
     finding_d_ev1: 'China (highest)',
     finding_d_ev2: 'UK',
@@ -1927,7 +1935,7 @@ const TRANSLATIONS = {
     e_tbl_sim: 'Simulation Baseline',
     limitations1_title: 'Textbook Selection Bias',
     limitations1_desc: 'The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.',
-    limitations1_mit: 'Mitigation: Multi-source triangulation across 68 math textbooks (180 total, all subjects)',
+    limitations1_mit: 'Mitigation: Multi-source triangulation across 68 math textbooks (204 titles total, all subjects)',
     limitations2_title: 'Limited Discipline Coverage',
     limitations2_desc: 'Only three STEM disciplines (mathematics, physics, chemistry) were analyzed. The framework has not been validated on humanities, social sciences, or professional fields. The universal claims are therefore limited to STEM education.',
     limitations2_mit: 'Mitigation: Framework is design-agnostic and extendable',
@@ -1946,7 +1954,7 @@ const TRANSLATIONS = {
     lim_mis1: 'If this bias were off, you would misread a Renjiao-only pattern as Chinese mathematics education as a whole.',
     lim_mis2: 'If this limit were off, you would misread an early STEM peak as a universal law of all knowledge.',
     lim_mis3: 'If this mismatch were off, you would misread the US 17.2% as poor alignment instead of a granularity artifact (2,124 vs 397 concepts).',
-    lim_mis4: 'If this limit were off, you would misread the social 0.939 (blind audit pending) as a validated score.',
+    lim_mis4: 'If this limit were off, you would misread the social 0.939 (panel-screened, human review pending) as a validated score.',
     lim_mis5: 'If this gap were off, you would misread a ZH-EN-DE pattern as a universal language effect.',
     lim_mis6: 'If this limit were off, you would misread the German math 0.506 as a real deficit instead of a high-variance estimate (n=20).',
     lim_mis7: 'If this limit were off, you would misread overestimated drift (244 in-file / 51 unresolved dangling) as true cross-lingual distance.',
@@ -1968,7 +1976,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematics',
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
-    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong><br>† Social F1 0.939 = Developing (seed-evaluation same-source, blind review pending; independent harness ~0.65 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).',
+    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong><br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.40–0.58 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-foreign, 2026-09): P3 social 0.544/0.544/0.395 + 0.580 western-descriptive; EN lift via cardinality only (P1-EN≈P3-EN; REPORT §7).',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 59 measurements / 54 models — all 59 ZH-DE pairs significant (margin +0.03…+0.42); 9 EN-pair tests n.s.',
     val_roster_title: 'Replication roster: 59 full runs + 26 collecting (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Fused view — all 59 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 59 ZH-DE p<0.01; 9 EN n.s. among 177 (500 permutations). Western runs in red. The 26 collecting runs (incl. qwen-max n=26/30 (parked), 2 sparse small-model boundary runs and 1 format-quarantined run, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.',
@@ -1992,7 +2000,7 @@ const TRANSLATIONS = {
     cognitivespace_open: 'Open Full Screen',
     cs_load: 'Loading 3D graph…',
     cs_view_3d: '3D Graph — Math · STEAM · Physics · Chain',
-    paper_sec_meta: '10 files · ~161 KB md · 226 KB PDF · <a href="../../docs/paper/02_methodology.md">Read Methodology</a>',
+    paper_sec_meta: '10 files · ~161 KB md · 226 KB PDF · <a href="docs/paper/02_methodology.md">Read Methodology</a>',
     paper_fig_meta: '10 files · 54 references',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 3:24]',
     pitch_de: 'DE', pitch_en: 'EN subs', pitch_zh: 'ZH subs',
@@ -2017,6 +2025,7 @@ const TRANSLATIONS = {
     metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
     method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components',
+    method_figv2: '<strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.40–0.58 (P1/P3); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
     method_prov_note: 'Provenance: HF main SHAs are today HEADs, not experiment pins; served revision UNVERIFIED; local phi file is a community quant build not comparable to official hashes (snapshot research/weight_snapshot_20260916.json; paper App. W).',
     f12_prov_note: 'F12 note: the Two-Tier vector baseline uses nomic embeddings only and is unaffected by the design-vs-execution judge swap (design phi-4-mini-instruct vs execution muse-spark-1.3-contributor); see paper §2.12 and App. W.',
@@ -2056,7 +2065,7 @@ const TRANSLATIONS = {
     src_intro: 'Every textbook cited by at least one graph concept. Node cards show the top-3 sources per concept; this is the full inventory (204 titles).',
     src_local: 'Local texts (2026-09-12): 89 open files + CN 11 books OCR done, fact-level (51 chapter txts). Text-grounded: physics ZH 66.5% / EN 62.1%, chemistry ZH 65.9% / EN 53.2% (semantic layer; substring 33.8/25.5) (college nodes out of high-school scope; DE link-only).',
     src_math_sum: 'Mathematics · 32 titles',
-    src_math_note: 'Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts). Corpus: 68 math textbooks (180 total, all subjects); full inventory below: 204 titles.',
+    src_math_note: 'Scope note: 68 input corpora / 72 raw-library titles / 32 in-graph cited titles (Refs = citations across concepts). Corpus: 68 math textbooks (204 titles total, all subjects); full inventory below: 204 titles.',
     src_phys_sum: 'Physics · 83 titles',
     src_chem_sum: 'Chemistry · 89 titles',
     src_book_h: 'Title', src_lang_h: 'Lang', src_refs_h: 'Refs',
@@ -2075,7 +2084,7 @@ const TRANSLATIONS = {
     twotier_src_t2: 'Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)',
     twotier_what_t1: 'Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")',
     twotier_what_t2: 'Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")',
-    twotier_topo_t1: 'Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)',
+    twotier_topo_t1: 'Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.934 / 0.938)',
     twotier_topo_t2: 'Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)',
     twotier_interp_t1: 'High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)',
     twotier_interp_t2: 'Low: a single value is not traceable to a curriculum fact; distribution-level statements only',
@@ -2083,7 +2092,7 @@ const TRANSLATIONS = {
     twotier_role_t2: '<strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.',
     twotier_key: '<strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.',
     twotier_scale: 'Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
-    twotier_meta1: 'Tier-1: LDS-K 0.519 / 0.933 / 0.938',
+    twotier_meta1: 'Tier-1: LDS-K 0.519 / 0.934 / 0.938',
     twotier_meta2: 'Tier-2: 0.4804 / 0.5249 / 0.4888',
     twotier_meta3: 'Source: research/two_tier_benchmark_20260914.md',
     fals_title: 'Humanities "falsification probe" (asymmetric, pre-registered logic)',
@@ -2125,7 +2134,7 @@ const TRANSLATIONS = {
     finding_a_tag1: 'Metrik: CDS',
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: 'Faecher: Math, Physik, Chemie',
-    finding_b_body: 'Die maximale Voraussetzungstiefe betraegt HDS ≤ 8 fuer Mathematik und HDS ≤ 6 fuer Physik. Die mittlere Tiefe ist noch niedriger: 0,40 fuer Math, 0,85 fuer Physik. Ueber 83% der Math-Konzepte haben keine Voraussetzungskette. Werte eingefroren aus dem dichten Graphen vom Juni 2026 (556 Konzepte/525 Relationen); aus dem aktuellen Archiv nicht rekonstruierbar — siehe Fig-5-Forensik.',
+    finding_b_body: 'Die maximale Voraussetzungstiefe betraegt HDS ≤ 8 fuer Mathematik und HDS ≤ 6 fuer Physik. Die mittlere Tiefe ist noch niedriger: 0,40 fuer Math, 0,85 fuer Physik. Ueber 83% der Math-Konzepte haben keine Voraussetzungskette. Werte eingefroren aus dem dichten Graphen vom Juni 2026 (556 Konzepte/525 Relationen im Juni-2026-Snapshot, Archiv; aktueller SSOT 556/517); aus dem aktuellen Archiv nicht rekonstruierbar — siehe Fig-5-Forensik.',
     finding_b_body2: 'Die Physik hat die 2,1-fache sequentielle Tiefe der Mathematik (60% Wurzeln in Physik vs 83% in Math). Beide Disziplinen respektieren jedoch dieselbe flache Obergrenze.',
     finding_b_ev1: 'Math HDS (max.)',
     finding_b_ev2: 'Math HDS (Mittel)',
@@ -2135,11 +2144,11 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
-    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,933) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97, Lehrbuchlinie).',
+    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,934) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97, Lehrbuchlinie).',
     finding_c_body2: 'Das Muster ist auch themenabhaengig: innerhalb jedes Sprachpaars variiert der LDS um bis zu 0,2 zwischen den 5 analysierten Sozialthemen.',
     finding_c_ev1: 'ZH–DE (0,519)',
     finding_c_ev2: 'DE–EN (0,938)',
-    finding_c_ev3: 'ZH–EN (0,933)',
+    finding_c_ev3: 'ZH–EN (0,934)',
     finding_c_ev4: 'Themenvarianz',
     finding_c_fig: 'Abb. 4 — Null Model Suite: Full vs Structure Null. Full < Structure Null, deskriptiv (Preliminary, T1-falsifizierte Lesart)',
     finding_c_fig8: 'Abb. 8 — Dekontamination (T1): Entfernen CJK-kontaminierter de-Labels lässt ZH-DE 0,52 → 0,99 kollabieren. Fazit: Artefakt',
@@ -2148,17 +2157,17 @@ const TRANSLATIONS = {
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
     finding_c_honesty: 'Ehrlichkeitshinweis (T1-Dekontamination, 2026-09): ZH-DE J_node 0,556 → 0,020 nach Entfernen CJK-kontaminierter de-Labels; Size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um. Fazit: Label-Artefakt (Paper §3.8, Fig. 8).',
     finding_c_methodbox: 'Methode: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Abb. 4 Full-vs-Structure Null → Abb. 8 T1-Dekontamination. Freeze: ZH-EN 0,9336 · DE-EN 0,9382 · ZH-DE 0,5188.',
-    finding_cx_sum: 'Mathe-Spotcheck: 8 hochähnliche Gruppen (LDS-K frozen 0,519 / 0,933 / 0,938; 219 Gruppen) — warum sie Claim C nicht kippen',
-    finding_cx_intro: 'Quelle: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 Gruppen, auch in <span class="mono">merged_concepts.json</span> mit 557 Zeilen vs 556 Graphknoten enthalten — Δ1 offen, keine Headline-Zahl). Freeze: ZH-DE 0,519 · ZH-EN 0,933 · DE-EN 0,938; T1-Dekontamination ZH-DE J_node 0,556 → 0,020. Ehrlich-Label: nur Mathe/Analysis, 8-von-219-Spotcheck — kein fachübergreifender Beleg.',
+    finding_cx_sum: 'Mathe-Spotcheck: 8 hochähnliche Gruppen (LDS-K frozen 0,519 / 0,934 / 0,938; 219 Gruppen) — warum sie Claim C nicht kippen',
+    finding_cx_intro: 'Quelle: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 Gruppen, auch in <span class="mono">merged_concepts.json</span> mit 557 Zeilen vs 556 Graphknoten enthalten — Δ1 offen, keine Headline-Zahl). Freeze: ZH-DE 0,519 · ZH-EN 0,934 · DE-EN 0,938; T1-Dekontamination ZH-DE J_node 0,556 → 0,020. Ehrlich-Label: nur Mathe/Analysis, 8-von-219-Spotcheck — kein fachübergreifender Beleg.',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE „导数“ / EN „导数“ / ZH „导数“ · Cross-Refs ZH 3 / EN 6 / DE 3 — Urteil: identische CJK-Zeichenkette in allen drei Labels bläht Jaccard auf und gehört zu den 167/219 CJK-kontaminierten de-Labels, die T1 entfernt (0,556 → 0,020); also Artefakt, keine Inhaltskonvergenz.',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE „极限“ / EN „极限“ / ZH „极限“ · Cross-Refs ZH 3 / EN 6 / DE 3 — Urteil: derselbe Identisch-Label-Artefakt wie oben, in T1 entfernt, daher keine Rettung der falsifizierten ZH-DE-Lesart 0,519.',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE „函数“ / EN „函数“ / ZH „函数“ · Cross-Refs ZH 6 / EN 6 / DE 3 — Urteil: identische dreisprachige Zeichenkette ist ein Label-Treffer, kein Curriculumstruktur-Treffer, und verschwindet unter T1-Dekontamination.',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE „切线“ / EN „切线“ / ZH „切线“ · Cross-Refs ZH 6 / EN 3 / DE 3 — Urteil: hohe Ähnlichkeit wird vom geteilten CJK-Label getragen, einer der kontaminierten Fälle hinter dem Kollaps 0,556 → 0,020.',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE „Bestimmtes Integral“ / EN „Definite Integral“ / ZH „定积分“ · Cross-Refs ZH 1 / EN 1 / DE 0 — Urteil: echte Übersetzungen belegen nur Einzelbegriff-Universalität in Mathe, doch ein einzelner Mathe-Knoten kann den 219-Gruppen-LDS-K (0,519 / 0,933 / 0,938) nicht bewegen, der Graphstruktur misst, nicht Wortübersetzbarkeit.',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE „Bestimmtes Integral“ / EN „Definite Integral“ / ZH „定积分“ · Cross-Refs ZH 1 / EN 1 / DE 0 — Urteil: echte Übersetzungen belegen nur Einzelbegriff-Universalität in Mathe, doch ein einzelner Mathe-Knoten kann den 219-Gruppen-LDS-K (0,519 / 0,934 / 0,938) nicht bewegen, der Graphstruktur misst, nicht Wortübersetzbarkeit.',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE „Partielle Ableitung“ / EN „Partial Derivative“ / ZH „偏导数“ · Cross-Refs ZH 1 / EN 0 / DE 0 — Urteil: echtes Trio beweist nur, dass Analysis-Vokabular übersetzbar ist, nicht dass Lehrbuchgraphen konvergieren; Claim C bleibt.',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE „Regel von L\'Hospital“ / EN „洛必达法则“ / ZH „洛必达法则“ · Cross-Refs ZH 2 / EN 2 / DE 2 — Urteil: EN-Label trägt die ZH-Zeichenkette, nur DE ist echt übersetzt, daher bleibt die Paarähnlichkeit label-getrieben und T1-kontaminiert.',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE „连续性“ / EN „Continuity“ / ZH „连续性“ · Cross-Refs ZH 0 / EN 2 / DE 2 — Urteil: DE-Label wiederholt die ZH-Zeichenkette, ein Teilkontaminationsfall desselben 167/219-Artefakts hinter dem Verdikt 0,556 → 0,020.',
-    finding_cx_note: 'Mathe-Hinweis: alle 8 sind Analysis-Konzepte; hohe Namensöhnlichkeit ist in der Mathematik erwartet und verallgemeinert nicht über diesen Spotcheck hinaus — LDS-K frozen 0,519 / 0,933 / 0,938 und T1 0,556 → 0,020 bleiben unverändert.',
+    finding_cx_note: 'Mathe-Hinweis: alle 8 sind Analysis-Konzepte; hohe Namensöhnlichkeit ist in der Mathematik erwartet und verallgemeinert nicht über diesen Spotcheck hinaus — LDS-K frozen 0,519 / 0,934 / 0,938 und T1 0,556 → 0,020 bleiben unverändert.',
     finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung. Konsistent mit Governance (Hypothese, Paper §8.6) — Granularität (A) bleibt die sicherste Interpretation.',
     finding_d_ev1: 'China (hoechste)',
     finding_d_ev2: 'GB',
@@ -2188,7 +2197,7 @@ const TRANSLATIONS = {
     e_tbl_sim: 'Simulationsbasislinie',
     limitations1_title: 'Lehrbuchauswahlverzerrung',
     limitations1_desc: 'Das Korpus ist keine umfassende Stichprobe aller Lehrbuecher. Chinesische Lehrbuecher ueberwiegend eine Serie (Renjiao). Deutsche Lehrbuecher zum hoeheren Anteil Universitaetstexte.',
-    limitations1_mit: 'Massnahme: Multi-Source-Triangulation ueber 68 Mathe-Lehrbuecher (180 gesamt, alle Faecher)',
+    limitations1_mit: 'Massnahme: Multi-Source-Triangulation ueber 68 Mathe-Lehrbuecher (204 Titel gesamt, alle Faecher)',
     limitations2_title: 'Begrenzte Faecher',
     limitations2_desc: 'Nur drei MINT-Faecher analysiert. Der Rahmen wurde nicht fuer Geisteswissenschaften validiert.',
     limitations2_mit: 'Massnahme: Framework ist designneutral und erweiterbar',
@@ -2207,7 +2216,7 @@ const TRANSLATIONS = {
     lim_mis1: 'Ohne diesen Hinweis wuerdest du ein Renjiao-Muster als chinesische Mathematikbildung insgesamt missverstehen.',
     lim_mis2: 'Ohne diese Grenze wuerdest du eine fruehe MINT-Spitze als universelles Gesetz allen Wissens missverstehen.',
     lim_mis3: 'Ohne diesen Hinweis wuerdest du US 17,2% als schlechte Abdeckung statt als Granularitaetsartefakt (2.124 vs 397 Konzepte) missverstehen.',
-    lim_mis4: 'Ohne diese Grenze wuerdest du Sozial-F1 0,939 (Blind-Review ausstehend) als validierten Wert missverstehen.',
+    lim_mis4: 'Ohne diese Grenze wuerdest du Sozial-F1 0,939 (Panel-Screen MAINTAIN, Human-Review ausstehend) als validierten Wert missverstehen.',
     lim_mis5: 'Ohne diese Luecke wuerdest du ein ZH-EN-DE-Muster als universellen Spracheffekt missverstehen.',
     lim_mis6: 'Ohne diese Grenze wuerdest du Deutsch-Mathe 0,506 als echtes Defizit statt als Hochvarianz-Schaetzung (n=20) missverstehen.',
     lim_mis7: 'Ohne diese Grenze wuerdest du ueberschaetzte Drift (244 in-file / 51 ungeloest dangling) als wahre sprachuebergreifende Distanz missverstehen.',
@@ -2229,7 +2238,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematik',
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
-    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong><br>† Sozial-F1 0,939 = Developing (Seed-Evaluierung same-source, Blind-Review ausstehend; unabhängiger Harness ~0,65 vs. DB-Pfad 0,939 — s. G3-Notiz research/gold_deconfound_2026-09-14.md).',
+    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong><br>† Sozial-F1 0,939 = Developing (Seed-Evaluierung same-source; Panel-Screen MAINTAIN 2026-09, Human-Review ausstehend; Harness-v2 P3 0,40–0,58 vs. DB-Pfad 0,939 — s. G3-Notiz research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-fremd, 2026-09): P3 sozial 0,544/0,544/0,395 + 0,580 western-deskriptiv; EN-Lift nur via Kardinalität (P1-EN≈P3-EN; REPORT §7).',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 59 Messungen / 54 Modelle — alle 59 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 9 EN-Paar-Tests n.s.',
     val_roster_title: 'Replikations-Roster: 59 vollständige Runs + 26 laufend (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Gesamtansicht — alle 59 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 59 ZH-DE p<0,01; 9 EN n.s. unter 177 (500 Permutationen). Westliche Runs in Rot. Die 26 laufenden Runs (inkl. qwen-max n=26/30 (parked), 2 spärliche Kleinstmodell-Grenzläufe und 1 Format-Quarantäne-Lauf, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + Paper §5.10.',
@@ -2253,7 +2262,7 @@ const TRANSLATIONS = {
     cognitivespace_open: 'Vollbild oeffnen',
     cs_load: '3D-Graph lädt…',
     cs_view_3d: '3D-Graph — Mathe · STEAM · Physik · Kette',
-    paper_sec_meta: '10 Dateien · ~161 KB md · 226 KB PDF · <a href="../../docs/paper/02_methodology.md">Methodik lesen</a>',
+    paper_sec_meta: '10 Dateien · ~161 KB md · 226 KB PDF · <a href="docs/paper/02_methodology.md">Methodik lesen</a>',
     paper_fig_meta: '10 Dateien · 54 Referenzen',
     section_pitch: 'Pitch', pitch_badge: '[▶ Demo · 3:24]',
     pitch_de: 'DE', pitch_en: 'EN-UT', pitch_zh: 'ZH-UT',
@@ -2295,7 +2304,7 @@ const TRANSLATIONS = {
     contrib2_title: 'Drei strukturelle Metriken fuer Wissensorganisation',
     contrib3_title: 'Rahmen fuer Lehrplanabdeckungsanalyse',
     contrib4_title: 'Empirische Ergebnisse aus 4 Bildungssystemen',
-    contrib1_desc: '1.143 Konzepte und 1.118 alignierte Beziehungen (517 Mathe + 386 Physik + 215 Chemie) in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 180 Lehrbüchern und geprüft an Preliminary-Gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-Pfad 0,939†, Harness ~0,65, Blind-Review ausstehend; gewichtet 0,881) — kein Validierungs-Beleg.',
+    contrib1_desc: '1.143 Konzepte und 1.118 alignierte Beziehungen (517 Mathe + 386 Physik + 215 Chemie) in Mathematik, Physik und Chemie auf Chinesisch, Englisch und Deutsch — extrahiert aus 204 Lehrbuchtiteln und geprüft an Preliminary-Gold (92: 20 hand C9a + 72 machine-seeded/human-accepted C9b Developing; DB-Pfad 0,939†; Harness-v2 P3 sozial 0,40–0,58 (CARD-bestätigt; LANG modellseitig); 5-Agenten-Panel MAINTAIN (11/72 einstimmige Rejects, Human-Review offen); gewichtet 0,881) — kein Validierungs-Beleg.',
     section_method: 'Methodik', method_sub: 'Vom Lehrbuchtext zu strukturellen Erkenntnissen in fünf Schritten',
     section_findings_title: 'Erkenntnisse',
     section_findings: 'Fünf Findings-Abschnitte mit zwölf nummerierten Ergebnissen (F1–F12): Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
@@ -2329,11 +2338,11 @@ const TRANSLATIONS = {
     section_validation: 'Validierung', validation_sub: 'Goldstandard-Annotationen und Modellvergleiche',
     val_gold_title: 'Gold-Datensatz: 92 Labels',
     val_bench_title: 'Modell-Benchmark: 19 Modelle',
-    validation_gold_desc: 'Mixed-Provenienz-Gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; Harness ~0,65) geprüft an Extraktion (Preliminary) — kein Validierungs-Beleg.',
+    validation_gold_desc: 'Mixed-Provenienz-Gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; Harness-v2 P3 0,40–0,58, Panel MAINTAIN) geprüft an Extraktion (Preliminary) — kein Validierungs-Beleg.',
     validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. Das Produktions-Extraktionsmodell wurde anhand des Gesamt-F1 ausgewählt.',
     section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
     section_paper: 'Paper', paper_sub: 'Vorabdruck des Manuskripts im Repository verfügbar',
-    paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 180 Lehrbüchern erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
+    paper_abstract: 'LinguaGraph führt ein Framework zur Messung ein, wie verschiedene Sprachen und Bildungssysteme das gleiche Wissen organisieren. Mittels LLM-basierter Konzeptextraktion aus 204 Lehrbuchtiteln erstellen wir mehrsprachige Wissensgraphen und quantifizieren strukturelle Unterschiede durch vier Metriken.',
     paper_sections: 'Einleitung · Verwandte Arbeiten · Methodik · Ergebnisse · Diskussion · Fazit · Physik-Anhang',
     paper_copy_bib: 'BibTeX kopieren',
     section_openscience: 'Open Science', openscience_sub: 'Alle Daten, Code und Ergebnisse sind öffentlich verfügbar',
@@ -2355,6 +2364,7 @@ const TRANSLATIONS = {
     metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
     method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, zwei Aehnlichkeitskomponenten',
+    method_figv2: '<strong>Abb. v2-cells</strong> — Seed-fremder Faktortest (2026-09): Kardinalitaets-Fix hebt Social-F1 auf 0,40–0,58 (P1/P3); Sprach-Fix allein ≈0 (P2, modellseitig); EN nur via Kardinalitaet. A2-Nenner; glm-P3 mit Serving-Drift-Caveat. Quelle: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
     method_prov_note: 'Provenienz: HF-main-SHAs sind heutige HEADs, keine Experimental-Pins; served Revision UNVERIFIED; lokale Phi-Datei ist ein Community-Quant-Build ohne Vergleichbarkeit zu offiziellen Hashes (Snapshot research/weight_snapshot_20260916.json; Anhang W).',
     f12_prov_note: 'F12-Hinweis: Die Two-Tier-Vektorbaseline nutzt nur nomic-Embeddings und ist vom Design-vs-Execution-Richtertausch unberührt (Design phi-4-mini-instruct vs. Ausführung muse-spark-1.3-contributor); s. §2.12 und Anhang W.',
@@ -2394,7 +2404,7 @@ const TRANSLATIONS = {
     src_intro: 'Jedes Lehrbuch, das von mindestens einem Graphkonzept zitiert wird. Knotenkarten zeigen die Top-3-Quellen pro Konzept; dies ist das Gesamtinventar (204 Titel).',
     src_local: 'Lokale Texte (2026-09-12): 89 offene Dateien + CN 11 Bücher OCR fertig, Faktenebene (51 Kapitel-txts). Text-grounded: Physik ZH 66,5 % / EN 62,1 %, Chemie ZH 65,9 % / EN 53,2 % (semantische Schicht; Substring 33,8/25,5) (College-Knoten außerhalb Schul-Scope; DE nur Link).',
     src_math_sum: 'Mathematik · 32 Titel',
-    src_math_note: 'Umfangsnotiz: 68 Eingangskorpora / 72 Rohbibliothekstitel / 32 im Graph zitierte Titel (Refs = Zitierungen über Konzepte). Korpus: 68 Mathe-Lehrbücher (180 gesamt, alle Fächer); Vollinventar unten: 204 Titel.',
+    src_math_note: 'Umfangsnotiz: 68 Eingangskorpora / 72 Rohbibliothekstitel / 32 im Graph zitierte Titel (Refs = Zitierungen über Konzepte). Korpus: 68 Mathe-Lehrbücher (204 Titel gesamt, alle Fächer); Vollinventar unten: 204 Titel.',
     src_phys_sum: 'Physik · 83 Titel',
     src_chem_sum: 'Chemie · 89 Titel',
     src_book_h: 'Titel', src_lang_h: 'Spr.', src_refs_h: 'Refs',
@@ -2413,7 +2423,7 @@ const TRANSLATIONS = {
     twotier_src_t2: 'Offene Embeddings derselben Konzeptnamen (nomic-embed-text-v1.5, 768 dims, 934 Einträge, 434 primäre Paare)',
     twotier_what_t1: 'Curriculumstruktur: GED-Ähnlichkeit + Knoten/Kanten-Jaccard-Synthese („was gelehrt wird, wie es verknüpft ist“)',
     twotier_what_t2: 'Distributionelle Paraphrasen-Nähe: Kosinusdistanz synonymer sprachübergreifender Namen („wie ähnlich es im Pretraining klingt“)',
-    twotier_topo_t1: 'Strukturiert, hohe Varianz: Streuung 0,419; zh-de 0,519 weit unter EN-beteiligt &asymp;0,93 (0,933 / 0,938)',
+    twotier_topo_t1: 'Strukturiert, hohe Varianz: Streuung 0,419; zh-de 0,519 weit unter EN-beteiligt &asymp;0,93 (0,934 / 0,938)',
     twotier_topo_t2: 'Uniform, niedrige Varianz: Streuung 0,0445; gesamt 0,5029&plusmn;0,1058; zh-de 0,4804 (n=65) / zh-en 0,5249 (n=184) / de-en 0,4888 (n=185)',
     twotier_interp_t1: 'Hoch: rückverfolgbar auf Konzepte / Kanten / Dangling-Refs (51 global ungelöst, s. Blue-Team-Defense)',
     twotier_interp_t2: 'Niedrig: ein einzelner Wert ist auf kein Curriculumfaktum rückverfolgbar; nur verteilungsbezogene Aussagen',
@@ -2421,7 +2431,7 @@ const TRANSLATIONS = {
     twotier_role_t2: '<strong>Kontrollbaseline (Falsifikations-Probe)</strong>: existiert ein Effekt auf Graphebene, aber verschwindet auf Vektorebene, ist er Curriculumstruktur, keine generische Semantik. Nie ein eigenständiger Befund, nie austauschbar.',
     twotier_key: '<strong>Kernsatz:</strong> der offene Vektorraum komprimiert die drei Synonym-Paardistanzen in das schmale Band 0,48&ndash;0,52 (Streuung 0,0445) und reproduziert die strukturierte Spaltung des Lehrbuch-LDS-K nicht (Streuung 0,419; zh-de 0,519 &#8810; EN-beteiligt &asymp;0,93) &mdash; der Graph ist der Hauptbeleg für Curriculumstruktur, Vektoren sind die Kontrollbaseline für distributionelle Nähe; komplementär, nicht austauschbar.',
     twotier_scale: 'Skalenwarnung: Kosinusdistanz und 1 &minus; mean(GED_sim, Knoten/Kanten-Jaccard) sind verschiedene Größen &mdash; nur Rangfolge vergleichen, nie Rohwerte. Die zh-de-Nähe (&minus;0,04) ist ein Skalenzufall; nicht berichten „Vektoren bestätigen den zh-de-LDS-K-Wert“. Reproduktion: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
-    twotier_meta1: 'Tier-1: LDS-K 0,519 / 0,933 / 0,938',
+    twotier_meta1: 'Tier-1: LDS-K 0,519 / 0,934 / 0,938',
     twotier_meta2: 'Tier-2: 0,4804 / 0,5249 / 0,4888',
     twotier_meta3: 'Quelle: research/two_tier_benchmark_20260914.md',
     fals_title: 'Geisteswissenschaftliche „Falsifikations-Probe“ (asymmetrisch, präregistrierte Logik)',
@@ -2477,7 +2487,7 @@ const TRANSLATIONS = {
     contrib2_title: '知识组织的三项结构指标',
     contrib3_title: '课程覆盖分析框架',
     contrib4_title: '跨四个教育体系的实证发现',
-    contrib1_desc: '1,143 个概念和 1,118 条对齐关系（数学 517＋物理 386＋化学 215），涵盖数学、物理和化学三种语言——从 180 本教材中提取，经 Preliminary 金标抽查（92：20 手标 C9a + 72 机器预提/人工接受 C9b Developing；DB 路径社会 F1 0.939†，独立 harness 约 0.65，盲审待补；加权总体 0.881）——不作验证声称。',
+    contrib1_desc: '1,143 个概念和 1,118 条对齐关系（数学 517＋物理 386＋化学 215），涵盖数学、物理和化学三种语言——从 204 个教材题名中提取，经 Preliminary 金标抽查（92：20 手标 C9a + 72 机器预提/人工接受 C9b Developing；DB 路径社会 F1 0.939†；harness-v2 P3 社会 0.40–0.58（基数确认；语言模型侧失败）；5 智能体 panel 初筛 MAINTAIN（11/72 一致拒绝，人工复核待补）；加权总体 0.881）——不作验证声称。',
     section_method: '方法论', method_sub: '从教材文本到结构洞察，只需五个步骤',
     section_findings_title: '研究发现',
     section_findings: '五个发现小节，十二项编号结果（F1–F12）：知识如何在学科、语言、教育体系和个人之间组织',
@@ -2508,11 +2518,11 @@ const TRANSLATIONS = {
     section_validation: '验证', validation_sub: '黄金标准标注与模型基准',
     val_gold_title: '黄金数据集：92 个标签',
     val_bench_title: '模型基准: 19 个模型',
-    validation_gold_desc: '混合来源金标（20 手标 C9a + 72 机器预提/人工接受 C9b，Developing；harness 约 0.65）经抽查对抗提取（Preliminary）——不作验证声称。',
+    validation_gold_desc: '混合来源金标（20 手标 C9a + 72 机器预提/人工接受 C9b，Developing；harness-v2 P3 0.40–0.58，panel MAINTAIN）经抽查对抗提取（Preliminary）——不作验证声称。',
     validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。生产提取模型按总体 F1 选定。',
     section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
     section_paper: '论文', paper_sub: '预印本手稿可在仓库中获取',
-    paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 180 本教材中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
+    paper_abstract: 'LinguaGraph 提出了一个衡量不同语言和教育体系如何组织同一知识的框架。基于从 204 个教材题名中进行的大模型概念提取，我们构建多语言知识图谱并通过四个指标量化结构差异。',
     paper_sections: '引言 · 相关工作 · 方法论 · 结果 · 讨论 · 结论 · 物理附录',
     paper_copy_bib: '复制 BibTeX',
     section_openscience: '开放科学', openscience_sub: '所有数据、代码和结果公开可用',
@@ -2541,7 +2551,7 @@ curr_explanations_title: '三种竞争性解释',
     finding_a_tag1: '指标：CDS',
     finding_a_tag2: 'F1, F2, F6, F8',
     finding_a_tag3: '学科：数学、物理、化学',
-    finding_b_body: '最大前提知识链深度为数学 HDS ≤ 8，物理 HDS ≤ 6。平均深度更低：数学 0.40，物理 0.85。超过 83% 的数学概念没有任何前提链（根概念）。数值冻结自2026年6月稠密图谱（556概念/525关系），当前存档不可重算——见图5取证注。',
+    finding_b_body: '最大前提知识链深度为数学 HDS ≤ 8，物理 HDS ≤ 6。平均深度更低：数学 0.40，物理 0.85。超过 83% 的数学概念没有任何前提链（根概念）。数值冻结自2026年6月稠密图谱（556概念/525关系，2026年6月快照存档；现行SSOT 556/517），当前存档不可重算——见图5取证注。',
     finding_b_body2: '物理的顺序深度是数学的 2.1 倍（物理根概念 60% vs 数学 83%），反映了其更强的累积性知识结构。但两个学科都遵守相同的浅层上限——表明知识的排序存在教学或认知约束。',
     finding_b_ev1: '数学 HDS（最大）',
     finding_b_ev2: '数学 HDS（平均）',
@@ -2551,11 +2561,11 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
-    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.933）与德英（0.938）本来就贴着语内噪声底线（0.97，教材线）。',
+    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.934）与德英（0.938）本来就贴着语内噪声底线（0.97，教材线）。',
     finding_c_body2: '这种模式也受主题影响：在每个语言对内，LDS 在所分析的 5 个社会议题中可变动达 0.2，表明某些知识领域受文化影响更大。',
     finding_c_ev1: 'ZH–DE（0.519）',
     finding_c_ev2: 'DE–EN (0.938)',
-    finding_c_ev3: 'ZH–EN（0.933）',
+    finding_c_ev3: 'ZH–EN（0.934）',
     finding_c_ev4: '主题差异',
     finding_c_fig: '图 4 — Null Model Suite：Full vs Structure Null。Full < Structure Null，描述性差异（Preliminary，T1 证伪读法）',
     finding_c_fig8: '图 8 — 去污染（T1）：去掉含中文德语标签后中德 0.52→0.99 坍塌。结论：伪影',
@@ -2564,17 +2574,17 @@ curr_explanations_title: '三种竞争性解释',
     finding_c_tag3: '语言：ZH, EN, DE',
     finding_c_honesty: '诚实注（T1 去污染，2026-09）：去掉含中文德语标签后中德 J_node 0.556→0.020；size-matched 下维基比较各 k 全逆转。结论：标签伪影（论文 §3.8，图 8）。',
     finding_c_methodbox: '方法：<span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span>（<span class="mono">scripts/figures/_lds_utils.py</span>）→ 图4 Full-vs-Structure Null → 图8 T1去污染。冻值：ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188。',
-    finding_cx_sum: '纯数学抽查：8 个高相似分组（冻结 LDS-K 0.519 / 0.933 / 0.938，219 组）——为何不推翻结论 C',
-    finding_cx_intro: '来源：<span class="mono">data/math_extractions/merged/aligned_data.json</span>（219 组，亦见于 <span class="mono">merged_concepts.json</span>，557 行 vs 图谱 556 节点——Δ1 未解释，非标题数字）。冻值：中德 0.519 · 中英 0.933 · 德英 0.938；T1 去污染中德 J_node 0.556→0.020。诚实标签：纯数学微积分抽查，219 组中抽 8 组——不作跨领域断言。',
+    finding_cx_sum: '纯数学抽查：8 个高相似分组（冻结 LDS-K 0.519 / 0.934 / 0.938，219 组）——为何不推翻结论 C',
+    finding_cx_intro: '来源：<span class="mono">data/math_extractions/merged/aligned_data.json</span>（219 组，亦见于 <span class="mono">merged_concepts.json</span>，557 行 vs 图谱 556 节点——Δ1 未解释，非标题数字）。冻值：中德 0.519 · 中英 0.934 · 德英 0.938；T1 去污染中德 J_node 0.556→0.020。诚实标签：纯数学微积分抽查，219 组中抽 8 组——不作跨领域断言。',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE“导数” / EN“导数” / ZH“导数” · cross-refs ZH 3 / EN 6 / DE 3——判定：三语标签为同一中文字符串，抬高 Jaccard，属于 T1 去掉的 167/219 含中文德语标签（0.556→0.020），系伪影而非内容趋同。',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE“极限” / EN“极限” / ZH“极限” · cross-refs ZH 3 / EN 6 / DE 3——判定：与上组相同的全同标签伪影，已被 T1 去除，无法挽回被证伪的中德 0.519 读法。',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE“函数” / EN“函数” / ZH“函数” · cross-refs ZH 6 / EN 6 / DE 3——判定：三语全同字符串只是标签命中，不是课程结构命中，T1 去污染后即消失。',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE“切线” / EN“切线” / ZH“切线” · cross-refs ZH 6 / EN 3 / DE 3——判定：高相似由共享中文标签承载，正是 0.556→0.020 坍塌背后的污染个案之一。',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE“Bestimmtes Integral” / EN“Definite Integral” / ZH“定积分” · cross-refs ZH 1 / EN 1 / DE 0——判定：真翻译只说明单个数学术语可译，单个纯数学节点搬不动 219 组 LDS-K（0.519 / 0.933 / 0.938），后者度量的是图结构而非词可译性。',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE“Bestimmtes Integral” / EN“Definite Integral” / ZH“定积分” · cross-refs ZH 1 / EN 1 / DE 0——判定：真翻译只说明单个数学术语可译，单个纯数学节点搬不动 219 组 LDS-K（0.519 / 0.934 / 0.938），后者度量的是图结构而非词可译性。',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE“Partielle Ableitung” / EN“Partial Derivative” / ZH“偏导数” · cross-refs ZH 1 / EN 0 / DE 0——判定：真三元组只证明微积分词表可译，不证明教材图谱趋同，结论 C 成立。',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE“Regel von L\'Hospital” / EN“洛必达法则” / ZH“洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2——判定：EN 标签套用中文串，仅 DE 为真翻译，组间相似仍由标签驱动，属 T1 污染。',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE“连续性” / EN“Continuity” / ZH“连续性” · cross-refs ZH 0 / EN 2 / DE 2——判定：DE 标签复写中文串，是同一 167/219 伪影（0.556→0.020）的部分污染个案。',
-    finding_cx_note: '纯数学注：8 组均为微积分概念；数学中名称相似本属预期，不外推到抽查之外——冻结 LDS-K 0.519 / 0.933 / 0.938 与 T1 0.556→0.020 不变。',
+    finding_cx_note: '纯数学注：8 组均为微积分概念；数学中名称相似本属预期，不外推到抽查之外——冻结 LDS-K 0.519 / 0.934 / 0.938 与 T1 0.556→0.020 不变。',
     finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。与治理结构一致（假设，论文 §8.6）——但粒度（A）仍是最稳妥的解读。',
     finding_d_ev1: '中国（最高）',
     finding_d_ev2: '英国',
@@ -2604,7 +2614,7 @@ curr_explanations_title: '三种竞争性解释',
     e_tbl_sim: '仿真基线',
     limitations1_title: '教材选择偏差',
     limitations1_desc: '语料库并非每种语言教材的全面样本。中文教材以人教版为主，可能无法代表中国数学教育的多样性。德文教材偏向高年级大学教材（Forster、Fischer），小学阶段资源较少。',
-    limitations1_mit: '缓解措施：跨 68 本数学教材（共 180 本，含全部学科）的多源三角验证',
+    limitations1_mit: '缓解措施：跨 68 本数学教材（共 204 题名，含全部学科）的多源三角验证',
     limitations2_title: '学科覆盖有限',
     limitations2_desc: '仅分析了三个 STEM 学科（数学、物理、化学）。该框架尚未在人文科学、社会科学或专业领域验证。知识密度早期达峰等普遍性结论仅局限于 STEM 教育。',
     limitations2_mit: '缓解措施：框架设计中立，可扩展',
@@ -2612,7 +2622,7 @@ curr_explanations_title: '三种竞争性解释',
     limitations3_desc: '课程文件的粒度差异巨大：美国数学课程包含 2,124 个概念，而英国科学课程有 397 个（论文 §8：NRW 299 · UK 397 · US 2,124 · CN 87）。更高的粒度会机械地降低覆盖率得分。这通过按课程归一化部分缓解，但跨系统比较仍为近似。',
     limitations3_mit: '缓解措施：分析聚焦于体系内轨迹，而非绝对值',
     limitations4_title: 'LLM 提取可靠性',
-    limitations4_desc: '概念提取依赖于单一生产模型。尽管社会概念的 F1 = 0.939†（机器预提，Developing，盲审待补），但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
+    limitations4_desc: '概念提取依赖于单一生产模型。尽管社会概念的 F1 = 0.939†（机器预提，Developing，panel 初筛 MAINTAIN，人工复核待补），但数学领域只有 0.674（德语仅为 0.506）。提取错误会传播到所有下游指标。关系提取（前提链接）可靠性低于概念识别。',
     limitations4_mit: '缓解措施：92 个黄金标签确保可测量的质量边界',
     limitations5_title: '语言覆盖漏洞',
     limitations5_desc: '仅分析了三种语言（ZH, EN, DE）。这仅代表两个语系（汉藏语系、日尔曼语系）和一个教育传统聚类（西欧 + 东亚）。框架对罗曼语系、斯拉夫语系、阿拉伯语系等的适用性尚待测试。',
@@ -2623,7 +2633,7 @@ curr_explanations_title: '三种竞争性解释',
     lim_mis1: '若无此偏差说明，你会把仅有人教版的模式误读为中国数学教育的整体。',
     lim_mis2: '若无此局限，你会把 STEM 早峰误读为一切知识的普遍规律。',
     lim_mis3: '若无此粒度说明，你会把美国 17.2% 误读为对齐差，而非粒度伪影（2,124 对 397 个概念）。',
-    lim_mis4: '若无此局限，你会把社会概念 0.939（盲审待补）误读为已验证的分数。',
+    lim_mis4: '若无此局限，你会把社会概念 0.939（panel 初筛未过验证，人工待补）误读为已验证的分数。',
     lim_mis5: '若无此缺口说明，你会把中英德三语模式误读为普遍的语言效应。',
     lim_mis6: '若无此局限，你会把德语数学 0.506 误读为真实短板，而非高方差估计（n=20）。',
     lim_mis7: '若无此局限，你会把高估的漂移（244 文件内／51 未解决悬挂）误读为真实的跨语言距离。',
@@ -2645,7 +2655,7 @@ curr_explanations_title: '三种竞争性解释',
     val_math: '数学',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
-    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源，72 条盲审待补；独立 harness 复算约 0.65 vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。',
+    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源；panel 初筛 MAINTAIN 2026-09，人工复核待补；harness-v2 P3 0.40–0.58 vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。<br>Harness v2（跨种子，2026-09）：P3 社会 0.544/0.544/0.395＋0.580 西方描述性；英文提升仅来自基数（P1-EN≈P3-EN；REPORT §7）。',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：59 次测量 / 54 个模型 —— 59 对 ZH-DE 全部显著（边际 +0.03…+0.42）；177 中 9 个 EN n.s.。',
     val_roster_title: '复刻名录：59 次完整运行 ＋ 26 次收集中(file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: '对比视图——59 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.（500 置换）；西方运行标红。26 个收集中运行（含 qwen-max n=26/30（parked）＋2 稀疏小模型边界＋1 格式隔离，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',
@@ -2669,7 +2679,7 @@ curr_explanations_title: '三种竞争性解释',
     cognitivespace_open: '打开全屏',
     cs_load: '3D 图谱加载中…',
     cs_view_3d: '3D 图谱——数学 · STEAM · 物理 · 链',
-    paper_sec_meta: '10 个文件 · ~161 KB md · 226 KB PDF · <a href="../../docs/paper/02_methodology.md">阅读方法章</a>',
+    paper_sec_meta: '10 个文件 · ~161 KB md · 226 KB PDF · <a href="docs/paper/02_methodology.md">阅读方法章</a>',
     paper_fig_meta: '10 个文件 · 54 篇引用',
     section_pitch: '宣讲', pitch_badge: '[▶ 演示 · 3:24]',
     pitch_de: '德语', pitch_en: '英字', pitch_zh: '中字',
@@ -2694,6 +2704,7 @@ curr_explanations_title: '三种竞争性解释',
     metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
     method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、两个相似度分量',
+    method_figv2: '<strong>图 v2-cells</strong>——跨种子因子实验（2026-09）：基数修复把社会 F1 抬到 0.40–0.58（P1/P3）；纯语言修复≈0（P2，模型侧）；英文仅随基数回升。A2 分母；glm P3 带服务漂移 caveat。来源：V2_MATRIX.json，REPORT §7。',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
     method_prov_note: '来源说明：HF main SHA 为今日 HEAD，非实验当日锁定版本；在线服务版本记为 UNVERIFIED；本地 phi 文件为社区量化构建，与官方哈希不可直接比对（快照 research/weight_snapshot_20260916.json；论文附录 W）。',
     f12_prov_note: 'F12 注：Two-Tier 向量基线仅使用 nomic 嵌入，不受设计态与执行态判官替换影响（设计态 phi-4-mini-instruct，对比执行态 muse-spark-1.3-contributor）；见论文 §2.12 与附录 W。',
@@ -2733,7 +2744,7 @@ curr_explanations_title: '三种竞争性解释',
     src_intro: '每一本被至少一个图谱概念引用的教材。节点卡片显示单概念前 3 出处，这里是完整清单（204 种）。',
     src_local: '本地文本（2026-09-12）：89 个开放文件＋CN 11 册 OCR 完成（事实级，51 章 txt）。文本接地：物理 ZH 66.5%／EN 62.1%，化学 ZH 65.9%／EN 53.2%（语义层；substring 33.8/25.5）（大学节点超出高中范围；DE 仅链接）。',
     src_math_sum: '数学 · 32 种',
-    src_math_note: '口径注：68 输入语料 / 72 原始库题名 / 32 入图引用（Refs＝跨概念引用计数）。语料：68 本数学教材（共 180 本，各学科）；完整清单见下：204 题名。',
+    src_math_note: '口径注：68 输入语料 / 72 原始库题名 / 32 入图引用（Refs＝跨概念引用计数）。语料：68 本数学教材（共 204 题名，各学科）；完整清单见下：204 题名。',
     src_phys_sum: '物理 · 83 种',
     src_chem_sum: '化学 · 89 种',
     src_book_h: '书名', src_lang_h: '语言', src_refs_h: '引用',
@@ -2752,7 +2763,7 @@ curr_explanations_title: '三种竞争性解释',
     twotier_src_t2: '同名概念的开源嵌入（nomic-embed-text-v1.5，768 维，934 条目，434 主配对）',
     twotier_what_t1: '课程结构：GED 相似度＋节点/边 Jaccard 合成（“教什么、怎么连”）',
     twotier_what_t2: '分布 paraphrase 相近度：同义跨语言名称的余弦距离（“在预训练里听起来多像”）',
-    twotier_topo_t1: '结构化、高方差：spread 0.419；中德 0.519 远低于含英对 &asymp;0.93（0.933 / 0.938）',
+    twotier_topo_t1: '结构化、高方差：spread 0.419；中德 0.519 远低于含英对 &asymp;0.93（0.934 / 0.938）',
     twotier_topo_t2: '均匀、低方差：spread 0.0445；总体 0.5029&plusmn;0.1058；中德 0.4804（n=65）/ 中英 0.5249（n=184）/ 德英 0.4888（n=185）',
     twotier_interp_t1: '高：可追溯到概念/边/悬挂引用（全局未解决 51，见 blue-team defense）',
     twotier_interp_t2: '低：单个值追溯不到任何课程事实，只能做分布层面陈述',
@@ -2760,7 +2771,7 @@ curr_explanations_title: '三种竞争性解释',
     twotier_role_t2: '<strong>对照基线（证伪探针）</strong>：若效应在图层存在、在向量层消失，则它是课程结构而非通用语义。绝不单独成结论，绝不可互换。',
     twotier_key: '<strong>关键句：</strong>开源向量空间把三对同义距离压缩进 0.48&ndash;0.52 窄带（spread 0.0445），复现不了教材 LDS-K 的结构化分裂（spread 0.419，中德 0.519 &#8810; 含英对 &asymp;0.93）&mdash;图谱是课程结构的主要证据，向量是分布相近度的对照基线；互补，不可互换。',
     twotier_scale: '量纲警告：余弦距离与 1 &minus; mean(GED_sim，节点/边 Jaccard) 是不同量纲&mdash;只比排序，不比原始值。中德接近（&minus;0.04）只是量纲巧合；不得报道“向量证实了中德 LDS-K 值”。复现：<span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span>（LM Studio 在线）。',
-    twotier_meta1: '第一层：LDS-K 0.519 / 0.933 / 0.938',
+    twotier_meta1: '第一层：LDS-K 0.519 / 0.934 / 0.938',
     twotier_meta2: '第二层：0.4804 / 0.5249 / 0.4888',
     twotier_meta3: '来源：research/two_tier_benchmark_20260914.md',
     fals_title: '人文学科“证伪探针”（非对称、预注册逻辑）',
@@ -2802,7 +2813,7 @@ var METHOD_GRAPHS = {
 graph LR
     T1[Step 1 Corpus §2.2<br/>68 Textbooks ZH EN DE] --> MIMO[Step 2 Extraction §2.3<br/>MIMO LLM Concepts]
     MIMO --> KG[Step 3 Graph §2.4<br/>556 Concepts 517 Relations]
-    GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Checked (Preliminary)| KG
+    GL[92 Gold Labels<br/>F1 0.939† Developing social 0.881 overall] -.->|Preliminary check| KG
     KG --> CDS[Step 4 CDS §2.5<br/>Concept Density]
     KG --> HDS[Step 4 HDS §2.5<br/>Hierarchy Depth]
     KG --> LDS[Step 4 LDS §2.5<br/>Language Divergence]
@@ -2817,7 +2828,7 @@ graph LR
 graph LR
     T1[Schritt 1 Korpus §2.2<br/>68 Lehrbuecher ZH EN DE] --> MIMO[Schritt 2 Extraktion §2.3<br/>MIMO LLM Konzepte]
     MIMO --> KG[Schritt 3 Graph §2.4<br/>556 Konzepte 517 Relations]
-    GL[92 Gold-Labels<br/>F1 0.939† Developing sozial 0.881 gesamt] -.->|Checked (Preliminary)| KG
+    GL[92 Gold-Labels<br/>F1 0.939† Developing sozial 0.881 gesamt] -.->|Vorläufige Prüfung| KG
     KG --> CDS[Schritt 4 CDS §2.5<br/>Konzeptdichte]
     KG --> HDS[Schritt 4 HDS §2.5<br/>Hierarchietiefe]
     KG --> LDS[Schritt 4 LDS §2.5<br/>Sprachdivergenz]
@@ -2998,7 +3009,7 @@ function setLanguage(lang) {
   // Figure language variants (B7 2026-09-13: all 4 enabled; _de/_zh PNGs exist in web/figures/).
   // Evidence grading: fig_wikipedia_lds = method control only (gloss without human spot-check, evidence-insufficient, never a formal claim);
   // fig5_hds_distribution = published bars frozen, source graph superseded, disclosure via docs/fig5_hds_forensic.md (see fig label note).
-  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity', 'fig_wikipedia_lds', 'fig4_lds_heatmap', 'fig5_hds_distribution', 'fig6_cds_comparison'];
+  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity', 'fig_wikipedia_lds', 'fig4_lds_heatmap', 'fig5_hds_distribution', 'fig6_cds_comparison', 'fig_v2_cells'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {
