@@ -5,9 +5,12 @@ Prereg: `docs/osf_preregistration_amendment_A-judge.md` (J1–J7, falsify-only).
 Tooling: `scripts/tools/panel_judge.py` + `panel_consensus.py` (deterministic).
 
 ## Verdict: MAINTAIN (stay Developing, C9b)
-- Consensus `--import`: n=72, rejects=15, agreement 0.389 (zh 0.707 / en 0.359 / **de 0.000**),
+- Consensus `--import` (`panel_IMPORT.json`): n=72, rejects=15,
+  **Gold-Übereinstimmung (vs-gold Jaccard) 0.389** (zh 0.707 / en 0.359 / **de 0.000**),
   qwen-F1 vs consensus-gold 0.419. All gates missed (0.85/0.80/0.70).
-- Per-rater agreement vs gold: R1 0.520 / R2 0.301 / R3 0.541 / R4 partial / R5 0.438.
+  (Vs-gold ≠ inter-rater: paarweise Decision-Übereinstimmung 0.807, Fleiss κ=0.563.)
+- Per-rater Gold-Übereinstimmung (`panel_IMPORT.json`): R1 0.520 / R2 0.301 / R3 0.541 /
+  R4 0.501 (partial n=51) / R5 0.438.
 - Inter-rater: Fleiss κ=0.563 (decisions), pairwise concept-Jaccard 0.06–0.28, exact-5 20/72.
 - R4 parked by breaker at A056 (OpenRouter free daily quota 429×5); 51/72 judged, resumes after reset.
 

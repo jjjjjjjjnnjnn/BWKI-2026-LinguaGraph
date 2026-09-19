@@ -26,6 +26,22 @@ P2_SYSTEM = ("你是概念提取专家。只输出严格 JSON 格式。"
              "英文文本用英文）；严禁翻译；英文或德文文本中严禁输出任何 CJK 字符。")
 CELLS = {"P0": (SYSTEM, TEMPLATE), "P1": (SYSTEM, P1_TEMPLATE),
          "P2": (P2_SYSTEM, TEMPLATE), "P3": (P2_SYSTEM, P1_TEMPLATE)}
+P3B_SYSTEM = ("You are a concept extractor. Output strict JSON only. "
+              "Concept names MUST use the source language of the text "
+              "(Chinese for Chinese text, German for German text, "
+              "English for English text); translation is forbidden; "
+              "no CJK characters are allowed in English or German outputs.")
+P3B_TEMPLATE = P1_TEMPLATE.replace(
+    "从以下文本中提取关键概念及其关系。",
+    "Extract the key concepts and their relations from the following text.")
+P3B_TEMPLATE = P3B_TEMPLATE.replace(
+    "任务：提取 1-7 个真正独立的核心概念（通常 2-3 个；宁缺勿滥，禁止为凑数拆分或填充），并按以下 JSON Schema 输出：",
+    "Extract the truly central concepts of the following text (1-7 concepts, usually 2-3; "
+    "fewer is better than filler; do not split or pad concepts to reach a count). "
+    "Output them using the JSON schema below:")
+P3B_TEMPLATE = P3B_TEMPLATE.replace("文本内容：", "Text:")
+assert "从以下文本" not in P3B_TEMPLATE and "任务" not in P3B_TEMPLATE and "文本内容" not in P3B_TEMPLATE
+CELLS["P3b"] = (P3B_SYSTEM, P3B_TEMPLATE)
 out = {}
 for cell, (s, t) in CELLS.items():
     out[cell] = {"system": s, "template": t,

@@ -192,3 +192,14 @@ E2 IDs (n=30, 10/lang, seed 20260918, 5x gold_n1 + 5x gold_n2 per lang):
 `de_002,de_005,de_007,de_008,de_009,de_012,de_013,de_020,de_021,de_026,en_003,en_004,en_009,en_011,en_014,en_020,en_024,en_025,en_028,en_029,zh_006,zh_012,zh_017,zh_018,zh_019,zh_023,zh_025,zh_028,zh_031,zh_040`
 Gate: |P3b−P3| <0.05 paired on same 30 → robust; ≥0.10 → brittle (P3 numbers reported as range).
 Arm: glm-5.2-r4 only. Output `t2_v2-glm52r4-P3b.json`. Driver `--only-ids` + `--cell P3b`.
+
+## A19. Retrospective deviations (recorded 2026-09-19, frozen A11–A18 text untouched)
+- **D-V6 sn68-P2 n=92 statt 66**: `--langs` wurde für den sn68-Arm nicht übergeben → voll-92 inkl. zh36
+  (statt EN+DE+zh10). glm/ds laufen A14-konform (n=66). Betroffene Kontraste bleiben richtungsgleich:
+  EN-Subgruppe 0.000 unverändert; P2−P0 ≈0-Verdikt unberührt (Verdünnung durch 26 Extra-zh wirkt
+  konservativ gegen einen Lift). Status: dokumentierte Abweichung, kein Re-Run (Quota-Ökonomie).
+- **D-V7 sn68-P0cal n=37 statt 12**: gleiche Ursache (voller stratifizierter Satz 4/29/4 statt 1/10/1).
+  Drift +0.03 ≈0, Verdikt unberührt.
+- **D-V8 big-pickle außerhalb CORE**: P0 partial-46 + P3 n=92 ohne A14-Präregistrierung, E1-Gate-Evidenz fehlt.
+  Status strikt deskriptiv (kein E1-Gate-Claim, keine Validierung); C24 als Hypothese markiert.
+  Panel-R5-Nutzung separat in A-Judge geregelt.

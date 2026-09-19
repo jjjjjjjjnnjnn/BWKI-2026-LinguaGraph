@@ -29,8 +29,9 @@ Deviations: `research/deviation_log_20260918_spark.md` (D-S1–D-S7).
 
 ## 2. T2-Ergebnisse (harness-exakt, inkl. Bootstrap-95%-CI, B=1000, seed 20260918)
 
-F1-Spalte = A2-konform (fails als 0 über alle 92 Gold-IDs, D-S6); Werte in Klammern =
-valid-only (alt). Arme mit 92/92 sind identisch.
+F1-Spalte = A2 (fails als 0 über alle 92 Gold-IDs, D-S6). Sozial-Spalte = A2 über die
+72 sozialen IDs (fails als 0); Werte in Klammern = valid-only über valide Items
+(alt — nur 6.8/glm betroffen, da einzige Arme mit fails). Arme mit 92/92 sind identisch.
 
 | Modell | F1 (A2) | 95%-CI | P / R | pred_n (gold 2,16) | math (sauber) | sozial (seed-fremd) |
 |---|---|---|---|---|---|---|
@@ -38,8 +39,8 @@ valid-only (alt). Arme mit 92/92 sind identisch.
 | muse-spark-1.2-free | 0,160 | [0,127–0,195] | 0,097 / 0,613 | 13,2 | 0,253 [0,165–0,336] | 0,135 [0,103–0,165] |
 | MiniMax-M3 | 0,167 | [0,136–0,201] | 0,102 / 0,637 | 13,4 | 0,295 [0,205–0,379] | 0,131 [0,099–0,160] |
 | deepseek-v4.1-flash (r4) | 0,132 | [0,103–0,165] | 0,080 / 0,600 | 16,8 | 0,205 [0,121–0,298] | 0,112 [0,084–0,138] |
-| sensenova-6.8-flash-lite | 0,121 (0,146) | [0,092–0,154] | 0,089 / 0,599 | 15,0 | 0,199 (n=19) | 0,129 (n=57; n72=0,102) |
-| glm-5.2 (r4-direct) | 0,159 (0,161) | [0,124–0,198] | 0,105 / 0,553 | 12,8 | 0,235 (n=20) | 0,140 (n=71; n72=0,138) |
+| sensenova-6.8-flash-lite | 0,121 (0,146) | [0,092–0,154] | 0,089 / 0,599 | 15,0 | 0,199 (n=19) | 0,102 (valid-only 0,129) |
+| glm-5.2 (r4-direct) | 0,159 (0,161) | [0,124–0,198] | 0,105 / 0,553 | 12,8 | 0,235 (n=20) | 0,138 (valid-only 0,140) |
 | qwen-plus (Historie) | 0,666 | [0,587–0,752] | 0,642 / 0,719 | 2,5 | 0,724 | 0,650 |
 | qwen-max (Historie) | 0,661 | [0,583–0,746] | 0,642 / 0,702 | 2,5 | 0,707 | 0,648 |
 
@@ -54,8 +55,8 @@ T1 micro-P/R 0,253/0,356 (11/11; wahrscheinlichkeit-Base löst glm im 1. Versuch
 die r4-deepseek 6× scheiterte — s. §1).
 
 Pro Sprache (mean F1, overall inkl. Mathe-Domäne — paper §2.9 zeigt dagegen Sozial-only): spark-1.3 zh 0,276 / de 0,223 / en 0,070; spark-1.2 0,227/0,193/0,036;
-MiniMax 0,224/0,190/0,065; r4 0,205/0,159/0,005; 6.8-lite 0,226/0,177/0,000;
-glm-5.2 0,263/0,188/0,000.
+MiniMax 0,224/0,190/0,065; r4 0,205/0,159/0,005; 6.8-lite 0,226/0,177/0,000 (valid-only; A2: 0,201/0,134/0,000);
+glm-5.2 0,263/0,188/0,000 (valid-only; A2: 0,256/0,188/0,000 — s. V2_MATRIX).
 EN-Kollaps: 5–56 % der EN-Predictions
 enthalten CJK-Zeichen (System-Prompt befiehlt wörtlich „输出UTF-8中文" UND „原始语言" —
 widersprüchlich; qwen-Historie: EN/DE 0 % CJK, ZH 99 % CJK, d. h. Quellsprache).
@@ -136,7 +137,7 @@ Cells: P1 (CARD-only) / P2 (LANG-only, EN+DE+zh10) / P3 (BOTH) + P0-cal Drift. A
 
 | Arm | P0 (v1) | P1 | P2 (EN/DE) | P3 | pred_n P0→P3 |
 |---|---|---|---|---|---|
-| glm-5.2-r4 | 0,161 | 0,500 | 0,167 (EN 0,018, CJK 0 %) | 0,555 (soc 0,544) | 12,8→2,1 |
+| glm-5.2-r4 | 0,159 | 0,500 | 0,167 (EN 0,019, CJK 0 %) | 0,555 (soc 0,544) | 12,8→2,1 |
 | deepseek-r4 | 0,132 | 0,545 | 0,197 (EN 0,136, CJK 0 %) | 0,539 (soc 0,544) | 16,8→2,2 |
 | 6.8-sn | 0,121 | 0,395 | 0,141 (EN 0,000, CJK 0 %) | 0,421 (soc 0,395) | 15,0→2,6 |
 | big-pickle (west) | — (P0 partial-46) | — | — | 0,608 (soc 0,580, EN 0,377) | →2,1 |
@@ -148,7 +149,8 @@ en_001 F1=1,0 unter P0!). glm-Lifts daher drift-konfundiert (obere Schranke), de
 
 A13-Verdikte:
 - **F1 CARD: CONFIRMED** (2× sauber + 1× caveatiert). pred_n 12–17 → ~2–3; n1-Rettung > n2 (s. V2_MATRIX).
-- **F2 LANG: MODEL-SIDE FAILURE.** CJK-Fix überall befolgt (EN-CJK 5–56 % → 0,0 % bei allen 3 Ankern),
+- **F2 LANG: MODEL-SIDE FAILURE.** CJK-Fix in P2/P3 überall befolgt (EN-CJK v1 5–56 % →
+  0,0 % bei allen 3 Ankern; Ausnahme: P1-deepseek 9,8 % Rest — CARD-only ohne Sprachklausel),
   EN-F1 bleibt 0,02/0,14/0,00 (Schwelle >0,30 klar verfehlt). DE hebt sich gemischt (glm 0,19→0,24, deepseek ≈, 6.8 ≈).
   Zusatz: EN-Lift kommt aus Kardinalität (P1-EN 0,31/0,23/0,04 ≈ P3-EN), nicht aus Sprachklausel.
 - **P3: deepseek V2-VALIDATED** (soc 0,544 ∈ [0,40–0,65]); glm validiert-mit-Drift-Caveat (0,544);
@@ -158,12 +160,13 @@ A13-Verdikte:
 - E1 EXTENDED gegenstandslos (alle lauffähigen Arme in CORE); E3/E2 offen (E2 sinnvoll: P3-Lift steht);
   Panel Phase 2 bereit (big-pickle = Western-Rater).
 - **E2 P3b (A18, glm n=30): ROBUST.** |P3b−P3| +0,024 [−0,047–+0,091] < 0,05 — P3-Lift ist nicht
-  wortlaut-fragil (`t2_v2-glm52r4-P3b.json`, SHAs f91a3dad/8058b210).
+  wortlaut-fragil (`t2_v2-glm52r4-P3b.json`, SHAs f91a3dad/8058b210; Kontrast-Produkt `P3B_CONTRAST.json`).
 
 ## 8. Agent-Panel Screen (2026-09-19, A-Judge — falsify-only)
 
 5 Rater (deepseek-r4 / glm-r4 / 6.8-sn / cohere-openrouter 51/72 daily-park / big-pickle-zen),
-Consensus `--import`: rejects 15, agreement 0,389, qwen-F1 0,419 → **MAINTAIN**.
+Consensus `--import` (`panel_IMPORT.json`): rejects 15, **Gold-Übereinstimmung (vs-gold) 0,389**,
+qwen-F1 0,419 → **MAINTAIN**. (Nicht zu verwechseln mit inter-rater κ=0,56.)
 Fleiss κ=0,56, Jaccard ~0,1 (Rauschen hoch!). **Dissent-Kern: 11/72 einstimmige Rejects**
 (A005/A006/A014/A018/A020/A022/A027/A028/A032/A035/A041) — Falsifizierungs-grade Gold-Qualitätslücke (~15 %);
 R2 (glm, 36 Rejects, 14 solo) = Rater-Rauschen. Spot-Check (owner, 12 Items) + R4-Full offen.
