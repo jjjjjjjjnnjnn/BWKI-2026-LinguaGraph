@@ -1,9 +1,9 @@
 # Erklärung der Unterstützung — Declaration of Support
 
-> **Version**: 2.0 | **Stand**: 2026-09-11 (vor Einreichung final geprüft)
+> **Version**: 3.0 | **Stand**: 2026-09-19 (Einreichungsstand)
 > **Grundlage**: BWKI 2026 Teilnahmebedingungen, Klausel „Eigenständigkeit" (Stand 28.04.2023)
 > **Zweck**: Dieses Dokument legt alle externen Unterstützungsquellen des Projekts transparent und vollständig offen. **Es ist mit der schriftlichen Ausarbeitung einzureichen.**
-> **v1.0 → v2.0 Änderungen**: alle KI-Anbieter ergänzt (opencode zen / OpenRouter / DashScope / NIM / Cohere / Kilo), 59-Modell-Replikation (59 Messungen / 54 Modelle), Methodenentscheidung Extraktionsmodell = Versuchsmodell, ein Drittanbieter-API-Abrechnungsvorfall; F1-Zahlen-Zuordnung korrigiert.
+> **v2.0 → v3.0 Änderungen**: Dual-Signer-§8 (beide Namen in Druckschrift), Phase-3b Design-vs-Ausführung-Klarstellung, Personen-§4 mit Namen/Schule, EINGEREICHT-Video `Pitch_4K.mp4`.
 
 ---
 
