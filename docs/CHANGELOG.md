@@ -4,6 +4,22 @@
 
 ---
 
+## [2026-09-19] reaudit — Seal + Post-seal-Audit + Reaudit B1–B4
+
+### Overview
+
+封盘 `b7b17f3`（tag `seal-2026-09-19`）+ 交接 v44–v48。Post-seal：D-V9（Jaccard 0.44–0.77）/ D-V10（ZH-EN 0.933）/ F5 post-hoc / J3 negativ，
+门户三轮（flaw fixes / L7+MIMO+Carousel / Show-all / fig-Legende），`_deploy` 同步。Reaudit B1–B4（零新实验）：
+P2 分母注记、E2 降级、T1 concept-level 重算（micro-P 0.26–0.41，C22 定性不变）、Panel weak-MAINTAIN + reservations、
+C21–C24 caveats、论文 hedge 回写、ZH-EN 扫尾、C-TRACE。门禁双 PASS / pytest 84/84。
+
+### Commits
+
+`b7b17f3` (seal) → `908f01d` (audit) → `b03ae88` (sync) → `093993a`/`1438324`/`a8469df`/`b4f17c7` (portal) →
+`d676ed6` (v48) → `e02c7ee` (B1) → `4abff63` (B2) → `cc6ba44` (B3) → B4 (this).
+
+---
+
 ## [2026-09-14] v26-nobridges — 10 STEAM-Bridges retiriert + Portal-Zahlen ehrlich gestellt
 
 ### Overview

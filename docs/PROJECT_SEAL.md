@@ -53,3 +53,14 @@ R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 
 - Post-seal Portal-Runde 3 (Show-all-Bug): Inline-`translateX` schlug `.all`-CSS (leere Ansicht ab Seite 2) →
   `paint()` löscht Transform im All-Modus; 收起 scrollt zu Section-Start; Button-Label Show all↔Show less
   (3-sprachig, i18n-sicher); Nav/Keys/Swipe im All-Modus deaktiviert (gedimmt); Count-Init 1/3.
+- Reaudit 2026-09-19 (B1–B4, ohne neue Experimente): P2-Nenner offengelegt (66/66/92, Anker-vergleiche deskriptiv);
+  E2 auf „kein signifikanter Unterschied" downgegraded (Äquivalenz nicht gezeigt, D-V11);
+  `social_f1_n92` als echtes A2-social verifiziert (Nenner 72, nur Name irreführend);
+  T1 concept-level Reaudit micro-P 0.26–0.41 (C22-Verdikt unverändert, Frozen-Originale unberührt);
+  Panel auf weak-single-run-MAINTAIN + Reservations-Block (D-J1 offen/geparkt, D-J2/D-J3 geschlossen);
+  R4-Nenner klargestellt (51 judged / 5 leer / 16 nie angelaufen);
+  C21–C24 Caveats/Intervalle (0.395–0.58), Paper-Hedge-Fixes, ZH-EN-Sweep, C-TRACE in §3/§4.
+- Scope-Cuts (hiermit封盘-sichtbar): minimax EXCLUDED (Owner: Endpunkt nicht nutzbar), F5/qwen CUT (Owner),
+  sn-6.7 parked/incomplete — alle außerhalb Claims, kein Befundwechsel.
+- P2-Zero-Effekt (wichtigster Negativbefund, hiermit封盘-sichtbar): P2−P0 ≈ 0 über alle Anker
+  (EN-F1 0,02/0,14/0,00 trotz befolgtem CJK-Fix) — Sprachmanipulation allein hebt EN nicht (F2, modellseitig).
