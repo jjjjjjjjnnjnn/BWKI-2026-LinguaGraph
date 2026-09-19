@@ -20,7 +20,7 @@ Vier Dimensionen wurden mit einem a priori definierten Kriterienkatalog codiert.
 
 ### 7.3 Pilotergebnisse (N=6 DE)
 
-**D1 Räumliche Granularität:** Kriterienerfüllung von 3/9 bis 9/9 (Nenner: 9 Kriterien per `docs/lpa_codebook.md`; Skript-Norm /10 s. `scripts/analyze_lpa.py` — Abgleich s. P1-Reaudit). DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*) — eine Kombination intrinsischer und relativer Referenzrahmen (vgl. Levinson, 2003). DE02 codierte nur ein Objekt ohne räumliche Relation. Die beobachtete intra-linguale Variation ist konsistent mit Slobin (2000).
+**D1 Räumliche Granularität:** Kriterienerfüllung von 3/9 bis 9/9 (Nenner: 9 Kriterien per Skript `scripts/analyze_lpa.py` (criteria_total 4+5); Codebook-Tabelle listet 10 inkl. „Second relation" — Abgleich ausstehend; P1-Reaudit 2026-09-19). DE06 codierte Bewegungspfad (Quelle: *aus*, Pfad: *durch*, Ziel: *betritt*), statische Objekte mit Schreibseitenorientierung (*Schreibseite nach unten*) und vertikaler Relation (*über dem Buch*) — eine Kombination intrinsischer und relativer Referenzrahmen (vgl. Levinson, 2003). DE02 codierte nur ein Objekt ohne räumliche Relation. Die beobachtete intra-linguale Variation ist konsistent mit Slobin (2000).
 
 **D2 Zeitliche Rahmung:** 1/6 eindeutig (T+: *vorverlegt*), 1/6 nicht-standardisiert (T~: *vorwärts bewegt*), 4/6 ambigu (T?: *verschoben* u. a.; Kodierung s. `outputs/lpa_pilot_coded.json`, Zweitkodierung `lpa_coder2_manual.json`; IRR ausstehend). Die Ambiguitätsvermeidung (3/5 Bearbeitende wählten richtungsneutrale Formulierungen) ist konsistent mit Boroditsky (2000) und Gentner et al. (2002).
 

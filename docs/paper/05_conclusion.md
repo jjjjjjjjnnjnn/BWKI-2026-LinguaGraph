@@ -10,11 +10,11 @@ Die sprachübergreifende LDS-Analyse zeigt ein differenzierteres Bild. Anstelle 
 
 | Sprachpaar | LDS-K (Lehrbuch) | Interpretation |
 |:----------:|:----------------:|---------------|
-| ZH-DE | 0,519 | **Scheinbar konvergent, T1-falsifiziert** — Rohwert weit unterhalb der sprachinternen Rauschschwelle (0,97); nach CJK-Dekontamination (167/219) LDS 0,52→0,99 (J 0,556→0,020), s. Fig8. Die Konvergenz-Lesart ist damit falsifiziert; P2-Recheck-Einschränkung (Alignierungs-Labels, s. §8.14) bleibt zusätzlich bestehen |
+| ZH-DE | 0,519 | **Scheinbar konvergent, T1-falsifiziert** — Rohwert weit unterhalb der sprachinternen Rauschschwelle (0,97); nach CJK-Dekontamination (167/219) LDS 0,52→0,99 (J 0,556→0,020), s. Abb. 10. Die Konvergenz-Lesart ist damit falsifiziert; P2-Recheck-Einschränkung (Alignierungs-Labels, s. §8.14) bleibt zusätzlich bestehen |
 | ZH-EN | 0,933 | **Nahe der Rauschschwelle** — nicht von sprachinterner Variation unterscheidbar (Re-Freeze 2026-09-16; Fig-Snapshot 2026-09-12: 0,934) |
 | DE-EN | 0,938 | **Nahe der Rauschschwelle** — nicht von sprachinterner Variation unterscheidbar |
 
-Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beeinflusst", sondern dass **verschiedene Sprachpaare systematisch unterschiedliche Grade struktureller Konvergenz aufweisen**, wobei ZH-DE im Rohwert ein Muster zeigt, das Standard-Nullmodelle nicht erklären können — das sich jedoch in T1 als Kontaminations-Artefakt erwiesen hat (decontaminiert 0,99, s. Fig8). Diese Heterogenität — nicht Uniformität — ist die primäre Beobachtung, die unser Framework ermöglicht.
+Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beeinflusst", sondern dass **verschiedene Sprachpaare systematisch unterschiedliche Grade struktureller Konvergenz aufweisen**, wobei ZH-DE im Rohwert ein Muster zeigt, das Standard-Nullmodelle nicht erklären können — das sich jedoch in T1 als Kontaminations-Artefakt erwiesen hat (decontaminiert 0,99, s. Abb. 10). Diese Heterogenität — nicht Uniformität — ist die primäre Beobachtung, die unser Framework ermöglicht.
 
 ### 9.2 Drei Dimensionen der Struktur
 
@@ -32,7 +32,7 @@ Die entscheidende Erkenntnis ist nicht, dass „Sprache die Wissensstruktur beei
 Der Kernbeitrag dieser Studie ist **keine** universelle Erkenntnis über Sprache und Kognition, sondern vielmehr ein **methodologisches Framework**, das heterogene sprachübergreifende Strukturbeziehungen sichtbar und quantifizierbar macht. Im Einzelnen:
 
 1. **LDS allein ist unzureichend** — die Nullmodell-Suite zeigt, dass LDS-K-Werte gegen mehrere Basislinien interpretiert werden müssen (Struktur-Null, sprachinterne Rauschschwelle, kompletter Zufall)
-2. **LDS-K zeigt scheinbare Konvergenz, keine belastbare Divergenz-Aussage** — alle drei Sprachpaare zeigen LDS-K-Rohwerte auf oder unterhalb ihrer sprachinternen Rauschschwellen; der ZH-DE-Rohwert (0,52) ist T1-falsifiziert (Kontaminations-Artefakt, decontaminiert 0,99, s. Fig8)
+2. **LDS-K zeigt scheinbare Konvergenz, keine belastbare Divergenz-Aussage** — alle drei Sprachpaare zeigen LDS-K-Rohwerte auf oder unterhalb ihrer sprachinternen Rauschschwellen; der ZH-DE-Rohwert (0,52) ist T1-falsifiziert (Kontaminations-Artefakt, decontaminiert 0,99, s. Abb. 10)
 3. **ΔLDS = LDS-C − LDS-K wird als interpretierbares Sprachsignal vorgeschlagen** — die erweiterte N=15-Analyse zeigt jedoch **ΔLDS ≈ 0** auf Konzeptebene (−0,05 bis +0,05); die Relationsebene ist über unterschiedliche Sparsity-Regime hinweg nicht vergleichbar (ZH-DE +0,445 als Dichte-Artefakt, s. §5.9.4)
 4. **Die N=15-Humanvalidierung (6 DE · 6 ZH · 3 EN) falsifiziert ΔLDS > 0 unter Between-Subject-Bedingungen** (C7 → C17; Konzeptebene LDS-C 0,93–0,96 ≈ Split-Half-Boden 0,92–0,96 ≈ Label-Permutation 0,94; Themenebene χ² p=0,52; Relationsebene Edge-Jaccard ≈ 0). Die früheren N=8-Pilotdaten (DE-ZH +0,232) werden nicht repliziert.
 5. **Das LLM-as-Subject-Experiment (Within-Subject, §5) weist das Sprachsignal nach** — und stützt die Design-Artefakt-Hypothese für den Human-Negativebefund (Exklusion + Konsistenz-Demonstration; keine quantitative Kausalzuordnung, s. §8.14): Derselbe LDS-C-Messrahmen liefert unter Within-Subject-Bedingungen LDS-C 0,93–0,96 ≫ Boden 0,85–0,87, mit Sprachcode als dominantem Organisator (LMM: same_lang +0,038, LMM-Wald-p<0,001; Permutation p=0,000, Cell-Cluster-Bootstrap p<0,01; N=50 Dyaden aus 5 Zellen, single-model; same_frame +0,001, p=0,90/0,937/0,82).
@@ -41,7 +41,7 @@ Die zentrale methodologische Lehre: **Between-Subject-Designs können sprachgetr
 
 Die Within-Subject-Replikation (59 Messungen / 54 Modelle, §5.10: alle 59 ZH-DE-Paare signifikant, 9/177 englisch-haltige Tests n.s.) und die Wikipedia-Negativkontrolle (nach Alignierung der sozialen Konzepte: reale LDS-Werte statt Artefakt 1,00 — siehe §3.8) stützen, dass die Topologie-Beobachtungen keine reinen Artefakte der Extraktionsmethodik sind. (Der frühere 19-Modell-Extraktionsbenchmark ist als Vorstudie archiviert, §8.9 — kein Evidenz-Rang.) Für die Gold-Validierung gilt dies nicht (C9b Developing, ~15 % falsify-grade Lücke).
 
-**Harness-v2-Verdikte (F1/F2/P3 + E2, Details §2.9b)**: **F1** CARD bestätigt (P1−P0 +0,34/+0,41/+0,27 glm-4,7-flash/deepseek-v4-flash/qwen3-6,8b; glm drift-konfundiert); **F2** LANG-Modellseiten-Fail (P2-EN 0,02/0,14/0,00 <0,30); **P3** deepseek 0,544 validiert, glm 0,544 drift-caveatiert, qwen3-6,8b 0,395 marginal miss, big-pickle 0,580 deskriptiv; **E2** NICHT-ROBUST (|P3b−P3| +0,024, CI enthält 0, ±0,05-Band überschritten). Panel: MAINTAIN weak/single-run (s. §9.5).
+**Harness-v2-Verdikte (F1/F2/P3 + E2, Details §2.9b)**: **F1** CARD bestätigt (P1−P0 +0,34/+0,41/+0,27 glm-4.7-flash/deepseek-v4-flash/qwen3-6.8b; glm drift-konfundiert); **F2** LANG-Modellseiten-Fail (P2-EN 0,02/0,14/0,00 <0,30); **P3** deepseek 0,544 validiert, glm 0,544 drift-caveatiert, qwen3-6.8b 0,395 marginal miss, big-pickle 0,580 deskriptiv; **E2** NICHT-ROBUST (|P3b−P3| +0,024, CI enthält 0, ±0,05-Band überschritten). Panel: MAINTAIN weak/single-run (s. §9.5).
 
 ### 9.4 Beiträge
 

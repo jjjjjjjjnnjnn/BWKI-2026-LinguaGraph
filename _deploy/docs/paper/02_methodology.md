@@ -151,7 +151,7 @@ wobei \(J(X,Y) = \frac{|X \cap Y|}{|X \cup Y|}\) der Jaccard-Koeffizient ist und
 
 > **Formel-Verdict (2026-09-12, vgl. `docs/BASELINE_LEDGER.md` §8)**: verifiziert — publizierte LDS-K-Werte stammen aus der 2-Komponenten-Pipeline (`scripts/figures/_lds_utils.py::lds_jaccard`; Freeze-Skript `scripts/figures/reproduce_lds_binary.py`, Log `outputs/figures/reproduce_lds_binary.log`). Die 3-Komponenten-Variante in `src/scoring.py` (exaktes GED auf 219 Knoten intractable, Fallback 0,5) reproduziert sie nicht; obiger frozen-v3-Text (2 Komponenten) ist damit die maßgebliche Definition.
 
-> **Fig4/Fig8-Zeichenmethode, frozen 2026-09-12**: **Fig4** (`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model{,_de,_zh}.png` + `fig4_null_model_data.csv`): Full-Baseline = Freeze-Werte **ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188** (Snapshot `outputs/figures/reproduce_lds_binary.log`, publiziert gerundet 0,934/0,938/0,519; aktueller Re-Freeze SSOT 2026-09-16: 0.9330/0.9378/0.5190, publiziert 0,933/0,938/0,519 — δ im Rundungsband); Structure Null (grad-erhaltend) 0.9571/0.9568/0.7154 (sorted-freeze 2026-09-14, 5-seed Mittel 0.9562±0.0010/0.9555±0.0024/0.7170±0.0013); Within-Language-Floor 0.9695/0.9744/0.9615; Label-Permute 0.8407/0.8701/0.6704 (Punkt: Seed 42+999=1041; 5-seed Mittel 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069; Seeds 42,999,2026,7,1234). **Fig8** (`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination{,_de,_zh}.png` + `fig8_lds_decontamination_data.csv`, deterministischer Snapshot ohne Recompute): Full 0,934/0,938/0,519 (Paper §3.7) vs Structure Null 0,957/0,957/0,717 vs Dekontaminiert (T1 FilterA, 167/219 CJK-de-Labels raus, 52 behalten) 0,985/0,985/0,990 — ZH-DE-Pfeil +0,47. Spiegel beider Figuren unter `cognitive-space/web/figures/`.
+> **Abb. 7/Abb. 10-Zeichenmethode, frozen 2026-09-12**: **Abb. 7** (`scripts/figures/fig4_null_model.py` → `outputs/figures/fig4_null_model{,_de,_zh}.png` + `fig4_null_model_data.csv`): Full-Baseline = Freeze-Werte **ZH-EN 0.9336 / DE-EN 0.9382 / ZH-DE 0.5188** (Snapshot `outputs/figures/reproduce_lds_binary.log`, publiziert gerundet 0,934/0,938/0,519; aktueller Re-Freeze SSOT 2026-09-16: 0.9330/0.9378/0.5190, publiziert 0,933/0,938/0,519 — δ im Rundungsband); Structure Null (grad-erhaltend) 0.9571/0.9568/0.7154 (Punkt; 5-seed Mittel 0.7170 — in Abb. 7 als 0,715/0,717 ausgewiesen; sorted-freeze 2026-09-14, Mittel 0.9562±0.0010/0.9555±0.0024/0.7170±0.0013); Within-Language-Floor 0.9695/0.9744/0.9615; Label-Permute 0.8407/0.8701/0.6704 (Punkt: Seed 42+999=1041; 5-seed Mittel 0.8561±0.0059/0.8572±0.0140/0.6737±0.0069; Seeds 42,999,2026,7,1234). **Abb. 10** (`scripts/figures/fig8_lds_decontamination.py` → `outputs/figures/fig8_lds_decontamination{,_de,_zh}.png` + `fig8_lds_decontamination_data.csv`, deterministischer Snapshot ohne Recompute): Full 0,934/0,938/0,519 (Paper §3.7) vs Structure Null 0,957/0,957/0,715 (Punkt) vs Dekontaminiert (T1 FilterA, 167/219 CJK-de-Labels raus, 52 behalten) 0,985/0,985/0,990 — ZH-DE-Pfeil +0,47. Spiegel beider Figuren unter `cognitive-space/web/figures/`.
 
 ### 2.8 LLM-Extraktionsqualität
 
@@ -213,6 +213,10 @@ Um Kardinalität und Sprachanweisung kausal zu trennen, testet Harness v2 drei Z
 - **Nenner-Disziplin**: Alle v2-Headlines sind A2 (fails-als-0); die Sozial-pro-Sprache-Werte der Tabelle oben (§2.9) sind dagegen valid-only (qwen3-6.8b: zh25/de16/en16 → 0,189/0,163/0,000; glm-4.7-flash: zh28/de22/en21 → 0,224/0,167/0,000) — Sozial-A2-Entsprechungen (fails-als-0/29/22/21): qwen3-6.8b zh 0,163/de 0,118/en 0,000, glm-4.7-flash zh 0,216/de 0,167/en 0,000 (Overall-A2 inkl. Mathe s. `V2_MATRIX.json`: qwen3-6.8b zh 0,201/de 0,134, glm-4.7-flash zh 0,256/de 0,188).
 - **Claims**: C21 → v2-partial-repro (quantitativ), C23 → gehärtet (Mature-Kandidat), C24 neu (Western-EN, Hypothese); C9b unverändert Developing.
 
+<img src="../../outputs/figures/fig_v2_cells_de.png" width="520">
+
+**Abb. 1 — Harness-v2-Faktorzellen.** P1 (nur Kardinalität) vs. P2 (nur Sprache) vs. P3 (beides) gegen denselben v1-P0-Kontrollarm; F1 CARD bestätigt (+0,34/+0,41/+0,27), F2 ohne EN-Lift (0,02/0,14/0,00), P3-Werte s. Text. Quelle: `research/mimo_spark_replication/V2_MATRIX.json`.
+
 ### 2.10 Curriculum Coverage Score (CS)
 
 Um die Beziehung zwischen Lehrbuchinhalten und offiziellen Lehrplänen zu quantifizieren, definieren wir den Coverage Score (CS):
@@ -223,7 +227,7 @@ CS(G_{textbook}, G_{curriculum}) = \frac{|V_{textbook} \cap V_{curriculum}|}{|V_
 
 Der Coverage Score misst den Anteil der vom Lehrplan geforderten Konzepte, die im Lehrbuchgraph abgedeckt sind. Die Berechnung erfolgt pro Bildungsstufe und sprachspezifisch.
 
-Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scripts/compute_all_coverage_v2.py`):
+Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scripts/compute_all_coverage_v2.py`; P1-Reaudit 2026-09-19 reproduziert, Δ=0):
 
 | Lehrplan | Gesamt-Coverage | Höchste Stufe | Niedrigste Stufe |
 |----------|:--------------:|:-------------:|:----------------:|
@@ -233,6 +237,10 @@ Aktuelle Ergebnisse für die mathematischen Lehrpläne (Stand 2026-08-08, `scrip
 | NRW (DE) | **12,7 %** | Grundschule 1–4 (höchste) | Sekundarstufe II (niedrigste) |
 
 Der Coverage Score zeigt erhebliche Unterschiede zwischen Bildungssystemen: Während chinesische Lehrbücher den nationalen Lehrplan nahezu vollständig abdecken (95,4 %), liegt die Abdeckung für NRW bei nur 12,7 %. Dies könnte auf die unterschiedliche Granularität der Lehrpläne (Lehrplankonzepte: CN 87 vs. US 2124 vs. NRW 299 — Keyword-Matching begünstigt grobe Lehrpläne) oder auf eine größere methodische Lücke zwischen NRW-Lehrplan und den verwendeten Mathematiklehrbüchern hinweisen. Der Coverage Score wird als vierter Indikator neben LDS, CDS und HDS in die Analyse einbezogen.
+
+<img src="../../outputs/figures/fig6_coverage_de.png" width="520">
+
+**Abb. 2 — Lehrplan-Coverage.** CN 95,4 % vs. NRW 12,7 % (Keyword-Matching; Deutung als Governance-Effekt nur Hypothese, Granularitätseffekt sicherste Lesart). P1-Reaudit 2026-09-19 reproduziert (Δ=0).
 
 ### 2.11 Baseline-Glossar
 
@@ -244,7 +252,7 @@ Jeder Befund (§3–§5) wird gegen dieselben neun Referenzlinien gemessen (Port
 4. **Wikipedia aligned control** — domänenreine soziale Konzepte (ZH/EN/DE).
 5. **Human N=15 floor** — Between-Subject-Marge +0,015.
 6. **LLM within-subject signal** — LDS-C 0,93–0,96, Permutation p < 0,01.
-7. **Permutation test** — z. B. ZH-DE 59/59 [Datei-Wahrheit 62 Modelle inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54; hy-mt2-Boundary und qwen2,5-n.s. als Kleinstmodell-Grenze separat, s. §8.15] bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
+7. **Permutation test** — z. B. ZH-DE 59/59 [Datei-Wahrheit 62 Modelle inkl. qwen-max-Teilmessung n=26/30; publiziert 59/54; hy-mt2-Boundary und qwen2.5-n.s. als Kleinstmodell-Grenze separat, s. §8.15] bei p < 0,004 (500 perm., Auflösungsgrenze; kein exaktes p = 0,0).
 8. **Heterogeneity injection (q-Scan)** — Konsistenz-Demonstration, kein Kausalbeweis.
 9. **Margin threshold (≥ 0,10)** — operative Heuristik, keine validierte Grenze.
 

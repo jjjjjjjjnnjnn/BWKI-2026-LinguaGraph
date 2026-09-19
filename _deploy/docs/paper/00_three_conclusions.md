@@ -41,7 +41,7 @@
 
 ---
 
-## Schlussfolgerung 3: Scheinbare ZH-DE-Ähnlichkeit (LDS-K 0,519) — T1-falsifiziert als Label-Artefakt (0,52→0,99, Fig. 8); ΔLDS isoliert … (Ebenen-getrennt, Preliminary)
+## Schlussfolgerung 3: Scheinbare ZH-DE-Ähnlichkeit (LDS-K 0,519) — T1-falsifiziert als Label-Artefakt (0,52→0,99, Abb. 10); ΔLDS isoliert … (Ebenen-getrennt, Preliminary)
 
 **Was wir fanden**:
 > Die lehrbuchbasierten LDS-K-Werte reichen von **0,519 (ZH-DE) bis 0,938 (DE-EN)**, doch eine **Nullmodell-Kritik** zeigt, dass diese Werte vollständig von der Gradverteilungsstruktur dominiert werden — nicht von der Sprache. Unter gradbewahrender Randomisierung (Structure Null, frozen v3, Full vs. Structure Null) sind die realen Graphen deskriptiv **ähnlicher** als randomisierte Graphen (ZH-EN Snapshot 0,934 < 0,957; DE-EN: 0,938 < 0,957; ZH-DE: 0,519 < 0,717). Lesart T1-falsifiziert: ZH-DE 0,519 kollabiert nach Entfernen CJK-kontaminierter de-Labels (167/219) auf 0,990 (J_node 0,556→0,020); kein Beleg inhaltlicher Konvergenz. Dies falsifiziert die Hypothese, dass LDS-K sprachbedingte Divergenz misst.
@@ -62,7 +62,7 @@
 
 **Humanvalidierung (N=15, erweitert)**: Die konzeptuelle LDS-C liegt bei 0,93–0,96 — **nicht unterscheidbar vom Within-Language-Split-Half-Boden (0,92–0,96) und von Label-Permutation (0,94)**. ΔLDS ≈ 0 (−0,05 bis +0,05). Die früheren N=8-Werte (0,70–0,75) werden nicht repliziert.
 
-**LLM-as-Subject (Within-Subject, §5)**: Dasselbe LLM (deepseek-v4-flash) antwortet in ZH/DE/EN → LDS-C 0,93–0,96 **≫ Split-Half-Boden 0,85–0,87** → **Sprachsignal ist unter Within-Subject-Bedingungen klar nachweisbar**. LMM: Sprachcode ist der dominante Organisator (same_lang +0,038, LMM-Wald-p<0,001; Permutation p=0,000, Cell-Cluster-Bootstrap p<0,01; N=50 Dyaden aus 5 Zellen, single-model), kultureller Rahmen sekundär (same_frame +0,001, p=0,90/0,779/0,82); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik. **Zentrale Lehre: Der Human-Negativebefund ist mit der Heterogenitäts-/Design-Artefakt-Hypothese vereinbar (Exklusion + Konsistenz-Demonstration, q=0,30; mechanismus-konsistente q-Werte kollabieren die Marge nicht vollständig — keine quantitative Kausalzuordnung), kein Beleg für das Fehlen sprachlicher Kognitionseffekte.**
+**LLM-as-Subject (Within-Subject, §5)**: Dasselbe LLM (deepseek-v4-flash) antwortet in ZH/DE/EN → LDS-C 0,93–0,96 **≫ Split-Half-Boden 0,85–0,87** → **Sprachsignal ist unter Within-Subject-Bedingungen klar nachweisbar**. LMM: Sprachcode ist der dominante Organisator (same_lang +0,038, LMM-Wald-p<0,001; Permutation p=0,000, Cell-Cluster-Bootstrap p<0,01; N=50 Dyaden aus 5 Zellen, single-model), kultureller Rahmen sekundär (same_frame +0,001, p=0,90/0,937/0,82); ZH-DE trägt eine strukturelle Ebene jenseits der Assoziationsstatistik. **Zentrale Lehre: Der Human-Negativebefund ist mit der Heterogenitäts-/Design-Artefakt-Hypothese vereinbar (Exklusion + Konsistenz-Demonstration, q=0,30; mechanismus-konsistente q-Werte kollabieren die Marge nicht vollständig — keine quantitative Kausalzuordnung), kein Beleg für das Fehlen sprachlicher Kognitionseffekte.**
 
 ---
 

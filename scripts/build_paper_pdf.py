@@ -76,6 +76,13 @@ def main() -> None:
 
     html = md_to_html(combined_md)
 
+    # Resolve embedded figure paths to local absolute paths for the PDF
+    # backend (md uses repo-relative ../../ paths for GitHub/Pages rendering).
+    html = html.replace('src="../../outputs/figures/',
+                        f'src="{PROJECT_ROOT.as_posix()}/outputs/figures/')
+    html = html.replace('src="../../cognitive-space/',
+                        f'src="{PROJECT_ROOT.as_posix()}/cognitive-space/')
+
     # 3. HTML -> PDF (backend detection)
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -117,7 +124,9 @@ def main() -> None:
         # Strip <code>/<pre> (fpdf2 defaults to 'courier') and inline formatting
         # tags (fpdf2 write_html rejects nested tags inside <td>).
         html_clean = re.sub(r"</?(pre|code)[^>]*>", "", html)
-        html_clean = re.sub(r"</?(strong|em|b|i|span|u|s|mark)[^>]*>", "", html_clean)
+        # NOTE: (?!mg)/(?!vg) guards keep <img>/<svg> tags intact
+        # (bare <i>/<s> alternatives would eat them).
+        html_clean = re.sub(r"</?(strong|em|b|i(?!mg)|span|u|s(?!vg)|mark)(?=[\s>/])[^>]*>", "", html_clean)
         pdf.write_html(html_clean)
         pdf.output(str(out_path))
         backend = f"fpdf2 ({fam})"

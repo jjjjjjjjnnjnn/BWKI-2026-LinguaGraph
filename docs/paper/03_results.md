@@ -64,6 +64,14 @@ Die Analyse des Graphen auf Semesterstruktur zeigt folgende Beobachtungen:
 
 3. **Kreuzsprachliche Kanten**: Konzepte, die in mehreren Sprachen vorkommen, weisen strukturell ähnliche Nachbarschaftsbeziehungen auf — ein Indikator dafür, dass Nachbarschaften über Sprachen hinweg teilweise überlappen (deskriptiv, Preliminary) — kein Invarianz-Beweis; Alignierungsabhängigkeit (P2) vorbehalten.
 
+<img src="../../outputs/figures/fig3_cds_by_level_de.png" width="520">
+
+**Abb. 3 — CDS nach Bildungsstufe.** Dichtespitze früh (Mathe Mittelstufe 0,271; Physik Grundschule 0,222), danach monotoner Abfall. Frozen June-dense (forensisch, s. Kasten oben).
+
+<img src="../../outputs/figures/fig5_hds_distribution_de.png" width="520">
+
+**Abb. 4 — HDS-Verteilung.** Voraussetzungsketten im frozen sample ≤ 8 (Mathe max 8 / Physik max 6; Mittel 0,40/0,84). Frozen June-dense (forensisch).
+
 ### 3.5 CognitiveSpace 3D-Visualisierung
 
 Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-Kugelschale dar. Die Visualisierung ist unter `cognitive-space/web/index.html` lokal ausführbar und wird über GitHub Pages automatisch bereitgestellt.
@@ -77,8 +85,9 @@ Die CognitiveSpace-Visualisierung stellt den Wissensgraphen als interaktive 3D-K
 
 ### 3.6 CognitiveSpace-Screenshot
 
-[Abbildung: CognitiveSpace-3D-Visualisierung — 556 Konzepte in konzentrischen Kugelschalen,
-vier farbcodierte Bildungsstufen, sichtbare 233 Links (von 517 Relationen) als blaue Verbindungslinien]
+<img src="../../cognitive-space/web/screenshot.png" width="520">
+
+**Abb. 5 — CognitiveSpace-3D-Visualisierung.** 556 Konzepte in konzentrischen Kugelschalen, vier farbcodierte Bildungsstufen, 233 gerenderte Links (von 517 Relationen); interaktive ZH/EN/DE-Filter (Portal).
 
 ### 3.7 LDS-K: Sprachübergreifender Strukturvergleich (Textbook-Pipeline)
 
@@ -89,6 +98,10 @@ Die Pipeline-basierte LDS-K Analyse der Mathematik-Lehrbücher (556 Konzepte, 3 
 | ZH-EN | 0,933 |
 | DE-EN | 0,938 |
 | ZH-DE | 0,519 |
+
+<img src="../../outputs/figures/fig1_lds_k_heatmap_de.png" width="520">
+
+**Abb. 6 — LDS-K je Wissensdomäne.** Heatmap über Domänen (Analysis bis Geometrie) × Sprachpaare (frozen v3); EN-Paare durchgehend hoch, ZH-DE domänenabhängig (0,14–0,84) — Rohwerte, ZH-DE T1-falsifiziert (s. Abb. 10).
 
 Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbücher sind strukturell ähnlicher als jede der beiden mit den englischen Lehrbüchern. Um zu testen, ob diese Werte tatsächlich sprachgetriebene Divergenz messen, wurde eine **Null Model Suite** mit degree-preserving Randomisierung (Double-Edge Swap, 1000 Iterationen) durchgeführt:
 
@@ -103,15 +116,23 @@ Der ZH-DE Wert ist auffällig niedrig — chinesische und deutsche Mathematikbü
 
 **Zentraler Befund**: Full LDS-K < Structure Null LDS-K für alle drei Sprachpaare (frozen v3). Unter degree-preserving Randomisierung sind die randomisierten Graphen deskriptiv unterschiedlicher als die echten Graphen. Lesart T1-falsifiziert: scheinbare ZH-DE-Ähnlichkeit 0,519→0,990 nach Dekontamination; kein Konvergenz-Beleg.
 
+<img src="../../outputs/figures/fig4_null_model_de.png" width="520">
+
+**Abb. 7 — LDS-K gegen Nullmodelle.** Full < Struktur-Null für alle Paare (deskriptiv); ZH-DE 0,519 T1-falsifiziert (dekontaminiert 0,99). Snapshot 2026-09-12 + Re-Freeze 2026-09-16 (δ im Rundungsband); Struktur-Null-Punkt 0,715 (5-seed-Mittel 0,717).
+
 Die Interpretation: LDS-K wird von der **Gradverteilungsstruktur** dominiert (von geteilter Gradstruktur, Preliminary), nicht von sprachspezifischen Inhaltsarrangements. Der wissenschaftliche Kernbeitrag verschiebt sich damit zu **ΔLDS = LDS-C − LDS-K**, der auf den kognitiven Anteil jenseits der Lehrbuchstruktur zielt (Ebenen-getrennt, Preliminary, keine kausale Isolation).
 
 ### 3.8 LDS-K Vertiefung: Bildungsebenen, Sensitivität und Cross-Source-Nullmodell
 
 Die LDS-K-Ergebnisse wurden vertieft (reproduzierbar via `scripts/lds_k_deepen.py` + `lds_k_wiki_gloss.py`):
 
-**Bildungsebenen**: Die nominelle ZH-DE-Zahl (0,52, frozen v3) liegt in allen vier Ebenen unter den EN-Paaren — Grundschule 0,39, Mittelschule 0,80, Oberstufe 0,54, Universität 0,49. T1-falsifiziert: nach CJK-Dekontamination + Size-Matching (k=15–35) kehrt sich der Wiki-Vergleich um; kein Konvergenz-Beleg (Fig. 8). Die Kantenkomponente trägt für ZH-DE dreifach mehr zur Divergenz bei (Δ 0,075) als für ZH-EN/DE-EN (Δ ~0,02).
+**Bildungsebenen**: Die nominelle ZH-DE-Zahl (0,52, frozen v3) liegt in allen vier Ebenen unter den EN-Paaren — Grundschule 0,39, Mittelschule 0,80, Oberstufe 0,54, Universität 0,49. T1-falsifiziert: nach CJK-Dekontamination + Size-Matching (k=15–35) kehrt sich der Wiki-Vergleich um; kein Konvergenz-Beleg (Abb. 10). Die Kantenkomponente trägt für ZH-DE dreifach mehr zur Divergenz bei (Δ 0,075) als für ZH-EN/DE-EN (Δ ~0,02).
 
 **Sensitivität**: Die Ergebnisse sind robust gegenüber (a) Kantenrichtung (Δ ≤ 0,004), (b) Alignierungstoleranz — Synonym-/Stem-Mapping vs. exakte Gloss-Übereinstimmung (Δ ≤ 0,05), (c) Wichtigkeitsschwelle (Δ ≤ 0,02 auf LLM-Konzepten). Die Rangfolge (ZH-DE < ZH-EN ≈ DE-EN) bleibt in allen Konfigurationen erhalten.
+
+<img src="../../outputs/figures/fig_a7_5_ldsk_sensitivity_de.png" width="520">
+
+**Abb. 8 — Sensitivität.** (A) Richtungs-/Kanten-Robustheit mit Rauschboden 0,97; (B) Wiki-Alignierungsstrenge (locker vs. strikt). Rangfolge stabil.
 
 **Cross-Source-Nullmodell**: Zwei Quellen wurden verglichen:
 1. **Lehrbuch (Mathematik) vs. Wikipedia (sozial)**: LDS = 1,00 (null Knotenüberlappung) — dies ist eine **Domänenkonfundierung** (Mathematik ⊥ Soziales), kein Sprachsignal. Der Vergleich ist methodisch ungeeignet, weil die Quellen verschiedene Wissensdomänen abdecken.
@@ -124,7 +145,15 @@ Die LDS-K-Ergebnisse wurden vertieft (reproduzierbar via `scripts/lds_k_deepen.p
 | Mathematik-Lehrbücher | 0,933 | 0,938 | **0,519** |
 | Wikipedia (sozial, aligniert) | 0,698 | 0,723 | **0,819** |
 
-**Zentraler Befund (mit Einschränkung)**: Die Struktur sozialer Konzepte (Freiheit, Gerechtigkeit, Verantwortung, Heimat, Erfolg) weist eine höhere sprachübergreifende Divergenz auf als die Mathematik-Labels — und das Muster ist **umgekehrt**: Während ZH-DE in Mathematik am stärksten konvergiert (0,52), ist es in der sozialen Domäne am divergentesten (0,82). **Einschränkung (P2-Recheck)**: Dieser Vergleich ist **kein belastbarer Beleg unabhängiger sprachübergreifender Konvergenz**. Die Mathematik-Knoten sind **Alignierungs-Labels** (keine unabhängig extrahierten Konzepte), das `de`-Label-Feld enthält teils chinesische Texte, und ein Size-Matching auf die Wikipedia-Größe **kehrt das Muster um** (bei k=15–35 ist der Wikipedia-J_node höher; Details: `docs/p2_methodology_rechecks.md`). Die Mathematik-"Konvergenz" (0,519) ist daher teilweise ein Darstellungs-/Größen-Artefakt; die Aussage ist nur als "die **Alignierungs-Labels** institutionellen Wissens stimmen sprachübergreifend besser überein als die unabhängig extrahierten sozialen Konzepte" zu lesen — nicht als Beleg, dass institutionelles Wissen "inhaltlich" konvergiert. **T1-Dekontamination (2026-09) verschärft dies zur Falsifikation**: Nach Entfernen CJK-kontaminierter de-Labels (167/219) kollabiert ZH-DE J_node 0,556 → 0,020 (LDS 0,52 → 0,99); der size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um (Fig. 8: `outputs/figures/fig8_lds_decontamination.png`). CDS/HDS frozen from June dense graph, see forensic notes.
+<img src="../../outputs/figures/fig_wikipedia_lds_de.png" width="520">
+
+**Abb. 9 — Soziale Wikipedia (Negativkontrolle, korrigiert).** Alignierte LDS-Werte je Paar (0,70/0,72/0,82 statt Artefakt 1,00). Quellen: Wikipedia-Artikel × ZH/EN/DE, Zugriff 2026-08-08, CC-BY-SA.
+
+**Zentraler Befund (mit Einschränkung)**: Die Struktur sozialer Konzepte (Freiheit, Gerechtigkeit, Verantwortung, Heimat, Erfolg) weist eine höhere sprachübergreifende Divergenz auf als die Mathematik-Labels — und das Muster ist **umgekehrt**: Während ZH-DE in Mathematik am stärksten konvergiert (0,52), ist es in der sozialen Domäne am divergentesten (0,82). **Einschränkung (P2-Recheck)**: Dieser Vergleich ist **kein belastbarer Beleg unabhängiger sprachübergreifender Konvergenz**. Die Mathematik-Knoten sind **Alignierungs-Labels** (keine unabhängig extrahierten Konzepte), das `de`-Label-Feld enthält teils chinesische Texte, und ein Size-Matching auf die Wikipedia-Größe **kehrt das Muster um** (bei k=15–35 ist der Wikipedia-J_node höher; Details: `docs/p2_methodology_rechecks.md`). Die Mathematik-"Konvergenz" (0,519) ist daher teilweise ein Darstellungs-/Größen-Artefakt; die Aussage ist nur als "die **Alignierungs-Labels** institutionellen Wissens stimmen sprachübergreifend besser überein als die unabhängig extrahierten sozialen Konzepte" zu lesen — nicht als Beleg, dass institutionelles Wissen "inhaltlich" konvergiert. **T1-Dekontamination (2026-09) verschärft dies zur Falsifikation**: Nach Entfernen CJK-kontaminierter de-Labels (167/219) kollabiert ZH-DE J_node 0,556 → 0,020 (LDS 0,52 → 0,99); der size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um (Abb. 10: `outputs/figures/fig8_lds_decontamination.png`). CDS/HDS frozen from June dense graph, see forensic notes.
+
+<img src="../../outputs/figures/fig8_lds_decontamination_de.png" width="520">
+
+**Abb. 10 — Dekontamination (T1 FilterA).** Entfernen CJK-kontaminierter de-Labels (167/219, 52 behalten): ZH-DE 0,52→0,99 (J 0,556→0,020, Pfeil +0,47). Deterministischer Snapshot ohne Recompute.
 
 ---
 
@@ -314,6 +343,10 @@ Um die marginalen Beiträge von Sprachcode und kulturellem Rahmen zu trennen, wu
 
 Die D1-Baseline-Spalte (`data/lds_c/lds_c_results_20260808.json`, `per_topic_lds_c.ZH-DE`) verankert die Themenabsolutwerte: Alle fünf Themen liegen im Band 0,93–0,96 (Verantwortung 0.9804 höchst), konsistent mit LDS-C ≈ 0,93–0,96.
 
+<img src="../../outputs/figures/fig_a7_2_thematic_heatmap_de.png" width="520">
+
+**Abb. 11 — LDS-C je Thema (P1).** Alle Themen 0,93–0,96; abstrakt-moralische Themen (Erfolg, Gerechtigkeit) stärkstes Signal (s. Tabelle oben).
+
 Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotierten Themen (Erfolg, Gerechtigkeit) am stärksten** — konsistent mit der Hypothese, dass abstrakte Konzepte sprach- und kulturabhängiger sind als konkrete.
 
 ### 5.8 Zusammenfassung und Einordnung
@@ -326,11 +359,19 @@ Das Sprachsignal und der Rahmen-Effekt sind bei **abstrakten, moralisch konnotie
 
 Die Ergebnisse validieren die zentrale Methodenlehre aus §4.6: **ein Within-Subject-Design ist erforderlich, um sprachgetriebene Divergenz zu trennen** — und bieten zugleich eine testbare Blaupause für zukünftige Humanstudien mit Within-Subject-Design.
 
-> **TRACE Harness v2 / Panel (C21/C23/C24, Details §2.9b + REPORT §7/§8)**: Seed-fremder Faktortest — **C21**: v1-non-repro → v2-partial-repro (P1−P0 +0,34/+0,41/+0,27, Reihenfolge glm-4,7-flash/deepseek-v4-flash/qwen3-6,8b; alle CI≠0; glm drift-konfundiert = obere Schranke; P3 sozial 0,395 (6,8 marginal miss, kein Aufrunden) – 0,544 (deepseek validiert; glm drift-caveatiert) – 0,580 (big-pickle deskriptiv)); **C23**: Harness-v1-Konfundierung v2-bestätigt (CARD-Fix hebt F1; LANG-Fix ohne EN-Lift — P2-EN 0,02/0,14/0,00, alle <0,30; CJK→0 %; n-asymmetrisch deskriptiv; EN-Lift aus Kardinalität); **C24**: Western-EN-Hypothese (big-pickle P3-EN 0,377 höchst, deskriptiv). E2-Paraphrase (P3b, glm n=30) NICHT-ROBUST: |P3b−P3| +0,024, CI [−0,0467–+0,0913] enthält 0, überschreitet ±0,05 — Äquivalenz NICHT gezeigt (explorativ; D-V11). Agent-Panel (falsify-only): 15/72 Rejects, vs-gold 0,389 → MAINTAIN (weak, single-run, unkalibriert; κ=0,56, Jaccard 0,44–0,77); 11/72 einstimmige Rejects = falsify-grade Gold-Lücke ~15 %; C9b bleibt Developing.
+<img src="../../outputs/figures/fig_a7_4_mechanism_de.png" width="520">
+
+**Abb. 13 — Mechanismus (P1/LMM).** (A) Signal ≫ Boden (Split-Half + Label-Perm); (B) LMM: Code +0,038 (p<0,001), Rahmen +0,001 (p=0,90). Single-model Within-Subject, s. §5.6.
+
+> **TRACE Harness v2 / Panel (C21/C23/C24, Details §2.9b + REPORT §7/§8)**: Seed-fremder Faktortest — **C21**: v1-non-repro → v2-partial-repro (P1−P0 +0,34/+0,41/+0,27, Reihenfolge glm-4.7-flash/deepseek-v4-flash/qwen3-6.8b; alle CI≠0; glm drift-konfundiert = obere Schranke; P3 sozial 0,395 (6.8 marginal miss, kein Aufrunden) – 0,544 (deepseek validiert; glm drift-caveatiert) – 0,580 (big-pickle deskriptiv)); **C23**: Harness-v1-Konfundierung v2-bestätigt (CARD-Fix hebt F1; LANG-Fix ohne EN-Lift — P2-EN 0,02/0,14/0,00, alle <0,30; CJK→0 %; n-asymmetrisch deskriptiv; EN-Lift aus Kardinalität); **C24**: Western-EN-Hypothese (big-pickle P3-EN 0,377 höchst, deskriptiv). E2-Paraphrase (P3b, glm n=30) NICHT-ROBUST: |P3b−P3| +0,024, CI [−0,0467–+0,0913] enthält 0, überschreitet ±0,05 — Äquivalenz NICHT gezeigt (explorativ; D-V11). Agent-Panel (falsify-only): 15/72 Rejects, vs-gold 0,389 → MAINTAIN (weak, single-run, unkalibriert; κ=0,56, Jaccard 0,44–0,77); 11/72 einstimmige Rejects = falsify-grade Gold-Lücke ~15 %; C9b bleibt Developing.
 
 ### 5.9 Design-Effekt-Vergleich (Konsistenz-Demonstration, kein Kausalbeweis), Divergenztreiber und Knoten/Kanten-Dekomposition
 
 > Reproduzierbar via `scripts/lds_c_design_effect.py`, `lds_c_divergence_drivers.py`, `lds_c_node_edge_decomp.py`; Ergebnisse in `data/lds_c/llm_subject/design_effect_*.json`, `data/lds_c/divergence_drivers_*.json`, `data/lds_c/lds_k_deep/node_edge_decomp_*.json`.
+
+<img src="../../outputs/figures/fig_a7_1_delta_lds_de.png" width="520">
+
+**Abb. 12 — Drei-Ebenen-Vergleich (Rohwerte).** Mensch (N=15, between) vs. LLM (within) vs. soziale Wikipedia vs. Lehrbuch — gleiche Signalamplitude Mensch/LLM (0,93–0,96), unterschiedliche Böden. Lehrbuch-ZH-DE T1-falsifiziert.
 
 **5,9.1 Design-Effekt-Vergleich (Preliminary): gleiche Signalamplitude, unterschiedliche Bodenlinie.**
 
@@ -399,7 +440,7 @@ Die **Umkehr besteht auf der Knotenebene** (Mathematik node-only 0,444 → konve
 
 > Reproduzierbar via `scripts/lds_c_multi_model.py`; Ergebnisse in `data/lds_c/llm_subject/multi_model_replication_*.json`.
 
-Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **42 DashScope-, 8 Bare-Host- (zen/OpenRouter/D1), 2 Kilo-, je 1 Cohere-/NIM-/Cloudflare-/LM-Studio- und 3 opencode-go-Modelle** angewendet → **59 vollständige Messungen (je 10/10/10)**, davon **54 eindeutige Modell-Identitäten** (5 Modelle auf zwei Hosts gemessen: deepseek-v4-flash, deepseek-v4-pro, glm-5,2, kimi-k2,6, laguna-s-2,1). Die Familien: Qwen (19, plus 3 R1-Distill-Qwen → DeepSeek 12 gesamt), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside (×2 Hosts), longcat, **nemotron-3-ultra + nemotron-3-super (NVIDIA, US-Ursprung)**, **gpt-oss-20b (OpenAI-Gewichte, US-Ursprung)**, **command-a (Cohere, CA-Ursprung)**, gpt-5,6-luna (Herkunft ungeklärt, offengelegt), **grok-4,6 (xAI, US-Ursprung)**, **llama-3,3-70b (Meta-Gewichte, US-Ursprung)**, **muse-spark-1,3-contributor (Herkunft offengelegt)** und **phi-4-mini-instruct (Microsoft, US-Ursprung, lokal)**. **~81 % der Messungen stammen von chinesischen Anbietern; elf westliche Messungen** (10 Identitäten: NVIDIA ×2, Poolside ×2 Hosts, OpenAI-Gewichte, Cohere, Meta-Gewichte, xAI, Microsoft-lokal, luna, spark) sind enthalten. Die Modellauswahl folgte der API-Verfügbarkeit (kostenlose Tiers, Anbieter-Quotas), nicht einer präregistrierten Matrix — eine Verfügbarkeitsstichprobe (s. Robustheit (d) in §8.15).
+Das identische P1-Protokoll (3 Sprachen × k=10, gleicher Messrahmen LDS-C/Floor/Nullmodelle) wurde auf **42 DashScope-, 8 Bare-Host- (zen/OpenRouter/D1), 2 Kilo-, je 1 Cohere-/NIM-/Cloudflare-/LM-Studio- und 3 opencode-go-Modelle** angewendet → **59 vollständige Messungen (je 10/10/10)**, davon **54 eindeutige Modell-Identitäten** (5 Modelle auf zwei Hosts gemessen: deepseek-v4-flash, deepseek-v4-pro, glm-5.2, kimi-k2,6, laguna-s-2,1). Die Familien: Qwen (19, plus 3 R1-Distill-Qwen → DeepSeek 12 gesamt), GLM (7), Kimi/Moonshot (6), MiniMax (2), mimo/ByteDance, laguna/poolside (×2 Hosts), longcat, **nemotron-3-ultra + nemotron-3-super (NVIDIA, US-Ursprung)**, **gpt-oss-20b (OpenAI-Gewichte, US-Ursprung)**, **command-a (Cohere, CA-Ursprung)**, gpt-5,6-luna (Herkunft ungeklärt, offengelegt), **grok-4,6 (xAI, US-Ursprung)**, **llama-3,3-70b (Meta-Gewichte, US-Ursprung)**, **muse-spark-1.3-contributor (Herkunft offengelegt)** und **phi-4-mini-instruct (Microsoft, US-Ursprung, lokal)**. **~81 % der Messungen stammen von chinesischen Anbietern; elf westliche Messungen** (10 Identitäten: NVIDIA ×2, Poolside ×2 Hosts, OpenAI-Gewichte, Cohere, Meta-Gewichte, xAI, Microsoft-lokal, luna, spark) sind enthalten. Die Modellauswahl folgte der API-Verfügbarkeit (kostenlose Tiers, Anbieter-Quotas), nicht einer präregistrierten Matrix — eine Verfügbarkeitsstichprobe (s. Robustheit (d) in §8.15).
 
 **◆ Signal — breit repliziert, aber nicht ausnahmslos**: Alle **59 ZH-DE-Sprachpaare sind signifikant** (p<0,05, meist <0,01); die ZH-DE-Marge reicht von +0,03 (deepseek-r1-0528) bis +0,42 (command-a-03-2025). Von den **177 Sprachpaar-Tests sind 9 nicht signifikant** (p≥0,05) — **alle betreffen englisch-haltige Paare** (ZH-EN oder DE-EN), überwiegend DeepSeek-R1/Distill-Modelle (deepseek-r1-0528 DE-EN p=0,672). Hinweis zur p-Reportung: Bei n_iter=500 tritt p=0,0 auf, wenn der beobachtete Wert über allen Permutationen liegt; streng ist p<0,004 zu berichten (≡ einseitig p<0,002; Notation s. 04_discussion Robustheit (a)), und es wurde keine Mehrfachtest-Korrektur vorgenommen. Ein formaler Bonferroni-Test (α≈0,0003 bei 177 Tests) übersteigt diese Permutationsauflösung; die Meta-Betrachtung — alle 59 ZH-DE-Paare überschreiten sämtliche 500 Permutationen (erwartet unter der globalen Null ≈0,12) — stützt die Aussage dennoch (Details §8.15).
 

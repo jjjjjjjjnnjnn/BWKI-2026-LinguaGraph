@@ -41,7 +41,7 @@
 
 ---
 
-## Schlussfolgerung 3: Scheinbare ZH-DE-Ähnlichkeit (LDS-K 0,519) — T1-falsifiziert als Label-Artefakt (0,52→0,99, Fig. 8); ΔLDS isoliert … (Ebenen-getrennt, Preliminary)
+## Schlussfolgerung 3: Scheinbare ZH-DE-Ähnlichkeit (LDS-K 0,519) — T1-falsifiziert als Label-Artefakt (0,52→0,99, Abb. 10); ΔLDS isoliert … (Ebenen-getrennt, Preliminary)
 
 **Was wir fanden**:
 > Die lehrbuchbasierten LDS-K-Werte reichen von **0,519 (ZH-DE) bis 0,938 (DE-EN)**, doch eine **Nullmodell-Kritik** zeigt, dass diese Werte vollständig von der Gradverteilungsstruktur dominiert werden — nicht von der Sprache. Unter gradbewahrender Randomisierung (Structure Null, frozen v3, Full vs. Structure Null) sind die realen Graphen deskriptiv **ähnlicher** als randomisierte Graphen (ZH-EN Snapshot 0,934 < 0,957; DE-EN: 0,938 < 0,957; ZH-DE: 0,519 < 0,717). Lesart T1-falsifiziert: ZH-DE 0,519 kollabiert nach Entfernen CJK-kontaminierter de-Labels (167/219) auf 0,990 (J_node 0,556→0,020); kein Beleg inhaltlicher Konvergenz. Dies falsifiziert die Hypothese, dass LDS-K sprachbedingte Divergenz misst.

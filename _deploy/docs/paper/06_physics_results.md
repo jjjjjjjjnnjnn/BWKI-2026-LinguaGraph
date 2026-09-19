@@ -2,7 +2,7 @@
 
 > **Stand-Hinweis (Reaudit 2026-09-19)**: CDS/HDS-Werte dieses Kapitels sind frozen June-dense-Outputs (nicht rekonstruierbar, s. forensic notes + §9.2 Frozen-Hinweis); Auswirkung von Harness v2 / Panel auf physikalische Alignierung/Extraktion nicht bewertet — Kapitel als Querschnitts-Befund, nicht als laufende Messung lesen.
 
-Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **367 Konzepte**, **386 Relationen**, 83 Lehrbuchtitel mit 94 Belegen) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 89 Lehrbuchtitel).
+Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern lassen, wurden zwei parallele Wissensgraphen konstruiert: ein Physik-Graph (von der Grundschule bis zur Hochschulebene; Mechanik, Thermodynamik, Elektromagnetismus, Optik, moderne Physik, Strömungsmechanik sowie Kern- und Teilchenphysik; **367 Konzepte**, **386 Relationen**, 83 Lehrbuchtitel mit 10091 Referenzeinträgen (`physics_full.json`; frühere „94 Belege" lokal nicht auflösbar, s. P1-Reaudit)) und ein Chemie-Graph (Mittel- und Oberstufe sowie Hochschule; Materiestruktur, chemische Reaktionen, Stöchiometrie, organische/anorganische/physikalische/analytische Chemie; **220 Konzepte**, **215 Relationen**, 89 Lehrbuchtitel).
 
 ### 6.1 Konzeptdichtestruktur (CDS)
 
@@ -21,6 +21,10 @@ Um zu prüfen, ob sich die Befunde über die Mathematik hinaus verallgemeinern l
 - **Mathematik**: Die Mittelstufe markiert die Integration von Arithmetik, Algebra, Geometrie und Wahrscheinlichkeitsrechnung zu einem kohärenten Netzwerk, bevor die Aufspaltung in spezialisierte Teilgebiete erfolgt.
 
 Der 17-fache Abfall von Physik-Grundschule (0,222) zur Oberstufe (0,013) spiegelt die rasche curriculare Expansion wider: Der Physikunterricht erweitert sich von ca. 10 Kernkonzepten der Mechanik auf 136 Oberstufenkonzepte, die Thermodynamik, Elektromagnetismus, Optik und moderne Physik umfassen.
+
+<img src="../../outputs/figures/fig6_cds_comparison_de.png" width="520">
+
+**Abb. 14 — CDS-Vergleich Mathe vs. Physik.** Dichtespitzen auf verschiedenen Stufen (frozen June-dense, forensisch); gemeinsames frühes Integrationsmuster.
 
 ### 6.2 Hierarchietiefenstruktur (HDS)
 
@@ -58,7 +62,7 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 
 ### 6.5 Abbildungen
 
-- Abbildung 6: CDS-Vergleich — Mathematik vs. Physik nach Bildungsstufe (`cognitive-space/web/figures/fig6_cds_comparison.png`; Spiegel: `_deploy/figures/`, `_deploy/web/figures/`)
+- Abb. 14: CDS-Vergleich — Mathematik vs. Physik nach Bildungsstufe (`cognitive-space/web/figures/fig6_cds_comparison.png`; Spiegel: `_deploy/figures/`, `_deploy/web/figures/`; eingebettet oben)
 
 ### 6.6 Datenbestände
 
@@ -84,6 +88,10 @@ Dieses Muster steht im Einklang mit der pädagogischen Struktur des Physikunterr
 |-----------|:------:|:-----:|:-----:|
 | Maximale Tiefe | 3 | 6 | 8 |
 | Mittlere Tiefe | 0,20 | 0,84 | 0,40 |
-| Wurzelkonzepte | 184 (84 %) | 233 (64 %) | 459 (83 %) |
+| Wurzelkonzepte | 184 (84 %) | 233 live (64 %; frozen June-dense 219) | 459 (83 %) |
+
+<img src="../../outputs/figures/fig7_three_subject_cds_de.png" width="520">
+
+**Abb. 15 — Drei-Fächer-CDS.** Mathe/Physik/Chemie folgen demselben frühen Integrationsmuster bei disziplinabhängigen Spitzen (frozen June-dense, forensisch).
 
 **◆ Befund F8**: Der Chemie-CDS erreicht seine Spitze in der **Mittelstufe** (0,042) — dasselbe „Integriere früh, trenne spät"-Muster wie die Mathematik (0,271), jedoch auf deutlich niedrigerem Niveau. Die geringere Dichte und die flache Hierarchie (maximale Tiefe 3, 84 % Wurzelkonzepte) reflektieren den kleineren, weniger kumulativen Korpus (220 Konzepte, keine Grundstufe). Damit bestätigen die Chemie-Daten die Befunde F6 (Physik: Spitze in der Grundschule) und F7 (Physik: tiefere Voraussetzungsketten) als disziplinübergreifend konsistent: Die Wissensorganisation ist **disziplinabhängig** (Dichtespitzen auf verschiedenen Bildungsstufen), folgt aber in allen drei MINT-Disziplinen demselben frühen Integrationsmuster.
