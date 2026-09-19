@@ -29,7 +29,7 @@ Die Robustheit dieses Befundes über drei Sprachen hinweg (ZH, EN, DE) deutet da
 
 ### 8.3 Sprachübergreifende strukturelle Divergenz: Eine Nullmodell-Kritik
 
-Die LDS-K-Ergebnisse (F4) zeigen eine erhebliche Variation zwischen den Sprachpaaren: ZH-EN=0,934, DE-EN=0,938, ZH-DE=0,519. Der ZH-DE-Wert sticht hervor — chinesische und deutsche Lehrbuchwissensstrukturen sind beträchtlich ähnlicher (niedrigerer LDS-K) als jede von beiden im Vergleich zum Englischen. Dies stellt unmittelbar die naive Erwartung in Frage, dass typologisch entfernte Sprachen (ZH-DE) die größte Divergenz aufweisen würden.
+Die LDS-K-Ergebnisse (F4) zeigen eine erhebliche Variation zwischen den Sprachpaaren: ZH-EN=0,933, DE-EN=0,938, ZH-DE=0,519. Der ZH-DE-Wert sticht hervor — chinesische und deutsche Lehrbuchwissensstrukturen sind beträchtlich ähnlicher (niedrigerer LDS-K) als jede von beiden im Vergleich zum Englischen. Dies stellt unmittelbar die naive Erwartung in Frage, dass typologisch entfernte Sprachen (ZH-DE) die größte Divergenz aufweisen würden.
 
 Um zu bestimmen, ob diese Werte echte sprachgetriebene strukturelle Unterschiede darstellen, wandten wir eine **Nullmodell-Suite** mit vier Bedingungen an:
 
@@ -40,6 +40,7 @@ Um zu bestimmen, ob diese Werte echte sprachgetriebene strukturelle Unterschiede
 | Knotenpermutations-Null | Zufällige Neuzuweisung von Knotenbezeichnungen | 0,934 | 0,938 | 0,519 |
 | Vollständig zufällig | Erdős–Rényi-Graph | 1,000 | 1,000 | 1,000 |
 
+> Snapshot-Hinweis: Voll-Zeile = Freeze-Stand 2026-09-12 (ZH-EN 0,934); aktueller Re-Freeze (SSOT 2026-09-16) ZH-EN 0,933 — δ im Rundungsband, kein Befundwechsel.
 Der entscheidende Befund: **Vollständiges LDS-K < Struktur-Null-LDS-K für alle drei Sprachpaare (frozen v3, deskriptiv).** Unter grad-erhaltender Randomisierung (Doppelkantentausch, 1000 Iterationen) sind die randomisierten Graphen deskriptiv *unterschiedlicher* voneinander als die realen Graphen. Lesart T1-falsifiziert (0.52→0.99); kein Konvergenz-Beleg — das Gegenteil dessen, was eine sprachgetriebene Divergenzhypothese erwarten würde.
 
 Dieses Ergebnis falsifiziert die Interpretation, dass LDS-K sprachgetriebene kognitive Divergenz misst. Stattdessen werden die hohen LDS-K-Werte von der **Gradverteilungsstruktur** dominiert — einer Eigenschaft, die in den untersuchten Lehrbuchgraphen geteilt ist (Preliminary, frozen sample). Wenn die Gradverteilungen erhalten bleiben (Struktur-Null), sinkt die strukturelle Ähnlichkeit, was zeigt, dass das, was Lehrbuchgraphen „ähnlich“ macht, ihre gemeinsame Gradstruktur ist, nicht die sprachspezifische Inhaltsanordnung.
@@ -165,7 +166,7 @@ In diesem Rahmen:
 - **Struktur-Null** ≈ 0,96 (graderhaltend) → strukturelle Basislinie
 - **Vollständig zufällig** = 1,00 → Plausibilitätsprüfung
 
-ZH-DE nominell 0.519 (frozen v3) — T1-falsifiziert (dekontaminiert 0.990; Size-Matching kehrt Wiki-Vergleich um); nicht als Konvergenz-Evidenz werten (Fig. 8). ZH-EN (0,934) und DE-EN (0,938) liegen im Bereich „nahe am Rauschboden“ — nicht unterscheidbar von zwei zufälligen Hälften desselben sprachlichen Lehrbuchgraphen. Hierbei handelt es sich in erster Linie um Beobachtungen und nicht um Erklärungen; der Mechanismus, der die Heterogenität zwischen den Paaren antreibt, erfordert weitere Untersuchungen.
+ZH-DE nominell 0.519 (frozen v3) — T1-falsifiziert (dekontaminiert 0.990; Size-Matching kehrt Wiki-Vergleich um); nicht als Konvergenz-Evidenz werten (Fig. 8). ZH-EN (0,933) und DE-EN (0,938) liegen im Bereich „nahe am Rauschboden“ — nicht unterscheidbar von zwei zufälligen Hälften desselben sprachlichen Lehrbuchgraphen. Hierbei handelt es sich in erster Linie um Beobachtungen und nicht um Erklärungen; der Mechanismus, der die Heterogenität zwischen den Paaren antreibt, erfordert weitere Untersuchungen.
 
 ### 8.12 Einschränkungen
 

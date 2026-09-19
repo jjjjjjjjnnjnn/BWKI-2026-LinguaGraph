@@ -79,7 +79,7 @@ widersprüchlich; qwen-Historie: EN/DE 0 % CJK, ZH 99 % CJK, d. h. Quellsprache)
 - **F4 (T1, deterministisch)**: Modellabhängigkeit der §2.3-Inputs bestätigt —
   micro-P vs. mimo 0,21–0,32, rel_agree 0,8–2,0/Datei; konsistent mit Ensemble-Verdict
   (vs. mimo 0,22–0,26). Details `T1_AGREEMENT.md`.
-- **F5 (Methodik)**: Intra-Run-Varianz trotz temp≈0 (zh_001 Pilot 0,353 vs. Vollauf 0,400) —
+- **F5 (Methodik, post-hoc)**: Intra-Run-Varianz trotz temp≈0 (zh_001 Pilot 0,353 vs. Vollauf 0,400) —
   stützt Ensemble-C1 („temp=0 nicht deterministisch"). Ranking spark-1.3 > 1.2 auf
   Math (0,384 vs. 0,253) hat überlappende CIs → KEIN Rank-Claim (G3-Disziplin).
 - **F6 (Scope)**: Alle Schlüsse gelten nur für exakte (Modell, Endpoint, Datum)-Tripel;
@@ -167,7 +167,8 @@ A13-Verdikte:
 5 Rater (deepseek-r4 / glm-r4 / 6.8-sn / cohere-openrouter 51/72 daily-park / big-pickle-zen),
 Consensus `--import` (`panel_IMPORT.json`): rejects 15, **Gold-Übereinstimmung (vs-gold) 0,389**,
 qwen-F1 0,419 → **MAINTAIN**. (Nicht zu verwechseln mit inter-rater κ=0,56.)
-Fleiss κ=0,56, Jaccard ~0,1 (Rauschen hoch!). **Dissent-Kern: 11/72 einstimmige Rejects**
+Fleiss κ=0,56, paarweiser Konzept-Jaccard 0,44–0,77 (Mittel ~0,63; R1–R3 0,77, R1–R4 0,75).
+Rater stimmen UNTEREINANDER zu — MAINTAIN ist echte Gold-vs-Rater-Divergenz (vs-gold 0,389), kein Rauschen. **Dissent-Kern: 11/72 einstimmige Rejects**
 (A005/A006/A014/A018/A020/A022/A027/A028/A032/A035/A041) — Falsifizierungs-grade Gold-Qualitätslücke (~15 %);
 R2 (glm, 36 Rejects, 14 solo) = Rater-Rauschen. Spot-Check (owner, 12 Items) + R4-Full offen.
 Details `research/gold_review_v2/PANEL_SCREEN.md`. C9b bleibt Developing (schärfere Caveat).

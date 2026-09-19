@@ -825,28 +825,28 @@ graph LR
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
     <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K nominell ZH-DE 0.519 (frozen v3) — T1-falsifiziert (0.52→0.99 label artifact); EN-Paare ≈ noise floor. Core signal: ΔLDS (Preliminary, Ebenen-getrennt).</div>
-    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
+    <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.933) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
       <div class="ev-item"><div class="ev-num" style="color:var(--red)">0.519</div><div class="ev-label" data-i18n="finding_c_ev1">ZH–DE (0.519)</div></div>
       <div class="ev-item"><div class="ev-num" style="color:var(--yellow)">0.938</div><div class="ev-label" data-i18n="finding_c_ev2">DE–EN (0.938)</div></div>
-      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.934</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (0.934)</div></div>
+      <div class="ev-item"><div class="ev-num" style="color:var(--green)">0.933</div><div class="ev-label" data-i18n="finding_c_ev3">ZH–EN (0.933)</div></div>
       <div class="ev-item"><div class="ev-num">~0.2</div><div class="ev-label" data-i18n="finding_c_ev4">Topic variance</div></div>
     </div>
     <details style="margin:16px 0;border:1px solid var(--border);border-radius:8px;padding:12px 14px;background:var(--surface);font-size:.82rem;color:var(--text2)">
-      <summary style="cursor:pointer;color:var(--accent);font-size:.85rem" data-i18n="finding_cx_sum">Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.934 / 0.938, 219 groups) — why they do not overturn claim C</summary>
-      <p style="margin:8px 0" data-i18n="finding_cx_intro">Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.934 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.</p>
+      <summary style="cursor:pointer;color:var(--accent);font-size:.85rem" data-i18n="finding_cx_sum">Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.933 / 0.938, 219 groups) — why they do not overturn claim C</summary>
+      <p style="margin:8px 0" data-i18n="finding_cx_intro">Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.</p>
       <div style="margin:8px 0">
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g1"><span class="mono">math_calculus_导数</span> · DE “导数” / EN “导数” / ZH “导数” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: identical CJK string in all three labels inflates Jaccard and belongs to the 167/219 CJK-contaminated de-labels removed by T1 (0.556 → 0.020), so artifact, not content convergence.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g2"><span class="mono">math_calculus_极限</span> · DE “极限” / EN “极限” / ZH “极限” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: same identical-label artifact as above, removed in T1, so it cannot rescue the falsified ZH-DE 0.519 reading.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g3"><span class="mono">math_calculus_函数</span> · DE “函数” / EN “函数” / ZH “函数” · cross-refs ZH 6 / EN 6 / DE 3 — Ruling: identical trilingual string is a label match, not curriculum-structure match, and vanishes under T1 decontamination.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g4"><span class="mono">math_calculus_切线</span> · DE “切线” / EN “切线” / ZH “切线” · cross-refs ZH 6 / EN 3 / DE 3 — Ruling: high similarity is carried by the shared CJK label, one of the contaminated cases behind the 0.556 → 0.020 collapse.</div>
-        <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g5"><span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.934 / 0.938), which measures graph structure, not term translatability.</div>
+        <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g5"><span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.933 / 0.938), which measures graph structure, not term translatability.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g6"><span class="mono">math_calculus_偏导数</span> · DE “Partielle Ableitung” / EN “Partial Derivative” / ZH “偏导数” · cross-refs ZH 1 / EN 0 / DE 0 — Ruling: genuine trio proves only that calculus vocabulary translates, not that textbook graphs converge, so claim C stands.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g7"><span class="mono">math_calculus_洛必达法则</span> · DE “Regel von L'Hospital” / EN “洛必达法则” / ZH “洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2 — Ruling: EN label carries the ZH string while only DE is genuinely translated, so the pair similarity is still label-driven and T1-contaminated.</div>
         <div style="border-top:1px solid var(--border);padding:8px 0" data-i18n="finding_cx_g8"><span class="mono">math_calculus_连续性</span> · DE “连续性” / EN “Continuity” / ZH “连续性” · cross-refs ZH 0 / EN 2 / DE 2 — Ruling: DE label repeats the ZH string, a partial-contamination case of the same 167/219 artifact behind the 0.556 → 0.020 verdict.</div>
       </div>
-      <p style="margin:8px 0" data-i18n="finding_cx_note">Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.934 / 0.938 and T1 0.556 → 0.020 are unchanged.</p>
+      <p style="margin:8px 0" data-i18n="finding_cx_note">Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.933 / 0.938 and T1 0.556 → 0.020 are unchanged.</p>
     </details>
     <div class="figure-box" style="max-width:600px;margin:16px auto">
       <img src="../figures/fig4_null_model.png" alt="Fig 4: Null Model Suite — Full vs Structure Null" onclick="openLightbox(this.src)" loading="lazy">
@@ -858,7 +858,7 @@ graph LR
     </div>
     <div class="meta"><a class="tag tag-cyan" href="#methodology" data-i18n="finding_c_tag1">Metric: LDS</a> <a class="tag tag-blue" href="#finding-c" data-i18n="finding_c_tag2">F4, F5</a> <a class="tag tag-yellow" href="#research" data-i18n="finding_c_tag3">Languages: ZH, EN, DE</a></div>
     <p class="honesty" data-i18n="finding_c_honesty">Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).</p>
-    <div class="method_box" style="font-size:.8rem;color:var(--text2);border:1px solid var(--border);border-left:3px solid #0e7490;border-radius:8px;padding:10px 12px;margin-top:12px;line-height:1.6" data-i18n="finding_c_methodbox">Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Frozen: ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188.</div>
+    <div class="method_box" style="font-size:.8rem;color:var(--text2);border:1px solid var(--border);border-left:3px solid #0e7490;border-radius:8px;padding:10px 12px;margin-top:12px;line-height:1.6" data-i18n="finding_c_methodbox">Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Fig-snapshot (2026-09-12): ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188; current re-freeze (SSOT 2026-09-16): 0.9330 · 0.9378 · 0.5190, published 0.933 · 0.938 · 0.519 (δ in rounding band).</div>
   </div>
 
 </section>
@@ -889,7 +889,7 @@ graph LR
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
             <td style="padding:8px 12px"><strong data-i18n="twotier_r_topo">Topology</strong></td>
-            <td style="padding:8px 12px" data-i18n="twotier_topo_t1">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.934 / 0.938)</td>
+            <td style="padding:8px 12px" data-i18n="twotier_topo_t1">Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)</td>
             <td style="padding:8px 12px" data-i18n="twotier_topo_t2">Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)</td>
           </tr>
           <tr style="border-bottom:1px solid var(--surface2)">
@@ -907,7 +907,7 @@ graph LR
     </div>
     <p style="margin-top:8px" data-i18n="twotier_key"><strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.</p>
     <p class="honesty" data-i18n="twotier_scale">Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).</p>
-    <div class="meta"><span class="tag tag-cyan" data-i18n="twotier_meta1">Tier-1: LDS-K 0.519 / 0.934 / 0.938</span> <span class="tag tag-blue" data-i18n="twotier_meta2">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow" data-i18n="twotier_meta3">Source: research/two_tier_benchmark_20260914.md</span></div>
+    <div class="meta"><span class="tag tag-cyan" data-i18n="twotier_meta1">Tier-1: LDS-K 0.519 / 0.933 / 0.938</span> <span class="tag tag-blue" data-i18n="twotier_meta2">Tier-2: 0.4804 / 0.5249 / 0.4888</span> <span class="tag tag-yellow" data-i18n="twotier_meta3">Source: research/two_tier_benchmark_20260914.md</span></div>
   </div>
 </section>
 
@@ -983,7 +983,7 @@ graph LR
             <td style="padding:8px 12px"><strong data-i18n="e_row_lds">Textbook LDS-K</strong></td>
             <td style="padding:8px 12px;text-align:center"><strong>0.519</strong></td>
             <td style="padding:8px 12px;text-align:center">0.938</td>
-            <td style="padding:8px 12px;text-align:center">0.934</td>
+            <td style="padding:8px 12px;text-align:center">0.933</td>
             <td style="padding:8px 12px;text-align:center;color:var(--green)">✓</td>
           </tr>
           <tr style="background:var(--surface2);font-style:italic">
@@ -1882,11 +1882,11 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metric: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Disciplines: Math, Physics',
-    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.934) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.',
+    finding_c_body: 'Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.933) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.',
     finding_c_body2: 'The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.',
     finding_c_ev1: 'ZH–DE (0.519)',
     finding_c_ev2: 'DE–EN (0.938)',
-    finding_c_ev3: 'ZH–EN (0.934)',
+    finding_c_ev3: 'ZH–EN (0.933)',
     finding_c_ev4: 'Topic variance',
     finding_c_fig: 'Fig 4 — Null Model Suite: Full vs Structure Null. Full < Structure Null, deskriptiv (Preliminary, T1-falsified reading)',
     finding_c_fig8: 'Fig 8 — Decontamination (T1): removing CJK-contaminated de-labels collapses ZH-DE 0.52 → 0.99. Verdict: artifact',
@@ -1894,18 +1894,18 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Languages: ZH, EN, DE',
     finding_c_honesty: 'Honesty note (T1 decontamination, 2026-09): ZH-DE J_node 0.556 → 0.020 after removing CJK-contaminated de-labels; size-matched bootstrap reverses the wiki comparison at every k. Verdict: label artifact (paper §3.8, Fig 8).',
-    finding_c_methodbox: 'Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Frozen: ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188.',
-    finding_cx_sum: 'Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.934 / 0.938, 219 groups) — why they do not overturn claim C',
-    finding_cx_intro: 'Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.934 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.',
+    finding_c_methodbox: 'Method: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Fig 4 Full-vs-Structure Null → Fig 8 T1 decontamination. Fig-snapshot (2026-09-12): ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188; current re-freeze (SSOT 2026-09-16): 0.9330 · 0.9378 · 0.5190, published 0.933 · 0.938 · 0.519 (δ in rounding band).',
+    finding_cx_sum: 'Math-only spot check: 8 high-similarity groups (frozen LDS-K 0.519 / 0.933 / 0.938, 219 groups) — why they do not overturn claim C',
+    finding_cx_intro: 'Source: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 groups, also present in <span class="mono">merged_concepts.json</span>, 557 rows vs 556 graph nodes — Δ1 open, not a headline number). Frozen: ZH-DE 0.519 · ZH-EN 0.933 · DE-EN 0.938; T1 decontamination ZH-DE J_node 0.556 → 0.020. Honest label: math-only calculus spot check, 8 of 219 groups — no cross-domain claim.',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE “导数” / EN “导数” / ZH “导数” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: identical CJK string in all three labels inflates Jaccard and belongs to the 167/219 CJK-contaminated de-labels removed by T1 (0.556 → 0.020), so artifact, not content convergence.',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE “极限” / EN “极限” / ZH “极限” · cross-refs ZH 3 / EN 6 / DE 3 — Ruling: same identical-label artifact as above, removed in T1, so it cannot rescue the falsified ZH-DE 0.519 reading.',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE “函数” / EN “函数” / ZH “函数” · cross-refs ZH 6 / EN 6 / DE 3 — Ruling: identical trilingual string is a label match, not a curriculum-structure match, and vanishes under T1 decontamination.',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE “切线” / EN “切线” / ZH “切线” · cross-refs ZH 6 / EN 3 / DE 3 — Ruling: high similarity is carried by the shared CJK label, one of the contaminated cases behind the 0.556 → 0.020 collapse.',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.934 / 0.938), which measures graph structure, not term translatability.',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE “Bestimmtes Integral” / EN “Definite Integral” / ZH “定积分” · cross-refs ZH 1 / EN 1 / DE 0 — Ruling: genuine translations show single-term math universality, but one math-only node cannot move the 219-group LDS-K (0.519 / 0.933 / 0.938), which measures graph structure, not term translatability.',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE “Partielle Ableitung” / EN “Partial Derivative” / ZH “偏导数” · cross-refs ZH 1 / EN 0 / DE 0 — Ruling: genuine trio proves only that calculus vocabulary translates, not that textbook graphs converge, so claim C stands.',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE “Regel von L\'Hospital” / EN “洛必达法则” / ZH “洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2 — Ruling: EN label carries the ZH string while only DE is genuinely translated, so the pair similarity is still label-driven and T1-contaminated.',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE “连续性” / EN “Continuity” / ZH “连续性” · cross-refs ZH 0 / EN 2 / DE 2 — Ruling: DE label repeats the ZH string, a partial-contamination case of the same 167/219 artifact behind the 0.556 → 0.020 verdict.',
-    finding_cx_note: 'Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.934 / 0.938 and T1 0.556 → 0.020 are unchanged.',
+    finding_cx_note: 'Math-only note: all 8 are calculus concepts; high name similarity is expected in mathematics and does not generalize beyond this spot check — frozen LDS-K 0.519 / 0.933 / 0.938 and T1 0.556 → 0.020 are unchanged.',
     finding_d_body: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). China shows near-perfect alignment (95.4%) under a centralized national curriculum. The UK (37.3%) shows moderate alignment through its national curriculum. The US (17.2%) and NRW (12.7%) reflect broad or detailed standards that afford local adaptation. Consistent with educational governance (hypothesis, paper §8.6) — but granularity (A) remains the safest interpretation.',
     finding_d_ev1: 'China (highest)',
     finding_d_ev2: 'UK',
@@ -2084,7 +2084,7 @@ const TRANSLATIONS = {
     twotier_src_t2: 'Open-weight embeddings of the same concept names (nomic-embed-text-v1.5, 768 dims, 934 entries, 434 primary pairs)',
     twotier_what_t1: 'Curriculum structure: GED similarity + node/edge Jaccard synthesis ("what is taught, how it connects")',
     twotier_what_t2: 'Distributional paraphrase proximity: cosine distance of synonymous cross-lingual names ("how similar it sounds in pretraining")',
-    twotier_topo_t1: 'Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.934 / 0.938)',
+    twotier_topo_t1: 'Structured, high variance: spread 0.419; zh-de 0.519 far below EN-involved &asymp;0.93 (0.933 / 0.938)',
     twotier_topo_t2: 'Uniform, low variance: spread 0.0445; overall 0.5029&plusmn;0.1058; zh-de 0.4804 (n=65) / zh-en 0.5249 (n=184) / de-en 0.4888 (n=185)',
     twotier_interp_t1: 'High: traceable to concepts / edges / dangling refs (51 global unresolved, see blue-team defense)',
     twotier_interp_t2: 'Low: a single value is not traceable to a curriculum fact; distribution-level statements only',
@@ -2092,7 +2092,7 @@ const TRANSLATIONS = {
     twotier_role_t2: '<strong>Control baseline (falsification probe)</strong>: if an effect exists at graph level but vanishes at vector level, it is curriculum structure, not generic semantics. Never a standalone conclusion, never interchangeable.',
     twotier_key: '<strong>Key sentence:</strong> open-weight vector space compresses the three synonymous-pair distances into the 0.48&ndash;0.52 narrow band (spread 0.0445) and does not reproduce the structured split of textbook LDS-K (spread 0.419, zh-de 0.519 &#8810; EN-involved &asymp;0.93) &mdash; the graph is the main evidence for curriculum structure, vectors are the control baseline for distributional proximity; complementary, not interchangeable.',
     twotier_scale: 'Scale warning: cosine distance and 1 &minus; mean(GED_sim, node/edge Jaccard) are different quantities &mdash; compare rank order only, never raw values. The zh-de closeness (&minus;0.04) is a coincidence of scales; do not report "vectors confirm the zh-de LDS-K value". Reproduce: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
-    twotier_meta1: 'Tier-1: LDS-K 0.519 / 0.934 / 0.938',
+    twotier_meta1: 'Tier-1: LDS-K 0.519 / 0.933 / 0.938',
     twotier_meta2: 'Tier-2: 0.4804 / 0.5249 / 0.4888',
     twotier_meta3: 'Source: research/two_tier_benchmark_20260914.md',
     fals_title: 'Humanities "falsification probe" (asymmetric, pre-registered logic)',
@@ -2144,11 +2144,11 @@ const TRANSLATIONS = {
     finding_b_tag1: 'Metrik: HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: 'Faecher: Math, Physik',
-    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,934) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97, Lehrbuchlinie).',
+    finding_c_body: 'Lehrbuchstrukturen <em>scheinen</em> konvergenter als zufällig erwartet — doch die Dekontamination falsifiziert diese Lesart. ZH-DE (LDS-K = 0,519) kollabiert auf <strong>0,990</strong>, sobald de-Labels mit chinesischem Text (167/219) entfernt werden: Die scheinbare Konvergenz ist ein Label-Artefakt, keine inhaltliche Konvergenz. ZH-EN (0,933) und DE-EN (0,938) liegen ohnehin nahe der sprachinternen Rauschschwelle (0,97, Lehrbuchlinie).',
     finding_c_body2: 'Das Muster ist auch themenabhaengig: innerhalb jedes Sprachpaars variiert der LDS um bis zu 0,2 zwischen den 5 analysierten Sozialthemen.',
     finding_c_ev1: 'ZH–DE (0,519)',
     finding_c_ev2: 'DE–EN (0,938)',
-    finding_c_ev3: 'ZH–EN (0,934)',
+    finding_c_ev3: 'ZH–EN (0,933)',
     finding_c_ev4: 'Themenvarianz',
     finding_c_fig: 'Abb. 4 — Null Model Suite: Full vs Structure Null. Full < Structure Null, deskriptiv (Preliminary, T1-falsifizierte Lesart)',
     finding_c_fig8: 'Abb. 8 — Dekontamination (T1): Entfernen CJK-kontaminierter de-Labels lässt ZH-DE 0,52 → 0,99 kollabieren. Fazit: Artefakt',
@@ -2156,18 +2156,18 @@ const TRANSLATIONS = {
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: 'Sprachen: ZH, EN, DE',
     finding_c_honesty: 'Ehrlichkeitshinweis (T1-Dekontamination, 2026-09): ZH-DE J_node 0,556 → 0,020 nach Entfernen CJK-kontaminierter de-Labels; Size-matched Bootstrap kehrt den Wiki-Vergleich bei jedem k um. Fazit: Label-Artefakt (Paper §3.8, Fig. 8).',
-    finding_c_methodbox: 'Methode: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Abb. 4 Full-vs-Structure Null → Abb. 8 T1-Dekontamination. Freeze: ZH-EN 0,9336 · DE-EN 0,9382 · ZH-DE 0,5188.',
-    finding_cx_sum: 'Mathe-Spotcheck: 8 hochähnliche Gruppen (LDS-K frozen 0,519 / 0,934 / 0,938; 219 Gruppen) — warum sie Claim C nicht kippen',
-    finding_cx_intro: 'Quelle: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 Gruppen, auch in <span class="mono">merged_concepts.json</span> mit 557 Zeilen vs 556 Graphknoten enthalten — Δ1 offen, keine Headline-Zahl). Freeze: ZH-DE 0,519 · ZH-EN 0,934 · DE-EN 0,938; T1-Dekontamination ZH-DE J_node 0,556 → 0,020. Ehrlich-Label: nur Mathe/Analysis, 8-von-219-Spotcheck — kein fachübergreifender Beleg.',
+    finding_c_methodbox: 'Methode: <span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span> (<span class="mono">scripts/figures/_lds_utils.py</span>) → Abb. 4 Full-vs-Structure Null → Abb. 8 T1-Dekontamination. Abb.-Snapshot (2026-09-12): ZH-EN 0,9336 · DE-EN 0,9382 · ZH-DE 0,5188; aktueller Re-Freeze (SSOT 2026-09-16): 0,9330 · 0,9378 · 0,5190, publiziert 0,933 · 0,938 · 0,519 (δ im Rundungsband).',
+    finding_cx_sum: 'Mathe-Spotcheck: 8 hochähnliche Gruppen (LDS-K frozen 0,519 / 0,933 / 0,938; 219 Gruppen) — warum sie Claim C nicht kippen',
+    finding_cx_intro: 'Quelle: <span class="mono">data/math_extractions/merged/aligned_data.json</span> (219 Gruppen, auch in <span class="mono">merged_concepts.json</span> mit 557 Zeilen vs 556 Graphknoten enthalten — Δ1 offen, keine Headline-Zahl). Freeze: ZH-DE 0,519 · ZH-EN 0,933 · DE-EN 0,938; T1-Dekontamination ZH-DE J_node 0,556 → 0,020. Ehrlich-Label: nur Mathe/Analysis, 8-von-219-Spotcheck — kein fachübergreifender Beleg.',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE „导数“ / EN „导数“ / ZH „导数“ · Cross-Refs ZH 3 / EN 6 / DE 3 — Urteil: identische CJK-Zeichenkette in allen drei Labels bläht Jaccard auf und gehört zu den 167/219 CJK-kontaminierten de-Labels, die T1 entfernt (0,556 → 0,020); also Artefakt, keine Inhaltskonvergenz.',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE „极限“ / EN „极限“ / ZH „极限“ · Cross-Refs ZH 3 / EN 6 / DE 3 — Urteil: derselbe Identisch-Label-Artefakt wie oben, in T1 entfernt, daher keine Rettung der falsifizierten ZH-DE-Lesart 0,519.',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE „函数“ / EN „函数“ / ZH „函数“ · Cross-Refs ZH 6 / EN 6 / DE 3 — Urteil: identische dreisprachige Zeichenkette ist ein Label-Treffer, kein Curriculumstruktur-Treffer, und verschwindet unter T1-Dekontamination.',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE „切线“ / EN „切线“ / ZH „切线“ · Cross-Refs ZH 6 / EN 3 / DE 3 — Urteil: hohe Ähnlichkeit wird vom geteilten CJK-Label getragen, einer der kontaminierten Fälle hinter dem Kollaps 0,556 → 0,020.',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE „Bestimmtes Integral“ / EN „Definite Integral“ / ZH „定积分“ · Cross-Refs ZH 1 / EN 1 / DE 0 — Urteil: echte Übersetzungen belegen nur Einzelbegriff-Universalität in Mathe, doch ein einzelner Mathe-Knoten kann den 219-Gruppen-LDS-K (0,519 / 0,934 / 0,938) nicht bewegen, der Graphstruktur misst, nicht Wortübersetzbarkeit.',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE „Bestimmtes Integral“ / EN „Definite Integral“ / ZH „定积分“ · Cross-Refs ZH 1 / EN 1 / DE 0 — Urteil: echte Übersetzungen belegen nur Einzelbegriff-Universalität in Mathe, doch ein einzelner Mathe-Knoten kann den 219-Gruppen-LDS-K (0,519 / 0,933 / 0,938) nicht bewegen, der Graphstruktur misst, nicht Wortübersetzbarkeit.',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE „Partielle Ableitung“ / EN „Partial Derivative“ / ZH „偏导数“ · Cross-Refs ZH 1 / EN 0 / DE 0 — Urteil: echtes Trio beweist nur, dass Analysis-Vokabular übersetzbar ist, nicht dass Lehrbuchgraphen konvergieren; Claim C bleibt.',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE „Regel von L\'Hospital“ / EN „洛必达法则“ / ZH „洛必达法则“ · Cross-Refs ZH 2 / EN 2 / DE 2 — Urteil: EN-Label trägt die ZH-Zeichenkette, nur DE ist echt übersetzt, daher bleibt die Paarähnlichkeit label-getrieben und T1-kontaminiert.',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE „连续性“ / EN „Continuity“ / ZH „连续性“ · Cross-Refs ZH 0 / EN 2 / DE 2 — Urteil: DE-Label wiederholt die ZH-Zeichenkette, ein Teilkontaminationsfall desselben 167/219-Artefakts hinter dem Verdikt 0,556 → 0,020.',
-    finding_cx_note: 'Mathe-Hinweis: alle 8 sind Analysis-Konzepte; hohe Namensöhnlichkeit ist in der Mathematik erwartet und verallgemeinert nicht über diesen Spotcheck hinaus — LDS-K frozen 0,519 / 0,934 / 0,938 und T1 0,556 → 0,020 bleiben unverändert.',
+    finding_cx_note: 'Mathe-Hinweis: alle 8 sind Analysis-Konzepte; hohe Namensöhnlichkeit ist in der Mathematik erwartet und verallgemeinert nicht über diesen Spotcheck hinaus — LDS-K frozen 0,519 / 0,933 / 0,938 und T1 0,556 → 0,020 bleiben unverändert.',
     finding_d_body: 'Abdeckungswerte reichen von 12.7% (NRW) bis 95.4% (China). China zeigt nahezu perfekte Übereinstimmung unter zentralisiertem Lehrplan. UK (37.3%) moderate Übereinstimmung. US (17.2%) und NRW (12.7%) erlauben lokale Anpassung. Konsistent mit Governance (Hypothese, Paper §8.6) — Granularität (A) bleibt die sicherste Interpretation.',
     finding_d_ev1: 'China (hoechste)',
     finding_d_ev2: 'GB',
@@ -2423,7 +2423,7 @@ const TRANSLATIONS = {
     twotier_src_t2: 'Offene Embeddings derselben Konzeptnamen (nomic-embed-text-v1.5, 768 dims, 934 Einträge, 434 primäre Paare)',
     twotier_what_t1: 'Curriculumstruktur: GED-Ähnlichkeit + Knoten/Kanten-Jaccard-Synthese („was gelehrt wird, wie es verknüpft ist“)',
     twotier_what_t2: 'Distributionelle Paraphrasen-Nähe: Kosinusdistanz synonymer sprachübergreifender Namen („wie ähnlich es im Pretraining klingt“)',
-    twotier_topo_t1: 'Strukturiert, hohe Varianz: Streuung 0,419; zh-de 0,519 weit unter EN-beteiligt &asymp;0,93 (0,934 / 0,938)',
+    twotier_topo_t1: 'Strukturiert, hohe Varianz: Streuung 0,419; zh-de 0,519 weit unter EN-beteiligt &asymp;0,93 (0,933 / 0,938)',
     twotier_topo_t2: 'Uniform, niedrige Varianz: Streuung 0,0445; gesamt 0,5029&plusmn;0,1058; zh-de 0,4804 (n=65) / zh-en 0,5249 (n=184) / de-en 0,4888 (n=185)',
     twotier_interp_t1: 'Hoch: rückverfolgbar auf Konzepte / Kanten / Dangling-Refs (51 global ungelöst, s. Blue-Team-Defense)',
     twotier_interp_t2: 'Niedrig: ein einzelner Wert ist auf kein Curriculumfaktum rückverfolgbar; nur verteilungsbezogene Aussagen',
@@ -2431,7 +2431,7 @@ const TRANSLATIONS = {
     twotier_role_t2: '<strong>Kontrollbaseline (Falsifikations-Probe)</strong>: existiert ein Effekt auf Graphebene, aber verschwindet auf Vektorebene, ist er Curriculumstruktur, keine generische Semantik. Nie ein eigenständiger Befund, nie austauschbar.',
     twotier_key: '<strong>Kernsatz:</strong> der offene Vektorraum komprimiert die drei Synonym-Paardistanzen in das schmale Band 0,48&ndash;0,52 (Streuung 0,0445) und reproduziert die strukturierte Spaltung des Lehrbuch-LDS-K nicht (Streuung 0,419; zh-de 0,519 &#8810; EN-beteiligt &asymp;0,93) &mdash; der Graph ist der Hauptbeleg für Curriculumstruktur, Vektoren sind die Kontrollbaseline für distributionelle Nähe; komplementär, nicht austauschbar.',
     twotier_scale: 'Skalenwarnung: Kosinusdistanz und 1 &minus; mean(GED_sim, Knoten/Kanten-Jaccard) sind verschiedene Größen &mdash; nur Rangfolge vergleichen, nie Rohwerte. Die zh-de-Nähe (&minus;0,04) ist ein Skalenzufall; nicht berichten „Vektoren bestätigen den zh-de-LDS-K-Wert“. Reproduktion: <span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span> (LM Studio online).',
-    twotier_meta1: 'Tier-1: LDS-K 0,519 / 0,934 / 0,938',
+    twotier_meta1: 'Tier-1: LDS-K 0,519 / 0,933 / 0,938',
     twotier_meta2: 'Tier-2: 0,4804 / 0,5249 / 0,4888',
     twotier_meta3: 'Quelle: research/two_tier_benchmark_20260914.md',
     fals_title: 'Geisteswissenschaftliche „Falsifikations-Probe“ (asymmetrisch, präregistrierte Logik)',
@@ -2561,11 +2561,11 @@ curr_explanations_title: '三种竞争性解释',
     finding_b_tag1: '指标：HDS',
     finding_b_tag2: 'F3, F7',
     finding_b_tag3: '学科：数学、物理',
-    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.934）与德英（0.938）本来就贴着语内噪声底线（0.97，教材线）。',
+    finding_c_body: '教材结构<em>看似</em>比随机预期更趋同——但去污染证伪了这一读法。去掉含中文的德语标签（167/219）后，中德（LDS-K＝0.519）坍塌到 <strong>0.990</strong>：所谓趋同是标签伪影，不是内容趋同。中英（0.933）与德英（0.938）本来就贴着语内噪声底线（0.97，教材线）。',
     finding_c_body2: '这种模式也受主题影响：在每个语言对内，LDS 在所分析的 5 个社会议题中可变动达 0.2，表明某些知识领域受文化影响更大。',
     finding_c_ev1: 'ZH–DE（0.519）',
     finding_c_ev2: 'DE–EN (0.938)',
-    finding_c_ev3: 'ZH–EN（0.934）',
+    finding_c_ev3: 'ZH–EN（0.933）',
     finding_c_ev4: '主题差异',
     finding_c_fig: '图 4 — Null Model Suite：Full vs Structure Null。Full < Structure Null，描述性差异（Preliminary，T1 证伪读法）',
     finding_c_fig8: '图 8 — 去污染（T1）：去掉含中文德语标签后中德 0.52→0.99 坍塌。结论：伪影',
@@ -2573,18 +2573,18 @@ curr_explanations_title: '三种竞争性解释',
     finding_c_tag2: 'F4, F5',
     finding_c_tag3: '语言：ZH, EN, DE',
     finding_c_honesty: '诚实注（T1 去污染，2026-09）：去掉含中文德语标签后中德 J_node 0.556→0.020；size-matched 下维基比较各 k 全逆转。结论：标签伪影（论文 §3.8，图 8）。',
-    finding_c_methodbox: '方法：<span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span>（<span class="mono">scripts/figures/_lds_utils.py</span>）→ 图4 Full-vs-Structure Null → 图8 T1去污染。冻值：ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188。',
-    finding_cx_sum: '纯数学抽查：8 个高相似分组（冻结 LDS-K 0.519 / 0.934 / 0.938，219 组）——为何不推翻结论 C',
-    finding_cx_intro: '来源：<span class="mono">data/math_extractions/merged/aligned_data.json</span>（219 组，亦见于 <span class="mono">merged_concepts.json</span>，557 行 vs 图谱 556 节点——Δ1 未解释，非标题数字）。冻值：中德 0.519 · 中英 0.934 · 德英 0.938；T1 去污染中德 J_node 0.556→0.020。诚实标签：纯数学微积分抽查，219 组中抽 8 组——不作跨领域断言。',
+    finding_c_methodbox: '方法：<span class="mono">data/math_extractions/merged/aligned_data.json</span> → <span class="mono">lds_jaccard</span>（<span class="mono">scripts/figures/_lds_utils.py</span>）→ 图4 Full-vs-Structure Null → 图8 T1去污染。图快照（2026-09-12）：ZH-EN 0.9336 · DE-EN 0.9382 · ZH-DE 0.5188；当前重冻结（SSOT 2026-09-16）：0.9330 · 0.9378 · 0.5190，发表 0.933 · 0.938 · 0.519（δ 在舍入带内）。',
+    finding_cx_sum: '纯数学抽查：8 个高相似分组（冻结 LDS-K 0.519 / 0.933 / 0.938，219 组）——为何不推翻结论 C',
+    finding_cx_intro: '来源：<span class="mono">data/math_extractions/merged/aligned_data.json</span>（219 组，亦见于 <span class="mono">merged_concepts.json</span>，557 行 vs 图谱 556 节点——Δ1 未解释，非标题数字）。冻值：中德 0.519 · 中英 0.933 · 德英 0.938；T1 去污染中德 J_node 0.556→0.020。诚实标签：纯数学微积分抽查，219 组中抽 8 组——不作跨领域断言。',
     finding_cx_g1: '<span class="mono">math_calculus_导数</span> · DE“导数” / EN“导数” / ZH“导数” · cross-refs ZH 3 / EN 6 / DE 3——判定：三语标签为同一中文字符串，抬高 Jaccard，属于 T1 去掉的 167/219 含中文德语标签（0.556→0.020），系伪影而非内容趋同。',
     finding_cx_g2: '<span class="mono">math_calculus_极限</span> · DE“极限” / EN“极限” / ZH“极限” · cross-refs ZH 3 / EN 6 / DE 3——判定：与上组相同的全同标签伪影，已被 T1 去除，无法挽回被证伪的中德 0.519 读法。',
     finding_cx_g3: '<span class="mono">math_calculus_函数</span> · DE“函数” / EN“函数” / ZH“函数” · cross-refs ZH 6 / EN 6 / DE 3——判定：三语全同字符串只是标签命中，不是课程结构命中，T1 去污染后即消失。',
     finding_cx_g4: '<span class="mono">math_calculus_切线</span> · DE“切线” / EN“切线” / ZH“切线” · cross-refs ZH 6 / EN 3 / DE 3——判定：高相似由共享中文标签承载，正是 0.556→0.020 坍塌背后的污染个案之一。',
-    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE“Bestimmtes Integral” / EN“Definite Integral” / ZH“定积分” · cross-refs ZH 1 / EN 1 / DE 0——判定：真翻译只说明单个数学术语可译，单个纯数学节点搬不动 219 组 LDS-K（0.519 / 0.934 / 0.938），后者度量的是图结构而非词可译性。',
+    finding_cx_g5: '<span class="mono">math_calculus_定积分</span> · DE“Bestimmtes Integral” / EN“Definite Integral” / ZH“定积分” · cross-refs ZH 1 / EN 1 / DE 0——判定：真翻译只说明单个数学术语可译，单个纯数学节点搬不动 219 组 LDS-K（0.519 / 0.933 / 0.938），后者度量的是图结构而非词可译性。',
     finding_cx_g6: '<span class="mono">math_calculus_偏导数</span> · DE“Partielle Ableitung” / EN“Partial Derivative” / ZH“偏导数” · cross-refs ZH 1 / EN 0 / DE 0——判定：真三元组只证明微积分词表可译，不证明教材图谱趋同，结论 C 成立。',
     finding_cx_g7: '<span class="mono">math_calculus_洛必达法则</span> · DE“Regel von L\'Hospital” / EN“洛必达法则” / ZH“洛必达法则” · cross-refs ZH 2 / EN 2 / DE 2——判定：EN 标签套用中文串，仅 DE 为真翻译，组间相似仍由标签驱动，属 T1 污染。',
     finding_cx_g8: '<span class="mono">math_calculus_连续性</span> · DE“连续性” / EN“Continuity” / ZH“连续性” · cross-refs ZH 0 / EN 2 / DE 2——判定：DE 标签复写中文串，是同一 167/219 伪影（0.556→0.020）的部分污染个案。',
-    finding_cx_note: '纯数学注：8 组均为微积分概念；数学中名称相似本属预期，不外推到抽查之外——冻结 LDS-K 0.519 / 0.934 / 0.938 与 T1 0.556→0.020 不变。',
+    finding_cx_note: '纯数学注：8 组均为微积分概念；数学中名称相似本属预期，不外推到抽查之外——冻结 LDS-K 0.519 / 0.933 / 0.938 与 T1 0.556→0.020 不变。',
     finding_d_body: '覆盖率从 12.7%（NRW）到 95.4%（中国）。中国在集中课程下近乎完美对齐。英国（37.3%）中等对齐。美国（17.2%）和 NRW（12.7%）允许本地适应。与治理结构一致（假设，论文 §8.6）——但粒度（A）仍是最稳妥的解读。',
     finding_d_ev1: '中国（最高）',
     finding_d_ev2: '英国',
@@ -2763,7 +2763,7 @@ curr_explanations_title: '三种竞争性解释',
     twotier_src_t2: '同名概念的开源嵌入（nomic-embed-text-v1.5，768 维，934 条目，434 主配对）',
     twotier_what_t1: '课程结构：GED 相似度＋节点/边 Jaccard 合成（“教什么、怎么连”）',
     twotier_what_t2: '分布 paraphrase 相近度：同义跨语言名称的余弦距离（“在预训练里听起来多像”）',
-    twotier_topo_t1: '结构化、高方差：spread 0.419；中德 0.519 远低于含英对 &asymp;0.93（0.934 / 0.938）',
+    twotier_topo_t1: '结构化、高方差：spread 0.419；中德 0.519 远低于含英对 &asymp;0.93（0.933 / 0.938）',
     twotier_topo_t2: '均匀、低方差：spread 0.0445；总体 0.5029&plusmn;0.1058；中德 0.4804（n=65）/ 中英 0.5249（n=184）/ 德英 0.4888（n=185）',
     twotier_interp_t1: '高：可追溯到概念/边/悬挂引用（全局未解决 51，见 blue-team defense）',
     twotier_interp_t2: '低：单个值追溯不到任何课程事实，只能做分布层面陈述',
@@ -2771,7 +2771,7 @@ curr_explanations_title: '三种竞争性解释',
     twotier_role_t2: '<strong>对照基线（证伪探针）</strong>：若效应在图层存在、在向量层消失，则它是课程结构而非通用语义。绝不单独成结论，绝不可互换。',
     twotier_key: '<strong>关键句：</strong>开源向量空间把三对同义距离压缩进 0.48&ndash;0.52 窄带（spread 0.0445），复现不了教材 LDS-K 的结构化分裂（spread 0.419，中德 0.519 &#8810; 含英对 &asymp;0.93）&mdash;图谱是课程结构的主要证据，向量是分布相近度的对照基线；互补，不可互换。',
     twotier_scale: '量纲警告：余弦距离与 1 &minus; mean(GED_sim，节点/边 Jaccard) 是不同量纲&mdash;只比排序，不比原始值。中德接近（&minus;0.04）只是量纲巧合；不得报道“向量证实了中德 LDS-K 值”。复现：<span class="mono">python scripts/tools/openweight_embed_audit.py --batch 32</span>（LM Studio 在线）。',
-    twotier_meta1: '第一层：LDS-K 0.519 / 0.934 / 0.938',
+    twotier_meta1: '第一层：LDS-K 0.519 / 0.933 / 0.938',
     twotier_meta2: '第二层：0.4804 / 0.5249 / 0.4888',
     twotier_meta3: '来源：research/two_tier_benchmark_20260914.md',
     fals_title: '人文学科“证伪探针”（非对称、预注册逻辑）',

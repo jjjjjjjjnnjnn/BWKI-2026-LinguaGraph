@@ -3,6 +3,7 @@
 Panel: R1 deepseek-r4 / R2 glm-r4 / R3 sn-6.8 / R4 cohere-openrouter (51/72, daily-quota park) / R5 big-pickle-zen.
 Prereg: `docs/osf_preregistration_amendment_A-judge.md` (J1–J7, falsify-only).
 Tooling: `scripts/tools/panel_judge.py` + `panel_consensus.py` (deterministic).
+J3 leak-grep (2026-09-19, post-hoc): `human_labels|predicted_concepts|gold_dataset` → 0 hits in all 5 panel files. NEGATIVE (no seed leakage into judge outputs).
 
 ## Verdict: MAINTAIN (stay Developing, C9b)
 - Consensus `--import` (`panel_IMPORT.json`): n=72, rejects=15,
@@ -11,7 +12,10 @@ Tooling: `scripts/tools/panel_judge.py` + `panel_consensus.py` (deterministic).
   (Vs-gold ≠ inter-rater: paarweise Decision-Übereinstimmung 0.807, Fleiss κ=0.563.)
 - Per-rater Gold-Übereinstimmung (`panel_IMPORT.json`): R1 0.520 / R2 0.301 / R3 0.541 /
   R4 0.501 (partial n=51) / R5 0.438.
-- Inter-rater: Fleiss κ=0.563 (decisions), pairwise concept-Jaccard 0.06–0.28, exact-5 20/72.
+- Inter-rater: Fleiss κ=0.563 (decisions), pairwise concept-Jaccard 0.44–0.77 (mean ~0.63;
+  R1–R3 0.77, R1–R4 0.75, R3–R5 0.72), exact-5 20/72.
+  (BUGFIX 2026-09-19: `panel_consensus.py` had `judged[b]` instead of `judged[b][i]` —
+  sb was always empty, old table 0.06–0.28 was wrong; table regenerated, consensus records unchanged.)
 - R4 parked by breaker at A056 (OpenRouter free daily quota 429×5); 51/72 judged, resumes after reset.
 
 ## Dissent analysis (the honest core)
@@ -21,8 +25,9 @@ Tooling: `scripts/tools/panel_judge.py` + `panel_consensus.py` (deterministic).
 - **R2 outlier**: 36 rejects, 14 R2-only (A004/A026/A030/A034/A046/A048/A049/A050/A054/A056/A058/A064/A070/A072).
   R2 (glm) is hyper-critical as judge — rater noise, not gold signal (4 others accept these with intact lists).
 - Consensus rejects = 15 (11 unanimous + A055/A068 + 2 majority). needs_human ties: A030/A065/A071.
-- Interpretation: panel noise is HIGH (Jaccard ~0.1) → overall `maintain` is weak-evidence maintain, NOT strong falsification.
-  The 11 unanimous rejects are falsify-grade (gold contains ~15% weak items); everything else is undecided.
+- Interpretation: raters agree with EACH OTHER moderately-to-strongly (Jaccard ~0.63) but jointly
+  diverge from gold (vs-gold 0.389) → `maintain` is genuine gold-vs-rater divergence, NOT rater noise.
+  The 11 unanimous rejects weigh heavier under this reading; everything else is undecided.
 
 ## Human spot-check list (owner, ~30 min, J7)
 11 unanimous + A065 (needs_human; A030/A071 deferred — A030 is R2-only noise, A071 needs R4-full first):

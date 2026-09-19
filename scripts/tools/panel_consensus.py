@@ -94,7 +94,7 @@ def main():
         js = []
         for i in common:
             sa = set(norm(c) for c in judged[a][i].get("edited_concepts", []))
-            sb = set(norm(c) for c in judged[b].get("edited_concepts", []))
+            sb = set(norm(c) for c in judged[b][i].get("edited_concepts", []))
             if not sa and not sb:
                 da = judged[a][i]["decision"] == "reject"
                 db = judged[b][i]["decision"] == "reject"

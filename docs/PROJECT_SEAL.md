@@ -1,11 +1,11 @@
 # PROJECT SEAL — 封盘 (2026-09-19)
 
-HEAD: `4f95ed3` (+ seal commit, s. Log). 远端同步. 门禁: numbers PASS / cdn PASS / pytest 84/84.
+HEAD: `b7b17f3` (seal commit;封盘基线 `4f95ed3` + 本文件). 远端同步 (含 tag `seal-2026-09-19` → `b7b17f3`). 门禁: numbers PASS / cdn PASS / pytest 84/84.
 本文件 + `docs/session_handoff_20260919_v47.md` 为最终状态说明. **封盘≠发布**: 无 GitHub Release.
 
 ## 一、完成 (证据链闭合)
 - v1 seed-fremd 复制 (6 臂, T1 11 + T2 92) + v2 因子实验 (P1/P2/P3/P3b × 3 锚 + big-pickle 描述性) + E2 ROBUST.
-- 判定: F1 CARD confirmed / F2 LANG model-side failure / P3 (deepseek validated, glm drift-caveat, 6.8 marginal miss) / panel MAINTAIN (弱证据) + 11/72 一致 reject.
+- 判定: F1 CARD confirmed / F2 LANG model-side failure / P3 (deepseek validated, glm drift-caveat, 6.8 marginal miss) / panel MAINTAIN (echte Gold-vs-Rater-Divergenz: Rater-Jaccard 0.44–0.77, vs-gold 0.389; D-V9 Bugfix) + 11/72 一致 reject.
 - Claims: C21 v2-partial-repro / C23 gehärtet / C24 neu (Hypothese) / C9b Developing (不动).
 - 门户改写式更新 (三语) + Fig v2-cells + _deploy 同步 (1A09 fork 已消除).
 - 论文 §2.8/§2.9b/05 定量补齐; 分母纪律 (A2 vs valid-only) 全仓诚实标注.
@@ -25,8 +25,19 @@ HEAD: `4f95ed3` (+ seal commit, s. Log). 远端同步. 门禁: numbers PASS / cd
 - 6.8 P3 0.395 marginal miss (0.40 线下, 未四舍五入).
 - R2 (glm) 作 judge 超严 (36 rejects, 14 solo) = rater 噪声, 已 dissent 分析.
 - big-pickle 全系描述性 (P0 partial-46, CORE 外, E1-gate 无 claim).
-- ZH-EN 显示 0.934 (0.9336 舍入); 精确值见 ledger/methodbox.
+- ZH-EN 显示 0.933 (SSOT Re-Freeze 0.9330, 2026-09-16); Fig8-Snapshot (2026-09-12) zeigt 0.9336 — δ im Rundungsband, s. D-V10.
 
 ## 四、重启条件 (任一满足, 按 v44–v47 接回)
-R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) /  реши key 轮换.
+R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 做 key 轮换.
 入口: 本文件 → v47 → REPORT §7/§8 → PANEL_SCREEN.md.
+
+## 五、Post-seal Errata (Tiefenaudit 2026-09-19, D-V9/D-V10)
+- D-V9 (`panel_consensus.py` Typo): alte Jaccard-Tabelle 0.06–0.28 falsch; neu 0.44–0.77.
+  Deutung „Rater-Rauschen → weak-evidence maintain" ersetzt durch „echte Gold-Divergenz".
+  MAINTAIN-Verdikt unberührt (kam aus IMPORT-Gates, nicht aus Jaccard).
+- D-V10 (ZH-EN Flip-Flop): v46 schrieb 0.934 (alte Freeze-Basis 0.9336); korrekt per SSOT-Re-Freeze ist
+  0.933 (Basis 0.9330). Portal/Labs/Evidence-C3/Paper-Prosa revertiert; Snapshot-Tabellen/Captions
+  behalten 0.934 mit Snapshot-Label + Re-Freeze-Hinweis.
+- Historische Handoffs (v43–v46) bleiben timestamped Snapshots; obige Errata + v43 A2-Korrekturen (v45),
+  v44 P3-EN-deepseek 0.22→0.21, §2.9b Sozial-A2-Portion sind die maßgeblichen Korrekturen.
+- Tag `seal-2026-09-19` zeigt auf `b7b17f3` (Seal-Zustand); Errata-Commit folgt nach (ohne neuen Tag).
