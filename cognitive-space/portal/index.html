@@ -1275,12 +1275,12 @@ paint();
   <div class="card-grid" style="margin-bottom:40px;grid-template-columns:1fr">
     <div class="card">
       <h3><i class="bi bi-patch-check" style="color:var(--green)"></i> <span data-i18n="val_gold_title">Gold Dataset: 92 Labels</span></h3>
-      <p data-i18n="validation_gold_desc">Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.40–0.58, panel MAINTAIN) checked against extraction (Preliminary) — no validation claim.</p>
+      <p data-i18n="validation_gold_desc">Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.395–0.58 (6.8 marginal miss, kein Aufrunden), panel MAINTAIN (weak, single-run)) checked against extraction (Preliminary) — no validation claim.</p>
       <div style="margin:16px 0;overflow-x:auto">
         <table style="width:100%;font-size:.82rem;border-collapse:collapse">
           <thead><tr style="background:var(--surface)"><th style="padding:8px 10px;text-align:left" data-i18n="val_domain">Domain</th><th style="padding:8px 10px;text-align:center">ZH F1</th><th style="padding:8px 10px;text-align:center">DE F1</th><th style="padding:8px 10px;text-align:center">EN F1</th><th style="padding:8px 10px;text-align:center" data-i18n="val_overall">Overall</th><th style="padding:8px 10px;text-align:center">n</th></tr></thead>
           <tbody>
-            <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_social">Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882†</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939† Developing (DB-path; harness-v2 P3 0.40–0.58; panel MAINTAIN)</td><td style="padding:8px 10px;text-align:center">72</td></tr>
+            <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_social">Social Concepts</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.974†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.949†</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.882†</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.939† Developing (DB-path; harness-v2 P3 0.395–0.58; panel MAINTAIN weak)</td><td style="padding:8px 10px;text-align:center">72</td></tr>
             <tr style="border-top:1px solid var(--border)"><td style="padding:8px 10px"><strong data-i18n="val_math">Mathematics</strong></td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.857</td><td style="padding:8px 10px;text-align:center;color:var(--yellow)">0.506</td><td style="padding:8px 10px;text-align:center;color:var(--accent)">0.711</td><td style="padding:8px 10px;text-align:center;font-weight:700">0.674</td><td style="padding:8px 10px;text-align:center">20</td></tr>
             <tr style="border-top:1px solid var(--border);background:var(--accent-soft)"><td style="padding:8px 10px"><strong data-i18n="val_all">All (weighted)</strong></td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.951</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.842</td><td style="padding:8px 10px;text-align:center;color:var(--green);font-weight:600">0.844</td><td style="padding:8px 10px;text-align:center;font-weight:700;font-size:1rem">0.881</td><td style="padding:8px 10px;text-align:center">92</td></tr>
           </tbody>
@@ -1292,7 +1292,7 @@ paint();
   <div class="fig-row" style="margin-top:24px">
     <div class="figure-box">
       <img src="../figures/fig_v2_cells.png" alt="Fig v2-cells: Harness v2 factor test" onclick="openLightbox(this.src)" loading="lazy">
-      <div class="fig-label" data-i18n="method_figv2"><strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.40–0.58 (P1/P3); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. Colors = cells (grey P0, blue P1, amber P2, green P3); hatches = anchors (plain glm-5.2, slashed deepseek-flash, dotted sensenova-6.8; cross-hatched pink big-pickle P3 descriptive). A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.</div>
+      <div class="fig-label" data-i18n="method_figv2"><strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.395–0.58 (P1/P3; 6.8 marginal miss); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. Colors = cells (grey P0, blue P1, amber P2, green P3); hatches = anchors (plain glm-5.2, slashed deepseek-flash, dotted sensenova-6.8; cross-hatched pink big-pickle P3 descriptive). A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.</div>
     </div>
   </div>
 
@@ -1304,7 +1304,7 @@ paint();
       </div>
       <div style="margin-top:12px;font-size:.82rem;color:var(--text2)" data-i18n="val_bench_note">
         <strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong>
-        <br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.40–0.58 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
+        <br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.395–0.58 (6.8 marginal miss) vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).
         <br>Harness v2 (seed-foreign, 2026-09): P3 social 0.544/0.544/0.395 + 0.580 western-descriptive; EN lift via cardinality only (P1-EN≈P3-EN; REPORT §7).
       </div>
       <p class="honesty" data-i18n="valid_design_exec">Design vs execution: the design judge is phi-4-mini-instruct (open weights, snapshot object); the executed merge used muse-spark-1.3-contributor (closed API, 10 parallel judges, 407 results) — not interchangeable. The Two-Tier vector finding uses nomic embeddings only and is unaffected by this swap (paper §2.12, App. W).</p>
@@ -1838,7 +1838,7 @@ const TRANSLATIONS = {
     section_validation: 'Validation', validation_sub: 'Gold standard annotations and model benchmarks',
     val_gold_title: 'Gold Dataset: 92 Labels',
     val_bench_title: 'Model Benchmark: 19 Models',
-    validation_gold_desc: 'Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.40–0.58, panel MAINTAIN) checked against extraction (Preliminary) — no validation claim.',
+    validation_gold_desc: 'Mixed-provenance gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; harness-v2 P3 0.395–0.58 (6.8 marginal miss, kein Aufrunden), panel MAINTAIN (weak, single-run)) checked against extraction (Preliminary) — no validation claim.',
     validation_bench_desc: 'All free-quota Bailian API models tested on 92 gold labels. The production extraction model was selected by overall F1.',
     section_limitations: 'Limitations', limitations_sub: 'Transparent assessment of methodological boundaries and potential biases',
     section_paper: 'Paper', paper_sub: 'Preprint manuscript available in the repository',
@@ -1965,7 +1965,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematics',
     val_all: 'All',
     val_note: 'Note: The low German math F1 (0.506) is a domain mismatch — the math gold labels use Chinese/English mathematical terminology not present in the German textbook corpus. Social concept extraction is uniformly strong across all three languages.',
-    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong><br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.40–0.58 vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-foreign, 2026-09): P3 social 0.544/0.544/0.395 + 0.580 western-descriptive; EN lift via cardinality only (P1-EN≈P3-EN; REPORT §7).',
+    val_bench_note: '<strong>Production model:</strong> extraction model (F1=0.666) · <strong>Best overall:</strong> hy3-preview (0.674) · <strong>Best DeepSeek:</strong> v4-flash (0.608) · <strong>19 models tested, F1 range 0.55–0.67</strong><br>† Social F1 0.939 = Developing (seed-evaluation same-source; panel-screened MAINTAIN 2026-09, human review pending; harness-v2 P3 0.395–0.58 (6.8 marginal miss) vs DB path 0.939 — see G3 note research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-foreign, 2026-09): P3 social 0.544/0.544/0.395 + 0.580 western-descriptive; EN lift via cardinality only (P1-EN≈P3-EN; REPORT §7).<br>Panel (weak, single-run): κ=0.56, Jaccard 0.44–0.77, vs-gold 0.389; ds P3-EN 0.21; big-pickle P0 partial-46.',
     val_replication_note: 'Extended replication (2026-09, paper §5.10): 59 measurements / 54 models — all 59 ZH-DE pairs significant (margin +0.03…+0.42); 9 EN-pair tests n.s.',
     val_roster_title: 'Replication roster: 59 full runs + 26 collecting (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Fused view — all 59 full-run ZH-DE margins (LDS-C minus split-half floor) under one P1 protocol (ZH/DE/EN × 10); all 59 ZH-DE p<0.01; 9 EN n.s. among 177 (500 permutations). Western runs in red. The 26 collecting runs (incl. qwen-max n=26/30 (parked), 2 sparse small-model boundary runs and 1 format-quarantined run, per paper §8.15) withhold margins until n=30. Source: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + paper §5.10.',
@@ -2014,7 +2014,7 @@ const TRANSLATIONS = {
     metric_lds: 'Cross-language structural divergence. 0 = identical, 1 = completely different.',
     metric_cs: 'Textbook-curriculum alignment. How much of the official curriculum textbooks actually cover.',
     method_fig2: '<strong>Fig 2</strong> — How LDS is computed: two language graphs, alignment, two similarity components',
-    method_figv2: '<strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.40–0.58 (P1/P3); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. Colors = cells (grey P0, blue P1, amber P2, green P3); hatches = anchors (plain glm-5.2, slashed deepseek-flash, dotted sensenova-6.8; cross-hatched pink big-pickle P3 descriptive). A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.',
+    method_figv2: '<strong>Fig v2-cells</strong> — Seed-foreign factor test (2026-09): cardinality fix lifts social F1 to 0.395–0.58 (P1/P3; 6.8 marginal miss); language-only fix ≈0 (P2, model-side); EN recovers via cardinality only. Colors = cells (grey P0, blue P1, amber P2, green P3); hatches = anchors (plain glm-5.2, slashed deepseek-flash, dotted sensenova-6.8; cross-hatched pink big-pickle P3 descriptive). A2 denominator; glm P3 with serving-drift caveat. Source: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 reference lines every finding is measured against',
     method_prov_note: 'Provenance: production extraction model selected by 19-model benchmark (F1=0.666, qwen-plus); served-API revisions are provider-side; weight snapshot research/weight_snapshot_20260916.json, details paper App. W.',
     f12_prov_note: 'F12 note: the Two-Tier vector baseline uses nomic embeddings only and is unaffected by the design-vs-execution judge swap (design phi-4-mini-instruct vs execution muse-spark-1.3-contributor); see paper §2.12 and App. W.',
@@ -2219,7 +2219,7 @@ const TRANSLATIONS = {
     val_math: 'Mathematik',
     val_all: 'Alle',
     val_note: 'Hinweis: Niedriger deutscher Math-F1 (0,506) durch Bereichsinkompatibilitaet.',
-    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong><br>† Sozial-F1 0,939 = Developing (Seed-Evaluierung same-source; Panel-Screen MAINTAIN 2026-09, Human-Review ausstehend; Harness-v2 P3 0,40–0,58 vs. DB-Pfad 0,939 — s. G3-Notiz research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-fremd, 2026-09): P3 sozial 0,544/0,544/0,395 + 0,580 western-deskriptiv; EN-Lift nur via Kardinalität (P1-EN≈P3-EN; REPORT §7).',
+    val_bench_note: '<strong>Produktionsmodell:</strong> Extraktionsmodell (F1=0.666) · <strong>Beste gesamt:</strong> hy3-preview (0.674) · <strong>Bester DeepSeek:</strong> v4-flash (0.608) · <strong>19 Modelle, F1-Bereich 0.55–0.67</strong><br>† Sozial-F1 0,939 = Developing (Seed-Evaluierung same-source; Panel-Screen MAINTAIN 2026-09, Human-Review ausstehend; Harness-v2 P3 0,395–0,58 (6.8 marginal miss) vs. DB-Pfad 0,939 — s. G3-Notiz research/gold_deconfound_2026-09-14.md).<br>Harness v2 (seed-fremd, 2026-09): P3 sozial 0,544/0,544/0,395 + 0,580 western-deskriptiv; EN-Lift nur via Kardinalität (P1-EN≈P3-EN; REPORT §7).<br>Panel (weak, single-run): κ=0,56, Jaccard 0,44–0,77, vs-gold 0,389; ds P3-EN 0,21; big-pickle P0 partial-46.',
     val_replication_note: 'Erweiterte Replikation (2026-09, Paper §5.10): 59 Messungen / 54 Modelle — alle 59 ZH-DE-Paare signifikant (Marge +0,03…+0,42); 9 EN-Paar-Tests n.s.',
     val_roster_title: 'Replikations-Roster: 59 vollständige Runs + 26 laufend (file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: 'Gesamtansicht — alle 59 ZH-DE-Margen vollständiger Runs (LDS-C minus Split-Half-Boden) unter einem P1-Protokoll (ZH/DE/EN × 10); alle 59 ZH-DE p<0,01; 9 EN n.s. unter 177 (500 Permutationen). Westliche Runs in Rot. Die 26 laufenden Runs (inkl. qwen-max n=26/30 (parked), 2 spärliche Kleinstmodell-Grenzläufe und 1 Format-Quarantäne-Lauf, per Paper §8.15) halten Margen bis n=30 zurück. Quelle: <span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + Paper §5.10.',
@@ -2316,7 +2316,7 @@ const TRANSLATIONS = {
     section_validation: 'Validierung', validation_sub: 'Goldstandard-Annotationen und Modellvergleiche',
     val_gold_title: 'Gold-Datensatz: 92 Labels',
     val_bench_title: 'Modell-Benchmark: 19 Modelle',
-    validation_gold_desc: 'Mixed-Provenienz-Gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; Harness-v2 P3 0,40–0,58, Panel MAINTAIN) geprüft an Extraktion (Preliminary) — kein Validierungs-Beleg.',
+    validation_gold_desc: 'Mixed-Provenienz-Gold (20 hand C9a + 72 machine-seeded/human-accepted C9b, Developing; Harness-v2 P3 0,395–0,58 (6.8 marginal miss, kein Aufrunden), Panel MAINTAIN (weak, single-run)) geprüft an Extraktion (Preliminary) — kein Validierungs-Beleg.',
     validation_bench_desc: 'Alle Modelle mit kostenlosem Bailian-API-Kontingent auf 92 Goldlabels getestet. Das Produktions-Extraktionsmodell wurde anhand des Gesamt-F1 ausgewählt.',
     section_limitations: 'Einschränkungen', limitations_sub: 'Transparente Bewertung methodischer Grenzen und potenzieller Verzerrungen',
     section_paper: 'Paper', paper_sub: 'Vorabdruck des Manuskripts im Repository verfügbar',
@@ -2342,7 +2342,7 @@ const TRANSLATIONS = {
     metric_lds: 'Sprachuebergreifende Strukturdivergenz. 0 = identisch, 1 = voellig unterschiedlich.',
     metric_cs: 'Lehrbuch-Lehrplan-Abgleich. Wie viel des offiziellen Lehrplans von Lehrbuechern abgedeckt wird.',
     method_fig2: '<strong>Abb. 2</strong> — So wird LDS berechnet: zwei Sprachgraphen, Alignierung, zwei Aehnlichkeitskomponenten',
-    method_figv2: '<strong>Abb. v2-cells</strong> — Seed-fremder Faktortest (2026-09): Kardinalitaets-Fix hebt Social-F1 auf 0,40–0,58 (P1/P3); Sprach-Fix allein ≈0 (P2, modellseitig); EN nur via Kardinalitaet. Farben = Zellen (grau P0, blau P1, amber P2, gruen P3); Schraffuren = Anker (glatt glm-5.2, schraffiert deepseek-flash, gepunktet sensenova-6.8; kreuzschraffiert pink big-pickle P3 deskriptiv). A2-Nenner; glm-P3 mit Serving-Drift-Caveat. Quelle: V2_MATRIX.json, REPORT §7.',
+    method_figv2: '<strong>Abb. v2-cells</strong> — Seed-fremder Faktortest (2026-09): Kardinalitaets-Fix hebt Social-F1 auf 0,395–0,58 (P1/P3; 6.8 marginal miss); Sprach-Fix allein ≈0 (P2, modellseitig); EN nur via Kardinalitaet. Farben = Zellen (grau P0, blau P1, amber P2, gruen P3); Schraffuren = Anker (glatt glm-5.2, schraffiert deepseek-flash, gepunktet sensenova-6.8; kreuzschraffiert pink big-pickle P3 deskriptiv). A2-Nenner; glm-P3 mit Serving-Drift-Caveat. Quelle: V2_MATRIX.json, REPORT §7.',
     glos_sum: 'Baseline-Glossar: 9 Referenzlinien, an denen jeder Befund gemessen wird',
     method_prov_note: 'Provenienz: Produktions-Extraktionsmodell per 19-Modell-Benchmark gewählt (F1=0.666, qwen-plus); served-API-Revisionen sind Provider-seitig; Weight-Snapshot research/weight_snapshot_20260916.json, Details Anhang W.',
     f12_prov_note: 'F12-Hinweis: Die Two-Tier-Vektorbaseline nutzt nur nomic-Embeddings und ist vom Design-vs-Execution-Richtertausch unberührt (Design phi-4-mini-instruct vs. Ausführung muse-spark-1.3-contributor); s. §2.12 und Anhang W.',
@@ -2491,7 +2491,7 @@ const TRANSLATIONS = {
     section_validation: '验证', validation_sub: '黄金标准标注与模型基准',
     val_gold_title: '黄金数据集：92 个标签',
     val_bench_title: '模型基准: 19 个模型',
-    validation_gold_desc: '混合来源金标（20 手标 C9a + 72 机器预提/人工接受 C9b，Developing；harness-v2 P3 0.40–0.58，panel MAINTAIN）经抽查对抗提取（Preliminary）——不作验证声称。',
+    validation_gold_desc: '混合来源金标（20 手标 C9a + 72 机器预提/人工接受 C9b，Developing；harness-v2 P3 0.395–0.58（6.8 marginal miss，未四舍五入），panel MAINTAIN（weak, single-run））经抽查对抗提取（Preliminary）——不作验证声称。',
     validation_bench_desc: '所有提供免费 API 额度的百联模型均在 92 个黄金标签上测试。生产提取模型按总体 F1 选定。',
     section_limitations: '局限性', limitations_sub: '对方法论边界和潜在偏差的透明评估',
     section_paper: '论文', paper_sub: '预印本手稿可在仓库中获取',
@@ -2622,7 +2622,7 @@ curr_explanations_title: '三种竞争性解释',
     val_math: '数学',
     val_all: '全部',
     val_note: '注意：德文数学 F1（0.506）较低是由于领域不匹配——数学黄金标签使用中英数学术语，在德文教材语料库中未出现。社会概念提取在三种语言中均表现优异。',
-    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源；panel 初筛 MAINTAIN 2026-09，人工复核待补；harness-v2 P3 0.40–0.58 vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。<br>Harness v2（跨种子，2026-09）：P3 社会 0.544/0.544/0.395＋0.580 西方描述性；英文提升仅来自基数（P1-EN≈P3-EN；REPORT §7）。',
+    val_bench_note: '<strong>生产模型：</strong>提取模型 (F1=0.666) · <strong>最佳总体：</strong> hy3-preview (0.674) · <strong>最佳 DeepSeek：</strong> v4-flash (0.608) · <strong>19 个模型，F1 范围 0.55–0.67</strong><br>† 社会 F1 0.939 = Developing（种子同源；panel 初筛 MAINTAIN 2026-09，人工复核待补；harness-v2 P3 0.395–0.58（6.8 marginal miss） vs DB 路径 0.939——见 G3 注记 research/gold_deconfound_2026-09-14.md）。<br>Harness v2（跨种子，2026-09）：P3 社会 0.544/0.544/0.395＋0.580 西方描述性；英文提升仅来自基数（P1-EN≈P3-EN；REPORT §7）。<br>Panel（weak, single-run）：κ=0.56，Jaccard 0.44–0.77，vs-gold 0.389；ds P3-EN 0.21；big-pickle P0 partial-46。',
     val_replication_note: '扩展复刻（2026-09，论文 §5.10）：59 次测量 / 54 个模型 —— 59 对 ZH-DE 全部显著（边际 +0.03…+0.42）；177 中 9 个 EN n.s.。',
     val_roster_title: '复刻名录：59 次完整运行 ＋ 26 次收集中(file truth 62/57/186 incl. qwen-max n=26/30 (parked))',
     val_roster_desc: '对比视图——59 个完整运行的 ZH-DE 边际（LDS-C 减 split-half 底线），同一 P1 协议（中/德/英 × 10），59 个 ZH-DE 全部 p<0.01；177 中 9 个 EN n.s.（500 置换）；西方运行标红。26 个收集中运行（含 qwen-max n=26/30（parked）＋2 稀疏小模型边界＋1 格式隔离，按论文 §8.15）边际暂不公布。来源：<span class="mono">data/lds_c/llm_subject/multi_model_replication_20260913.json</span> + 论文 §5.10。',
@@ -2671,7 +2671,7 @@ curr_explanations_title: '三种竞争性解释',
     metric_lds: '跨语言结构差异。0 = 完全相同，1 = 完全不同。',
     metric_cs: '教材与课程的对齐程度。课程内容有多少被教材实际覆盖。',
     method_fig2: '<strong>图 2</strong>——LDS 怎么算的：两个语言图谱、对齐、两个相似度分量',
-    method_figv2: '<strong>图 v2-cells</strong>——跨种子因子实验（2026-09）：基数修复把社会 F1 抬到 0.40–0.58（P1/P3）；纯语言修复≈0（P2，模型侧）；英文仅随基数回升。颜色＝cell（灰 P0、蓝 P1、黄 P2、绿 P3）；底纹＝锚点（素面 glm-5.2、斜线 deepseek-flash、圆点 sensenova-6.8；叉纹粉 big-pickle P3 描述性）。A2 分母；glm P3 带服务漂移 caveat。来源：V2_MATRIX.json，REPORT §7。',
+    method_figv2: '<strong>图 v2-cells</strong>——跨种子因子实验（2026-09）：基数修复把社会 F1 抬到 0.395–0.58（P1/P3；6.8 marginal miss）；纯语言修复≈0（P2，模型侧）；英文仅随基数回升。颜色＝cell（灰 P0、蓝 P1、黄 P2、绿 P3）；底纹＝锚点（素面 glm-5.2、斜线 deepseek-flash、圆点 sensenova-6.8；叉纹粉 big-pickle P3 描述性）。A2 分母；glm P3 带服务漂移 caveat。来源：V2_MATRIX.json，REPORT §7。',
     glos_sum: '基线术语表：所有发现都对照这 9 条参照线度量',
     method_prov_note: '来源说明：生产提取模型经 19 模型基准选定（F1=0.666，qwen-plus）；在线服务版本由提供方控制；权重快照 research/weight_snapshot_20260916.json，详见论文附录 W。',
     f12_prov_note: 'F12 注：Two-Tier 向量基线仅使用 nomic 嵌入，不受设计态与执行态判官替换影响（设计态 phi-4-mini-instruct，对比执行态 muse-spark-1.3-contributor）；见论文 §2.12 与附录 W。',
@@ -2902,12 +2902,11 @@ function setLanguage(lang) {
     var ch = c.querySelector('h3');
     var cp = c.querySelector('p');
     if (ch && t[conT[i]]) ch.textContent = t[conT[i]];
-    if (i === 0 && cp && t.contrib1_desc) cp.textContent = t.contrib1_desc;
+    if (cp && t['contrib'+(i+1)+'_desc']) cp.textContent = t['contrib'+(i+1)+'_desc'];
   });
 
   // Finding cards — subtitles only (titles use data-i18n spans)
   var findCards = document.querySelectorAll('.finding-card');
-  var findT = ['finding_a_title','finding_b_title','finding_c_title','finding_d_title','finding_e_title'];
   var findS = ['finding_a_sub','finding_b_sub','finding_c_sub','finding_d_sub','finding_e_sub'];
   findCards.forEach(function(c,i) {
     var cl = c.querySelector('.lead');
@@ -2970,10 +2969,11 @@ function setLanguage(lang) {
       window.coverageChart.update();
     }
   }
-  // Figure language variants (B7 2026-09-13: all 4 enabled; _de/_zh PNGs exist in web/figures/).
+  // Figure language variants (reaudit 2026-09-19: only bases with verified EN+DE+ZH
+  // mirrors under cognitive-space/figures/ are rewritten; others keep EN src to avoid 404).
   // Evidence grading: fig_wikipedia_lds = method control only (gloss without human spot-check, evidence-insufficient, never a formal claim);
   // fig5_hds_distribution = published bars frozen, source graph superseded, disclosure via docs/fig5_hds_forensic.md (see fig label note).
-  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig1_lds_k_heatmap', 'fig4_ablation', 'fig5_falsification', 'fig6_coverage', 'figure1_lds_distribution', 'figure3_topic_comparison', 'fig_a7_1_delta_lds', 'fig_a7_2_thematic_heatmap', 'fig_a7_3_null_models', 'fig_a7_4_mechanism', 'fig_a7_5_ldsk_sensitivity', 'fig_wikipedia_lds', 'fig4_lds_heatmap', 'fig5_hds_distribution', 'fig6_cds_comparison', 'fig_v2_cells'];
+  var figBases = ['fig2_lds_flow', 'fig3_cds_by_level', 'fig7_three_subject_cds', 'fig4_null_model', 'fig8_lds_decontamination', 'fig5_hds_distribution', 'fig_v2_cells'];
   document.querySelectorAll('.figure-box img').forEach(function(img) {
     var src = img.getAttribute('src') || '';
     for (var k = 0; k < figBases.length; k++) {
