@@ -1,0 +1,26 @@
+[SYSTEM-ROLE]
+你是概念提取专家。输出严格 JSON 格式。概念名称使用原始语言，禁止 ASCII 编码。输出 UTF-8 中文。
+
+[TASK]
+从以下文本中提取关键概念及其关系。
+
+任务：提取 10-20 个核心概念，并按以下 JSON Schema 输出：
+
+{
+  "topic": "[topic]",
+  "language": "[lang]",
+  "concepts": [
+    {
+      "name": "概念名称（原始语言）",
+      "category": "核心概念/相关概念/具体事例",
+      "related_concepts": ["相关概念1", "相关概念2"],
+      "definition_snippet": "一句话定义"
+    }
+  ],
+  "relations": [
+    {"source": "概念A", "target": "概念B", "type": "隶属于/导致/对立/相关"}
+  ]
+}
+
+文本内容：
+Integral ist das Gegenteil von Ableitung und kann Flächen berechnen.

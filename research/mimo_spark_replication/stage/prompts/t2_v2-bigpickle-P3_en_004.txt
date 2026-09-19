@@ -1,0 +1,26 @@
+[SYSTEM-ROLE]
+你是概念提取专家。只输出严格 JSON 格式。概念名称必须使用文本源语言（中文文本用中文，德文文本用德文，英文文本用英文）；严禁翻译；英文或德文文本中严禁输出任何 CJK 字符。
+
+[TASK]
+从以下文本中提取关键概念及其关系。
+
+任务：提取 1-7 个真正独立的核心概念（通常 2-3 个；宁缺勿滥，禁止为凑数拆分或填充），并按以下 JSON Schema 输出：
+
+{
+  "topic": "[topic]",
+  "language": "[lang]",
+  "concepts": [
+    {
+      "name": "概念名称（原始语言）",
+      "category": "核心概念/相关概念/具体事例",
+      "related_concepts": ["相关概念1", "相关概念2"],
+      "definition_snippet": "一句话定义"
+    }
+  ],
+  "relations": [
+    {"source": "概念A", "target": "概念B", "type": "隶属于/导致/对立/相关"}
+  ]
+}
+
+文本内容：
+A derivative is like a slope. You use it to find how steep something is.

@@ -129,3 +129,31 @@ Rotation empfohlen.
   Stützt „mimo = noisy reference" (M4-Herausforderung) — C22 bleibt Developing mit schärferer Caveat.
 - **Difficulty**: n=9 (alle Mathe) — Negativbefund per Design, DO-NOT-USE.
 - **Power**: gepaartes Design braucht n≈32–71 für Δ=0,1; n=6–7-Zellen detektieren nur Δ≈0,4+.
+
+## 7. Harness v2 (2026-09-18/19, prereg A11–A17 vor erstem Call)
+
+Cells: P1 (CARD-only) / P2 (LANG-only, EN+DE+zh10) / P3 (BOTH) + P0-cal Drift. Anker: glm-5.2-r4, deepseek-v4.1-flash-r4, 6.8-sn (+ big-pickle P3 western, P0 partial-46). minimax EXCLUDED (owner), F5/qwen CUT (owner).
+
+| Arm | P0 (v1) | P1 | P2 (EN/DE) | P3 | pred_n P0→P3 |
+|---|---|---|---|---|---|
+| glm-5.2-r4 | 0,161 | 0,500 | 0,167 (EN 0,018, CJK 0 %) | 0,555 (soc 0,544) | 12,8→2,1 |
+| deepseek-r4 | 0,132 | 0,545 | 0,197 (EN 0,136, CJK 0 %) | 0,539 (soc 0,544) | 16,8→2,2 |
+| 6.8-sn | 0,121 | 0,395 | 0,141 (EN 0,000, CJK 0 %) | 0,421 (soc 0,395) | 15,0→2,6 |
+| big-pickle (west) | — (P0 partial-46) | — | — | 0,608 (soc 0,580, EN 0,377) | →2,1 |
+
+Paired dF1 (A2, 95 %-CI): P1−P0 +0,34/+0,41/+0,27 (alle CI≠0); P3−P0 +0,40/+0,41/+0,30;
+P2−P0 +0,03/+0,07/+0,02. Drift P0-cal: deepseek −0,03 / 6.8 +0,03 (≈0, sauber);
+**glm +0,32 [0,15–0,52] — Serving-Drift über Nacht** (gleicher Prompt/Transport: P0cal pred_n ~5,
+en_001 F1=1,0 unter P0!). glm-Lifts daher drift-konfundiert (obere Schranke), deepseek/6.8 sauber.
+
+A13-Verdikte:
+- **F1 CARD: CONFIRMED** (2× sauber + 1× caveatiert). pred_n 12–17 → ~2–3; n1-Rettung > n2 (s. V2_MATRIX).
+- **F2 LANG: MODEL-SIDE FAILURE.** CJK-Fix überall befolgt (EN-CJK 5–56 % → 0,0 % bei allen 3 Ankern),
+  EN-F1 bleibt 0,02/0,14/0,00 (Schwelle >0,30 klar verfehlt). DE hebt sich gemischt (glm 0,19→0,24, deepseek ≈, 6.8 ≈).
+  Zusatz: EN-Lift kommt aus Kardinalität (P1-EN 0,31/0,23/0,04 ≈ P3-EN), nicht aus Sprachklausel.
+- **P3: deepseek V2-VALIDATED** (soc 0,544 ∈ [0,40–0,65]); glm validiert-mit-Drift-Caveat (0,544);
+  **6.8 MARGINAL MISS** (soc 0,395 < 0,40 — kein Aufrunden, residual-Seite); big-pickle deskriptiv 0,580 (partial control).
+- C9b unverändert Developing. C21 → v2-partial-repro (quantitativ). C23 → gehärtet (CARD 2× sauber).
+  Neu C24: Western-EN-Effekt (big-pickle EN 0,377 höchst — Sprachfamiliarität).
+- E1 EXTENDED gegenstandslos (alle lauffähigen Arme in CORE); E3/E2 offen (E2 sinnvoll: P3-Lift steht);
+  Panel Phase 2 bereit (big-pickle = Western-Rater).
