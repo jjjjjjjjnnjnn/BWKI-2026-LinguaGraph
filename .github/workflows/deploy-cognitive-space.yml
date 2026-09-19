@@ -59,6 +59,10 @@ jobs:
           sed -i 's|"../portal/|"portal/|g' _deploy/index.html
           sed -i 's|"../vendor/|"vendor/|g' _deploy/index.html
           sed -i 's|"../index.html"|"web/index.html"|g' _deploy/index.html
+          # Double-up ../../docs refs (paper section): root copy -> docs/,
+          # /portal/ subdir copy (verbatim cp from source) -> ../docs/.
+          sed -i 's|"../../docs/|"docs/|g' _deploy/index.html
+          sed -i 's|"../../docs/|"../docs/|g' _deploy/portal/index.html
           echo "Deployment bundle contents:"
           find _deploy -maxdepth 2 -type f | head -40
 
