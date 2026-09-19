@@ -135,7 +135,7 @@ LinguaGraph schließt diese Lücke durch eine integrierte Pipeline von der Lehrb
 
 [31] TIMSS & PIRLS International Study Center. (2024). TIMSS 2023 Insights: Curriculum Alignment report (curricular specifications → classroom implementation → achievement). https://timss.bc.edu/latest-news/timss-2023-insights-curriculum-alignment.html. (Zugriff Sept. 2026.)
 
-[32] OECD. (2025). Education at a Glance 2025 (Germany profile: 4.4% of GDP). OECD Publishing. https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/germany_fa91d155-en.html.
+[32] OECD. (2025). Education at a Glance 2025 (Germany profile: 4,4% of GDP). OECD Publishing. https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/germany_fa91d155-en.html.
 
 [33] Fu, K., & Yang, X. (2025). Linguistic Markers of AI-Generated Text: A Comparative Analysis of Machine-Identified and Human-Inferred Predictors. AMCIS 2025 TREOs. https://aisel.aisnet.org/treos_amcis2025/1.
 
