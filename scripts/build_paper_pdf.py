@@ -36,7 +36,7 @@ TITLE_PAGE = """# LinguaGraph — Prüfung mehrsprachiger KI: Messung sprachübe
 
 *BWKI 2026 – Bundeswettbewerb Künstliche Intelligenz*
 
-**Autor**: Teilnehmer/in (Eigenarbeit)
+**Autoren**: Jiajun Rong & Zhenxi Lan — Privatschule Schloss Heessen (BWKI 2026 Team)
 
 **Kurzfassung**: LinguaGraph misst, ob mehrsprachige KI-Systeme wertbeladene Konzepte (Gerechtigkeit, Freiheit, Verantwortung, Heimat, Erfolg) sprachübergreifend unterschiedlich strukturieren. Ein Within-Subject-Experiment (LLM-as-Subject) und eine Replikation über 59 Messungen (54 eindeutige Modelle) zeigen: Alle ZH-DE-Paare signifikant, die Kulturrichtung (DE Autonomie/Regeln vs. ZH Raum/Anspruch) übersteigt ein Zufalls-Nullmodell. Der Bericht ordnet die Befunde ehrlich ein (Grenzen: ~81 % chinesische Anbieter, elf westliche Messungen, 9 nicht-signifikante englisch-haltige Paare, Kleinstmodell-Grenze: nur phi-4-mini repliziert, Alignierungs-Artefakte der Domänen-Kontrolle). Vollständige Unterstützungs-Offenlegung im Anhang.
 
