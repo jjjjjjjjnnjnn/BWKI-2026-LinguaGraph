@@ -165,6 +165,9 @@ def main():
         return 1
     model, transport, _ = RATERS[rater]
     if model_override:
+        # REAUDIT 2026-09-19 (D-J2): --model silently replaces the frozen (model, transport)
+        # triple with no "override used" marker — violates amendment J4 freeze semantics.
+        # Documented only; add a hard guard before any future panel run.
         model = model_override
     os.makedirs(OUT_DIR, exist_ok=True)
     lock = os.path.join(OUT_DIR, ".panel_%s.lock" % rater)

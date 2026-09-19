@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Fig v2-cells: Harness-v2 P0/P1/P2/P3 social-F1 + EN-F1 grouped bars. Zero API.
 
-Reads research/mimo_spark_replication/V2_MATRIX.json (deterministic product).
+Values are a HARDCODED snapshot transcribed from
+research/mimo_spark_replication/V2_MATRIX.json (commit-pinned; reaudit 2026-09-19:
+no json.load — V2_MATRIX.json updates do NOT propagate to this figure; re-transcribe + rerun manually).
 Writes outputs/figures/fig_v2_cells{,_de,_zh}.png.
 A2 denominator (fails-as-0); glm P3 carries serving-drift caveat (REPORT §7).
+Encoding: color = cell (grey P0 / blue P1 / amber P2 / green P3),
+hatch = anchor (plain glm-5.2 / slashed deepseek-flash / dotted sensenova-6.8),
+cross-hatched pink = big-pickle P3 descriptive.
 """
 import os
 import matplotlib
@@ -16,7 +21,7 @@ BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 OUT = os.path.join(BASE, "outputs", "figures")
 os.makedirs(OUT, exist_ok=True)
 
-# (anchor, P0, P1, P2, P3) social-F1 — V2_MATRIX.json rows
+# (anchor, P0, P1, P2, P3) social-F1 — TRANSCRIBED from V2_MATRIX.json rows, not read (see docstring)
 SOC = {
     "glm-5.2":       (0.1382, 0.4612, 0.1292, 0.5441),
     "deepseek-flash": (0.1116, 0.5348, 0.1779, 0.5439),

@@ -33,6 +33,11 @@ def load(rater):
 
 def fleiss(table):
     # table: items x categories counts; 5.0 fixed raters -> use decided count per item
+    # REAUDIT 2026-09-19 known limitations (frozen; D-V11 context): Pe denominator uses
+    # decided-vote total, not n_items*n (biased under partial R4); norm() here is weaker
+    # than T1 norm (no ß/-/_ handling — Jaccard not comparable across scorers);
+    # empty-vs-empty concept sets count as exact/Jaccard (inflates); second return value
+    # is mean observed agreement, mislabeled "mean_pairwise_agreement" downstream.
     n_items = len(table)
     k = 3
     P_bar, Pe_num = 0.0, [0.0] * k

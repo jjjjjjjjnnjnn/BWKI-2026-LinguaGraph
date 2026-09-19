@@ -50,6 +50,9 @@ def subset_mean(items, fn):
 
 
 def bootstrap_ci(vals, seed=SEED, b=B):
+    # REAUDIT 2026-09-19 known limitation (frozen; do NOT "fix" without full refreeze):
+    # fresh Random(seed) per call → all arms/cells share identical resample indices (CIs correlated);
+    # upper index int(0.975*B)-1 = 974 (0-based should be 975) → systematically slightly narrow.
     rng = random.Random(seed)
     n = len(vals)
     if n == 0:
@@ -70,6 +73,10 @@ def main():
         f1s = [r["f1"] for r in items]
         # A2-compliant (D-S6): fails count in denominator — F1 over all 92 gold IDs, invalid=0
         f1_n92 = [r["f1"] if r.get("valid") else 0.0 for r in d["items"]]
+        # REAUDIT 2026-09-19 (D-V11, verified): denominator below is the 72 social gold IDs
+        # (every arm file carries 92/92 items WITH annotator; soc_n=72) with invalid→0,
+        # i.e. this IS true A2-social. The name "soc_n92" is misleading (not /92);
+        # T2_MATRIX.md social column shows valid-only "social_f1" — see Nenner-Hinweis there.
         soc_n92 = [r["f1"] if (r.get("valid") and r.get("annotator") == "auto_accepted") else 0.0
                    for r in d["items"] if r.get("annotator") == "auto_accepted"]
         soc = [r["f1"] for r in items if r.get("annotator") == "auto_accepted"]

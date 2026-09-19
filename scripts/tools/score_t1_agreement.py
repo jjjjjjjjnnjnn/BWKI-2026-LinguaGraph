@@ -46,6 +46,10 @@ def cmap(concepts):
 
 
 def agree(new_cs, ref_cs):
+    # REAUDIT 2026-09-19 known limitation (frozen; concept-level rescoring in
+    # T1_AGREEMENT_reaudit_20260919.json: micro-P 0.26-0.41 vs 0.21-0.32 here):
+    # every alias expands to an independent key, so inter/n_new/n_ref scale with
+    # alias COUNT, not concept count. Do NOT change without full refreeze.
     nm, rm = cmap(new_cs), cmap(ref_cs)
     inter = 0
     for k, names in nm.items():

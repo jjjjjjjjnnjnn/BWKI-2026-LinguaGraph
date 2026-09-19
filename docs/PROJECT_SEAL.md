@@ -64,3 +64,7 @@ R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 
   sn-6.7 parked/incomplete — alle außerhalb Claims, kein Befundwechsel.
 - P2-Zero-Effekt (wichtigster Negativbefund, hiermit封盘-sichtbar): P2−P0 ≈ 0 über alle Anker
   (EN-F1 0,02/0,14/0,00 trotz befolgtem CJK-Fix) — Sprachmanipulation allein hebt EN nicht (F2, modellseitig).
+- Reaudit B5/B6: Portal-Intervall 0.395–0.58 + Panel-Honesty-Zeilen (3-sprachig), contrib2-4/i18n-Fix,
+  figBases-404-Guard (nur 7 verifizierte Triplets), Numbers-Gate um T2-Iron-Law erweitert
+  (fängt 0.40-Intervall + fehlende Caveats); Scorer-Known-Limitations als Code-Kommentare
+  (Mathematik unberührt — Refreeze nur mit neuem Frozen-Satz).
