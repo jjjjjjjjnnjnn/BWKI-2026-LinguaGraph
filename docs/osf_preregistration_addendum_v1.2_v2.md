@@ -156,3 +156,39 @@ P2 = P0 with system replaced; P3 = P1 template + P2 system. Schema/keys/temp/win
 - All fail (P3 <0.25, EN ~0) → mechanisms exhausted, gap looks model/seed (C21 severity up, still Developing); C23 downgraded to hypothesis, mimo-noise line becomes lead.
 
 Frozen 2026-09-18 BEFORE first v2 call. Any byte-change after = deviation D-Vx. Owner: methods.
+
+## A18. E2 P3b-paraphrase (frozen BEFORE first P3b call, 2026-09-19)
+Purpose: brittleness screen for P3 lift (F8). Same semantics (1-7 + source-language-only),
+different wording (English-first); schema keys byte-identical (audit_p3b.py).
+### P3b — system_sha256 `f91a3dad760dfe328e9e06b79e8cab530b90879d6ec357eb9f3c0077970510fe`
+`You are a concept extractor. Output strict JSON only. Concept names MUST use the source language of the text (Chinese for Chinese text, German for German text, English for English text); translation is forbidden; no CJK characters are allowed in English or German outputs.`
+### P3b — template_sha256 `8058b210ec287203037cfa3764932b56d0f89496843cdd10c7632e687b02ad33`
+```
+Extract the key concepts and their relations from the following text.
+
+Extract the truly central concepts of the following text (1-7 concepts, usually 2-3; fewer is better than filler; do not split or pad concepts to reach a count). Output them using the JSON schema below:
+
+{{
+  "topic": "[topic]",
+  "language": "[lang]",
+  "concepts": [
+    {{
+      "name": "概念名称（原始语言）",
+      "category": "核心概念/相关概念/具体事例",
+      "related_concepts": ["相关概念1", "相关概念2"],
+      "definition_snippet": "一句话定义"
+    }}
+  ],
+  "relations": [
+    {{"source": "概念A", "target": "概念B", "type": "隶属于/导致/对立/相关"}}
+  ]
+}}
+
+Text:
+{text}
+```
+
+E2 IDs (n=30, 10/lang, seed 20260918, 5x gold_n1 + 5x gold_n2 per lang):
+`de_002,de_005,de_007,de_008,de_009,de_012,de_013,de_020,de_021,de_026,en_003,en_004,en_009,en_011,en_014,en_020,en_024,en_025,en_028,en_029,zh_006,zh_012,zh_017,zh_018,zh_019,zh_023,zh_025,zh_028,zh_031,zh_040`
+Gate: |P3b−P3| <0.05 paired on same 30 → robust; ≥0.10 → brittle (P3 numbers reported as range).
+Arm: glm-5.2-r4 only. Output `t2_v2-glm52r4-P3b.json`. Driver `--only-ids` + `--cell P3b`.

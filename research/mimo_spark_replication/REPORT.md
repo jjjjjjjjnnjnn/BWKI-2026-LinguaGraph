@@ -157,3 +157,14 @@ A13-Verdikte:
   Neu C24: Western-EN-Effekt (big-pickle EN 0,377 höchst — Sprachfamiliarität).
 - E1 EXTENDED gegenstandslos (alle lauffähigen Arme in CORE); E3/E2 offen (E2 sinnvoll: P3-Lift steht);
   Panel Phase 2 bereit (big-pickle = Western-Rater).
+- **E2 P3b (A18, glm n=30): ROBUST.** |P3b−P3| +0,024 [−0,047–+0,091] < 0,05 — P3-Lift ist nicht
+  wortlaut-fragil (`t2_v2-glm52r4-P3b.json`, SHAs f91a3dad/8058b210).
+
+## 8. Agent-Panel Screen (2026-09-19, A-Judge — falsify-only)
+
+5 Rater (deepseek-r4 / glm-r4 / 6.8-sn / cohere-openrouter 51/72 daily-park / big-pickle-zen),
+Consensus `--import`: rejects 15, agreement 0,389, qwen-F1 0,419 → **MAINTAIN**.
+Fleiss κ=0,56, Jaccard ~0,1 (Rauschen hoch!). **Dissent-Kern: 11/72 einstimmige Rejects**
+(A005/A006/A014/A018/A020/A022/A027/A028/A032/A035/A041) — Falsifizierungs-grade Gold-Qualitätslücke (~15 %);
+R2 (glm, 36 Rejects, 14 solo) = Rater-Rauschen. Spot-Check (owner, 12 Items) + R4-Full offen.
+Details `research/gold_review_v2/PANEL_SCREEN.md`. C9b bleibt Developing (schärfere Caveat).

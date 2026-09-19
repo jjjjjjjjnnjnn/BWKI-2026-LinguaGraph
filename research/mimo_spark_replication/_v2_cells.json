@@ -22,5 +22,11 @@
   "template": "从以下文本中提取关键概念及其关系。\n\n任务：提取 1-7 个真正独立的核心概念（通常 2-3 个；宁缺勿滥，禁止为凑数拆分或填充），并按以下 JSON Schema 输出：\n\n{{\n  \"topic\": \"[topic]\",\n  \"language\": \"[lang]\",\n  \"concepts\": [\n    {{\n      \"name\": \"概念名称（原始语言）\",\n      \"category\": \"核心概念/相关概念/具体事例\",\n      \"related_concepts\": [\"相关概念1\", \"相关概念2\"],\n      \"definition_snippet\": \"一句话定义\"\n    }}\n  ],\n  \"relations\": [\n    {{\"source\": \"概念A\", \"target\": \"概念B\", \"type\": \"隶属于/导致/对立/相关\"}}\n  ]\n}}\n\n文本内容：\n{text}",
   "system_sha256": "704cbb2191bfa659745e357579ec605f6d7038b276eedfe646369caae52b2b18",
   "template_sha256": "ee4e986e85a0ff6f798d837301c37d44bde4d819c0466867ec6ffac7e1a610b2"
+ },
+ "P3b": {
+  "system": "You are a concept extractor. Output strict JSON only. Concept names MUST use the source language of the text (Chinese for Chinese text, German for German text, English for English text); translation is forbidden; no CJK characters are allowed in English or German outputs.",
+  "template": "Extract the key concepts and their relations from the following text.\n\nExtract the truly central concepts of the following text (1-7 concepts, usually 2-3; fewer is better than filler; do not split or pad concepts to reach a count). Output them using the JSON schema below:\n\n{{\n  \"topic\": \"[topic]\",\n  \"language\": \"[lang]\",\n  \"concepts\": [\n    {{\n      \"name\": \"概念名称（原始语言）\",\n      \"category\": \"核心概念/相关概念/具体事例\",\n      \"related_concepts\": [\"相关概念1\", \"相关概念2\"],\n      \"definition_snippet\": \"一句话定义\"\n    }}\n  ],\n  \"relations\": [\n    {{\"source\": \"概念A\", \"target\": \"概念B\", \"type\": \"隶属于/导致/对立/相关\"}}\n  ]\n}}\n\nText:\n{text}",
+  "system_sha256": "f91a3dad760dfe328e9e06b79e8cab530b90879d6ec357eb9f3c0077970510fe",
+  "template_sha256": "8058b210ec287203037cfa3764932b56d0f89496843cdd10c7632e687b02ad33"
  }
 }

@@ -89,6 +89,7 @@ def _load_cells():
 CELLS = _load_cells()
 ACTIVE_CELL = "P0"
 LANGS_FILTER = set()
+IDS_FILTER = set()
 
 
 def load_env(name):
@@ -263,7 +264,7 @@ def score_item(gold, raw):
 
 
 def main():
-    global ACTIVE_CELL, LANGS_FILTER
+    global ACTIVE_CELL, LANGS_FILTER, IDS_FILTER
     timeout = 180
     sleep_s = 5.0
     model = DEFAULT_MODEL
@@ -287,8 +288,10 @@ def main():
             ACTIVE_CELL = sys.argv[2 + i]
         if a == "--langs":
             LANGS_FILTER = set(sys.argv[2 + i].split(","))
+        if a == "--only-ids":
+            IDS_FILTER = set(sys.argv[2 + i].split(","))
     if ACTIVE_CELL not in CELLS:
-        print("ERROR: --cell must be P0|P1|P2|P3", file=sys.stderr)
+        print("ERROR: --cell must be one of %s" % sorted(CELLS), file=sys.stderr)
         return 1
     if transport not in ("zc-free", "minimax", "r4", "sn"):
         print("ERROR: --transport must be zc-free|minimax|r4|sn", file=sys.stderr)
@@ -391,6 +394,8 @@ def run_all(model, timeout, sleep_s, transport, ns, max_items=0):
     for idx, item in enumerate(items):
         sid = item.get("sample_id", item.get("id", "unknown"))
         if sid in done:
+            continue
+        if IDS_FILTER and sid not in IDS_FILTER:
             continue
         if LANGS_FILTER and item.get("language", "") not in LANGS_FILTER:
             continue
