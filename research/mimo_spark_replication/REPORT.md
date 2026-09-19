@@ -164,11 +164,12 @@ A13-Verdikte:
 
 ## 8. Agent-Panel Screen (2026-09-19, A-Judge — falsify-only)
 
-5 Rater (deepseek-r4 / glm-r4 / 6.8-sn / cohere-openrouter 51/72 daily-park / big-pickle-zen),
+5 endpoints (deepseek-r4 / glm-r4 / 6.8-sn / cohere-openrouter 51/72 daily-park / big-pickle-zen;
+independence unmeasured),
 Consensus `--import` (`panel_IMPORT.json`): rejects 15, **Gold-Übereinstimmung (vs-gold) 0,389**,
-qwen-F1 0,419 → **MAINTAIN**. (Nicht zu verwechseln mit inter-rater κ=0,56.)
+qwen-F1 0,419 → **MAINTAIN (weak, single-run, uncalibrated — reservations s. PANEL_SCREEN)**. (Nicht zu verwechseln mit inter-rater κ=0,56 — unter 0,61-Schwelle.)
 Fleiss κ=0,56, paarweiser Konzept-Jaccard 0,44–0,77 (Mittel ~0,63; R1–R3 0,77, R1–R4 0,75).
-Rater stimmen UNTEREINANDER zu — MAINTAIN ist echte Gold-vs-Rater-Divergenz (vs-gold 0,389), kein Rauschen. **Dissent-Kern: 11/72 einstimmige Rejects**
+Rater-Divergenz liegt Gold-vs-Rater (vs-gold 0,389), aber ohne Human-Baseline, Swap- und Retest-Kontrollen bleibt die Stärke schwach. **Dissent-Kern: 11/72 einstimmige Rejects**
 (A005/A006/A014/A018/A020/A022/A027/A028/A032/A035/A041) — Falsifizierungs-grade Gold-Qualitätslücke (~15 %);
-R2 (glm, 36 Rejects, 14 solo) = Rater-Rauschen. Spot-Check (owner, 12 Items) + R4-Full offen.
+R2 (glm, 36 Rejects, 13 solo excl. A030) = Rater-Rauschen + unkontrollierte Self-Präferenz (gleiche Familie wie bewerteter Anker). Spot-Check (owner, reduziert 12 Items; J7-Design bräuchte ≥21) + R4-Full offen.
 Details `research/gold_review_v2/PANEL_SCREEN.md`. C9b bleibt Developing (schärfere Caveat).
