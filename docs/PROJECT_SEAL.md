@@ -40,4 +40,7 @@ R4 配额恢复 / 有 30 分钟人力 (spot-check) / 有三语人力 (盲审) / 
   behalten 0.934 mit Snapshot-Label + Re-Freeze-Hinweis.
 - Historische Handoffs (v43–v46) bleiben timestamped Snapshots; obige Errata + v43 A2-Korrekturen (v45),
   v44 P3-EN-deepseek 0.22→0.21, §2.9b Sozial-A2-Portion sind die maßgeblichen Korrekturen.
-- Tag `seal-2026-09-19` zeigt auf `b7b17f3` (Seal-Zustand); Errata-Commit folgt nach (ohne neuen Tag).
+- Tag `seal-2026-09-19` zeigt auf `b7b17f3` (Seal-Zustand); Errata-Commits folgen nach (ohne neuen Tag).
+- Post-seal Portal-Fixes (Tiefenaudit Portal 2026-09-19): `_deploy/favicon.svg` nachgereicht (Root-断链);
+  `figKeys`-Index-Mapping entfernt (7 `.fig-label` laufen über `data-i18n`, 12 tote Caption-Zeilen raus);
+  en-`finding_c_sub` entdeutscht; 15 Orphan-i18n-Zeilen raus; Methodology-`<h2>` mit `data-i18n`.

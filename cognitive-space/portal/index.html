@@ -448,7 +448,7 @@ tr.collect-head td { font-family: var(--font-mono); font-size: .66rem; letter-sp
 
 <!-- ==================== METHODOLOGY ==================== -->
 <section id="methodology" class="fade-in">
-  <h2 class="section-title">Methodology</h2>
+  <h2 class="section-title" data-i18n="section_method">Methodology</h2>
   <p class="section-sub" data-i18n="method_sub">From textbook text to structural insights in five steps</p>
 
   <div class="card" style="overflow-x:auto;padding:24px;margin-bottom:40px">
@@ -824,7 +824,7 @@ graph LR
   <section id="finding-c" class="fade-in">
 <div class="finding-card" style="border-left:4px solid #0e7490">
     <h3><i class="bi bi-translate" style="color:#0e7490"></i> <span data-i18n="finding_c_title">Finding C: Languages organize knowledge differently</span></h3>
-    <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K nominell ZH-DE 0.519 (frozen v3) — T1-falsifiziert (0.52→0.99 label artifact); EN-Paare ≈ noise floor. Core signal: ΔLDS (Preliminary, Ebenen-getrennt).</div>
+    <div class="lead" data-i18n="finding_c_sub">Textbook LDS-K nominal ZH-DE 0.519 (frozen v3) — T1-falsified (0.52→0.99 label artifact); EN pairs ≈ noise floor. Core signal: ΔLDS (Preliminary, level-separated).</div>
     <p data-i18n="finding_c_body">Textbook structures <em>look</em> more convergent than random expectation — but decontamination falsifies this reading. ZH-DE (LDS-K = 0.519) collapses to <strong>0.990</strong> once de-labels containing Chinese text (167/219) are removed: the apparent convergence is a label artifact, not content convergence. ZH-EN (0.933) and DE-EN (0.938) sit near the within-language noise floor (0.97, textbook line) either way.</p>
     <p style="margin-top:8px;color:var(--text2)" data-i18n="finding_c_body2">The pattern is also topic-dependent: within each language pair, LDS varies by up to 0.2 across the 5 social topics analyzed, suggesting that some knowledge domains are more culturally inflected than others.</p>
     <div class="evidence">
@@ -1815,13 +1815,10 @@ const TRANSLATIONS = {
     section_findings: 'Five finding sections covering twelve numbered results (F1–F12): how knowledge is organized across disciplines, languages, education systems, and individuals',
     finding_a_title: 'Knowledge density peaks early',
     finding_a_sub: 'Finding A — All three STEM disciplines follow a peak-and-decline pattern. Mathematics peaks at middle school, physics at elementary school, and chemistry at middle school.',
-    fig3_caption: 'Fig 3: CDS by Education Level', fig7_caption: 'Fig 7: Three Subject CDS',
     finding_b_title: 'Knowledge structures stay shallow',
     finding_b_sub: 'Finding B — Maximum prerequisite depth is HDS ≤ 8 for math and ≤ 6 for physics. Over 83% of concepts are roots.',
-    fig5_caption: 'Fig 5: HDS Distribution',
     finding_c_title: 'Textbook structures converge across languages',
-    finding_c_sub: 'Finding C — LDS-K nominell ZH-DE 0.519 (frozen v3) — T1-falsifiziert (0.52→0.99 label artifact). A Null Model shows Full < Structure Null (descriptive, Preliminary, T1-falsified reading). Core signal: ΔLDS = LDS-C − LDS-K.',
-    fig4_caption: 'Fig 4: Null Model Suite — Full vs Structure Null',
+    finding_c_sub: 'Finding C — LDS-K nominal ZH-DE 0.519 (frozen v3) — T1-falsified (0.52→0.99 label artifact). A Null Model shows Full < Structure Null (descriptive, Preliminary, T1-falsified reading). Core signal: ΔLDS = LDS-C − LDS-K.',
     finding_d_title: 'Curriculum alignment varies dramatically by governance',
     finding_d_sub: 'Finding D — Coverage scores range from 12.7% (NRW) to 95.4% (China). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit the data.',
     finding_e_title: 'N=15 falsifies delta-LDS between-subject',
@@ -1915,7 +1912,6 @@ const TRANSLATIONS = {
     finding_d_f9: 'Coverage scores vary dramatically across education systems (12.7%–95.4%). Granularity (safest reading) and governance (hypothesis, paper §8.6) both fit these differences.',
     finding_d_f10: 'China near-perfect alignment (95.4%) versus NRW low alignment (12.7%) reflects the spectrum from centralized curriculum to local adaptation.',
     finding_d_tag1: 'Metric: CS',
-    finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systems: DE, UK, US, CN',
     finding_e_body: 'Extended study (6 DE, 6 ZH, 3 EN): concept-level LDS-C (human) is 0.93–0.96 — indistinguishable from the within-language split-half floor (0.92–0.96) and label permutation (0.94). Concept-level delta-LDS is approximately 0. Pilot N=8 values were not replicated. The earlier simulation comparison (p=0.05) is withdrawn.',
     finding_e_ev1: 'Human LDS-C (N=15)',
@@ -1929,10 +1925,6 @@ const TRANSLATIONS = {
     finding_e_tag3: 'N=15 participants, 300 simulation (exploratory)',
     e_tbl_level: 'Level',
     e_tbl_order: 'Rank Order',
-    e_tbl_within: 'Human (Within)',
-    e_tbl_between: 'Human (Between)',
-    e_tbl_wiki: 'Wikipedia Corpus',
-    e_tbl_sim: 'Simulation Baseline',
     limitations1_title: 'Textbook Selection Bias',
     limitations1_desc: 'The corpus is not a comprehensive sample of all textbooks in each language. Chinese textbooks are predominantly one series (Renjiao), which may not represent the full diversity of Chinese mathematics education. German textbooks are weighted toward senior-level university texts (Forster, Fischer) with fewer primary-level resources.',
     limitations1_mit: 'Mitigation: Multi-source triangulation across 68 math textbooks (204 titles total, all subjects)',
@@ -2177,7 +2169,6 @@ const TRANSLATIONS = {
     finding_d_f9: 'Abdeckungswerte variieren stark zwischen Bildungssystemen (12.7%–95.4%). Granularität (sicherste Lesart) und Governance (Hypothese, Paper §8.6) passen beide zu diesen Unterschieden.',
     finding_d_f10: 'China (95.4%) vs. NRW (12.7%): das Spektrum von zentralisiertem Lehrplan bis lokaler Anpassung.',
     finding_d_tag1: 'Metrik: CS',
-    finding_d_tag2: 'F9, F10',
     finding_d_tag3: 'Systeme: DE, UK, US, CN',
     finding_e_body: 'Erweiterte Studie (6 DE, 6 ZH, 3 EN): Konzept-LDS-C (human) 0,93–0,96 — nicht unterscheidbar vom Within-Language-Split-Half-Boden (0,92–0,96) und Label-Permutation (0,94). Konzept-delta-LDS ≈ 0. Pilot N=8 nicht repliziert. Früherer Simulationsvergleich (p=0,05) zurückgezogen.',
     finding_e_ev1: 'Human-LDS-C (N=15)',
@@ -2191,10 +2182,6 @@ const TRANSLATIONS = {
     finding_e_tag3: 'N=15 Teilnehmer, 300 Simulationen (explorativ)',
     e_tbl_level: 'Ebene',
     e_tbl_order: 'Reihenfolge',
-    e_tbl_within: 'Mensch (Innerhalb)',
-    e_tbl_between: 'Mensch (Zwischen)',
-    e_tbl_wiki: 'Wikipedia-Korpus',
-    e_tbl_sim: 'Simulationsbasislinie',
     limitations1_title: 'Lehrbuchauswahlverzerrung',
     limitations1_desc: 'Das Korpus ist keine umfassende Stichprobe aller Lehrbuecher. Chinesische Lehrbuecher ueberwiegend eine Serie (Renjiao). Deutsche Lehrbuecher zum hoeheren Anteil Universitaetstexte.',
     limitations1_mit: 'Massnahme: Multi-Source-Triangulation ueber 68 Mathe-Lehrbuecher (204 Titel gesamt, alle Faecher)',
@@ -2310,13 +2297,10 @@ const TRANSLATIONS = {
     section_findings: 'Fünf Findings-Abschnitte mit zwölf nummerierten Ergebnissen (F1–F12): Organisation von Wissen über Disziplinen, Sprachen, Bildungssysteme und Individuen hinweg',
     finding_a_title: 'Wissensdichte erreicht frühen Höhepunkt',
     finding_a_sub: 'Erkenntnis A — Alle drei MINT-Disziplinen folgen einem Muster aus Höhepunkt und Abfall. Mathematik erreicht den Höhepunkt in der Mittelstufe, Physik in der Grundschule, Chemie in der Mittelstufe.',
-    fig3_caption: 'Abb. 3: CDS nach Bildungsstufe', fig7_caption: 'Abb. 7: CDS der drei Fächer',
     finding_b_title: 'Wissensstrukturen bleiben flach',
     finding_b_sub: 'Erkenntnis B — Die maximale Voraussetzungstiefe beträgt HDS ≤ 8 für Mathematik und ≤ 6 für Physik. Über 83% der Konzepte sind Wurzeln.',
-    fig5_caption: 'Abb. 5: HDS-Verteilung',
     finding_c_title: 'Lehrbuchstrukturen konvergieren über Sprachen hinweg',
     finding_c_sub: 'Erkenntnis C — LDS-K nominell ZH-DE 0,519 (frozen v3) — T1-falsifiziert (0,52→0,99 Label-Artefakt). Ein Null-Modell zeigt Full < Structure Null (deskriptiv, Preliminary, T1-falsifizierte Lesart). Kernsignal: ΔLDS = LDS-C − LDS-K.',
-    fig4_caption: 'Abb. 4: Null Model Suite — Full vs Structure Null',
     finding_d_title: 'Bildungssysteme betonen unterschiedliche Lehrplandesigns',
     finding_d_sub: 'Erkenntnis D — Abdeckungswerte reichen von 12,7% (NRW) bis 95,4% (China). Granularität (sicherste Lesart) und Governance (Hypothese, Paper §8.6) passen beide zu den Daten.',
     finding_e_title: 'N=15 falsifiziert delta-LDS between-subject',
@@ -2493,13 +2477,10 @@ const TRANSLATIONS = {
     section_findings: '五个发现小节，十二项编号结果（F1–F12）：知识如何在学科、语言、教育体系和个人之间组织',
     finding_a_title: '知识密度早期达到峰值',
     finding_a_sub: '发现 A — 三个 STEM 学科都遵循峰值-下降模式。数学在初中达到峰值，物理在小学，化学在初中。',
-    fig3_caption: '图 3：按教育阶段的 CDS', fig7_caption: '图 7：三个学科的 CDS',
     finding_b_title: '知识结构保持浅层',
     finding_b_sub: '发现 B — 最大前提知识深度为数学 HDS ≤ 8，物理 ≤ 6。83% 以上的概念是根节点。',
-    fig5_caption: '图 5：HDS 分布',
     finding_c_title: '教材知识结构跨语言趋同',
     finding_c_sub: '发现 C — 教材 LDS-K 名义值中德 0.519（frozen v3）——T1 证伪为标签伪影（0.52→0.99）。Null Model 显示 Full < Structure Null（描述性差异，Preliminary，T1 证伪读法）。核心信号是 ΔLDS。',
-    fig4_caption: '图 4：Null Model Suite — Full vs Structure Null',
     finding_d_title: '课程覆盖因教育治理模式而异',
     finding_d_sub: '发现 D — 覆盖率从 12.7%（NRW）到 95.4%（中国）。粒度（最稳妥解读）与治理结构（假设，论文 §8.6）都与数据相符。',
     section_curriculum: '课程分析', curriculum_sub: '四个教育体系如何使课程与教材内容对齐',
@@ -2594,7 +2575,6 @@ curr_explanations_title: '三种竞争性解释',
     finding_d_f9: '覆盖率在不同教育体系之间差异巨大（12.7%–95.4%）。粒度（最稳妥解读）与治理结构（假设，论文 §8.6）都与这些差异相符。',
     finding_d_f10: '中国近乎完美对齐（95.4%）vs NRW 低对齐（12.7%），体现了从集中课程到本地适应的光谱。',
     finding_d_tag1: '指标：CS',
-    finding_d_tag2: 'F9, F10',
     finding_d_tag3: '体系：DE, UK, US, CN',
     finding_e_body: '扩展研究（6 德、6 中、3 英）：概念层 LDS-C (human) 为 0.93–0.96——与语言内 split-half 底线（0.92–0.96）及标签置换（0.94）不可区分。概念层 delta-LDS 约为 0。N=8 试点未被复制。早期仿真比较（p=0.05）已撤回。',
     finding_e_ev1: '人类 LDS-C（N=15）',
@@ -2608,10 +2588,6 @@ curr_explanations_title: '三种竞争性解释',
     finding_e_tag3: 'N=15 参与者，300 仿真（探索性）',
     e_tbl_level: '级别',
     e_tbl_order: '排序',
-    e_tbl_within: '人类（受试者内）',
-    e_tbl_between: '人类（组间）',
-    e_tbl_wiki: '维基百科语料',
-    e_tbl_sim: '仿真基线',
     limitations1_title: '教材选择偏差',
     limitations1_desc: '语料库并非每种语言教材的全面样本。中文教材以人教版为主，可能无法代表中国数学教育的多样性。德文教材偏向高年级大学教材（Forster、Fischer），小学阶段资源较少。',
     limitations1_mit: '缓解措施：跨 68 本数学教材（共 204 题名，含全部学科）的多源三角验证',
@@ -2949,10 +2925,7 @@ function setLanguage(lang) {
     if (cl && t[findS[i]]) cl.textContent = t[findS[i]];
   });
 
-  // Figure captions
-  var figs = document.querySelectorAll('.fig-label');
-  var figKeys = ['fig3_caption','fig7_caption','fig5_caption','fig4_caption'];
-  figs.forEach(function(f,i) { if (f && t[figKeys[i]]) f.textContent = t[figKeys[i]]; });
+  // Figure captions are driven by data-i18n keys on each .fig-label (no index mapping).
 
   // Curriculum cards
   var currCards = document.querySelectorAll('#curriculum .card-grid .card');
