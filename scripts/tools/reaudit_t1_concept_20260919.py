@@ -92,7 +92,7 @@ def main():
             L.append("| %s | %d | missing/partial | |" % (arm, t.get("n", 0)))
             continue
         L.append("| %s | %d | %.4f | %.4f |" % (arm, t["n"], t["micro_p"], t["micro_r"]))
-    open(os.path.join(REAUDIT_MD := os.path.join(REP, "T1_AGREEMENT_%s.md" % TAG), ), "w",
+    open(os.path.join(REP, "T1_AGREEMENT_%s.md" % TAG), "w",
          encoding="utf-8").write("\n".join(L) + "\n")
     for arm, t in table.items():
         if t.get("status", "").startswith("missing") or t.get("n", -1) == 0:

@@ -2,8 +2,9 @@
 """Fig v2-cells: Harness-v2 P0/P1/P2/P3 social-F1 + EN-F1 grouped bars. Zero API.
 
 Values are a HARDCODED snapshot transcribed from
-research/mimo_spark_replication/V2_MATRIX.json (commit-pinned; reaudit 2026-09-19:
-no json.load — V2_MATRIX.json updates do NOT propagate to this figure; re-transcribe + rerun manually).
+research/mimo_spark_replication/V2_MATRIX.json (commit-pinned;
+reaudit 2026-09-19: no json.load — V2_MATRIX.json updates do NOT
+propagate to this figure; re-transcribe + rerun manually).
 Writes outputs/figures/fig_v2_cells{,_de,_zh}.png.
 A2 denominator (fails-as-0); glm P3 carries serving-drift caveat (REPORT §7).
 Encoding: color = cell (grey P0 / blue P1 / amber P2 / green P3),
